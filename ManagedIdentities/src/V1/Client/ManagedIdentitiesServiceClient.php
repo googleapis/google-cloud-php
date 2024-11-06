@@ -92,16 +92,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface attachTrustAsync(AttachTrustRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMicrosoftAdDomainAsync(CreateMicrosoftAdDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDomainAsync(DeleteDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachTrustAsync(DetachTrustRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDomainAsync(GetDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDomainsAsync(ListDomainsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reconfigureTrustAsync(ReconfigureTrustRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetAdminPasswordAsync(ResetAdminPasswordRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDomainAsync(UpdateDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateTrustAsync(ValidateTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachTrustAsync(AttachTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMicrosoftAdDomainAsync(CreateMicrosoftAdDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDomainAsync(DeleteDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachTrustAsync(DetachTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Domain> getDomainAsync(GetDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDomainsAsync(ListDomainsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reconfigureTrustAsync(ReconfigureTrustRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResetAdminPasswordResponse> resetAdminPasswordAsync(ResetAdminPasswordRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDomainAsync(UpdateDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> validateTrustAsync(ValidateTrustRequest $request, array $optionalArgs = [])
  */
 final class ManagedIdentitiesServiceClient
 {

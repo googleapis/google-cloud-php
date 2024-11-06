@@ -53,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface deleteProductInputAsync(DeleteProductInputRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertProductInputAsync(InsertProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteProductInputAsync(DeleteProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProductInput> insertProductInputAsync(InsertProductInputRequest $request, array $optionalArgs = [])
  */
 final class ProductInputsServiceClient
 {

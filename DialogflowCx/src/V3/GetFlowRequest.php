@@ -18,8 +18,8 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the flow to get.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,8 +43,8 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the flow to get.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/flows/<Flow ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
      *                     {@see FlowsClient::flowName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetFlowRequest
@@ -65,8 +65,8 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the flow to get.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type string $language_code
      *           The language to retrieve the flow for. The following fields are language
      *           dependent:
@@ -88,8 +88,8 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the flow to get.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,8 +101,8 @@ class GetFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the flow to get.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -35,8 +35,8 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteIntentRequest;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedName The name of the intent to delete.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/intents/<Intent ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`. Please see
  *                              {@see IntentsClient::intentName()} for help formatting this field.
  */
 function delete_intent_sample(string $formattedName): void

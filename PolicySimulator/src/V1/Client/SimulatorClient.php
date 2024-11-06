@@ -64,9 +64,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createReplayAsync(CreateReplayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReplayAsync(GetReplayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReplayResultsAsync(ListReplayResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReplayAsync(CreateReplayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Replay> getReplayAsync(GetReplayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReplayResultsAsync(ListReplayResultsRequest $request, array $optionalArgs = [])
  */
 final class SimulatorClient
 {

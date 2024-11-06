@@ -65,10 +65,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface disableProgramAsync(DisableProgramRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableProgramAsync(EnableProgramRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProgramAsync(GetProgramRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProgramsAsync(ListProgramsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Program> disableProgramAsync(DisableProgramRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Program> enableProgramAsync(EnableProgramRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Program> getProgramAsync(GetProgramRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProgramsAsync(ListProgramsRequest $request, array $optionalArgs = [])
  */
 final class ProgramsServiceClient
 {

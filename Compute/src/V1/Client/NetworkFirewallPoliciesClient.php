@@ -63,22 +63,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addAssociationAsync(AddAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addRuleAsync(AddRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cloneRulesAsync(CloneRulesNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAssociationAsync(GetAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuleAsync(GetRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchRuleAsync(PatchRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeAssociationAsync(RemoveAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeRuleAsync(RemoveRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addAssociationAsync(AddAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cloneRulesAsync(CloneRulesNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicy> getAsync(GetNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyAssociation> getAssociationAsync(GetAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallPolicyRule> getRuleAsync(GetRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeAssociationAsync(RemoveAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  */
 final class NetworkFirewallPoliciesClient
 {

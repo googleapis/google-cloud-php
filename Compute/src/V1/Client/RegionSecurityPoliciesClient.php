@@ -53,15 +53,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addRuleAsync(AddRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuleAsync(GetRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionSecurityPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchRuleAsync(PatchRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeRuleAsync(RemoveRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicy> getAsync(GetRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicyRule> getRuleAsync(GetRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  */
 final class RegionSecurityPoliciesClient
 {

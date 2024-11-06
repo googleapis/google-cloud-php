@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\ListFlowsRequest;
  * Returns the list of all flows in the specified agent.
  *
  * @param string $formattedParent The agent containing the flows.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see FlowsClient::agentName()} for help formatting this field.
  */
 function list_flows_sample(string $formattedParent): void

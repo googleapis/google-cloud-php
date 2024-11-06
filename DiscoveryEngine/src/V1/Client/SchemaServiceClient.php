@@ -55,11 +55,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSchemaAsync(CreateSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSchemaAsync(DeleteSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSchemaAsync(GetSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSchemasAsync(ListSchemasRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSchemaAsync(UpdateSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSchemaAsync(CreateSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSchemaAsync(DeleteSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schema> getSchemaAsync(GetSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSchemasAsync(ListSchemasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSchemaAsync(UpdateSchemaRequest $request, array $optionalArgs = [])
  */
 final class SchemaServiceClient
 {

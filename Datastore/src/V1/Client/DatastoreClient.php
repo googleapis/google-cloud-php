@@ -62,14 +62,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface allocateIdsAsync(AllocateIdsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupAsync(LookupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reserveIdsAsync(ReserveIdsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runAggregationQueryAsync(RunAggregationQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runQueryAsync(RunQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AllocateIdsResponse> allocateIdsAsync(AllocateIdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BeginTransactionResponse> beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CommitResponse> commitAsync(CommitRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupResponse> lookupAsync(LookupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReserveIdsResponse> reserveIdsAsync(ReserveIdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RollbackResponse> rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunAggregationQueryResponse> runAggregationQueryAsync(RunAggregationQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunQueryResponse> runQueryAsync(RunQueryRequest $request, array $optionalArgs = [])
  */
 final class DatastoreClient
 {

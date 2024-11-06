@@ -39,9 +39,9 @@ use Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup;
  *
  * @param string $formattedParent                 The flow to create an
  *                                                [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
- *                                                for. Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                                ID>/flows/<Flow ID>`
- *                                                or `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`
+ *                                                for. Format:
+ *                                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`
+ *                                                or `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`
  *                                                for agent-level groups. Please see
  *                                                {@see TransitionRouteGroupsClient::flowName()} for help formatting this field.
  * @param string $transitionRouteGroupDisplayName The human-readable name of the transition route group, unique

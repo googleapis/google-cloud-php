@@ -15,13 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Best routes for this router's network.
+     * A list of the best dynamic routes for this Cloud Router's Virtual Private Cloud (VPC) network in the same region as this Cloud Router. Lists all of the best routes per prefix that are programmed into this region's VPC data plane. When global dynamic routing mode is turned on in the VPC network, this list can include cross-region dynamic routes from Cloud Routers in other regions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
      */
     private $best_routes;
     /**
-     * Best routes learned by this router.
+     * A list of the best BGP routes learned by this Cloud Router. It is possible that routes listed might not be programmed into the data plane, if the Google Cloud control plane finds a more optimal route for a prefix than a route learned by this Cloud Router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes_for_router = 119389689;</code>
      */
@@ -48,9 +48,9 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $best_routes
-     *           Best routes for this router's network.
+     *           A list of the best dynamic routes for this Cloud Router's Virtual Private Cloud (VPC) network in the same region as this Cloud Router. Lists all of the best routes per prefix that are programmed into this region's VPC data plane. When global dynamic routing mode is turned on in the VPC network, this list can include cross-region dynamic routes from Cloud Routers in other regions.
      *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $best_routes_for_router
-     *           Best routes learned by this router.
+     *           A list of the best BGP routes learned by this Cloud Router. It is possible that routes listed might not be programmed into the data plane, if the Google Cloud control plane finds a more optimal route for a prefix than a route learned by this Cloud Router.
      *     @type array<\Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus>|\Google\Protobuf\Internal\RepeatedField $bgp_peer_status
      *     @type array<\Google\Cloud\Compute\V1\RouterStatusNatStatus>|\Google\Protobuf\Internal\RepeatedField $nat_status
      *     @type string $network
@@ -63,7 +63,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Best routes for this router's network.
+     * A list of the best dynamic routes for this Cloud Router's Virtual Private Cloud (VPC) network in the same region as this Cloud Router. Lists all of the best routes per prefix that are programmed into this region's VPC data plane. When global dynamic routing mode is turned on in the VPC network, this list can include cross-region dynamic routes from Cloud Routers in other regions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -74,7 +74,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Best routes for this router's network.
+     * A list of the best dynamic routes for this Cloud Router's Virtual Private Cloud (VPC) network in the same region as this Cloud Router. Lists all of the best routes per prefix that are programmed into this region's VPC data plane. When global dynamic routing mode is turned on in the VPC network, this list can include cross-region dynamic routes from Cloud Routers in other regions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
      * @param array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $var
@@ -89,7 +89,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Best routes learned by this router.
+     * A list of the best BGP routes learned by this Cloud Router. It is possible that routes listed might not be programmed into the data plane, if the Google Cloud control plane finds a more optimal route for a prefix than a route learned by this Cloud Router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes_for_router = 119389689;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -100,7 +100,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Best routes learned by this router.
+     * A list of the best BGP routes learned by this Cloud Router. It is possible that routes listed might not be programmed into the data plane, if the Google Cloud control plane finds a more optimal route for a prefix than a route learned by this Cloud Router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes_for_router = 119389689;</code>
      * @param array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $var

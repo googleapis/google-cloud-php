@@ -25,6 +25,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
+use Google\Auth\Cache\FileSystemCacheItemPool;
 use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
@@ -59,6 +60,7 @@ class DocFxCommand extends Command
             ->addOption('metadata-version', '', InputOption::VALUE_REQUIRED, 'version to write to docs.metadata using docuploader')
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
             ->addOption('path', '', InputOption::VALUE_OPTIONAL, 'Specify the path to the composer package to generate.')
+            ->addOption('--with-cache', '', InputOption::VALUE_NONE, 'Cache expensive proto namespace lookups to a file')
         ;
     }
 
@@ -104,12 +106,14 @@ class DocFxCommand extends Command
         $tocItems = [];
         $packageDescription = $component->getDescription();
         $isBeta = 'stable' !== $component->getReleaseLevel();
+        $packageNamespaces = $this->getProtoPackageToNamespaceMap($input->getOption('with-cache'));
         foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,
                 $packageDescription,
-                $component->getPath()
+                $component->getPath(),
+                $packageNamespaces
             );
 
             foreach ($pageTree->getPages() as $page) {
@@ -170,15 +174,20 @@ class DocFxCommand extends Command
 
         if ($metadataVersion = $input->getOption('metadata-version')) {
             $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
+            $xrefs = array_merge(...array_map(
+                fn ($c) => ['--xrefs', sprintf('devsite://php/%s', $c->getId())],
+                $component->getComponentDependencies(),
+            ));
             $process = new Process([
                 'docuploader', 'create-metadata',
-                '--name', str_replace('google/', '', $component->getPackageName()),
+                '--name', $component->getId(),
                 '--version', $metadataVersion,
                 '--language', 'php',
                 '--distribution-name', $component->getPackageName(),
                 '--product-page', $component->getProductDocumentation(),
                 '--github-repository', $component->getRepoName(),
                 '--issue-tracker', $component->getIssueTracker(),
+                ...$xrefs,
                 $outDir . '/docs.metadata'
             ]);
             $process->mustRun();
@@ -257,5 +266,22 @@ class DocFxCommand extends Command
             $output->writeln('');
         }
         return $valid;
+    }
+
+    private function getProtoPackageToNamespaceMap(bool $useFileCache): array
+    {
+        if (!$useFileCache) {
+            return Component::getProtoPackageToNamespaceMap();
+        }
+
+        $cache = new FileSystemCacheItemPool('.cache');
+        $item = $cache->getItem('phpdoc_proto_package_to_namespace_map');
+
+        if (!$item->isHit()) {
+            $item->set(Component::getProtoPackageToNamespaceMap());
+            $cache->save($item);
+        }
+
+        return $item->get();
     }
 }

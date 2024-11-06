@@ -62,15 +62,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runJobAsync(RunJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runJobAsync(RunJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
  */
 final class JobsClient
 {

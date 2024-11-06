@@ -22,6 +22,12 @@ class NetworkEndpointGroupPscData extends \Google\Protobuf\Internal\Message
      */
     private $consumer_psc_address = null;
     /**
+     * The psc producer port is used to connect PSC NEG with specific port on the PSC Producer side; should only be used for the PRIVATE_SERVICE_CONNECT NEG type
+     *
+     * Generated from protobuf field <code>optional int32 producer_port = 410021134;</code>
+     */
+    private $producer_port = null;
+    /**
      * [Output Only] The PSC connection id of the PSC Network Endpoint Group Consumer.
      *
      * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
@@ -43,6 +49,8 @@ class NetworkEndpointGroupPscData extends \Google\Protobuf\Internal\Message
      *
      *     @type string $consumer_psc_address
      *           [Output Only] Address allocated from given subnetwork for PSC. This IP address acts as a VIP for a PSC NEG, allowing it to act as an endpoint in L7 PSC-XLB.
+     *     @type int $producer_port
+     *           The psc producer port is used to connect PSC NEG with specific port on the PSC Producer side; should only be used for the PRIVATE_SERVICE_CONNECT NEG type
      *     @type int|string $psc_connection_id
      *           [Output Only] The PSC connection id of the PSC Network Endpoint Group Consumer.
      *     @type string $psc_connection_status
@@ -87,6 +95,42 @@ class NetworkEndpointGroupPscData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->consumer_psc_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * The psc producer port is used to connect PSC NEG with specific port on the PSC Producer side; should only be used for the PRIVATE_SERVICE_CONNECT NEG type
+     *
+     * Generated from protobuf field <code>optional int32 producer_port = 410021134;</code>
+     * @return int
+     */
+    public function getProducerPort()
+    {
+        return isset($this->producer_port) ? $this->producer_port : 0;
+    }
+
+    public function hasProducerPort()
+    {
+        return isset($this->producer_port);
+    }
+
+    public function clearProducerPort()
+    {
+        unset($this->producer_port);
+    }
+
+    /**
+     * The psc producer port is used to connect PSC NEG with specific port on the PSC Producer side; should only be used for the PRIVATE_SERVICE_CONNECT NEG type
+     *
+     * Generated from protobuf field <code>optional int32 producer_port = 410021134;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProducerPort($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->producer_port = $var;
 
         return $this;
     }

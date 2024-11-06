@@ -18,8 +18,8 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the entity type.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,8 +42,8 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the entity type.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/entityTypes/<Entity Type ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`. Please see
      *                     {@see EntityTypesClient::entityTypeName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetEntityTypeRequest
@@ -64,8 +64,8 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the entity type.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/entityTypes/<Entity Type ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *     @type string $language_code
      *           The language to retrieve the entity type for. The following fields are
      *           language dependent:
@@ -86,8 +86,8 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the entity type.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,8 +99,8 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the entity type.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

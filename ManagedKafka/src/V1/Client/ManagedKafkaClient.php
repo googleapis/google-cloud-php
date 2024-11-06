@@ -70,22 +70,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTopicAsync(CreateTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConsumerGroupAsync(DeleteConsumerGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTopicAsync(DeleteTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConsumerGroupAsync(GetConsumerGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTopicAsync(GetTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConsumerGroupsAsync(ListConsumerGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTopicsAsync(ListTopicsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConsumerGroupAsync(UpdateConsumerGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTopicAsync(UpdateTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> createTopicAsync(CreateTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConsumerGroupAsync(DeleteConsumerGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTopicAsync(DeleteTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConsumerGroup> getConsumerGroupAsync(GetConsumerGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> getTopicAsync(GetTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConsumerGroupsAsync(ListConsumerGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTopicsAsync(ListTopicsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConsumerGroup> updateConsumerGroupAsync(UpdateConsumerGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> updateTopicAsync(UpdateTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ManagedKafkaClient
 {

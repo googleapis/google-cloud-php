@@ -24,7 +24,7 @@ class TaskTrackingInfo
         \GPBMetadata\Google\Type\Latlng::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+¸
 <google/maps/fleetengine/delivery/v1/task_tracking_info.protomaps.fleetengine.delivery.v1google/api/resource.proto0google/maps/fleetengine/delivery/v1/common.proto;google/maps/fleetengine/delivery/v1/delivery_vehicles.proto/google/maps/fleetengine/delivery/v1/tasks.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.protogoogle/type/latlng.proto"®
 TaskTrackingInfo
 name (	
@@ -43,8 +43,8 @@ class TaskTrackingInfo
 target_time_window (2(.maps.fleetengine.delivery.v1.TimeWindow?
 
 attributes (2+.maps.fleetengine.delivery.v1.TaskAttribute:bêA_
-+fleetengine.googleapis.com/TaskTrackingInfo0providers/{provider}/taskTrackingInfo/{tracking}B†
-#google.maps.fleetengine.delivery.v1BTaskTrackingInfoProtoPZIcloud.google.com/go/maps/fleetengine/delivery/apiv1/deliverypb;deliverypb¢CFEDª#Google.Maps.FleetEngine.Delivery.V1Ê#Google\\Maps\\FleetEngine\\Delivery\\V1ê\'Google::Maps::FleetEngine::Delivery::V1bproto3'
++fleetengine.googleapis.com/TaskTrackingInfo0providers/{provider}/taskTrackingInfo/{tracking}BŠ
+\'com.google.maps.fleetengine.delivery.v1BTaskTrackingInfoProtoPZIcloud.google.com/go/maps/fleetengine/delivery/apiv1/deliverypb;deliverypb¢CFEDª#Google.Maps.FleetEngine.Delivery.V1Ê#Google\\Maps\\FleetEngine\\Delivery\\V1ê\'Google::Maps::FleetEngine::Delivery::V1bproto3'
         , true);
 
         static::$is_initialized = true;

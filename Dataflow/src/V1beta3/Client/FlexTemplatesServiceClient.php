@@ -45,7 +45,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface launchFlexTemplateAsync(LaunchFlexTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LaunchFlexTemplateResponse> launchFlexTemplateAsync(LaunchFlexTemplateRequest $request, array $optionalArgs = [])
  */
 final class FlexTemplatesServiceClient
 {

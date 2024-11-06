@@ -993,6 +993,8 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $listManagedInstancesResults = 'listManagedInstancesResults832918068';
         $name = 'name3373707';
         $region = 'region-934795532';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $targetSize = 2084603409;
         $zone2 = 'zone2-696322977';
@@ -1008,6 +1010,8 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setListManagedInstancesResults($listManagedInstancesResults);
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetSize($targetSize);
         $expectedResponse->setZone($zone2);

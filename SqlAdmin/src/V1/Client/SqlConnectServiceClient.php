@@ -43,8 +43,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface generateEphemeralCertAsync(GenerateEphemeralCertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectSettingsAsync(GetConnectSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateEphemeralCertResponse> generateEphemeralCertAsync(GenerateEphemeralCertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectSettings> getConnectSettingsAsync(GetConnectSettingsRequest $request, array $optionalArgs = [])
  */
 final class SqlConnectServiceClient
 {

@@ -63,18 +63,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTopicAsync(Topic $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTopicAsync(DeleteTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachSubscriptionAsync(DetachSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTopicAsync(GetTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTopicSnapshotsAsync(ListTopicSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTopicSubscriptionsAsync(ListTopicSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTopicsAsync(ListTopicsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface publishAsync(PublishRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTopicAsync(UpdateTopicRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> createTopicAsync(Topic $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTopicAsync(DeleteTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DetachSubscriptionResponse> detachSubscriptionAsync(DetachSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> getTopicAsync(GetTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTopicSnapshotsAsync(ListTopicSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTopicSubscriptionsAsync(ListTopicSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTopicsAsync(ListTopicsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishResponse> publishAsync(PublishRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Topic> updateTopicAsync(UpdateTopicRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class PublisherClient
 {

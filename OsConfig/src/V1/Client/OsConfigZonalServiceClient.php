@@ -68,18 +68,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createOSPolicyAssignmentAsync(CreateOSPolicyAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteOSPolicyAssignmentAsync(DeleteOSPolicyAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInventoryAsync(GetInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOSPolicyAssignmentAsync(GetOSPolicyAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOSPolicyAssignmentReportAsync(GetOSPolicyAssignmentReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVulnerabilityReportAsync(GetVulnerabilityReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInventoriesAsync(ListInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOSPolicyAssignmentReportsAsync(ListOSPolicyAssignmentReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOSPolicyAssignmentRevisionsAsync(ListOSPolicyAssignmentRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOSPolicyAssignmentsAsync(ListOSPolicyAssignmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVulnerabilityReportsAsync(ListVulnerabilityReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateOSPolicyAssignmentAsync(UpdateOSPolicyAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createOSPolicyAssignmentAsync(CreateOSPolicyAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteOSPolicyAssignmentAsync(DeleteOSPolicyAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Inventory> getInventoryAsync(GetInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OSPolicyAssignment> getOSPolicyAssignmentAsync(GetOSPolicyAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OSPolicyAssignmentReport> getOSPolicyAssignmentReportAsync(GetOSPolicyAssignmentReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VulnerabilityReport> getVulnerabilityReportAsync(GetVulnerabilityReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInventoriesAsync(ListInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOSPolicyAssignmentReportsAsync(ListOSPolicyAssignmentReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOSPolicyAssignmentRevisionsAsync(ListOSPolicyAssignmentRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOSPolicyAssignmentsAsync(ListOSPolicyAssignmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVulnerabilityReportsAsync(ListVulnerabilityReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateOSPolicyAssignmentAsync(UpdateOSPolicyAssignmentRequest $request, array $optionalArgs = [])
  */
 final class OsConfigZonalServiceClient
 {

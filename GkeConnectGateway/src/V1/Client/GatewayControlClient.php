@@ -41,7 +41,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface generateCredentialsAsync(GenerateCredentialsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateCredentialsResponse> generateCredentialsAsync(GenerateCredentialsRequest $request, array $optionalArgs = [])
  */
 final class GatewayControlClient
 {

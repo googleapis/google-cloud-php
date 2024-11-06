@@ -56,12 +56,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createVehicleAsync(CreateVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVehicleAsync(GetVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVehiclesAsync(ListVehiclesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchVehiclesAsync(SearchVehiclesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVehicleAsync(UpdateVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVehicleAttributesAsync(UpdateVehicleAttributesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Vehicle> createVehicleAsync(CreateVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Vehicle> getVehicleAsync(GetVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVehiclesAsync(ListVehiclesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchVehiclesResponse> searchVehiclesAsync(SearchVehiclesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Vehicle> updateVehicleAsync(UpdateVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UpdateVehicleAttributesResponse> updateVehicleAttributesAsync(UpdateVehicleAttributesRequest $request, array $optionalArgs = [])
  */
 final class VehicleServiceClient
 {

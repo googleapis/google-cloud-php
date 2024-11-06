@@ -18,7 +18,7 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to create a generator for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,7 +40,7 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent    Required. The agent to create a generator for.
-     *                                                            Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                            Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                                                            {@see GeneratorsClient::agentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Generator $generator Required. The generator to create.
      *
@@ -63,7 +63,7 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to create a generator for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Generator $generator
      *           Required. The generator to create.
      *     @type string $language_code
@@ -79,7 +79,7 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to create a generator for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to create a generator for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

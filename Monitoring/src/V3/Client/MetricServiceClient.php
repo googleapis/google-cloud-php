@@ -58,15 +58,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createMetricDescriptorAsync(CreateMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMetricDescriptorAsync(DeleteMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetricDescriptorAsync(GetMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMonitoredResourceDescriptorAsync(GetMonitoredResourceDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMetricDescriptorsAsync(ListMetricDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTimeSeriesAsync(ListTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetricDescriptor> createMetricDescriptorAsync(CreateMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> createServiceTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> createTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMetricDescriptorAsync(DeleteMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetricDescriptor> getMetricDescriptorAsync(GetMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MonitoredResourceDescriptor> getMonitoredResourceDescriptorAsync(GetMonitoredResourceDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMetricDescriptorsAsync(ListMetricDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTimeSeriesAsync(ListTimeSeriesRequest $request, array $optionalArgs = [])
  */
 final class MetricServiceClient
 {

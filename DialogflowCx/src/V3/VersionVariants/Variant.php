@@ -17,8 +17,8 @@ class Variant extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the flow version.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
@@ -45,8 +45,8 @@ class Variant extends \Google\Protobuf\Internal\Message
      *
      *     @type string $version
      *           The name of the flow version.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *     @type float $traffic_allocation
      *           Percentage of the traffic which should be routed to this
      *           version of flow. Traffic allocation for a single flow must sum up to 1.0.
@@ -61,8 +61,8 @@ class Variant extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flow version.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1;</code>
      * @return string
@@ -74,8 +74,8 @@ class Variant extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flow version.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1;</code>
      * @param string $var

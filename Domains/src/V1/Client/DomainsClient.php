@@ -69,21 +69,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface configureContactSettingsAsync(ConfigureContactSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface configureDnsSettingsAsync(ConfigureDnsSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface configureManagementSettingsAsync(ConfigureManagementSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRegistrationAsync(DeleteRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportRegistrationAsync(ExportRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRegistrationAsync(GetRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRegistrationsAsync(ListRegistrationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface registerDomainAsync(RegisterDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetAuthorizationCodeAsync(ResetAuthorizationCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveAuthorizationCodeAsync(RetrieveAuthorizationCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveRegisterParametersAsync(RetrieveRegisterParametersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveTransferParametersAsync(RetrieveTransferParametersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchDomainsAsync(SearchDomainsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface transferDomainAsync(TransferDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRegistrationAsync(UpdateRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> configureContactSettingsAsync(ConfigureContactSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> configureDnsSettingsAsync(ConfigureDnsSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> configureManagementSettingsAsync(ConfigureManagementSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRegistrationAsync(DeleteRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportRegistrationAsync(ExportRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Registration> getRegistrationAsync(GetRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRegistrationsAsync(ListRegistrationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> registerDomainAsync(RegisterDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizationCode> resetAuthorizationCodeAsync(ResetAuthorizationCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizationCode> retrieveAuthorizationCodeAsync(RetrieveAuthorizationCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetrieveRegisterParametersResponse> retrieveRegisterParametersAsync(RetrieveRegisterParametersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetrieveTransferParametersResponse> retrieveTransferParametersAsync(RetrieveTransferParametersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchDomainsResponse> searchDomainsAsync(SearchDomainsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> transferDomainAsync(TransferDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRegistrationAsync(UpdateRegistrationRequest $request, array $optionalArgs = [])
  */
 final class DomainsClient
 {

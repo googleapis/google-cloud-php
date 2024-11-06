@@ -71,17 +71,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface directPredictAsync(DirectPredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface directRawPredictAsync(DirectRawPredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface explainAsync(ExplainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateContentAsync(GenerateContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface predictAsync(PredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rawPredictAsync(RawPredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DirectPredictResponse> directPredictAsync(DirectPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DirectRawPredictResponse> directRawPredictAsync(DirectRawPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExplainResponse> explainAsync(ExplainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateContentResponse> generateContentAsync(GenerateContentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PredictResponse> predictAsync(PredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> rawPredictAsync(RawPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class PredictionServiceClient
 {

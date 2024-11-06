@@ -35,6 +35,7 @@ do
         --component $COMPONENT \
         --out $DIR/out \
         --metadata-version $VERSION \
+        --with-cache \
         $STAGING_FLAG \
         $VERBOSITY_FLAG
 done

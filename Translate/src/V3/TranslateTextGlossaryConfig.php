@@ -32,6 +32,13 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ignore_case = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ignore_case = false;
+    /**
+     * Optional. If set to true, the glossary will be used for contextual
+     * translation.
+     *
+     * Generated from protobuf field <code>bool contextual_translation_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $contextual_translation_enabled = false;
 
     /**
      * Constructor.
@@ -47,6 +54,9 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $ignore_case
      *           Optional. Indicates match is case insensitive. The default value is `false`
      *           if missing.
+     *     @type bool $contextual_translation_enabled
+     *           Optional. If set to true, the glossary will be used for contextual
+     *           translation.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,6 +120,34 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_case = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, the glossary will be used for contextual
+     * translation.
+     *
+     * Generated from protobuf field <code>bool contextual_translation_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getContextualTranslationEnabled()
+    {
+        return $this->contextual_translation_enabled;
+    }
+
+    /**
+     * Optional. If set to true, the glossary will be used for contextual
+     * translation.
+     *
+     * Generated from protobuf field <code>bool contextual_translation_enabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setContextualTranslationEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->contextual_translation_enabled = $var;
 
         return $this;
     }

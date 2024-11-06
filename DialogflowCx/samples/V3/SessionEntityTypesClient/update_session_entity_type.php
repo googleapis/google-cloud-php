@@ -34,11 +34,11 @@ use Google\Cloud\Dialogflow\Cx\V3\UpdateSessionEntityTypeRequest;
  * Updates the specified session entity type.
  *
  * @param string $sessionEntityTypeName                    The unique identifier of the session entity type.
- *                                                         Format: `projects/<Project ID>/locations/<Location
- *                                                         ID>/agents/<Agent ID>/sessions/<Session ID>/entityTypes/<Entity Type
- *                                                         ID>` or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                                         ID>/environments/<Environment ID>/sessions/<Session ID>/entityTypes/<Entity
- *                                                         Type ID>`. If `Environment ID` is not specified, we assume default 'draft'
+ *                                                         Format:
+ *                                                         `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`
+ *                                                         or
+ *                                                         `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>/entityTypes/<EntityTypeID>`.
+ *                                                         If `Environment ID` is not specified, we assume default 'draft'
  *                                                         environment.
  * @param int    $sessionEntityTypeEntityOverrideMode      Indicates whether the additional data should override or
  *                                                         supplement the custom entity type definition.

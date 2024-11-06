@@ -54,15 +54,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListServiceAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteServiceAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetServiceAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyServiceAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertServiceAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListServiceAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchServiceAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyServiceAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListServiceAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServiceAttachment> getAsync(GetServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListServiceAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyServiceAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsServiceAttachmentRequest $request, array $optionalArgs = [])
  */
 final class ServiceAttachmentsClient
 {

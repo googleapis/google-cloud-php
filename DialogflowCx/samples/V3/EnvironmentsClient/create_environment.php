@@ -44,7 +44,7 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent        The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
  *                                       [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
- *                                       `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                       {@see EnvironmentsClient::agentName()} for help formatting this field.
  * @param string $environmentDisplayName The human-readable name of the environment (unique in an agent).
  *                                       Limit of 64 characters.

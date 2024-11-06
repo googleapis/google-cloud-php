@@ -57,9 +57,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTagHoldAsync(CreateTagHoldRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTagHoldAsync(DeleteTagHoldRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTagHoldsAsync(ListTagHoldsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTagHoldAsync(CreateTagHoldRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTagHoldAsync(DeleteTagHoldRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTagHoldsAsync(ListTagHoldsRequest $request, array $optionalArgs = [])
  */
 final class TagHoldsClient
 {

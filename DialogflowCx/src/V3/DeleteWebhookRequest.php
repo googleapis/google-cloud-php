@@ -18,8 +18,8 @@ class DeleteWebhookRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the webhook to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,8 +41,8 @@ class DeleteWebhookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the webhook to delete.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/webhooks/<Webhook ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`. Please see
      *                     {@see WebhooksClient::webhookName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteWebhookRequest
@@ -63,8 +63,8 @@ class DeleteWebhookRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the webhook to delete.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/webhooks/<Webhook ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *     @type bool $force
      *           This field has no effect for webhook not being used.
      *           For webhooks that are used by pages/flows/transition route groups:
@@ -84,8 +84,8 @@ class DeleteWebhookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the webhook to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,8 +97,8 @@ class DeleteWebhookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the webhook to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

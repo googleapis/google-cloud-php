@@ -49,12 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsTargetVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetVpnGateway> getAsync(GetTargetVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsTargetVpnGatewayRequest $request, array $optionalArgs = [])
  */
 final class TargetVpnGatewaysClient
 {

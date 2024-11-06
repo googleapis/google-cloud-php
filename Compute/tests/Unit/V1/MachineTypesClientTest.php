@@ -146,6 +146,7 @@ class MachineTypesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $architecture = 'architecture839674195';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $guestCpus = 1754126894;
@@ -160,6 +161,7 @@ class MachineTypesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $zone2 = 'zone2-696322977';
         $expectedResponse = new MachineType();
+        $expectedResponse->setArchitecture($architecture);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setGuestCpus($guestCpus);

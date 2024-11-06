@@ -43,7 +43,7 @@ use Google\Rpc\Status;
  * [ImportIntentsResponse][google.cloud.dialogflow.cx.v3.ImportIntentsResponse]
  *
  * @param string $formattedParent The agent to import the intents into.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see IntentsClient::agentName()} for help formatting this field.
  */
 function import_intents_sample(string $formattedParent): void

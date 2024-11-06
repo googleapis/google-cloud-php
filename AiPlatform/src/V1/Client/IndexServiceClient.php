@@ -67,18 +67,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeDatapointsAsync(RemoveDatapointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIndexAsync(UpdateIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface upsertDatapointsAsync(UpsertDatapointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Index> getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveDatapointsResponse> removeDatapointsAsync(RemoveDatapointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateIndexAsync(UpdateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UpsertDatapointsResponse> upsertDatapointsAsync(UpsertDatapointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class IndexServiceClient
 {

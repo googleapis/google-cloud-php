@@ -60,16 +60,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateJobsAsync(BatchCreateJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchDeleteJobsAsync(BatchDeleteJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchUpdateJobsAsync(BatchUpdateJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchJobsAsync(SearchJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchJobsForAlertAsync(SearchJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateJobsAsync(BatchCreateJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchDeleteJobsAsync(BatchDeleteJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchUpdateJobsAsync(BatchUpdateJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchJobsResponse> searchJobsAsync(SearchJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchJobsResponse> searchJobsForAlertAsync(SearchJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
  */
 final class JobServiceClient
 {

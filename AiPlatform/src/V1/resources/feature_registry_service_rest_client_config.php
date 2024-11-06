@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.FeatureRegistryService' => [
+            'BatchCreateFeatures' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/featureGroups/*}/features:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFeature' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/featureGroups/*}/features',

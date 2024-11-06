@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createBrandAsync(CreateBrandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIdentityAwareProxyClientAsync(CreateIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIdentityAwareProxyClientAsync(DeleteIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBrandAsync(GetBrandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIdentityAwareProxyClientAsync(GetIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBrandsAsync(ListBrandsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIdentityAwareProxyClientsAsync(ListIdentityAwareProxyClientsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetIdentityAwareProxyClientSecretAsync(ResetIdentityAwareProxyClientSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Brand> createBrandAsync(CreateBrandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IdentityAwareProxyClient> createIdentityAwareProxyClientAsync(CreateIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIdentityAwareProxyClientAsync(DeleteIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Brand> getBrandAsync(GetBrandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IdentityAwareProxyClient> getIdentityAwareProxyClientAsync(GetIdentityAwareProxyClientRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListBrandsResponse> listBrandsAsync(ListBrandsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIdentityAwareProxyClientsAsync(ListIdentityAwareProxyClientsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IdentityAwareProxyClient> resetIdentityAwareProxyClientSecretAsync(ResetIdentityAwareProxyClientSecretRequest $request, array $optionalArgs = [])
  */
 final class IdentityAwareProxyOAuthServiceClient
 {

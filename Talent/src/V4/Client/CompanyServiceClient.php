@@ -52,11 +52,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createCompanyAsync(CreateCompanyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCompanyAsync(DeleteCompanyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCompanyAsync(GetCompanyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCompaniesAsync(ListCompaniesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCompanyAsync(UpdateCompanyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Company> createCompanyAsync(CreateCompanyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCompanyAsync(DeleteCompanyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Company> getCompanyAsync(GetCompanyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCompaniesAsync(ListCompaniesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Company> updateCompanyAsync(UpdateCompanyRequest $request, array $optionalArgs = [])
  */
 final class CompanyServiceClient
 {

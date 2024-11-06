@@ -18,8 +18,8 @@ class GetChangelogRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the changelog to get.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/changelogs/<Changelog ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,8 +27,8 @@ class GetChangelogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the changelog to get.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/changelogs/<Changelog ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`. Please see
      *                     {@see ChangelogsClient::changelogName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetChangelogRequest
@@ -49,8 +49,8 @@ class GetChangelogRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the changelog to get.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/changelogs/<Changelog ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,8 +60,8 @@ class GetChangelogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the changelog to get.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/changelogs/<Changelog ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,8 +73,8 @@ class GetChangelogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the changelog to get.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/changelogs/<Changelog ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/changelogs/<ChangelogID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
