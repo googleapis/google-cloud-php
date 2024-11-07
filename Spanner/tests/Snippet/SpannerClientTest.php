@@ -34,7 +34,6 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
@@ -49,7 +48,6 @@ use Prophecy\Argument;
 class SpannerClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'foo';
@@ -63,8 +61,7 @@ class SpannerClientTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->client = TestHelpers::stub(
             SpannerClient::class,
             [['projectId' => self::PROJECT]],

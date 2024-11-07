@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
 use Google\Cloud\Spanner\Backup;
@@ -49,7 +48,6 @@ class InstanceTest extends TestCase
     use GrpcTestTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-    use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
 
     const PROJECT_ID = 'test-project';
@@ -67,8 +65,7 @@ class InstanceTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
                 'replicaSelections' => [[

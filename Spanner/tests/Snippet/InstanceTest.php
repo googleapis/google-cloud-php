@@ -22,7 +22,6 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -42,7 +41,6 @@ class InstanceTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
@@ -58,8 +56,7 @@ class InstanceTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->requestHandler->reveal(),
             $this->serializer,

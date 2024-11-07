@@ -25,7 +25,6 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -37,7 +36,6 @@ class SnapshotTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const TRANSACTION = 'my-transaction';
 
@@ -49,8 +47,7 @@ class SnapshotTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 

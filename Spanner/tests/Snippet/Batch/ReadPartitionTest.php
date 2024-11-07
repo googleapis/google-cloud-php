@@ -24,7 +24,6 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
@@ -39,7 +38,6 @@ class ReadPartitionTest extends SnippetTestCase
     use PartitionSharedSnippetTestTrait {
         provideGetters as private getters;
     }
-    use RequestHandlingTestTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -57,8 +55,7 @@ class ReadPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->time = time();
         $this->table = 'table';
         $this->keySet = new KeySet(['all' => true]);
@@ -68,24 +65,18 @@ class ReadPartitionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'createSession',
+        $this->spannerClient->createSession(
             null,
             ['name' => self::SESSION]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
             ]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionRead',
+        $this->spannerClient->partitionRead(
             null,
             [
                 'partitions' => [

@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -48,6 +49,7 @@ class BackupTest extends TestCase
     use GrpcTestTrait;
     use ProphecyTrait;
     use ArraySubsetAsserts;
+    use ApiHelperTrait;
 
     const PROJECT_ID = 'test-project';
     const INSTANCE = 'instance-name';
@@ -69,7 +71,20 @@ class BackupTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
-        $this->serializer = new Serializer();
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ]);
 
         $this->database = $this->prophesize(Database::class);
         $this->database->name()->willReturn(DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE));
@@ -221,7 +236,6 @@ class BackupTest extends TestCase
         );
 
         $info = $backup->info();
-        var_dump($info);exit;
 
         $this->assertArraySubset([
             'name' => $response->getName(),

@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -47,7 +46,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class BatchSnapshotTest extends TestCase
 {
     use OperationRefreshTrait;
-    use RequestHandlingTestTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
@@ -72,8 +70,7 @@ class BatchSnapshotTest extends TestCase
 
         $this->timestamp = new Timestamp(new \DateTime());
 
-        $this->serializer = $this->getSerializer();
-        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = new Serializer();
         $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [
             new Operation($this->requestHandler->reveal(), $this->serializer, false),
             $this->session->reveal(),
@@ -116,9 +113,7 @@ class BatchSnapshotTest extends TestCase
             ]
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionRead',
+        $this->spannerClient->partitionRead(
             function ($args) use ($expectedArguments) {
                 Argument::type(PartitionReadRequest::class);
                 $actualArguments = $this->serializer->encodeMessage($args);
@@ -169,9 +164,7 @@ class BatchSnapshotTest extends TestCase
             ]
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionQuery',
+        $this->spannerClient->partitionQuery(
             function ($args) use ($expectedArguments) {
                 Argument::type(PartitionQueryRequest::class);
                 $actualArguments = $this->serializer->encodeMessage($args);
@@ -212,9 +205,7 @@ class BatchSnapshotTest extends TestCase
 
         $partition = new QueryPartition($token, $sql, $opts);
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($sql, $opts, $token) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getSql(), $sql);
@@ -251,9 +242,7 @@ class BatchSnapshotTest extends TestCase
 
         $partition = new ReadPartition($token, $table, $keySet, $columns, $opts);
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             function ($args) use ($token, $table, $columns, $keySet, $opts) {
                 Argument::type(ReadRequest::class);
                 $this->assertEquals($args->getSession(), self::SESSION);

@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -38,7 +37,6 @@ class BatchDmlResultTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
     use TimeTrait;
 
     private $requestHandler;
@@ -49,8 +47,7 @@ class BatchDmlResultTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->result = new BatchDmlResult([
             'resultSets' => [
                 [
@@ -73,23 +70,17 @@ class BatchDmlResultTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeBatchDml',
+        $this->spannerClient->executeBatchDml(
             null,
             ['resultSets' => []]
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             ['id' => 'id']
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             null,
             [
                 'commitTimestamp' => $this->formatTimeAsString(new \DateTime, 0)

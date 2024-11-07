@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
@@ -46,7 +45,6 @@ class TransactionTest extends SnippetTestCase
     use OperationRefreshTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-    use RequestHandlingTestTrait;
 
     const TRANSACTION = 'my-transaction';
 
@@ -58,8 +56,7 @@ class TransactionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
         $session->info()
@@ -103,9 +100,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testExecute()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator()
         );
@@ -121,9 +116,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testExecuteUpdate()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator(true)
         );
@@ -164,9 +157,7 @@ class TransactionTest extends SnippetTestCase
             ]
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($expectedSql, $expectedParams, $expectedStructData) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($expectedSql, $args->getSql());
@@ -192,9 +183,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testExecuteUpdateBatch()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeBatchDml',
+        $this->spannerClient->executeBatchDml(
             null,
             [
                 'resultSets' => [
@@ -222,9 +211,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testExecuteUpdateBatchError()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeBatchDml',
+        $this->spannerClient->executeBatchDml(
             null,
             [
                 'resultSets' => [],
@@ -250,9 +237,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testRead()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             null,
             $this->resultGenerator()
         );
@@ -461,9 +446,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testCommit()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             null,
             [
                 'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
@@ -485,9 +468,7 @@ class TransactionTest extends SnippetTestCase
     public function testGetCommitStats()
     {
         $expectedCommitStats = new CommitStats(['mutation_count' => 4]);
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             null,
             [
                 'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString(),

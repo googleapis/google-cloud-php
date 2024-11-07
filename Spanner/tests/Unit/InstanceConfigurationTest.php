@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
@@ -44,7 +43,6 @@ class InstanceConfigurationTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
@@ -57,7 +55,7 @@ class InstanceConfigurationTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
     }
 
     public function testName()

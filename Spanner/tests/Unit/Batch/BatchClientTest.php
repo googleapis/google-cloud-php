@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -45,7 +44,6 @@ class BatchClientTest extends TestCase
 {
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
     use TimeTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
@@ -58,8 +56,7 @@ class BatchClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->client = TestHelpers::stub(BatchClient::class, [
             new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE

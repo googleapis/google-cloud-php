@@ -21,7 +21,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -54,7 +53,6 @@ class SpannerClientTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'inst';
@@ -70,8 +68,7 @@ class SpannerClientTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
 
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [

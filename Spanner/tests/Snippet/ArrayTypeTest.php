@@ -21,6 +21,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -28,7 +29,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -42,7 +42,6 @@ class ArrayTypeTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -75,16 +74,16 @@ class ArrayTypeTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
-        $this->database = TestHelpers::stub(Database::class, [
-            $this->requestHandler->reveal(),
+        $this->serializer = new Serializer();
+        $this->database = new Database(
+            $this->prophesize(SpannerClient::class)->reveal(),
+            $this->prophesize(DatabaseAdminClient::class)->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['requestHandler', 'serializer', 'operation']);
+        );
     }
 
     public function testConstructor()
@@ -100,10 +99,8 @@ class ArrayTypeTest extends SnippetTestCase
             'foo', 'bar', null
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
-            function ($args) use ($values, $field) {
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function ($args) use ($values, $field) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['sql'], 'SELECT @arrayParam as arrayValue');
                 $this->assertEquals($message['params'], ['arrayParam' => $values]);
@@ -116,7 +113,7 @@ class ArrayTypeTest extends SnippetTestCase
                     $field['code']
                 );
                 return true;
-            },
+            }),
             $this->resultGenerator([
                 'metadata' => [
                     'rowType' => [

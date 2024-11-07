@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -42,7 +41,6 @@ class StructTypeTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -77,8 +75,7 @@ class StructTypeTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->database = TestHelpers::stub(Database::class, [
             $this->requestHandler->reveal(),
             $this->serializer,
@@ -116,9 +113,7 @@ class StructTypeTest extends SnippetTestCase
             'Testuser'
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($fields, $values) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals('SELECT @userStruct.firstName, @userStruct.lastName', $args->getSql());

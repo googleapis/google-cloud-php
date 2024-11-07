@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -39,7 +38,6 @@ class BackupTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
@@ -57,8 +55,7 @@ class BackupTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->client = TestHelpers::stub(
             SpannerClient::class,
             [['projectId' => 'my-project']],

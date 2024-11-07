@@ -23,7 +23,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Prophecy\Argument;
 
@@ -34,7 +33,6 @@ use Prophecy\Argument;
 class CommitTimestampTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use RequestHandlingTestTrait;
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
@@ -43,8 +41,7 @@ class CommitTimestampTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->checkAndSkipGrpcTests();
     }
 

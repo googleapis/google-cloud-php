@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
@@ -50,7 +49,6 @@ class TransactionTest extends TestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
     use TimeTrait;
 
@@ -79,8 +77,7 @@ class TransactionTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->operation = new Operation(
             $this->requestHandler->reveal(),
             $this->serializer,
@@ -231,9 +228,7 @@ class TransactionTest extends TestCase
     public function testExecute()
     {
         $sql = 'SELECT * FROM Table';
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($sql) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
@@ -265,9 +260,7 @@ class TransactionTest extends TestCase
     public function testExecuteUpdate()
     {
         $sql = 'UPDATE foo SET bar = @bar';
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($sql) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getSql(), $sql);
@@ -296,9 +289,7 @@ class TransactionTest extends TestCase
     public function testDmlSeqno()
     {
         $sql = 'UPDATE foo SET bar = @bar';
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getSeqno(), 1);
@@ -316,9 +307,7 @@ class TransactionTest extends TestCase
             ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeBatchDml',
+        $this->spannerClient->executeBatchDml(
             function ($args) {
                 Argument::type(ExecuteBatchDmlRequest::class);
                 $this->assertEquals(
@@ -344,9 +333,7 @@ class TransactionTest extends TestCase
 
     public function testExecuteUpdateBatch()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeBatchDml',
+        $this->spannerClient->executeBatchDml(
             function ($args) {
                 Argument::type(ExecuteBatchDmlRequest::class);
                 $this->assertEquals(
@@ -428,9 +415,7 @@ class TransactionTest extends TestCase
             'details' => []
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeBatchDml',
+        $this->spannerClient->executeBatchDml(
             function ($args) {
                 Argument::type(ExecuteBatchDmlRequest::class);
                 $this->assertEquals($args->getSession(), $this->session->name());
@@ -512,9 +497,7 @@ class TransactionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $sql = 'UPDATE foo SET bar = @bar';
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($sql) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getSql(), $sql);
@@ -547,9 +530,7 @@ class TransactionTest extends TestCase
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             function ($args) use ($table) {
                 Argument::type(ReadRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
@@ -687,9 +668,7 @@ class TransactionTest extends TestCase
 
     public function testRollback()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'rollback',
+        $this->spannerClient->rollback(
             function ($args) {
                 Argument::type(RollbackRequest::class);
                 $this->assertEquals($args->getSession(), $this->session->name());

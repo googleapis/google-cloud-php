@@ -24,7 +24,6 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 
@@ -36,7 +35,6 @@ class QueryPartitionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
-    use RequestHandlingTestTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -52,32 +50,25 @@ class QueryPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->time = time();
         $this->partition = new QueryPartition($this->token, $this->sql, $this->options);
     }
 
     public function testClass()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'createSession',
+        $this->spannerClient->createSession(
             null,
             ['name' => self::SESSION]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
             ]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionQuery',
+        $this->spannerClient->partitionQuery(
             null,
             [
                 'partitions' => [

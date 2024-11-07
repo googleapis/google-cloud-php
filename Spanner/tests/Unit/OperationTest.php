@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -44,7 +43,6 @@ class OperationTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
@@ -61,8 +59,7 @@ class OperationTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
 
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->requestHandler->reveal(),
@@ -119,9 +116,7 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) use ($mutations) {
                 $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
                 $message = $this->serializer->encodeMessage($args);
@@ -150,9 +145,7 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) use ($mutations) {
                 $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
                 $message = $this->serializer->encodeMessage($args);
@@ -191,9 +184,7 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) use ($mutations, $duration) {
                 $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
                 $message = $this->serializer->encodeMessage($args);
@@ -236,9 +227,7 @@ class OperationTest extends TestCase
             ])
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) use ($mutations) {
                 $mutations[0]['insert']['values'] = [$mutations[0]['insert']['values']];
                 $message = $this->serializer->encodeMessage($args);
@@ -263,9 +252,7 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'rollback',
+        $this->spannerClient->rollback(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['transactionId'], self::TRANSACTION);
@@ -286,9 +273,7 @@ class OperationTest extends TestCase
         $sql = 'SELECT * FROM Posts WHERE ID = @id';
         $params = ['id' => 10];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($sql) {
                 $this->assertEquals($args->getSql(), $sql);
                 $this->assertEquals($args->getSession(), self::SESSION);
@@ -317,9 +302,7 @@ class OperationTest extends TestCase
 
     public function testRead()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['table'], 'Posts');
@@ -342,9 +325,7 @@ class OperationTest extends TestCase
 
     public function testReadWithTransaction()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['table'], 'Posts');
@@ -370,9 +351,7 @@ class OperationTest extends TestCase
 
     public function testReadWithSnapshot()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['table'], 'Posts');
@@ -398,9 +377,7 @@ class OperationTest extends TestCase
 
     public function testTransaction()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['session'], $this->session->name());
@@ -419,9 +396,7 @@ class OperationTest extends TestCase
 
     public function testTransactionNoTag()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['session'], $this->session->name());
@@ -444,9 +419,7 @@ class OperationTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return $message['session'] == $this->session->name();
@@ -478,9 +451,7 @@ class OperationTest extends TestCase
 
     public function testSnapshotWithTimestamp()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return $message['session'] == $this->session->name();
@@ -506,9 +477,7 @@ class OperationTest extends TestCase
         $partitionToken1 = 'token1';
         $partitionToken2 = 'token2';
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionQuery',
+        $this->spannerClient->partitionQuery(
             function ($args) use ($sql, $transactionId, $partitionToken1, $partitionToken2) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['sql'], $sql);
@@ -549,9 +518,7 @@ class OperationTest extends TestCase
         $partitionToken1 = 'token1';
         $partitionToken2 = 'token2';
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionRead',
+        $this->spannerClient->partitionRead(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['table'], 'Posts');

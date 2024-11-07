@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
@@ -44,7 +43,6 @@ class BatchSnapshotTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -60,8 +58,7 @@ class BatchSnapshotTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
 
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(Session::class);
@@ -84,15 +81,11 @@ class BatchSnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'createSession',
+        $this->spannerClient->createSession(
             null,
             ['name' => self::SESSION]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             [
                 'id' => self::TRANSACTION,
@@ -182,9 +175,7 @@ class BatchSnapshotTest extends SnippetTestCase
         $opts = [];
         $partition = new QueryPartition($token, $sql, $opts);
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator([
                 'metadata' => [

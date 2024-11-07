@@ -34,7 +34,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
@@ -51,7 +50,6 @@ class DatabaseTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -86,8 +84,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn(null);
         $sessionPool->clear()->willReturn(null);
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->requestHandler->reveal(),
             $this->serializer,
@@ -418,9 +415,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             ['id' => self::TRANSACTION]
         );
@@ -436,9 +431,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testSnapshotReadTimestamp()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             [
                 'id' => self::TRANSACTION,
@@ -457,23 +450,17 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRunTransaction()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             ['id' => self::TRANSACTION]
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             null,
             ['commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()]
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->yieldRows([
                 [
@@ -505,9 +492,7 @@ class DatabaseTest extends SnippetTestCase
 
         $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 1);
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) {
                 $this->assertEquals(
                     $this->serializer->encodeMessage($args)['transaction']['begin']['readWrite'],
@@ -547,9 +532,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testTransaction()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             ['id' => self::TRANSACTION]
         );
@@ -564,9 +547,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testInsert()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['insert']);
@@ -586,9 +567,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testInsertBatch()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['insert'])
@@ -608,9 +587,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testUpdate()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['update']);
@@ -630,9 +607,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testUpdateBatch()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['update'])
@@ -652,9 +627,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testInsertOrUpdate()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['insertOrUpdate']);
@@ -674,9 +647,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testInsertOrUpdateBatch()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['insertOrUpdate'])
@@ -696,9 +667,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReplace()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['replace']);
@@ -718,9 +687,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReplaceBatch()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['replace'])
@@ -740,9 +707,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testDelete()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'commit',
+        $this->spannerClient->commit(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['mutations'][0]['delete']);
@@ -762,9 +727,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecute()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator()
         );
@@ -780,9 +743,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteWithParameterType()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['params'])
@@ -817,9 +778,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteWithEmptyArray()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 return isset($message['params'])
@@ -859,9 +818,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteBeginSnapshot()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator(false, self::TRANSACTION)
         );
@@ -878,9 +835,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteBeginTransaction()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator(false, self::TRANSACTION)
         );
@@ -897,16 +852,12 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecutePartitionedUpdate()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             ['id' => self::TRANSACTION]
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator(true)
         );
@@ -922,9 +873,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRead()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             null,
             $this->resultGenerator()
         );
@@ -940,9 +889,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReadWithSnapshot()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             null,
             $this->resultGenerator(false, self::TRANSACTION)
         );
@@ -959,9 +906,7 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReadWithTransaction()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             null,
             $this->resultGenerator(false, self::TRANSACTION)
         );

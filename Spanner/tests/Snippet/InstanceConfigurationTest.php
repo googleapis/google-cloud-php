@@ -23,7 +23,6 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -35,7 +34,6 @@ class InstanceConfigurationTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
@@ -48,8 +46,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->requestHandler->reveal(),
             $this->serializer,

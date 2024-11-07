@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
@@ -43,7 +42,6 @@ class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use OperationRefreshTrait;
-    use RequestHandlingTestTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -57,8 +55,7 @@ class BatchClientTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->client = TestHelpers::stub(BatchClient::class, [
             new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE
@@ -143,9 +140,7 @@ class BatchClientTest extends SnippetTestCase
         $pubsub->___setProperty('requestHandler', $requestHandler->reveal());
 
         // setup spanner service call stubs
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'partitionQuery',
+        $this->spannerClient->partitionQuery(
             null,
             [
                 'partitions' => [
@@ -155,9 +150,7 @@ class BatchClientTest extends SnippetTestCase
             ]
         );
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($partition1) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals(
@@ -187,15 +180,11 @@ class BatchClientTest extends SnippetTestCase
                 'values' => [0]
             ])
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'createSession',
+        $this->spannerClient->createSession(
             null,
             ['name' => self::SESSION]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             [
                 'id' => self::TRANSACTION,
@@ -228,18 +217,14 @@ class BatchClientTest extends SnippetTestCase
 
         $time = time();
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'beginTransaction',
+        $this->spannerClient->beginTransaction(
             null,
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
             ]
         );
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'createSession',
+        $this->spannerClient->createSession(
             null,
             [
                 'name' => self::SESSION

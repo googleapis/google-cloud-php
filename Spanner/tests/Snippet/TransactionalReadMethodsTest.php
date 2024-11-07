@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -50,7 +49,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use RequestHandlingTestTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -71,8 +69,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         parent::setUpBeforeClass();
 
-        $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();
+        $this->serializer = new Serializer();
         $this->session = $this->prophesize(Session::class);
         $this->session->info()
             ->willReturn([
@@ -100,9 +97,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             null,
             $this->resultGenerator([
                 'metadata' => [
@@ -148,9 +143,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertTrue(isset($message['params']));
@@ -203,9 +196,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertTrue(isset($message['params']));
@@ -288,9 +279,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             'Testuser'
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($values, $fields) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['sql'], 'SELECT @userStruct.firstName, @userStruct.lastName');
@@ -370,9 +359,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             'this field is unnamed'
         ];
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'executeStreamingSql',
+        $this->spannerClient->executeStreamingSql(
             function ($args) use ($values, $fields) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals(
@@ -436,9 +423,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->mockSendRequest(
-            SpannerClient::class,
-            'streamingRead',
+        $this->spannerClient->streamingRead(
             null,
             $this->resultGenerator([
                 'metadata' => [
