@@ -13,6 +13,8 @@ fi
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname $(dirname $SCRIPT_DIR))
 
+phpdoc --version
+
 # Run "composer install" if it hasn't been run yet
 if [ ! -d 'dev/vendor/' ]; then
     composer install -d $PROJECT_DIR/dev
