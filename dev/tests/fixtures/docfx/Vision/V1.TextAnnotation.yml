@@ -12,8 +12,9 @@ items:
           TextAnnotation -> Page -> Block -> Paragraph -> Word -> Symbol
       Each structural component, starting from Page, may further have their own
       properties. Properties describe detected languages, breaks etc.. Please refer
-      to the <xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation.TextProperty</xref> message definition below for more
-      detail.
+      to the
+      <xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation.TextProperty</xref>
+      message definition below for more detail.
 
       Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation</code>
     type: class

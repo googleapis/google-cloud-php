@@ -63,13 +63,15 @@ items:
       `product-display-name` column refers to
       <xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref>, the
       `product-category` column refers to
-      <xref uid="\Google\Cloud\Vision\V1\Product::getProductCategory()">product_category</xref>, and the
-      `labels` column refers to <xref uid="\Google\Cloud\Vision\V1\Product::getProductLabels()">product_labels</xref>.
+      <xref uid="\Google\Cloud\Vision\V1\Product::getProductCategory()">product_category</xref>, and
+      the `labels` column refers to
+      <xref uid="\Google\Cloud\Vision\V1\Product::getProductLabels()">product_labels</xref>.
       The `image-id` column is optional but must be unique if provided. If it is
       empty, the system will automatically assign a unique id to the image.
       The `product-display-name` column is optional. If it is empty, the system
-      sets the <xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref> field for the product to a
-      space (" "). You can update the `display_name` later by using the API.
+      sets the <xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref> field
+      for the product to a space (" "). You can update the `display_name` later
+      by using the API.
       If a `Product` with the specified `product-id` already exists, then the
       system ignores the `product-display-name`, `product-category`, and `labels`
       columns.
@@ -124,13 +126,15 @@ items:
       `product-display-name` column refers to
       <xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref>, the
       `product-category` column refers to
-      <xref uid="\Google\Cloud\Vision\V1\Product::getProductCategory()">product_category</xref>, and the
-      `labels` column refers to <xref uid="\Google\Cloud\Vision\V1\Product::getProductLabels()">product_labels</xref>.
+      <xref uid="\Google\Cloud\Vision\V1\Product::getProductCategory()">product_category</xref>, and
+      the `labels` column refers to
+      <xref uid="\Google\Cloud\Vision\V1\Product::getProductLabels()">product_labels</xref>.
       The `image-id` column is optional but must be unique if provided. If it is
       empty, the system will automatically assign a unique id to the image.
       The `product-display-name` column is optional. If it is empty, the system
-      sets the <xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref> field for the product to a
-      space (" "). You can update the `display_name` later by using the API.
+      sets the <xref uid="\Google\Cloud\Vision\V1\Product::getDisplayName()">display_name</xref> field
+      for the product to a space (" "). You can update the `display_name` later
+      by using the API.
       If a `Product` with the specified `product-id` already exists, then the
       system ignores the `product-display-name`, `product-category`, and `labels`
       columns.
