@@ -590,6 +590,13 @@ class Cause
      * Generated from protobuf enum <code>NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION = 82;</code>
      */
     const NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION = 82;
+    /**
+     * Sending packets processed by the Private NAT Gateways to the Private
+     * Service Connect endpoints is not supported.
+     *
+     * Generated from protobuf enum <code>PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED = 83;</code>
+     */
+    const PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED = 83;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -675,6 +682,7 @@ class Cause
         self::NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION => 'NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION',
         self::NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION => 'NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION',
         self::NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION => 'NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION',
+        self::PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED => 'PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED',
     ];
 
     public static function name($value)
