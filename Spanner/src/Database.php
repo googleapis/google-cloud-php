@@ -32,6 +32,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -91,6 +92,7 @@ class Database
 {
     use TransactionConfigurationTrait;
     use RequestTrait;
+    use RequestProcessorTrait;
     use ApiHelperTrait;
 
     const STATE_CREATING = State::CREATING;
@@ -357,7 +359,7 @@ class Database
      */
     public function reload(array $options = [])
     {
-        list($data, $callOptions) = $this->callOptions($options);
+        list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);

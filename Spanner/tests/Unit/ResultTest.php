@@ -26,6 +26,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -35,7 +36,7 @@ class ResultTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use ResultTestTrait;
+    use ResultGeneratorTrait;
 
     private $metadata = [
         'rowType' => [

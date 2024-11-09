@@ -54,7 +54,8 @@ use Google\Protobuf\Duration;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Protobuf\Timestamp as ProtoTimestamp;
+use Google\Protobuf\Timestamp as TimestampProto;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -65,7 +66,7 @@ class TransactionTypeTest extends TestCase
     use ApiHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
-    use ResultTestTrait;
+    use ResultGeneratorTrait;
     use TimeTrait;
 
     const PROJECT = 'my-project';
@@ -86,7 +87,7 @@ class TransactionTypeTest extends TestCase
         $time = \DateTime::createFromFormat('U', time());
         $nanos = 500000005;
         $this->timestamp = (new Timestamp($time, $nanos))->formatAsString();
-        $this->protoTimestamp = new ProtoTimestamp(['seconds' => $time->format('U'), 'nanos' => $nanos]);
+        $this->protoTimestamp = new TimestampProto(['seconds' => $time->format('U'), 'nanos' => $nanos]);
 
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = $this->prophesize(Serializer::class);
@@ -111,19 +112,18 @@ class TransactionTypeTest extends TestCase
 
         $this->spannerClient->createSession(
             Argument::that(function (CreateSessionRequest $request) {
-                // $this->assertEquals(
-                //     $request->getDatabase(),
-                //     SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-                // );
+                $this->assertEquals(
+                    $request->getDatabase(),
+                    SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
                 return true;
             }),
             Argument::type('array')
         )
-            ->shouldBeCalledOnce()
             ->willReturn(new Session(['name' => $this->getFullyQualifiedSessionName()]));
 
         $this->spannerClient->deleteSession(Argument::cetera())
-            ->shouldBeCalled();
+            ->shouldBeCalledOnce();
     }
 
     public function testDatabaseRunTransactionPreAllocate()
@@ -302,6 +302,7 @@ class TransactionTypeTest extends TestCase
 
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->executeStreamingSql(Argument::cetera())->shouldNotBeCalled();
+        $this->spannerClient->deleteSession(Argument::cetera())->shouldNotBeCalled();
 
         $database = $this->database($this->spannerClient->reveal());
 
@@ -321,6 +322,7 @@ class TransactionTypeTest extends TestCase
 
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->executeStreamingSql(Argument::cetera())->shouldNotBeCalled();
+        $this->spannerClient->deleteSession(Argument::cetera())->shouldNotBeCalled();
 
         $database = $this->database($this->spannerClient->reveal());
 
@@ -1046,24 +1048,24 @@ class TransactionTypeTest extends TestCase
         return $this->database($this->spannerClient->reveal());
     }
 
-    private function resultGeneratorStream(array $chunks)
-    {
-        foreach ($chunks as $i => $chunk) {
-            $result = new PartialResultSet();
-            $result->mergeFromJsonString($chunk);
-            $chunks[$i] = $result;
-        }
-        $this->stream = $this->prophesize(ServerStream::class);
-        $this->stream->readAll()
-            ->willReturn($this->resultGenerator($chunks));
+    // private function resultGeneratorStream(array $chunks)
+    // {
+    //     foreach ($chunks as $i => $chunk) {
+    //         $result = new PartialResultSet();
+    //         $result->mergeFromJsonString($chunk);
+    //         $chunks[$i] = $result;
+    //     }
+    //     $this->stream = $this->prophesize(ServerStream::class);
+    //     $this->stream->readAll()
+    //         ->willReturn($this->resultGenerator($chunks));
 
-        return $this->stream->reveal();
-    }
+    //     return $this->stream->reveal();
+    // }
 
-    private function resultGenerator($chunks)
-    {
-        foreach ($chunks as $chunk) {
-            yield $chunk;
-        }
-    }
+    // private function resultGenerator($chunks)
+    // {
+    //     foreach ($chunks as $chunk) {
+    //         yield $chunk;
+    //     }
+    // }
 }

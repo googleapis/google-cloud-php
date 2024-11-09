@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup as ProtoBackup;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -213,7 +213,7 @@ class BackupTest extends TestCase
 
     public function testInfo()
     {
-        $response = new ProtoBackup([
+        $response = new BackupProto([
             'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::INSTANCE, self::BACKUP),
             'expire_time' => new Timestamp(['seconds' => $this->expireTime->format('U')]),
             'create_time' => new Timestamp(['seconds' => $this->expireTime->format('U')]),
@@ -250,7 +250,7 @@ class BackupTest extends TestCase
 
     public function testReload()
     {
-        $response = new ProtoBackup([
+        $response = new BackupProto([
             'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::INSTANCE, self::BACKUP),
         ]);
 
@@ -279,7 +279,7 @@ class BackupTest extends TestCase
 
     public function testState()
     {
-        $response = new ProtoBackup([
+        $response = new BackupProto([
             'state' => Backup::STATE_READY,
         ]);
 
@@ -311,7 +311,7 @@ class BackupTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new ProtoBackup());
+            ->willReturn(new BackupProto());
 
         $backup = new Backup(
             $this->databaseAdminClient->reveal(),
@@ -328,7 +328,7 @@ class BackupTest extends TestCase
     {
         $newExpireTime = new DateTime("+1 day");
 
-        $response = new ProtoBackup([
+        $response = new BackupProto([
             'name' => 'foo',
             'expire_time' => new Timestamp(['seconds' => $newExpireTime->format('U')]),
         ]);

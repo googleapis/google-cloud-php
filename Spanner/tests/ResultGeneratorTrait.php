@@ -17,7 +17,17 @@
 
 namespace Google\Cloud\Spanner\Tests;
 
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ResultSetMetadata;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\StructType;
+use Google\Cloud\Spanner\V1\StructType\Field;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\Database;
+use Google\Protobuf\Value;
+use Google\Cloud\Spanner\Tests\Unit\Fixtures;
 
 /**
  * Provide a Spanner Read/Query result
@@ -59,37 +69,35 @@ trait ResultGeneratorTrait
         $fields = [];
         $values = [];
         foreach ($rows as $row) {
-            $fields[] = [
+            $fields[] = new Field([
                 'name' => $row['name'],
-                'type' => [
-                    'code' => $row['type']
-                ]
-            ];
+                'type' => new Type(['code' => $row['type']])
+            ]);
 
-            $values[] = $row['value'];
+            $values[] = new Value(['string_value' => $row['value']]);
         }
 
         $result = [
-            'metadata' => [
-                'rowType' => [
+            'metadata' => new ResultSetMetadata([
+                'row_type' => new StructType([
                     'fields' => $fields
-                ]
-            ],
+                ])
+            ]),
             'values' => $values
         ];
 
         if ($withStats) {
-            $result['stats'] = [
-                'rowCountExact' => 1,
-                'rowCountLowerBound' => 1
-            ];
+            $result['stats'] = new ResultSetStats([
+                'row_count_exact' => 1,
+                'row_count_lower_bound' => 1
+            ]);
         }
 
         if ($transaction) {
-            $result['metadata']['transaction'] = [
-                'id' => $transaction
-            ];
+            $result['metadata']->setTransaction(new Transaction(['id' => $transaction]));
         }
+
+        $result = new PartialResultSet($result);
 
         yield $result;
     }
@@ -103,5 +111,49 @@ trait ResultGeneratorTrait
     private function resultGeneratorData(array $data)
     {
         yield $data;
+    }
+
+    private function resultGeneratorStream($chunks = null, $withStats = false, $transaction = null)
+    {
+        $this->stream = $this->prophesize(ServerStream::class);
+        if ($chunks) {
+            foreach ($chunks as $i => $chunk) {
+                $result = new PartialResultSet();
+                $result->mergeFromJsonString($chunk);
+                $chunks[$i] = $result;
+            }
+
+            $this->stream->readAll()
+                ->willReturn($this->resultGeneratorChunks($chunks));
+
+        } else {
+            $this->stream->readAll()
+                ->willReturn($this->resultGenerator($withStats, $transaction));
+        }
+
+        return $this->stream->reveal();
+    }
+
+    private function resultGeneratorChunks($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield $chunk;
+        }
+    }
+
+    private function getStreamingDataFixture()
+    {
+        return json_decode(
+            file_get_contents(Fixtures::STREAMING_READ_ACCEPTANCE_FIXTURE()),
+            true
+        );
+    }
+
+    public function streamingDataProviderFirstChunk()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
+            break;
+        }
     }
 }

@@ -546,7 +546,7 @@ class Operation
         ];
         $options += [
             'tag' => null,
-            'transactionOptions' => null
+            'transactionOptions' => []
         ];
 
         $options['isRetry'] = $options['isRetry'] ?? false;

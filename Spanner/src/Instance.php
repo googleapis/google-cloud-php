@@ -94,6 +94,7 @@ class Instance
      *
      * @internal Instance is constructed by the {@see SpannerClient} class.
      *
+     * @param GapicSpannerClient $spannerClient The spanner client.
      * @param InstanceAdminClient $instanceAdminClient The instance admin client.
      * @param DatabaseAdminClient $databaseAdminClient The database admin client.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
