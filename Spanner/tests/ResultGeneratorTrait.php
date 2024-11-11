@@ -95,8 +95,6 @@ trait ResultGeneratorTrait
         }
 
         if (isset($result['stats'])) {
-            throw new \Exception('stastistics;');
-            var_dump($stats);exit;
             $result['stats'] = $stats;
         }
 
@@ -142,6 +140,13 @@ trait ResultGeneratorTrait
     {
         foreach ($chunks as $chunk) {
             yield $chunk;
+        }
+    }
+
+    private function resultGeneratorJson($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield json_decode($chunk, true);
         }
     }
 
