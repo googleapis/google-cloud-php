@@ -17,9 +17,6 @@ items:
       assist with these names, this class includes a format method for each type of
       name, and additionally a parseName method to extract the individual identifiers
       contained within formatted names that are returned by the API.
-
-      This class is currently experimental and may be subject to changes. See <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">Google\Cloud\Vision\V1\ImageAnnotatorClient</xref> for the stable implementation
-    status: beta
     type: class
     namespace: 'Google \ Cloud \ Vision \ V1 \ Client'
     langs:
@@ -104,6 +101,51 @@ items:
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Rpc\Status;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AsyncAnnotateFileRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateFilesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -142,6 +184,53 @@ items:
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Cloud\Vision\V1\OutputConfig;
+        use Google\Rpc\Status;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+            $outputConfig = new OutputConfig();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateImagesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -178,6 +267,39 @@ items:
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateFileRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateFileRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateFilesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -207,6 +329,39 @@ items:
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateImagesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -239,12 +394,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()'
     name: asyncBatchAnnotateImagesAsync
@@ -260,12 +415,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()'
     name: batchAnnotateFilesAsync
@@ -281,12 +436,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse">Google\Cloud\Vision\V1\BatchAnnotateFilesResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()'
     name: batchAnnotateImagesAsync
@@ -302,12 +457,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest">Google\Cloud\Vision\V1\BatchAnnotateImagesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
     name: getOperationsClient

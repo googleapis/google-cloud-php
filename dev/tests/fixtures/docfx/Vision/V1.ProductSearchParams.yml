@@ -114,7 +114,8 @@ items:
     name: getProductSet
     id: getProductSet
     summary: |-
-      The resource name of a <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> to be searched for similar images.
+      The resource name of a <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> to
+      be searched for similar images.
 
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
@@ -131,7 +132,8 @@ items:
     name: setProductSet
     id: setProductSet
     summary: |-
-      The resource name of a <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> to be searched for similar images.
+      The resource name of a <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> to
+      be searched for similar images.
 
       Format is:
       `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
