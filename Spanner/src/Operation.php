@@ -313,6 +313,7 @@ class Operation
         }
         $statsItem = $this->pluck('statsItem', $options, false);
         $res = $this->execute($session, $sql, $options);
+
         if (empty($transaction->id()) && $res->transaction()) {
             $transaction->setId($res->transaction()->id());
         }

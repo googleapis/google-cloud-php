@@ -492,7 +492,7 @@ class Database
             ]
         ];
 
-        $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
+        $request = $this->serializer->decodeMessage(new UpdateDatabaseRequest(), $data);
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         return $this->databaseAdminClient->updateDatabase($request, $callOptions)
@@ -641,7 +641,7 @@ class Database
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         $response = $this->databaseAdminClient->getDatabaseDdl($request, $callOptions);
-        $dll = $this->handleResponse($response);
+        $ddl = $this->handleResponse($response);
 
         if (isset($ddl['statements'])) {
             return $ddl['statements'];

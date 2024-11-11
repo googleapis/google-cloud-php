@@ -27,6 +27,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
@@ -58,6 +59,7 @@ class Instance
     use ApiHelperTrait;
     use ArrayTrait;
     use RequestTrait;
+    use RequestProcessorTrait;
 
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;

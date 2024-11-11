@@ -58,13 +58,13 @@ trait ResultGeneratorTrait
      * Yield rows with user-specified data.
      *
      * @param array[] $rows A list of arrays containing `name`, `type` and `value` keys.
-     * @param bool $withStats If true, statistics will be included.
+     * @param ResultSetStats|null $withStats If true, statistics will be included.
      *        **Defaults to** `false`.
-     * @param string|null $transaction If set, the value will be included as the
+     * @param string|null $transactionId If set, the value will be included as the
      *        transaction ID. **Defaults to** `null`.
      * @return \Generator
      */
-    private function yieldRows(array $rows, $withStats = false, $transaction = null)
+    private function yieldRows(array $rows, $stats = false, $transactionId = null)
     {
         $fields = [];
         $values = [];
@@ -86,15 +86,12 @@ trait ResultGeneratorTrait
             'values' => $values
         ];
 
-        if ($withStats) {
-            $result['stats'] = new ResultSetStats([
-                'row_count_exact' => 1,
-                'row_count_lower_bound' => 1
-            ]);
+        if ($stats) {
+            $result['stats'] = $stats;
         }
 
-        if ($transaction) {
-            $result['metadata']->setTransaction(new Transaction(['id' => $transaction]));
+        if ($transactionId) {
+            $result['metadata']->setTransaction(new Transaction(['id' => $transactionId]));
         }
 
         $result = new PartialResultSet($result);
@@ -113,8 +110,11 @@ trait ResultGeneratorTrait
         yield $data;
     }
 
-    private function resultGeneratorStream($chunks = null, $withStats = false, $transaction = null)
-    {
+    private function resultGeneratorStream(
+        array $chunks = null,
+        ResultSetStats $stats = null,
+        string $transactionId = null
+    ) {
         $this->stream = $this->prophesize(ServerStream::class);
         if ($chunks) {
             foreach ($chunks as $i => $chunk) {
@@ -128,7 +128,7 @@ trait ResultGeneratorTrait
 
         } else {
             $this->stream->readAll()
-                ->willReturn($this->resultGenerator($withStats, $transaction));
+                ->willReturn($this->resultGenerator($stats, $transactionId));
         }
 
         return $this->stream->reveal();

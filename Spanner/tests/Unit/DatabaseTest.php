@@ -20,6 +20,8 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Page;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -33,6 +35,9 @@ use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -62,6 +67,7 @@ use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetMetadata;
+use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\StructType;
 use Google\Cloud\Spanner\V1\StructType\Field;
@@ -70,6 +76,7 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Protobuf\Value;
+use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
@@ -272,14 +279,16 @@ class DatabaseTest extends TestCase
 
     public function testBackups()
     {
-        $backups = [
-            [
-                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1'),
-            ],
-            [
-                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2'),
-            ]
-        ];
+        $backup1 = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1');
+        $backup2 = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2');
+        $backups = [new Backup(['name' => $backup1]), new Backup(['name' => $backup2])];
+
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListBackupsResponse(['backups' => $backups]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
 
         $expectedFilter = "database:".$this->database->name();
         $this->databaseAdminClient->listBackups(
@@ -294,14 +303,12 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['backups' => $backups]);
+            ->willReturn($pagedListResponse->reveal());
 
         $bkps = $this->database->backups();
-
         $this->assertInstanceOf(ItemIterator::class, $bkps);
 
         $bkps = iterator_to_array($bkps);
-
         $this->assertCount(2, $bkps);
         $this->assertEquals('backup1', DatabaseAdminClient::parseName($bkps[0]->name())['backup']);
         $this->assertEquals('backup2', DatabaseAdminClient::parseName($bkps[1]->name())['backup']);
@@ -309,14 +316,17 @@ class DatabaseTest extends TestCase
 
     public function testBackupsWithCustomFilter()
     {
-        $backups = [
-            [
-                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1'),
-            ],
-            [
-                'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2'),
-            ]
-        ];
+        $backup1 = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1');
+        $backup2 = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2');
+        $backups = [new Backup(['name' => $backup1]), new Backup(['name' => $backup2])];
+
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListBackupsResponse(['backups' => $backups]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
+
         $defaultFilter = "database:" . $this->database->name();
         $customFilter = "customFilter";
         $expectedFilter = sprintf('(%1$s) AND (%2$s)', $defaultFilter, $customFilter);
@@ -333,7 +343,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['backups' => $backups]);
+            ->willReturn($pagedListResponse->reveal());
 
         $bkps = $this->database->backups(['filter' => $customFilter]);
 
@@ -514,9 +524,6 @@ class DatabaseTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
 
-        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->instance->___setProperty('serializer', $this->serializer);
-
         $op = $this->database->restore($backupName);
         $this->assertInstanceOf(OperationResponse::class, $op);
     }
@@ -544,9 +551,6 @@ class DatabaseTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
-
-        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->restore($backupObj);
         $this->assertInstanceOf(OperationResponse::class, $op);
@@ -647,8 +651,7 @@ class DatabaseTest extends TestCase
             }),
             Argument::type('array')
         )
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+            ->shouldBeCalledOnce();
 
         $this->sessionPool->clear()->shouldBeCalled()->willReturn(null);
 
@@ -668,7 +671,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['name' => $this->session->name()]);
+            ->willReturn(new SessionProto(['name' => $this->session->name()]));
 
         $this->spannerClient->beginTransaction(
             Argument::that(function ($request) {
@@ -678,7 +681,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['id' => self::TRANSACTION]);
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
         $this->spannerClient->deleteSession(
             Argument::that(function ($request) {
@@ -687,8 +690,7 @@ class DatabaseTest extends TestCase
             }),
             Argument::type('array')
         )
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+            ->shouldBeCalledOnce();
 
         $this->databaseAdminClient->dropDatabase(
             Argument::that(function ($request) {
@@ -701,11 +703,11 @@ class DatabaseTest extends TestCase
             }),
             Argument::type('array')
         )
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
+            ->shouldBeCalledOnce();
 
         $database = new Database(
             $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
             $this->serializer,
             $this->instance,
             self::PROJECT,
@@ -736,7 +738,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['statements' => $ddl]);
+            ->willReturn(new GetDatabaseDdlResponse(['statements' => $ddl]));
 
         $this->assertEquals($ddl, $this->database->ddl());
     }
@@ -758,7 +760,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([]);
+            ->willReturn(new GetDatabaseDdlResponse());
 
         $this->assertEquals([], $this->database->ddl());
     }
@@ -781,7 +783,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['id' => self::TRANSACTION]);
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
 
         $res = $this->database->snapshot();
         $this->assertInstanceOf(Snapshot::class, $res);
@@ -838,7 +840,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(['foo result']);
+            ->willReturn($this->resultGeneratorStream());
 
         $mutationGroups = [
             ($this->database->mutationGroup(false))
@@ -849,6 +851,7 @@ class DatabaseTest extends TestCase
         ];
 
         $result = $this->database->batchWrite($mutationGroups);
+        $this->assertEquals('10', iterator_to_array($result)[0]['values'][0]);
     }
 
     public function testRunTransaction()
@@ -1344,10 +1347,19 @@ class DatabaseTest extends TestCase
             Argument::that(function ($request) use ($sql) {
                 return $request->getSql() == $sql;
             }),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
+            Argument::that(function ($callOptions) {
+                $this->assertArrayHasKey('headers', $callOptions);
+                $this->assertArrayHasKey('x-goog-spanner-route-to-leader', $callOptions['headers']);
+                $this->assertEquals(['true'], $callOptions['headers']['x-goog-spanner-route-to-leader']);
+                return true;
+            })
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream(null, true, self::TRANSACTION));
+            ->willReturn($this->resultGeneratorStream(
+                null,
+                new ResultSetStats(['row_count_lower_bound' => 1]),
+                self::TRANSACTION
+            ));
 
         $res = $this->database->execute($sql, [
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
@@ -1359,8 +1371,6 @@ class DatabaseTest extends TestCase
 
     public function testExecuteWithSingleSession()
     {
-        $this->database->___setProperty('sessionPool', null);
-        $this->database->___setProperty('session', $this->session);
         $sql = 'SELECT * FROM Table';
 
         $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
@@ -1379,8 +1389,6 @@ class DatabaseTest extends TestCase
 
     public function testExecuteSingleUseMaxStaleness()
     {
-        $this->database->___setProperty('sessionPool', null);
-        $this->database->___setProperty('session', $this->session);
         $sql = 'SELECT * FROM Table';
 
         $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
@@ -1403,8 +1411,6 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->database->___setProperty('sessionPool', null);
-        $this->database->___setProperty('session', $this->session);
         $sql = 'SELECT * FROM Table';
 
         $this->database->execute($sql, [
@@ -1437,10 +1443,19 @@ class DatabaseTest extends TestCase
                 $this->assertEquals($message['transaction'], ['id' => self::TRANSACTION]);
                 return true;
             }),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
+            Argument::that(function ($callOptions) {
+                $this->assertArrayHasKey('headers', $callOptions);
+                $this->assertArrayHasKey('x-goog-spanner-route-to-leader', $callOptions['headers']);
+                $this->assertEquals(['true'], $callOptions['headers']['x-goog-spanner-route-to-leader']);
+                return true;
+            })
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream(null, true));
+            ->willReturn($this->resultGeneratorStream(
+                null,
+                new ResultSetStats(['row_count_lower_bound' => 1]),
+                true
+            ));
 
         $res = $this->database->executePartitionedUpdate($sql);
 
@@ -1486,20 +1501,44 @@ class DatabaseTest extends TestCase
 
     public function testClose()
     {
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+
         $this->sessionPool->release(Argument::type(Session::class))
             ->shouldBeCalled()
             ->willReturn(null);
 
-        $this->database->___setProperty('sessionPool', $this->sessionPool->reveal());
-        $this->database->___setProperty('session', $this->session);
+        // start a transaction to create a session
+        $this->database->transaction();
 
         $this->database->close();
-
-        $this->assertNull($this->database->___getProperty('session'));
     }
 
     public function testCloseNoPool()
     {
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
+            $this->instance,
+            self::PROJECT,
+            self::DATABASE
+        );
+
+        $this->spannerClient->createSession(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return $message['database'] == $this->database->name();
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new SessionProto(['name' => $this->session->name()]));
+
         $this->spannerClient->deleteSession(
             Argument::that(function ($request) {
                 $message = $this->serializer->encodeMessage($request);
@@ -1507,13 +1546,17 @@ class DatabaseTest extends TestCase
             }),
             Argument::type('array')
         )
-            ->shouldBeCalledOnce()
-            ->willReturn([]);
+            ->shouldBeCalledOnce();
 
-        $this->session->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
-        $this->database->___setProperty('sessionPool', null);
-        $this->database->___setProperty('session', $this->session);
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+
+        // start a transaction to create a session
+        $database->transaction();
 
         $this->database->close();
     }
@@ -1528,7 +1571,7 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new Session(['name' => $this->session->name()]));
+            ->willReturn(new SessionProto(['name' => $this->session->name()]));
 
         $sess = $this->database->createSession();
 
@@ -1933,7 +1976,11 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream(null, true, self::TRANSACTION));
+            ->willReturn($this->resultGeneratorStream(
+                null,
+                new ResultSetStats(['row_count_exact' => 1]),
+                self::TRANSACTION
+            ));
 
         $this->stubCommit(false);
 
@@ -2057,7 +2104,11 @@ class DatabaseTest extends TestCase
         $sql = $this->createStreamingAPIArgs()['sql'];
         $numOfRetries = 2;
         $unavailable = new ServiceException('Unavailable', 14);
-        $result = $this->resultGeneratorStream(null, true, self::TRANSACTION);
+        $result = $this->resultGeneratorStream(
+            null,
+            new ResultSetStats(['row_count_lower_bound' => 1]),
+            self::TRANSACTION
+        );
 
         $it = 0;
         // First call with ILB results in unavailable error.
@@ -2297,7 +2348,11 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream(null, true, self::TRANSACTION));
+            ->willReturn($this->resultGeneratorStream(
+                null,
+                new ResultSetStats(['row_count_exact' => 1]),
+                self::TRANSACTION
+            ));
     }
 
     private function stubExecuteStreamingSql($transactionOptions = self::BEGIN_RW_OPTIONS)
@@ -2315,7 +2370,11 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn($this->resultGeneratorStream(null, true, self::TRANSACTION));
+            ->willReturn($this->resultGeneratorStream(
+                null,
+                new ResultSetStats(['row_count_exact' => 1]),
+                self::TRANSACTION
+            ));
     }
 
     private function stubExecuteBatchDml($transactionOptions = self::BEGIN_RW_OPTIONS)
