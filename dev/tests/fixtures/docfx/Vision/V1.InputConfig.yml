@@ -40,7 +40,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ gcs_source'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">Google\Cloud\Vision\V1\GcsSource</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">GcsSource</xref>'
           description: 'The Google Cloud Storage location to read the input from.'
         -
           id: '↳ content'
@@ -62,7 +62,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">Google\Cloud\Vision\V1\GcsSource</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">GcsSource</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\InputConfig::hasGcsSource()'
     name: hasGcsSource
@@ -92,7 +92,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">Google\Cloud\Vision\V1\GcsSource</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">GcsSource</xref>'
           description: ''
       returns:
         -

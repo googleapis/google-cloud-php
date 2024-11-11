@@ -45,7 +45,7 @@ items:
           description: 'Required. Resource name of the product in which to create the reference image. Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.'
         -
           id: '↳ reference_image'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>'
           description: 'Required. The reference image to create. If an image ID is specified, it is ignored.'
         -
           id: '↳ reference_image_id'
@@ -107,7 +107,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::hasReferenceImage()'
     name: hasReferenceImage
@@ -140,7 +140,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>'
           description: ''
       returns:
         -
@@ -203,10 +203,10 @@ items:
 
             Format is
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
-            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productName()">Google\Cloud\Vision\V1\ProductSearchClient::productName()</xref> for help formatting this field.
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productName()">ProductSearchClient::productName()</xref> for help formatting this field.
         -
           id: referenceImage
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>'
           description: |-
             Required. The reference image to create.
             If an image ID is specified, it is ignored.
@@ -220,4 +220,4 @@ items:
             most 128 characters long. It cannot contain the character `/`.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateReferenceImageRequest">Google\Cloud\Vision\V1\CreateReferenceImageRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateReferenceImageRequest">CreateReferenceImageRequest</xref>'

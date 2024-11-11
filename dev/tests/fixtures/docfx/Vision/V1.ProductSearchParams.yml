@@ -42,7 +42,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ bounding_poly'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: 'The bounding polygon around the area of interest in the image. If it is not specified, system discretion will be applied.'
         -
           id: '↳ product_set'
@@ -71,7 +71,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -104,7 +104,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -

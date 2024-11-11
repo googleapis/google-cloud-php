@@ -44,7 +44,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ property'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation\TextProperty</xref>'
           description: 'Additional information detected on the page.'
         -
           id: '↳ width'
@@ -56,7 +56,7 @@ items:
           description: 'Page height. For PDFs the unit is points. For images (including TIFFs) the unit is pixels.'
         -
           id: '↳ blocks'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Block">Google\Cloud\Vision\V1\Block</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Block">Block</xref>&gt;'
           description: 'List of blocks of text, images etc on this page.'
         -
           id: '↳ confidence'
@@ -74,7 +74,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation\TextProperty</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Page::hasProperty()'
     name: hasProperty
@@ -104,7 +104,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation\TextProperty</xref>'
           description: ''
       returns:
         -
@@ -205,7 +205,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Block">Google\Cloud\Vision\V1\Block</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Block">Block</xref>&gt;'
           description: ''
       returns:
         -

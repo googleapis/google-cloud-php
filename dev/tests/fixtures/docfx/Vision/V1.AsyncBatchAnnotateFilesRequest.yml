@@ -40,7 +40,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ requests'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">AsyncAnnotateFileRequest</xref>&gt;'
           description: 'Required. Individual async file annotation requests for this batch.'
         -
           id: '↳ parent'
@@ -76,7 +76,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">AsyncAnnotateFileRequest</xref>&gt;'
           description: ''
       returns:
         -
@@ -185,8 +185,8 @@ items:
       parameters:
         -
           id: requests
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">AsyncAnnotateFileRequest</xref>&gt;'
           description: 'Required. Individual async file annotation requests for this batch.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest">AsyncBatchAnnotateFilesRequest</xref>'

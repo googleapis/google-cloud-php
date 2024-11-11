@@ -44,7 +44,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ pages'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Page">Google\Cloud\Vision\V1\Page</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Page">Page</xref>&gt;'
           description: 'List of pages detected by OCR.'
         -
           id: '↳ text'
@@ -76,7 +76,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Page">Google\Cloud\Vision\V1\Page</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Page">Page</xref>&gt;'
           description: ''
       returns:
         -

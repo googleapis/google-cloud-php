@@ -34,7 +34,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ colors'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ColorInfo">Google\Cloud\Vision\V1\ColorInfo</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ColorInfo">ColorInfo</xref>&gt;'
           description: 'RGB color values with their score and pixel fraction.'
   -
     uid: '\Google\Cloud\Vision\V1\DominantColorsAnnotation::getColors()'
@@ -62,7 +62,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ColorInfo">Google\Cloud\Vision\V1\ColorInfo</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ColorInfo">ColorInfo</xref>&gt;'
           description: ''
       returns:
         -
