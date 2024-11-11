@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.0",
         "ext-grpc": "*",
-        "google/cloud-core": "^1.60.0",
+        "google/cloud-core": "1.60",
         "google/gax": "dev-result-function as 1.40.0"
     },
     "require-dev": {
@@ -41,6 +41,17 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Spanner\\Tests\\": "tests"
+        }
+    },
+    "repositories": {
+        "google-cloud": {
+            "type": "path",
+            "url": "../Core",
+            "options": {
+                "versions": {
+                    "google/cloud-core": "1.60"
+                }
+            }
         }
     }
 }

@@ -340,7 +340,8 @@ class Instance
     {
         $info = $this->info($options);
 
-        return (isset($info['state']))
+        // @TODO investigate why state is now 0 but in v1 it was unset
+        return (isset($info['state']) && $info['state'] !== 0)
             ? $info['state']
             : null;
     }

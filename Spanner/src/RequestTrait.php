@@ -68,23 +68,6 @@ trait RequestTrait
     }
 
     /**
-     * Conditionally unset the LAR header.
-     *
-     * @param array $args Request arguments.
-     * @param bool $value Whether to set or unset the LAR header.
-     * @return array
-     */
-    private function conditionallyUnsetLarHeader(
-        array $args,
-        bool $value = true
-    ) {
-        if (!$value) {
-            unset($args['headers'][$this->larHeader]);
-        }
-        return $args;
-    }
-
-    /**
      * Add the `google-cloud-resource-prefix` header value to the request.
      *
      * @param array $args Request arguments.

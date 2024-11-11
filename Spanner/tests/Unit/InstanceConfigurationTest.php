@@ -19,9 +19,9 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
@@ -240,7 +240,7 @@ class InstanceConfigurationTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->getOperationResponseMock());
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $instanceConfig = new InstanceConfiguration(
             $this->instanceAdminClient->reveal(),

@@ -2352,7 +2352,7 @@ class Database
                     }
 
                     $request = $this->serializer->decodeMessage(new ListDatabaseOperationsRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name);
+                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
 
                     $response = $this->databaseAdminClient->listDatabaseOperations($request, $callOptions);
                     return $this->handleResponse($response);

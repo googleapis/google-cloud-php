@@ -1158,6 +1158,23 @@ class Operation
     }
 
     /**
+     * Conditionally unset the LAR header.
+     *
+     * @param array $args Request arguments.
+     * @param bool $value Whether to set or unset the LAR header.
+     * @return array
+     */
+    private function conditionallyUnsetLarHeader(
+        array $args,
+        bool $value = true
+    ) {
+        if (!$value) {
+            unset($args['headers'][$this->larHeader]);
+        }
+        return $args;
+    }
+
+    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private

@@ -201,7 +201,8 @@ class DatabaseTest extends TestCase
         );
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::any())->willReturn($this->operationResponse->reveal());
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
 
     }
 
@@ -279,9 +280,10 @@ class DatabaseTest extends TestCase
 
     public function testBackups()
     {
-        $backup1 = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1');
-        $backup2 = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2');
-        $backups = [new Backup(['name' => $backup1]), new Backup(['name' => $backup2])];
+        $backups = [
+            new Backup(['name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup1')]),
+            new Backup(['name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, 'backup2')])
+        ];
 
         $page = $this->prophesize(Page::class);
         $page->getResponseObject()

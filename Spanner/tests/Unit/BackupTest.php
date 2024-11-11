@@ -94,7 +94,8 @@ class BackupTest extends TestCase
         $this->instance->database(Argument::any())->willReturn($this->database);
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::any())->willReturn($this->operationResponse->reveal());
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
 
         $this->expireTime = new DateTime("+7 hours");
         $this->versionTime = new DateTime("-2 hours");

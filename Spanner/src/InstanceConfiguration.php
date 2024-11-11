@@ -53,7 +53,7 @@ use Closure;
 class InstanceConfiguration
 {
     use ApiHelperTrait;
-    // use RequestTrait;
+    use RequestTrait;
     use RequestProcessorTrait;
 
     /**
