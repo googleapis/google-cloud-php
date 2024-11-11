@@ -93,7 +93,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface commitServicePerimetersAsync(CommitServicePerimetersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> commitServicePerimetersAsync(CommitServicePerimetersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAccessLevelAsync(CreateAccessLevelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAccessPolicyAsync(AccessPolicy $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGcpUserAccessBindingAsync(CreateGcpUserAccessBindingRequest $request, array $optionalArgs = [])
