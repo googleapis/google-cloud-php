@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Page;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -26,6 +28,10 @@ use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -61,10 +67,12 @@ class SpannerClientTest extends TestCase
     const DATABASE = 'db';
     const CONFIG = 'conf';
 
-    private $requestHandler;
     private $serializer;
-    private $spannerClient;
+    private SpannerClient $spannerClient;
+    private $instanceAdminClient;
     private $directedReadOptionsIncludeReplicas;
+    private $operationResponse;
+
 
     public function setUp(): void
     {
@@ -81,11 +89,18 @@ class SpannerClientTest extends TestCase
                 ]
             ]
         ];
+
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->spannerClient = new SpannerClient([
             'projectId' => self::PROJECT,
             'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
-            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal()
         ]);
+
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
     }
 
     public function testBatch()
@@ -112,6 +127,24 @@ class SpannerClientTest extends TestCase
      */
     public function testInstanceConfigurations()
     {
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse([
+                'instance_configs' => [
+                    new InstanceConfig([
+                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
+                        'display_name' => 'Bar'
+                    ]),
+                    new InstanceConfig([
+                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
+                        'display_name' => 'Bat'
+                    ]),
+                ]
+            ]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
+
         $this->instanceAdminClient->listInstanceConfigs(
             Argument::that(function ($request) {
                 return $request->getParent() == InstanceAdminClient::projectName(self::PROJECT);
@@ -119,17 +152,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn([
-                'instanceConfigs' => [
-                    [
-                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
-                        'displayName' => 'Bar'
-                    ], [
-                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
-                        'displayName' => 'Bat'
-                    ]
-                ]
-            ]);
+            ->willReturn($pagedListResponse->reveal());
 
         $configs = $this->spannerClient->instanceConfigurations();
 
@@ -146,24 +169,36 @@ class SpannerClientTest extends TestCase
      */
     public function testPagedInstanceConfigurations()
     {
-        $firstCall = [
-            'instanceConfigs' => [
-                [
-                    'name' => 'projects/foo/instanceConfigs/bar',
-                    'displayName' => 'Bar'
-                ]
-            ],
-            'nextPageToken' => 'fooBar'
-        ];
+        $page1 = $this->prophesize(Page::class);
+        $page1->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse([
+                'instance_configs' => [
+                    new InstanceConfig([
+                        'name' => 'projects/foo/instanceConfigs/bar',
+                        'display_name' => 'Bar'
+                    ])
+                ],
+                'next_page_token' => 'fooBar'
+            ]));
 
-        $secondCall = [
-            'instanceConfigs' => [
-                [
-                    'name' => 'projects/foo/instanceConfigs/bat',
-                    'displayName' => 'Bat'
+        $pagedListResponse1 = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse1->getPage()
+            ->willReturn($page1->reveal());
+
+        $page2 = $this->prophesize(Page::class);
+        $page2->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse([
+                'instance_configs' => [
+                    new InstanceConfig([
+                        'name' => 'projects/foo/instanceConfigs/bat',
+                        'display_name' => 'Bat'
+                    ])
                 ]
-            ]
-        ];
+            ]));
+
+        $pagedListResponse2 = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse2->getPage()
+            ->willReturn($page2->reveal());
 
         $iteration = 0;
         $this->instanceAdminClient->listInstanceConfigs(
@@ -175,7 +210,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn($firstCall);
+            ->willReturn($pagedListResponse1->reveal());
 
         $this->instanceAdminClient->listInstanceConfigs(
             Argument::that(function ($request) use (&$iteration) {
@@ -185,7 +220,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn($secondCall);
+            ->willReturn($pagedListResponse2->reveal());
 
         $configs = $this->spannerClient->instanceConfigurations();
 
@@ -229,7 +264,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn($this->getOperationResponseMock());
+            ->willReturn($this->operationResponse->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
         $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
@@ -263,7 +298,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn($this->getOperationResponseMock());
+            ->willReturn($this->operationResponse->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
         $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
@@ -302,7 +337,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn($this->getOperationResponseMock());
+            ->willReturn($this->operationResponse->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
         $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
@@ -353,6 +388,17 @@ class SpannerClientTest extends TestCase
      */
     public function testInstances()
     {
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListInstancesResponse([
+                'instances' => [
+                    new InstanceProto(['name' => 'projects/test-project/instances/foo']),
+                    new InstanceProto(['name' => 'projects/test-project/instances/bar']),
+                ]
+            ]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
         $this->instanceAdminClient->listInstances(
             Argument::that(function ($request) {
                 $this->assertEquals(
@@ -364,12 +410,7 @@ class SpannerClientTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn([
-                'instances' => [
-                    ['name' => 'projects/test-project/instances/foo'],
-                    ['name' => 'projects/test-project/instances/bar'],
-                ]
-            ]);
+            ->willReturn($pagedListResponse->reveal());
 
         $instances = $this->spannerClient->instances();
         $this->assertInstanceOf(ItemIterator::class, $instances);

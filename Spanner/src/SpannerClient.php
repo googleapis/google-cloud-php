@@ -30,6 +30,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
@@ -111,6 +112,7 @@ class SpannerClient
     use ClientTrait;
     use ValidateTrait;
     use RequestTrait;
+    use RequestProcessorTrait;
 
     const VERSION = '1.80.0';
 
@@ -258,9 +260,11 @@ class SpannerClient
             'libName' => 'gccl',
             'serializer' => $this->serializer,
         ];
-        $this->spannerClient = new GapicSpannerClient($clientConfig);
-        $this->instanceAdminClient = new InstanceAdminClient($clientConfig);
-        $this->databaseAdminClient = new DatabaseAdminClient($clientConfig);
+        $this->spannerClient = $config['gapicSpannerClient'] ?? new GapicSpannerClient($clientConfig);
+        $this->instanceAdminClient = $config['gapicSpannerInstanceAdminClient']
+            ?? new InstanceAdminClient($clientConfig);
+        $this->databaseAdminClient = $config['gapicSpannerDatabaseAdminClient']
+            ?? new DatabaseAdminClient($clientConfig);
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
     }
 
