@@ -22,6 +22,8 @@ use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Result;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -48,10 +50,38 @@ class ResultTest extends TestCase
             ]
         ]
     ];
+    private $operation;
+    private $session;
+    private $transaction;
+    private $snapshot;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
+
+        $this->operation = $this->prophesize(Operation::class);
+        $this->session = $this->prophesize(Session::class)->reveal();
+        $this->transaction = $this->prophesize(Transaction::class);
+        $this->snapshot = $this->prophesize(Snapshot::class);
+
+        $this->mapper = $this->prophesize(ValueMapper::class);
+        $this->mapper->decodeValues(
+            Argument::any(),
+            Argument::any(),
+            Argument::any()
+        )->will(function ($args) {
+            return $args[1];
+        });
+
+        $this->operation->createSnapshot(
+            $this->session,
+            Argument::type('array')
+        )->willReturn($this->snapshot->reveal());
+
+        $this->operation->createTransaction(
+            $this->session,
+            Argument::type('array')
+        )->willReturn($this->transaction->reveal());
     }
 
     /**
@@ -59,8 +89,16 @@ class ResultTest extends TestCase
      */
     public function testRows($chunks, $expectedValues)
     {
-        $result = iterator_to_array($this->getResultClass($chunks)->rows());
-        $this->assertEquals($expectedValues, $result);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session,
+            function () use ($chunks) {
+                return $this->resultGenerator($chunks);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
+        $this->assertEquals($expectedValues, iterator_to_array($result->rows()));
     }
 
     public function testIterator()

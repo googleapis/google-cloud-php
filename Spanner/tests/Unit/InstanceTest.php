@@ -487,8 +487,8 @@ class InstanceTest extends TestCase
         $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
 
         // Make sure the database->info is prefilled.
-        $this->assertEquals($databases[0]->__debugInfo(), $dbs[0]->info());
-        $this->assertEquals($databases[1]->__debugInfo(), $dbs[1]->info());
+        $this->assertEquals($databases[0]->__debugInfo(), array_filter($dbs[0]->info()));
+        $this->assertEquals($databases[1]->__debugInfo(), array_filter($dbs[1]->info()));
     }
 
     public function testDatabasesPaged()

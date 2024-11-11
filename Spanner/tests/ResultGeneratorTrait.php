@@ -94,9 +94,13 @@ trait ResultGeneratorTrait
             $result['metadata']->setTransaction(new Transaction(['id' => $transactionId]));
         }
 
-        $result = new PartialResultSet($result);
+        if (isset($result['stats'])) {
+            throw new \Exception('stastistics;');
+            var_dump($stats);exit;
+            $result['stats'] = $stats;
+        }
 
-        yield $result;
+        yield new PartialResultSet($result);
     }
 
     /**
@@ -154,6 +158,13 @@ trait ResultGeneratorTrait
         foreach ($this->getStreamingDataFixture()['tests'] as $test) {
             yield [$test['chunks'], $test['result']['value']];
             break;
+        }
+    }
+
+    public function streamingDataProvider()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
         }
     }
 }
