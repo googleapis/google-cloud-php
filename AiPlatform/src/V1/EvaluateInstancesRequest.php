@@ -82,6 +82,8 @@ class EvaluateInstancesRequest extends \Google\Protobuf\Internal\Message
      *           Input for tool parameter key match metric.
      *     @type \Google\Cloud\AIPlatform\V1\ToolParameterKVMatchInput $tool_parameter_kv_match_input
      *           Input for tool parameter key value match metric.
+     *     @type \Google\Cloud\AIPlatform\V1\MetricxInput $metricx_input
+     *           Input for Metricx metric.
      *     @type string $location
      *           Required. The resource name of the Location to evaluate the instances.
      *           Format: `projects/{project}/locations/{location}`
@@ -813,6 +815,37 @@ class EvaluateInstancesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ToolParameterKVMatchInput::class);
         $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Input for Metricx metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetricxInput metricx_input = 32;</code>
+     * @return \Google\Cloud\AIPlatform\V1\MetricxInput|null
+     */
+    public function getMetricxInput()
+    {
+        return $this->readOneof(32);
+    }
+
+    public function hasMetricxInput()
+    {
+        return $this->hasOneof(32);
+    }
+
+    /**
+     * Input for Metricx metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetricxInput metricx_input = 32;</code>
+     * @param \Google\Cloud\AIPlatform\V1\MetricxInput $var
+     * @return $this
+     */
+    public function setMetricxInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\MetricxInput::class);
+        $this->writeOneof(32, $var);
 
         return $this;
     }

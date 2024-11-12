@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ToolParameterKVMatchSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Whether to use STRCIT string match on parameter values.
+     * Optional. Whether to use STRICT string match on parameter values.
      *
      * Generated from protobuf field <code>bool use_strict_string_match = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -29,7 +29,7 @@ class ToolParameterKVMatchSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $use_strict_string_match
-     *           Optional. Whether to use STRCIT string match on parameter values.
+     *           Optional. Whether to use STRICT string match on parameter values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class ToolParameterKVMatchSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether to use STRCIT string match on parameter values.
+     * Optional. Whether to use STRICT string match on parameter values.
      *
      * Generated from protobuf field <code>bool use_strict_string_match = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -49,7 +49,7 @@ class ToolParameterKVMatchSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether to use STRCIT string match on parameter values.
+     * Optional. Whether to use STRICT string match on parameter values.
      *
      * Generated from protobuf field <code>bool use_strict_string_match = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
