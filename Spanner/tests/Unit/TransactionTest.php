@@ -98,7 +98,11 @@ class TransactionTest extends TestCase
             }
         ]);
         $this->spannerClient = $this->prophesize(SpannerClient::class);
-        $this->operation = $this->prophesize(Operation::class);
+        $this->operation = new Operation(
+            $this->spannerClient->reveal(),
+            $this->serializer,
+            false
+        );
 
         $this->session = new Session(
             $this->spannerClient->reveal(),
@@ -110,7 +114,7 @@ class TransactionTest extends TestCase
         );
 
         $this->transaction = new Transaction(
-            $this->operation->reveal(),
+            $this->operation,
             $this->session,
             self::TRANSACTION,
             false,
@@ -123,7 +127,7 @@ class TransactionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         new Transaction(
-            $this->operation->reveal(),
+            $this->operation,
             $this->session,
             null,
             false,
@@ -451,10 +455,10 @@ class TransactionTest extends TestCase
 
     public function testCommit()
     {
-        $this->operation->commitWithResponse(
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(
             $this->session,
             Argument::that(function ($mutations) {
-                // var_dump($mutations);exit;
                 $this->assertEquals(1, count($mutations));
                 $this->assertEquals('Posts', $mutations[0]['insert']['table']);
                 $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
@@ -471,15 +475,30 @@ class TransactionTest extends TestCase
             ->shouldBeCalled()
             ->willReturn($this->commitResponseWithCommitStats());
 
-        $this->transaction->insert('Posts', ['foo' => 'bar']);
-        $this->transaction->commit(['requestOptions' => ['requestTag' => 'unused']]);
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session,
+            self::TRANSACTION,
+            false,
+            self::TRANSACTION_TAG
+        );
+
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $transaction->commit(['requestOptions' => ['requestTag' => 'unused']]);
     }
 
     public function testCommitWithReturnCommitStats()
     {
-        $this->operation->commitWithResponse(
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(
             $this->session,
-            $mutations,
+            Argument::that(function ($mutations) {
+                $this->assertEquals(1, count($mutations));
+                $this->assertEquals('Posts', $mutations[0]['insert']['table']);
+                $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
+                $this->assertEquals('bar', $mutations[0]['insert']['values'][0]);
+                return true;
+            }),
             [
                 'transactionId' => self::TRANSACTION,
                 'returnCommitStats' => true,
@@ -487,23 +506,39 @@ class TransactionTest extends TestCase
                     'transactionTag' => self::TRANSACTION_TAG
                 ]
             ]
-        )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponseWithCommitStats());
 
-        $this->transaction->insert('Posts', ['foo' => 'bar']);
-        $this->transaction->commit(['returnCommitStats' => true]);
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session,
+            self::TRANSACTION,
+            false,
+            self::TRANSACTION_TAG
+        );
 
-        $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $transaction->commit(['returnCommitStats' => true]);
+
+        $this->assertEquals(['mutationCount' => 1], $transaction->getCommitStats());
     }
 
     public function testCommitWithMaxCommitDelay()
     {
         $duration = new Duration(['seconds' => 0, 'nanos' => 100000000]);
-        $this->transaction->insert('Posts', ['foo' => 'bar']);
 
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(
             $this->session,
-            $mutations,
+            Argument::that(function ($mutations) {
+                $this->assertEquals(1, count($mutations));
+                $this->assertEquals('Posts', $mutations[0]['insert']['table']);
+                $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
+                $this->assertEquals('bar', $mutations[0]['insert']['values'][0]);
+
+                return true;
+            }),
             [
                 'transactionId' => self::TRANSACTION,
                 'returnCommitStats' => true,
@@ -512,20 +547,48 @@ class TransactionTest extends TestCase
                     'transactionTag' => self::TRANSACTION_TAG
                 ]
             ]
-        )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponseWithCommitStats());
 
-        $this->transaction->commit([
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session,
+            self::TRANSACTION,
+            false,
+            self::TRANSACTION_TAG
+        );
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $transaction->commit([
             'returnCommitStats' => true,
             'maxCommitDelay' => $duration
         ]);
 
-        $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
+        $this->assertEquals(['mutationCount' => 1], $transaction->getCommitStats());
     }
 
     public function testCommitInvalidState()
     {
         $this->expectException(\BadMethodCallException::class);
-        $this->transaction->commit();
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([[]]);
+
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session,
+            self::TRANSACTION,
+            false,
+            self::TRANSACTION_TAG
+        );
+
+        // call "commit" to mock closing the state
+        $transaction->commit();
+
+        // transaction is considered closed after the first commit, so this should throw an exception
+        $transaction->commit();
     }
 
     public function testRollback()
@@ -545,7 +608,25 @@ class TransactionTest extends TestCase
     public function testRollbackInvalidState()
     {
         $this->expectException(\BadMethodCallException::class);
-        $this->transaction->rollback();
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([[]]);
+
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session,
+            self::TRANSACTION,
+            false,
+            self::TRANSACTION_TAG
+        );
+
+        // call "commit" to mock closing the state
+        $transaction->commit();
+
+        // transaction is considered closed after the first commit, so this should throw an exception
+        $transaction->rollback();
     }
 
     public function testId()
@@ -555,8 +636,25 @@ class TransactionTest extends TestCase
 
     public function testState()
     {
-        $this->assertEquals(Transaction::STATE_ACTIVE, $this->transaction->state());
-        $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([[]]);
+
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session,
+            self::TRANSACTION,
+            false,
+            self::TRANSACTION_TAG
+        );
+
+        $this->assertEquals(Transaction::STATE_ACTIVE, $transaction->state());
+
+        // call "commit" to mock closing the state
+        $transaction->commit();
+
+        $this->assertEquals(Transaction::STATE_COMMITTED, $transaction->state());
     }
 
     public function testInvalidReadContext()
@@ -578,14 +676,12 @@ class TransactionTest extends TestCase
 
     public function testIsRetryTrue()
     {
-        $request = [
+        $transaction = new Transaction(
             $this->operation,
             $this->session,
             self::TRANSACTION,
             true
-        ];
-
-        $transaction = TestHelpers::stub(Transaction::class, $request);
+        );
 
         $this->assertTrue($transaction->isRetry());
     }
@@ -593,40 +689,16 @@ class TransactionTest extends TestCase
     // *******
     // Helpers
 
-
-    private function commitResponse()
-    {
-        return [
-            'commitTimestamp' => self::TIMESTAMP,
-        ];
-        return new CommitResponse([
-            'commit_timestamp' => new TimestampProto([
-                'seconds' => (new \DateTime(self::TIMESTAMP))->format('U'),
-                'nanos' => 534799000
-            ])
-        ]);
-    }
-
-
     private function commitResponseWithCommitStats()
     {
+        $time = $this->parseTimeString(self::TIMESTAMP);
+        $timestamp = new Timestamp($time[0], $time[1]);
         return [
-            'commitTimestamp' => self::TIMESTAMP,
-            'commitStats' => null
+            $timestamp,
+            [
+                'commitTimestamp' => self::TIMESTAMP,
+                'commitStats' => ['mutationCount' => 1]
+            ]
         ];
-        return new CommitResponse([
-            'commit_timestamp' => new TimestampProto([
-                'seconds' => (new \DateTime(self::TIMESTAMP))->format('U'),
-                'nanos' => 534799000
-            ]),
-            'commit_stats' => new CommitStats(['mutation_count' => 1])
-        ]);
-    }
-
-    private function assertTimestampIsCorrect($res)
-    {
-        $ts = new \DateTimeImmutable($this->commitResponse()['commitTimestamp']);
-
-        $this->assertEquals($ts->format('Y-m-d\TH:i:s\Z'), $res->get()->format('Y-m-d\TH:i:s\Z'));
     }
 }
