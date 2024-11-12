@@ -18,20 +18,19 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\Serializer;
-use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -39,12 +38,12 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\PgJsonb;
-use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
+use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
@@ -72,7 +71,6 @@ class SpannerClientTest extends TestCase
     private $instanceAdminClient;
     private $directedReadOptionsIncludeReplicas;
     private $operationResponse;
-
 
     public function setUp(): void
     {
@@ -464,18 +462,18 @@ class SpannerClientTest extends TestCase
     {
         $b = $this->spannerClient->bytes('foo');
         $this->assertInstanceOf(Bytes::class, $b);
-        $this->assertEquals(base64_encode('foo'), (string)$b);
+        $this->assertEquals(base64_encode('foo'), (string) $b);
     }
 
     public function testDate()
     {
-        $d = $this->spannerClient->date(new \DateTime);
+        $d = $this->spannerClient->date(new \DateTime());
         $this->assertInstanceOf(Date::class, $d);
     }
 
     public function testTimestamp()
     {
-        $ts = $this->spannerClient->timestamp(new \DateTime);
+        $ts = $this->spannerClient->timestamp(new \DateTime());
         $this->assertInstanceOf(Timestamp::class, $ts);
     }
 
@@ -499,12 +497,12 @@ class SpannerClientTest extends TestCase
         $strVal = $this->spannerClient->pgJsonb('{}');
         $this->assertInstanceOf(PgJsonb::class, $strVal);
 
-        $arrVal = $this->spannerClient->pgJsonb(["a" => 1, "b" => 2]);
+        $arrVal = $this->spannerClient->pgJsonb(['a' => 1, 'b' => 2]);
         $this->assertInstanceOf(PgJsonb::class, $arrVal);
 
         $stub = $this->prophesize('stdClass');
         $stub->willImplement('JsonSerializable');
-        $stub->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
+        $stub->jsonSerialize()->willReturn(['a' => 1, 'b' => null]);
         $objVal = $this->spannerClient->pgJsonb($stub->reveal());
         $this->assertInstanceOf(PgJsonb::class, $objVal);
     }

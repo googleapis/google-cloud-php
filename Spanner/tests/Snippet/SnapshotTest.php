@@ -54,7 +54,7 @@ class SnapshotTest extends SnippetTestCase
             $session->reveal(),
             [
                 'id' => self::TRANSACTION,
-                'readTimestamp' => new Timestamp(new \DateTime)
+                'readTimestamp' => new Timestamp(new \DateTime())
             ]
         ], ['operation']);
     }

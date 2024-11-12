@@ -18,29 +18,27 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
-use Google\ApiCore\PagedListResponse;
-use Google\ApiCore\Page;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
@@ -52,42 +50,38 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
-use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\ReadRequest;
-use Google\Cloud\Spanner\V1\TransactionSelector;
-use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetMetadata;
 use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\StructType;
 use Google\Cloud\Spanner\V1\StructType\Field;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type as TypeProto;
 use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Protobuf\Value;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
-use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Core\Exception\ServiceException;
-use Google\LongRunning\Client\OperationsClient;
 
 /**
  * @group spanner
@@ -111,6 +105,29 @@ class DatabaseTest extends TestCase
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
     const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
 
+    private const DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS = [
+        'includeReplicas' => [
+            'autoFailoverDisabled' => false,
+            'replicaSelections' => [
+                [
+                    'location' => 'us-central1',
+                    'type' => ReplicaType::READ_WRITE,
+                ]
+            ]
+        ]
+    ];
+
+    private const DIRECTED_READ_OPTIONS_EXCLUDE_REPLICAS = [
+        'excludeReplicas' => [
+            'replicaSelections' => [
+                [
+                    'location' => 'us-central1',
+                    'type' => ReplicaType::READ_WRITE,
+                ]
+            ]
+        ]
+    ];
+
     private $spannerClient;
     private $instanceAdminClient;
     private $databaseAdminClient;
@@ -119,9 +136,7 @@ class DatabaseTest extends TestCase
     private $sessionPool;
     private $database;
     private $session;
-    private $directedReadOptionsIncludeReplicas;
-    private $directedReadOptionsExcludeReplicas;
-
+    private $operationResponse;
 
     public function setUp(): void
     {
@@ -141,6 +156,7 @@ class DatabaseTest extends TestCase
                 return $this->formatTimestampFromApi($v);
             }
         ]);
+
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
@@ -155,30 +171,6 @@ class DatabaseTest extends TestCase
             self::SESSION
         );
 
-        $this->directedReadOptionsIncludeReplicas = [
-            'includeReplicas' => [
-                'autoFailoverDisabled' => false,
-                'replicaSelections' => [
-                    [
-                        'location' => 'us-central1',
-                        'type' => ReplicaType::READ_WRITE,
-
-                    ]
-                ]
-            ]
-        ];
-        $this->directedReadOptionsExcludeReplicas = [
-            'excludeReplicas' => [
-                // 'autoFailoverDisabled' => false,
-                'replicaSelections' => [
-                    [
-                        'location' => 'us-central1',
-                        'type' => ReplicaType::READ_WRITE,
-                    ]
-                ]
-            ]
-        ];
-
         $this->instance = new Instance(
             $this->spannerClient->reveal(),
             $this->instanceAdminClient->reveal(),
@@ -188,7 +180,7 @@ class DatabaseTest extends TestCase
             self::INSTANCE,
             false,
             [],
-            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
+            ['directedReadOptions' => self::DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS]
         );
 
         $this->sessionPool->acquire(Argument::type('string'))
@@ -214,7 +206,6 @@ class DatabaseTest extends TestCase
         $this->operationResponse = $this->prophesize(OperationResponse::class);
         $this->operationResponse->withResultFunction(Argument::type('callable'))
             ->willReturn($this->operationResponse->reveal());
-
     }
 
     public function testName()
@@ -263,7 +254,6 @@ class DatabaseTest extends TestCase
         $this->database->state();
     }
 
-
     public function testCreateBackup()
     {
         $expireTime = new \DateTime();
@@ -303,7 +293,7 @@ class DatabaseTest extends TestCase
         $pagedListResponse->getPage()
             ->willReturn($page->reveal());
 
-        $expectedFilter = "database:".$this->database->name();
+        $expectedFilter = 'database:' . $this->database->name();
         $this->databaseAdminClient->listBackups(
             Argument::that(function ($request) use ($expectedFilter) {
                 $message = $this->serializer->encodeMessage($request);
@@ -340,8 +330,8 @@ class DatabaseTest extends TestCase
         $pagedListResponse->getPage()
             ->willReturn($page->reveal());
 
-        $defaultFilter = "database:" . $this->database->name();
-        $customFilter = "customFilter";
+        $defaultFilter = 'database:' . $this->database->name();
+        $customFilter = 'customFilter';
         $expectedFilter = sprintf('(%1$s) AND (%2$s)', $defaultFilter, $customFilter);
 
         $this->databaseAdminClient->listBackups(
@@ -494,8 +484,7 @@ class DatabaseTest extends TestCase
         $createStatement = sprintf('CREATE DATABASE "%s"', self::DATABASE);
 
         $this->databaseAdminClient->createDatabase(
-            Argument::that(
-            function ($request) use ($createStatement) {
+            Argument::that(function ($request) use ($createStatement) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals($message['createStatement'], $createStatement);
                 $this->assertEmpty($message['extraStatements']);
@@ -507,7 +496,7 @@ class DatabaseTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $op = $this->database->create([
-            'databaseDialect'=> DatabaseDialect::POSTGRESQL
+            'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 
         $this->assertInstanceOf(OperationResponse::class, $op);
@@ -521,8 +510,7 @@ class DatabaseTest extends TestCase
         $backupName = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
 
         $this->databaseAdminClient->restoreDatabase(
-            Argument::that(
-            function ($request) use ($backupName) {
+            Argument::that(function ($request) use ($backupName) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['parent'],
@@ -549,8 +537,7 @@ class DatabaseTest extends TestCase
         $backupObj = $this->instance->backup(self::BACKUP);
 
         $this->databaseAdminClient->restoreDatabase(
-            Argument::that(
-            function ($request) use ($backupObj) {
+            Argument::that(function ($request) use ($backupObj) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['parent'],
@@ -576,8 +563,7 @@ class DatabaseTest extends TestCase
     {
         $statement = 'foo';
         $this->databaseAdminClient->updateDatabaseDdl(
-            Argument::that(
-            function ($request) use ($statement) {
+            Argument::that(function ($request) use ($statement) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['database'],
@@ -603,8 +589,7 @@ class DatabaseTest extends TestCase
         $statements = ['foo', 'bar'];
 
         $this->databaseAdminClient->updateDatabaseDdl(
-            Argument::that(
-            function ($request) use ($statements) {
+            Argument::that(function ($request) use ($statements) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['database'],
@@ -629,8 +614,7 @@ class DatabaseTest extends TestCase
         $statement = 'foo';
 
         $this->databaseAdminClient->updateDatabaseDdl(
-            Argument::that(
-            function ($request) use ($statement) {
+            Argument::that(function ($request) use ($statement) {
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['database'],
@@ -1692,7 +1676,7 @@ class DatabaseTest extends TestCase
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['directedReadOptions'],
-                    $this->directedReadOptionsIncludeReplicas
+                    self::DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS
                 );
                 return true;
             }),
@@ -1715,7 +1699,7 @@ class DatabaseTest extends TestCase
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['directedReadOptions'],
-                    $this->directedReadOptionsExcludeReplicas
+                    self::DIRECTED_READ_OPTIONS_EXCLUDE_REPLICAS
                 );
                 return true;
             }),
@@ -1727,7 +1711,7 @@ class DatabaseTest extends TestCase
         $sql = 'SELECT * FROM Table';
         $res = $this->database->execute(
             $sql,
-            ['directedReadOptions' => $this->directedReadOptionsExcludeReplicas]
+            ['directedReadOptions' => self::DIRECTED_READ_OPTIONS_EXCLUDE_REPLICAS]
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
@@ -1744,7 +1728,7 @@ class DatabaseTest extends TestCase
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['directedReadOptions'],
-                    $this->directedReadOptionsIncludeReplicas
+                    self::DIRECTED_READ_OPTIONS_INCLUDE_REPLICAS
                 );
                 return true;
             }),
@@ -1773,7 +1757,7 @@ class DatabaseTest extends TestCase
                 $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['directedReadOptions'],
-                    $this->directedReadOptionsExcludeReplicas
+                    self::DIRECTED_READ_OPTIONS_EXCLUDE_REPLICAS
                 );
                 return true;
             }),
@@ -1786,7 +1770,7 @@ class DatabaseTest extends TestCase
             $table,
             new KeySet(['keys' => $keys]),
             $columns,
-            ['directedReadOptions' => $this->directedReadOptionsExcludeReplicas]
+            ['directedReadOptions' => self::DIRECTED_READ_OPTIONS_EXCLUDE_REPLICAS]
         );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
@@ -1922,10 +1906,15 @@ class DatabaseTest extends TestCase
                     $message['requestOptions']['transactionTag'],
                     self::TRANSACTION_TAG
                 );
-                $this->assertEquals(
-                    $message['transaction'],
-                    ['begin' => ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]]
-                );
+                $this->assertEquals([
+                    'begin' => [
+                        'readWrite' => [
+                            'readLockMode' => 0,
+                            'multiplexedSessionPreviousTransactionId' => '',
+                        ],
+                        'excludeTxnFromChangeStreams' => false
+                    ]
+                ], $message['transaction']);
                 return true;
             }),
             Argument::type('array')
@@ -1966,8 +1955,14 @@ class DatabaseTest extends TestCase
                     $message['requestOptions']['transactionTag'],
                     self::TRANSACTION_TAG
                 );
-                return $message['transaction'] == ['begin' =>
-                    ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]
+                return $message['transaction'] == [
+                    'begin' => [
+                        'readWrite' => [
+                            'readLockMode' => 0,
+                            'multiplexedSessionPreviousTransactionId' => '',
+                        ],
+                        'excludeTxnFromChangeStreams' => false,
+                    ]
                 ];
             }),
             Argument::type('array')
@@ -2049,7 +2044,6 @@ class DatabaseTest extends TestCase
                 return $commitResponse;
             });
 
-
         $this->database->runTransaction(function ($t) use ($sql) {
             $t->execute($sql);
             $t->commit();
@@ -2070,8 +2064,14 @@ class DatabaseTest extends TestCase
                     $message['requestOptions']['transactionTag'],
                     self::TRANSACTION_TAG
                 );
-                return $message['transaction'] == ['begin' =>
-                    ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]
+                return $message['transaction'] == [
+                    'begin' => [
+                        'readWrite' => [
+                            'readLockMode' => 0,
+                            'multiplexedSessionPreviousTransactionId' => ''
+                        ],
+                        'excludeTxnFromChangeStreams' => false
+                    ]
                 ];
             }),
             Argument::type('array')
@@ -2116,7 +2116,6 @@ class DatabaseTest extends TestCase
     {
         $sql = $this->createStreamingAPIArgs()['sql'];
         $numOfRetries = 2;
-        $unavailable = new ServiceException('Unavailable', 14);
         $result = $this->resultGeneratorStream(
             null,
             new ResultSetStats(['row_count_lower_bound' => 1]),
@@ -2132,17 +2131,25 @@ class DatabaseTest extends TestCase
                 $this->assertEquals($message['sql'], $sql);
                 $this->assertEquals(
                     $message['transaction'],
-                    ['begin' => ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]]
+                    [
+                        'begin' => [
+                            'readWrite' => [
+                                'readLockMode' => 0,
+                                'multiplexedSessionPreviousTransactionId' => ''
+                            ],
+                            'excludeTxnFromChangeStreams' => false
+                        ]
+                    ]
                 );
                 return $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
             }),
             Argument::type('array')
         )
             ->shouldBeCalledTimes($numOfRetries)
-            ->will(function () use (&$it, $unavailable, $numOfRetries, $result) {
+            ->will(function () use (&$it, $numOfRetries, $result) {
                 $it++;
                 if ($it < $numOfRetries) {
-                    throw $unavailable;
+                    throw new ServiceException('Unavailable', 14);
                 }
                 return $result;
             });
@@ -2215,7 +2222,15 @@ class DatabaseTest extends TestCase
                 $this->assertEquals($message['table'], self::TEST_TABLE_NAME);
                 $this->assertEquals($message['columns'], $cols);
                 return $message['transaction']
-                        == ['begin' => ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]]
+                        == [
+                            'begin' => [
+                                'readWrite' => [
+                                    'readLockMode' => 0,
+                                    'multiplexedSessionPreviousTransactionId' => ''
+                                ],
+                                'excludeTxnFromChangeStreams' => false
+                            ]
+                        ]
                     && $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
             }),
             Argument::type('array')
@@ -2288,36 +2303,26 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionWithExcludeTxnFromChangeStreams()
     {
-        $gapic = $this->prophesize(SpannerClient::class);
-
-        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $session = new SessionProto(['name' => $sessName]);
-        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])]);
-        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
-        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
-
         $sql = 'SELECT example FROM sql_query';
         $stream = $this->prophesize(ServerStream::class);
-        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
-        $gapic->executeStreamingSql($sessName, $sql, Argument::that(function (array $options) {
-            $this->assertArrayHasKey('transaction', $options);
-            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
-            $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
-            return true;
-        }))
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                new ResultSet(['stats' => new ResultSetStats(['row_count_exact' => 0])])
+            ]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $this->assertNotNull($transactionOptions = $request->getTransaction()->getBegin());
+                $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
+                return true;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalledOnce()
             ->willReturn($stream->reveal());
 
-        $database = new Database(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            $this->instance,
-            $this->lro->reveal(),
-            $this->lroCallables,
-            self::PROJECT,
-            self::DATABASE
-        );
-
-        $database->runTransaction(
+        $this->database->runTransaction(
             function (Transaction $t) use ($sql) {
                 // Run a fake query
                 $t->executeUpdate($sql);
@@ -2333,25 +2338,25 @@ class DatabaseTest extends TestCase
 
     public function testExecutePartitionedUpdateWithExcludeTxnFromChangeStreams()
     {
-        $gapic = $this->prophesize(SpannerClient::class);
-
-        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $session = new SessionProto(['name' => $sessName]);
-        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
-        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
-
         $sql = 'SELECT example FROM sql_query';
-        $resultSet = new ResultSet(['stats' => new ResultSetStats(['row_count_lower_bound' => 0])]);
+
         $stream = $this->prophesize(ServerStream::class);
-        $stream->readAll()->shouldBeCalledOnce()->willReturn([$resultSet]);
-        $gapic->executeStreamingSql($sessName, $sql, Argument::type('array'))
+        $stream->readAll()
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                new ResultSet(['stats' => new ResultSetStats(['row_count_lower_bound' => 0])])
+            ]);
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
             ->shouldBeCalledOnce()
             ->willReturn($stream->reveal());
 
-        $gapic->beginTransaction(
-            $sessName,
-            Argument::that(function (TransactionOptions $options) {
-                $this->assertTrue($options->getExcludeTxnFromChangeStreams());
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertTrue($request->getOptions()->getExcludeTxnFromChangeStreams());
                 return true;
             }),
             Argument::type('array')
@@ -2359,16 +2364,7 @@ class DatabaseTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn(new TransactionProto(['id' => 'foo']));
 
-        $database = new Database(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            $this->instance,
-            $this->lro->reveal(),
-            $this->lroCallables,
-            self::PROJECT,
-            self::DATABASE
-        );
-
-        $database->executePartitionedUpdate(
+        $this->database->executePartitionedUpdate(
             $sql,
             ['transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
         );
@@ -2376,36 +2372,17 @@ class DatabaseTest extends TestCase
 
     public function testBatchWriteWithExcludeTxnFromChangeStreams()
     {
-        $gapic = $this->prophesize(SpannerClient::class);
-
-        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $session = new SessionProto(['name' => $sessName]);
-        $gapic->createSession(Argument::cetera())->shouldBeCalled()->willReturn($session);
-        $gapic->deleteSession(Argument::cetera())->shouldBeCalled();
-
-        $mutationGroups = [];
-        $gapic->batchWrite(
-            $sessName,
-            $mutationGroups,
-            Argument::that(function ($options) {
-                $this->assertArrayHasKey('excludeTxnFromChangeStreams', $options);
-                $this->assertTrue($options['excludeTxnFromChangeStreams']);
+        $this->spannerClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) {
+                $this->assertTrue($request->getExcludeTxnFromChangeStreams());
                 return true;
-            })
+            }),
+            Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new TransactionProto(['id' => 'foo']));
+            ->willReturn($this->resultGeneratorStream());
 
-        $database = new Database(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            $this->instance,
-            $this->lro->reveal(),
-            $this->lroCallables,
-            self::PROJECT,
-            self::DATABASE
-        );
-
-        $database->batchWrite($mutationGroups, [
+        $this->database->batchWrite([], [
             'excludeTxnFromChangeStreams' => true
         ]);
     }
@@ -2499,7 +2476,7 @@ class DatabaseTest extends TestCase
             Argument::that(function (ExecuteSqlRequest $request) use ($sql, $transactionOptions) {
                 return $request->getSql() == $sql
                     && $request->getTransaction() == $this->serializer->decodeMessage(
-                        new TransactionSelector,
+                        new TransactionSelector(),
                         $transactionOptions
                     )
                     && $request->getRequestOptions()->getTransactionTag() == self::TRANSACTION_TAG;
@@ -2520,7 +2497,7 @@ class DatabaseTest extends TestCase
             Argument::that(function (ExecuteBatchDmlRequest $request) use ($transactionOptions) {
                 $this->assertEquals(
                     $request->getTransaction(),
-                    $this->serializer->decodeMessage(new TransactionSelector, $transactionOptions)
+                    $this->serializer->decodeMessage(new TransactionSelector(), $transactionOptions)
                 );
                 $this->assertEquals(
                     $request->getRequestOptions()->getTransactionTag(),

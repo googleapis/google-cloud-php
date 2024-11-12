@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
 
@@ -77,7 +76,7 @@ class BackupTest extends SpannerTestCase
         });
 
         $db1->updateDdl(
-            'CREATE TABLE '. self::TEST_TABLE_NAME .' (
+            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 name STRING(MAX) NOT NULL,
                 birthday DATE NOT NULL
@@ -95,7 +94,7 @@ class BackupTest extends SpannerTestCase
         });
 
         $db2->updateDdl(
-            'CREATE TABLE '. self::TEST_TABLE_NAME .' (
+            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 name STRING(MAX) NOT NULL,
                 birthday DATE NOT NULL
@@ -106,8 +105,8 @@ class BackupTest extends SpannerTestCase
         self::insertData(10, self::$dbName2);
 
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
-        self::$backupId2 = uniqid("users-");
-        self::$copyBackupId = uniqid("copy-");
+        self::$backupId2 = uniqid('users-');
+        self::$copyBackupId = uniqid('copy-');
         self::$hasSetUp = true;
     }
 
@@ -198,7 +197,7 @@ class BackupTest extends SpannerTestCase
         $e = null;
         try {
             $backup->create(self::$dbName1, $expireTime, [
-                'versionTime' => "invalidType",
+                'versionTime' => 'invalidType',
             ]);
         } catch (\InvalidArgumentException $e) {
         }
@@ -366,7 +365,7 @@ class BackupTest extends SpannerTestCase
      */
     public function testListAllBackupsReady()
     {
-        $backups = iterator_to_array(self::$instance->backups(['filter'=>'state:READY']));
+        $backups = iterator_to_array(self::$instance->backups(['filter' => 'state:READY']));
 
         $backupNames = [];
         foreach ($backups as $b) {
@@ -396,9 +395,9 @@ class BackupTest extends SpannerTestCase
      */
     public function testListAllBackupsCreatedAfterTimestamp()
     {
-        $filter = sprintf("create_time >= %s", self::$createTime1);
+        $filter = sprintf('create_time >= %s', self::$createTime1);
 
-        $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
+        $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
 
         $backupNames = [];
         foreach ($backups as $b) {
@@ -413,9 +412,9 @@ class BackupTest extends SpannerTestCase
      */
     public function testListAllBackupsExpireBeforeTimestamp()
     {
-        $filter = "expire_time < " . gmdate('"Y-m-d\TH:i:s\Z"', strtotime('+9 hours'));
+        $filter = 'expire_time < ' . gmdate('"Y-m-d\TH:i:s\Z"', strtotime('+9 hours'));
 
-        $backups = iterator_to_array(self::$instance->backups(['filter'=>$filter]));
+        $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
 
         $backupNames = [];
         foreach ($backups as $b) {
@@ -433,7 +432,7 @@ class BackupTest extends SpannerTestCase
     {
         $backup = self::$instance->backup(self::$backupId1);
         $size = $backup->info()['sizeBytes'];
-        $filter = "size_bytes > " . $size;
+        $filter = 'size_bytes > ' . $size;
 
         $backups = iterator_to_array(self::$instance->backups(['filter' => $filter]));
 
@@ -501,7 +500,7 @@ class BackupTest extends SpannerTestCase
 
     public function testDeleteNonExistantBackup()
     {
-        $backup = self::$instance->backup("does_not_exis");
+        $backup = self::$instance->backup('does_not_exis');
 
         $this->assertFalse($backup->exists());
 
@@ -633,7 +632,7 @@ class BackupTest extends SpannerTestCase
     {
         $rows = [];
 
-        for ($id=1; $id <= $number; $id++) {
+        for ($id = 1; $id <= $number; $id++) {
             $rows[] = self::generateRow($id, uniqid(self::TESTING_PREFIX), new Date(new \DateTime()));
         }
         return $rows;

@@ -18,17 +18,17 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -54,6 +54,7 @@ class ResultTest extends TestCase
     private $session;
     private $transaction;
     private $snapshot;
+    private $mapper;
 
     public function setUp(): void
     {

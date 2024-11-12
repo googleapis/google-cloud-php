@@ -17,42 +17,41 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\Serializer;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Page;
-use Google\LongRunning\Operation;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\LongRunning\Client\OperationsClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
+use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
-use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\Backup;
+use Google\Cloud\Spanner\V1\Session;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -143,7 +142,7 @@ class InstanceTest extends TestCase
 
     public function testInfoWithReloadAndFieldMask()
     {
-        $requestedFieldNames = ["name", 'node_count'];
+        $requestedFieldNames = ['name', 'node_count'];
         $this->instanceAdminClient->getInstance(
             Argument::that(function ($request) use ($requestedFieldNames) {
                 $message = $this->serializer->encodeMessage($request);
@@ -233,7 +232,7 @@ class InstanceTest extends TestCase
 
     public function testReloadWithFieldMask()
     {
-        $requestedFieldNames = ["name", 'node_count'];
+        $requestedFieldNames = ['name', 'node_count'];
         $this->instanceAdminClient->getInstance(
             Argument::that(function ($request) use ($requestedFieldNames) {
                 $message = $this->serializer->encodeMessage($request);
@@ -501,8 +500,8 @@ class InstanceTest extends TestCase
         $page1 = $this->prophesize(Page::class);
         $page1->getResponseObject()
             ->willReturn(new ListDatabasesResponse([
-                'databases' => [$databases[0]], 'next_page_token' => 'foo']
-            ));
+                'databases' => [$databases[0]], 'next_page_token' => 'foo'
+            ]));
         $pagedListResponse1 = $this->prophesize(PagedListResponse::class);
         $pagedListResponse1->getPage()
             ->willReturn($page1->reveal());

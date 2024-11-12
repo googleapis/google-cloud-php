@@ -18,10 +18,10 @@
 namespace Google\Cloud\Spanner;
 
 use Closure;
-use Google\ApiCore\RetrySettings;
-use Google\ApiCore\Serializer;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -30,9 +30,9 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -46,10 +46,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
-use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -57,7 +55,6 @@ use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
-use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
@@ -94,6 +91,7 @@ class Database
     use RequestTrait;
     use RequestProcessorTrait;
     use ApiHelperTrait;
+    use FormatKeySetTrait;
 
     const STATE_CREATING = State::CREATING;
     const STATE_READY = State::READY;
@@ -273,7 +271,7 @@ class Database
      */
     public function backups(array $options = [])
     {
-        $filter = "database:" . $this->name();
+        $filter = 'database:' . $this->name();
 
         if (isset($options['filter'])) {
             $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
@@ -1776,7 +1774,7 @@ class Database
 
         array_walk(
             $mutationGroups,
-            fn(&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
+            fn (&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
         );
 
         try {
@@ -1928,6 +1926,7 @@ class Database
         if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
             $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
                 $options['transactionOptions']['excludeTxnFromChangeStreams'];
+            unset($options['transactionOptions']);
         }
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
@@ -2137,7 +2136,8 @@ class Database
             $this->close();
         //@codingStandardsIgnoreStart
         //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {}
+        } catch (\Exception $ex) {
+        }
         //@codeCoverageIgnoreEnd
         //@codingStandardsIgnoreStart
     }
@@ -2205,7 +2205,6 @@ class Database
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
-
         $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
         $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
@@ -2230,7 +2229,7 @@ class Database
         $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $response = $this->spannerClient->deleteSessionAsync($request, $callOptions);
+        return $this->spannerClient->deleteSessionAsync($request, $callOptions);
     }
 
     /**
@@ -2516,12 +2515,12 @@ class Database
                     }
 
                     $operation = $this->serializer->decodeMessage(
-                        new Delete,
+                        new Delete(),
                         $data
                     );
                     break;
                 default:
-                    $operation = new Write;
+                    $operation = new Write();
                     $operation->setTable($data['table']);
                     $operation->setColumns($data['columns']);
 
@@ -2530,7 +2529,7 @@ class Database
                         $modifiedData[$key] = $this->fieldValue($param);
                     }
 
-                    $list = new ListValue;
+                    $list = new ListValue();
                     $list->setValues($modifiedData);
                     $values = [$list];
                     $operation->setValues($values);
@@ -2539,7 +2538,7 @@ class Database
             }
 
             $setterName = $this->mutationSetters[$type];
-            $mutation = new Mutation;
+            $mutation = new Mutation();
             $mutation->$setterName($operation);
             $mutations[] = $mutation;
         }
@@ -2552,7 +2551,7 @@ class Database
      */
     private function fieldValue($param)
     {
-        $field = new Value;
+        $field = new Value();
         $value = $this->formatValueForApi($param);
 
         $setter = null;
@@ -2575,7 +2574,7 @@ class Database
                 foreach ($param as $key => $value) {
                     $modifiedParams[$key] = $this->fieldValue($value);
                 }
-                $value = new Struct;
+                $value = new Struct();
                 $value->setFields($modifiedParams);
 
                 break;
@@ -2585,7 +2584,7 @@ class Database
                 foreach ($param as $item) {
                     $modifiedParams[] = $this->fieldValue($item);
                 }
-                $list = new ListValue;
+                $list = new ListValue();
                 $list->setValues($modifiedParams);
                 $value = $list;
 

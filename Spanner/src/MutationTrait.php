@@ -17,9 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Core\ArrayTrait;
-use Google\ApiCore\ValidationException;
-
 /**
  * Common helper methods used for creating array representation of
  * {@see \Google\Cloud\Spanner\V1\Mutation}
@@ -332,6 +329,6 @@ trait MutationTrait
             $keys['keys'] = $this->getValueMapper()->encodeValuesAsSimpleType($keys['keys'], true);
         }
 
-        return array_filter($keys, fn ($v) => !is_null($v));;
+        return array_filter($keys, fn ($v) => !is_null($v));
     }
 }

@@ -19,8 +19,8 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
@@ -35,13 +35,10 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
-use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetStats;
-use Google\Cloud\Spanner\V1\CommitResponse;
-use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
-use Google\Protobuf\Timestamp as TimestampProto;
+use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 use InvalidArgumentException;
@@ -355,7 +352,7 @@ class TransactionTest extends TestCase
             ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
         );
 
-        $this->assertEquals([1,2], $res->rowCounts());
+        $this->assertEquals([1, 2], $res->rowCounts());
         $this->assertEquals($err, $res->error()['status']);
         $this->assertEquals($statements[2], $res->error()['statement']);
     }
@@ -453,7 +450,6 @@ class TransactionTest extends TestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream());
-
 
         $res = $this->transaction->read(
             $table,
@@ -674,7 +670,6 @@ class TransactionTest extends TestCase
     public function testInvalidReadContext()
     {
         $this->expectException(\BadMethodCallException::class);
-
 
         $singleUseTransaction = new Transaction(
             $this->operation,

@@ -25,8 +25,6 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Prophecy\Argument;
 
 /**
  * @group spanner

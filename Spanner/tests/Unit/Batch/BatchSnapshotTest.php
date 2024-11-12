@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\PartitionInterface;
@@ -32,11 +31,11 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\PartitionReadRequest;
-use Google\Cloud\Spanner\V1\PartitionQueryRequest;
-use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -61,7 +60,6 @@ class BatchSnapshotTest extends TestCase
     private $session;
     private $timestamp;
     private $snapshot;
-    private $spannerClient;
 
     public function setUp(): void
     {
@@ -294,7 +292,7 @@ class BatchSnapshotTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('Unsupported partition type.');
 
-        $dummy = new DummyPartition;
+        $dummy = new DummyPartition();
         $this->snapshot->executePartition($dummy);
     }
 }
@@ -302,8 +300,14 @@ class BatchSnapshotTest extends TestCase
 //@codingStandardsIgnoreStart
 class DummyPartition implements PartitionInterface
 {
-    public function __toString() {}
-    public function serialize() {}
-    public static function hydrate(array $data) {}
+    public function __toString()
+    {
+    }
+    public function serialize()
+    {
+    }
+    public static function hydrate(array $data)
+    {
+    }
 }
 //@codingStandardsIgnoreEnd

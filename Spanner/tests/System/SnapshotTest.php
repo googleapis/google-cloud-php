@@ -90,7 +90,7 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
@@ -155,7 +155,7 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
@@ -190,7 +190,7 @@ class SnapshotTest extends SpannerTestCase
 
         $db->insert(self::$tableName, $row);
         sleep(1);
-        $ts = new Timestamp(new \DateTimeImmutable);
+        $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
@@ -219,7 +219,7 @@ class SnapshotTest extends SpannerTestCase
         $db = self::$database;
 
         $db->snapshot([
-            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable)
+            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable())
         ]);
     }
 

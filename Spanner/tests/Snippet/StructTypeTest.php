@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -83,7 +82,7 @@ class StructTypeTest extends SnippetTestCase
             $sessionPool->reveal()
         ], ['operation', 'requestHandler', 'serializer']);
 
-        $this->type = new StructType;
+        $this->type = new StructType();
     }
 
     public function testExecuteStruct()
@@ -93,15 +92,15 @@ class StructTypeTest extends SnippetTestCase
                 'name' => 'firstName',
                 'type' => [
                     'code' => Database::TYPE_STRING,
-                    "typeAnnotation" => 0,
-                    "protoTypeFqn" => ""
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ], [
                 'name' => 'lastName',
                 'type' => [
                     'code' => Database::TYPE_STRING,
-                    "typeAnnotation" => 0,
-                    "protoTypeFqn" => ""
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ]
         ];
@@ -172,7 +171,7 @@ class StructTypeTest extends SnippetTestCase
             [
                 'name' => 'customer',
                 'type' => Database::TYPE_STRUCT,
-                'child' => (new StructType)
+                'child' => (new StructType())
                     ->add('name', Database::TYPE_STRING)
                     ->add('phone', Database::TYPE_STRING)
                     ->add('email', Database::TYPE_STRING)

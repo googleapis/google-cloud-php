@@ -46,7 +46,7 @@ class TransactionConfigurationTraitTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->impl = new TransactionConfigurationTraitImplementation;
+        $this->impl = new TransactionConfigurationTraitImplementation();
         $this->duration = new Duration(['seconds' => 10, 'nanos' => 1]);
         $this->dur = new Duration(['seconds' => 10, 'nanos' => 1]);
         $this->directedReadOptionsIncludeReplicas = [

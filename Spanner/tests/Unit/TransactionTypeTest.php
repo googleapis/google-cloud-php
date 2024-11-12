@@ -21,7 +21,6 @@ use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
@@ -31,10 +30,10 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
-use Google\Cloud\Spanner\V1\BeginTransactionResponse;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -47,15 +46,13 @@ use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Protobuf\Duration;
+use Google\Protobuf\Timestamp as TimestampProto;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Protobuf\Timestamp as TimestampProto;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -406,7 +403,7 @@ class TransactionTypeTest extends TestCase
 
         $this->serializer->decodeMessage(
             Argument::type(BeginTransactionRequest::class),
-            Argument::that(function (array $data) use ($options){
+            Argument::that(function (array $data) use ($options) {
                 $this->assertEquals($data['options'], $options);
                 return true;
             }),
@@ -489,7 +486,7 @@ class TransactionTypeTest extends TestCase
 
         $this->serializer->decodeMessage(
             Argument::type(BeginTransactionRequest::class),
-            Argument::that(function (array $data) use ($options){
+            Argument::that(function (array $data) use ($options) {
                 $this->assertEquals($data['options'], $options);
                 return true;
             }),
@@ -568,7 +565,7 @@ class TransactionTypeTest extends TestCase
 
         $this->serializer->decodeMessage(
             Argument::type(BeginTransactionRequest::class),
-            Argument::that(function (array $data) use ($options){
+            Argument::that(function (array $data) use ($options) {
                 $this->assertEquals($data['options'], $options);
                 return true;
             }),
@@ -615,7 +612,7 @@ class TransactionTypeTest extends TestCase
 
         $this->serializer->decodeMessage(
             Argument::type(BeginTransactionRequest::class),
-            Argument::that(function (array $data) use ($options){
+            Argument::that(function (array $data) use ($options) {
                 $this->assertEquals($data['options'], $options);
                 return true;
             }),
@@ -726,7 +723,7 @@ class TransactionTypeTest extends TestCase
     {
         $database = $this->createMockedCommitDatabase();
 
-        $database->delete('Table', new KeySet);
+        $database->delete('Table', new KeySet());
     }
 
     /**
@@ -831,7 +828,7 @@ class TransactionTypeTest extends TestCase
 
         $serializer = $this->serializerForStreamingRead($chunks, $transaction);
         $database = $this->database($this->spannerClient->reveal(), $serializer);
-        $database->read('Table', new KeySet, [])->rows()->current();
+        $database->read('Table', new KeySet(), [])->rows()->current();
     }
 
     /**
@@ -857,7 +854,7 @@ class TransactionTypeTest extends TestCase
 
         $serializer = $this->serializerForStreamingRead($chunks, $transaction);
         $database = $this->database($this->spannerClient->reveal(), $serializer);
-        $database->read('Table', new KeySet, [], [
+        $database->read('Table', new KeySet(), [], [
             'begin' => true
         ])->rows()->current();
     }
@@ -882,7 +879,7 @@ class TransactionTypeTest extends TestCase
 
         $serializer = $this->serializerForStreamingRead($chunks, $transaction);
         $database = $this->database($this->spannerClient->reveal(), $serializer);
-        $database->read('Table', new KeySet, [], [
+        $database->read('Table', new KeySet(), [], [
             'begin' => true,
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
         ])->rows()->current();
@@ -980,7 +977,7 @@ class TransactionTypeTest extends TestCase
     {
         // mock serializer responses for streaming read
         $this->serializer->decodeMessage(
-        Argument::type(ExecuteSqlRequest::class),
+            Argument::type(ExecuteSqlRequest::class),
             Argument::that(function ($data) use ($expectedTransaction) {
                 $this->assertEquals($data['transaction'], $expectedTransaction);
                 return true;
@@ -1013,7 +1010,7 @@ class TransactionTypeTest extends TestCase
     private function createTransactionOptions($options = [])
     {
         $serializer = new Serializer();
-        $transactionOptions = new TransactionOptions;
+        $transactionOptions = new TransactionOptions();
         if (isset($options['readOnly'])) {
             $readOnly = $serializer->decodeMessage(
                 new PBReadOnly(),

@@ -19,8 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
-use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
@@ -38,7 +38,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
-use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 
@@ -296,7 +295,7 @@ class Instance
         list($instance, $callOptions) = $this->splitOptionalArgs($options);
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         if (isset($instance['nodeCount']) && isset($instance['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
         if (empty($instance['nodeCount']) && empty($instance['processingUnits'])) {
             $instance['nodeCount'] = self::DEFAULT_NODE_COUNT;
@@ -380,7 +379,7 @@ class Instance
         list($instance, $callOptions) = $this->splitOptionalArgs($options);
 
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
 
         $fieldMask = $this->fieldMask($instance);
@@ -854,7 +853,7 @@ class Instance
                 $this->projectId,
                 $name['instance'],
                 $this->returnInt64AsObject,
-                $this->serialize->encodeMessage($result),
+                $this->serializer->encodeMessage($result),
                 [
                     'directedReadOptions' => $this->directedReadOptions,
                     'routeToLeader' => $this->routeToLeader,

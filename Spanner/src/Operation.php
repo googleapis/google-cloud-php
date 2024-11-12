@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\ApiCore\ArrayTrait;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Session\Session;
@@ -60,6 +60,7 @@ class Operation
     use MutationTrait;
     use TimeTrait;
     use ValidateTrait;
+    use FormatKeySetTrait;
 
     const OP_INSERT = 'insert';
     const OP_UPDATE = 'update';
@@ -950,33 +951,6 @@ class Operation
     }
 
     /**
-     * @param array $keySet
-     * @return array Formatted keyset
-     */
-    private function formatKeySet(array $keySet)
-    {
-        $keys = $this->pluck('keys', $keySet, false);
-        if ($keys) {
-            $keySet['keys'] = array_map(
-                fn ($key) => $this->formatListForApi((array) $key),
-                $keys
-            );
-        }
-
-        if (isset($keySet['ranges'])) {
-            $keySet['ranges'] = array_map(function ($rangeItem) {
-                return array_map([$this, 'formatListForApi'], $rangeItem);
-            }, $keySet['ranges']);
-
-            if (empty($keySet['ranges'])) {
-                unset($keySet['ranges']);
-            }
-        }
-
-        return $keySet;
-    }
-
-    /**
      * Format statements.
      *
      * @param array $statements
@@ -1114,7 +1088,7 @@ class Operation
     private function streamingRead(array $args)
     {
         list($data, $callOptions) = $this->splitOptionalArgs($args);
-        $data['keySet']= $this->formatKeySet($this->pluck('keySet', $data));
+        $data['keySet'] = $this->formatKeySet($this->pluck('keySet', $data));
         $data['transaction'] = $this->createTransactionSelector($data);
         $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);

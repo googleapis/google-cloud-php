@@ -6,7 +6,7 @@ include __DIR__ . '/forked-process-test.php';
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
-list ($dbName, $tableName, $id) = getInputArgs();
+list($dbName, $tableName, $id) = getInputArgs();
 $delay = 5000;
 
 if ($childPID1 = pcntl_fork()) {

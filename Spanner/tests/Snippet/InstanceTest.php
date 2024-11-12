@@ -17,13 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\LongRunning\Client\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Backup;
@@ -100,7 +98,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('operation');
+        $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
@@ -129,7 +127,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke();
+        $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
     }
 
@@ -149,7 +147,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke();
+        $res = $snippet->invoke();
         $this->assertEquals('Instance exists!', $res->output());
     }
 
@@ -169,7 +167,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('info');
+        $res = $snippet->invoke('info');
         $info = $this->instance->info();
         $this->assertEquals($info, $res->returnVal());
     }
@@ -191,7 +189,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke();
+        $res = $snippet->invoke();
         $this->assertEquals('Instance is ready!', $res->output());
     }
 
@@ -211,7 +209,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $snippet->invoke();
+        $snippet->invoke();
     }
 
     public function testDelete()
@@ -225,7 +223,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $snippet->invoke();
+        $snippet->invoke();
     }
 
     public function testCreateDatabase()
@@ -244,7 +242,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('operation');
+        $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
@@ -266,7 +264,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('operation');
+        $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
@@ -306,7 +304,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('databases');
+        $res = $snippet->invoke('databases');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Database::class, $res->returnVal()->current());
@@ -348,7 +346,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('backups');
+        $res = $snippet->invoke('backups');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Backup::class, $res->returnVal()->current());
@@ -357,7 +355,7 @@ class InstanceTest extends SnippetTestCase
     public function testBackupOperations()
     {
         $backupOperationName = sprintf(
-            "%s/operations/%s",
+            '%s/operations/%s',
             DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP),
             self::OPERATION
         );
@@ -382,7 +380,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('backupOperations');
+        $res = $snippet->invoke('backupOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal()->current());
@@ -391,7 +389,7 @@ class InstanceTest extends SnippetTestCase
     public function testDatabaseOperations()
     {
         $databaseOperationName = sprintf(
-            "%s/operations/%s",
+            '%s/operations/%s',
             DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             self::OPERATION
         );
@@ -416,7 +414,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-                $res = $snippet->invoke('databaseOperations');
+        $res = $snippet->invoke('databaseOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal()->current());
@@ -459,7 +457,7 @@ class InstanceTest extends SnippetTestCase
             ->willReturn([$this->getOperationResponseMock()]);
 
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
-                $res = $snippet->invoke('operations');
+        $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(OperationResponse::class, $res->returnVal());
     }

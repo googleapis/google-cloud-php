@@ -17,12 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\LongRunning\Client\OperationsClient;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Instance;
@@ -30,7 +28,7 @@ use Google\Cloud\Spanner\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
- /**
+/**
  * @group spanner
  * @group spanner-backup
  */
@@ -60,7 +58,7 @@ class BackupTest extends SnippetTestCase
             [['projectId' => 'my-project']],
             ['requestHandler', 'serializer']
         );
-        $this->expireTime = new \DateTime("+ 7 hours");
+        $this->expireTime = new \DateTime('+ 7 hours');
         $this->instance = new Instance(
             $this->requestHandler->reveal(),
             $this->serializer,
@@ -256,7 +254,6 @@ class BackupTest extends SnippetTestCase
 
         $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->backup->___setProperty('serializer', $this->serializer);
-
 
         $res = $snippet->invoke('info');
         $this->assertEquals($bkp, $res->returnVal());

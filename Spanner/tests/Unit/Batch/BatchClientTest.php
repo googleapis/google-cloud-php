@@ -18,26 +18,25 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
-use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Protobuf\Timestamp as TimestampProto;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -57,7 +56,6 @@ class BatchClientTest extends TestCase
     private $spannerClient;
     private $serializer;
     private $batchClient;
-    private $spannerClient;
 
     public function setUp(): void
     {
@@ -155,7 +153,7 @@ class BatchClientTest extends TestCase
         $token = 'foobar';
         $table = 'table';
         $keyset = new KeySet(['all' => true]);
-        $columns = ['a','b'];
+        $columns = ['a', 'b'];
         $options = ['hello' => 'world'];
 
         $partition = new ReadPartition($token, $table, $keyset, $columns, $options);

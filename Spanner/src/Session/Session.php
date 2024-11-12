@@ -23,9 +23,9 @@ use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\RequestTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
 
 /**
  * Represents and manages a single Cloud Spanner session.
@@ -45,6 +45,11 @@ class Session
      * @var bool
      */
     private $routeToLeader;
+
+    /**
+     * @var string
+     */
+    private $databaseName;
 
     /**
      * @internal Session is constructed by the {@see Database} class.

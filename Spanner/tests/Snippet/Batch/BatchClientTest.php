@@ -237,7 +237,7 @@ class BatchClientTest extends SnippetTestCase
 
     public function testSnapshotFromString()
     {
-        $timestamp = new Timestamp(new \DateTime);
+        $timestamp = new Timestamp(new \DateTime());
 
         $identifier = base64_encode(json_encode([
             'sessionName' => self::SESSION,

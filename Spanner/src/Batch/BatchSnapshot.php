@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Batch;
 
-use Google\ApiCore\Serializer;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;

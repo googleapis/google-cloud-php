@@ -17,19 +17,19 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use DateTime;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -38,7 +38,6 @@ use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use DateTime;
 
 /**
  * @group spanner
@@ -97,8 +96,8 @@ class BackupTest extends TestCase
         $this->operationResponse->withResultFunction(Argument::type('callable'))
             ->willReturn($this->operationResponse->reveal());
 
-        $this->expireTime = new DateTime("+7 hours");
-        $this->versionTime = new DateTime("-2 hours");
+        $this->expireTime = new DateTime('+7 hours');
+        $this->versionTime = new DateTime('-2 hours');
     }
 
     public function testName()
@@ -327,7 +326,7 @@ class BackupTest extends TestCase
 
     public function testUpdateExpireTime()
     {
-        $newExpireTime = new DateTime("+1 day");
+        $newExpireTime = new DateTime('+1 day');
 
         $response = new BackupProto([
             'name' => 'foo',

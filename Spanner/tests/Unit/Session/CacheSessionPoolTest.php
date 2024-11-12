@@ -18,20 +18,20 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\RequestHandler;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
-use Psr\Cache\CacheItemInterface;
-use Psr\Cache\CacheItemPoolInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Cache\CacheItemInterface;
+use Psr\Cache\CacheItemPoolInterface;
 use ReflectionMethod;
 
 /**
@@ -84,7 +84,7 @@ class CacheSessionPoolTest extends TestCase
             [['maxCyclesToWaitForSession' => -1]],
             [['sleepIntervalSeconds' => -1]],
             [['minSessions' => 5, 'maxSessions' => 1]],
-            [['lock' => new \stdClass]]
+            [['lock' => new \stdClass()]]
         ];
     }
 
@@ -894,11 +894,11 @@ class CacheSessionPoolTest extends TestCase
         $database->name()
             ->willReturn(self::DATABASE_NAME);
         $database->execute(Argument::exact('SELECT 1'), Argument::withKey('session'))
-            ->willReturn(new DumbObject);
+            ->willReturn(new DumbObject());
 
         $createRes = function ($args, $mock, $method) use ($shouldCreateFails) {
             if ($shouldCreateFails) {
-                throw new \Exception("error");
+                throw new \Exception('error');
             }
 
             $methodCalls = $mock->findProphecyMethodCalls(
@@ -1049,7 +1049,7 @@ class CacheSessionPoolTest extends TestCase
         $data = []
     ) {
         $cacheData = $this->cacheData($initialItems, $maintainInterval);
-        $expiredTime = $this->time - 28*24*60*60; // 28 days
+        $expiredTime = $this->time - 28 * 24 * 60 * 60; // 28 days
         foreach ($cacheData['queue'] as $k => $v) {
             $cacheData['queue'][$k]['creation'] = $expiredTime;
         }
@@ -1191,7 +1191,7 @@ class CacheSessionPoolTest extends TestCase
         $database->batchCreateSessions([
             'sessionTemplate' => ['labels' => [], 'creator_role' => 'Reader'], 'sessionCount' => 1])
             ->shouldBeCalled()
-            ->willReturn(['session' => array(['name' => 'session', 'expirtation' => $this->time])]);
+            ->willReturn(['session' => [['name' => 'session', 'expirtation' => $this->time]]]);
         $pool->setDatabase($database->reveal());
 
         $pool->warmup();

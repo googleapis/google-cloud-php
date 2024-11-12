@@ -17,13 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Exception\FailedPreconditionException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -115,7 +113,7 @@ class AdminTest extends SpannerTestCase
         $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
 
         // TODO: Remove this, when the emulator supports PGSQL
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
             $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
         }
 
@@ -123,7 +121,7 @@ class AdminTest extends SpannerTestCase
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .
-            ") PRIMARY KEY(id)";
+            ') PRIMARY KEY(id)';
 
         $op = $db->updateDdl($stmt);
         $op->pollUntilComplete();

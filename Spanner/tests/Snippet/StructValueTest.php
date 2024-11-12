@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructValue;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -82,7 +81,7 @@ class StructValueTest extends SnippetTestCase
             $sessionPool->reveal()
         ], ['operation']);
 
-        $this->value = new StructValue;
+        $this->value = new StructValue();
     }
 
     public function testConstructor()
@@ -103,7 +102,7 @@ class StructValueTest extends SnippetTestCase
                     'protoTypeFqn' => ''
                 ]
             ], [
-                'name'=> '',
+                'name' => '',
                 'type' => [
                     'code' => Database::TYPE_STRING,
                     'typeAnnotation' => 0,

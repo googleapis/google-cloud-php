@@ -21,10 +21,8 @@ use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
-use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
@@ -35,26 +33,27 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ResultSetMetadata;
+use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\StructType;
 use Google\Cloud\Spanner\V1\StructType\Field;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Protobuf\Value;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp as TimestampProto;
-use Google\Cloud\Spanner\V1\ResultSet;
-use Google\Cloud\Spanner\V1\ResultSetStats;
-use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Protobuf\Value;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -414,11 +413,9 @@ class OperationTest extends TestCase
 
     public function testTransactionWithExcludeTxnFromChangeStreams()
     {
-        $gapic = $this->prophesize(SpannerClient::class);
-        $gapic->beginTransaction(
-            self::SESSION,
-            Argument::that(function (TransactionOptions $options) {
-                $this->assertTrue($options->getExcludeTxnFromChangeStreams());
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertTrue($request->getOptions()->getExcludeTxnFromChangeStreams());
                 return true;
             }),
             Argument::type('array')
@@ -426,12 +423,7 @@ class OperationTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(new TransactionProto(['id' => 'foo']));
 
-        $operation = new Operation(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            true
-        );
-
-        $transaction = $operation->transaction($this->session, [
+        $transaction = $this->operation->transaction($this->session, [
            'transactionOptions' => ['excludeTxnFromChangeStreams' => true]
         ]);
 
@@ -446,28 +438,23 @@ class OperationTest extends TestCase
         $stream = $this->prophesize(ServerStream::class);
         $stream->readAll()->shouldBeCalledTimes(2)->willReturn([$resultSet]);
 
-        $gapic = $this->prophesize(SpannerClient::class);
-        $gapic->executeStreamingSql(self::SESSION, $sql, Argument::that(function (array $options) {
-            $this->assertArrayHasKey('transaction', $options);
-            $this->assertNotNull($transactionOptions = $options['transaction']->getBegin());
-            $this->assertTrue($transactionOptions->getExcludeTxnFromChangeStreams());
-            return true;
-        }))
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $this->assertTrue($request->getTransaction()->getBegin()->getExcludeTxnFromChangeStreams());
+                return true;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalledTimes(2)
             ->willReturn($stream->reveal());
 
-        $operation = new Operation(
-            new Grpc(['gapicSpannerClient' => $gapic->reveal()]),
-            true
-        );
-
-        $operation->execute($this->session, $sql, [
+        $this->operation->execute($this->session, $sql, [
            'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
         ]);
 
         $transaction = $this->prophesize(Transaction::class)->reveal();
 
-        $operation->executeUpdate($this->session, $transaction, $sql, [
+        $this->operation->executeUpdate($this->session, $transaction, $sql, [
            'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
         ]);
     }

@@ -17,22 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Spanner\Admin\Database\V1\Backup;
-use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
-use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
-use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
-use Google\Cloud\Spanner\Admin\Database\V1\Database;
-use Google\Cloud\Spanner\Admin\Database\V1\OptimizeRestoredDatabaseMetadata;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
-use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
-use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigMetadata;
-use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
-use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
-use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Protobuf\GPBEmpty;
 
 /**
  * Shared functionality for Spanner requests.

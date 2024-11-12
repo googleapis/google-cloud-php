@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -121,7 +120,7 @@ class BatchSnapshotTest extends SnippetTestCase
 
     public function provideSerializeIndex()
     {
-        return [[1],[2]];
+        return [[1], [2]];
     }
 
     public function testClose()
@@ -163,7 +162,7 @@ class BatchSnapshotTest extends SnippetTestCase
 
     public function providePartitionMethods()
     {
-        return [['partitionRead'],['partitionQuery']];
+        return [['partitionRead'], ['partitionQuery']];
     }
 
     public function testExecutePartition()

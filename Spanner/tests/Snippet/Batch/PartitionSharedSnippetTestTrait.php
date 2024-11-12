@@ -42,7 +42,7 @@ trait PartitionSharedSnippetTestTrait
 
     public function provideSerializeSnippetIndex()
     {
-        return [[1],[2]];
+        return [[1], [2]];
     }
 
     /**

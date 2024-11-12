@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
@@ -84,7 +84,7 @@ class BatchTest extends SpannerTestCase
 
     private static function seedTable()
     {
-        $decades = [1950,1960,1970,1980,1990,2000];
+        $decades = [1950, 1960, 1970, 1980, 1990, 2000];
         for ($i = 0; $i < 250; $i++) {
             self::$database->insert(self::$tableName, [
                 'id' => self::randId(),

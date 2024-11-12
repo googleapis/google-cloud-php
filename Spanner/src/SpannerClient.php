@@ -29,18 +29,16 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Numeric;
-use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
@@ -132,6 +130,11 @@ class SpannerClient
      * @var string
      */
     private $projectId;
+
+    /**
+     * @var string
+     */
+    private $projectName;
 
     /**
      * @var bool
@@ -937,6 +940,6 @@ class SpannerClient
      */
     public function commitTimestamp()
     {
-        return new CommitTimestamp;
+        return new CommitTimestamp();
     }
 }

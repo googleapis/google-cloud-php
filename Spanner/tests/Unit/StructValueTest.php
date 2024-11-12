@@ -50,7 +50,7 @@ class StructValueTest extends TestCase
 
     public function testAdd()
     {
-        $val = new StructValue;
+        $val = new StructValue();
         $val->add($this->values[0]['name'], $this->values[0]['value'])
             ->add($this->values[1]['name'], $this->values[1]['value']);
 
@@ -59,7 +59,7 @@ class StructValueTest extends TestCase
 
     public function testAddUnnamed()
     {
-        $val = new StructValue;
+        $val = new StructValue();
         $val->addUnnamed($this->values[0]['value'])
             ->addUnnamed($this->values[1]['value']);
 

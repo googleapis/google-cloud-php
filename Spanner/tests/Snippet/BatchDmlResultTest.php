@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -83,7 +82,7 @@ class BatchDmlResultTest extends SnippetTestCase
         $this->spannerClient->commit(
             null,
             [
-                'commitTimestamp' => $this->formatTimeAsString(new \DateTime, 0)
+                'commitTimestamp' => $this->formatTimeAsString(new \DateTime(), 0)
             ]
         );
 

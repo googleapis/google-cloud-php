@@ -30,8 +30,8 @@ use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -131,26 +131,26 @@ class TransactionTest extends SnippetTestCase
     public function testExecuteUpdateWithStruct()
     {
         $expectedSql = "UPDATE Posts SET title = 'Updated Title' WHERE " .
-            "STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
+            'STRUCT<Title STRING, Content STRING>(Title, Content) = @post';
 
         $expectedParams = [
-            'post' => ["Updated Title", "Sample Content"]
+            'post' => ['Updated Title', 'Sample Content']
         ];
         $expectedStructData = [
             [
-                "name" => "Title",
-                "type" => [
-                    "code" => Database::TYPE_STRING,
-                    "typeAnnotation" => 0,
-                    "protoTypeFqn" => ""
+                'name' => 'Title',
+                'type' => [
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ],
             [
-                "name" => "Content",
-                "type" => [
-                    "code" => Database::TYPE_STRING,
-                    "typeAnnotation" => 0,
-                    "protoTypeFqn" => ""
+                'name' => 'Content',
+                'type' => [
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ]
         ];
@@ -279,7 +279,6 @@ class TransactionTest extends SnippetTestCase
         $this->assertArrayHasKey('insert', $mutations[0]);
     }
 
-
     public function testInsertBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'insertBatch');
@@ -314,7 +313,6 @@ class TransactionTest extends SnippetTestCase
         $this->assertArrayHasKey('update', $mutations[0]);
     }
 
-
     public function testUpdateBatch()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'updateBatch');
@@ -348,7 +346,6 @@ class TransactionTest extends SnippetTestCase
         $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
-
 
     public function testInsertOrUpdateBatch()
     {
@@ -389,7 +386,6 @@ class TransactionTest extends SnippetTestCase
         $mutations = $this->transaction->___getProperty('mutationData');
         $this->assertArrayHasKey('replace', $mutations[0]);
     }
-
 
     public function testReplaceBatch()
     {
@@ -447,7 +443,7 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient->commit(
             null,
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -469,7 +465,7 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient->commit(
             null,
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString(),
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString(),
                 'commitStats' => $expectedCommitStats,
             ]
         );

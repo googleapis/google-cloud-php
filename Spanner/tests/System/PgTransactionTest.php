@@ -48,7 +48,7 @@ class PgTransactionTest extends SpannerPgTestCase
         }
         parent::setUpTestFixtures();
 
-        self::$tableName = "transactions_test";
+        self::$tableName = 'transactions_test';
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::$tableName . ' (

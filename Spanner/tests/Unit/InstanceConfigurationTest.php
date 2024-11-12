@@ -17,15 +17,14 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\LongRunning\Operation;
@@ -137,7 +136,7 @@ class InstanceConfigurationTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->will(function() {
+            ->will(function () {
                 throw new ApiException('', Code::NOT_FOUND);
             });
 

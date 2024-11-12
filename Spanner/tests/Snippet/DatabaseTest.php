@@ -17,10 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\LongRunning\Client\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -87,7 +86,8 @@ class DatabaseTest extends SnippetTestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
-            self::INSTANCE        );
+            self::INSTANCE
+        );
 
         $this->database = TestHelpers::stub(Database::class, [
             $this->requestHandler->reveal(),
@@ -164,7 +164,7 @@ class DatabaseTest extends SnippetTestCase
         );
 
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
-                $res = $snippet->invoke('backups');
+        $res = $snippet->invoke('backups');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(Backup::class, $res->returnVal());
@@ -430,7 +430,7 @@ class DatabaseTest extends SnippetTestCase
             null,
             [
                 'id' => self::TRANSACTION,
-                'readTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'readTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -452,7 +452,7 @@ class DatabaseTest extends SnippetTestCase
 
         $this->spannerClient->commit(
             null,
-            ['commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()]
+            ['commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()]
         );
 
         $this->spannerClient->executeStreamingSql(
@@ -548,7 +548,7 @@ class DatabaseTest extends SnippetTestCase
                 return isset($message['mutations'][0]['insert']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -559,7 +559,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke();
     }
 
-
     public function testInsertBatch()
     {
         $this->spannerClient->commit(
@@ -569,7 +568,7 @@ class DatabaseTest extends SnippetTestCase
                     && isset($message['mutations'][1]['insert']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -588,7 +587,7 @@ class DatabaseTest extends SnippetTestCase
                 return isset($message['mutations'][0]['update']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -599,7 +598,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke();
     }
 
-
     public function testUpdateBatch()
     {
         $this->spannerClient->commit(
@@ -609,7 +607,7 @@ class DatabaseTest extends SnippetTestCase
                     && isset($message['mutations'][1]['update']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -628,7 +626,7 @@ class DatabaseTest extends SnippetTestCase
                 return isset($message['mutations'][0]['insertOrUpdate']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -639,7 +637,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke();
     }
 
-
     public function testInsertOrUpdateBatch()
     {
         $this->spannerClient->commit(
@@ -649,7 +646,7 @@ class DatabaseTest extends SnippetTestCase
                     && isset($message['mutations'][1]['insertOrUpdate']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -668,7 +665,7 @@ class DatabaseTest extends SnippetTestCase
                 return isset($message['mutations'][0]['replace']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -679,7 +676,6 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke();
     }
 
-
     public function testReplaceBatch()
     {
         $this->spannerClient->commit(
@@ -689,7 +685,7 @@ class DatabaseTest extends SnippetTestCase
                     && isset($message['mutations'][1]['replace']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 
@@ -708,7 +704,7 @@ class DatabaseTest extends SnippetTestCase
                 return isset($message['mutations'][0]['delete']);
             },
             [
-                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+                'commitTimestamp' => (new Timestamp(new \DateTime()))->formatAsString()
             ]
         );
 

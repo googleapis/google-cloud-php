@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Timestamp;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -56,7 +56,7 @@ class TimestampTest extends TestCase
     {
         $this->assertEquals(
             (new \DateTime($this->dt->format(Timestamp::FORMAT)))->format('U'),
-            (new \DateTime(str_replace('000000000', '000000', (string)$this->ts)))->format('U')
+            (new \DateTime(str_replace('000000000', '000000', (string) $this->ts)))->format('U')
         );
     }
 

@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
@@ -112,13 +111,13 @@ class Transaction implements TransactionalReadInterface
 
         if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
             throw new \InvalidArgumentException(
-                "Cannot set a transaction tag on a single-use transaction."
+                'Cannot set a transaction tag on a single-use transaction.'
             );
         }
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
         $this->options = $options;
-        $this->tag =$tag;
+        $this->tag = $tag;
     }
 
     /**

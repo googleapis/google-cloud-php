@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Spanner;
 
+use Closure;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Serializer;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
@@ -32,7 +33,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Rpc\Code;
-use Closure;
 
 /**
  * Represents a Cloud Spanner Instance Configuration.

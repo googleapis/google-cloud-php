@@ -17,17 +17,17 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Result;
 
 /**
  * @group spanner
@@ -45,7 +45,7 @@ class SnapshotTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->timestamp = new Timestamp(new \DateTime);
+        $this->timestamp = new Timestamp(new \DateTime());
 
         $args = [
             'id' => 'foo',

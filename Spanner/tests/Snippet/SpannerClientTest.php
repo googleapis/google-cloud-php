@@ -17,12 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
@@ -33,14 +32,13 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgOid;
-use Google\Cloud\Spanner\PgJsonb;
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Timestamp;
 use Google\Protobuf\Duration;
-use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -100,7 +98,6 @@ class SpannerClientTest extends SnippetTestCase
             ]
         );
 
-
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfigurations');
         $snippet->addLocal('spanner', $this->client);
 
@@ -146,7 +143,6 @@ class SpannerClientTest extends SnippetTestCase
             $this->getOperationResponseMock()
         );
 
-
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -186,7 +182,6 @@ class SpannerClientTest extends SnippetTestCase
                 ]
             ]
         );
-
 
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

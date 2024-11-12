@@ -25,8 +25,8 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\Timestamp;
 use Google\Rpc\Code;
 
 /**
@@ -83,7 +83,7 @@ class WriteTest extends SpannerTestCase
         return [
             [$this->randId(), 'boolField', false],
             [$this->randId(), 'boolField', true],
-            [$this->randId(), 'arrayField', [1,2,3,4,5]],
+            [$this->randId(), 'arrayField', [1, 2, 3, 4, 5]],
             [$this->randId(), 'dateField', new Date(new \DateTime('1981-01-20'))],
             [$this->randId(), 'floatField', 3.1415],
             [$this->randId(), 'floatField', INF],
@@ -93,7 +93,7 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'float32Field', -INF],
             [$this->randId(), 'intField', 787878787],
             [$this->randId(), 'stringField', 'foo bar'],
-            [$this->randId(), 'timestampField', new Timestamp(new \DateTime)],
+            [$this->randId(), 'timestampField', new Timestamp(new \DateTime())],
             [$this->randId(), 'numericField', new Numeric('0.123456789')]
         ];
     }
@@ -255,9 +255,9 @@ class WriteTest extends SpannerTestCase
     {
         return [
             [$this->randId(), 'arrayField', []],
-            [$this->randId(), 'arrayField', [1,2,null,4,5]],
+            [$this->randId(), 'arrayField', [1, 2, null, 4, 5]],
             [$this->randId(), 'arrayField', null],
-            [$this->randId(), 'arrayBoolField', [true,false]],
+            [$this->randId(), 'arrayBoolField', [true, false]],
             [$this->randId(), 'arrayBoolField', []],
             [$this->randId(), 'arrayBoolField', [true, false, null, false]],
             [$this->randId(), 'arrayBoolField', null],
@@ -269,9 +269,9 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'arrayFloat32Field', []],
             [$this->randId(), 'arrayFloat32Field', [1.1, null, 1.3]],
             [$this->randId(), 'arrayFloat32Field', null],
-            [$this->randId(), 'arrayStringField', ['foo','bar','baz']],
+            [$this->randId(), 'arrayStringField', ['foo', 'bar', 'baz']],
             [$this->randId(), 'arrayStringField', []],
-            [$this->randId(), 'arrayStringField', ['foo',null,'baz']],
+            [$this->randId(), 'arrayStringField', ['foo', null, 'baz']],
             [$this->randId(), 'arrayStringField', null],
             [$this->randId(), 'arrayBytesField', []],
             [$this->randId(), 'arrayBytesField', null],
@@ -343,10 +343,10 @@ class WriteTest extends SpannerTestCase
     public function arrayFieldComplexValueProvider()
     {
         return [
-            [$this->randId(), 'arrayBytesField', [new Bytes('foo'),null,new Bytes('baz')]],
-            [$this->randId(), 'arrayTimestampField', [new Timestamp(new \DateTime),null,new Timestamp(new \DateTime)]],
-            [$this->randId(), 'arrayDateField', [new Date(new \DateTime),null,new Date(new \DateTime)]],
-            [$this->randId(), 'arrayNumericField', [new Numeric("0.12345"),null,new NUMERIC("12345")]],
+            [$this->randId(), 'arrayBytesField', [new Bytes('foo'), null, new Bytes('baz')]],
+            [$this->randId(), 'arrayTimestampField', [new Timestamp(new \DateTime()), null, new Timestamp(new \DateTime())]],
+            [$this->randId(), 'arrayDateField', [new Date(new \DateTime()), null, new Date(new \DateTime())]],
+            [$this->randId(), 'arrayNumericField', [new Numeric('0.12345'), null, new NUMERIC('12345')]],
         ];
     }
 
@@ -480,11 +480,11 @@ class WriteTest extends SpannerTestCase
         }
 
         return [
-            [$this->randId(), new Numeric((string)rand(100, 9999))],
-            [$this->randId(), new Numeric((string)rand(100, 9999))],
-            [$this->randId(), new Numeric((string)rand(100, 9999))],
-            [$this->randId(), new Numeric((string)rand(100, 9999))],
-            [$this->randId(), new Numeric((string)rand(100, 9999))],
+            [$this->randId(), new Numeric((string) rand(100, 9999))],
+            [$this->randId(), new Numeric((string) rand(100, 9999))],
+            [$this->randId(), new Numeric((string) rand(100, 9999))],
+            [$this->randId(), new Numeric((string) rand(100, 9999))],
+            [$this->randId(), new Numeric((string) rand(100, 9999))],
         ];
     }
 
@@ -496,7 +496,7 @@ class WriteTest extends SpannerTestCase
         $id = $this->randId();
         $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
             'id' => $id,
-            'commitTimestamp' => new CommitTimestamp
+            'commitTimestamp' => new CommitTimestamp()
         ]);
 
         $res = self::$database->execute('SELECT * FROM ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' WHERE id = @id', [
@@ -621,7 +621,7 @@ class WriteTest extends SpannerTestCase
 
     public function timestamps()
     {
-        $today = new \DateTime;
+        $today = new \DateTime();
         $str = $today->format('Y-m-d\TH:i:s');
 
         $todayLowMs = \DateTime::createFromFormat('U.u', time() . '.012345');
@@ -649,17 +649,17 @@ class WriteTest extends SpannerTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
-                $count = $t->executeUpdate(
-                    'INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)',
-                    [
-                        'parameters' => [
-                            'id' => $id,
-                            'string' => $randStr
-                        ]
+            $count = $t->executeUpdate(
+                'INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)',
+                [
+                    'parameters' => [
+                        'id' => $id,
+                        'string' => $randStr
                     ]
-                );
+                ]
+            );
 
-                $this->assertEquals(1, $count);
+            $this->assertEquals(1, $count);
 
             $row = $t->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [

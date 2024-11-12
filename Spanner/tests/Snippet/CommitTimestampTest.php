@@ -19,12 +19,10 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
-use Prophecy\Argument;
 
 /**
  * @group spanner

@@ -138,7 +138,7 @@ class RequestHandler
      * @param $clientClass The client class whose object we need.
      * @return mixed
      */
-    public function getClientObject(string $clientClass)
+    private function getClientObject(string $clientClass)
     {
         return $this->clients[$clientClass] ?? null;
     }

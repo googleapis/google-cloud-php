@@ -30,7 +30,7 @@ class CommitTimestampTest extends TestCase
 
     public function setUp(): void
     {
-        $this->t = new CommitTimestamp;
+        $this->t = new CommitTimestamp();
     }
 
     public function testType()

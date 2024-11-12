@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;

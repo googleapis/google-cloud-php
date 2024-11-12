@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Timestamp;
 
 /**
  * Common methods for Read-Only transactions (i.e. Snapshots)

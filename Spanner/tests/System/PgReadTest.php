@@ -41,8 +41,8 @@ class PgReadTest extends SpannerPgTestCase
     {
         parent::setUpTestFixtures();
 
-        self::$readTableName = "read_table";
-        self::$rangeTableName = "range_table";
+        self::$readTableName = 'read_table';
+        self::$rangeTableName = 'range_table';
 
         $create = 'CREATE TABLE %s (
             id bigint NOT NULL,

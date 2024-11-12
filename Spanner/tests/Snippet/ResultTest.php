@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 

@@ -18,6 +18,8 @@
 namespace Google\Cloud\Spanner\Tests;
 
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Tests\Unit\Fixtures;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ResultSetMetadata;
 use Google\Cloud\Spanner\V1\ResultSetStats;
@@ -25,9 +27,7 @@ use Google\Cloud\Spanner\V1\StructType;
 use Google\Cloud\Spanner\V1\StructType\Field;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Cloud\Spanner\V1\Type;
-use Google\Cloud\Spanner\Database;
 use Google\Protobuf\Value;
-use Google\Cloud\Spanner\Tests\Unit\Fixtures;
 
 /**
  * Provide a Spanner Read/Query result
@@ -107,7 +107,6 @@ trait ResultGeneratorTrait
 
             $this->stream->readAll()
                 ->willReturn($this->resultGeneratorChunks($chunks));
-
         } else {
             $rows = [
                 [
