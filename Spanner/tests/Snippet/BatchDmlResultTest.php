@@ -39,7 +39,7 @@ class BatchDmlResultTest extends SnippetTestCase
     use ProphecyTrait;
     use TimeTrait;
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $result;
 

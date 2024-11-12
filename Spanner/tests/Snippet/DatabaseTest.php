@@ -33,7 +33,6 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
@@ -48,7 +47,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class DatabaseTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
@@ -58,7 +56,7 @@ class DatabaseTest extends SnippetTestCase
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $database;
     private $instance;
@@ -85,12 +83,11 @@ class DatabaseTest extends SnippetTestCase
         $sessionPool->clear()->willReturn(null);
 
         $this->serializer = new Serializer();
-        $this->instance = TestHelpers::stub(Instance::class, [
+        $this->instance = new Instance(
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
-            self::INSTANCE
-        ], ['requestHandler', 'serializer']);
+            self::INSTANCE        );
 
         $this->database = TestHelpers::stub(Database::class, [
             $this->requestHandler->reveal(),
@@ -167,9 +164,7 @@ class DatabaseTest extends SnippetTestCase
         );
 
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('backups');
+                $res = $snippet->invoke('backups');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(Backup::class, $res->returnVal());

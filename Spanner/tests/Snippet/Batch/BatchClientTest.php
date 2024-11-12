@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -29,7 +30,6 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
@@ -41,13 +41,12 @@ use Prophecy\Argument;
 class BatchClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $client;
 
@@ -56,10 +55,10 @@ class BatchClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
-        $this->client = TestHelpers::stub(BatchClient::class, [
+        $this->client = new BatchClient(
             new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE
-        ], ['operation']);
+        );
     }
 
     public function testClass()

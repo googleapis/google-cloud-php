@@ -54,7 +54,7 @@ class SpannerClientTest extends SnippetTestCase
     const INSTANCE = 'my-instance';
 
     private $client;
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
 
     public function setUp(): void
@@ -62,13 +62,10 @@ class SpannerClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
-        $this->client = TestHelpers::stub(
-            SpannerClient::class,
+        $this->client = new SpannerClient(
             [['projectId' => self::PROJECT]],
             ['requestHandler', 'serializer']
         );
-        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->client->___setProperty('serializer', $this->serializer);
     }
 
     public function testClass()
@@ -103,8 +100,6 @@ class SpannerClientTest extends SnippetTestCase
             ]
         );
 
-        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->client->___setProperty('serializer', $this->serializer);
 
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfigurations');
         $snippet->addLocal('spanner', $this->client);
@@ -151,8 +146,6 @@ class SpannerClientTest extends SnippetTestCase
             $this->getOperationResponseMock()
         );
 
-        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->client->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
@@ -194,8 +187,6 @@ class SpannerClientTest extends SnippetTestCase
             ]
         );
 
-        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->client->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

@@ -24,7 +24,6 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -34,12 +33,11 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class SnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
 
     const TRANSACTION = 'my-transaction';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $snapshot;
 

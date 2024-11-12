@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
@@ -42,13 +41,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class TransactionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
 
     const TRANSACTION = 'my-transaction';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $transaction;
 

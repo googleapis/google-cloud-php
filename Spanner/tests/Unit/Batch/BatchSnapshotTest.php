@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -57,7 +56,7 @@ class BatchSnapshotTest extends TestCase
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $session;
     private $timestamp;

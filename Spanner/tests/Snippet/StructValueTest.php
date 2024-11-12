@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructValue;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -38,14 +37,13 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class StructValueTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $database;
     private $value;

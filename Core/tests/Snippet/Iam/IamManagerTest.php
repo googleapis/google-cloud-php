@@ -36,7 +36,7 @@ class IamManagerTest extends SnippetTestCase
     private $policyData;
     private $resource;
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $iam;
 

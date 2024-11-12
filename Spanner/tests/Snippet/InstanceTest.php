@@ -48,7 +48,7 @@ class InstanceTest extends SnippetTestCase
     const BACKUP = 'my-backup';
     const OPERATION = 'my-operation';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $instance;
 
@@ -57,12 +57,12 @@ class InstanceTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
-        $this->instance = TestHelpers::stub(Instance::class, [
+        $this->instance = new Instance(
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
             self::INSTANCE
-        ], ['requestHandler', 'serializer']);
+        );
     }
 
     public function testClass()
@@ -100,9 +100,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('operation');
+                $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
@@ -131,9 +129,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke();
+                $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
     }
 
@@ -153,9 +149,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke();
+                $res = $snippet->invoke();
         $this->assertEquals('Instance exists!', $res->output());
     }
 
@@ -175,9 +169,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('info');
+                $res = $snippet->invoke('info');
         $info = $this->instance->info();
         $this->assertEquals($info, $res->returnVal());
     }
@@ -199,9 +191,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke();
+                $res = $snippet->invoke();
         $this->assertEquals('Instance is ready!', $res->output());
     }
 
@@ -221,8 +211,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-        $snippet->invoke();
+                $snippet->invoke();
     }
 
     public function testDelete()
@@ -236,8 +225,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-        $snippet->invoke();
+                $snippet->invoke();
     }
 
     public function testCreateDatabase()
@@ -256,9 +244,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('operation');
+                $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
@@ -280,9 +266,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('operation');
+                $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
@@ -322,9 +306,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('databases');
+                $res = $snippet->invoke('databases');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Database::class, $res->returnVal()->current());
@@ -366,9 +348,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('backups');
+                $res = $snippet->invoke('backups');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Backup::class, $res->returnVal()->current());
@@ -402,9 +382,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('backupOperations');
+                $res = $snippet->invoke('backupOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal()->current());
@@ -438,9 +416,7 @@ class InstanceTest extends SnippetTestCase
             'requestHandler',
             $this->requestHandler->reveal()
         );
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('databaseOperations');
+                $res = $snippet->invoke('databaseOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal()->current());
@@ -483,9 +459,7 @@ class InstanceTest extends SnippetTestCase
             ->willReturn([$this->getOperationResponseMock()]);
 
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->instance->___setProperty('serializer', $this->serializer);
-
-        $res = $snippet->invoke('operations');
+                $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(OperationResponse::class, $res->returnVal());
     }

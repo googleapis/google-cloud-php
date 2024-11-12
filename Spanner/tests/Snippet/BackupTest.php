@@ -44,7 +44,7 @@ class BackupTest extends SnippetTestCase
     const DATABASE = 'my-database';
     const BACKUP = 'my-backup';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $backup;
     private $client;
@@ -56,28 +56,25 @@ class BackupTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
-        $this->client = TestHelpers::stub(
-            SpannerClient::class,
+        $this->client = new SpannerClient(
             [['projectId' => 'my-project']],
             ['requestHandler', 'serializer']
         );
-        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->client->___setProperty('serializer', $this->serializer);
         $this->expireTime = new \DateTime("+ 7 hours");
-        $this->instance = TestHelpers::stub(Instance::class, [
+        $this->instance = new Instance(
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
             self::INSTANCE
-        ], ['requestHandler', 'serializer']);
+        );
 
-        $this->backup = TestHelpers::stub(Backup::class, [
+        $this->backup = new Backup(
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->instance,
             self::PROJECT,
-            self::BACKUP,
-        ], ['instance', 'requestHandler', 'serializer']);
+            self::BACKUP
+        );
     }
 
     public function testClass()

@@ -38,7 +38,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $config;
 
@@ -52,8 +52,7 @@ class InstanceConfigurationTest extends SnippetTestCase
             $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            [],
-        ], ['requestHandler', 'serializer']);
+            [],        );
     }
 
     public function testClass()

@@ -40,7 +40,7 @@ class QueryPartitionTest extends SnippetTestCase
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $className = QueryPartition::class;
     private $sql = 'SELECT 1=1';

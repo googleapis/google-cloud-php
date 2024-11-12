@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -47,7 +46,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class TransactionalReadMethodsTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -56,7 +54,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     const TRANSACTION = 'my-transaction';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $session;
     private $operation;

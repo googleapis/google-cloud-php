@@ -36,7 +36,7 @@ class CommitTimestampTest extends SnippetTestCase
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
 
     public function setUp(): void
@@ -49,8 +49,7 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
-        $client = TestHelpers::stub(
-            SpannerClient::class,
+        $client = new SpannerClient(
             [['projectId' => 'my-project']],
             ['requestHandler', 'serializer']
         );

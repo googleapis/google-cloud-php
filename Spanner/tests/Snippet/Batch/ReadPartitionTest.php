@@ -43,7 +43,7 @@ class ReadPartitionTest extends SnippetTestCase
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $className = ReadPartition::class;
     private $time;

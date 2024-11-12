@@ -69,7 +69,7 @@ class OperationTest extends TestCase
 
     private $operation;
     private $session;
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
 
     public function setUp(): void

@@ -45,7 +45,7 @@ class LongRunningOperationManagerTest extends SnippetTestCase
     const NAME = 'operations/foo';
     const TYPE = 'test-type';
 
-    private $requestHandler;
+    private $spannerClient;
     private $serializer;
     private $operation;
     private $callables;
@@ -87,8 +87,7 @@ class LongRunningOperationManagerTest extends SnippetTestCase
             $this->callables,
             $this->lroResponseMappers,
             DatabaseAdminClient::class,
-            self::NAME,
-        ], ['requestHandler', 'serializer']);
+            self::NAME,        );
     }
 
     public function testName()

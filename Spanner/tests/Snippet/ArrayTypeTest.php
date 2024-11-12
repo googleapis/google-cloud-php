@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -40,7 +39,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class ArrayTypeTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
 
     const PROJECT = 'my-awesome-project';
