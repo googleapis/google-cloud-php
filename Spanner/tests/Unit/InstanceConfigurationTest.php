@@ -17,13 +17,20 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -36,183 +43,231 @@ class InstanceConfigurationTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
 
-    private $connection;
-    private $configuration;
+    private $instanceAdminClient;
+    private Serializer $serializer;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
-        $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->connection->reveal(),
-            self::PROJECT_ID,
-            self::NAME,
-            [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
-        ]);
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->serializer = new Serializer();
     }
 
     public function testName()
     {
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
+
         $this->assertEquals(
-            InstanceAdminClient::parseName($this->configuration->name())['instance_config'],
+            InstanceAdminClient::parseName($instanceConfig->name())['instance_config'],
             self::NAME
         );
     }
 
     public function testInfo()
     {
-        $this->connection->getInstanceConfig(Argument::any())->shouldNotBeCalled();
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
-
         $info = ['foo' => 'bar'];
-        $config = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->connection->reveal(),
+        $this->instanceAdminClient->getInstanceConfig(Argument::cetera())
+            ->shouldNotBeCalled();
+
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
             self::PROJECT_ID,
             self::NAME,
-            $info,
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
-        ]);
+            $info
+        );
 
-        $this->assertEquals($info, $config->info());
+        $this->assertEquals($info, $instanceConfig->info());
     }
 
     public function testInfoWithReload()
     {
-        $info = ['foo' => 'bar'];
+        $expected = ['display_name' => 'foo'];
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig($expected));
 
-        $this->connection->getInstanceConfig([
-            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
-            'projectName' => InstanceAdminClient::projectName(self::PROJECT_ID)
-        ])->shouldBeCalled()->willReturn($info);
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
+        $info = $instanceConfig->info();
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
-
-        $this->assertEquals($info, $this->configuration->info());
+        $this->assertArrayHasKey('displayName', $info);
+        $this->assertEquals($expected['display_name'], $info['displayName']);
     }
 
     public function testExists()
     {
-        $this->connection->getInstanceConfig(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->configuration->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn([]);
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig());
 
-        $this->assertTrue($this->configuration->exists());
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
+        $this->assertTrue($instanceConfig->exists());
     }
 
     public function testExistsDoesntExist()
     {
-        $this->connection->getInstanceConfig(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->configuration->name())
-        ))
-            ->shouldBeCalled()
-            ->willThrow(new NotFoundException('', 404));
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->will(function() {
+                throw new ApiException('', Code::NOT_FOUND);
+            });
 
-        $this->assertFalse($this->configuration->exists());
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
+
+        $this->assertFalse($instanceConfig->exists());
     }
 
     public function testReload()
     {
-        $info = ['foo' => 'bar'];
+        $expected1 = ['some' => 'info'];
+        $expected2 = ['display_name' => 'bar'];
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig($expected2));
 
-        $this->connection->getInstanceConfig([
-            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
-            'projectName' => InstanceAdminClient::projectName(self::PROJECT_ID)
-        ])->shouldBeCalledTimes(1)->willReturn($info);
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME,
+            $expected1
+        );
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $info1 = $instanceConfig->info();
+        $info2 = $instanceConfig->reload();
+        $info3 = $instanceConfig->info();
 
-        $info = $this->configuration->reload();
-
-        $info2 = $this->configuration->info();
-
-        $this->assertEquals($info, $info2);
+        $this->assertEquals($expected1, $info1);
+        $this->assertNotEquals($info1, $info2);
+        $this->assertArrayHasKey('displayName', $info2);
+        $this->assertEquals($expected2['display_name'], $info2['displayName']);
+        $this->assertEquals($info2, $info3);
     }
 
     public function testUpdate()
     {
-        $config = $this->getDefaultInstance();
-
-        $this->connection->updateInstanceConfig([
-            'name' => $config['name'],
-            'displayName' => 'bar',
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
+        $expectedInstanceConfig = new InstanceConfig([
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, 'foo'),
+            'display_name' => 'bar2'
+        ]);
+        $any = $this->prophesize(Any::class);
+        $any->getValue()->willReturn($expectedInstanceConfig->serializeToString());
+        $operation = $this->prophesize(Operation::class);
+        $operation->getResponse()->willReturn($any->reveal());
+        $operation->getDone()->willReturn(true);
+        $operationClient = $this->prophesize(\Google\LongRunning\Client\OperationsClient::class);
+        $operationResponse = new OperationResponse('operation-name', $operationClient->reveal(), [
+            'operationReturnType' => InstanceConfig::class,
+            'lastProtoResponse' => $operation->reveal(),
         ]);
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->updateInstanceConfig(
+            Argument::that(function (UpdateInstanceConfigRequest $request) use ($expectedInstanceConfig) {
+                $instanceConfig = $request->getInstanceConfig();
+                return $instanceConfig->getDisplayName() === $expectedInstanceConfig->getDisplayName()
+                    && $instanceConfig->getName() === $expectedInstanceConfig->getName();
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($operationResponse);
 
-        $this->configuration->update(['displayName' => 'bar']);
-    }
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            'foo',
+        );
 
-    public function testUpdateWithExistingLabels()
-    {
-        $config = $this->getDefaultInstance();
-        $config['labels'] = ['foo' => 'bar'];
+        $operation = $instanceConfig->update(['displayName' => 'bar2']);
+        $operation->pollUntilComplete();
+        $updatedInstanceConfig = $operation->getResult();
 
-        $this->connection->updateInstanceConfig([
-            'labels' => $config['labels'],
-            'name' => $config['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
-
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
-
-        $this->configuration->update(['labels' => $config['labels']]);
+        $info = $updatedInstanceConfig->info();
+        $this->assertEquals('bar2', $info['displayName']);
     }
 
     public function testUpdateWithChanges()
     {
-        $config = $this->getDefaultInstance();
-
-        $changes = [
-            'labels' => [
-                'foo' => 'bar'
-            ],
+        $config = [
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME),
+            'labels' => ['foo' => 'bar'],
             'displayName' => 'New Name',
         ];
 
-        $this->connection->updateInstanceConfig([
-            'name' => $config['name'],
-            'displayName' => $changes['displayName'],
-            'labels' => $changes['labels'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->instanceAdminClient->updateInstanceConfig(
+            Argument::that(function (UpdateInstanceConfigRequest $request) use ($config) {
+                $instanceConfig = $request->getInstanceConfig()->serializeToJsonString();
+                return json_decode($instanceConfig, true) == $config;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
 
-        $this->configuration->update($changes);
+        $instanceConfig->update(['displayName' => 'New Name', 'labels' => ['foo' => 'bar']]);
     }
 
     public function testDelete()
     {
-        $this->connection->deleteInstanceConfig([
-            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
-        ])->shouldBeCalled();
+        $this->instanceAdminClient->deleteInstanceConfig(
+            Argument::type(DeleteInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
-        $this->configuration->___setProperty('connection', $this->connection->reveal());
+        $instanceConfig = new InstanceConfiguration(
+            $this->instanceAdminClient->reveal(),
+            $this->serializer,
+            self::PROJECT_ID,
+            self::NAME
+        );
 
-        $this->configuration->delete();
+        $instanceConfig->delete();
     }
 
     private function getDefaultInstance()

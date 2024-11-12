@@ -83,7 +83,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * use Google\Cloud\Spanner\Session\CacheSessionPool;
  * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $cache = new FilesystemAdapter();
  * $sessionPool = new CacheSessionPool($cache);
  *
@@ -111,7 +111,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * use Google\Cloud\Spanner\Session\CacheSessionPool;
  * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $cache = new FilesystemAdapter();
  * $sessionPool = new CacheSessionPool($cache, [
  *     'databaseRole' => 'Reader'
@@ -690,8 +690,7 @@ class CacheSessionPool implements SessionPoolInterface
         // @see https://github.com/googleapis/google-cloud-php/pull/2342#discussion_r327925546
         while ($count > $created) {
             try {
-                $res = $this->database->connection()->batchCreateSessions([
-                    'database' => $this->database->name(),
+                $res = $this->database->batchCreateSessions([
                     'sessionTemplate' => [
                         'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
                         'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : ''
@@ -873,11 +872,9 @@ class CacheSessionPool implements SessionPoolInterface
     {
         $this->deleteCalls = [];
         foreach ($sessions as $session) {
-            $this->deleteCalls[] = $this->database->connection()
-                ->deleteSessionAsync([
-                    'name' => $session['name'],
-                    'database' => $this->database->name()
-                ]);
+            $this->deleteCalls[] = $this->database->deleteSessionAsync([
+                'name' => $session['name']
+            ]);
         }
 
         if ($waitForPromises && !empty($this->deleteCalls)) {

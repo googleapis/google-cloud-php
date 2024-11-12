@@ -17,14 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -36,31 +34,32 @@ class InstanceConfigurationTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
 
-    private $connection;
+    private $spannerClient;
+    private $serializer;
     private $config;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->serializer = new Serializer();
         $this->config = TestHelpers::stub(InstanceConfiguration::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-        ], ['connection', 'lroConnection']);
+            [],        );
     }
 
     public function testClass()
     {
         $snippet = $this->snippetFromClass(InstanceConfiguration::class);
+        $snippet->addLocal('projectId', self::PROJECT);
+
         $res = $snippet->invoke('configuration');
 
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
@@ -73,24 +72,34 @@ class InstanceConfigurationTest extends SnippetTestCase
     public function testCreate()
     {
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'create');
-        $this->connection->createInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
-        $dummyConnection = $this->connection->reveal();
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'createInstanceConfig',
+            null,
+            $this->getOperationResponseMock(),
+        );
+
         $baseConfig = new InstanceConfiguration(
-            $dummyConnection,
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::CONFIG,
-            [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
+            []
         );
-        $this->config->___setProperty('connection', $dummyConnection);
+        $this->config->___setProperty(
+            'requestHandler',
+            $this->requestHandler->reveal()
+        );
+        $this->config->___setProperty(
+            'serializer',
+            $this->serializer
+        );
         $snippet->addLocal('baseConfig', $baseConfig);
         $snippet->addLocal('options', []);
         $snippet->addLocal('instanceConfig', $this->config);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testUpdate()
@@ -98,13 +107,16 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'update');
         $snippet->addLocal('instanceConfig', $this->config);
 
-        $this->connection->updateInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstanceConfig',
+            null,
+            $this->getOperationResponseMock()
+        );
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->config->___setProperty('serializer', $this->serializer);
+
         $snippet->invoke();
     }
 
@@ -113,10 +125,10 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'delete');
         $snippet->addLocal('instanceConfig', $this->config);
 
-        $this->connection->deleteInstanceConfig(Argument::any())
-            ->shouldBeCalled();
+        $this->mockSendRequest(InstanceAdminClient::class, 'deleteInstanceConfig', null, null);
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->config->___setProperty('serializer', $this->serializer);
         $snippet->invoke();
     }
 
@@ -139,11 +151,10 @@ class InstanceConfigurationTest extends SnippetTestCase
             'displayName' => self::CONFIG
         ];
 
-        $this->connection->getInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($info);
+        $this->mockSendRequest(InstanceAdminClient::class, 'getInstanceConfig', null, $info);
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->config->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('info');
         $this->assertEquals($info, $res->returnVal());
@@ -154,14 +165,18 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'exists');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstanceConfig',
+            null,
+            [
                 'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
                 'displayName' => self::CONFIG
-            ]);
+            ]
+        );
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->config->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke();
         $this->assertEquals('Configuration exists!', $res->output());
@@ -177,11 +192,10 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'reload');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getInstanceConfig(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($info);
+        $this->mockSendRequest(InstanceAdminClient::class, 'getInstanceConfig', null, $info);
 
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->config->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('info');
         $this->assertEquals($info, $res->returnVal());

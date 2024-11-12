@@ -17,19 +17,18 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -40,15 +39,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class ArrayTypeTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
 
-    private $connection;
     private $database;
     private $type;
 
@@ -76,16 +72,16 @@ class ArrayTypeTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
-        $this->connection = $this->getConnStub();
-        $this->database = TestHelpers::stub(Database::class, [
-            $this->connection->reveal(),
+        $this->serializer = new Serializer();
+        $this->database = new Database(
+            $this->prophesize(SpannerClient::class)->reveal(),
+            $this->prophesize(DatabaseAdminClient::class)->reveal(),
+            $this->serializer,
             $instance->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['operation']);
+        );
     }
 
     public function testConstructor()
@@ -101,29 +97,37 @@ class ArrayTypeTest extends SnippetTestCase
             'foo', 'bar', null
         ];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', 'SELECT @arrayParam as arrayValue'),
-            Argument::withEntry('params', [
-                'arrayParam' => $values
-            ]),
-            Argument::withEntry('paramTypes', [
-                'arrayParam' => $field
-            ])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'arrayValue',
-                            'type' => $field
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function ($args) use ($values, $field) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['sql'], 'SELECT @arrayParam as arrayValue');
+                $this->assertEquals($message['params'], ['arrayParam' => $values]);
+                $this->assertEquals(
+                    $message['paramTypes']['arrayParam']['arrayElementType']['code'],
+                    $field['arrayElementType']['code']
+                );
+                $this->assertEquals(
+                    $message['paramTypes']['arrayParam']['code'],
+                    $field['code']
+                );
+                return true;
+            }),
+            $this->resultGenerator([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'arrayValue',
+                                'type' => $field
+                            ]
                         ]
                     ]
-                ]
-            ],
-            'values' => [$values]
-        ]));
+                ],
+                'values' => [$values]
+            ])
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet = $this->snippetFromClass(ArrayType::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');

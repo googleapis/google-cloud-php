@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Protobuf\Duration;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
@@ -47,7 +49,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  *
@@ -79,13 +81,6 @@ class Transaction implements TransactionalReadInterface
     private $mutations = [];
 
     /**
-     * @var bool
-     */
-    private $isRetry = false;
-
-    private ValueMapper $mapper;
-
-    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
@@ -103,19 +98,14 @@ class Transaction implements TransactionalReadInterface
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
-        Operation $operation,
-        Session $session,
-        $transactionId = null,
-        $isRetry = false,
-        $tag = null,
-        $options = [],
-        $mapper = null
+        private Operation $operation,
+        private Session $session,
+        private ?string $transactionId = null,
+        private bool $isRetry = false,
+        ?string $tag = null,
+        array $options = [],
+        private ?ValueMapper $mapper = null
     ) {
-        $this->operation = $operation;
-        $this->session = $session;
-        $this->transactionId = $transactionId;
-        $this->isRetry = $isRetry;
-
         $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
@@ -125,13 +115,10 @@ class Transaction implements TransactionalReadInterface
                 "Cannot set a transaction tag on a single-use transaction."
             );
         }
-        $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
         $this->options = $options;
-        if (!is_null($mapper)) {
-            $this->mapper = $mapper;
-        }
+        $this->tag =$tag;
     }
 
     /**

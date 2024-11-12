@@ -24,7 +24,6 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Tests\Unit\Fixtures;
@@ -175,11 +174,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'language',
                 LanguageClient::class
-            ], [
-                'spanner',
-                SpannerClient::class,
-                [],
-                [$this, 'checkAndSkipGrpcTests']
             ], [
                 'speech',
                 SpeechClient::class,

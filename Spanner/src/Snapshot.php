@@ -30,7 +30,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * $transaction = $database->snapshot();

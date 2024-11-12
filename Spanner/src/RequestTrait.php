@@ -17,17 +17,32 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\Database;
+use Google\Cloud\Spanner\Admin\Database\V1\OptimizeRestoredDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Protobuf\GPBEmpty;
 
 /**
- * Shared functionality for request headers.
+ * Shared functionality for Spanner requests.
  *
  * @internal
  */
-trait RequestHeaderTrait
+trait RequestTrait
 {
-    private static $larHeader = 'x-goog-spanner-route-to-leader';
-    private static $resourcePrefixHeader = 'google-cloud-resource-prefix';
+    private $larHeader = 'x-goog-spanner-route-to-leader';
+    private $resourcePrefixHeader = 'google-cloud-resource-prefix';
 
     /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
@@ -47,24 +62,7 @@ trait RequestHeaderTrait
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $args['headers'][self::$larHeader] = ['true'];
-        }
-        return $args;
-    }
-
-    /**
-     * Conditionally unset the LAR header.
-     *
-     * @param array $args Request arguments.
-     * @param bool $value Whether to set or unset the LAR header.
-     * @return array
-     */
-    private function conditionallyUnsetLarHeader(
-        array $args,
-        bool $value = true
-    ) {
-        if (!$value) {
-            unset($args['headers'][self::$larHeader]);
+            $args['headers'][$this->larHeader] = ['true'];
         }
         return $args;
     }
@@ -78,7 +76,7 @@ trait RequestHeaderTrait
      */
     private function addResourcePrefixHeader(array $args, string $value)
     {
-        $args['headers'][self::$resourcePrefixHeader] = [$value];
+        $args['headers'][$this->resourcePrefixHeader] = [$value];
         return $args;
     }
 }

@@ -17,18 +17,34 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Page;
+use Google\LongRunning\Operation;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\LongRunning\Client\OperationsClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\Backup;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -47,8 +63,6 @@ class InstanceTest extends TestCase
     use GrpcTestTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-    use StubCreationTrait;
-    use ResultGeneratorTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'instance-name';
@@ -56,38 +70,51 @@ class InstanceTest extends TestCase
     const BACKUP = 'my-backup';
     const SESSION = 'projects/test-project/instances/instance-name/databases/database-name/sessions/session';
 
-    private $connection;
-    private $instance;
-    private $lroConnection;
     private $directedReadOptionsIncludeReplicas;
+    private $instance;
+    private $serializer;
+    private $spannerClient;
+    private $instanceAdminClient;
+    private $databaseAdminClient;
+    private $operationResponse;
+    private $page;
+    private $pagedListResponse;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->serializer = new Serializer();
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
-                'replicaSelections' => [
+                'replicaSelections' => [[
                     'location' => 'us-central1',
-                    'type' => 'READ_WRITE',
-                    'autoFailoverDisabled' => false
-                ]
+                    'type' => Type::READ_WRITE,
+                ]], 'autoFailoverDisabled' => false
             ]
         ];
-        $this->instance = TestHelpers::stub(Instance::class, [
-            $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
+
+        $this->page = $this->prophesize(Page::class);
+        $this->pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $this->pagedListResponse->getPage()->willReturn($this->page->reveal());
+
+        $this->instance = new Instance(
+            $this->spannerClient->reveal(),
+            $this->instanceAdminClient->reveal(),
+            $this->databaseAdminClient->reveal(),
+            $this->serializer,
             self::PROJECT_ID,
             self::NAME,
             false,
             [],
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
-        ], [
-            'info',
-            'connection'
-        ]);
+        );
     }
 
     public function testName()
@@ -97,50 +124,39 @@ class InstanceTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getInstance(Argument::any())->shouldNotBeCalled();
-
-        $this->instance->___setProperty('info', ['foo' => 'bar']);
-        $this->assertEquals('bar', $this->instance->info()['foo']);
-    }
-
-    public function testInfoWithReload()
-    {
-        $instance = $this->getDefaultInstance();
-
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                return $message['name'] == $this->instance->name();
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->getDefaultInstance());
 
         $info = $this->instance->info();
         $this->assertEquals('Instance Name', $info['displayName']);
 
+        // test calling info again does not reload
         $this->assertEquals($info, $this->instance->info());
     }
 
     public function testInfoWithReloadAndFieldMask()
     {
-        $instance = [
-            'name' => $this->instance->name(),
-            'node_count' => 1
-        ];
-
         $requestedFieldNames = ["name", 'node_count'];
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('fieldMask', $requestedFieldNames)
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) use ($requestedFieldNames) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals(['paths' => $requestedFieldNames], $message['fieldMask']);
+                return $message['name'] == $this->instance->name();
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceProto([
+                'name' => $this->instance->name(),
+                'node_count' => 1
+            ]));
 
         $info = $this->instance->info(['fieldMask' => $requestedFieldNames]);
 
@@ -149,32 +165,30 @@ class InstanceTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('fieldMask', ['name'])
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return isset($message['fieldMask']) && ['paths' => ['name']] == $message['fieldMask'];
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceProto());
 
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::not(Argument::withKey('fieldMask'))
-        ))
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return !isset($message['fieldMask']);
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalledTimes(2)
-            ->willReturn([
+            ->willReturn(new InstanceProto([
                 'name' => $this->instance->name(),
-                'nodeCount' => 1,
-            ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+                'node_count' => 1,
+            ]));
 
         $this->assertTrue($this->instance->exists());
 
@@ -185,36 +199,32 @@ class InstanceTest extends TestCase
 
     public function testExistsNotFound()
     {
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalled()
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
             ->willThrow(new NotFoundException('foo', 404));
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->instance->exists());
     }
 
     public function testReload()
     {
-        $instance = $this->getDefaultInstance();
-
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            )
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->getDefaultInstance());
 
         $info = $this->instance->reload();
 
@@ -223,24 +233,20 @@ class InstanceTest extends TestCase
 
     public function testReloadWithFieldMask()
     {
-        $instance = [
-            'name' => $this->instance->name(),
-            'node_count' => 1
-        ];
-
         $requestedFieldNames = ["name", 'node_count'];
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('fieldMask', $requestedFieldNames)
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) use ($requestedFieldNames) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return $message['fieldMask'] == ['paths' => $requestedFieldNames];
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceProto([
+                'name' => $this->instance->name(),
+                'node_count' => 1
+            ]));
 
         $info = $this->instance->reload(['fieldMask' => $requestedFieldNames]);
 
@@ -249,68 +255,65 @@ class InstanceTest extends TestCase
 
     public function testState()
     {
-        $instance = $this->getDefaultInstance();
-
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->getDefaultInstance());
 
         $this->assertEquals(Instance::STATE_READY, $this->instance->state());
     }
 
     public function testStateIsNull()
     {
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->getInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceProto());
 
         $this->assertNull($this->instance->state());
     }
 
     public function testUpdate()
     {
-        $instance = $this->getDefaultInstance();
-
-        $this->connection->updateInstance([
-            'displayName' => 'bar',
-            'name' => $instance['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->updateInstance(
+            Argument::that(function ($request) {
+                $this->assertEquals('bar', $request->getInstance()->getDisplayName());
+                $this->assertEquals($this->instance->name(), $request->getInstance()->getName());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $this->instance->update(['displayName' => 'bar']);
     }
 
     public function testUpdateWithProcessingUnits()
     {
-        $instance = $this->getDefaultInstance();
-
-        $this->connection->updateInstance([
-            'processingUnits' => 500,
-            'name' => $instance['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->updateInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals(500, $request->getInstance()->getProcessingUnits());
+                $this->assertEquals($this->instance->name(), $request->getInstance()->getName());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $this->instance->update(['processingUnits' => 500]);
     }
@@ -324,54 +327,55 @@ class InstanceTest extends TestCase
 
     public function testUpdateWithExistingLabels()
     {
-        $instance = $this->getDefaultInstance();
-        $instance['labels'] = ['foo' => 'bar'];
+        $this->instanceAdminClient->updateInstance(
+            Argument::that(function ($request) {
+                $this->assertEquals(['foo' => 'bar'], iterator_to_array($request->getInstance()->getLabels()));
+                $this->assertEquals($this->instance->name(), $request->getInstance()->getName());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->connection->updateInstance([
-            'labels' => $instance['labels'],
-            'name' => $instance['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-
-        $this->instance->update(['labels' => $instance['labels']]);
+        $this->instance->update(['labels' => ['foo' => 'bar']]);
     }
 
     public function testUpdateWithChanges()
     {
-        $instance = $this->getDefaultInstance();
+        $this->instanceAdminClient->updateInstance(
+            Argument::that(function ($request) {
+                $this->assertEquals('New Name', $request->getInstance()->getDisplayName());
+                $this->assertEquals(['foo' => 'bar'], iterator_to_array($request->getInstance()->getLabels()));
+                $this->assertEquals(900, $request->getInstance()->getNodeCount());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
-        $changes = [
+        $this->instance->update([
             'labels' => [
                 'foo' => 'bar'
             ],
             'nodeCount' => 900,
             'displayName' => 'New Name',
-        ];
-
-        $this->connection->updateInstance([
-            'name' => $instance['name'],
-            'displayName' => $changes['displayName'],
-            'nodeCount' => $changes['nodeCount'],
-            'labels' => $changes['labels'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
         ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
-
-        $this->instance->update($changes);
     }
 
     public function testDelete()
     {
-        $this->connection->deleteInstance([
-            'name' => InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
-        ])->shouldBeCalled();
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->deleteInstance(
+            Argument::that(function ($request) {
+                $this->assertEquals(
+                    $request->getName(),
+                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledOnce();
 
         $this->instance->delete();
     }
@@ -380,57 +384,68 @@ class InstanceTest extends TestCase
     {
         $extra = ['foo', 'bar'];
 
-        $this->connection->createDatabase([
-            'instance' => InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME),
-            'createStatement' => 'CREATE DATABASE `test-database`',
-            'extraStatements' => $extra
-        ])
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->createDatabase(
+            Argument::that(function ($request) use ($extra) {
+                $createStatement = 'CREATE DATABASE `test-database`';
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['createStatement'], $createStatement);
+                $this->assertEquals(
+                    $message['parent'],
+                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
+                );
+                $this->assertEquals($message['extraStatements'], $extra);
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $database = $this->instance->createDatabase('test-database', [
             'statements' => $extra
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $database);
+        $this->assertInstanceOf(OperationResponse::class, $database);
     }
 
     public function testCreateDatabaseFromBackupName()
     {
         $backupName = DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, self::BACKUP);
-        $this->connection->restoreDatabase(Argument::allOf(
-            Argument::withEntry('databaseId', 'restore-database'),
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('backup', $backupName)
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->databaseAdminClient->restoreDatabase(
+            Argument::that(function ($request) use ($backupName) {
+                $this->assertEquals($request->getDatabaseId(), 'restore-database');
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                $this->assertEquals($request->getBackup(), $backupName);
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupName);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testCreateDatabaseFromBackupObject()
     {
         $backupObject = $this->instance->backup(self::BACKUP);
-        $this->connection->restoreDatabase(Argument::allOf(
-            Argument::withEntry('databaseId', 'restore-database'),
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('backup', $backupObject->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->databaseAdminClient->restoreDatabase(
+            Argument::that(function ($request) use ($backupObject) {
+                $this->assertEquals($request->getDatabaseId(), 'restore-database');
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                $this->assertEquals($request->getBackup(), $backupObject->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupObject);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
     }
 
     public function testDatabase()
@@ -443,17 +458,23 @@ class InstanceTest extends TestCase
     public function testDatabases()
     {
         $databases = [
-            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')],
-            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')]),
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')])
         ];
 
-        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['databases' => $databases]);
+        $this->page->getResponseObject()->willReturn(new ListDatabasesResponse(['databases' => $databases]));
 
-        $this->connection->getDatabase(Argument::any())->shouldNotBeCalled();
+        $this->databaseAdminClient->listDatabases(
+            Argument::that(function ($request) {
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->pagedListResponse->reveal());
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->getDatabase(Argument::cetera())->shouldNotBeCalled();
 
         $dbs = $this->instance->databases();
 
@@ -466,23 +487,59 @@ class InstanceTest extends TestCase
         $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
 
         // Make sure the database->info is prefilled.
-        $this->assertEquals($databases[0], $dbs[0]->info());
-        $this->assertEquals($databases[1], $dbs[1]->info());
+        $this->assertEquals($databases[0]->__debugInfo(), array_filter($dbs[0]->info()));
+        $this->assertEquals($databases[1]->__debugInfo(), array_filter($dbs[1]->info()));
     }
 
     public function testDatabasesPaged()
     {
         $databases = [
-            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')],
-            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')]),
+            new DatabaseProto(['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]),
         ];
 
-        $iteration = 0;
-        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalledTimes(2)
-            ->willReturn(['databases' => [$databases[0]], 'nextPageToken' => 'foo'], ['databases' => [$databases[1]]]);
+        $page1 = $this->prophesize(Page::class);
+        $page1->getResponseObject()
+            ->willReturn(new ListDatabasesResponse([
+                'databases' => [$databases[0]], 'next_page_token' => 'foo']
+            ));
+        $pagedListResponse1 = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse1->getPage()
+            ->willReturn($page1->reveal());
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $iteration = 0;
+        $this->databaseAdminClient->listDatabases(
+            Argument::that(function ($request) use (&$iteration) {
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                $iteration++;
+                return $iteration == 1;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($pagedListResponse1->reveal());
+
+        $page2 = $this->prophesize(Page::class);
+        $page2->getResponseObject()
+            ->willReturn(new ListDatabasesResponse(['databases' => [$databases[1]]]));
+        $pagedListResponse2 = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse2->getPage()
+            ->willReturn($page2->reveal());
+
+        $this->databaseAdminClient->listDatabases(
+            Argument::that(function ($request) use (&$iteration) {
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                if ($iteration == 2) {
+                    $this->assertEquals($request->getPageToken(), 'foo');
+                    return true;
+                }
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($pagedListResponse2->reveal());
+
+        $this->databaseAdminClient->getDatabase(Argument::cetera())->shouldNotBeCalled();
 
         $dbs = $this->instance->databases();
 
@@ -497,7 +554,7 @@ class InstanceTest extends TestCase
 
     public function testIam()
     {
-        $this->assertInstanceOf(Iam::class, $this->instance->iam());
+        $this->assertInstanceOf(IamManager::class, $this->instance->iam());
     }
 
     public function testBackup()
@@ -513,19 +570,21 @@ class InstanceTest extends TestCase
     public function testBackups()
     {
         $backups = [
-            [
-                'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup1'),
-            ],
-            [
-                'name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup2'),
-            ]
+            new BackupProto(['name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup1')]),
+            new BackupProto(['name' => DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, 'backup2')]),
         ];
 
-        $this->connection->listBackups(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['backups' => $backups]);
+        $this->page->getResponseObject()->willReturn(new ListBackupsResponse(['backups' => $backups]));
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->listBackups(
+            Argument::that(function ($request) {
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->pagedListResponse->reveal());
 
         $bkps = $this->instance->backups();
 
@@ -541,15 +600,25 @@ class InstanceTest extends TestCase
     public function testBackupOperations()
     {
         $operations = [
-            ['name' => 'operation1'],
-            ['name' => 'operation2']
+            new Operation(['name' => 'operation1']),
+            new Operation(['name' => 'operation2']),
         ];
 
-        $this->connection->listBackupOperations(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['operations' => $operations]);
+        $this->page->getResponseObject()->willReturn(new ListBackupOperationsResponse(['operations' => $operations]));
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->listBackupOperations(
+            Argument::that(function ($request) {
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->pagedListResponse->reveal());
+
+        $this->databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledTimes(2)
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
 
         $bkpOps = $this->instance->backupOperations();
 
@@ -557,22 +626,32 @@ class InstanceTest extends TestCase
 
         $bkpOps = iterator_to_array($bkpOps);
         $this->assertCount(2, $bkpOps);
-        $this->assertEquals('operation1', $bkpOps[0]->name());
-        $this->assertEquals('operation2', $bkpOps[1]->name());
+        $this->assertEquals('operation1', $bkpOps[0]->getName());
+        $this->assertEquals('operation2', $bkpOps[1]->getName());
     }
 
     public function testListDatabaseOperations()
     {
         $operations = [
-            ['name' => 'operation1'],
-            ['name' => 'operation2']
+            new Operation(['name' => 'operation1']),
+            new Operation(['name' => 'operation2']),
         ];
 
-        $this->connection->listDatabaseOperations(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['operations' => $operations]);
+        $this->page->getResponseObject()->willReturn(new ListDatabaseOperationsResponse(['operations' => $operations]));
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->databaseAdminClient->listDatabaseOperations(
+            Argument::that(function ($request) {
+                $this->assertEquals($request->getParent(), $this->instance->name());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->pagedListResponse->reveal());
+
+        $this->databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledTimes(2)
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
 
         $dbOps = $this->instance->databaseOperations();
 
@@ -580,8 +659,8 @@ class InstanceTest extends TestCase
 
         $dbOps = iterator_to_array($dbOps);
         $this->assertCount(2, $dbOps);
-        $this->assertEquals('operation1', $dbOps[0]->name());
-        $this->assertEquals('operation2', $dbOps[1]->name());
+        $this->assertEquals('operation1', $dbOps[0]->getName());
+        $this->assertEquals('operation2', $dbOps[1]->getName());
     }
 
     public function testInstanceDatabaseRole()
@@ -589,16 +668,29 @@ class InstanceTest extends TestCase
         $sql = 'SELECT * FROM Table';
         $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
 
-        $this->connection->createSession(Argument::withEntry(
-            'session',
-            ['labels' => [], 'creator_role' => 'Reader']
-        ))
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
-            ->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->spannerClient->createSession(
+            Argument::that(function ($request) {
+                return $this->serializer->encodeMessage($request)['session']['creatorRole']
+                    == 'Reader';
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session(['name' => self::SESSION]));
+
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                return $request->getSql() == $sql;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
+
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledOnce();
 
         $database->execute($sql);
     }
@@ -608,20 +700,31 @@ class InstanceTest extends TestCase
         $database = $this->instance->database(
             $this::DATABASE
         );
-        $this->connection->createSession(Argument::any())
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => self::SESSION
-        ]);
+        $this->spannerClient->createSession(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session(['name' => self::SESSION]));
 
-        $this->connection->executeStreamingSql(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn(
-            $this->resultGenerator()
-        );
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsIncludeReplicas
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
+
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledOnce();
 
         $sql = 'SELECT * FROM Table';
         $res = $database->execute($sql);
@@ -635,23 +738,33 @@ class InstanceTest extends TestCase
         $table = 'foo';
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
-        $database = $this->instance->database(
-            $this::DATABASE,
-        );
-        $this->connection->createSession(Argument::any())
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => self::SESSION
-        ]);
+        $database = $this->instance->database($this::DATABASE);
 
-        $this->connection->streamingRead(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn(
-            $this->resultGenerator()
-        );
+        $this->spannerClient->createSession(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session(['name' => self::SESSION]));
+
+        $this->spannerClient->streamingRead(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsIncludeReplicas
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
+
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledOnce();
 
         $res = $database->read(
             $table,
@@ -667,6 +780,12 @@ class InstanceTest extends TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(Fixtures::INSTANCE_FIXTURE()), true);
+        return new InstanceProto([
+            'name' => 'projects/test-project/instances/instance-name',
+            'config' => 'projects/test-project/instanceConfigs/regional-europe-west1',
+            'display_name' => 'Instance Name',
+            'node_count' => 1,
+            'state' => 2
+        ]);
     }
 }

@@ -20,7 +20,7 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingLimits autoscaling_limits = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autoscaling_limits = null;
+    protected $autoscaling_limits = null;
     /**
      * Required. The autoscaling targets for an instance.
      *

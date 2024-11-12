@@ -20,7 +20,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
@@ -30,13 +30,13 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * The display name for the node.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * List of child node `index`es and their relationship to this parent.
      *
@@ -48,7 +48,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
-    private $short_representation = null;
+    protected $short_representation = null;
     /**
      * Attributes relevant to the node contained in a group of key-value pairs.
      * For example, a Parameter Reference node could have the following
@@ -60,7 +60,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * The execution statistics associated with the node, contained in a group of
      * key-value pairs. Only present if the plan was returned as a result of a
@@ -69,7 +69,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
-    private $execution_stats = null;
+    protected $execution_stats = null;
 
     /**
      * Constructor.

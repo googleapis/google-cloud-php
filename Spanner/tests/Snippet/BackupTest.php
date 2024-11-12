@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\LongRunning\Client\OperationsClient;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\SpannerClient;
@@ -45,7 +44,8 @@ class BackupTest extends SnippetTestCase
     const DATABASE = 'my-database';
     const BACKUP = 'my-backup';
 
-    private $connection;
+    private $spannerClient;
+    private $serializer;
     private $backup;
     private $client;
     private $instance;
@@ -55,25 +55,26 @@ class BackupTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(SpannerClient::class);
+        $this->serializer = new Serializer();
+        $this->client = new SpannerClient(
+            [['projectId' => 'my-project']],
+            ['requestHandler', 'serializer']
+        );
         $this->expireTime = new \DateTime("+ 7 hours");
-        $this->instance = TestHelpers::stub(Instance::class, [
-            $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
+        $this->instance = new Instance(
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::INSTANCE
-        ], ['connection', 'lroConnection']);
+        );
 
-        $this->backup = TestHelpers::stub(Backup::class, [
-            $this->connection->reveal(),
+        $this->backup = new Backup(
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->instance,
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT,
-            self::BACKUP,
-        ], ['instance', 'connection', 'lroConnection']);
+            self::BACKUP
+        );
     }
 
     public function testClass()
@@ -93,16 +94,18 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'create');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->createBackup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'createBackup',
+            null,
+            $this->getOperationResponseMock()
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testCreateCopy()
@@ -110,16 +113,18 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'createCopy');
         $snippet->addLocal('spanner', $this->client);
 
-        $this->connection->copyBackup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'copyBackup',
+            null,
+            $this->getOperationResponseMock()
+        );
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testDelete()
@@ -127,10 +132,15 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'delete');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->deleteBackup(Argument::any())
-            ->shouldBeCalled();
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'deleteBackup',
+            null,
+            null
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $snippet->invoke();
     }
@@ -140,11 +150,15 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'exists');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->getBackup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['foo' => 'bar']);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            null,
+            ['foo' => 'bar']
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke();
         $this->assertEquals('Backup exists!', $res->output());
@@ -157,11 +171,15 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'info');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->getBackup(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($backup);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            null,
+            $backup
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('info');
         $this->assertEquals($backup, $res->returnVal());
@@ -187,11 +205,16 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'reload');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->getBackup(Argument::any())
-            ->shouldBeCalledTimes(2)
-            ->willReturn($bkp);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            null,
+            $bkp,
+            2
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('info');
         $this->assertEquals($bkp, $res->returnVal());
@@ -203,11 +226,15 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'state');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->getBackup(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->WillReturn(['state' => Backup::STATE_READY]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            null,
+            ['state' => Backup::STATE_READY]
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke();
         $this->assertEquals('Backup is ready!', $res->output());
@@ -220,11 +247,16 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'updateExpireTime');
         $snippet->addLocal('backup', $this->backup);
 
-        $this->connection->updateBackup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($bkp);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'updateBackup',
+            null,
+            $bkp
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
+
 
         $res = $snippet->invoke('info');
         $this->assertEquals($bkp, $res->returnVal());
@@ -237,7 +269,7 @@ class BackupTest extends SnippetTestCase
         $snippet->addLocal('operationName', 'foo');
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
         $this->assertEquals('foo', $res->returnVal()->name());
     }
 
@@ -246,21 +278,22 @@ class BackupTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Backup::class, 'longRunningOperations');
         $snippet->addLocal('backup', $this->backup);
 
-        $lroConnection = $this->prophesize(LongRunningConnectionInterface::class);
-        $lroConnection->operations(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'operations' => [
-                    [
-                        'name' => 'foo'
-                    ]
-                ]
-            ]);
+        $this->requestHandler
+            ->getClientObject(Argument::any())
+            ->willReturn(new DatabaseAdminClient());
+        $this->requestHandler
+            ->sendRequest(
+                Argument::any(),
+                'listOperations',
+                Argument::cetera()
+            )
+            ->willReturn([$this->getOperationResponseMock()]);
 
-        $this->backup->___setProperty('lroConnection', $lroConnection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $res->returnVal());
     }
 }

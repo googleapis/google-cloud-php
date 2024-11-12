@@ -17,7 +17,17 @@
 
 namespace Google\Cloud\Spanner\Tests;
 
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\ResultSetMetadata;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\StructType;
+use Google\Cloud\Spanner\V1\StructType\Field;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\Database;
+use Google\Protobuf\Value;
+use Google\Cloud\Spanner\Tests\Unit\Fixtures;
 
 /**
  * Provide a Spanner Read/Query result
@@ -25,73 +35,50 @@ use Google\Cloud\Spanner\Database;
 trait ResultGeneratorTrait
 {
     /**
-     * Yield a ResultSet response.
-     *
-     * @param bool $withStats If true, statistics will be included.
-     *        **Defaults to** `false`.
-     * @param string|null $transaction If set, the value will be included as the
-     *        transaction ID. **Defaults to** `null`.
-     * @return \Generator
-     */
-    private function resultGenerator($withStats = false, $transaction = null)
-    {
-        return $this->yieldRows([
-            [
-                'name' => 'ID',
-                'type' => Database::TYPE_INT64,
-                'value' => '10'
-            ]
-        ], $withStats, $transaction);
-    }
-
-    /**
      * Yield rows with user-specified data.
      *
      * @param array[] $rows A list of arrays containing `name`, `type` and `value` keys.
-     * @param bool $withStats If true, statistics will be included.
+     * @param ResultSetStats|null $stats If true, statistics will be included.
      *        **Defaults to** `false`.
-     * @param string|null $transaction If set, the value will be included as the
+     * @param string|null $transactionId If set, the value will be included as the
      *        transaction ID. **Defaults to** `null`.
      * @return \Generator
      */
-    private function yieldRows(array $rows, $withStats = false, $transaction = null)
+    private function yieldRows(array $rows, $stats = null, $transactionId = null)
     {
         $fields = [];
         $values = [];
         foreach ($rows as $row) {
-            $fields[] = [
+            $fields[] = new Field([
                 'name' => $row['name'],
-                'type' => [
-                    'code' => $row['type']
-                ]
-            ];
+                'type' => new Type(['code' => $row['type']])
+            ]);
 
-            $values[] = $row['value'];
+            $values[] = new Value(['string_value' => $row['value']]);
         }
 
         $result = [
-            'metadata' => [
-                'rowType' => [
+            'metadata' => new ResultSetMetadata([
+                'row_type' => new StructType([
                     'fields' => $fields
-                ]
-            ],
+                ])
+            ]),
             'values' => $values
         ];
 
-        if ($withStats) {
-            $result['stats'] = [
-                'rowCountExact' => 1,
-                'rowCountLowerBound' => 1
-            ];
+        if ($stats) {
+            $result['stats'] = $stats;
         }
 
-        if ($transaction) {
-            $result['metadata']['transaction'] = [
-                'id' => $transaction
-            ];
+        if ($transactionId) {
+            $result['metadata']->setTransaction(new Transaction(['id' => $transactionId]));
         }
 
-        yield $result;
+        if (isset($result['stats'])) {
+            $result['stats'] = $stats;
+        }
+
+        yield new PartialResultSet($result);
     }
 
     /**
@@ -103,5 +90,73 @@ trait ResultGeneratorTrait
     private function resultGeneratorData(array $data)
     {
         yield $data;
+    }
+
+    private function resultGeneratorStream(
+        array $chunks = null,
+        ResultSetStats $stats = null,
+        string $transactionId = null
+    ) {
+        $this->stream = $this->prophesize(ServerStream::class);
+        if ($chunks) {
+            foreach ($chunks as $i => $chunk) {
+                $result = new PartialResultSet();
+                $result->mergeFromJsonString($chunk);
+                $chunks[$i] = $result;
+            }
+
+            $this->stream->readAll()
+                ->willReturn($this->resultGeneratorChunks($chunks));
+
+        } else {
+            $rows = [
+                [
+                    'name' => 'ID',
+                    'type' => Database::TYPE_INT64,
+                    'value' => '10'
+                ]
+            ];
+            $this->stream->readAll()
+                ->willReturn($this->yieldRows($rows, $stats, $transactionId));
+        }
+
+        return $this->stream->reveal();
+    }
+
+    private function resultGeneratorChunks($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield $chunk;
+        }
+    }
+
+    private function resultGeneratorJson($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield json_decode($chunk, true);
+        }
+    }
+
+    private function getStreamingDataFixture()
+    {
+        return json_decode(
+            file_get_contents(Fixtures::STREAMING_READ_ACCEPTANCE_FIXTURE()),
+            true
+        );
+    }
+
+    public function streamingDataProviderFirstChunk()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
+            break;
+        }
+    }
+
+    public function streamingDataProvider()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
+        }
     }
 }

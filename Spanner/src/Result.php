@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\RetrySettings;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\Session\Session;
@@ -31,7 +32,7 @@ use Grpc;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * $result = $database->execute('SELECT * FROM Posts');
@@ -132,8 +133,12 @@ class Result implements \IteratorAggregate
      * @param callable $call A callable, yielding a generator filled with results.
      * @param string $transactionContext The transaction's context.
      * @param ValueMapper $mapper Maps values.
-     * @param int $retries Number of attempts to resume a broken stream, assuming
-     *        a resume token is present. **Defaults to** 3.
+     * @param ?RetrySettings $retrySettings {
+     *           Retry configuration options. Currently, only the `maxRetries` option is supported.
+     *
+     *           @type int $maxRetries The maximum number of retry attempts before the operation fails.
+     *                 Defaults to 3.
+     *     }
      */
     public function __construct(
         Operation $operation,
@@ -141,14 +146,14 @@ class Result implements \IteratorAggregate
         callable $call,
         $transactionContext,
         ValueMapper $mapper,
-        $retries = 3
+        ?RetrySettings $retrySettings = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->call = $call;
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
-        $this->retries = $retries;
+        $this->retries = isset($retrySettings) ? $retrySettings->getMaxRetries() : 3;
         $this->createGenerator();
     }
 

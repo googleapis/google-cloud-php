@@ -23,7 +23,7 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the source backup that is being copied.
      * Values are of the form
@@ -31,7 +31,7 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_backup = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $source_backup = '';
+    protected $source_backup = '';
     /**
      * The progress of the
      * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
@@ -39,7 +39,7 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * The time at which cancellation of CopyBackup operation was received.
      * [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
@@ -56,7 +56,7 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>
      */
-    private $cancel_time = null;
+    protected $cancel_time = null;
 
     /**
      * Constructor.

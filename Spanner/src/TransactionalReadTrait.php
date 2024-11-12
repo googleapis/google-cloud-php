@@ -26,57 +26,57 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
+    use RequestTrait;
 
     /**
      * @var Operation
      */
-    private $operation;
+    private Operation $operation;
 
     /**
      * @var Session
      */
-    private $session;
+    private Session $session;
 
     /**
      * @var string
      */
-    private $transactionId;
+    private ?string $transactionId;
 
     /**
      * @var string
      */
-    private $context;
+    private string $context;
 
     /**
      * @var int
      */
-    private $type;
+    private int $type;
 
     /**
      * @var int
      */
-    private $state = 0; // TransactionalReadInterface::STATE_ACTIVE
+    private int $state = TransactionalReadInterface::STATE_ACTIVE;
 
     /**
      * @var array
      */
-    private $options = [];
+    private array $options = [];
 
     /**
      * @var int
      */
-    private $seqno = 1;
+    private int $seqno = 1;
 
     /**
      * @var string
      */
-    private $tag = null;
+    private ?string $tag = null;
 
     /**
      * @var array
      */
-    private $directedReadOptions = [];
+    private array $directedReadOptions = [];
 
     /**
      * Run a query.
@@ -304,8 +304,11 @@ trait TransactionalReadTrait
         );
 
         $options = $this->addLarHeader($options, true, $this->context);
+        // Unsetting the internal flag
+        unset($options['singleUse']);
 
         $result = $this->operation->execute($this->session, $sql, $options);
+
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
@@ -365,7 +368,6 @@ trait TransactionalReadTrait
             $options['transactionId'] = $this->transactionId;
         }
         $options['transactionType'] = $this->context;
-        $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];

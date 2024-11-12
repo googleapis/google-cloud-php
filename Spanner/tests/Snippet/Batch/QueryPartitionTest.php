@@ -23,8 +23,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 
 /**
@@ -35,12 +35,13 @@ class QueryPartitionTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
-    use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
+    private $spannerClient;
+    private $serializer;
     private $className = QueryPartition::class;
     private $sql = 'SELECT 1=1';
     private $time;
@@ -49,34 +50,35 @@ class QueryPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->serializer = new Serializer();
         $this->time = time();
         $this->partition = new QueryPartition($this->token, $this->sql, $this->options);
     }
 
     public function testClass()
     {
-        $connection = $this->getConnStub();
-        $connection->createSession(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->spannerClient->createSession(
+            null,
+            ['name' => self::SESSION]
+        );
+        $this->spannerClient->beginTransaction(
+            null,
+            [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
-            ]);
-        $connection->partitionQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+            ]
+        );
+        $this->spannerClient->partitionQuery(
+            null,
+            [
                 'partitions' => [
                     ['partitionToken' => 'foo']
                 ]
-            ]);
+            ]
+        );
 
         $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($connection->reveal(), false),
+            new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE
         ]);
 

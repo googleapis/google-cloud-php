@@ -17,22 +17,27 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\Session;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Protobuf\Timestamp as TimestampProto;
 
 /**
  * @group spanner
@@ -41,56 +46,73 @@ use Google\Cloud\Spanner\SpannerClient;
  */
 class BatchClientTest extends TestCase
 {
-    use OperationRefreshTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
     use TimeTrait;
+    use ApiHelperTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
-    private $client;
+    private $spannerClient;
+    private $serializer;
+    private $batchClient;
+    private $spannerClient;
 
     public function setUp(): void
     {
-        $this->connection = $this->getConnStub();
-        $this->client = TestHelpers::stub(BatchClient::class, [
-            new Operation($this->connection->reveal(), false),
-            self::DATABASE
-        ], [
-            'operation'
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
         ]);
+        $this->spannerClient = $this->prophesize(GapicSpannerClient::class);
+        $this->batchClient = new BatchClient(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
+            self::DATABASE
+        );
     }
 
     public function testSnapshot()
     {
         $time = time();
+        $this->spannerClient->createSession(
+            Argument::that(function (CreateSessionRequest $request) {
+                $this->assertEquals(
+                    $request->getDatabase(),
+                    self::DATABASE
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledOnce()->willReturn(new Session(['name' => self::SESSION]));
 
-        $this->connection->createSession(Argument::withEntry('database', self::DATABASE))
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('session', self::SESSION),
-            Argument::that(function (array $args) {
-                if ($args['transactionOptions']['readOnly']['returnReadTimestamp'] !== true) {
-                    return false;
-                }
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals(
+                    $this->serializer->encodeMessage($request)['options']['readOnly'],
+                    ['returnReadTimestamp' => true]
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Transaction([
+                'id' => self::TRANSACTION,
+                'read_timestamp' => new TimestampProto(['seconds' => $time])
+            ]));
 
-                return $args['database'] === self::DATABASE;
-            })
-        ))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION,
-            'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-        ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal());
-
-        $snapshot = $this->client->snapshot();
+        $snapshot = $this->batchClient->snapshot();
         $this->assertInstanceOf(BatchSnapshot::class, $snapshot);
     }
 
@@ -104,7 +126,7 @@ class BatchClientTest extends TestCase
             'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
         ]));
 
-        $snapshot = $this->client->snapshotFromString($identifier);
+        $snapshot = $this->batchClient->snapshotFromString($identifier);
         $this->assertEquals(self::SESSION, $snapshot->session()->name());
         $this->assertEquals(self::TRANSACTION, $snapshot->id());
         $this->assertEquals(
@@ -122,7 +144,7 @@ class BatchClientTest extends TestCase
         $partition = new QueryPartition($token, $sql, $options);
         $string = (string) $partition;
 
-        $res = $this->client->partitionFromString($partition);
+        $res = $this->batchClient->partitionFromString($partition);
         $this->assertEquals($token, $res->token());
         $this->assertEquals($sql, $res->sql());
         $this->assertEquals($options, $res->options());
@@ -139,7 +161,7 @@ class BatchClientTest extends TestCase
         $partition = new ReadPartition($token, $table, $keyset, $columns, $options);
         $string = (string) $partition;
 
-        $res = $this->client->partitionFromString($partition);
+        $res = $this->batchClient->partitionFromString($partition);
         $this->assertEquals($token, $res->token());
         $this->assertEquals($table, $res->table());
         $this->assertEquals($keyset->keySetObject(), $res->keySet()->keySetObject());
@@ -153,7 +175,7 @@ class BatchClientTest extends TestCase
         $this->expectExceptionMessage('Invalid partition data.');
 
         $data = base64_encode(json_encode(['hello' => 'world']));
-        $this->client->partitionFromString($data);
+        $this->batchClient->partitionFromString($data);
     }
 
     public function testInvalidPartitionType()
@@ -162,36 +184,43 @@ class BatchClientTest extends TestCase
         $this->expectExceptionMessage('Invalid partition type.');
 
         $data = base64_encode(json_encode([BatchClient::PARTITION_TYPE_KEY => uniqid('this-is-not-real')]));
-        $this->client->partitionFromString($data);
+        $this->batchClient->partitionFromString($data);
     }
 
     public function testSnapshotDatabaseRole()
     {
         $time = time();
+        $this->spannerClient->createSession(
+            Argument::that(function (CreateSessionRequest $request) {
+                return $this->serializer->encodeMessage($request)['session']['creatorRole'] == 'Reader';
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Session(['name' => self::SESSION]));
 
-        $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($this->connection->reveal(), false),
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $this->assertEquals(
+                    $this->serializer->encodeMessage($request)['options']['readOnly'],
+                    ['returnReadTimestamp' => true]
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new Transaction([
+                'id' => self::TRANSACTION,
+                'read_timestamp' => new TimestampProto(['seconds' => $time])
+            ]));
+
+        $batchClient = new BatchClient(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             self::DATABASE,
             ['databaseRole' => 'Reader']
-        ], [
-            'operation'
-        ]);
+        );
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()->willReturn([
-                'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-            ]);
-
-        $this->connection->createSession(Argument::withEntry(
-            'session',
-            ['labels' => [], 'creator_role' => 'Reader']
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
-
-        $snapshot = $client->snapshot();
+        $snapshot = $batchClient->snapshot();
     }
 }

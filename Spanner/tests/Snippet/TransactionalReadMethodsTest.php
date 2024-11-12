@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -29,11 +28,9 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -49,9 +46,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class TransactionalReadMethodsTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use OperationRefreshTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -59,7 +54,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     const TRANSACTION = 'my-transaction';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
-    private $connection;
+    private $spannerClient;
+    private $serializer;
     private $session;
     private $operation;
 
@@ -71,12 +67,14 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         parent::setUpBeforeClass();
 
-        $this->connection = $this->getConnStub();
+        $this->serializer = new Serializer();
         $this->session = $this->prophesize(Session::class);
         $this->session->info()
             ->willReturn([
                 'databaseName' => 'database'
             ]);
+        $this->session->name()
+            ->willReturn('sessionName');
         $this->operation = $this->prophesize(Operation::class);
     }
 
@@ -97,25 +95,28 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
+        $this->spannerClient->executeStreamingSql(
+            null,
+            $this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
                             [
                                 'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
+                                'type' => ['code' => Database::TYPE_INT64]
                             ]
                         ]
                     ]
                 ],
                 'values' => [0]
-            ]));
+            ])
+        );
 
-        $this->refreshOperation($client, $this->connection->reveal());
+        $this->refreshOperation(
+            $client,
+            $this->requestHandler->reveal(),
+            $this->serializer
+        );
 
         $snippet->addLocal($localName, $client);
 
@@ -140,37 +141,35 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) {
-                return false;
-            }
-
-            if (!isset($arg['paramTypes'])) {
-                return false;
-            }
-
-            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'timestamp',
-                            'type' => [
-                                'code' => Database::TYPE_TIMESTAMP
+        $this->spannerClient->executeStreamingSql(
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertTrue(isset($message['params']));
+                $this->assertTrue(isset($message['paramTypes']));
+                $this->assertEquals(
+                    $message['paramTypes']['timestamp']['code'],
+                    Database::TYPE_TIMESTAMP
+                );
+                return true;
+            },
+            $this->resultGenerator([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'timestamp',
+                                'type' => [
+                                    'code' => Database::TYPE_TIMESTAMP
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ],
-            'values' => [null]
-        ]));
+                ],
+                'values' => [null]
+            ])
+        );
 
-        $this->refreshOperation($client, $this->connection->reveal());
+        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -195,44 +194,42 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
-            if (!isset($arg['params'])) {
-                return false;
-            }
-
-            if (!isset($arg['paramTypes'])) {
-                return false;
-            }
-
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) {
-                return false;
-            }
-
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'numbers',
-                            'type' => [
-                                'code' => Database::TYPE_ARRAY,
-                                'arrayElementType' => [
-                                    'code' => Database::TYPE_INT64
+        $this->spannerClient->executeStreamingSql(
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertTrue(isset($message['params']));
+                $this->assertTrue(isset($message['paramTypes']));
+                $this->assertEquals(
+                    $message['paramTypes']['emptyArrayOfIntegers']['code'],
+                    Database::TYPE_ARRAY
+                );
+                $this->assertEquals(
+                    $message['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'],
+                    Database::TYPE_INT64
+                );
+                return true;
+            },
+            $this->resultGenerator([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'numbers',
+                                'type' => [
+                                    'code' => Database::TYPE_ARRAY,
+                                    'arrayElementType' => [
+                                        'code' => Database::TYPE_INT64
+                                    ]
                                 ]
                             ]
                         ]
                     ]
-                ]
-            ],
-            'values' => [[]]
-        ]));
+                ],
+                'values' => [[]]
+            ])
+        );
 
-        $this->refreshOperation($client, $this->connection->reveal());
+        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -261,12 +258,16 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             [
                 'name' => 'firstName',
                 'type' => [
-                    'code' => Database::TYPE_STRING
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ], [
                 'name' => 'lastName',
                 'type' => [
-                    'code' => Database::TYPE_STRING
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ]
         ];
@@ -276,29 +277,31 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             'Testuser'
         ];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', 'SELECT @userStruct.firstName, @userStruct.lastName'),
-            Argument::withEntry('params', [
-                'userStruct' => $values
-            ]),
-            Argument::withEntry('paramTypes', [
-                'userStruct' => [
-                    'code' => Database::TYPE_STRUCT,
-                    'structType' => [
+        $this->spannerClient->executeStreamingSql(
+            function ($args) use ($values, $fields) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['sql'], 'SELECT @userStruct.firstName, @userStruct.lastName');
+                $this->assertEquals(
+                    $message['params'],
+                    ['userStruct' => $values]
+                );
+                $this->assertEquals(
+                    $message['paramTypes']['userStruct']['structType']['fields'],
+                    $fields
+                );
+                return true;
+            },
+            $this->resultGenerator([
+                'metadata' => [
+                    'rowType' => [
                         'fields' => $fields
                     ]
-                ]
+                ],
+                'values' => $values
             ])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => $fields
-                ]
-            ],
-            'values' => $values
-        ]));
+        );
 
-        $this->refreshOperation($client, $this->connection->reveal());
+        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -327,16 +330,23 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             [
                 'name' => 'foo',
                 'type' => [
-                    'code' => Database::TYPE_STRING
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ], [
                 'name' => 'foo',
                 'type' => [
-                    'code' => Database::TYPE_INT64
+                    'code' => Database::TYPE_INT64,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ], [
+                'name' => '',
                 'type' => [
-                    'code' => Database::TYPE_STRING
+                    'code' => Database::TYPE_STRING,
+                    'typeAnnotation' => 0,
+                    'protoTypeFqn' => ''
                 ]
             ]
         ];
@@ -347,29 +357,44 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             'this field is unnamed'
         ];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', 'SELECT * FROM UNNEST(ARRAY(SELECT @structParam))'),
-            Argument::withEntry('params', [
-                'structParam' => $values
-            ]),
-            Argument::withEntry('paramTypes', [
-                'structParam' => [
-                    'code' => Database::TYPE_STRUCT,
-                    'structType' => [
+        $this->spannerClient->executeStreamingSql(
+            function ($args) use ($values, $fields) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['sql'],
+                    'SELECT * FROM UNNEST(ARRAY(SELECT @structParam))'
+                );
+                $this->assertEquals($message['params'], ['structParam' => $values]);
+                $this->assertEquals(
+                    $message['paramTypes'],
+                    [
+                        'structParam' => [
+                            'code' => Database::TYPE_STRUCT,
+                            'structType' => [
+                                'fields' => $fields
+                            ],
+                            'typeAnnotation' => 0,
+                            'protoTypeFqn' => '',
+                        ]
+                    ]
+                );
+                return true;
+            },
+            $this->resultGenerator([
+                'metadata' => [
+                    'rowType' => [
                         'fields' => $fields
                     ]
-                ]
+                ],
+                'values' => $values
             ])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => $fields
-                ]
-            ],
-            'values' => $values
-        ]));
+        );
 
-        $this->refreshOperation($client, $this->connection->reveal());
+        $this->refreshOperation(
+            $client,
+            $this->requestHandler->reveal(),
+            $this->serializer
+        );
 
         $snippet->addLocal($localName, $client);
 
@@ -396,9 +421,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->streamingRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
+        $this->spannerClient->streamingRead(
+            null,
+            $this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -412,9 +437,10 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     ]
                 ],
                 'rows' => [0]
-            ]));
+            ])
+        );
 
-        $this->refreshOperation($client, $this->connection->reveal());
+        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -436,10 +462,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             ->willReturn(null);
 
         return \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $instance->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
@@ -473,11 +498,11 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 
     private function setupBatch()
     {
-        $sessData = SpannerGapicClient::parseName(self::SESSION, 'session');
+        $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session->name()->willReturn(self::SESSION);
         $this->session->info()->willReturn($sessData + [
             'name' => self::SESSION,
-            'databaseName' => SpannerGapicClient::databaseName(
+            'databaseName' => SpannerClient::databaseName(
                 self::PROJECT,
                 self::INSTANCE,
                 self::DATABASE
@@ -485,7 +510,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         ]);
 
         return \Google\Cloud\Core\Testing\TestHelpers::stub(BatchSnapshot::class, [
-            new Operation($this->connection->reveal(), false),
+            new Operation($this->requestHandler->reveal(), $this->serializer, false),
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,

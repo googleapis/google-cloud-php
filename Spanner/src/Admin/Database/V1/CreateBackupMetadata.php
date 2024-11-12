@@ -21,13 +21,13 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The name of the database the backup is created from.
      *
      * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The progress of the
      * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
@@ -35,7 +35,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * The time at which cancellation of this operation was received.
      * [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
@@ -52,7 +52,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>
      */
-    private $cancel_time = null;
+    protected $cancel_time = null;
 
     /**
      * Constructor.

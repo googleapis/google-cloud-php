@@ -23,7 +23,7 @@ class CreateInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the instance partition to create. Valid identifiers are
      * of the form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 2 and 64
@@ -31,7 +31,7 @@ class CreateInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_partition_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_partition_id = '';
+    protected $instance_partition_id = '';
     /**
      * Required. The instance partition to create. The instance_partition.name may
      * be omitted, but if specified must be
@@ -39,7 +39,7 @@ class CreateInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstancePartition instance_partition = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_partition = null;
+    protected $instance_partition = null;
 
     /**
      * @param string                                                    $parent              Required. The name of the instance in which to create the instance

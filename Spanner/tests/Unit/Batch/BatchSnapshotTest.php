@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\PartitionInterface;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -26,11 +28,15 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartitionResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -42,19 +48,20 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BatchSnapshotTest extends TestCase
 {
-    use OperationRefreshTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-    use StubCreationTrait;
+    use ApiHelperTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
+    private $spannerClient;
+    private $serializer;
     private $session;
     private $timestamp;
-    private $connection;
     private $snapshot;
+    private $spannerClient;
 
     public function setUp(): void
     {
@@ -68,29 +75,43 @@ class BatchSnapshotTest extends TestCase
 
         $this->timestamp = new Timestamp(new \DateTime());
 
-        $this->connection = $this->getConnStub();
-        $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [
-            new Operation($this->connection->reveal(), false),
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ]);
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+
+        $this->snapshot = new BatchSnapshot(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             $this->session->reveal(),
             ['id' => self::TRANSACTION, 'readTimestamp' => $this->timestamp]
-        ], [
-            'operation', 'session'
-        ]);
+        );
     }
 
     public function testClose()
     {
         $session = $this->prophesize(Session::class);
-        $session->delete([])->shouldBeCalled();
+        $session->delete([])->shouldBeCalledOnce();
 
-        $this->snapshot->___setProperty('session', $session->reveal());
+        $this->snapshot = new BatchSnapshot(
+            $this->prophesize(Operation::class)->reveal(),
+            $session->reveal()
+        );
+
         $this->snapshot->close();
     }
 
-    /**
-     * @dataProvider partitionReadAndQueryOptions
-     */
-    public function testPartitionRead($testCaseOptions)
+    public function testPartitionRead()
     {
         $table = 'table';
         $keySet = new KeySet(['all' =>  true]);
@@ -99,15 +120,14 @@ class BatchSnapshotTest extends TestCase
             'index' => 'foo',
             'maxPartitions' => 10,
             'partitionSizeBytes' => 1
-        ] + $testCaseOptions;
+        ];
 
         $expectedArguments = [
             'session' => self::SESSION,
-            'database' => self::DATABASE,
-            'transactionId' => self::TRANSACTION,
+            'transaction' => ['id' => self::TRANSACTION],
             'table' => $table,
             'columns' => $columns,
-            'keySet' => $keySet->keySetObject(),
+            'keySet' => $keySet->keySetObject() + ['keys' => [], 'ranges' => []],
             'index' => $opts['index'],
             'partitionOptions' => [
                 'maxPartitions' => $opts['maxPartitions'],
@@ -115,23 +135,18 @@ class BatchSnapshotTest extends TestCase
             ]
         ];
 
-        $expectedArguments += $testCaseOptions;
-
-        $this->connection->partitionRead(Argument::that(
-            function ($actualArguments) use ($expectedArguments) {
+        $this->spannerClient->partitionRead(
+            Argument::that(function (PartitionReadRequest $request) use ($expectedArguments) {
+                $actualArguments = $this->serializer->encodeMessage($request);
                 return $actualArguments == $expectedArguments;
-            }
-        ))->shouldBeCalled()->willReturn([
+            }),
+            Argument::type('array')
+        )->shouldBeCalledOnce()->willReturn(new PartitionResponse([
             'partitions' => [
-                [
-                    'partitionToken' => 'token1'
-                ], [
-                    'partitionToken' => 'token2'
-                ]
+                new Partition(['partition_token' => 'token1']),
+                new Partition(['partition_token' => 'token2'])
             ]
-        ]);
-
-        $this->refreshOperation($this->snapshot, $this->connection->reveal());
+        ]));
 
         $partitions = $this->snapshot->partitionRead($table, $keySet, $columns, $opts);
         $this->assertContainsOnlyInstancesOf(ReadPartition::class, $partitions);
@@ -142,10 +157,7 @@ class BatchSnapshotTest extends TestCase
         $this->assertEquals($opts, $partitions[0]->options());
     }
 
-    /**
-     * @dataProvider partitionReadAndQueryOptions
-     */
-    public function testPartitionQuery(array $testCaseOptions)
+    public function testPartitionQuery()
     {
         $sql = 'SELECT 1=1';
         $opts = [
@@ -154,38 +166,32 @@ class BatchSnapshotTest extends TestCase
             ],
             'maxPartitions' => 10,
             'partitionSizeBytes' => 1
-        ] + $testCaseOptions;
+        ];
 
         $expectedArguments = [
             'session' => self::SESSION,
-            'database' => self::DATABASE,
-            'transactionId' => self::TRANSACTION,
+            'transaction' => ['id' => self::TRANSACTION],
             'sql' => $sql,
             'params' => $opts['parameters'],
-            'paramTypes' => ['foo' => ['code' => 6]],
+            'paramTypes' => ['foo' => ['code' => 6, 'typeAnnotation' => 0, 'protoTypeFqn' => '']],
             'partitionOptions' => [
                 'maxPartitions' => $opts['maxPartitions'],
                 'partitionSizeBytes' => $opts['partitionSizeBytes']
             ]
         ];
 
-        $expectedArguments += $testCaseOptions;
-
-        $this->connection->partitionQuery(Argument::that(
-            function ($actualArguments) use ($expectedArguments) {
+        $this->spannerClient->partitionQuery(
+            Argument::that(function (PartitionQueryRequest $request) use ($expectedArguments) {
+                $actualArguments = $this->serializer->encodeMessage($request);
                 return $actualArguments == $expectedArguments;
-            }
-        ))->shouldBeCalled()->willReturn([
-            'partitions' => [
-                [
-                    'partitionToken' => 'token1'
-                ], [
-                    'partitionToken' => 'token2'
+            }),
+            Argument::type('array')
+        )->shouldBeCalledOnce()->willReturn(new PartitionResponse([
+                'partitions' => [
+                    new Partition(['partition_token' => 'token1']),
+                    new Partition(['partition_token' => 'token2'])
                 ]
-            ]
-        ]);
-
-        $this->refreshOperation($this->snapshot, $this->connection->reveal());
+            ]));
 
         $partitions = $this->snapshot->partitionQuery($sql, $opts);
         $this->assertContainsOnlyInstancesOf(QueryPartition::class, $partitions);
@@ -209,17 +215,25 @@ class BatchSnapshotTest extends TestCase
 
         $partition = new QueryPartition($token, $sql, $opts);
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('partitionToken', $token),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('params', $opts['parameters']),
-            Argument::withEntry('paramTypes', ['foo' => ['code' => 6]])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->spannerClient->executeStreamingSql(
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql, $opts, $token) {
+                $this->assertEquals($request->getSql(), $sql);
+                $this->assertEquals($request->getSession(), self::SESSION);
+                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
+                $this->assertEquals($request->getPartitionToken(), $token);
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['params'], $opts['parameters']);
+                $this->assertEquals(
+                    $message['paramTypes'],
+                    ['foo' => ['code' => 6, 'typeAnnotation' => 0, 'protoTypeFqn' => '']]
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledOnce()->willReturn(
+            $this->resultGeneratorStream()
+        );
 
-        $this->refreshOperation($this->snapshot, $this->connection->reveal());
         $res = $this->snapshot->executePartition($partition);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
@@ -238,18 +252,25 @@ class BatchSnapshotTest extends TestCase
 
         $partition = new ReadPartition($token, $table, $keySet, $columns, $opts);
 
-        $this->connection->streamingRead(Argument::allOf(
-            Argument::withEntry('partitionToken', $token),
-            Argument::withEntry('session', self::SESSION),
-            Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-            Argument::withEntry('table', $table),
-            Argument::withEntry('columns', $columns),
-            Argument::withEntry('keySet', $keySet->keySetObject()),
-            Argument::withEntry('index', $opts['index'])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->spannerClient->streamingRead(
+            Argument::that(function (ReadRequest $request) use ($token, $table, $columns, $keySet, $opts) {
+                $this->assertEquals($request->getSession(), self::SESSION);
+                $this->assertEquals($request->getPartitionToken(), $token);
+                $this->assertEquals($request->getTable(), $table);
+                $this->assertEquals($request->getIndex(), $opts['index']);
+                $this->assertEquals(iterator_to_array($request->getColumns()), $columns);
+                $this->assertEquals(
+                    $request->getTransaction()->getId(),
+                    self::TRANSACTION
+                );
+                $this->assertTrue($this->serializer->encodeMessage($request->getKeySet())['all']);
+                return true;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledOnce()->willReturn(
+            $this->resultGeneratorStream()
+        );
 
-        $this->refreshOperation($this->snapshot, $this->connection->reveal());
         $res = $this->snapshot->executePartition($partition);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
@@ -275,14 +296,6 @@ class BatchSnapshotTest extends TestCase
 
         $dummy = new DummyPartition;
         $this->snapshot->executePartition($dummy);
-    }
-
-    public function partitionReadAndQueryOptions()
-    {
-        return [
-            [['dataBoostEnabled' => false]],
-            [['dataBoostEnabled' => true]]
-        ];
     }
 }
 

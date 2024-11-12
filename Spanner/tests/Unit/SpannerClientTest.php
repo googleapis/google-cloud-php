@@ -17,19 +17,26 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Page;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\PgJsonb;
@@ -39,8 +46,9 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Protobuf\Duration;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -53,22 +61,25 @@ class SpannerClientTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'inst';
     const DATABASE = 'db';
     const CONFIG = 'conf';
 
-    private $client;
-    private $connection;
+    private $serializer;
+    private SpannerClient $spannerClient;
+    private $instanceAdminClient;
     private $directedReadOptionsIncludeReplicas;
+    private $operationResponse;
+
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->serializer = new Serializer();
+
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
                 'replicaSelections' => [
@@ -78,17 +89,23 @@ class SpannerClientTest extends TestCase
                 ]
             ]
         ];
-        $this->client = TestHelpers::stub(SpannerClient::class, [
-            [
-                'projectId' => self::PROJECT,
-                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
-            ]
+
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->spannerClient = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal()
         ]);
+
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
     }
 
     public function testBatch()
     {
-        $batch = $this->client->batch('foo', 'bar');
+        $batch = $this->spannerClient->batch('foo', 'bar');
         $this->assertInstanceOf(BatchClient::class, $batch);
 
         $ref = new \ReflectionObject($batch);
@@ -96,8 +113,7 @@ class SpannerClientTest extends TestCase
         $prop->setAccessible(true);
 
         $this->assertEquals(
-            sprintf(
-                'projects/%s/instances/%s/databases/%s',
+            GapicSpannerClient::databaseName(
                 self::PROJECT,
                 'foo',
                 'bar'
@@ -111,25 +127,34 @@ class SpannerClientTest extends TestCase
      */
     public function testInstanceConfigurations()
     {
-        $this->connection->listInstanceConfigs(
-            Argument::withEntry('projectName', InstanceAdminClient::projectName(self::PROJECT))
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse([
+                'instance_configs' => [
+                    new InstanceConfig([
+                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
+                        'display_name' => 'Bar'
+                    ]),
+                    new InstanceConfig([
+                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
+                        'display_name' => 'Bat'
+                    ]),
+                ]
+            ]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
+
+        $this->instanceAdminClient->listInstanceConfigs(
+            Argument::that(function ($request) {
+                return $request->getParent() == InstanceAdminClient::projectName(self::PROJECT);
+            }),
+            Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn([
-                'instanceConfigs' => [
-                    [
-                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
-                        'displayName' => 'Bar'
-                    ], [
-                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
-                        'displayName' => 'Bat'
-                    ]
-                ]
-            ]);
+            ->willReturn($pagedListResponse->reveal());
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-
-        $configs = $this->client->instanceConfigurations();
+        $configs = $this->spannerClient->instanceConfigurations();
 
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
@@ -144,34 +169,60 @@ class SpannerClientTest extends TestCase
      */
     public function testPagedInstanceConfigurations()
     {
-        $firstCall = [
-            'instanceConfigs' => [
-                [
-                    'name' => 'projects/foo/instanceConfigs/bar',
-                    'displayName' => 'Bar'
-                ]
-            ],
-            'nextPageToken' => 'fooBar'
-        ];
+        $page1 = $this->prophesize(Page::class);
+        $page1->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse([
+                'instance_configs' => [
+                    new InstanceConfig([
+                        'name' => 'projects/foo/instanceConfigs/bar',
+                        'display_name' => 'Bar'
+                    ])
+                ],
+                'next_page_token' => 'fooBar'
+            ]));
 
-        $secondCall = [
-            'instanceConfigs' => [
-                [
-                    'name' => 'projects/foo/instanceConfigs/bat',
-                    'displayName' => 'Bat'
-                ]
-            ]
-        ];
+        $pagedListResponse1 = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse1->getPage()
+            ->willReturn($page1->reveal());
 
-        $this->connection->listInstanceConfigs(
-            Argument::withEntry('projectName', InstanceAdminClient::projectName(self::PROJECT))
+        $page2 = $this->prophesize(Page::class);
+        $page2->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse([
+                'instance_configs' => [
+                    new InstanceConfig([
+                        'name' => 'projects/foo/instanceConfigs/bat',
+                        'display_name' => 'Bat'
+                    ])
+                ]
+            ]));
+
+        $pagedListResponse2 = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse2->getPage()
+            ->willReturn($page2->reveal());
+
+        $iteration = 0;
+        $this->instanceAdminClient->listInstanceConfigs(
+            Argument::that(function ($request) use (&$iteration) {
+                $iteration++;
+                return $this->serializer->encodeMessage($request)['parent']
+                    == InstanceAdminClient::projectName(self::PROJECT) && $iteration == 1;
+            }),
+            Argument::type('array')
         )
-            ->shouldBeCalledTimes(2)
-            ->willReturn($firstCall, $secondCall);
+            ->shouldBeCalled()
+            ->willReturn($pagedListResponse1->reveal());
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->listInstanceConfigs(
+            Argument::that(function ($request) use (&$iteration) {
+                return $this->serializer->encodeMessage($request)['parent']
+                    == InstanceAdminClient::projectName(self::PROJECT) && $iteration == 2;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalled()
+            ->willReturn($pagedListResponse2->reveal());
 
-        $configs = $this->client->instanceConfigurations();
+        $configs = $this->spannerClient->instanceConfigurations();
 
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
@@ -186,7 +237,7 @@ class SpannerClientTest extends TestCase
      */
     public function testInstanceConfiguration()
     {
-        $config = $this->client->instanceConfiguration('bar');
+        $config = $this->spannerClient->instanceConfiguration('bar');
 
         $this->assertInstanceOf(InstanceConfiguration::class, $config);
         $this->assertEquals('bar', InstanceAdminClient::parseName($config->name())['instance_config']);
@@ -197,26 +248,30 @@ class SpannerClientTest extends TestCase
      */
     public function testCreateInstance()
     {
-        $this->connection->createInstance(Argument::that(function ($arg) {
-            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
-                return false;
-            }
-
-            return $arg['config'] === InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG);
-        }))
+        $this->instanceAdminClient->createInstance(
+            Argument::that(function ($request) use (&$iteration) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals(
+                    $message['instance']['name'],
+                    InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)
+                );
+                $this->assertEquals(
+                    $message['instance']['config'],
+                    InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)
+                );
+                return true;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'operations/foo'
-            ]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
         $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
 
-        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE);
+        $operation = $this->spannerClient->createInstance($config->reveal(), self::INSTANCE);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+        $this->assertInstanceOf(OperationResponse::class, $operation);
     }
 
     /**
@@ -224,32 +279,35 @@ class SpannerClientTest extends TestCase
      */
     public function testCreateInstanceWithNodes()
     {
-        $this->connection->createInstance(Argument::that(function ($arg) {
-            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
-                return false;
-            }
+        $this->instanceAdminClient->createInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                if ($message['instance']['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                    return false;
+                }
 
-            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
-                return false;
-            }
+                if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(
+                    self::PROJECT,
+                    self::CONFIG
+                )) {
+                    return false;
+                }
 
-            return isset($arg['nodeCount']) && $arg['nodeCount'] === 2;
-        }))
+                return isset($message['instance']['nodeCount']) && $message['instance']['nodeCount'] === 2;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'operations/foo'
-            ]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
         $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
 
-        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE, [
+        $operation = $this->spannerClient->createInstance($config->reveal(), self::INSTANCE, [
             'nodeCount' => 2
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+        $this->assertInstanceOf(OperationResponse::class, $operation);
     }
 
     /**
@@ -257,32 +315,38 @@ class SpannerClientTest extends TestCase
      */
     public function testCreateInstanceWithProcessingUnits()
     {
-        $this->connection->createInstance(Argument::that(function ($arg) {
-            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
-                return false;
-            }
+        $this->instanceAdminClient->createInstance(
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                if ($message['instance']['name'] !== InstanceAdminClient::instanceName(
+                    self::PROJECT,
+                    self::INSTANCE
+                )) {
+                    return false;
+                }
+                if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(
+                    self::PROJECT,
+                    self::CONFIG
+                )) {
+                    return false;
+                }
 
-            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
-                return false;
-            }
-
-            return isset($arg['processingUnits']) && $arg['processingUnits'] === 2000;
-        }))
+                return isset($message['instance']['processingUnits'])
+                    && $message['instance']['processingUnits'] === 2000;
+            }),
+            Argument::type('array')
+        )
             ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'operations/foo'
-            ]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
         $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
 
-        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE, [
+        $operation = $this->spannerClient->createInstance($config->reveal(), self::INSTANCE, [
             'processingUnits' => 2000
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+        $this->assertInstanceOf(OperationResponse::class, $operation);
     }
 
     /**
@@ -294,7 +358,7 @@ class SpannerClientTest extends TestCase
 
         $config = $this->prophesize(InstanceConfiguration::class);
 
-        $this->client->createInstance($config->reveal(), self::INSTANCE, [
+        $this->spannerClient->createInstance($config->reveal(), self::INSTANCE, [
             'nodeCount' => 2,
             'processingUnits' => 2000,
         ]);
@@ -305,7 +369,7 @@ class SpannerClientTest extends TestCase
      */
     public function testInstance()
     {
-        $i = $this->client->instance('foo');
+        $i = $this->spannerClient->instance('foo');
         $this->assertInstanceOf(Instance::class, $i);
         $this->assertEquals('foo', InstanceAdminClient::parseName($i->name())['instance']);
     }
@@ -315,7 +379,7 @@ class SpannerClientTest extends TestCase
      */
     public function testInstanceWithInstanceArray()
     {
-        $i = $this->client->instance('foo', ['key' => 'val']);
+        $i = $this->spannerClient->instance('foo', ['key' => 'val']);
         $this->assertEquals('val', $i->info()['key']);
     }
 
@@ -324,20 +388,31 @@ class SpannerClientTest extends TestCase
      */
     public function testInstances()
     {
-        $this->connection->listInstances(
-            Argument::withEntry('projectName', InstanceAdminClient::projectName(self::PROJECT))
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListInstancesResponse([
+                'instances' => [
+                    new InstanceProto(['name' => 'projects/test-project/instances/foo']),
+                    new InstanceProto(['name' => 'projects/test-project/instances/bar']),
+                ]
+            ]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
+        $this->instanceAdminClient->listInstances(
+            Argument::that(function ($request) {
+                $this->assertEquals(
+                    $request->getParent(),
+                    InstanceAdminClient::projectName(self::PROJECT)
+                );
+                return true;
+            }),
+            Argument::type('array')
         )
             ->shouldBeCalled()
-            ->willReturn([
-                'instances' => [
-                    ['name' => 'projects/test-project/instances/foo'],
-                    ['name' => 'projects/test-project/instances/bar'],
-                ]
-            ]);
+            ->willReturn($pagedListResponse->reveal());
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
-
-        $instances = $this->client->instances();
+        $instances = $this->spannerClient->instances();
         $this->assertInstanceOf(ItemIterator::class, $instances);
 
         $instances = iterator_to_array($instances);
@@ -353,108 +428,108 @@ class SpannerClientTest extends TestCase
     {
         $opName = 'operations/foo';
 
-        $op = $this->client->resumeOperation($opName);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
-        $this->assertEquals($op->name(), $opName);
+        $op = $this->spannerClient->resumeOperation($opName);
+        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertEquals($op->getName(), $opName);
     }
 
     public function testConnect()
     {
-        $database = $this->client->connect(self::INSTANCE, self::DATABASE);
+        $database = $this->spannerClient->connect(self::INSTANCE, self::DATABASE);
         $this->assertInstanceOf(Database::class, $database);
         $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($database->name())['database']);
     }
 
     public function testConnectWithInstance()
     {
-        $inst = $this->client->instance(self::INSTANCE);
-        $database = $this->client->connect($inst, self::DATABASE);
+        $inst = $this->spannerClient->instance(self::INSTANCE);
+        $database = $this->spannerClient->connect($inst, self::DATABASE);
         $this->assertInstanceOf(Database::class, $database);
         $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($database->name())['database']);
     }
 
     public function testKeyset()
     {
-        $ks = $this->client->keySet();
+        $ks = $this->spannerClient->keySet();
         $this->assertInstanceOf(KeySet::class, $ks);
     }
 
     public function testKeyRange()
     {
-        $kr = $this->client->keyRange();
+        $kr = $this->spannerClient->keyRange();
         $this->assertInstanceOf(KeyRange::class, $kr);
     }
 
     public function testBytes()
     {
-        $b = $this->client->bytes('foo');
+        $b = $this->spannerClient->bytes('foo');
         $this->assertInstanceOf(Bytes::class, $b);
         $this->assertEquals(base64_encode('foo'), (string)$b);
     }
 
     public function testDate()
     {
-        $d = $this->client->date(new \DateTime);
+        $d = $this->spannerClient->date(new \DateTime);
         $this->assertInstanceOf(Date::class, $d);
     }
 
     public function testTimestamp()
     {
-        $ts = $this->client->timestamp(new \DateTime);
+        $ts = $this->spannerClient->timestamp(new \DateTime);
         $this->assertInstanceOf(Timestamp::class, $ts);
     }
 
     public function testNumeric()
     {
-        $n = $this->client->numeric('12345.123456789');
+        $n = $this->spannerClient->numeric('12345.123456789');
         $this->assertInstanceOf(Numeric::class, $n);
     }
 
     public function testPgNumeric()
     {
-        $decimalVal = $this->client->pgNumeric('12345.123456789');
+        $decimalVal = $this->spannerClient->pgNumeric('12345.123456789');
         $this->assertInstanceOf(PgNumeric::class, $decimalVal);
 
-        $scientificVal = $this->client->pgNumeric('1.09E100');
+        $scientificVal = $this->spannerClient->pgNumeric('1.09E100');
         $this->assertInstanceOf(PgNumeric::class, $scientificVal);
     }
 
     public function testPgJsonB()
     {
-        $strVal = $this->client->pgJsonb('{}');
+        $strVal = $this->spannerClient->pgJsonb('{}');
         $this->assertInstanceOf(PgJsonb::class, $strVal);
 
-        $arrVal = $this->client->pgJsonb(["a" => 1, "b" => 2]);
+        $arrVal = $this->spannerClient->pgJsonb(["a" => 1, "b" => 2]);
         $this->assertInstanceOf(PgJsonb::class, $arrVal);
 
         $stub = $this->prophesize('stdClass');
         $stub->willImplement('JsonSerializable');
         $stub->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
-        $objVal = $this->client->pgJsonb($stub->reveal());
+        $objVal = $this->spannerClient->pgJsonb($stub->reveal());
         $this->assertInstanceOf(PgJsonb::class, $objVal);
     }
 
     public function testPgOid()
     {
-        $oidVal = $this->client->pgOid('123');
+        $oidVal = $this->spannerClient->pgOid('123');
         $this->assertInstanceOf(PgOid::class, $oidVal);
     }
 
     public function testInt64()
     {
-        $i64 = $this->client->int64('123');
+        $i64 = $this->spannerClient->int64('123');
         $this->assertInstanceOf(Int64::class, $i64);
     }
 
     public function testDuration()
     {
-        $d = $this->client->duration(10, 1);
+        $d = $this->spannerClient->duration(10, 1);
         $this->assertInstanceOf(Duration::class, $d);
     }
 
     public function testCommitTimestamp()
     {
-        $t = $this->client->commitTimestamp();
+        $t = $this->spannerClient->commitTimestamp();
         $this->assertInstanceOf(CommitTimestamp::class, $t);
     }
 
@@ -462,12 +537,12 @@ class SpannerClientTest extends TestCase
     {
         $instance = $this->prophesize(Instance::class);
         $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
-        $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
+        $this->spannerClient->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
 
     public function testSpannerClientWithDirectedRead()
     {
-        $instance = $this->client->instance('testInstance');
+        $instance = $this->spannerClient->instance('testInstance');
         $this->assertEquals(
             $instance->directedReadOptions(),
             $this->directedReadOptionsIncludeReplicas

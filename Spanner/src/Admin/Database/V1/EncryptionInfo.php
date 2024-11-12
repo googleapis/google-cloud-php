@@ -20,7 +20,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionInfo.Type encryption_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_type = 0;
+    protected $encryption_type = 0;
     /**
      * Output only. If present, the status of a recent encrypt/decrypt call on
      * underlying data for this database or backup. Regardless of status, data is
@@ -28,14 +28,14 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status encryption_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_status = null;
+    protected $encryption_status = null;
     /**
      * Output only. A Cloud KMS key version that is being used to protect the
      * database or backup.
      *
      * Generated from protobuf field <code>string kms_key_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_version = '';
+    protected $kms_key_version = '';
 
     /**
      * Constructor.

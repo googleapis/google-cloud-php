@@ -19,11 +19,11 @@ namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\Lock\MockValues;
-use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\RequestHandler;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemInterface;
@@ -174,7 +174,7 @@ class CacheSessionPoolTest extends TestCase
     public function testAcquireRemovesToCreateItemsIfCreateCallFails()
     {
         $exceptionThrown = false;
-        $config = ['maxSessions' => 1];
+        $config = ['maxSessions' => 1, 'sleepIntervalSeconds' => 0];
         $pool = new CacheSessionPoolStub($this->getCacheItemPool(), $config, $this->time);
         $pool->setDatabase($this->getDatabase(true));
 
@@ -195,9 +195,10 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireIfCreateSessionCallFails()
     {
+        $config = ['sleepIntervalSeconds' => 0];
         $exceptionThrown = false;
         $exceptionMessage = null;
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), $config);
         $pool->setDatabase($this->getDatabase(true));
 
         try {
@@ -857,7 +858,7 @@ class CacheSessionPoolTest extends TestCase
     {
         $database = $this->prophesize(DatabaseStub::class);
         $session = $this->prophesize(SessionStub::class);
-        $connection = $this->prophesize(Grpc::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
 
         $session->expiration()
             ->willReturn($this->time + 3600);
@@ -866,18 +867,17 @@ class CacheSessionPoolTest extends TestCase
         if ($willDeleteSessions) {
             $session->delete()
             ->willReturn(null);
-            $connection->deleteSessionAsync(Argument::any())
+            $database->deleteSessionAsync(Argument::any())
                 ->willReturn(new FulfilledPromise(
                     new DumbObject()
                 ));
         } else {
-            $connection->deleteSessionAsync(Argument::any())
+            $database->deleteSessionAsync(Argument::any())
                 ->willReturn(new RejectedPromise(
                     new DumbObject()
                 ));
         }
-        $database->connection()
-            ->willReturn($connection->reveal());
+
         $database->session(Argument::any())
             ->will(function ($args) use ($session) {
                 $session->name()
@@ -916,11 +916,11 @@ class CacheSessionPoolTest extends TestCase
         };
 
         if ($expectedCreateCalls) {
-            $connection->batchCreateSessions(Argument::any())
+            $database->batchCreateSessions(Argument::any())
                 ->shouldBeCalledTimes($expectedCreateCalls)
                 ->will($createRes);
         } else {
-            $connection->batchCreateSessions(Argument::any())
+            $database->batchCreateSessions(Argument::any())
                 ->will($createRes);
         }
 
@@ -1188,13 +1188,10 @@ class CacheSessionPoolTest extends TestCase
         ]);
         $database->name()
             ->willReturn(self::DATABASE_NAME);
-        $connection = $this->prophesize(Grpc::class);
-        $connection->batchCreateSessions(['database' => self::DATABASE_NAME,
+        $database->batchCreateSessions([
             'sessionTemplate' => ['labels' => [], 'creator_role' => 'Reader'], 'sessionCount' => 1])
             ->shouldBeCalled()
             ->willReturn(['session' => array(['name' => 'session', 'expirtation' => $this->time])]);
-        $database->connection()
-            ->willReturn($connection->reveal());
         $pool->setDatabase($database->reveal());
 
         $pool->warmup();

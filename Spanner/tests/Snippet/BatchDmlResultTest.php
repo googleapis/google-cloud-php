@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -27,7 +26,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,15 +37,17 @@ class BatchDmlResultTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
     use TimeTrait;
 
+    private $spannerClient;
+    private $serializer;
     private $result;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->serializer = new Serializer();
         $this->result = new BatchDmlResult([
             'resultSets' => [
                 [
@@ -69,24 +70,22 @@ class BatchDmlResultTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->getConnStub();
-        $connection->executeBatchDml(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'resultSets' => []
-            ]);
+        $this->spannerClient->executeBatchDml(
+            null,
+            ['resultSets' => []]
+        );
 
-        $connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => 'ddfdfd'
-            ]);
+        $this->spannerClient->beginTransaction(
+            null,
+            ['id' => 'id']
+        );
 
-        $connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->spannerClient->commit(
+            null,
+            [
                 'commitTimestamp' => $this->formatTimeAsString(new \DateTime, 0)
-            ]);
+            ]
+        );
 
         $session = $this->prophesize(Session::class);
         $session->name()->willReturn(
@@ -109,10 +108,9 @@ class BatchDmlResultTest extends SnippetTestCase
         $instance->directedReadOptions()->willReturn([]);
 
         $database = TestHelpers::stub(Database::class, [
-            $connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $instance->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             'test-project',
             'projects/test-project/instances/my-instance/databases/my-database',
             $sessionPool->reveal()

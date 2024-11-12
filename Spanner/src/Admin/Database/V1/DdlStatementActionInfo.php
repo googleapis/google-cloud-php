@@ -23,7 +23,7 @@ class DdlStatementActionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string action = 1;</code>
      */
-    private $action = '';
+    protected $action = '';
     /**
      * The entity type for the DDL statement, e.g. TABLE, INDEX, VIEW, etc.
      * This field can be empty string for some DDL statement,
@@ -31,7 +31,7 @@ class DdlStatementActionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity_type = 2;</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * The entity name(s) being operated on the DDL statement.
      * E.g.
