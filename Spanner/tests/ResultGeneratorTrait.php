@@ -35,36 +35,16 @@ use Google\Cloud\Spanner\Tests\Unit\Fixtures;
 trait ResultGeneratorTrait
 {
     /**
-     * Yield a ResultSet response.
-     *
-     * @param bool $withStats If true, statistics will be included.
-     *        **Defaults to** `false`.
-     * @param string|null $transaction If set, the value will be included as the
-     *        transaction ID. **Defaults to** `null`.
-     * @return \Generator
-     */
-    private function resultGenerator($withStats = false, $transaction = null)
-    {
-        return $this->yieldRows([
-            [
-                'name' => 'ID',
-                'type' => Database::TYPE_INT64,
-                'value' => '10'
-            ]
-        ], $withStats, $transaction);
-    }
-
-    /**
      * Yield rows with user-specified data.
      *
      * @param array[] $rows A list of arrays containing `name`, `type` and `value` keys.
-     * @param ResultSetStats|null $withStats If true, statistics will be included.
+     * @param ResultSetStats|null $stats If true, statistics will be included.
      *        **Defaults to** `false`.
      * @param string|null $transactionId If set, the value will be included as the
      *        transaction ID. **Defaults to** `null`.
      * @return \Generator
      */
-    private function yieldRows(array $rows, $stats = false, $transactionId = null)
+    private function yieldRows(array $rows, $stats = null, $transactionId = null)
     {
         $fields = [];
         $values = [];
@@ -129,8 +109,15 @@ trait ResultGeneratorTrait
                 ->willReturn($this->resultGeneratorChunks($chunks));
 
         } else {
+            $rows = [
+                [
+                    'name' => 'ID',
+                    'type' => Database::TYPE_INT64,
+                    'value' => '10'
+                ]
+            ];
             $this->stream->readAll()
-                ->willReturn($this->resultGenerator($stats, $transactionId));
+                ->willReturn($this->yieldRows($rows, $stats, $transactionId));
         }
 
         return $this->stream->reveal();

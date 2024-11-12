@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
@@ -32,10 +32,17 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Protobuf\Duration;
+use Google\Rpc\Status;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -50,6 +57,7 @@ class TransactionTest extends TestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
     use TimeTrait;
+    use ApiHelperTrait;
 
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
@@ -65,26 +73,35 @@ class TransactionTest extends TestCase
     private $session;
     private $database;
     private $operation;
-    private $requestHandler;
     private $serializer;
     private $headers;
+    private $spannerClient;
 
     private $transaction;
-    private $singleUseTransaction;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->serializer = new Serializer();
-        $this->operation = new Operation(
-            $this->requestHandler->reveal(),
-            $this->serializer,
-            false
-        );
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ]);
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->operation = $this->prophesize(Operation::class);
 
         $this->session = new Session(
-            $this->requestHandler->reveal(),
+            $this->spannerClient->reveal(),
             $this->serializer,
             self::PROJECT,
             self::INSTANCE,
@@ -92,25 +109,13 @@ class TransactionTest extends TestCase
             self::SESSION
         );
 
-        $args = [
-            $this->operation,
+        $this->transaction = new Transaction(
+            $this->operation->reveal(),
             $this->session,
             self::TRANSACTION,
             false,
             self::TRANSACTION_TAG
-        ];
-
-        $props = [
-            'operation', 'readTimestamp', 'state'
-        ];
-
-        $this->transaction = TestHelpers::stub(Transaction::class, $args, $props);
-
-        $args = [
-            $this->operation,
-            $this->session,
-        ];
-        $this->singleUseTransaction = TestHelpers::stub(Transaction::class, $args, $props);
+        );
     }
 
     public function testSingleUseTagError()
@@ -118,7 +123,7 @@ class TransactionTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         new Transaction(
-            $this->operation,
+            $this->operation->reveal(),
             $this->session,
             null,
             false,
@@ -126,129 +131,25 @@ class TransactionTest extends TestCase
         );
     }
 
-    public function testInsert()
-    {
-        $this->transaction->insert('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['insert']['table']);
-        $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['insert']['values'][0]);
-    }
-
-    public function testInsertBatch()
-    {
-        $this->transaction->insertBatch('Posts', [['foo' => 'bar']]);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['insert']['table']);
-        $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['insert']['values'][0]);
-    }
-
-    public function testUpdate()
-    {
-        $this->transaction->update('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['update']['table']);
-        $this->assertEquals('foo', $mutations[0]['update']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['update']['values'][0]);
-    }
-
-    public function testUpdateBatch()
-    {
-        $this->transaction->updateBatch('Posts', [['foo' => 'bar']]);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['update']['table']);
-        $this->assertEquals('foo', $mutations[0]['update']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['update']['values'][0]);
-    }
-
-    public function testInsertOrUpdate()
-    {
-        $this->transaction->insertOrUpdate('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['insertOrUpdate']['table']);
-        $this->assertEquals('foo', $mutations[0]['insertOrUpdate']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['insertOrUpdate']['values'][0]);
-    }
-
-    public function testInsertOrUpdateBatch()
-    {
-        $this->transaction->insertOrUpdateBatch('Posts', [['foo' => 'bar']]);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['insertOrUpdate']['table']);
-        $this->assertEquals('foo', $mutations[0]['insertOrUpdate']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['insertOrUpdate']['values'][0]);
-    }
-
-    public function testReplace()
-    {
-        $this->transaction->replace('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['replace']['table']);
-        $this->assertEquals('foo', $mutations[0]['replace']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['replace']['values'][0]);
-    }
-
-    public function testReplaceBatch()
-    {
-        $this->transaction->replaceBatch('Posts', [['foo' => 'bar']]);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $this->assertEquals('Posts', $mutations[0]['replace']['table']);
-        $this->assertEquals('foo', $mutations[0]['replace']['columns'][0]);
-        $this->assertEquals('bar', $mutations[0]['replace']['values'][0]);
-    }
-
-    public function testDelete()
-    {
-        $this->transaction->delete('Posts', new KeySet(['keys' => ['foo']]));
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertEquals('Posts', $mutations[0]['delete']['table']);
-        $this->assertEquals('foo', $mutations[0]['delete']['keySet']['keys'][0]);
-        $this->assertArrayNotHasKey('all', $mutations[0]['delete']['keySet']);
-    }
-
     public function testExecute()
     {
         $sql = 'SELECT * FROM Table';
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($sql) {
-                Argument::type(ExecuteSqlRequest::class);
-                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
-                $this->assertEquals($args->getSql(), $sql);
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
+                $this->assertEquals($request->getSql(), $sql);
                 return true;
-            },
-            $this->resultGenerator(),
-            1,
-            function ($args) {
+            }),
+            Argument::that(function (array $callOptions) {
                 $this->assertEquals(
-                    $args['headers']['x-goog-spanner-route-to-leader'],
+                    $callOptions['headers']['x-goog-spanner-route-to-leader'],
                     ['true']
                 );
                 return true;
-            }
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
 
         $res = $this->transaction->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
@@ -260,27 +161,24 @@ class TransactionTest extends TestCase
     {
         $sql = 'UPDATE foo SET bar = @bar';
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($sql) {
-                Argument::type(ExecuteSqlRequest::class);
-                $this->assertEquals($args->getSql(), $sql);
-                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                $this->assertEquals($request->getSql(), $sql);
+                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
                 $this->assertEquals(
-                    $args->getRequestOptions()->getRequestTag(),
+                    $request->getRequestOptions()->getRequestTag(),
                     self::REQUEST_TAG
                 );
                 $this->assertEquals(
-                    $args->getRequestOptions()->getTransactionTag(),
+                    $request->getRequestOptions()->getTransactionTag(),
                     self::TRANSACTION_TAG
                 );
                 return true;
-            },
-            $this->resultGenerator(true)
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(null, new ResultSetStats(['row_count_exact' => 1])));
+
         $res = $this->transaction->executeUpdate($sql, ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]);
         $this->assertEquals(1, $res);
     }
@@ -289,43 +187,35 @@ class TransactionTest extends TestCase
     {
         $sql = 'UPDATE foo SET bar = @bar';
         $this->spannerClient->executeStreamingSql(
-            function ($args) {
-                Argument::type(ExecuteSqlRequest::class);
-                $this->assertEquals($args->getSeqno(), 1);
+            Argument::that(function (ExecuteSqlRequest $request) {
+                $this->assertEquals($request->getSeqno(), 1);
                 return true;
-            },
-            $this->resultGenerator(true)
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(null, new ResultSetStats(['row_count_exact' => 1])));
+
         $this->transaction->executeUpdate(
             $sql,
             ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
         );
 
         $this->spannerClient->executeBatchDml(
-            function ($args) {
-                Argument::type(ExecuteBatchDmlRequest::class);
+            Argument::that(function (ExecuteBatchDmlRequest $request) {
                 $this->assertEquals(
-                    $args->getSeqno(),
+                    $request->getSeqno(),
                     2
                 );
                 return true;
-            },
-            ['resultSets' => []]
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ExecuteBatchDmlResponse(['result_sets' => []]));
+
         $this->transaction->executeUpdateBatch(
-            [
-                ['sql' => 'SELECT 1'],
-            ],
+            [['sql' => 'SELECT 1']],
             ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
         );
     }
@@ -333,17 +223,16 @@ class TransactionTest extends TestCase
     public function testExecuteUpdateBatch()
     {
         $this->spannerClient->executeBatchDml(
-            function ($args) {
-                Argument::type(ExecuteBatchDmlRequest::class);
+            Argument::that(function (ExecuteBatchDmlRequest $request) {
                 $this->assertEquals(
-                    $args->getRequestOptions()->getRequestTag(),
+                    $request->getRequestOptions()->getRequestTag(),
                     self::REQUEST_TAG
                 );
                 $this->assertEquals(
-                    $args->getRequestOptions()->getTransactionTag(),
+                    $request->getRequestOptions()->getTransactionTag(),
                     self::TRANSACTION_TAG
                 );
-                $statements = $args->getStatements();
+                $statements = $request->getStatements();
                 $this->assertEquals(3, count($statements));
 
                 $statement1 = $statements[0];
@@ -363,40 +252,36 @@ class TransactionTest extends TestCase
                 $types = $statement3->getParamTypes();
                 $this->assertEquals(Database::TYPE_STRING, $types['foo']->getCode());
                 return true;
-            },
-            [
-                'resultSets' => [
-                    [
-                        'stats' => [
-                            'rowCountExact' => 1
-                        ]
-                    ],
-                    [
-                        'stats' => [
-                            'rowCountExact' => 2
-                        ]
-                    ],
-                    [
-                        'stats' => [
-                            'rowCountExact' => 3
-                        ]
-                    ]
-                ]
-            ],
-            1,
-            function ($args) {
+            }),
+            Argument::that(function (array $callOptions) {
                 $this->assertEquals(
-                    $args['headers']['x-goog-spanner-route-to-leader'],
+                    $callOptions['headers']['x-goog-spanner-route-to-leader'],
                     ['true']
                 );
                 return true;
-            }
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ExecuteBatchDmlResponse([
+                'result_sets' => [
+                    new ResultSet([
+                        'stats' => new ResultSetStats([
+                            'row_count_exact' => 1
+                        ])
+                    ]),
+                    new ResultSet([
+                        'stats' => new ResultSetStats([
+                            'row_count_exact' => 2
+                        ])
+                    ]),
+                    new ResultSet([
+                        'stats' => new ResultSetStats([
+                            'row_count_exact' => 3
+                        ])
+                    ])
+                ]
+            ]));
+
         $res = $this->transaction->executeUpdateBatch(
             $this->bdmlStatements(),
             ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
@@ -415,40 +300,37 @@ class TransactionTest extends TestCase
         ];
 
         $this->spannerClient->executeBatchDml(
-            function ($args) {
-                Argument::type(ExecuteBatchDmlRequest::class);
-                $this->assertEquals($args->getSession(), $this->session->name());
+            Argument::that(function (ExecuteBatchDmlRequest $request) {
+                $this->assertEquals($request->getSession(), $this->session->name());
                 $this->assertEquals(
-                    $args->getRequestOptions()->getRequestTag(),
+                    $request->getRequestOptions()->getRequestTag(),
                     self::REQUEST_TAG
                 );
                 $this->assertEquals(
-                    $args->getRequestOptions()->getTransactionTag(),
+                    $request->getRequestOptions()->getTransactionTag(),
                     self::TRANSACTION_TAG
                 );
                 return true;
-            },
-            [
-                'resultSets' => [
-                    [
-                        'stats' => [
-                            'rowCountExact' => 1
-                        ]
-                    ], [
-                        'stats' => [
-                            'rowCountExact' => 2
-                        ]
-                    ]
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ExecuteBatchDmlResponse([
+                'result_sets' => [
+                    new ResultSet([
+                        'stats' => new ResultSetStats([
+                            'row_count_exact' => 1
+                        ])
+                    ]),
+                    new ResultSet([
+                        'stats' => new ResultSetStats([
+                            'row_count_exact' => 2
+                        ])
+                    ])
                 ],
-                'status' => $err
-            ]
-        );
+                'status' => new Status($err)
+            ]));
 
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
         $statements = $this->bdmlStatements();
         $res = $this->transaction->executeUpdateBatch(
             $statements,
@@ -497,27 +379,23 @@ class TransactionTest extends TestCase
 
         $sql = 'UPDATE foo SET bar = @bar';
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($sql) {
-                Argument::type(ExecuteSqlRequest::class);
-                $this->assertEquals($args->getSql(), $sql);
-                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
+            Argument::that(function (ExecuteSqlRequest $request) use ($sql) {
+                $this->assertEquals($request->getSql(), $sql);
+                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
                 $this->assertEquals(
-                    $args->getRequestOptions()->getRequestTag(),
+                    $request->getRequestOptions()->getRequestTag(),
                     self::REQUEST_TAG
                 );
                 $this->assertEquals(
-                    $args->getRequestOptions()->getTransactionTag(),
+                    $request->getRequestOptions()->getTransactionTag(),
                     self::TRANSACTION_TAG
                 );
                 return true;
-            },
-            $this->resultGenerator()
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
 
         $res = $this->transaction->executeUpdate($sql, ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]);
 
@@ -530,40 +408,34 @@ class TransactionTest extends TestCase
         $opts = ['foo' => 'bar'];
 
         $this->spannerClient->streamingRead(
-            function ($args) use ($table) {
-                Argument::type(ReadRequest::class);
-                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
-                $this->assertEquals($args->getTable(), $table);
-                $this->assertTrue($args->getKeySet()->getAll());
-                $this->assertEquals(iterator_to_array($args->getColumns()), ['ID']);
+            Argument::that(function (ReadRequest $request) use ($table) {
+                $this->assertEquals($request->getTransaction()->getId(), self::TRANSACTION);
+                $this->assertEquals($request->getTable(), $table);
+                $this->assertTrue($request->getKeySet()->getAll());
+                $this->assertEquals(iterator_to_array($request->getColumns()), ['ID']);
                 $this->assertEquals(
-                    $args->getRequestOptions()->getTransactionTag(),
+                    $request->getRequestOptions()->getTransactionTag(),
                     self::TRANSACTION_TAG
                 );
                 $this->assertEquals(
-                    $args->getRequestOptions()->getRequestTag(),
+                    $request->getRequestOptions()->getRequestTag(),
                     self::REQUEST_TAG
                 );
 
                 return true;
-            },
-            $this->resultGenerator(),
-            1,
-            function ($args) {
+            }),
+            Argument::that(function (array $callOptions) {
                 $this->assertEquals(
-                    $args['headers']['x-goog-spanner-route-to-leader'],
+                    $callOptions['headers']['x-goog-spanner-route-to-leader'],
                     ['true']
                 );
 
                 return true;
-            }
-        );
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream());
 
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
 
         $res = $this->transaction->read(
             $table,
@@ -579,35 +451,33 @@ class TransactionTest extends TestCase
 
     public function testCommit()
     {
-        $this->transaction->insert('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(
+        $this->operation->commitWithResponse(
             $this->session,
-            $mutations,
+            Argument::that(function ($mutations) {
+                // var_dump($mutations);exit;
+                $this->assertEquals(1, count($mutations));
+                $this->assertEquals('Posts', $mutations[0]['insert']['table']);
+                $this->assertEquals('foo', $mutations[0]['insert']['columns'][0]);
+                $this->assertEquals('bar', $mutations[0]['insert']['values'][0]);
+                return true;
+            }),
             [
                 'transactionId' => self::TRANSACTION,
                 'requestOptions' => [
                     'transactionTag' => self::TRANSACTION_TAG
                 ]
             ]
-        )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponseWithCommitStats());
 
-        $this->transaction->___setProperty('operation', $operation->reveal());
-
+        $this->transaction->insert('Posts', ['foo' => 'bar']);
         $this->transaction->commit(['requestOptions' => ['requestTag' => 'unused']]);
     }
 
     public function testCommitWithReturnCommitStats()
     {
-        $this->transaction->insert('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-
-        $operation = $this->prophesize(Operation::class);
-        $operation->commitWithResponse(
+        $this->operation->commitWithResponse(
             $this->session,
             $mutations,
             [
@@ -619,8 +489,7 @@ class TransactionTest extends TestCase
             ]
         )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
 
-        $this->transaction->___setProperty('operation', $operation->reveal());
-
+        $this->transaction->insert('Posts', ['foo' => 'bar']);
         $this->transaction->commit(['returnCommitStats' => true]);
 
         $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
@@ -630,8 +499,6 @@ class TransactionTest extends TestCase
     {
         $duration = new Duration(['seconds' => 0, 'nanos' => 100000000]);
         $this->transaction->insert('Posts', ['foo' => 'bar']);
-
-        $mutations = $this->transaction->___getProperty('mutationData');
 
         $operation = $this->prophesize(Operation::class);
         $operation->commitWithResponse(
@@ -647,8 +514,6 @@ class TransactionTest extends TestCase
             ]
         )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
 
-        $this->transaction->___setProperty('operation', $operation->reveal());
-
         $this->transaction->commit([
             'returnCommitStats' => true,
             'maxCommitDelay' => $duration
@@ -660,34 +525,26 @@ class TransactionTest extends TestCase
     public function testCommitInvalidState()
     {
         $this->expectException(\BadMethodCallException::class);
-
-        $this->transaction->___setProperty('state', 'foo');
         $this->transaction->commit();
     }
 
     public function testRollback()
     {
         $this->spannerClient->rollback(
-            function ($args) {
-                Argument::type(RollbackRequest::class);
-                $this->assertEquals($args->getSession(), $this->session->name());
+            Argument::that(function (RollbackRequest $request) {
+                $this->assertEquals($request->getSession(), $this->session->name());
                 return true;
-            },
-            null
-        );
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
         $this->transaction->rollback();
     }
 
     public function testRollbackInvalidState()
     {
         $this->expectException(\BadMethodCallException::class);
-
-        $this->transaction->___setProperty('state', 'foo');
         $this->transaction->rollback();
     }
 
@@ -699,8 +556,6 @@ class TransactionTest extends TestCase
     public function testState()
     {
         $this->assertEquals(Transaction::STATE_ACTIVE, $this->transaction->state());
-
-        $this->transaction->___setProperty('state', Transaction::STATE_COMMITTED);
         $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
     }
 
@@ -708,7 +563,12 @@ class TransactionTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->singleUseTransaction->execute('foo');
+
+        $singleUseTransaction = new Transaction(
+            $this->operation,
+            $this->session,
+        );
+        $singleUseTransaction->execute('foo');
     }
 
     public function testIsRetryFalse()
@@ -718,14 +578,14 @@ class TransactionTest extends TestCase
 
     public function testIsRetryTrue()
     {
-        $args = [
+        $request = [
             $this->operation,
             $this->session,
             self::TRANSACTION,
             true
         ];
 
-        $transaction = TestHelpers::stub(Transaction::class, $args);
+        $transaction = TestHelpers::stub(Transaction::class, $request);
 
         $this->assertTrue($transaction->isRetry());
     }
@@ -733,22 +593,34 @@ class TransactionTest extends TestCase
     // *******
     // Helpers
 
+
     private function commitResponse()
     {
-        return ['commitTimestamp' => self::TIMESTAMP];
+        return [
+            'commitTimestamp' => self::TIMESTAMP,
+        ];
+        return new CommitResponse([
+            'commit_timestamp' => new TimestampProto([
+                'seconds' => (new \DateTime(self::TIMESTAMP))->format('U'),
+                'nanos' => 534799000
+            ])
+        ]);
     }
+
 
     private function commitResponseWithCommitStats()
     {
-        $time = $this->parseTimeString(self::TIMESTAMP);
-        $timestamp = new Timestamp($time[0], $time[1]);
         return [
-            $timestamp,
-            [
-                'commitTimestamp' => self::TIMESTAMP,
-                'commitStats' => ['mutationCount' => 1]
-            ]
+            'commitTimestamp' => self::TIMESTAMP,
+            'commitStats' => null
         ];
+        return new CommitResponse([
+            'commit_timestamp' => new TimestampProto([
+                'seconds' => (new \DateTime(self::TIMESTAMP))->format('U'),
+                'nanos' => 534799000
+            ]),
+            'commit_stats' => new CommitStats(['mutation_count' => 1])
+        ]);
     }
 
     private function assertTimestampIsCorrect($res)

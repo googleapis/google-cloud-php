@@ -308,6 +308,7 @@ trait TransactionalReadTrait
         unset($options['singleUse']);
 
         $result = $this->operation->execute($this->session, $sql, $options);
+
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }
