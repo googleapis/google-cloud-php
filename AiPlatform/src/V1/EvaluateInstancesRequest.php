@@ -82,6 +82,9 @@ class EvaluateInstancesRequest extends \Google\Protobuf\Internal\Message
      *           Input for tool parameter key match metric.
      *     @type \Google\Cloud\AIPlatform\V1\ToolParameterKVMatchInput $tool_parameter_kv_match_input
      *           Input for tool parameter key value match metric.
+     *     @type \Google\Cloud\AIPlatform\V1\CometInput $comet_input
+     *           Translation metrics.
+     *           Input for Comet metric.
      *     @type \Google\Cloud\AIPlatform\V1\MetricxInput $metricx_input
      *           Input for Metricx metric.
      *     @type string $location
@@ -815,6 +818,39 @@ class EvaluateInstancesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ToolParameterKVMatchInput::class);
         $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Translation metrics.
+     * Input for Comet metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CometInput comet_input = 31;</code>
+     * @return \Google\Cloud\AIPlatform\V1\CometInput|null
+     */
+    public function getCometInput()
+    {
+        return $this->readOneof(31);
+    }
+
+    public function hasCometInput()
+    {
+        return $this->hasOneof(31);
+    }
+
+    /**
+     * Translation metrics.
+     * Input for Comet metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CometInput comet_input = 31;</code>
+     * @param \Google\Cloud\AIPlatform\V1\CometInput $var
+     * @return $this
+     */
+    public function setCometInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CometInput::class);
+        $this->writeOneof(31, $var);
 
         return $this;
     }
