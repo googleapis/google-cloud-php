@@ -71,7 +71,7 @@ class Backup
         private DatabaseAdminClient $databaseAdminClient,
         private Serializer $serializer,
         private Instance $instance,
-        private $projectId,
+        private string $projectId,
         private string $name,
         private array $info = []
     ) {

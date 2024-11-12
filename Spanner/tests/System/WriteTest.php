@@ -342,9 +342,10 @@ class WriteTest extends SpannerTestCase
 
     public function arrayFieldComplexValueProvider()
     {
+        $timestamp = new Timestamp(new \DateTime());
         return [
             [$this->randId(), 'arrayBytesField', [new Bytes('foo'), null, new Bytes('baz')]],
-            [$this->randId(), 'arrayTimestampField', [new Timestamp(new \DateTime()), null, new Timestamp(new \DateTime())]],
+            [$this->randId(), 'arrayTimestampField', [$timestamp, null, $timestamp]],
             [$this->randId(), 'arrayDateField', [new Date(new \DateTime()), null, new Date(new \DateTime())]],
             [$this->randId(), 'arrayNumericField', [new Numeric('0.12345'), null, new NUMERIC('12345')]],
         ];

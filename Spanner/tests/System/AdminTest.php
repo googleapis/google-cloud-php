@@ -95,7 +95,8 @@ class AdminTest extends SpannerTestCase
         $op = $instance->createDatabase($dbName);
 
         $this->assertInstanceOf(OperationResponse::class, $op);
-        $db = $op->pollUntilComplete();
+        $op->pollUntilComplete();
+        $db = $op->getResult();
         $this->assertInstanceOf(Database::class, $db);
 
         self::$deletionQueue->add(function () use ($db) {

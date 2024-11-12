@@ -86,7 +86,9 @@ class BackupTest extends TestCase
         ]);
 
         $this->database = $this->prophesize(Database::class);
-        $this->database->name()->willReturn(DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE));
+        $this->database->name()->willReturn(
+            DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE)
+        );
 
         $this->instance = $this->prophesize(Instance::class);
         $this->instance->name()->willReturn(DatabaseAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE));

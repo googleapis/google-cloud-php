@@ -2601,9 +2601,9 @@ class Database
 
     private function databaseResultFunction(): Closure
     {
-        return function (DatabaseProto $database) {
+        return function (DatabaseProto $database): self {
             $name = DatabaseAdminClient::parseName($database->getName());
-            return $this->instance->database($name['name'], [
+            return $this->instance->database($name['database'], [
                 'sessionPool' => $this->sessionPool,
                 'database' => $this->serializer->encodeMessage($database),
                 'databaseRole' => $this->databaseRole,

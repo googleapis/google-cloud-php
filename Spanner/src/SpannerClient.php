@@ -26,6 +26,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -108,6 +109,7 @@ class SpannerClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
     use ClientTrait;
+    use EmulatorTrait;
     use ValidateTrait;
     use RequestTrait;
     use RequestProcessorTrait;
@@ -236,11 +238,20 @@ class SpannerClient
         } else {
             $config['credentialsConfig']['scopes'] = $scopes;
         }
-        $config['credentials'] = $this->createCredentialsWrapper(
-            $config['credentials'],
-            $config['credentialsConfig'],
-            $config['universeDomain']
-        );
+
+        if ($emulatorHost) {
+            $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
+            $config = array_merge(
+                $config,
+                $emulatorConfig
+            );
+        } else {
+            $config['credentials'] = $this->createCredentialsWrapper(
+                $config['credentials'],
+                $config['credentialsConfig'],
+                $config['universeDomain']
+            );
+        }
         $this->projectId = $this->detectProjectId($config);
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {

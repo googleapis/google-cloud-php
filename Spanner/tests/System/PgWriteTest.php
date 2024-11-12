@@ -308,9 +308,10 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function arrayFieldComplexValueProvider()
     {
+        $timestamp = new Timestamp(new \DateTime());
         return [
             [$this->randId(), 'arraybytesfield', [new Bytes('foo'), null, new Bytes('baz')]],
-            [$this->randId(), 'arraytimestampfield', [new Timestamp(new \DateTime()), null, new Timestamp(new \DateTime())]],
+            [$this->randId(), 'arraytimestampfield', [$timestamp, null, $timestamp]],
             [$this->randId(), 'arraydatefield', [new Date(new \DateTime()), null, new Date(new \DateTime())]],
             [$this->randId(), 'arraypgnumericfield', [new PgNumeric('0.12345'), null, new PgNumeric('12345')]],
             [$this->randId(), 'arraypgjsonbfield', [new PgJsonb('{"a":1.1,"b":"hello"}'), null,
