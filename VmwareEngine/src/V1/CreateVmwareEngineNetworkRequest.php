@@ -27,7 +27,7 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The user-provided identifier of the new VMware Engine network.
      * This identifier must be unique among VMware Engine network resources
@@ -45,13 +45,13 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vmware_engine_network_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vmware_engine_network_id = '';
+    protected $vmware_engine_network_id = '';
     /**
      * Required. The initial description of the new VMware Engine network.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.VmwareEngineNetwork vmware_engine_network = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vmware_engine_network = null;
+    protected $vmware_engine_network = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68,7 +68,7 @@ class CreateVmwareEngineNetworkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                            $parent                Required. The resource name of the location to create the new VMware Engine

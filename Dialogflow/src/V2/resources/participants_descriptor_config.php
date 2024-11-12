@@ -110,6 +110,18 @@ return [
                     ],
                 ],
             ],
+            'SuggestKnowledgeAssist' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\V2\SuggestKnowledgeAssistResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SuggestSmartReplies' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse',
@@ -174,6 +186,7 @@ return [
                 'conversation' => 'projects/{project}/conversations/{conversation}',
                 'message' => 'projects/{project}/conversations/{conversation}/messages/{message}',
                 'participant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'projectConversation' => 'projects/{project}/conversations/{conversation}',
                 'projectConversationMessage' => 'projects/{project}/conversations/{conversation}/messages/{message}',
                 'projectConversationParticipant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',

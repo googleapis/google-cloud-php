@@ -21,13 +21,13 @@ class SSHKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The public SSH key. This must be in OpenSSH .authorized_keys format.
      *
      * Generated from protobuf field <code>string public_key = 2;</code>
      */
-    private $public_key = '';
+    protected $public_key = '';
 
     /**
      * Constructor.

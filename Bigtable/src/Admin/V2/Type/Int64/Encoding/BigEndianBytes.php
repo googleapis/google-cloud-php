@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Encodes the value as an 8-byte big endian twos complement `Bytes`
  * value.
- * * Natural sort? No (positive values only)
+ * * Order-preserving? No (positive values only)
  * * Self-delimiting? Yes
  * * Compatibility?
  *    - BigQuery Federation `BINARY` encoding
@@ -23,7 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigEndianBytes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The underlying `Bytes` type, which may be able to encode further.
+     * Deprecated: ignored if set.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
      */
@@ -36,7 +36,7 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Bytes $bytes_type
-     *           The underlying `Bytes` type, which may be able to encode further.
+     *           Deprecated: ignored if set.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The underlying `Bytes` type, which may be able to encode further.
+     * Deprecated: ignored if set.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Type\Bytes|null
@@ -66,7 +66,7 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The underlying `Bytes` type, which may be able to encode further.
+     * Deprecated: ignored if set.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Type\Bytes $var

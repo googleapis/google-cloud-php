@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response to validating an Event Threat Detection custom module.
+ * Response message for
+ * [SecurityCenterManagement.ValidateEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ValidateEventThreatDetectionCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse</code>
  */

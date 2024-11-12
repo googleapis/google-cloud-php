@@ -21,7 +21,7 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate dataset_template = 2;</code>
      */
-    private $dataset_template = null;
+    protected $dataset_template = null;
 
     /**
      * Constructor.

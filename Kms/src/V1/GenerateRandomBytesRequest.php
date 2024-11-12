@@ -22,14 +22,14 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 1;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The length in bytes of the amount of randomness to retrieve.  Minimum 8
      * bytes, maximum 1024 bytes.
      *
      * Generated from protobuf field <code>int32 length_bytes = 2;</code>
      */
-    private $length_bytes = 0;
+    protected $length_bytes = 0;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
      * generating the random data. Currently, only
@@ -38,7 +38,7 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 3;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * @param string $location        The project-specific location in which to generate random bytes.

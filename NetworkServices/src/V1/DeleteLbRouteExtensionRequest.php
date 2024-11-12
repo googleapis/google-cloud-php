@@ -41,6 +41,22 @@ class DeleteLbRouteExtensionRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string $name Required. The name of the `LbRouteExtension` resource to delete. Must be in
+     *                     the format
+     *                     `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`. Please see
+     *                     {@see DepServiceClient::lbRouteExtensionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\DeleteLbRouteExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

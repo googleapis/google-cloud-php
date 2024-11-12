@@ -20,19 +20,19 @@ class Binding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ns = 1;</code>
      */
-    private $ns = '';
+    protected $ns = '';
     /**
      * Name for the binding.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The Role or ClusterRole referenced by the binding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Kubernetes.Role role = 3;</code>
      */
-    private $role = null;
+    protected $role = null;
     /**
      * Represents one or more subjects that are bound to the role. Not always
      * available for PATCH requests.
@@ -181,6 +181,4 @@ class Binding extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Binding::class, \Google\Cloud\SecurityCenter\V2\Kubernetes_Binding::class);
 

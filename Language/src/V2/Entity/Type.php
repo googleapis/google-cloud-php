@@ -7,8 +7,7 @@ namespace Google\Cloud\Language\V2\Entity;
 use UnexpectedValueException;
 
 /**
- * The type of the entity. For most entity types, the associated metadata is a
- * Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`). The table
+ * The type of the entity. The table
  * below lists the associated fields for entities that have different
  * metadata.
  *
@@ -86,7 +85,7 @@ class Type
      * * `locality` - city or town
      * * `street_name` - street/route name, if detected
      * * `postal_code` - postal code, if detected
-     * * `country` - country, if detected<
+     * * `country` - country, if detected
      * * `broad_region` - administrative area, such as the state, if detected
      * * `narrow_region` - smaller administrative area, such as county, if
      * detected

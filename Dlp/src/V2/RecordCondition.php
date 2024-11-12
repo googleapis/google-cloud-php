@@ -21,7 +21,7 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Expressions expressions = 3;</code>
      */
-    private $expressions = null;
+    protected $expressions = null;
 
     /**
      * Constructor.

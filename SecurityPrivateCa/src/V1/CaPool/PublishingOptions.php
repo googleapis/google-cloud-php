@@ -32,7 +32,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $publish_ca_cert = false;
+    protected $publish_ca_cert = false;
     /**
      * Optional. When true, publishes each
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s
@@ -46,7 +46,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $publish_crl = false;
+    protected $publish_crl = false;
     /**
      * Optional. Specifies the encoding format of each
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -55,7 +55,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions.EncodingFormat encoding_format = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encoding_format = 0;
+    protected $encoding_format = 0;
 
     /**
      * Constructor.

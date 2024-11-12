@@ -60,12 +60,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createCatalogItemAsync(CreateCatalogItemRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCatalogItemAsync(DeleteCatalogItemRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCatalogItemAsync(GetCatalogItemRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importCatalogItemsAsync(ImportCatalogItemsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCatalogItemsAsync(ListCatalogItemsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCatalogItemAsync(UpdateCatalogItemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CatalogItem> createCatalogItemAsync(CreateCatalogItemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCatalogItemAsync(DeleteCatalogItemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CatalogItem> getCatalogItemAsync(GetCatalogItemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importCatalogItemsAsync(ImportCatalogItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCatalogItemsAsync(ListCatalogItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CatalogItem> updateCatalogItemAsync(UpdateCatalogItemRequest $request, array $optionalArgs = [])
  */
 final class CatalogServiceClient
 {

@@ -21,7 +21,7 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry_group = null;
+    protected $entry_group = null;
     /**
      * Names of fields whose values to overwrite on an entry group.
      * If this parameter is absent or empty, all modifiable fields
@@ -30,7 +30,7 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\EntryGroup $entryGroup Required. Updates for the entry group. The `name` field must be set.

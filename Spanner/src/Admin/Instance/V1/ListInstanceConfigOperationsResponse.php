@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of matching instance config [long-running
+     * The list of matching instance configuration [long-running
      * operations][google.longrunning.Operation]. Each operation's name will be
-     * prefixed by the instance config's name. The operation's
+     * prefixed by the name of the instance configuration. The operation's
      * [metadata][google.longrunning.Operation.metadata] field type
      * `metadata.type_url` describes the type of the metadata.
      *
@@ -42,9 +42,9 @@ class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
-     *           The list of matching instance config [long-running
+     *           The list of matching instance configuration [long-running
      *           operations][google.longrunning.Operation]. Each operation's name will be
-     *           prefixed by the instance config's name. The operation's
+     *           prefixed by the name of the instance configuration. The operation's
      *           [metadata][google.longrunning.Operation.metadata] field type
      *           `metadata.type_url` describes the type of the metadata.
      *     @type string $next_page_token
@@ -59,9 +59,9 @@ class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The list of matching instance config [long-running
+     * The list of matching instance configuration [long-running
      * operations][google.longrunning.Operation]. Each operation's name will be
-     * prefixed by the instance config's name. The operation's
+     * prefixed by the name of the instance configuration. The operation's
      * [metadata][google.longrunning.Operation.metadata] field type
      * `metadata.type_url` describes the type of the metadata.
      *
@@ -74,9 +74,9 @@ class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The list of matching instance config [long-running
+     * The list of matching instance configuration [long-running
      * operations][google.longrunning.Operation]. Each operation's name will be
-     * prefixed by the instance config's name. The operation's
+     * prefixed by the name of the instance configuration. The operation's
      * [metadata][google.longrunning.Operation.metadata] field type
      * `metadata.type_url` describes the type of the metadata.
      *

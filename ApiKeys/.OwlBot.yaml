@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/api/apikeys/v2/.*-php/(.*)
-      dest: /owl-bot-staging/ApiKeys/v2/$1
+    - source: /google/api/apikeys/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/ApiKeys/$1/$2
 api-name: ApiKeys

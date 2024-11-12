@@ -21,38 +21,38 @@ class TicketInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The assignee of the ticket in the ticket system.
      *
      * Generated from protobuf field <code>string assignee = 2;</code>
      */
-    private $assignee = '';
+    protected $assignee = '';
     /**
      * The description of the ticket in the ticket system.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The link to the ticket in the ticket system.
      *
      * Generated from protobuf field <code>string uri = 4;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The latest status of the ticket, as reported by the ticket system.
      *
      * Generated from protobuf field <code>string status = 5;</code>
      */
-    private $status = '';
+    protected $status = '';
     /**
      * The time when the ticket was last updated, as reported by the ticket
      * system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -250,6 +250,4 @@ class TicketInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TicketInfo::class, \Google\Cloud\SecurityCenter\V1\ExternalSystem_TicketInfo::class);
 

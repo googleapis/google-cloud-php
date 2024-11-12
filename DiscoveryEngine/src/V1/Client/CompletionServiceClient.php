@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,9 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryRequest;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse;
+use Google\Cloud\DiscoveryEngine\V1\ImportCompletionSuggestionsRequest;
 use Google\Cloud\DiscoveryEngine\V1\ImportSuggestionDenyListEntriesRequest;
+use Google\Cloud\DiscoveryEngine\V1\PurgeCompletionSuggestionsRequest;
 use Google\Cloud\DiscoveryEngine\V1\PurgeSuggestionDenyListEntriesRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -52,9 +54,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importSuggestionDenyListEntriesAsync(ImportSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeSuggestionDenyListEntriesAsync(PurgeSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompleteQueryResponse> completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importCompletionSuggestionsAsync(ImportCompletionSuggestionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importSuggestionDenyListEntriesAsync(ImportSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeCompletionSuggestionsAsync(PurgeCompletionSuggestionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeSuggestionDenyListEntriesAsync(PurgeSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
  */
 final class CompletionServiceClient
 {
@@ -342,6 +346,37 @@ final class CompletionServiceClient
     }
 
     /**
+     * Imports
+     * [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
+     * for a DataStore.
+     *
+     * The async variant is
+     * {@see CompletionServiceClient::importCompletionSuggestionsAsync()} .
+     *
+     * @example samples/V1/CompletionServiceClient/import_completion_suggestions.php
+     *
+     * @param ImportCompletionSuggestionsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importCompletionSuggestions(
+        ImportCompletionSuggestionsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ImportCompletionSuggestions', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports all
      * [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
      * for a DataStore.
@@ -370,6 +405,37 @@ final class CompletionServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('ImportSuggestionDenyListEntries', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Permanently deletes all
+     * [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
+     * for a DataStore.
+     *
+     * The async variant is
+     * {@see CompletionServiceClient::purgeCompletionSuggestionsAsync()} .
+     *
+     * @example samples/V1/CompletionServiceClient/purge_completion_suggestions.php
+     *
+     * @param PurgeCompletionSuggestionsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function purgeCompletionSuggestions(
+        PurgeCompletionSuggestionsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('PurgeCompletionSuggestions', $request, $callOptions)->wait();
     }
 
     /**

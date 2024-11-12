@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_ListGateways_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\Gateway;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\ListGatewaysRequest;
 
 /**
  * Lists Gateways in a given project and location.
@@ -40,10 +41,14 @@ function list_gateways_sample(string $formattedParent): void
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
+    // Prepare the request message.
+    $request = (new ListGatewaysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkServicesClient->listGateways($formattedParent);
+        $response = $networkServicesClient->listGateways($request);
 
         /** @var Gateway $element */
         foreach ($response as $element) {

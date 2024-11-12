@@ -25,14 +25,14 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set, only validate the request, but do not actually delete the node
      * pool.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * If set to true, and the
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource is not
@@ -42,7 +42,7 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * Optional. If set to true, the deletion of
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource will
@@ -51,7 +51,7 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ignore_errors = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ignore_errors = false;
+    protected $ignore_errors = false;
     /**
      * The current ETag of the
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
@@ -61,7 +61,7 @@ class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 4;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The resource name the

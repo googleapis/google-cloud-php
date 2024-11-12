@@ -20,7 +20,7 @@ class CompanionAds extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.CompanionAds.DisplayRequirement display_requirement = 1;</code>
      */
-    private $display_requirement = 0;
+    protected $display_requirement = 0;
     /**
      * List of companion ads.
      *

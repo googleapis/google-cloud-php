@@ -247,6 +247,34 @@ class SmartRetriesTest extends TestCase
         $this->assertEquals($expectedRows, $rows);
     }
 
+    public function testReadRowsWithRowsLimitAndExceptionThrownAfterSuccess()
+    {
+        $args = ['rowsLimit' => 1];
+        $expectedArgs = $args + $this->options;
+        $this->serverStream->readAll()
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                $this->arrayAsGeneratorWithException(
+                    $this->generateRowsResponse(1, 1),
+                    $this->retryingApiException
+                )
+            );
+        $this->bigtableClient->readRows(
+            Argument::that(function ($request) use (&$allowedRowsLimit) {
+                return $request->getRowsLimit() === 1;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $rows = $this->table->readRows($args);
+        $expectedRows = $this->generateExpectedRows(1, 1);
+        $this->assertEquals($expectedRows, iterator_to_array($rows));
+    }
+
     public function testReadRowsWithRowKeys()
     {
         $args = ['rowKeys' => ['rk1', 'rk2', 'rk3', 'rk4']];
@@ -648,20 +676,22 @@ class SmartRetriesTest extends TestCase
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
-        )->shouldBeCalledTimes(1)
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->serverStream->reveal());
+
         $entries = $this->generateEntries(2, 3);
+
+        // ensure the bigtable-attempt header is sent in for the next retry.
         $this->bigtableClient->mutateRows(
             Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
-            Argument::type('array')
-        )->shouldBeCalled()
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
+            Argument::withEntry('headers', ['bigtable-attempt' => ['1']] + $this->options['headers'])
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->serverStream->reveal());
+
         $mutations = $this->generateMutations(0, 5);
         $this->table->mutateRows($mutations);
     }

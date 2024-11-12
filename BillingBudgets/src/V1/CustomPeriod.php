@@ -20,7 +20,7 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $start_date = null;
+    protected $start_date = null;
     /**
      * Optional. The end date of the time period. Budgets with elapsed end date
      * won't be processed. If unset, specifies to track all usage incurred since
@@ -28,7 +28,7 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_date = null;
+    protected $end_date = null;
 
     /**
      * Constructor.

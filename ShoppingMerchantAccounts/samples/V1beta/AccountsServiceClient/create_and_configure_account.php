@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Accounts\V1beta\Account;
 use Google\Shopping\Merchant\Accounts\V1beta\Client\AccountsServiceClient;
 use Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest;
+use Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService;
 use Google\Type\TimeZone;
 
 /**
@@ -53,8 +54,10 @@ function create_and_configure_account_sample(
         ->setAccountName($accountAccountName)
         ->setTimeZone($accountTimeZone)
         ->setLanguageCode($accountLanguageCode);
+    $service = [new AddAccountService()];
     $request = (new CreateAndConfigureAccountRequest())
-        ->setAccount($account);
+        ->setAccount($account)
+        ->setService($service);
 
     // Call the API and handle any network failures.
     try {

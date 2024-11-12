@@ -20,13 +20,13 @@ class TranslationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double bleu_score = 1;</code>
      */
-    private $bleu_score = 0.0;
+    protected $bleu_score = 0.0;
     /**
      * Output only. BLEU score for base model.
      *
      * Generated from protobuf field <code>double base_bleu_score = 2;</code>
      */
-    private $base_bleu_score = 0.0;
+    protected $base_bleu_score = 0.0;
 
     /**
      * Constructor.

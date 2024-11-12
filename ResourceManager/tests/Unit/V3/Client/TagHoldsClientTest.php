@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,7 +56,9 @@ class TagHoldsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TagHoldsClient */
@@ -110,9 +112,7 @@ class TagHoldsClientTest extends GeneratedTest
         $tagHold = new TagHold();
         $tagHoldHolder = 'tagHoldHolder-501201275';
         $tagHold->setHolder($tagHoldHolder);
-        $request = (new CreateTagHoldRequest())
-            ->setParent($formattedParent)
-            ->setTagHold($tagHold);
+        $request = (new CreateTagHoldRequest())->setParent($formattedParent)->setTagHold($tagHold);
         $response = $gapicClient->createTagHold($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -170,21 +170,22 @@ class TagHoldsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
         $tagHold = new TagHold();
         $tagHoldHolder = 'tagHoldHolder-501201275';
         $tagHold->setHolder($tagHoldHolder);
-        $request = (new CreateTagHoldRequest())
-            ->setParent($formattedParent)
-            ->setTagHold($tagHold);
+        $request = (new CreateTagHoldRequest())->setParent($formattedParent)->setTagHold($tagHold);
         $response = $gapicClient->createTagHold($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -238,8 +239,7 @@ class TagHoldsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->tagHoldName('[TAG_VALUE]', '[TAG_HOLD]');
-        $request = (new DeleteTagHoldRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTagHoldRequest())->setName($formattedName);
         $response = $gapicClient->deleteTagHold($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -295,17 +295,19 @@ class TagHoldsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tagHoldName('[TAG_VALUE]', '[TAG_HOLD]');
-        $request = (new DeleteTagHoldRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTagHoldRequest())->setName($formattedName);
         $response = $gapicClient->deleteTagHold($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -339,17 +341,14 @@ class TagHoldsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tagHoldsElement = new TagHold();
-        $tagHolds = [
-            $tagHoldsElement,
-        ];
+        $tagHolds = [$tagHoldsElement];
         $expectedResponse = new ListTagHoldsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagHolds($tagHolds);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new ListTagHoldsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTagHoldsRequest())->setParent($formattedParent);
         $response = $gapicClient->listTagHolds($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -376,17 +375,19 @@ class TagHoldsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tagValueName('[TAG_VALUE]');
-        $request = (new ListTagHoldsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListTagHoldsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTagHolds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -442,9 +443,7 @@ class TagHoldsClientTest extends GeneratedTest
         $tagHold = new TagHold();
         $tagHoldHolder = 'tagHoldHolder-501201275';
         $tagHold->setHolder($tagHoldHolder);
-        $request = (new CreateTagHoldRequest())
-            ->setParent($formattedParent)
-            ->setTagHold($tagHold);
+        $request = (new CreateTagHoldRequest())->setParent($formattedParent)->setTagHold($tagHold);
         $response = $gapicClient->createTagHoldAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

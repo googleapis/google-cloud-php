@@ -21,7 +21,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $customer = '';
+    protected $customer = '';
     /**
      * Optional. Requested page size. Server might return fewer results than
      * requested. If unspecified, returns at most 100 SKUs. The maximum value is
@@ -29,13 +29,13 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
@@ -43,7 +43,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     protected $purchase_option;
 
     /**

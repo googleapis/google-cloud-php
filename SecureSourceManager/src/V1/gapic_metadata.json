@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "SecureSourceManagerGapicClient",
                     "rpcs": {
+                        "CreateBranchRule": {
+                            "methods": [
+                                "createBranchRule"
+                            ]
+                        },
                         "CreateInstance": {
                             "methods": [
                                 "createInstance"
@@ -20,6 +25,11 @@
                                 "createRepository"
                             ]
                         },
+                        "DeleteBranchRule": {
+                            "methods": [
+                                "deleteBranchRule"
+                            ]
+                        },
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
@@ -28,6 +38,11 @@
                         "DeleteRepository": {
                             "methods": [
                                 "deleteRepository"
+                            ]
+                        },
+                        "GetBranchRule": {
+                            "methods": [
+                                "getBranchRule"
                             ]
                         },
                         "GetIamPolicyRepo": {
@@ -43,6 +58,11 @@
                         "GetRepository": {
                             "methods": [
                                 "getRepository"
+                            ]
+                        },
+                        "ListBranchRules": {
+                            "methods": [
+                                "listBranchRules"
                             ]
                         },
                         "ListInstances": {
@@ -63,6 +83,11 @@
                         "TestIamPermissionsRepo": {
                             "methods": [
                                 "testIamPermissionsRepo"
+                            ]
+                        },
+                        "UpdateBranchRule": {
+                            "methods": [
+                                "updateBranchRule"
                             ]
                         },
                         "GetIamPolicy": {

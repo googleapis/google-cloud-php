@@ -20,21 +20,21 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Container image URI provided when configuring a pod or container. This
      * string can identify a container image version using mutable tags.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional container image ID, if provided by the container runtime. Uniquely
      * identifies the container image launched using a container image digest.
      *
      * Generated from protobuf field <code>string image_id = 3;</code>
      */
-    private $image_id = '';
+    protected $image_id = '';
     /**
      * Container labels, as provided by the container runtime.
      *
@@ -46,7 +46,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

@@ -156,6 +156,44 @@ return [
                     ],
                 ],
             ],
+            'ExportIssueModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ExportIssueModelResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ExportIssueModelMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportIssueModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ImportIssueModelResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ImportIssueModelMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'IngestConversations' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\IngestConversationsResponse',
@@ -171,6 +209,26 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'InitializeEncryptionSpec' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'encryption_spec.name',
+                        'fieldAccessors' => [
+                            'getEncryptionSpec',
+                            'getName',
                         ],
                     ],
                 ],
@@ -348,6 +406,18 @@ return [
             'GetConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\Conversation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEncryptionSpec' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\EncryptionSpec',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -603,6 +673,7 @@ return [
                 'analysis' => 'projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}',
                 'conversation' => 'projects/{project}/locations/{location}/conversations/{conversation}',
                 'conversationProfile' => 'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}',
+                'encryptionSpec' => 'projects/{project}/locations/{location}/encryptionSpec',
                 'issue' => 'projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}',
                 'issueModel' => 'projects/{project}/locations/{location}/issueModels/{issue_model}',
                 'location' => 'projects/{project}/locations/{location}',

@@ -25,13 +25,13 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance instance = 2;</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * @param \Google\Cloud\Filestore\V1\Instance $instance   Only fields specified in update_mask are updated.

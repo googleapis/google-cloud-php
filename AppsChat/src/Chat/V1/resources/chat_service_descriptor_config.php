@@ -175,6 +175,18 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSpaceReadState' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
@@ -259,6 +271,26 @@ return [
                     ],
                 ],
             ],
+            'ListSpaceEvents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSpaceEvents',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListSpaceEventsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSpaces' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -270,6 +302,18 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\ListSpacesResponse',
+            ],
+            'SearchSpaces' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSpaces',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SearchSpacesResponse',
             ],
             'SetUpSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -346,6 +390,7 @@ return [
                 'quotedMessageMetadata' => 'spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}',
                 'reaction' => 'spaces/{space}/messages/{message}/reactions/{reaction}',
                 'space' => 'spaces/{space}',
+                'spaceEvent' => 'spaces/{space}/spaceEvents/{space_event}',
                 'spaceReadState' => 'users/{user}/spaces/{space}/spaceReadState',
                 'thread' => 'spaces/{space}/threads/{thread}',
                 'threadReadState' => 'users/{user}/spaces/{space}/threads/{thread}/threadReadState',

@@ -665,7 +665,7 @@ class RegionBackendServicesGapicClient
     }
 
     /**
-     * Retrieves an aggregated list of all usable backend services in the specified project in the given region.
+     * Retrieves a list of all usable backend services in the specified project in the given region.
      *
      * Sample code:
      * ```

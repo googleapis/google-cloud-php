@@ -57,12 +57,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createConversionSourceAsync(CreateConversionSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversionSourceAsync(DeleteConversionSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversionSourceAsync(GetConversionSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversionSourcesAsync(ListConversionSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteConversionSourceAsync(UndeleteConversionSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversionSourceAsync(UpdateConversionSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionSource> createConversionSourceAsync(CreateConversionSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversionSourceAsync(DeleteConversionSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionSource> getConversionSourceAsync(GetConversionSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversionSourcesAsync(ListConversionSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionSource> undeleteConversionSourceAsync(UndeleteConversionSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionSource> updateConversionSourceAsync(UpdateConversionSourceRequest $request, array $optionalArgs = [])
  */
 final class ConversionSourcesServiceClient
 {

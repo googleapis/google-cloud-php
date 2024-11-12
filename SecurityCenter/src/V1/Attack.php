@@ -20,19 +20,19 @@ class Attack extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 volume_pps = 1;</code>
      */
-    private $volume_pps = 0;
+    protected $volume_pps = 0;
     /**
      * Total BPS (bytes per second) volume of attack.
      *
      * Generated from protobuf field <code>int32 volume_bps = 2;</code>
      */
-    private $volume_bps = 0;
+    protected $volume_bps = 0;
     /**
-     * Type of attack, for example, ‘SYN-flood’, ‘NTP-udp’, or ‘CHARGEN-udp’.
+     * Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
      *
      * Generated from protobuf field <code>string classification = 3;</code>
      */
-    private $classification = '';
+    protected $classification = '';
 
     /**
      * Constructor.
@@ -45,7 +45,7 @@ class Attack extends \Google\Protobuf\Internal\Message
      *     @type int $volume_bps
      *           Total BPS (bytes per second) volume of attack.
      *     @type string $classification
-     *           Type of attack, for example, ‘SYN-flood’, ‘NTP-udp’, or ‘CHARGEN-udp’.
+     *           Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,7 +106,7 @@ class Attack extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of attack, for example, ‘SYN-flood’, ‘NTP-udp’, or ‘CHARGEN-udp’.
+     * Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
      *
      * Generated from protobuf field <code>string classification = 3;</code>
      * @return string
@@ -117,7 +117,7 @@ class Attack extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of attack, for example, ‘SYN-flood’, ‘NTP-udp’, or ‘CHARGEN-udp’.
+     * Type of attack, for example, 'SYN-flood', 'NTP-udp', or 'CHARGEN-udp'.
      *
      * Generated from protobuf field <code>string classification = 3;</code>
      * @param string $var

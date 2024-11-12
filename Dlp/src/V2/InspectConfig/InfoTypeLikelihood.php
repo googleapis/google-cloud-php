@@ -26,14 +26,14 @@ class InfoTypeLikelihood extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Only returns findings equal to or above this threshold. This field is
      * required or else the configuration fails.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      */
-    private $min_likelihood = 0;
+    protected $min_likelihood = 0;
 
     /**
      * Constructor.
@@ -125,6 +125,4 @@ class InfoTypeLikelihood extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InfoTypeLikelihood::class, \Google\Cloud\Dlp\V2\InspectConfig_InfoTypeLikelihood::class);
 

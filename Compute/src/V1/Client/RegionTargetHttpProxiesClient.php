@@ -48,11 +48,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionTargetHttpProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUrlMapAsync(SetUrlMapRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetHttpProxy> getAsync(GetRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionTargetHttpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUrlMapAsync(SetUrlMapRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
  */
 final class RegionTargetHttpProxiesClient
 {

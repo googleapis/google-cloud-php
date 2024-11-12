@@ -72,21 +72,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface accessSecretVersionAsync(AccessSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addSecretVersionAsync(AddSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSecretAsync(CreateSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSecretAsync(DeleteSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface destroySecretVersionAsync(DestroySecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableSecretVersionAsync(DisableSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableSecretVersionAsync(EnableSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSecretAsync(GetSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSecretVersionAsync(GetSecretVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSecretVersionsAsync(ListSecretVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSecretsAsync(ListSecretsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSecretAsync(UpdateSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessSecretVersionResponse> accessSecretVersionAsync(AccessSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> addSecretVersionAsync(AddSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Secret> createSecretAsync(CreateSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSecretAsync(DeleteSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> destroySecretVersionAsync(DestroySecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> disableSecretVersionAsync(DisableSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> enableSecretVersionAsync(EnableSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Secret> getSecretAsync(GetSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> getSecretVersionAsync(GetSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSecretVersionsAsync(ListSecretVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSecretsAsync(ListSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Secret> updateSecretAsync(UpdateSecretRequest $request, array $optionalArgs = [])
  */
 final class SecretManagerServiceClient
 {

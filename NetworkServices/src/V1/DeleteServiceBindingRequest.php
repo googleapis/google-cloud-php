@@ -24,6 +24,21 @@ class DeleteServiceBindingRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the ServiceBinding to delete. Must be in the format
+     *                     `projects/&#42;/locations/global/serviceBindings/*`. Please see
+     *                     {@see NetworkServicesClient::serviceBindingName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\DeleteServiceBindingRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

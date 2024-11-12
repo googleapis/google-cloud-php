@@ -23,7 +23,7 @@ class GCPSecretManagerCertificateConfig extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string secret_uri = 1;</code>
      */
-    private $secret_uri = '';
+    protected $secret_uri = '';
 
     /**
      * Constructor.
@@ -74,6 +74,4 @@ class GCPSecretManagerCertificateConfig extends \Google\Protobuf\Internal\Messag
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GCPSecretManagerCertificateConfig::class, \Google\Cloud\Container\V1\ContainerdConfig_PrivateRegistryAccessConfig_CertificateAuthorityDomainConfig_GCPSecretManagerCertificateConfig::class);
 

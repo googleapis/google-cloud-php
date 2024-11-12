@@ -50,8 +50,8 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $request_id = '';
     /**
-     * Optional. The Google Chat users to invite to join the space. Omit the
-     * calling user, as they are added automatically.
+     * Optional. The Google Chat users or groups to invite to join the space. Omit
+     * the calling user, as they are added automatically.
      * The set currently allows up to 20 memberships (in addition to the caller).
      * For human membership, the `Membership.member` field must contain a `user`
      * with `name` populated (format: `users/{user}`) and `type` set to
@@ -61,6 +61,9 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
      * To invite Gmail users or users from external Google Workspace domains,
      * user's email must be used for `{user}`.
+     * For Google group membership, the `Membership.group_member` field must
+     * contain a `group` with `name` populated (format `groups/{group}`). You
+     * can only add Google groups when setting `Space.spaceType` to `SPACE`.
      * Optional when setting `Space.spaceType` to `SPACE`.
      * Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at
      * least two memberships.
@@ -107,8 +110,8 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      *           Specifying an existing request ID from the same Chat app with a different
      *           authenticated user returns an error.
      *     @type array<\Google\Apps\Chat\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $memberships
-     *           Optional. The Google Chat users to invite to join the space. Omit the
-     *           calling user, as they are added automatically.
+     *           Optional. The Google Chat users or groups to invite to join the space. Omit
+     *           the calling user, as they are added automatically.
      *           The set currently allows up to 20 memberships (in addition to the caller).
      *           For human membership, the `Membership.member` field must contain a `user`
      *           with `name` populated (format: `users/{user}`) and `type` set to
@@ -118,6 +121,9 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      *           for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
      *           To invite Gmail users or users from external Google Workspace domains,
      *           user's email must be used for `{user}`.
+     *           For Google group membership, the `Membership.group_member` field must
+     *           contain a `group` with `name` populated (format `groups/{group}`). You
+     *           can only add Google groups when setting `Space.spaceType` to `SPACE`.
      *           Optional when setting `Space.spaceType` to `SPACE`.
      *           Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at
      *           least two memberships.
@@ -240,8 +246,8 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Chat users to invite to join the space. Omit the
-     * calling user, as they are added automatically.
+     * Optional. The Google Chat users or groups to invite to join the space. Omit
+     * the calling user, as they are added automatically.
      * The set currently allows up to 20 memberships (in addition to the caller).
      * For human membership, the `Membership.member` field must contain a `user`
      * with `name` populated (format: `users/{user}`) and `type` set to
@@ -251,6 +257,9 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
      * To invite Gmail users or users from external Google Workspace domains,
      * user's email must be used for `{user}`.
+     * For Google group membership, the `Membership.group_member` field must
+     * contain a `group` with `name` populated (format `groups/{group}`). You
+     * can only add Google groups when setting `Space.spaceType` to `SPACE`.
      * Optional when setting `Space.spaceType` to `SPACE`.
      * Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at
      * least two memberships.
@@ -269,8 +278,8 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Chat users to invite to join the space. Omit the
-     * calling user, as they are added automatically.
+     * Optional. The Google Chat users or groups to invite to join the space. Omit
+     * the calling user, as they are added automatically.
      * The set currently allows up to 20 memberships (in addition to the caller).
      * For human membership, the `Membership.member` field must contain a `user`
      * with `name` populated (format: `users/{user}`) and `type` set to
@@ -280,6 +289,9 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
      * To invite Gmail users or users from external Google Workspace domains,
      * user's email must be used for `{user}`.
+     * For Google group membership, the `Membership.group_member` field must
+     * contain a `group` with `name` populated (format `groups/{group}`). You
+     * can only add Google groups when setting `Space.spaceType` to `SPACE`.
      * Optional when setting `Space.spaceType` to `SPACE`.
      * Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at
      * least two memberships.

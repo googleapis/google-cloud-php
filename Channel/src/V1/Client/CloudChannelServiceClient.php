@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Channel\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -96,6 +95,7 @@ use Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest;
 use Google\Cloud\Channel\V1\UpdateChannelPartnerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\UpdateCustomerRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -129,55 +129,55 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface activateEntitlementAsync(ActivateEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelEntitlementAsync(CancelEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface changeOfferAsync(ChangeOfferRequest $request, array $optionalArgs = [])
- * @method PromiseInterface changeParametersAsync(ChangeParametersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface changeRenewalSettingsAsync(ChangeRenewalSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkCloudIdentityAccountsExistAsync(CheckCloudIdentityAccountsExistRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createChannelPartnerLinkAsync(CreateChannelPartnerLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createChannelPartnerRepricingConfigAsync(CreateChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomerAsync(CreateCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomerRepricingConfigAsync(CreateCustomerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntitlementAsync(CreateEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteChannelPartnerRepricingConfigAsync(DeleteChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomerAsync(DeleteCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomerRepricingConfigAsync(DeleteCustomerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getChannelPartnerLinkAsync(GetChannelPartnerLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getChannelPartnerRepricingConfigAsync(GetChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomerRepricingConfigAsync(GetCustomerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntitlementAsync(GetEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importCustomerAsync(ImportCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listChannelPartnerLinksAsync(ListChannelPartnerLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listChannelPartnerRepricingConfigsAsync(ListChannelPartnerRepricingConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomerRepricingConfigsAsync(ListCustomerRepricingConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitlementChangesAsync(ListEntitlementChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOffersAsync(ListOffersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPurchasableOffersAsync(ListPurchasableOffersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPurchasableSkusAsync(ListPurchasableSkusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSkuGroupBillableSkusAsync(ListSkuGroupBillableSkusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSkuGroupsAsync(ListSkuGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSkusAsync(ListSkusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubscribersAsync(ListSubscribersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferableOffersAsync(ListTransferableOffersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferableSkusAsync(ListTransferableSkusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupOfferAsync(LookupOfferRequest $request, array $optionalArgs = [])
- * @method PromiseInterface provisionCloudIdentityAsync(ProvisionCloudIdentityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryEligibleBillingAccountsAsync(QueryEligibleBillingAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface registerSubscriberAsync(RegisterSubscriberRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startPaidServiceAsync(StartPaidServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suspendEntitlementAsync(SuspendEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface transferEntitlementsAsync(TransferEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface transferEntitlementsToGoogleAsync(TransferEntitlementsToGoogleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface unregisterSubscriberAsync(UnregisterSubscriberRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateChannelPartnerLinkAsync(UpdateChannelPartnerLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateChannelPartnerRepricingConfigAsync(UpdateChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomerAsync(UpdateCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomerRepricingConfigAsync(UpdateCustomerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> activateEntitlementAsync(ActivateEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelEntitlementAsync(CancelEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> changeOfferAsync(ChangeOfferRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> changeParametersAsync(ChangeParametersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> changeRenewalSettingsAsync(ChangeRenewalSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckCloudIdentityAccountsExistResponse> checkCloudIdentityAccountsExistAsync(CheckCloudIdentityAccountsExistRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelPartnerLink> createChannelPartnerLinkAsync(CreateChannelPartnerLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelPartnerRepricingConfig> createChannelPartnerRepricingConfigAsync(CreateChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> createCustomerAsync(CreateCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomerRepricingConfig> createCustomerRepricingConfigAsync(CreateCustomerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntitlementAsync(CreateEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteChannelPartnerRepricingConfigAsync(DeleteChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCustomerAsync(DeleteCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCustomerRepricingConfigAsync(DeleteCustomerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelPartnerLink> getChannelPartnerLinkAsync(GetChannelPartnerLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelPartnerRepricingConfig> getChannelPartnerRepricingConfigAsync(GetChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomerRepricingConfig> getCustomerRepricingConfigAsync(GetCustomerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entitlement> getEntitlementAsync(GetEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> importCustomerAsync(ImportCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listChannelPartnerLinksAsync(ListChannelPartnerLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listChannelPartnerRepricingConfigsAsync(ListChannelPartnerRepricingConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomerRepricingConfigsAsync(ListCustomerRepricingConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitlementChangesAsync(ListEntitlementChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOffersAsync(ListOffersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPurchasableOffersAsync(ListPurchasableOffersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPurchasableSkusAsync(ListPurchasableSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSkuGroupBillableSkusAsync(ListSkuGroupBillableSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSkuGroupsAsync(ListSkuGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSkusAsync(ListSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubscribersAsync(ListSubscribersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferableOffersAsync(ListTransferableOffersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferableSkusAsync(ListTransferableSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Offer> lookupOfferAsync(LookupOfferRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> provisionCloudIdentityAsync(ProvisionCloudIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryEligibleBillingAccountsResponse> queryEligibleBillingAccountsAsync(QueryEligibleBillingAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RegisterSubscriberResponse> registerSubscriberAsync(RegisterSubscriberRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startPaidServiceAsync(StartPaidServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> suspendEntitlementAsync(SuspendEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> transferEntitlementsAsync(TransferEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> transferEntitlementsToGoogleAsync(TransferEntitlementsToGoogleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UnregisterSubscriberResponse> unregisterSubscriberAsync(UnregisterSubscriberRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelPartnerLink> updateChannelPartnerLinkAsync(UpdateChannelPartnerLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ChannelPartnerRepricingConfig> updateChannelPartnerRepricingConfigAsync(UpdateChannelPartnerRepricingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> updateCustomerAsync(UpdateCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomerRepricingConfig> updateCustomerRepricingConfigAsync(UpdateCustomerRepricingConfigRequest $request, array $optionalArgs = [])
  */
 final class CloudChannelServiceClient
 {
@@ -204,9 +204,7 @@ final class CloudChannelServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/apps.order',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/apps.order'];
 
     private $operationsClient;
 
@@ -252,10 +250,31 @@ final class CloudChannelServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -285,8 +304,11 @@ final class CloudChannelServiceClient
      *
      * @return string The formatted channel_partner_repricing_config resource.
      */
-    public static function channelPartnerRepricingConfigName(string $account, string $channelPartner, string $channelPartnerRepricingConfig): string
-    {
+    public static function channelPartnerRepricingConfigName(
+        string $account,
+        string $channelPartner,
+        string $channelPartnerRepricingConfig
+    ): string {
         return self::getPathTemplate('channelPartnerRepricingConfig')->render([
             'account' => $account,
             'channel_partner' => $channelPartner,
@@ -321,8 +343,11 @@ final class CloudChannelServiceClient
      *
      * @return string The formatted customer_repricing_config resource.
      */
-    public static function customerRepricingConfigName(string $account, string $customer, string $customerRepricingConfig): string
-    {
+    public static function customerRepricingConfigName(
+        string $account,
+        string $customer,
+        string $customerRepricingConfig
+    ): string {
         return self::getPathTemplate('customerRepricingConfig')->render([
             'account' => $account,
             'customer' => $customer,
@@ -744,8 +769,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function changeRenewalSettings(ChangeRenewalSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function changeRenewalSettings(
+        ChangeRenewalSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ChangeRenewalSettings', $request, $callOptions)->wait();
     }
 
@@ -789,8 +816,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function checkCloudIdentityAccountsExist(CheckCloudIdentityAccountsExistRequest $request, array $callOptions = []): CheckCloudIdentityAccountsExistResponse
-    {
+    public function checkCloudIdentityAccountsExist(
+        CheckCloudIdentityAccountsExistRequest $request,
+        array $callOptions = []
+    ): CheckCloudIdentityAccountsExistResponse {
         return $this->startApiCall('CheckCloudIdentityAccountsExist', $request, $callOptions)->wait();
     }
 
@@ -838,8 +867,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createChannelPartnerLink(CreateChannelPartnerLinkRequest $request, array $callOptions = []): ChannelPartnerLink
-    {
+    public function createChannelPartnerLink(
+        CreateChannelPartnerLinkRequest $request,
+        array $callOptions = []
+    ): ChannelPartnerLink {
         return $this->startApiCall('CreateChannelPartnerLink', $request, $callOptions)->wait();
     }
 
@@ -907,8 +938,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createChannelPartnerRepricingConfig(CreateChannelPartnerRepricingConfigRequest $request, array $callOptions = []): ChannelPartnerRepricingConfig
-    {
+    public function createChannelPartnerRepricingConfig(
+        CreateChannelPartnerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): ChannelPartnerRepricingConfig {
         return $this->startApiCall('CreateChannelPartnerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -1016,8 +1049,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCustomerRepricingConfig(CreateCustomerRepricingConfigRequest $request, array $callOptions = []): CustomerRepricingConfig
-    {
+    public function createCustomerRepricingConfig(
+        CreateCustomerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): CustomerRepricingConfig {
         return $this->startApiCall('CreateCustomerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -1122,8 +1157,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteChannelPartnerRepricingConfig(DeleteChannelPartnerRepricingConfigRequest $request, array $callOptions = []): void
-    {
+    public function deleteChannelPartnerRepricingConfig(
+        DeleteChannelPartnerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteChannelPartnerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -1196,8 +1233,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCustomerRepricingConfig(DeleteCustomerRepricingConfigRequest $request, array $callOptions = []): void
-    {
+    public function deleteCustomerRepricingConfig(
+        DeleteCustomerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteCustomerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -1237,8 +1276,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getChannelPartnerLink(GetChannelPartnerLinkRequest $request, array $callOptions = []): ChannelPartnerLink
-    {
+    public function getChannelPartnerLink(
+        GetChannelPartnerLinkRequest $request,
+        array $callOptions = []
+    ): ChannelPartnerLink {
         return $this->startApiCall('GetChannelPartnerLink', $request, $callOptions)->wait();
     }
 
@@ -1280,8 +1321,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getChannelPartnerRepricingConfig(GetChannelPartnerRepricingConfigRequest $request, array $callOptions = []): ChannelPartnerRepricingConfig
-    {
+    public function getChannelPartnerRepricingConfig(
+        GetChannelPartnerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): ChannelPartnerRepricingConfig {
         return $this->startApiCall('GetChannelPartnerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -1361,8 +1404,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCustomerRepricingConfig(GetCustomerRepricingConfigRequest $request, array $callOptions = []): CustomerRepricingConfig
-    {
+    public function getCustomerRepricingConfig(
+        GetCustomerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): CustomerRepricingConfig {
         return $this->startApiCall('GetCustomerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -1480,8 +1525,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listChannelPartnerLinks(ListChannelPartnerLinksRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listChannelPartnerLinks(
+        ListChannelPartnerLinksRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListChannelPartnerLinks', $request, $callOptions);
     }
 
@@ -1530,8 +1577,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listChannelPartnerRepricingConfigs(ListChannelPartnerRepricingConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listChannelPartnerRepricingConfigs(
+        ListChannelPartnerRepricingConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListChannelPartnerRepricingConfigs', $request, $callOptions);
     }
 
@@ -1581,8 +1630,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCustomerRepricingConfigs(ListCustomerRepricingConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomerRepricingConfigs(
+        ListCustomerRepricingConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomerRepricingConfigs', $request, $callOptions);
     }
 
@@ -1659,8 +1710,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listEntitlementChanges(ListEntitlementChangesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listEntitlementChanges(
+        ListEntitlementChangesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListEntitlementChanges', $request, $callOptions);
     }
 
@@ -1793,8 +1846,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPurchasableOffers(ListPurchasableOffersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPurchasableOffers(
+        ListPurchasableOffersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPurchasableOffers', $request, $callOptions);
     }
 
@@ -1873,8 +1928,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSkuGroupBillableSkus(ListSkuGroupBillableSkusRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSkuGroupBillableSkus(
+        ListSkuGroupBillableSkusRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSkuGroupBillableSkus', $request, $callOptions);
     }
 
@@ -2037,8 +2094,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTransferableOffers(ListTransferableOffersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTransferableOffers(
+        ListTransferableOffersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTransferableOffers', $request, $callOptions);
     }
 
@@ -2082,8 +2141,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTransferableSkus(ListTransferableSkusRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTransferableSkus(
+        ListTransferableSkusRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTransferableSkus', $request, $callOptions);
     }
 
@@ -2167,8 +2228,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function provisionCloudIdentity(ProvisionCloudIdentityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function provisionCloudIdentity(
+        ProvisionCloudIdentityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ProvisionCloudIdentity', $request, $callOptions)->wait();
     }
 
@@ -2205,8 +2268,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function queryEligibleBillingAccounts(QueryEligibleBillingAccountsRequest $request, array $callOptions = []): QueryEligibleBillingAccountsResponse
-    {
+    public function queryEligibleBillingAccounts(
+        QueryEligibleBillingAccountsRequest $request,
+        array $callOptions = []
+    ): QueryEligibleBillingAccountsResponse {
         return $this->startApiCall('QueryEligibleBillingAccounts', $request, $callOptions)->wait();
     }
 
@@ -2249,8 +2314,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function registerSubscriber(RegisterSubscriberRequest $request, array $callOptions = []): RegisterSubscriberResponse
-    {
+    public function registerSubscriber(
+        RegisterSubscriberRequest $request,
+        array $callOptions = []
+    ): RegisterSubscriberResponse {
         return $this->startApiCall('RegisterSubscriber', $request, $callOptions)->wait();
     }
 
@@ -2403,8 +2470,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function transferEntitlements(TransferEntitlementsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function transferEntitlements(
+        TransferEntitlementsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('TransferEntitlements', $request, $callOptions)->wait();
     }
 
@@ -2458,8 +2527,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function transferEntitlementsToGoogle(TransferEntitlementsToGoogleRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function transferEntitlementsToGoogle(
+        TransferEntitlementsToGoogleRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('TransferEntitlementsToGoogle', $request, $callOptions)->wait();
     }
 
@@ -2505,8 +2576,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function unregisterSubscriber(UnregisterSubscriberRequest $request, array $callOptions = []): UnregisterSubscriberResponse
-    {
+    public function unregisterSubscriber(
+        UnregisterSubscriberRequest $request,
+        array $callOptions = []
+    ): UnregisterSubscriberResponse {
         return $this->startApiCall('UnregisterSubscriber', $request, $callOptions)->wait();
     }
 
@@ -2553,8 +2626,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateChannelPartnerLink(UpdateChannelPartnerLinkRequest $request, array $callOptions = []): ChannelPartnerLink
-    {
+    public function updateChannelPartnerLink(
+        UpdateChannelPartnerLinkRequest $request,
+        array $callOptions = []
+    ): ChannelPartnerLink {
         return $this->startApiCall('UpdateChannelPartnerLink', $request, $callOptions)->wait();
     }
 
@@ -2611,8 +2686,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateChannelPartnerRepricingConfig(UpdateChannelPartnerRepricingConfigRequest $request, array $callOptions = []): ChannelPartnerRepricingConfig
-    {
+    public function updateChannelPartnerRepricingConfig(
+        UpdateChannelPartnerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): ChannelPartnerRepricingConfig {
         return $this->startApiCall('UpdateChannelPartnerRepricingConfig', $request, $callOptions)->wait();
     }
 
@@ -2707,8 +2784,10 @@ final class CloudChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCustomerRepricingConfig(UpdateCustomerRepricingConfigRequest $request, array $callOptions = []): CustomerRepricingConfig
-    {
+    public function updateCustomerRepricingConfig(
+        UpdateCustomerRepricingConfigRequest $request,
+        array $callOptions = []
+    ): CustomerRepricingConfig {
         return $this->startApiCall('UpdateCustomerRepricingConfig', $request, $callOptions)->wait();
     }
 }

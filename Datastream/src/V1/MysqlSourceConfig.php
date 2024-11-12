@@ -20,20 +20,20 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms include_objects = 1;</code>
      */
-    private $include_objects = null;
+    protected $include_objects = null;
     /**
      * MySQL objects to exclude from the stream.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms exclude_objects = 2;</code>
      */
-    private $exclude_objects = null;
+    protected $exclude_objects = null;
     /**
      * Maximum number of concurrent CDC tasks. The number should be non negative.
      * If not set (or set to 0), the system's default value will be used.
      *
      * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
      */
-    private $max_concurrent_cdc_tasks = 0;
+    protected $max_concurrent_cdc_tasks = 0;
     /**
      * Maximum number of concurrent backfill tasks. The number should be non
      * negative. If not set (or set to 0), the system's default value will be
@@ -41,7 +41,7 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
      */
-    private $max_concurrent_backfill_tasks = 0;
+    protected $max_concurrent_backfill_tasks = 0;
 
     /**
      * Constructor.

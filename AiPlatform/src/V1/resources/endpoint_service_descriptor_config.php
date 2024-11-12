@@ -245,6 +245,7 @@ return [
                 'network' => 'projects/{project}/global/networks/{network}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
             ],
         ],
     ],

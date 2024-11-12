@@ -20,8 +20,8 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * This is an initialization state. During this stage, the resources such as
-     * Pub/Sub topics are allocated for the AgentPool.
+     * This is an initialization state. During this stage, resources are
+     * allocated for the AgentPool.
      *
      * Generated from protobuf enum <code>CREATING = 1;</code>
      */

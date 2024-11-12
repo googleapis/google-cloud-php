@@ -21,27 +21,27 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The identifier for the service.
      * Example: "6F81-5844-456A"
      *
      * Generated from protobuf field <code>string service_id = 2;</code>
      */
-    private $service_id = '';
+    protected $service_id = '';
     /**
      * A human readable display name for this service.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The business under which the service is offered.
      * Ex. "businessEntities/GCP", "businessEntities/Maps"
      *
      * Generated from protobuf field <code>string business_entity_name = 4;</code>
      */
-    private $business_entity_name = '';
+    protected $business_entity_name = '';
 
     /**
      * Constructor.

@@ -28,7 +28,7 @@ class ManifestOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions.OrderPolicy bitrate_order = 2;</code>
      */
-    private $bitrate_order = 0;
+    protected $bitrate_order = 0;
 
     /**
      * Constructor.

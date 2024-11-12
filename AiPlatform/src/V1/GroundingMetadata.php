@@ -27,6 +27,24 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $search_entry_point = null;
+    /**
+     * List of supporting references retrieved from specified grounding source.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk grounding_chunks = 5;</code>
+     */
+    private $grounding_chunks;
+    /**
+     * Optional. List of grounding support.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingSupport grounding_supports = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $grounding_supports;
+    /**
+     * Optional. Output only. Retrieval metadata.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $retrieval_metadata = null;
 
     /**
      * Constructor.
@@ -38,6 +56,12 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. Web search queries for the following-up web search.
      *     @type \Google\Cloud\AIPlatform\V1\SearchEntryPoint $search_entry_point
      *           Optional. Google search entry for the following-up web searches.
+     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingChunk>|\Google\Protobuf\Internal\RepeatedField $grounding_chunks
+     *           List of supporting references retrieved from specified grounding source.
+     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $grounding_supports
+     *           Optional. List of grounding support.
+     *     @type \Google\Cloud\AIPlatform\V1\RetrievalMetadata $retrieval_metadata
+     *           Optional. Output only. Retrieval metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +127,94 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SearchEntryPoint::class);
         $this->search_entry_point = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of supporting references retrieved from specified grounding source.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk grounding_chunks = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGroundingChunks()
+    {
+        return $this->grounding_chunks;
+    }
+
+    /**
+     * List of supporting references retrieved from specified grounding source.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk grounding_chunks = 5;</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\GroundingChunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGroundingChunks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingChunk::class);
+        $this->grounding_chunks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of grounding support.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingSupport grounding_supports = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGroundingSupports()
+    {
+        return $this->grounding_supports;
+    }
+
+    /**
+     * Optional. List of grounding support.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingSupport grounding_supports = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGroundingSupports($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingSupport::class);
+        $this->grounding_supports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Retrieval metadata.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RetrievalMetadata|null
+     */
+    public function getRetrievalMetadata()
+    {
+        return $this->retrieval_metadata;
+    }
+
+    public function hasRetrievalMetadata()
+    {
+        return isset($this->retrieval_metadata);
+    }
+
+    public function clearRetrievalMetadata()
+    {
+        unset($this->retrieval_metadata);
+    }
+
+    /**
+     * Optional. Output only. Retrieval metadata.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RetrievalMetadata $var
+     * @return $this
+     */
+    public function setRetrievalMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RetrievalMetadata::class);
+        $this->retrieval_metadata = $var;
 
         return $this;
     }

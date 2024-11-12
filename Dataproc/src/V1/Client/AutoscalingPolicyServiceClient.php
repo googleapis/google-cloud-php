@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,14 +58,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAutoscalingPolicyAsync(CreateAutoscalingPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAutoscalingPolicyAsync(DeleteAutoscalingPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAutoscalingPolicyAsync(GetAutoscalingPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutoscalingPoliciesAsync(ListAutoscalingPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAutoscalingPolicyAsync(UpdateAutoscalingPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutoscalingPolicy> createAutoscalingPolicyAsync(CreateAutoscalingPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAutoscalingPolicyAsync(DeleteAutoscalingPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutoscalingPolicy> getAutoscalingPolicyAsync(GetAutoscalingPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutoscalingPoliciesAsync(ListAutoscalingPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutoscalingPolicy> updateAutoscalingPolicyAsync(UpdateAutoscalingPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class AutoscalingPolicyServiceClient
 {
@@ -92,9 +92,7 @@ final class AutoscalingPolicyServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -109,7 +107,8 @@ final class AutoscalingPolicyServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/autoscaling_policy_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/autoscaling_policy_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -161,8 +160,11 @@ final class AutoscalingPolicyServiceClient
      *
      * @return string The formatted project_location_autoscaling_policy resource.
      */
-    public static function projectLocationAutoscalingPolicyName(string $project, string $location, string $autoscalingPolicy): string
-    {
+    public static function projectLocationAutoscalingPolicyName(
+        string $project,
+        string $location,
+        string $autoscalingPolicy
+    ): string {
         return self::getPathTemplate('projectLocationAutoscalingPolicy')->render([
             'project' => $project,
             'location' => $location,
@@ -180,8 +182,11 @@ final class AutoscalingPolicyServiceClient
      *
      * @return string The formatted project_region_autoscaling_policy resource.
      */
-    public static function projectRegionAutoscalingPolicyName(string $project, string $region, string $autoscalingPolicy): string
-    {
+    public static function projectRegionAutoscalingPolicyName(
+        string $project,
+        string $region,
+        string $autoscalingPolicy
+    ): string {
         return self::getPathTemplate('projectRegionAutoscalingPolicy')->render([
             'project' => $project,
             'region' => $region,
@@ -327,8 +332,10 @@ final class AutoscalingPolicyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAutoscalingPolicy(CreateAutoscalingPolicyRequest $request, array $callOptions = []): AutoscalingPolicy
-    {
+    public function createAutoscalingPolicy(
+        CreateAutoscalingPolicyRequest $request,
+        array $callOptions = []
+    ): AutoscalingPolicy {
         return $this->startApiCall('CreateAutoscalingPolicy', $request, $callOptions)->wait();
     }
 
@@ -380,8 +387,10 @@ final class AutoscalingPolicyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAutoscalingPolicy(GetAutoscalingPolicyRequest $request, array $callOptions = []): AutoscalingPolicy
-    {
+    public function getAutoscalingPolicy(
+        GetAutoscalingPolicyRequest $request,
+        array $callOptions = []
+    ): AutoscalingPolicy {
         return $this->startApiCall('GetAutoscalingPolicy', $request, $callOptions)->wait();
     }
 
@@ -407,8 +416,10 @@ final class AutoscalingPolicyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAutoscalingPolicies(ListAutoscalingPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAutoscalingPolicies(
+        ListAutoscalingPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAutoscalingPolicies', $request, $callOptions);
     }
 
@@ -437,8 +448,10 @@ final class AutoscalingPolicyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAutoscalingPolicy(UpdateAutoscalingPolicyRequest $request, array $callOptions = []): AutoscalingPolicy
-    {
+    public function updateAutoscalingPolicy(
+        UpdateAutoscalingPolicyRequest $request,
+        array $callOptions = []
+    ): AutoscalingPolicy {
         return $this->startApiCall('UpdateAutoscalingPolicy', $request, $callOptions)->wait();
     }
 
@@ -529,8 +542,10 @@ final class AutoscalingPolicyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

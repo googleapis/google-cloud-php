@@ -592,6 +592,9 @@ class Bucket
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
+     *     @type boolean $softDeleted If true, returns the metadata of the
+     *           soft-deleted object. If true, generation must also be specified,
+     *           and alt=media cannot be specified.
      * }
      * @return StorageObject
      */
@@ -627,6 +630,8 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration Options.
      *
+     *     @type string $restoreToken Must be specified when getting a soft-deleted object from
+     *           an HNS-enabled bucket that has a name and generation conflict with another object in the same bucket.
      *     @type string $ifGenerationMatch Makes the operation conditional on whether
      *           the object's current generation matches the given value.
      *     @type string $ifGenerationNotMatch Makes the operation conditional on whether

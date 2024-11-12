@@ -18,8 +18,8 @@ class DeletePageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the page to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/Flows/<flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/Flows/<flowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,8 +41,8 @@ class DeletePageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the page to delete.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/Flows/<flow ID>/pages/<Page ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/Flows/<flowID>/pages/<PageID>`. Please see
      *                     {@see PagesClient::pageName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeletePageRequest
@@ -63,8 +63,8 @@ class DeletePageRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the page to delete.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/Flows/<flow ID>/pages/<Page ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/Flows/<flowID>/pages/<PageID>`.
      *     @type bool $force
      *           This field has no effect for pages with no incoming transitions.
      *           For pages with incoming transitions:
@@ -84,8 +84,8 @@ class DeletePageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the page to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/Flows/<flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/Flows/<flowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,8 +97,8 @@ class DeletePageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the page to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/Flows/<flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/Flows/<flowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

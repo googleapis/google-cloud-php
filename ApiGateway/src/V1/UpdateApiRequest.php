@@ -24,13 +24,13 @@ class UpdateApiRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. API resource.
      *
      * Generated from protobuf field <code>.google.cloud.apigateway.v1.Api api = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api = null;
+    protected $api = null;
 
     /**
      * @param \Google\Cloud\ApiGateway\V1\Api $api        Required. API resource.

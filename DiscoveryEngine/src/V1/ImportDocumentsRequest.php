@@ -126,6 +126,8 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           Cloud SQL input source.
      *     @type \Google\Cloud\DiscoveryEngine\V1\FirestoreSource $firestore_source
      *           Firestore input source.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AlloyDbSource $alloy_db_source
+     *           AlloyDB input source.
      *     @type \Google\Cloud\DiscoveryEngine\V1\BigtableSource $bigtable_source
      *           Cloud Bigtable input source.
      *     @type string $parent
@@ -413,6 +415,37 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\FirestoreSource::class);
         $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * AlloyDB input source.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AlloyDbSource alloy_db_source = 14;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\AlloyDbSource|null
+     */
+    public function getAlloyDbSource()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasAlloyDbSource()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * AlloyDB input source.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.AlloyDbSource alloy_db_source = 14;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\AlloyDbSource $var
+     * @return $this
+     */
+    public function setAlloyDbSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AlloyDbSource::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }

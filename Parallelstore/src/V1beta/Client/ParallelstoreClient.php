@@ -78,15 +78,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ParallelstoreClient
 {
@@ -271,6 +271,25 @@ final class ParallelstoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_account resource.
+     *
+     * @param string $project
+     * @param string $serviceAccount
+     *
+     * @return string The formatted service_account resource.
+     *
+     * @experimental
+     */
+    public static function serviceAccountName(string $project, string $serviceAccount): string
+    {
+        return self::getPathTemplate('serviceAccount')->render([
+            'project' => $project,
+            'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -278,6 +297,7 @@ final class ParallelstoreClient
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -402,7 +422,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Deletes a single Instance.
+     * Deletes a single instance.
      *
      * The async variant is {@see ParallelstoreClient::deleteInstanceAsync()} .
      *
@@ -430,7 +450,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * ExportData copies data from Parallelstore to Cloud Storage
+     * Copies data from Parallelstore to Cloud Storage.
      *
      * The async variant is {@see ParallelstoreClient::exportDataAsync()} .
      *
@@ -458,7 +478,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Gets details of a single Instance.
+     * Gets details of a single instance.
      *
      * The async variant is {@see ParallelstoreClient::getInstanceAsync()} .
      *
@@ -486,7 +506,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * ImportData copies data from Cloud Storage to Parallelstore.
+     * Copies data from Cloud Storage to Parallelstore.
      *
      * The async variant is {@see ParallelstoreClient::importDataAsync()} .
      *
@@ -514,7 +534,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Lists Instances in a given project and location.
+     * Lists all instances in a given project and location.
      *
      * The async variant is {@see ParallelstoreClient::listInstancesAsync()} .
      *
@@ -542,7 +562,7 @@ final class ParallelstoreClient
     }
 
     /**
-     * Updates the parameters of a single Instance.
+     * Updates the parameters of a single instance.
      *
      * The async variant is {@see ParallelstoreClient::updateInstanceAsync()} .
      *

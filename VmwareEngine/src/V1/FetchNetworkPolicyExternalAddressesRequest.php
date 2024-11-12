@@ -25,7 +25,7 @@ class FetchNetworkPolicyExternalAddressesRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>string network_policy = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $network_policy = '';
+    protected $network_policy = '';
     /**
      * The maximum number of external IP addresses to return in one page.
      * The service may return fewer than this value.
@@ -34,7 +34,7 @@ class FetchNetworkPolicyExternalAddressesRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous
      * `FetchNetworkPolicyExternalAddresses` call. Provide this to retrieve the
@@ -45,7 +45,7 @@ class FetchNetworkPolicyExternalAddressesRequest extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $networkPolicy Required. The resource name of the network policy to query for assigned

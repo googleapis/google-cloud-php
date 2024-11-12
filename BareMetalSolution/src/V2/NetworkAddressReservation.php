@@ -21,7 +21,7 @@ class NetworkAddressReservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_address = 1;</code>
      */
-    private $start_address = '';
+    protected $start_address = '';
     /**
      * The last address of this reservation block, inclusive. I.e., for cases when
      * reservations are only single addresses, end_address and start_address will
@@ -30,13 +30,13 @@ class NetworkAddressReservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string end_address = 2;</code>
      */
-    private $end_address = '';
+    protected $end_address = '';
     /**
      * A note about this reservation, intended for human consumption.
      *
      * Generated from protobuf field <code>string note = 3;</code>
      */
-    private $note = '';
+    protected $note = '';
 
     /**
      * Constructor.

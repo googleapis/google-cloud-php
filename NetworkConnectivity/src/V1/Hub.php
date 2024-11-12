@@ -27,19 +27,19 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time the hub was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the hub was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional labels in key-value pair format. For more information about
      * labels, see [Requirements for
@@ -53,7 +53,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The Google-generated UUID for the hub. This value is unique
      * across all hub resources. If a hub is deleted and another with the same
@@ -61,13 +61,13 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unique_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $unique_id = '';
+    protected $unique_id = '';
     /**
      * Output only. The current lifecycle state of this hub.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The VPC networks associated with this hub's spokes.
      * This field is read-only. Network Connectivity Center automatically
@@ -95,7 +95,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeSummary spoke_summary = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $spoke_summary = null;
+    protected $spoke_summary = null;
 
     /**
      * Constructor.

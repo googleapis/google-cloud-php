@@ -22,7 +22,7 @@ class UpdateAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig autokey_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autokey_config = null;
+    protected $autokey_config = null;
     /**
      * Required. Masks which fields of the
      * [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] to update, e.g.
@@ -30,7 +30,7 @@ class UpdateAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Kms\V1\AutokeyConfig $autokeyConfig Required. [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] with values to

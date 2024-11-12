@@ -29,7 +29,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Output only. The name of the managed Hub Membership resource associated to
      * this cluster.
@@ -38,7 +38,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $membership = '';
+    protected $membership = '';
 
     /**
      * Constructor.

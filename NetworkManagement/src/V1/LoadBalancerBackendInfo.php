@@ -22,57 +22,57 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * URI of the backend instance (if applicable). Populated for instance group
      * backends, and zonal NEG backends.
      *
      * Generated from protobuf field <code>string instance_uri = 2;</code>
      */
-    private $instance_uri = '';
+    protected $instance_uri = '';
     /**
      * URI of the backend service this backend belongs to (if applicable).
      *
      * Generated from protobuf field <code>string backend_service_uri = 3;</code>
      */
-    private $backend_service_uri = '';
+    protected $backend_service_uri = '';
     /**
      * URI of the instance group this backend belongs to (if applicable).
      *
      * Generated from protobuf field <code>string instance_group_uri = 4;</code>
      */
-    private $instance_group_uri = '';
+    protected $instance_group_uri = '';
     /**
      * URI of the network endpoint group this backend belongs to (if applicable).
      *
      * Generated from protobuf field <code>string network_endpoint_group_uri = 5;</code>
      */
-    private $network_endpoint_group_uri = '';
+    protected $network_endpoint_group_uri = '';
     /**
      * URI of the backend bucket this backend targets (if applicable).
      *
      * Generated from protobuf field <code>string backend_bucket_uri = 8;</code>
      */
-    private $backend_bucket_uri = '';
+    protected $backend_bucket_uri = '';
     /**
      * URI of the PSC service attachment this PSC NEG backend targets (if
      * applicable).
      *
      * Generated from protobuf field <code>string psc_service_attachment_uri = 9;</code>
      */
-    private $psc_service_attachment_uri = '';
+    protected $psc_service_attachment_uri = '';
     /**
      * PSC Google API target this PSC NEG backend targets (if applicable).
      *
      * Generated from protobuf field <code>string psc_google_api_target = 10;</code>
      */
-    private $psc_google_api_target = '';
+    protected $psc_google_api_target = '';
     /**
      * URI of the health check attached to this backend (if applicable).
      *
      * Generated from protobuf field <code>string health_check_uri = 6;</code>
      */
-    private $health_check_uri = '';
+    protected $health_check_uri = '';
     /**
      * Output only. Health check firewalls configuration state for the backend.
      * This is a result of the static firewall analysis (verifying that health
@@ -83,7 +83,7 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackendInfo.HealthCheckFirewallsConfigState health_check_firewalls_config_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $health_check_firewalls_config_state = 0;
+    protected $health_check_firewalls_config_state = 0;
 
     /**
      * Constructor.

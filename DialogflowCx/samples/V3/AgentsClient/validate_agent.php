@@ -34,7 +34,7 @@ use Google\Cloud\Dialogflow\Cx\V3\ValidateAgentRequest;
  * training is completed to get the complete validation results.
  *
  * @param string $formattedName The agent to validate.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                              Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                              {@see AgentsClient::agentName()} for help formatting this field.
  */
 function validate_agent_sample(string $formattedName): void

@@ -20,14 +20,14 @@ class RegisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $account = '';
+    protected $account = '';
     /**
      * Required. Service account that provides subscriber access to the registered
      * topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
 
     /**
      * Constructor.

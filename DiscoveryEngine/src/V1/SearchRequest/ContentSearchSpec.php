@@ -36,6 +36,23 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ExtractiveContentSpec extractive_content_spec = 3;</code>
      */
     protected $extractive_content_spec = null;
+    /**
+     * Specifies the search result mode. If unspecified, the
+     * search result mode defaults to `DOCUMENTS`.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 4;</code>
+     */
+    protected $search_result_mode = 0;
+    /**
+     * Specifies the chunk spec to be returned from the search response.
+     * Only available if the
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS]
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec chunk_spec = 5;</code>
+     */
+    protected $chunk_spec = null;
 
     /**
      * Constructor.
@@ -52,6 +69,15 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ExtractiveContentSpec $extractive_content_spec
      *           If there is no extractive_content_spec provided, there will be no
      *           extractive answer in the search response.
+     *     @type int $search_result_mode
+     *           Specifies the search result mode. If unspecified, the
+     *           search result mode defaults to `DOCUMENTS`.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ChunkSpec $chunk_spec
+     *           Specifies the chunk spec to be returned from the search response.
+     *           Only available if the
+     *           [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     *           is set to
+     *           [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS]
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +195,78 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ExtractiveContentSpec::class);
         $this->extractive_content_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the search result mode. If unspecified, the
+     * search result mode defaults to `DOCUMENTS`.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 4;</code>
+     * @return int
+     */
+    public function getSearchResultMode()
+    {
+        return $this->search_result_mode;
+    }
+
+    /**
+     * Specifies the search result mode. If unspecified, the
+     * search result mode defaults to `DOCUMENTS`.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSearchResultMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SearchResultMode::class);
+        $this->search_result_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the chunk spec to be returned from the search response.
+     * Only available if the
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS]
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec chunk_spec = 5;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ChunkSpec|null
+     */
+    public function getChunkSpec()
+    {
+        return $this->chunk_spec;
+    }
+
+    public function hasChunkSpec()
+    {
+        return isset($this->chunk_spec);
+    }
+
+    public function clearChunkSpec()
+    {
+        unset($this->chunk_spec);
+    }
+
+    /**
+     * Specifies the chunk spec to be returned from the search response.
+     * Only available if the
+     * [SearchRequest.ContentSearchSpec.search_result_mode][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]
+     * is set to
+     * [CHUNKS][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS]
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec chunk_spec = 5;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ChunkSpec $var
+     * @return $this
+     */
+    public function setChunkSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ChunkSpec::class);
+        $this->chunk_spec = $var;
 
         return $this;
     }

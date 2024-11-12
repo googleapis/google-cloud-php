@@ -20,7 +20,7 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 cpu_count = 1;</code>
      */
-    private $cpu_count = 0;
+    protected $cpu_count = 0;
 
     /**
      * Constructor.

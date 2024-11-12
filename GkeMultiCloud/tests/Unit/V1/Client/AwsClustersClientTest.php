@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\GkeMultiCloud\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeMultiCloud\V1\AwsAuthorization;
@@ -63,6 +62,7 @@ use Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint;
 use Google\Cloud\GkeMultiCloud\V1\RollbackAwsNodePoolUpdateRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -87,7 +87,9 @@ class AwsClustersClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AwsClustersClient */
@@ -247,12 +249,15 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -450,12 +455,15 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
@@ -540,8 +548,7 @@ class AwsClustersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new DeleteAwsClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAwsClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteAwsCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -597,17 +604,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new DeleteAwsClusterRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAwsClusterRequest())->setName($formattedName);
         $response = $gapicClient->deleteAwsCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -661,8 +670,7 @@ class AwsClustersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $request = (new DeleteAwsNodePoolRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAwsNodePoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteAwsNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -718,17 +726,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $request = (new DeleteAwsNodePoolRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAwsNodePoolRequest())->setName($formattedName);
         $response = $gapicClient->deleteAwsNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -766,8 +776,7 @@ class AwsClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GenerateAwsAccessTokenRequest())
-            ->setAwsCluster($formattedAwsCluster);
+        $request = (new GenerateAwsAccessTokenRequest())->setAwsCluster($formattedAwsCluster);
         $response = $gapicClient->generateAwsAccessToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -791,17 +800,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GenerateAwsAccessTokenRequest())
-            ->setAwsCluster($formattedAwsCluster);
+        $request = (new GenerateAwsAccessTokenRequest())->setAwsCluster($formattedAwsCluster);
         try {
             $gapicClient->generateAwsAccessToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -871,12 +882,15 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
@@ -930,8 +944,7 @@ class AwsClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GetAwsClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetAwsClusterRequest())->setName($formattedName);
         $response = $gapicClient->getAwsCluster($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -955,17 +968,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GetAwsClusterRequest())
-            ->setName($formattedName);
+        $request = (new GetAwsClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getAwsCluster($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -992,8 +1007,7 @@ class AwsClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GetAwsJsonWebKeysRequest())
-            ->setAwsCluster($formattedAwsCluster);
+        $request = (new GetAwsJsonWebKeysRequest())->setAwsCluster($formattedAwsCluster);
         $response = $gapicClient->getAwsJsonWebKeys($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1017,17 +1031,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GetAwsJsonWebKeysRequest())
-            ->setAwsCluster($formattedAwsCluster);
+        $request = (new GetAwsJsonWebKeysRequest())->setAwsCluster($formattedAwsCluster);
         try {
             $gapicClient->getAwsJsonWebKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1066,8 +1082,7 @@ class AwsClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $request = (new GetAwsNodePoolRequest())
-            ->setName($formattedName);
+        $request = (new GetAwsNodePoolRequest())->setName($formattedName);
         $response = $gapicClient->getAwsNodePool($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1091,17 +1106,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $request = (new GetAwsNodePoolRequest())
-            ->setName($formattedName);
+        $request = (new GetAwsNodePoolRequest())->setName($formattedName);
         try {
             $gapicClient->getAwsNodePool($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1132,8 +1149,7 @@ class AwsClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GetAwsOpenIdConfigRequest())
-            ->setAwsCluster($formattedAwsCluster);
+        $request = (new GetAwsOpenIdConfigRequest())->setAwsCluster($formattedAwsCluster);
         $response = $gapicClient->getAwsOpenIdConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1157,17 +1173,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new GetAwsOpenIdConfigRequest())
-            ->setAwsCluster($formattedAwsCluster);
+        $request = (new GetAwsOpenIdConfigRequest())->setAwsCluster($formattedAwsCluster);
         try {
             $gapicClient->getAwsOpenIdConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1196,8 +1214,7 @@ class AwsClustersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->awsServerConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetAwsServerConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetAwsServerConfigRequest())->setName($formattedName);
         $response = $gapicClient->getAwsServerConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1221,17 +1238,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->awsServerConfigName('[PROJECT]', '[LOCATION]');
-        $request = (new GetAwsServerConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetAwsServerConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getAwsServerConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1256,17 +1275,14 @@ class AwsClustersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $awsClustersElement = new AwsCluster();
-        $awsClusters = [
-            $awsClustersElement,
-        ];
+        $awsClusters = [$awsClustersElement];
         $expectedResponse = new ListAwsClustersResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAwsClusters($awsClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAwsClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAwsClustersRequest())->setParent($formattedParent);
         $response = $gapicClient->listAwsClusters($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1293,17 +1309,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAwsClustersRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAwsClustersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAwsClusters($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1328,17 +1346,14 @@ class AwsClustersClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $awsNodePoolsElement = new AwsNodePool();
-        $awsNodePools = [
-            $awsNodePoolsElement,
-        ];
+        $awsNodePools = [$awsNodePoolsElement];
         $expectedResponse = new ListAwsNodePoolsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAwsNodePools($awsNodePools);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new ListAwsNodePoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAwsNodePoolsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAwsNodePools($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1365,17 +1380,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $request = (new ListAwsNodePoolsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAwsNodePoolsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAwsNodePools($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1432,8 +1449,7 @@ class AwsClustersClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $request = (new RollbackAwsNodePoolUpdateRequest())
-            ->setName($formattedName);
+        $request = (new RollbackAwsNodePoolUpdateRequest())->setName($formattedName);
         $response = $gapicClient->rollbackAwsNodePoolUpdate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1489,17 +1505,19 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $request = (new RollbackAwsNodePoolUpdateRequest())
-            ->setName($formattedName);
+        $request = (new RollbackAwsNodePoolUpdateRequest())->setName($formattedName);
         $response = $gapicClient->rollbackAwsNodePoolUpdate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1606,9 +1624,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterFleet->setProject($fleetProject);
         $awsCluster->setFleet($awsClusterFleet);
         $updateMask = new FieldMask();
-        $request = (new UpdateAwsClusterRequest())
-            ->setAwsCluster($awsCluster)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAwsClusterRequest())->setAwsCluster($awsCluster)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAwsCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1666,12 +1682,15 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $awsCluster = new AwsCluster();
@@ -1712,9 +1731,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterFleet->setProject($fleetProject);
         $awsCluster->setFleet($awsClusterFleet);
         $updateMask = new FieldMask();
-        $request = (new UpdateAwsClusterRequest())
-            ->setAwsCluster($awsCluster)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAwsClusterRequest())->setAwsCluster($awsCluster)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAwsCluster($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1803,9 +1820,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $awsNodePool->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
         $updateMask = new FieldMask();
-        $request = (new UpdateAwsNodePoolRequest())
-            ->setAwsNodePool($awsNodePool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAwsNodePoolRequest())->setAwsNodePool($awsNodePool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAwsNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1863,12 +1878,15 @@ class AwsClustersClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $awsNodePool = new AwsNodePool();
@@ -1895,9 +1913,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $awsNodePool->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
         $updateMask = new FieldMask();
-        $request = (new UpdateAwsNodePoolRequest())
-            ->setAwsNodePool($awsNodePool)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAwsNodePoolRequest())->setAwsNodePool($awsNodePool)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAwsNodePool($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

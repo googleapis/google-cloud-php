@@ -23,7 +23,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 7;</code>
      */
-    private $condition = null;
+    protected $condition = null;
     /**
      * The condition evaluation result for this rule.
      * Only populated if it meets all the following criteria:
@@ -41,7 +41,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 8;</code>
      */
-    private $condition_evaluation = null;
+    protected $condition_evaluation = null;
     protected $kind;
 
     /**
@@ -326,6 +326,4 @@ class Rule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Rule::class, \Google\Cloud\Asset\V1\AnalyzerOrgPolicy_Rule::class);
 

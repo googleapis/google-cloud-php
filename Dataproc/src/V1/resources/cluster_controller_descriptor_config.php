@@ -295,6 +295,7 @@ return [
             'templateMap' => [
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'clusterRegion' => 'projects/{project}/regions/{region}/clusters/{cluster}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'nodeGroup' => 'projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{node_group}',
                 'service' => 'projects/{project}/locations/{location}/services/{service}',
             ],

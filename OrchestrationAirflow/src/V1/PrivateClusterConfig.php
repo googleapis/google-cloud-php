@@ -22,14 +22,14 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_private_endpoint = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_private_endpoint = false;
+    protected $enable_private_endpoint = false;
     /**
      * Optional. The CIDR block from which IPv4 range for GKE master will be
      * reserved. If left blank, the default value of '172.16.0.0/23' is used.
      *
      * Generated from protobuf field <code>string master_ipv4_cidr_block = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $master_ipv4_cidr_block = '';
+    protected $master_ipv4_cidr_block = '';
     /**
      * Output only. The IP range in CIDR notation to use for the hosted master
      * network. This range is used for assigning internal IP addresses to the GKE
@@ -39,7 +39,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string master_ipv4_reserved_range = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $master_ipv4_reserved_range = '';
+    protected $master_ipv4_reserved_range = '';
 
     /**
      * Constructor.

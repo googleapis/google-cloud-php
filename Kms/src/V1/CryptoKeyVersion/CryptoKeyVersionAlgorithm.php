@@ -330,6 +330,4 @@ class CryptoKeyVersionAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CryptoKeyVersionAlgorithm::class, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
 

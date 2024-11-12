@@ -29,7 +29,7 @@ class RerankConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool rerank_facet = 1;</code>
      */
-    private $rerank_facet = false;
+    protected $rerank_facet = false;
     /**
      * If empty, rerank on all facet values for the current key. Otherwise,
      * will rerank on the facet values from this list only.

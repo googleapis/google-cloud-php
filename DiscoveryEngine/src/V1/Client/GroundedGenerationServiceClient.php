@@ -25,6 +25,7 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\ResourceHelperTrait;
@@ -34,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DiscoveryEngine\V1\CheckGroundingRequest;
 use Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse;
+use Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest;
+use Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -47,7 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkGroundingAsync(CheckGroundingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckGroundingResponse> checkGroundingAsync(CheckGroundingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateGroundedContentResponse> generateGroundedContentAsync(GenerateGroundedContentRequest $request, array $optionalArgs = [])
  */
 final class GroundedGenerationServiceClient
 {
@@ -116,10 +120,138 @@ final class GroundedGenerationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_data_store_serving_config resource.
+     */
+    public static function projectLocationCollectionDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_engine_serving_config resource.
+     */
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_data_store_serving_config resource.
+     */
+    public static function projectLocationDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $servingConfig
+     *
+     * @return string The formatted serving_config resource.
+     */
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('servingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - groundingConfig: projects/{project}/locations/{location}/groundingConfigs/{grounding_config}
+     * - location: projects/{project}/locations/{location}
+     * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
+     * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -235,5 +367,55 @@ final class GroundedGenerationServiceClient
     public function checkGrounding(CheckGroundingRequest $request, array $callOptions = []): CheckGroundingResponse
     {
         return $this->startApiCall('CheckGrounding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates grounded content.
+     *
+     * The async variant is
+     * {@see GroundedGenerationServiceClient::generateGroundedContentAsync()} .
+     *
+     * @example samples/V1/GroundedGenerationServiceClient/generate_grounded_content.php
+     *
+     * @param GenerateGroundedContentRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateGroundedContentResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateGroundedContent(
+        GenerateGroundedContentRequest $request,
+        array $callOptions = []
+    ): GenerateGroundedContentResponse {
+        return $this->startApiCall('GenerateGroundedContent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates grounded content in a streaming fashion.
+     *
+     * @example samples/V1/GroundedGenerationServiceClient/stream_generate_grounded_content.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamGenerateGroundedContent(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamGenerateGroundedContent', null, $callOptions);
     }
 }

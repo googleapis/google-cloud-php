@@ -29,13 +29,13 @@ class ConversationParticipant extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string obfuscated_external_user_id = 3;</code>
      */
-    private $obfuscated_external_user_id = '';
+    protected $obfuscated_external_user_id = '';
     /**
      * The role of the participant.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ConversationParticipant.Role role = 2;</code>
      */
-    private $role = 0;
+    protected $role = 0;
     protected $participant;
 
     /**

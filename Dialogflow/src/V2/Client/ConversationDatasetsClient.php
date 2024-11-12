@@ -65,13 +65,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConversationDatasetAsync(CreateConversationDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationDatasetAsync(DeleteConversationDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationDatasetAsync(GetConversationDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importConversationDataAsync(ImportConversationDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationDatasetsAsync(ListConversationDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationDatasetAsync(CreateConversationDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConversationDatasetAsync(DeleteConversationDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationDataset> getConversationDatasetAsync(GetConversationDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importConversationDataAsync(ImportConversationDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationDatasetsAsync(ListConversationDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationDatasetsClient
 {

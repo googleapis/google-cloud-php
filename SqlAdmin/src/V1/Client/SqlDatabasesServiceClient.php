@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,12 +47,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(SqlDatabasesDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlDatabasesGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlDatabasesInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlDatabasesListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(SqlDatabasesUpdateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(SqlDatabasesUpdateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlDatabasesDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Database> getAsync(SqlDatabasesGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> insertAsync(SqlDatabasesInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DatabasesListResponse> listAsync(SqlDatabasesListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> patchAsync(SqlDatabasesUpdateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateAsync(SqlDatabasesUpdateRequest $request, array $optionalArgs = [])
  */
 final class SqlDatabasesServiceClient
 {

@@ -20,7 +20,7 @@ class InstanceQuota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Instance type.
      * Deprecated: use gcp_service.
@@ -34,20 +34,20 @@ class InstanceQuota extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcp_service = 5;</code>
      */
-    private $gcp_service = '';
+    protected $gcp_service = '';
     /**
      * Location where the quota applies.
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Number of machines than can be created for the given location and
      * instance_type.
      *
      * Generated from protobuf field <code>int32 available_machine_count = 4;</code>
      */
-    private $available_machine_count = 0;
+    protected $available_machine_count = 0;
 
     /**
      * Constructor.

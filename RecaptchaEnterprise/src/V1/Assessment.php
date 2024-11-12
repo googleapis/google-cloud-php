@@ -83,6 +83,22 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals fraud_signals = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $fraud_signals = null;
+    /**
+     * Output only. Assessment returned when a site key, a token, and a phone
+     * number as `user_id` are provided. Account defender and SMS toll fraud
+     * protection need to be enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $phone_fraud_assessment = null;
+    /**
+     * Optional. The environment creating the assessment. This describes your
+     * environment (the system invoking CreateAssessment), NOT the environment of
+     * your user.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment assessment_environment = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $assessment_environment = null;
 
     /**
      * Constructor.
@@ -118,6 +134,14 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals $fraud_signals
      *           Output only. Fraud Signals specific to the users involved in a payment
      *           transaction.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment $phone_fraud_assessment
+     *           Output only. Assessment returned when a site key, a token, and a phone
+     *           number as `user_id` are provided. Account defender and SMS toll fraud
+     *           protection need to be enabled.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\AssessmentEnvironment $assessment_environment
+     *           Optional. The environment creating the assessment. This describes your
+     *           environment (the system invoking CreateAssessment), NOT the environment of
+     *           your user.
      * }
      */
     public function __construct($data = NULL) {
@@ -487,6 +511,86 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FraudSignals::class);
         $this->fraud_signals = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Assessment returned when a site key, a token, and a phone
+     * number as `user_id` are provided. Account defender and SMS toll fraud
+     * protection need to be enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment|null
+     */
+    public function getPhoneFraudAssessment()
+    {
+        return $this->phone_fraud_assessment;
+    }
+
+    public function hasPhoneFraudAssessment()
+    {
+        return isset($this->phone_fraud_assessment);
+    }
+
+    public function clearPhoneFraudAssessment()
+    {
+        unset($this->phone_fraud_assessment);
+    }
+
+    /**
+     * Output only. Assessment returned when a site key, a token, and a phone
+     * number as `user_id` are provided. Account defender and SMS toll fraud
+     * protection need to be enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment $var
+     * @return $this
+     */
+    public function setPhoneFraudAssessment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\PhoneFraudAssessment::class);
+        $this->phone_fraud_assessment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The environment creating the assessment. This describes your
+     * environment (the system invoking CreateAssessment), NOT the environment of
+     * your user.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment assessment_environment = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AssessmentEnvironment|null
+     */
+    public function getAssessmentEnvironment()
+    {
+        return $this->assessment_environment;
+    }
+
+    public function hasAssessmentEnvironment()
+    {
+        return isset($this->assessment_environment);
+    }
+
+    public function clearAssessmentEnvironment()
+    {
+        unset($this->assessment_environment);
+    }
+
+    /**
+     * Optional. The environment creating the assessment. This describes your
+     * environment (the system invoking CreateAssessment), NOT the environment of
+     * your user.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment assessment_environment = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\AssessmentEnvironment $var
+     * @return $this
+     */
+    public function setAssessmentEnvironment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AssessmentEnvironment::class);
+        $this->assessment_environment = $var;
 
         return $this;
     }

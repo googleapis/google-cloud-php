@@ -80,6 +80,4 @@ class CommonCharsToIgnore
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommonCharsToIgnore::class, \Google\Cloud\Dlp\V2\CharsToIgnore_CommonCharsToIgnore::class);
 

@@ -10,14 +10,14 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Retrieve from Vertex AI Search datastore for grounding.
- * See https://cloud.google.com/vertex-ai-search-and-conversation
+ * See https://cloud.google.com/products/agent-builder
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.VertexAISearch</code>
  */
 class VertexAISearch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Fully-qualified Vertex AI Search's datastore resource ID.
+     * Required. Fully-qualified Vertex AI Search data store resource ID.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
@@ -32,7 +32,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $datastore
-     *           Required. Fully-qualified Vertex AI Search's datastore resource ID.
+     *           Required. Fully-qualified Vertex AI Search data store resource ID.
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      * }
@@ -43,7 +43,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified Vertex AI Search's datastore resource ID.
+     * Required. Fully-qualified Vertex AI Search data store resource ID.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *
@@ -56,7 +56,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Fully-qualified Vertex AI Search's datastore resource ID.
+     * Required. Fully-qualified Vertex AI Search data store resource ID.
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`
      *

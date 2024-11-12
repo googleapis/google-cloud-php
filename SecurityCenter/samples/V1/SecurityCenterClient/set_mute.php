@@ -35,9 +35,9 @@ use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
  * @param string $formattedName The [relative resource
  *                              name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
  *                              of the finding. Example:
- *                              "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
- *                              "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
- *                              "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
+ *                              `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}`,
+ *                              `folders/{folder_id}/sources/{source_id}/findings/{finding_id}`,
+ *                              `projects/{project_id}/sources/{source_id}/findings/{finding_id}`. Please see
  *                              {@see SecurityCenterClient::findingName()} for help formatting this field.
  * @param int    $mute          The desired state of the Mute.
  */

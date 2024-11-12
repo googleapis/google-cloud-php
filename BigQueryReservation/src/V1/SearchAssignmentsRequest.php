@@ -25,7 +25,7 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Please specify resource name as assignee in the query.
      * Examples:
@@ -35,19 +35,19 @@ class SearchAssignmentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 2;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The maximum number of items to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The next_page_token value returned from a previous List request, if any.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The resource name of the admin project(containing project and

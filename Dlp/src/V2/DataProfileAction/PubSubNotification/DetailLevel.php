@@ -31,11 +31,18 @@ class DetailLevel
      * Generated from protobuf enum <code>RESOURCE_NAME = 2;</code>
      */
     const RESOURCE_NAME = 2;
+    /**
+     * The full file store data profile.
+     *
+     * Generated from protobuf enum <code>FILE_STORE_PROFILE = 3;</code>
+     */
+    const FILE_STORE_PROFILE = 3;
 
     private static $valueToName = [
         self::DETAIL_LEVEL_UNSPECIFIED => 'DETAIL_LEVEL_UNSPECIFIED',
         self::TABLE_PROFILE => 'TABLE_PROFILE',
         self::RESOURCE_NAME => 'RESOURCE_NAME',
+        self::FILE_STORE_PROFILE => 'FILE_STORE_PROFILE',
     ];
 
     public static function name($value)
@@ -59,6 +66,4 @@ class DetailLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetailLevel::class, \Google\Cloud\Dlp\V2\DataProfileAction_PubSubNotification_DetailLevel::class);
 

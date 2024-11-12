@@ -59,6 +59,4 @@ class SignatureType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SignatureType::class, \Google\Cloud\SecurityCenter\V1\Indicator_ProcessSignature_SignatureType::class);
 

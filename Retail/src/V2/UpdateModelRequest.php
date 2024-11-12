@@ -20,14 +20,14 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Model model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = null;
+    protected $model = null;
     /**
      * Optional. Indicates which fields in the provided 'model' to
      * update. If not set, by default updates all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Retail\V2\Model $model      Required. The body of the updated [Model][google.cloud.retail.v2.Model].

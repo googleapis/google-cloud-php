@@ -29,6 +29,7 @@ use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\ApiCore\ApiException;
 
 /**
+ * Deprecated: Use `GetKeyEvent` instead.
  * Retrieve a single conversion event.
  *
  * @param string $formattedName The resource name of the conversion event to retrieve.

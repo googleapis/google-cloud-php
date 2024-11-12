@@ -83,6 +83,13 @@ class Cause
      */
     const UNKNOWN_IP = 2;
     /**
+     * Aborted because no endpoint with the packet's destination IP is found in
+     * the Google-managed project.
+     *
+     * Generated from protobuf enum <code>GOOGLE_MANAGED_SERVICE_UNKNOWN_IP = 32;</code>
+     */
+    const GOOGLE_MANAGED_SERVICE_UNKNOWN_IP = 32;
+    /**
      * Aborted because the source IP address doesn't belong to any of the
      * subnets of the source VPC network.
      *
@@ -110,6 +117,13 @@ class Cause
      * Generated from protobuf enum <code>PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS = 29;</code>
      */
     const PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS = 29;
+    /**
+     * Aborted because user lacks permission to access Cloud Router configs
+     * required to run the test.
+     *
+     * Generated from protobuf enum <code>PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS = 36;</code>
+     */
+    const PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS = 36;
     /**
      * Aborted because no valid source or destination endpoint is derived from
      * the input test request.
@@ -208,6 +222,19 @@ class Cause
      */
     const SOURCE_PSC_CLOUD_SQL_UNSUPPORTED = 20;
     /**
+     * Aborted because tests with a Redis Cluster as a source are not supported.
+     *
+     * Generated from protobuf enum <code>SOURCE_REDIS_CLUSTER_UNSUPPORTED = 34;</code>
+     */
+    const SOURCE_REDIS_CLUSTER_UNSUPPORTED = 34;
+    /**
+     * Aborted because tests with a Redis Instance as a source are not
+     * supported.
+     *
+     * Generated from protobuf enum <code>SOURCE_REDIS_INSTANCE_UNSUPPORTED = 35;</code>
+     */
+    const SOURCE_REDIS_INSTANCE_UNSUPPORTED = 35;
+    /**
      * Aborted because tests with a forwarding rule as a source are not
      * supported.
      *
@@ -246,10 +273,12 @@ class Cause
         self::DESTINATION_ENDPOINT_NOT_FOUND => 'DESTINATION_ENDPOINT_NOT_FOUND',
         self::MISMATCHED_DESTINATION_NETWORK => 'MISMATCHED_DESTINATION_NETWORK',
         self::UNKNOWN_IP => 'UNKNOWN_IP',
+        self::GOOGLE_MANAGED_SERVICE_UNKNOWN_IP => 'GOOGLE_MANAGED_SERVICE_UNKNOWN_IP',
         self::SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK => 'SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK',
         self::PERMISSION_DENIED => 'PERMISSION_DENIED',
         self::PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS => 'PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS',
         self::PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS => 'PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS',
+        self::PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS => 'PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS',
         self::NO_SOURCE_LOCATION => 'NO_SOURCE_LOCATION',
         self::INVALID_ARGUMENT => 'INVALID_ARGUMENT',
         self::TRACE_TOO_LONG => 'TRACE_TOO_LONG',
@@ -264,6 +293,8 @@ class Cause
         self::ROUTE_CONFIG_NOT_FOUND => 'ROUTE_CONFIG_NOT_FOUND',
         self::GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT',
         self::SOURCE_PSC_CLOUD_SQL_UNSUPPORTED => 'SOURCE_PSC_CLOUD_SQL_UNSUPPORTED',
+        self::SOURCE_REDIS_CLUSTER_UNSUPPORTED => 'SOURCE_REDIS_CLUSTER_UNSUPPORTED',
+        self::SOURCE_REDIS_INSTANCE_UNSUPPORTED => 'SOURCE_REDIS_INSTANCE_UNSUPPORTED',
         self::SOURCE_FORWARDING_RULE_UNSUPPORTED => 'SOURCE_FORWARDING_RULE_UNSUPPORTED',
         self::NON_ROUTABLE_IP_ADDRESS => 'NON_ROUTABLE_IP_ADDRESS',
         self::UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT => 'UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT',

@@ -20,14 +20,14 @@ class FetchDatabasePropertiesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string primary_gce_zone = 1;</code>
      */
-    private $primary_gce_zone = '';
+    protected $primary_gce_zone = '';
     /**
      * The Compute Engine zone that the failover instance is currently serving
      * from for a regional Cloud SQL instance.
      *
      * Generated from protobuf field <code>string secondary_gce_zone = 2;</code>
      */
-    private $secondary_gce_zone = '';
+    protected $secondary_gce_zone = '';
     /**
      * The availability status of the failover replica. A false status indicates
      * that the failover replica is out of sync. The primary instance can only
@@ -35,7 +35,7 @@ class FetchDatabasePropertiesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_failover_replica_available = 3;</code>
      */
-    private $is_failover_replica_available = false;
+    protected $is_failover_replica_available = false;
 
     /**
      * Constructor.

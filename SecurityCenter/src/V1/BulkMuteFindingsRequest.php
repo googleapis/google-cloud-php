@@ -21,12 +21,12 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]".
+     * is `organizations/[organization_id]`, `folders/[folder_id]`,
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Expression that identifies findings that should be updated.
      * The expression is a list of zero or more restrictions combined
@@ -46,7 +46,7 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * This can be a mute configuration name or any identifier for mute/unmute
      * of findings based on the filter.
@@ -55,11 +55,19 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $mute_annotation = '';
+    /**
+     * Optional. All findings matching the given filter will have their mute state
+     * set to this value. The default value is `MUTED`. Setting this to
+     * `UNDEFINED` will clear the mute state on all matching findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState mute_state = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mute_state = 0;
 
     /**
      * @param string $parent Required. The parent, at which bulk action needs to be applied. Its format
-     *                       is "organizations/[organization_id]", "folders/[folder_id]",
-     *                       "projects/[project_id]".
+     *                       is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *                       `projects/[project_id]`.
      *
      * @return \Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest
      *
@@ -79,8 +87,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, at which bulk action needs to be applied. Its format
-     *           is "organizations/[organization_id]", "folders/[folder_id]",
-     *           "projects/[project_id]".
+     *           is `organizations/[organization_id]`, `folders/[folder_id]`,
+     *           `projects/[project_id]`.
      *     @type string $filter
      *           Expression that identifies findings that should be updated.
      *           The expression is a list of zero or more restrictions combined
@@ -100,6 +108,10 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $mute_annotation
      *           This can be a mute configuration name or any identifier for mute/unmute
      *           of findings based on the filter.
+     *     @type int $mute_state
+     *           Optional. All findings matching the given filter will have their mute state
+     *           set to this value. The default value is `MUTED`. Setting this to
+     *           `UNDEFINED` will clear the mute state on all matching findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,8 +121,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]".
+     * is `organizations/[organization_id]`, `folders/[folder_id]`,
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,8 +134,8 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, at which bulk action needs to be applied. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
-     * "projects/[project_id]".
+     * is `organizations/[organization_id]`, `folders/[folder_id]`,
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -219,6 +231,36 @@ class BulkMuteFindingsRequest extends \Google\Protobuf\Internal\Message
         @trigger_error('mute_annotation is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->mute_annotation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. All findings matching the given filter will have their mute state
+     * set to this value. The default value is `MUTED`. Setting this to
+     * `UNDEFINED` will clear the mute state on all matching findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState mute_state = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMuteState()
+    {
+        return $this->mute_state;
+    }
+
+    /**
+     * Optional. All findings matching the given filter will have their mute state
+     * set to this value. The default value is `MUTED`. Setting this to
+     * `UNDEFINED` will clear the mute state on all matching findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BulkMuteFindingsRequest.MuteState mute_state = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMuteState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest\MuteState::class);
+        $this->mute_state = $var;
 
         return $this;
     }

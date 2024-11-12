@@ -20,7 +20,7 @@ class SqlTiersListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 1;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

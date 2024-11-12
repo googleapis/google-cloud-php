@@ -21,13 +21,13 @@ class RenameInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new `id` of the instance.
      *
      * Generated from protobuf field <code>string new_instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_instance_id = '';
+    protected $new_instance_id = '';
 
     /**
      * @param string $name          Required. The `name` field is used to identify the instance.

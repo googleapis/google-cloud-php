@@ -69,6 +69,4 @@ class SelectedInfoTypes extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SelectedInfoTypes::class, \Google\Cloud\Dlp\V2\ImageTransformations_ImageTransformation_SelectedInfoTypes::class);
 

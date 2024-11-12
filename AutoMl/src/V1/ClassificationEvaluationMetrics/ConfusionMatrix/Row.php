@@ -77,6 +77,4 @@ class Row extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Row::class, \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics_ConfusionMatrix_Row::class);
 

@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateHttpRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\UpdateHttpRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -65,18 +66,20 @@ function update_http_route_sample(string $httpRouteName, string $httpRouteHostna
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $httpRouteHostnames = [$httpRouteHostnamesElement,];
     $httpRouteRules = [new RouteRule()];
     $httpRoute = (new HttpRoute())
         ->setName($httpRouteName)
         ->setHostnames($httpRouteHostnames)
         ->setRules($httpRouteRules);
+    $request = (new UpdateHttpRouteRequest())
+        ->setHttpRoute($httpRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateHttpRoute($httpRoute);
+        $response = $networkServicesClient->updateHttpRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

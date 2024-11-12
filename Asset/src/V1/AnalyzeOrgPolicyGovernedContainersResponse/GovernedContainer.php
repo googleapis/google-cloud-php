@@ -24,7 +24,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 1;</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
     /**
      * The [full resource name]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format) of
@@ -33,7 +33,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The consolidated organization policy for the analyzed resource. The
      * consolidated organization policy is computed by merging and evaluating
@@ -43,7 +43,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicy consolidated_policy = 3;</code>
      */
-    private $consolidated_policy = null;
+    protected $consolidated_policy = null;
     /**
      * The ordered list of all organization policies from the
      * [AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource][].
@@ -61,7 +61,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 5;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The folder(s) that this resource belongs to, in the format of
      * folders/{FOLDER_NUMBER}. This field is available when the resource
@@ -77,7 +77,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 7;</code>
      */
-    private $organization = '';
+    protected $organization = '';
     /**
      * The effective tags on this resource.
      *
@@ -391,6 +391,4 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GovernedContainer::class, \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse_GovernedContainer::class);
 

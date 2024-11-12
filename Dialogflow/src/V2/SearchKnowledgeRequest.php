@@ -17,11 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource contains the conversation profile
+     * Required. The parent resource contains the conversation profile
      * Format: 'projects/<Project ID>' or `projects/<Project
      * ID>/locations/<Location ID>`.
      *
-     * Generated from protobuf field <code>string parent = 6;</code>
+     * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
@@ -39,7 +39,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      */
     private $conversation_profile = '';
     /**
-     * The ID of the search session.
+     * Required. The ID of the search session.
      * The session_id can be combined with Dialogflow V3 Agent ID retrieved from
      * conversation profile or on its own to identify a search session. The search
      * history of the same session will impact the search result. It's up to the
@@ -47,24 +47,24 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      * or some type of session identifiers (preferably hashed). The length must
      * not exceed 36 characters.
      *
-     * Generated from protobuf field <code>string session_id = 3;</code>
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session_id = '';
     /**
-     * The conversation (between human agent and end user) where the search
-     * request is triggered. Format: `projects/<Project ID>/locations/<Location
-     * ID>/conversations/<Conversation ID>`.
+     * Optional. The conversation (between human agent and end user) where the
+     * search request is triggered. Format: `projects/<Project
+     * ID>/locations/<Location ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string conversation = 4 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string conversation = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $conversation = '';
     /**
-     * The name of the latest conversation message when the request is
+     * Optional. The name of the latest conversation message when the request is
      * triggered.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $latest_message = '';
 
@@ -75,7 +75,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource contains the conversation profile
+     *           Required. The parent resource contains the conversation profile
      *           Format: 'projects/<Project ID>' or `projects/<Project
      *           ID>/locations/<Location ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\TextInput $query
@@ -85,7 +85,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversationProfiles/<Conversation Profile ID>`.
      *     @type string $session_id
-     *           The ID of the search session.
+     *           Required. The ID of the search session.
      *           The session_id can be combined with Dialogflow V3 Agent ID retrieved from
      *           conversation profile or on its own to identify a search session. The search
      *           history of the same session will impact the search result. It's up to the
@@ -93,11 +93,11 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *           or some type of session identifiers (preferably hashed). The length must
      *           not exceed 36 characters.
      *     @type string $conversation
-     *           The conversation (between human agent and end user) where the search
-     *           request is triggered. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/conversations/<Conversation ID>`.
+     *           Optional. The conversation (between human agent and end user) where the
+     *           search request is triggered. Format: `projects/<Project
+     *           ID>/locations/<Location ID>/conversations/<Conversation ID>`.
      *     @type string $latest_message
-     *           The name of the latest conversation message when the request is
+     *           Optional. The name of the latest conversation message when the request is
      *           triggered.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
@@ -109,11 +109,11 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource contains the conversation profile
+     * Required. The parent resource contains the conversation profile
      * Format: 'projects/<Project ID>' or `projects/<Project
      * ID>/locations/<Location ID>`.
      *
-     * Generated from protobuf field <code>string parent = 6;</code>
+     * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -122,11 +122,11 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource contains the conversation profile
+     * Required. The parent resource contains the conversation profile
      * Format: 'projects/<Project ID>' or `projects/<Project
      * ID>/locations/<Location ID>`.
      *
-     * Generated from protobuf field <code>string parent = 6;</code>
+     * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -205,7 +205,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the search session.
+     * Required. The ID of the search session.
      * The session_id can be combined with Dialogflow V3 Agent ID retrieved from
      * conversation profile or on its own to identify a search session. The search
      * history of the same session will impact the search result. It's up to the
@@ -213,7 +213,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      * or some type of session identifiers (preferably hashed). The length must
      * not exceed 36 characters.
      *
-     * Generated from protobuf field <code>string session_id = 3;</code>
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSessionId()
@@ -222,7 +222,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the search session.
+     * Required. The ID of the search session.
      * The session_id can be combined with Dialogflow V3 Agent ID retrieved from
      * conversation profile or on its own to identify a search session. The search
      * history of the same session will impact the search result. It's up to the
@@ -230,7 +230,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      * or some type of session identifiers (preferably hashed). The length must
      * not exceed 36 characters.
      *
-     * Generated from protobuf field <code>string session_id = 3;</code>
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -243,11 +243,11 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The conversation (between human agent and end user) where the search
-     * request is triggered. Format: `projects/<Project ID>/locations/<Location
-     * ID>/conversations/<Conversation ID>`.
+     * Optional. The conversation (between human agent and end user) where the
+     * search request is triggered. Format: `projects/<Project
+     * ID>/locations/<Location ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string conversation = 4 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string conversation = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getConversation()
@@ -256,11 +256,11 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The conversation (between human agent and end user) where the search
-     * request is triggered. Format: `projects/<Project ID>/locations/<Location
-     * ID>/conversations/<Conversation ID>`.
+     * Optional. The conversation (between human agent and end user) where the
+     * search request is triggered. Format: `projects/<Project
+     * ID>/locations/<Location ID>/conversations/<Conversation ID>`.
      *
-     * Generated from protobuf field <code>string conversation = 4 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string conversation = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -273,12 +273,12 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the latest conversation message when the request is
+     * Optional. The name of the latest conversation message when the request is
      * triggered.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLatestMessage()
@@ -287,12 +287,12 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the latest conversation message when the request is
+     * Optional. The name of the latest conversation message when the request is
      * triggered.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 5 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

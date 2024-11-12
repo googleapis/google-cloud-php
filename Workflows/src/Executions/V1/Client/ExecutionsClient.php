@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,10 +52,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelExecutionAsync(CancelExecutionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createExecutionAsync(CreateExecutionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExecutionAsync(GetExecutionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExecutionsAsync(ListExecutionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Execution> cancelExecutionAsync(CancelExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Execution> createExecutionAsync(CreateExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Execution> getExecutionAsync(GetExecutionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExecutionsAsync(ListExecutionsRequest $request, array $optionalArgs = [])
  */
 final class ExecutionsClient
 {

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The request message for
- * [FirestoreAdmin.RestoreDatabase][google.firestore.admin.v1.RestoreDatabase].
+ * [FirestoreAdmin.RestoreDatabase][google.firestore.admin.v1.FirestoreAdmin.RestoreDatabase].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.RestoreDatabaseRequest</code>
  */
@@ -25,12 +25,12 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Required. The ID to use for the database, which will become the final
-     * component of the database's resource name. This database id must not be
+     * component of the database's resource name. This database ID must not be
      * associated with an existing database.
      * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      * with first character a letter and the last a letter or a number. Must not
      * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     * "(default)" database id is also valid.
+     * "(default)" database ID is also valid.
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,11 +38,22 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Backup to restore from. Must be from the same project as the
      * parent.
+     * The restored database will be created in the same location as the source
+     * backup.
      * Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
      *
      * Generated from protobuf field <code>string backup = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $backup = '';
+    /**
+     * Optional. Encryption configuration for the restored database.
+     * If this field is not specified, the restored database will use
+     * the same encryption configuration as the backup, namely
+     * [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.EncryptionConfig encryption_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $encryption_config = null;
 
     /**
      * Constructor.
@@ -55,16 +66,23 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}`.
      *     @type string $database_id
      *           Required. The ID to use for the database, which will become the final
-     *           component of the database's resource name. This database id must not be
+     *           component of the database's resource name. This database ID must not be
      *           associated with an existing database.
      *           This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      *           with first character a letter and the last a letter or a number. Must not
      *           be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     *           "(default)" database id is also valid.
+     *           "(default)" database ID is also valid.
      *     @type string $backup
      *           Required. Backup to restore from. Must be from the same project as the
      *           parent.
+     *           The restored database will be created in the same location as the source
+     *           backup.
      *           Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
+     *     @type \Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig $encryption_config
+     *           Optional. Encryption configuration for the restored database.
+     *           If this field is not specified, the restored database will use
+     *           the same encryption configuration as the backup, namely
+     *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
      * }
      */
     public function __construct($data = NULL) {
@@ -102,12 +120,12 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID to use for the database, which will become the final
-     * component of the database's resource name. This database id must not be
+     * component of the database's resource name. This database ID must not be
      * associated with an existing database.
      * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      * with first character a letter and the last a letter or a number. Must not
      * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     * "(default)" database id is also valid.
+     * "(default)" database ID is also valid.
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -119,12 +137,12 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID to use for the database, which will become the final
-     * component of the database's resource name. This database id must not be
+     * component of the database's resource name. This database ID must not be
      * associated with an existing database.
      * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      * with first character a letter and the last a letter or a number. Must not
      * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     * "(default)" database id is also valid.
+     * "(default)" database ID is also valid.
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -141,6 +159,8 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Backup to restore from. Must be from the same project as the
      * parent.
+     * The restored database will be created in the same location as the source
+     * backup.
      * Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
      *
      * Generated from protobuf field <code>string backup = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -154,6 +174,8 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Backup to restore from. Must be from the same project as the
      * parent.
+     * The restored database will be created in the same location as the source
+     * backup.
      * Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
      *
      * Generated from protobuf field <code>string backup = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -164,6 +186,48 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->backup = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Encryption configuration for the restored database.
+     * If this field is not specified, the restored database will use
+     * the same encryption configuration as the backup, namely
+     * [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.EncryptionConfig encryption_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig|null
+     */
+    public function getEncryptionConfig()
+    {
+        return $this->encryption_config;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Optional. Encryption configuration for the restored database.
+     * If this field is not specified, the restored database will use
+     * the same encryption configuration as the backup, namely
+     * [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.EncryptionConfig encryption_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

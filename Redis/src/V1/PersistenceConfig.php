@@ -21,7 +21,7 @@ class PersistenceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.PersistenceConfig.PersistenceMode persistence_mode = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $persistence_mode = 0;
+    protected $persistence_mode = 0;
     /**
      * Optional. Period between RDB snapshots. Snapshots will be attempted every
      * period starting from the provided snapshot start time. For example, a start
@@ -32,13 +32,13 @@ class PersistenceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.PersistenceConfig.SnapshotPeriod rdb_snapshot_period = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rdb_snapshot_period = 0;
+    protected $rdb_snapshot_period = 0;
     /**
      * Output only. The next time that a snapshot attempt is scheduled to occur.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp rdb_next_snapshot_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rdb_next_snapshot_time = null;
+    protected $rdb_next_snapshot_time = null;
     /**
      * Optional. Date and time that the first snapshot was/will be attempted, and
      * to which future snapshots will be aligned. If not provided, the current
@@ -46,7 +46,7 @@ class PersistenceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp rdb_snapshot_start_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rdb_snapshot_start_time = null;
+    protected $rdb_snapshot_start_time = null;
 
     /**
      * Constructor.

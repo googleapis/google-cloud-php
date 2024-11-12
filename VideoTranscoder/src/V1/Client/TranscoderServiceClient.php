@@ -61,14 +61,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createJobTemplateAsync(CreateJobTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobTemplateAsync(DeleteJobTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobTemplateAsync(GetJobTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobTemplatesAsync(ListJobTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<JobTemplate> createJobTemplateAsync(CreateJobTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteJobTemplateAsync(DeleteJobTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<JobTemplate> getJobTemplateAsync(GetJobTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobTemplatesAsync(ListJobTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
  */
 final class TranscoderServiceClient
 {

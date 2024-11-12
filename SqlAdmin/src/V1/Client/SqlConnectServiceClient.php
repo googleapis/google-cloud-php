@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface generateEphemeralCertAsync(GenerateEphemeralCertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectSettingsAsync(GetConnectSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateEphemeralCertResponse> generateEphemeralCertAsync(GenerateEphemeralCertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectSettings> getConnectSettingsAsync(GetConnectSettingsRequest $request, array $optionalArgs = [])
  */
 final class SqlConnectServiceClient
 {
@@ -190,8 +190,10 @@ final class SqlConnectServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateEphemeralCert(GenerateEphemeralCertRequest $request, array $callOptions = []): GenerateEphemeralCertResponse
-    {
+    public function generateEphemeralCert(
+        GenerateEphemeralCertRequest $request,
+        array $callOptions = []
+    ): GenerateEphemeralCertResponse {
         return $this->startApiCall('GenerateEphemeralCert', $request, $callOptions)->wait();
     }
 

@@ -22,7 +22,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Requested size of the next page of data.
      * Requested page size cannot exceed 200.
@@ -30,21 +30,21 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Token identifying which result to start with, which is returned by a
      * previous list call.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Only list services that conform to the given filter.
      * The allowed filter strings are `state:ENABLED` and `state:DISABLED`.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

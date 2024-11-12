@@ -21,13 +21,13 @@ class InputData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig training_documents = 3;</code>
      */
-    private $training_documents = null;
+    protected $training_documents = null;
     /**
      * The documents used for testing the trained version.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig test_documents = 4;</code>
      */
-    private $test_documents = null;
+    protected $test_documents = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Color redaction_color = 3;</code>
      */
-    private $redaction_color = null;
+    protected $redaction_color = null;
     protected $target;
 
     /**
@@ -166,6 +166,4 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ImageRedactionConfig::class, \Google\Cloud\Dlp\V2\RedactImageRequest_ImageRedactionConfig::class);
 

@@ -23,7 +23,7 @@ class TrafficSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.TrafficSplit.ShardBy shard_by = 1;</code>
      */
-    private $shard_by = 0;
+    protected $shard_by = 0;
     /**
      * Mapping from version IDs within the service to fractional
      * (0.000, 1] allocations of traffic for that version. Each version can

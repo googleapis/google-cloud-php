@@ -29,7 +29,7 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $psa_write_endpoint = '';
+    protected $psa_write_endpoint = '';
     /**
      * Optional. If the instance is a primary instance, then this field identifies
      * the disaster recovery (DR) replica. A DR replica is an optional
@@ -40,14 +40,14 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string failover_dr_replica_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $failover_dr_replica_name = '';
+    protected $failover_dr_replica_name = '';
     /**
      * Output only. Read-only field that indicates whether the replica is a DR
      * replica. This field is not set if the instance is a primary instance.
      *
      * Generated from protobuf field <code>bool dr_replica = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dr_replica = false;
+    protected $dr_replica = false;
 
     /**
      * Constructor.

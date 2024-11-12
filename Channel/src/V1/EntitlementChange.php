@@ -21,38 +21,38 @@ class EntitlementChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entitlement = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $entitlement = '';
+    protected $entitlement = '';
     /**
      * Required. Resource name of the Offer at the time of change.
      * Takes the form: accounts/{account_id}/offers/{offer_id}.
      *
      * Generated from protobuf field <code>string offer = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $offer = '';
+    protected $offer = '';
     /**
      * Service provisioned for an Entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ProvisionedService provisioned_service = 3;</code>
      */
-    private $provisioned_service = null;
+    protected $provisioned_service = null;
     /**
      * The change action type.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementChange.ChangeType change_type = 4;</code>
      */
-    private $change_type = 0;
+    protected $change_type = 0;
     /**
      * The submitted time of the change.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Operator type responsible for the change.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementChange.OperatorType operator_type = 6;</code>
      */
-    private $operator_type = 0;
+    protected $operator_type = 0;
     /**
      * Extended parameters, such as:
      * purchase_order_number, gcp_details;
@@ -69,7 +69,7 @@ class EntitlementChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operator = 12;</code>
      */
-    private $operator = '';
+    protected $operator = '';
     protected $change_reason;
 
     /**

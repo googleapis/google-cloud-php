@@ -24,7 +24,7 @@ class DisableServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Indicates if services that are enabled and which depend on this service
      * should also be disabled. If not set, an error will be generated if any
@@ -34,13 +34,13 @@ class DisableServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_dependent_services = 2;</code>
      */
-    private $disable_dependent_services = false;
+    protected $disable_dependent_services = false;
     /**
      * Defines the behavior for checking service usage when disabling a service.
      *
      * Generated from protobuf field <code>.google.api.serviceusage.v1.DisableServiceRequest.CheckIfServiceHasUsage check_if_service_has_usage = 3;</code>
      */
-    private $check_if_service_has_usage = 0;
+    protected $check_if_service_has_usage = 0;
 
     /**
      * Constructor.

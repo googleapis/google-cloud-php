@@ -23,7 +23,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Project in which the subnet exists.
      * If not set, this project is assumed to be the project for which
@@ -31,7 +31,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.

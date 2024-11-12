@@ -21,7 +21,7 @@ class TransformationDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * A description of the transformation. This is empty for a
      * RECORD_SUPPRESSION, or is the output of calling toString() on the
@@ -30,7 +30,7 @@ class TransformationDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * A human-readable string representation of the `RecordCondition`
      * corresponding to this transformation. Set if a `RecordCondition` was used
@@ -44,13 +44,13 @@ class TransformationDescription extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 3;</code>
      */
-    private $condition = '';
+    protected $condition = '';
     /**
      * Set if the transformation was limited to a specific `InfoType`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 4;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
 
     /**
      * Constructor.

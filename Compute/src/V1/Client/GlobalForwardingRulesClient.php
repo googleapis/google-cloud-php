@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalForwardingRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsGlobalForwardingRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setTargetAsync(SetTargetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ForwardingRule> getAsync(GetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalForwardingRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsGlobalForwardingRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setTargetAsync(SetTargetGlobalForwardingRuleRequest $request, array $optionalArgs = [])
  */
 final class GlobalForwardingRulesClient
 {

@@ -17,18 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class RevisionTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The unique name for the revision. If this field is omitted, it will be
-     * automatically generated based on the Service name.
+     * Optional. The unique name for the revision. If this field is omitted, it
+     * will be automatically generated based on the Service name.
      *
-     * Generated from protobuf field <code>string revision = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string revision = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $revision = '';
+    protected $revision = '';
     /**
-     * Unstructured key value map that can be used to organize and categorize
-     * objects.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Optional. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
@@ -36,13 +35,13 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * namespaces, and they will be rejected. All system labels in v1 now have a
      * corresponding field in v2 RevisionTemplate.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 2;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * Unstructured key value map that may be set by external tools to store and
-     * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects.
+     * Optional. Unstructured key value map that may be set by external tools to
+     * store and arbitrary metadata. They are not queryable and should be
+     * preserved when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system annotations in v1 now
@@ -50,37 +49,38 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * <p>This field follows Kubernetes annotations' namespacing, limits, and
      * rules.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
-     * Scaling settings for this Revision.
+     * Optional. Scaling settings for this Revision.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scaling = null;
+    protected $scaling = null;
     /**
-     * VPC Access configuration to use for this Revision. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Revision. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $vpc_access = null;
+    protected $vpc_access = null;
     /**
-     * Max allowed time for an instance to respond to a request.
+     * Optional. Max allowed time for an instance to respond to a request.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
-     * Email address of the IAM service account associated with the revision of
-     * the service. The service account represents the identity of the running
-     * revision, and determines what permissions the revision has. If not
+     * Optional. Email address of the IAM service account associated with the
+     * revision of the service. The service account represents the identity of the
+     * running revision, and determines what permissions the revision has. If not
      * provided, the revision will use the project's default service account.
      *
-     * Generated from protobuf field <code>string service_account = 9;</code>
+     * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Holds the single container that defines the unit of execution for this
      * Revision.
@@ -89,17 +89,17 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $containers;
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $volumes;
     /**
-     * The sandbox environment to host this Revision.
+     * Optional. The sandbox environment to host this Revision.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_environment = 0;
+    protected $execution_environment = 0;
     /**
      * A reference to a customer managed encryption key (CMEK) to use to encrypt
      * this container image. For more information, go to
@@ -107,25 +107,39 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string encryption_key = 14 [(.google.api.resource_reference) = {</code>
      */
-    private $encryption_key = '';
+    protected $encryption_key = '';
     /**
-     * Sets the maximum number of requests that each serving instance can receive.
+     * Optional. Sets the maximum number of requests that each serving instance
+     * can receive. If not specified or 0, defaults to 80 when requested
+     * `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
      *
-     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15;</code>
+     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_instance_request_concurrency = 0;
+    protected $max_instance_request_concurrency = 0;
+    /**
+     * Optional. Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_mesh = null;
     /**
      * Optional. Enable session affinity.
      *
      * Generated from protobuf field <code>bool session_affinity = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $session_affinity = false;
+    protected $session_affinity = false;
     /**
      * Optional. Disables health checking containers during deployment.
      *
      * Generated from protobuf field <code>bool health_check_disabled = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $health_check_disabled = false;
+    protected $health_check_disabled = false;
+    /**
+     * Optional. The node selector for the revision template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_selector = null;
 
     /**
      * Constructor.
@@ -134,14 +148,13 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $revision
-     *           The unique name for the revision. If this field is omitted, it will be
-     *           automatically generated based on the Service name.
+     *           Optional. The unique name for the revision. If this field is omitted, it
+     *           will be automatically generated based on the Service name.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Unstructured key value map that can be used to organize and categorize
-     *           objects.
-     *           User-provided labels are shared with Google's billing system, so they can
-     *           be used to filter, or break down billing charges by team, component,
-     *           environment, state, etc. For more information, visit
+     *           Optional. Unstructured key value map that can be used to organize and
+     *           categorize objects. User-provided labels are shared with Google's billing
+     *           system, so they can be used to filter, or break down billing charges by
+     *           team, component, environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels.
      *           <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
@@ -149,9 +162,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           namespaces, and they will be rejected. All system labels in v1 now have a
      *           corresponding field in v2 RevisionTemplate.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           Unstructured key value map that may be set by external tools to store and
-     *           arbitrary metadata. They are not queryable and should be preserved
-     *           when modifying objects.
+     *           Optional. Unstructured key value map that may be set by external tools to
+     *           store and arbitrary metadata. They are not queryable and should be
+     *           preserved when modifying objects.
      *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      *           namespaces, and they will be rejected. All system annotations in v1 now
@@ -159,34 +172,41 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           <p>This field follows Kubernetes annotations' namespacing, limits, and
      *           rules.
      *     @type \Google\Cloud\Run\V2\RevisionScaling $scaling
-     *           Scaling settings for this Revision.
+     *           Optional. Scaling settings for this Revision.
      *     @type \Google\Cloud\Run\V2\VpcAccess $vpc_access
-     *           VPC Access configuration to use for this Revision. For more information,
-     *           visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     *           Optional. VPC Access configuration to use for this Revision. For more
+     *           information, visit
+     *           https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *     @type \Google\Protobuf\Duration $timeout
-     *           Max allowed time for an instance to respond to a request.
+     *           Optional. Max allowed time for an instance to respond to a request.
      *     @type string $service_account
-     *           Email address of the IAM service account associated with the revision of
-     *           the service. The service account represents the identity of the running
-     *           revision, and determines what permissions the revision has. If not
+     *           Optional. Email address of the IAM service account associated with the
+     *           revision of the service. The service account represents the identity of the
+     *           running revision, and determines what permissions the revision has. If not
      *           provided, the revision will use the project's default service account.
      *     @type array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
      *           Holds the single container that defines the unit of execution for this
      *           Revision.
      *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
-     *           A list of Volumes to make available to containers.
+     *           Optional. A list of Volumes to make available to containers.
      *     @type int $execution_environment
-     *           The sandbox environment to host this Revision.
+     *           Optional. The sandbox environment to host this Revision.
      *     @type string $encryption_key
      *           A reference to a customer managed encryption key (CMEK) to use to encrypt
      *           this container image. For more information, go to
      *           https://cloud.google.com/run/docs/securing/using-cmek
      *     @type int $max_instance_request_concurrency
-     *           Sets the maximum number of requests that each serving instance can receive.
+     *           Optional. Sets the maximum number of requests that each serving instance
+     *           can receive. If not specified or 0, defaults to 80 when requested
+     *           `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
+     *     @type \Google\Cloud\Run\V2\ServiceMesh $service_mesh
+     *           Optional. Enables service mesh connectivity.
      *     @type bool $session_affinity
      *           Optional. Enable session affinity.
      *     @type bool $health_check_disabled
      *           Optional. Disables health checking containers during deployment.
+     *     @type \Google\Cloud\Run\V2\NodeSelector $node_selector
+     *           Optional. The node selector for the revision template.
      * }
      */
     public function __construct($data = NULL) {
@@ -195,10 +215,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name for the revision. If this field is omitted, it will be
-     * automatically generated based on the Service name.
+     * Optional. The unique name for the revision. If this field is omitted, it
+     * will be automatically generated based on the Service name.
      *
-     * Generated from protobuf field <code>string revision = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string revision = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getRevision()
@@ -207,10 +227,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique name for the revision. If this field is omitted, it will be
-     * automatically generated based on the Service name.
+     * Optional. The unique name for the revision. If this field is omitted, it
+     * will be automatically generated based on the Service name.
      *
-     * Generated from protobuf field <code>string revision = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string revision = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -223,11 +243,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that can be used to organize and categorize
-     * objects.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Optional. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
@@ -235,7 +254,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * namespaces, and they will be rejected. All system labels in v1 now have a
      * corresponding field in v2 RevisionTemplate.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 2;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -244,11 +263,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that can be used to organize and categorize
-     * objects.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Optional. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with `run.googleapis.com`,
@@ -256,7 +274,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * namespaces, and they will be rejected. All system labels in v1 now have a
      * corresponding field in v2 RevisionTemplate.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 2;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -269,9 +287,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that may be set by external tools to store and
-     * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects.
+     * Optional. Unstructured key value map that may be set by external tools to
+     * store and arbitrary metadata. They are not queryable and should be
+     * preserved when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system annotations in v1 now
@@ -279,7 +297,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * <p>This field follows Kubernetes annotations' namespacing, limits, and
      * rules.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -288,9 +306,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that may be set by external tools to store and
-     * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects.
+     * Optional. Unstructured key value map that may be set by external tools to
+     * store and arbitrary metadata. They are not queryable and should be
+     * preserved when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected. All system annotations in v1 now
@@ -298,7 +316,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * <p>This field follows Kubernetes annotations' namespacing, limits, and
      * rules.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 3;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -311,9 +329,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Scaling settings for this Revision.
+     * Optional. Scaling settings for this Revision.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\RevisionScaling|null
      */
     public function getScaling()
@@ -332,9 +350,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Scaling settings for this Revision.
+     * Optional. Scaling settings for this Revision.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScaling scaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\RevisionScaling $var
      * @return $this
      */
@@ -347,10 +365,11 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * VPC Access configuration to use for this Revision. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Revision. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\VpcAccess|null
      */
     public function getVpcAccess()
@@ -369,10 +388,11 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * VPC Access configuration to use for this Revision. For more information,
-     * visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
+     * Optional. VPC Access configuration to use for this Revision. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.VpcAccess vpc_access = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\VpcAccess $var
      * @return $this
      */
@@ -385,9 +405,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max allowed time for an instance to respond to a request.
+     * Optional. Max allowed time for an instance to respond to a request.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getTimeout()
@@ -406,9 +426,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max allowed time for an instance to respond to a request.
+     * Optional. Max allowed time for an instance to respond to a request.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -421,12 +441,12 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the IAM service account associated with the revision of
-     * the service. The service account represents the identity of the running
-     * revision, and determines what permissions the revision has. If not
+     * Optional. Email address of the IAM service account associated with the
+     * revision of the service. The service account represents the identity of the
+     * running revision, and determines what permissions the revision has. If not
      * provided, the revision will use the project's default service account.
      *
-     * Generated from protobuf field <code>string service_account = 9;</code>
+     * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceAccount()
@@ -435,12 +455,12 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the IAM service account associated with the revision of
-     * the service. The service account represents the identity of the running
-     * revision, and determines what permissions the revision has. If not
+     * Optional. Email address of the IAM service account associated with the
+     * revision of the service. The service account represents the identity of the
+     * running revision, and determines what permissions the revision has. If not
      * provided, the revision will use the project's default service account.
      *
-     * Generated from protobuf field <code>string service_account = 9;</code>
+     * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -481,9 +501,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getVolumes()
@@ -492,9 +512,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Volumes to make available to containers.
+     * Optional. A list of Volumes to make available to containers.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -507,9 +527,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sandbox environment to host this Revision.
+     * Optional. The sandbox environment to host this Revision.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getExecutionEnvironment()
@@ -518,9 +538,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sandbox environment to host this Revision.
+     * Optional. The sandbox environment to host this Revision.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionEnvironment execution_environment = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -563,9 +583,11 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sets the maximum number of requests that each serving instance can receive.
+     * Optional. Sets the maximum number of requests that each serving instance
+     * can receive. If not specified or 0, defaults to 80 when requested
+     * `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
      *
-     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15;</code>
+     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxInstanceRequestConcurrency()
@@ -574,9 +596,11 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sets the maximum number of requests that each serving instance can receive.
+     * Optional. Sets the maximum number of requests that each serving instance
+     * can receive. If not specified or 0, defaults to 80 when requested
+     * `CPU >= 1` and defaults to 1 when requested `CPU < 1`.
      *
-     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15;</code>
+     * Generated from protobuf field <code>int32 max_instance_request_concurrency = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -584,6 +608,42 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_instance_request_concurrency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\ServiceMesh|null
+     */
+    public function getServiceMesh()
+    {
+        return $this->service_mesh;
+    }
+
+    public function hasServiceMesh()
+    {
+        return isset($this->service_mesh);
+    }
+
+    public function clearServiceMesh()
+    {
+        unset($this->service_mesh);
+    }
+
+    /**
+     * Optional. Enables service mesh connectivity.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceMesh service_mesh = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\ServiceMesh $var
+     * @return $this
+     */
+    public function setServiceMesh($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\ServiceMesh::class);
+        $this->service_mesh = $var;
 
         return $this;
     }
@@ -636,6 +696,42 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->health_check_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The node selector for the revision template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\NodeSelector|null
+     */
+    public function getNodeSelector()
+    {
+        return $this->node_selector;
+    }
+
+    public function hasNodeSelector()
+    {
+        return isset($this->node_selector);
+    }
+
+    public function clearNodeSelector()
+    {
+        unset($this->node_selector);
+    }
+
+    /**
+     * Optional. The node selector for the revision template.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NodeSelector node_selector = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\NodeSelector $var
+     * @return $this
+     */
+    public function setNodeSelector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NodeSelector::class);
+        $this->node_selector = $var;
 
         return $this;
     }

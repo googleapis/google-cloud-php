@@ -52,6 +52,12 @@ class Aggregate extends \Google\Protobuf\Internal\Message
      *           chosen, and will always specify a full encoding.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Sum $sum
      *           Sum aggregator.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\HyperLogLogPlusPlusUniqueCount $hllpp_unique_count
+     *           HyperLogLogPlusPlusUniqueCount aggregator.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Max $max
+     *           Max aggregator.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Min $min
+     *           Min aggregator.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +172,99 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Sum::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * HyperLogLogPlusPlusUniqueCount aggregator.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate.HyperLogLogPlusPlusUniqueCount hllpp_unique_count = 5;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\HyperLogLogPlusPlusUniqueCount|null
+     */
+    public function getHllppUniqueCount()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasHllppUniqueCount()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * HyperLogLogPlusPlusUniqueCount aggregator.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate.HyperLogLogPlusPlusUniqueCount hllpp_unique_count = 5;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\HyperLogLogPlusPlusUniqueCount $var
+     * @return $this
+     */
+    public function setHllppUniqueCount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\HyperLogLogPlusPlusUniqueCount::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Max aggregator.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate.Max max = 6;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Max|null
+     */
+    public function getMax()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMax()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Max aggregator.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate.Max max = 6;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Max $var
+     * @return $this
+     */
+    public function setMax($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Max::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Min aggregator.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate.Min min = 7;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Min|null
+     */
+    public function getMin()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasMin()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Min aggregator.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Aggregate.Min min = 7;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Min $var
+     * @return $this
+     */
+    public function setMin($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate\Min::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

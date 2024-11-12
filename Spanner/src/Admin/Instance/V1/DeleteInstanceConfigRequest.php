@@ -26,12 +26,12 @@ class DeleteInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Used for optimistic concurrency control as a way to help prevent
-     * simultaneous deletes of an instance config from overwriting each
+     * simultaneous deletes of an instance configuration from overwriting each
      * other. If not empty, the API
-     * only deletes the instance config when the etag provided matches the current
-     * status of the requested instance config. Otherwise, deletes the instance
-     * config without checking the current status of the requested instance
-     * config.
+     * only deletes the instance configuration when the etag provided matches the
+     * current status of the requested instance configuration. Otherwise, deletes
+     * the instance configuration without checking the current status of the
+     * requested instance configuration.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
@@ -72,12 +72,12 @@ class DeleteInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *           `projects/<project>/instanceConfigs/<instance_config>`
      *     @type string $etag
      *           Used for optimistic concurrency control as a way to help prevent
-     *           simultaneous deletes of an instance config from overwriting each
+     *           simultaneous deletes of an instance configuration from overwriting each
      *           other. If not empty, the API
-     *           only deletes the instance config when the etag provided matches the current
-     *           status of the requested instance config. Otherwise, deletes the instance
-     *           config without checking the current status of the requested instance
-     *           config.
+     *           only deletes the instance configuration when the etag provided matches the
+     *           current status of the requested instance configuration. Otherwise, deletes
+     *           the instance configuration without checking the current status of the
+     *           requested instance configuration.
      *     @type bool $validate_only
      *           An option to validate, but not actually execute, a request,
      *           and provide the same response.
@@ -120,12 +120,12 @@ class DeleteInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Used for optimistic concurrency control as a way to help prevent
-     * simultaneous deletes of an instance config from overwriting each
+     * simultaneous deletes of an instance configuration from overwriting each
      * other. If not empty, the API
-     * only deletes the instance config when the etag provided matches the current
-     * status of the requested instance config. Otherwise, deletes the instance
-     * config without checking the current status of the requested instance
-     * config.
+     * only deletes the instance configuration when the etag provided matches the
+     * current status of the requested instance configuration. Otherwise, deletes
+     * the instance configuration without checking the current status of the
+     * requested instance configuration.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      * @return string
@@ -137,12 +137,12 @@ class DeleteInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Used for optimistic concurrency control as a way to help prevent
-     * simultaneous deletes of an instance config from overwriting each
+     * simultaneous deletes of an instance configuration from overwriting each
      * other. If not empty, the API
-     * only deletes the instance config when the etag provided matches the current
-     * status of the requested instance config. Otherwise, deletes the instance
-     * config without checking the current status of the requested instance
-     * config.
+     * only deletes the instance configuration when the etag provided matches the
+     * current status of the requested instance configuration. Otherwise, deletes
+     * the instance configuration without checking the current status of the
+     * requested instance configuration.
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      * @param string $var

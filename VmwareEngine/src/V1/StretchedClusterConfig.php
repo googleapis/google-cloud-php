@@ -24,7 +24,7 @@ class StretchedClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string preferred_location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $preferred_location = '';
+    protected $preferred_location = '';
     /**
      * Required. Additional zone for a higher level of availability and load
      * balancing. Specify the resource name of a zone that belongs to the region
@@ -34,7 +34,7 @@ class StretchedClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secondary_location = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $secondary_location = '';
+    protected $secondary_location = '';
 
     /**
      * Constructor.

@@ -59,6 +59,4 @@ class Action
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Action::class, \Google\Cloud\SecurityCenter\V1\IamBinding_Action::class);
 

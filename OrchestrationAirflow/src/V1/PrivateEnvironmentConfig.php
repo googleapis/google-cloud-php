@@ -24,7 +24,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_private_environment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_private_environment = false;
+    protected $enable_private_environment = false;
     /**
      * Optional. If `true`, builds performed during operations that install Python
      * packages have only private connectivity to Google services (including
@@ -37,14 +37,14 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_private_builds_only = false;
+    protected $enable_private_builds_only = false;
     /**
      * Optional. Configuration for the private GKE cluster for a Private IP
      * Cloud Composer environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateClusterConfig private_cluster_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $private_cluster_config = null;
+    protected $private_cluster_config = null;
     /**
      * Optional. The CIDR block from which IP range for web server will be
      * reserved. Needs to be disjoint from
@@ -55,7 +55,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string web_server_ipv4_cidr_block = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $web_server_ipv4_cidr_block = '';
+    protected $web_server_ipv4_cidr_block = '';
     /**
      * Optional. The CIDR block from which IP range in tenant project will be
      * reserved for Cloud SQL. Needs to be disjoint from
@@ -63,7 +63,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_sql_ipv4_cidr_block = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cloud_sql_ipv4_cidr_block = '';
+    protected $cloud_sql_ipv4_cidr_block = '';
     /**
      * Output only. The IP range reserved for the tenant project's App Engine VMs.
      * This field is supported for Cloud Composer environments in versions
@@ -71,7 +71,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string web_server_ipv4_reserved_range = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $web_server_ipv4_reserved_range = '';
+    protected $web_server_ipv4_reserved_range = '';
     /**
      * Optional. The CIDR block from which IP range for Cloud Composer Network in
      * tenant project will be reserved. Needs to be disjoint from
@@ -82,7 +82,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_composer_network_ipv4_cidr_block = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cloud_composer_network_ipv4_cidr_block = '';
+    protected $cloud_composer_network_ipv4_cidr_block = '';
     /**
      * Output only. The IP range reserved for the tenant project's Cloud Composer
      * network.
@@ -91,7 +91,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_composer_network_ipv4_reserved_range = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cloud_composer_network_ipv4_reserved_range = '';
+    protected $cloud_composer_network_ipv4_reserved_range = '';
     /**
      * Optional. When enabled, IPs from public (non-RFC1918) ranges can be used
      * for `IPAllocationPolicy.cluster_ipv4_cidr_block` and
@@ -99,7 +99,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_privately_used_public_ips = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_privately_used_public_ips = false;
+    protected $enable_privately_used_public_ips = false;
     /**
      * Optional. When specified, the environment will use Private Service Connect
      * instead of VPC peerings to connect to Cloud SQL in the Tenant Project,
@@ -108,14 +108,14 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_composer_connection_subnetwork = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cloud_composer_connection_subnetwork = '';
+    protected $cloud_composer_connection_subnetwork = '';
     /**
      * Optional. Configuration for the network connections configuration in the
      * environment.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NetworkingConfig networking_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $networking_config = null;
+    protected $networking_config = null;
 
     /**
      * Constructor.

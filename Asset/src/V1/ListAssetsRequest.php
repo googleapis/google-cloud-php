@@ -24,7 +24,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Timestamp to take an asset snapshot. This can only be set to a timestamp
      * between the current time and the current time minus 35 days (inclusive).
@@ -34,7 +34,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      */
-    private $read_time = null;
+    protected $read_time = null;
     /**
      * A list of asset types to take a snapshot for. For example:
      * "compute.googleapis.com/Disk".
@@ -60,14 +60,14 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ContentType content_type = 4;</code>
      */
-    private $content_type = 0;
+    protected $content_type = 0;
     /**
      * The maximum number of assets to be returned in a single response. Default
      * is 100, minimum is 1, and maximum is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The `next_page_token` returned from the previous `ListAssetsResponse`, or
      * unspecified for the first `ListAssetsRequest`. It is a continuation of a
@@ -75,7 +75,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * A list of relationship types to output, for example:
      * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if

@@ -24,19 +24,19 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money cost = 1;</code>
      */
-    private $cost = null;
+    protected $cost = null;
     /**
      * Duration for which this cost applies.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * The approximate cost savings in the billing account's local currency.
      *
      * Generated from protobuf field <code>.google.type.Money cost_in_local_currency = 3;</code>
      */
-    private $cost_in_local_currency = null;
+    protected $cost_in_local_currency = null;
 
     /**
      * Constructor.

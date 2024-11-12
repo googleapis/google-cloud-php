@@ -18,9 +18,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
-     * list all environments for. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
-     * ID>`.
+     * list all environments for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,9 +40,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
-     *                       list all environments for. Format: `projects/<Project
-     *                       ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
-     *                       ID>`. Please see
+     *                       list all environments for. Format:
+     *                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
      *                       {@see DeploymentsClient::environmentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListDeploymentsRequest
@@ -64,9 +62,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
-     *           list all environments for. Format: `projects/<Project
-     *           ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
-     *           ID>`.
+     *           list all environments for. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type int $page_size
      *           The maximum number of items to return in a single page. By default 20 and
      *           at most 100.
@@ -81,9 +78,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
-     * list all environments for. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
-     * ID>`.
+     * list all environments for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,9 +91,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
-     * list all environments for. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
-     * ID>`.
+     * list all environments for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

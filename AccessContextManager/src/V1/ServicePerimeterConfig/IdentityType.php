@@ -71,6 +71,4 @@ class IdentityType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IdentityType::class, \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig_IdentityType::class);
 

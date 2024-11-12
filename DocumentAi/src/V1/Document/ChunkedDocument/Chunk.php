@@ -20,7 +20,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string chunk_id = 1;</code>
      */
-    private $chunk_id = '';
+    protected $chunk_id = '';
     /**
      * Unused.
      *
@@ -32,13 +32,13 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 3;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Page span of the chunk.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageSpan page_span = 4;</code>
      */
-    private $page_span = null;
+    protected $page_span = null;
     /**
      * Page headers associated with the chunk.
      *

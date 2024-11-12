@@ -22,9 +22,10 @@ class CreateKmsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. Id of the requesting KmsConfig
-     * If auto-generating Id server-side, remove this field and
-     * id from the method_signature of Create RPC
+     * Required. Id of the requesting KmsConfig. Must be unique within the parent
+     * resource. Must contain only letters, numbers, underscore and hyphen, with
+     * the first character a letter or underscore, the last a letter or underscore
+     * or a number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string kms_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,9 +41,10 @@ class CreateKmsConfigRequest extends \Google\Protobuf\Internal\Message
      * @param string                            $parent      Required. Value for parent. Please see
      *                                                       {@see NetAppClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\KmsConfig $kmsConfig   Required. The required parameters to create a new KmsConfig.
-     * @param string                            $kmsConfigId Required. Id of the requesting KmsConfig
-     *                                                       If auto-generating Id server-side, remove this field and
-     *                                                       id from the method_signature of Create RPC
+     * @param string                            $kmsConfigId Required. Id of the requesting KmsConfig. Must be unique within the parent
+     *                                                       resource. Must contain only letters, numbers, underscore and hyphen, with
+     *                                                       the first character a letter or underscore, the last a letter or underscore
+     *                                                       or a number, and a 63 character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateKmsConfigRequest
      *
@@ -65,9 +67,10 @@ class CreateKmsConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Value for parent.
      *     @type string $kms_config_id
-     *           Required. Id of the requesting KmsConfig
-     *           If auto-generating Id server-side, remove this field and
-     *           id from the method_signature of Create RPC
+     *           Required. Id of the requesting KmsConfig. Must be unique within the parent
+     *           resource. Must contain only letters, numbers, underscore and hyphen, with
+     *           the first character a letter or underscore, the last a letter or underscore
+     *           or a number, and a 63 character maximum.
      *     @type \Google\Cloud\NetApp\V1\KmsConfig $kms_config
      *           Required. The required parameters to create a new KmsConfig.
      * }
@@ -104,9 +107,10 @@ class CreateKmsConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Id of the requesting KmsConfig
-     * If auto-generating Id server-side, remove this field and
-     * id from the method_signature of Create RPC
+     * Required. Id of the requesting KmsConfig. Must be unique within the parent
+     * resource. Must contain only letters, numbers, underscore and hyphen, with
+     * the first character a letter or underscore, the last a letter or underscore
+     * or a number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string kms_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -117,9 +121,10 @@ class CreateKmsConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Id of the requesting KmsConfig
-     * If auto-generating Id server-side, remove this field and
-     * id from the method_signature of Create RPC
+     * Required. Id of the requesting KmsConfig. Must be unique within the parent
+     * resource. Must contain only letters, numbers, underscore and hyphen, with
+     * the first character a letter or underscore, the last a letter or underscore
+     * or a number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string kms_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

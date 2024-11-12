@@ -22,6 +22,12 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      */
     private $candidates;
     /**
+     * Output only. The model version used to generate the response.
+     *
+     * Generated from protobuf field <code>string model_version = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $model_version = '';
+    /**
      * Output only. Content filter results for a prompt sent in the request.
      * Note: Sent only in the first stream chunk.
      * Only happens when no candidates were generated due to content violations.
@@ -44,6 +50,8 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\AIPlatform\V1\Candidate>|\Google\Protobuf\Internal\RepeatedField $candidates
      *           Output only. Generated candidates.
+     *     @type string $model_version
+     *           Output only. The model version used to generate the response.
      *     @type \Google\Cloud\AIPlatform\V1\GenerateContentResponse\PromptFeedback $prompt_feedback
      *           Output only. Content filter results for a prompt sent in the request.
      *           Note: Sent only in the first stream chunk.
@@ -79,6 +87,32 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Candidate::class);
         $this->candidates = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The model version used to generate the response.
+     *
+     * Generated from protobuf field <code>string model_version = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelVersion()
+    {
+        return $this->model_version;
+    }
+
+    /**
+     * Output only. The model version used to generate the response.
+     *
+     * Generated from protobuf field <code>string model_version = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_version = $var;
 
         return $this;
     }

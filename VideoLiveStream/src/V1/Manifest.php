@@ -23,13 +23,13 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
      */
-    private $file_name = '';
+    protected $file_name = '';
     /**
      * Required. Type of the manifest, can be `HLS` or `DASH`.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Manifest.ManifestType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. List of `MuxStream`
      * [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
@@ -49,7 +49,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_segment_count = 4;</code>
      */
-    private $max_segment_count = 0;
+    protected $max_segment_count = 0;
     /**
      * How long to keep a segment on the output Google Cloud Storage bucket after
      * it is removed from the manifest. This field should be large enough to cover
@@ -57,10 +57,15 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * errors while accessing segments which are listed in the manifest that the
      * player has, but were already deleted from the output Google Cloud Storage
      * bucket. Default value is `60s`.
+     * If both segment_keep_duration and
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * are set,
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * is used and segment_keep_duration is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      */
-    private $segment_keep_duration = null;
+    protected $segment_keep_duration = null;
     /**
      * Whether to use the timecode, as specified in timecode config, when setting:
      * - `availabilityStartTime` attribute in DASH manifests.
@@ -70,7 +75,13 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_timecode_as_timeline = 6;</code>
      */
-    private $use_timecode_as_timeline = false;
+    protected $use_timecode_as_timeline = false;
+    /**
+     * Optional. A unique key for this manifest.
+     *
+     * Generated from protobuf field <code>string key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $key = '';
 
     /**
      * Constructor.
@@ -104,12 +115,19 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           errors while accessing segments which are listed in the manifest that the
      *           player has, but were already deleted from the output Google Cloud Storage
      *           bucket. Default value is `60s`.
+     *           If both segment_keep_duration and
+     *           [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     *           are set,
+     *           [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     *           is used and segment_keep_duration is ignored.
      *     @type bool $use_timecode_as_timeline
      *           Whether to use the timecode, as specified in timecode config, when setting:
      *           - `availabilityStartTime` attribute in DASH manifests.
      *           - `#EXT-X-PROGRAM-DATE-TIME` tag in HLS manifests.
      *           If false, ignore the input timecode and use the time from system clock
      *           when the manifest is first generated. This is the default behavior.
+     *     @type string $key
+     *           Optional. A unique key for this manifest.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,6 +268,11 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * errors while accessing segments which are listed in the manifest that the
      * player has, but were already deleted from the output Google Cloud Storage
      * bucket. Default value is `60s`.
+     * If both segment_keep_duration and
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * are set,
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * is used and segment_keep_duration is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      * @return \Google\Protobuf\Duration|null
@@ -276,6 +299,11 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * errors while accessing segments which are listed in the manifest that the
      * player has, but were already deleted from the output Google Cloud Storage
      * bucket. Default value is `60s`.
+     * If both segment_keep_duration and
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * are set,
+     * [RetentionConfig.retention_window_duration][google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]
+     * is used and segment_keep_duration is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_keep_duration = 5;</code>
      * @param \Google\Protobuf\Duration $var
@@ -319,6 +347,32 @@ class Manifest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->use_timecode_as_timeline = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique key for this manifest.
+     *
+     * Generated from protobuf field <code>string key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+
+    /**
+     * Optional. A unique key for this manifest.
+     *
+     * Generated from protobuf field <code>string key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->key = $var;
 
         return $this;
     }

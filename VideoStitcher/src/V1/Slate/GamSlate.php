@@ -21,13 +21,13 @@ class GamSlate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network_code = '';
+    protected $network_code = '';
     /**
      * Output only. The identifier generated for the slate by GAM.
      *
      * Generated from protobuf field <code>int64 gam_slate_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $gam_slate_id = 0;
+    protected $gam_slate_id = 0;
 
     /**
      * Constructor.

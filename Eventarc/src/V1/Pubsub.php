@@ -25,15 +25,15 @@ class Pubsub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
-     * Output only. The name of the Pub/Sub subscription created and managed by Eventarc
-     * as a transport for the event delivery. Format:
+     * Output only. The name of the Pub/Sub subscription created and managed by
+     * Eventarc as a transport for the event delivery. Format:
      * `projects/{PROJECT_ID}/subscriptions/{SUBSCRIPTION_NAME}`.
      *
      * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
 
     /**
      * Constructor.
@@ -49,8 +49,8 @@ class Pubsub extends \Google\Protobuf\Internal\Message
      *           `google.cloud.pubsub.topic.v1.messagePublished`. The topic you provide
      *           here is not deleted by Eventarc at trigger deletion.
      *     @type string $subscription
-     *           Output only. The name of the Pub/Sub subscription created and managed by Eventarc
-     *           as a transport for the event delivery. Format:
+     *           Output only. The name of the Pub/Sub subscription created and managed by
+     *           Eventarc as a transport for the event delivery. Format:
      *           `projects/{PROJECT_ID}/subscriptions/{SUBSCRIPTION_NAME}`.
      * }
      */
@@ -96,8 +96,8 @@ class Pubsub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Pub/Sub subscription created and managed by Eventarc
-     * as a transport for the event delivery. Format:
+     * Output only. The name of the Pub/Sub subscription created and managed by
+     * Eventarc as a transport for the event delivery. Format:
      * `projects/{PROJECT_ID}/subscriptions/{SUBSCRIPTION_NAME}`.
      *
      * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -109,8 +109,8 @@ class Pubsub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the Pub/Sub subscription created and managed by Eventarc
-     * as a transport for the event delivery. Format:
+     * Output only. The name of the Pub/Sub subscription created and managed by
+     * Eventarc as a transport for the event delivery. Format:
      * `projects/{PROJECT_ID}/subscriptions/{SUBSCRIPTION_NAME}`.
      *
      * Generated from protobuf field <code>string subscription = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

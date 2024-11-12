@@ -13,18 +13,18 @@ use Google\Protobuf\Internal\GPBUtil;
  * including its full module name, display name, enablement state, and last
  * updated time. You can create a custom module at the organization, folder, or
  * project level. Custom modules that you create at the organization or folder
- * level are inherited by the child folders and projects.
+ * level are inherited by the descendant folders and projects.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule</code>
  */
 class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The full resource name of the custom module, specified in one
-     * of the following formats:
-     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * Identifier. The full resource name of the custom module, in one of the
+     * following formats:
+     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -32,8 +32,8 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     /**
      * Optional. The display name of the Security Health Analytics custom module.
      * This display name becomes the finding category for all findings that are
-     * returned by this custom module. The display name must be between 1 and
-     * 128 characters, start with a lowercase letter, and contain alphanumeric
+     * returned by this custom module. The display name must be between 1 and 128
+     * characters, start with a lowercase letter, and contain alphanumeric
      * characters or underscores only.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -67,7 +67,7 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      */
     protected $ancestor_module = '';
     /**
-     * Optional. The user specified custom configuration for the module.
+     * Optional. The user-specified custom configuration for the module.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.CustomConfig custom_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -80,16 +80,16 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The full resource name of the custom module, specified in one
-     *           of the following formats:
-     *           * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     *           * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     *           * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     *           Identifier. The full resource name of the custom module, in one of the
+     *           following formats:
+     *           * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     *           * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     *           * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
      *     @type string $display_name
      *           Optional. The display name of the Security Health Analytics custom module.
      *           This display name becomes the finding category for all findings that are
-     *           returned by this custom module. The display name must be between 1 and
-     *           128 characters, start with a lowercase letter, and contain alphanumeric
+     *           returned by this custom module. The display name must be between 1 and 128
+     *           characters, start with a lowercase letter, and contain alphanumeric
      *           characters or underscores only.
      *     @type int $enablement_state
      *           Optional. The enablement state of the custom module.
@@ -103,7 +103,7 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
      *           in the organization, folder, or project in which you are viewing the custom
      *           module.
      *     @type \Google\Cloud\SecurityCenterManagement\V1\CustomConfig $custom_config
-     *           Optional. The user specified custom configuration for the module.
+     *           Optional. The user-specified custom configuration for the module.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,11 +112,11 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Identifier. The full resource name of the custom module, specified in one
-     * of the following formats:
-     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * Identifier. The full resource name of the custom module, in one of the
+     * following formats:
+     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -127,11 +127,11 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Identifier. The full resource name of the custom module, specified in one
-     * of the following formats:
-     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
-     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`
+     * Identifier. The full resource name of the custom module, in one of the
+     * following formats:
+     * * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -148,8 +148,8 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     /**
      * Optional. The display name of the Security Health Analytics custom module.
      * This display name becomes the finding category for all findings that are
-     * returned by this custom module. The display name must be between 1 and
-     * 128 characters, start with a lowercase letter, and contain alphanumeric
+     * returned by this custom module. The display name must be between 1 and 128
+     * characters, start with a lowercase letter, and contain alphanumeric
      * characters or underscores only.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -163,8 +163,8 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     /**
      * Optional. The display name of the Security Health Analytics custom module.
      * This display name becomes the finding category for all findings that are
-     * returned by this custom module. The display name must be between 1 and
-     * 128 characters, start with a lowercase letter, and contain alphanumeric
+     * returned by this custom module. The display name must be between 1 and 128
+     * characters, start with a lowercase letter, and contain alphanumeric
      * characters or underscores only.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -300,7 +300,7 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. The user specified custom configuration for the module.
+     * Optional. The user-specified custom configuration for the module.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.CustomConfig custom_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\SecurityCenterManagement\V1\CustomConfig|null
@@ -321,7 +321,7 @@ class SecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Optional. The user specified custom configuration for the module.
+     * Optional. The user-specified custom configuration for the module.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.CustomConfig custom_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\SecurityCenterManagement\V1\CustomConfig $var

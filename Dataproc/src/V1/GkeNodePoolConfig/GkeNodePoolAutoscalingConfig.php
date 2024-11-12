@@ -22,7 +22,7 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_node_count = 2;</code>
      */
-    private $min_node_count = 0;
+    protected $min_node_count = 0;
     /**
      * The maximum number of nodes in the node pool. Must be >= min_node_count,
      * and must be > 0.
@@ -30,7 +30,7 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_node_count = 3;</code>
      */
-    private $max_node_count = 0;
+    protected $max_node_count = 0;
 
     /**
      * Constructor.
@@ -112,6 +112,4 @@ class GkeNodePoolAutoscalingConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GkeNodePoolAutoscalingConfig::class, \Google\Cloud\Dataproc\V1\GkeNodePoolConfig_GkeNodePoolAutoscalingConfig::class);
 

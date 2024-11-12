@@ -164,6 +164,11 @@
                                 "queryDeployedModels"
                             ]
                         },
+                        "UpdateDeploymentResourcePool": {
+                            "methods": [
+                                "updateDeploymentResourcePool"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -236,6 +241,45 @@
                         "UpdateEndpoint": {
                             "methods": [
                                 "updateEndpoint"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EvaluationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EvaluationServiceGapicClient",
+                    "rpcs": {
+                        "EvaluateInstances": {
+                            "methods": [
+                                "evaluateInstances"
                             ]
                         },
                         "GetLocation": {
@@ -603,6 +647,11 @@
                 "grpc": {
                     "libraryClient": "FeatureRegistryServiceGapicClient",
                     "rpcs": {
+                        "BatchCreateFeatures": {
+                            "methods": [
+                                "batchCreateFeatures"
+                            ]
+                        },
                         "CreateFeature": {
                             "methods": [
                                 "createFeature"
@@ -705,6 +754,11 @@
                         "ListTuningJobs": {
                             "methods": [
                                 "listTuningJobs"
+                            ]
+                        },
+                        "RebaseTunedModel": {
+                            "methods": [
+                                "rebaseTunedModel"
                             ]
                         },
                         "GetLocation": {
@@ -1686,9 +1740,19 @@
                                 "assignNotebookRuntime"
                             ]
                         },
+                        "CreateNotebookExecutionJob": {
+                            "methods": [
+                                "createNotebookExecutionJob"
+                            ]
+                        },
                         "CreateNotebookRuntimeTemplate": {
                             "methods": [
                                 "createNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "DeleteNotebookExecutionJob": {
+                            "methods": [
+                                "deleteNotebookExecutionJob"
                             ]
                         },
                         "DeleteNotebookRuntime": {
@@ -1701,6 +1765,11 @@
                                 "deleteNotebookRuntimeTemplate"
                             ]
                         },
+                        "GetNotebookExecutionJob": {
+                            "methods": [
+                                "getNotebookExecutionJob"
+                            ]
+                        },
                         "GetNotebookRuntime": {
                             "methods": [
                                 "getNotebookRuntime"
@@ -1709,6 +1778,11 @@
                         "GetNotebookRuntimeTemplate": {
                             "methods": [
                                 "getNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "ListNotebookExecutionJobs": {
+                            "methods": [
+                                "listNotebookExecutionJobs"
                             ]
                         },
                         "ListNotebookRuntimeTemplates": {
@@ -1724,6 +1798,11 @@
                         "StartNotebookRuntime": {
                             "methods": [
                                 "startNotebookRuntime"
+                            ]
+                        },
+                        "StopNotebookRuntime": {
+                            "methods": [
+                                "stopNotebookRuntime"
                             ]
                         },
                         "UpdateNotebookRuntimeTemplate": {

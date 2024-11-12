@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,9 @@ class AppConnectorsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AppConnectorsServiceClient */
@@ -125,9 +127,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $appConnector->setName($appConnectorName);
         $appConnectorPrincipalInfo = new PrincipalInfo();
         $appConnector->setPrincipalInfo($appConnectorPrincipalInfo);
-        $request = (new CreateAppConnectorRequest())
-            ->setParent($formattedParent)
-            ->setAppConnector($appConnector);
+        $request = (new CreateAppConnectorRequest())->setParent($formattedParent)->setAppConnector($appConnector);
         $response = $gapicClient->createAppConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -137,7 +137,10 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/CreateAppConnector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/CreateAppConnector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAppConnector();
@@ -185,12 +188,15 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -199,9 +205,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $appConnector->setName($appConnectorName);
         $appConnectorPrincipalInfo = new PrincipalInfo();
         $appConnector->setPrincipalInfo($appConnectorPrincipalInfo);
-        $request = (new CreateAppConnectorRequest())
-            ->setParent($formattedParent)
-            ->setAppConnector($appConnector);
+        $request = (new CreateAppConnectorRequest())->setParent($formattedParent)->setAppConnector($appConnector);
         $response = $gapicClient->createAppConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -255,8 +259,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-        $request = (new DeleteAppConnectorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAppConnectorRequest())->setName($formattedName);
         $response = $gapicClient->deleteAppConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -266,7 +269,10 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/DeleteAppConnector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/DeleteAppConnector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -312,17 +318,19 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-        $request = (new DeleteAppConnectorRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAppConnectorRequest())->setName($formattedName);
         $response = $gapicClient->deleteAppConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -364,15 +372,17 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-        $request = (new GetAppConnectorRequest())
-            ->setName($formattedName);
+        $request = (new GetAppConnectorRequest())->setName($formattedName);
         $response = $gapicClient->getAppConnector($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/GetAppConnector', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/GetAppConnector',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -389,17 +399,19 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
-        $request = (new GetAppConnectorRequest())
-            ->setName($formattedName);
+        $request = (new GetAppConnectorRequest())->setName($formattedName);
         try {
             $gapicClient->getAppConnector($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -424,17 +436,14 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $appConnectorsElement = new AppConnector();
-        $appConnectors = [
-            $appConnectorsElement,
-        ];
+        $appConnectors = [$appConnectorsElement];
         $expectedResponse = new ListAppConnectorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAppConnectors($appConnectors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAppConnectorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAppConnectorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAppConnectors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -444,7 +453,10 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ListAppConnectors', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ListAppConnectors',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -461,17 +473,19 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAppConnectorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAppConnectorsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAppConnectors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -525,9 +539,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $resourceInfo = new ResourceInfo();
         $resourceInfoId = 'resourceInfoId-332404713';
         $resourceInfo->setId($resourceInfoId);
-        $request = (new ReportStatusRequest())
-            ->setAppConnector($formattedAppConnector)
-            ->setResourceInfo($resourceInfo);
+        $request = (new ReportStatusRequest())->setAppConnector($formattedAppConnector)->setResourceInfo($resourceInfo);
         $response = $gapicClient->reportStatus($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -537,7 +549,10 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ReportStatus', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/ReportStatus',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAppConnector();
         $this->assertProtobufEquals($formattedAppConnector, $actualValue);
         $actualValue = $actualApiRequestObject->getResourceInfo();
@@ -585,21 +600,22 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedAppConnector = $gapicClient->appConnectorName('[PROJECT]', '[LOCATION]', '[APP_CONNECTOR]');
         $resourceInfo = new ResourceInfo();
         $resourceInfoId = 'resourceInfoId-332404713';
         $resourceInfo->setId($resourceInfoId);
-        $request = (new ReportStatusRequest())
-            ->setAppConnector($formattedAppConnector)
-            ->setResourceInfo($resourceInfo);
+        $request = (new ReportStatusRequest())->setAppConnector($formattedAppConnector)->setResourceInfo($resourceInfo);
         $response = $gapicClient->reportStatus($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -664,9 +680,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $appConnector->setName($appConnectorName);
         $appConnectorPrincipalInfo = new PrincipalInfo();
         $appConnector->setPrincipalInfo($appConnectorPrincipalInfo);
-        $request = (new UpdateAppConnectorRequest())
-            ->setUpdateMask($updateMask)
-            ->setAppConnector($appConnector);
+        $request = (new UpdateAppConnectorRequest())->setUpdateMask($updateMask)->setAppConnector($appConnector);
         $response = $gapicClient->updateAppConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -676,7 +690,10 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/UpdateAppConnector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/UpdateAppConnector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getAppConnector();
@@ -724,12 +741,15 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -738,9 +758,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $appConnector->setName($appConnectorName);
         $appConnectorPrincipalInfo = new PrincipalInfo();
         $appConnector->setPrincipalInfo($appConnectorPrincipalInfo);
-        $request = (new UpdateAppConnectorRequest())
-            ->setUpdateMask($updateMask)
-            ->setAppConnector($appConnector);
+        $request = (new UpdateAppConnectorRequest())->setUpdateMask($updateMask)->setAppConnector($appConnector);
         $response = $gapicClient->updateAppConnector($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -802,12 +820,15 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -834,9 +855,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -866,12 +885,15 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -904,8 +926,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -929,17 +950,19 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -971,9 +994,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -999,19 +1020,20 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1039,9 +1061,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1067,19 +1087,20 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1135,9 +1156,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $appConnector->setName($appConnectorName);
         $appConnectorPrincipalInfo = new PrincipalInfo();
         $appConnector->setPrincipalInfo($appConnectorPrincipalInfo);
-        $request = (new CreateAppConnectorRequest())
-            ->setParent($formattedParent)
-            ->setAppConnector($appConnector);
+        $request = (new CreateAppConnectorRequest())->setParent($formattedParent)->setAppConnector($appConnector);
         $response = $gapicClient->createAppConnectorAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1147,7 +1166,10 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/CreateAppConnector', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.beyondcorp.appconnectors.v1.AppConnectorsService/CreateAppConnector',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAppConnector();

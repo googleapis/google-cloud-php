@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\StorageTransfer\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -53,6 +52,7 @@ use Google\Cloud\StorageTransfer\V1\TransferJob;
 use Google\Cloud\StorageTransfer\V1\TransferOperation;
 use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -69,20 +69,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAgentPoolAsync(CreateAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTransferJobAsync(CreateTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAgentPoolAsync(DeleteAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTransferJobAsync(DeleteTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAgentPoolAsync(GetAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGoogleServiceAccountAsync(GetGoogleServiceAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTransferJobAsync(GetTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAgentPoolsAsync(ListAgentPoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferJobsAsync(ListTransferJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseTransferOperationAsync(PauseTransferOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeTransferOperationAsync(ResumeTransferOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runTransferJobAsync(RunTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAgentPoolAsync(UpdateAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTransferJobAsync(UpdateTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> createAgentPoolAsync(CreateAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> createTransferJobAsync(CreateTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAgentPoolAsync(DeleteAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTransferJobAsync(DeleteTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> getAgentPoolAsync(GetAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleServiceAccount> getGoogleServiceAccountAsync(GetGoogleServiceAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> getTransferJobAsync(GetTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAgentPoolsAsync(ListAgentPoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferJobsAsync(ListTransferJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseTransferOperationAsync(PauseTransferOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeTransferOperationAsync(ResumeTransferOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runTransferJobAsync(RunTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> updateAgentPoolAsync(UpdateAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> updateTransferJobAsync(UpdateTransferJobRequest $request, array $optionalArgs = [])
  */
 final class StorageTransferServiceClient
 {
@@ -109,9 +109,7 @@ final class StorageTransferServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -157,10 +155,31 @@ final class StorageTransferServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -436,8 +455,10 @@ final class StorageTransferServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGoogleServiceAccount(GetGoogleServiceAccountRequest $request, array $callOptions = []): GoogleServiceAccount
-    {
+    public function getGoogleServiceAccount(
+        GetGoogleServiceAccountRequest $request,
+        array $callOptions = []
+    ): GoogleServiceAccount {
         return $this->startApiCall('GetGoogleServiceAccount', $request, $callOptions)->wait();
     }
 

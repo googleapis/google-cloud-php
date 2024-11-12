@@ -30,11 +30,13 @@ use Google\Cloud\Dlp\V2\Connection;
 use Google\Cloud\Dlp\V2\ListConnectionsRequest;
 
 /**
- * Lists Connections in a parent.
+ * Lists Connections in a parent. Use SearchConnections to see all connections
+ * within an organization.
  *
- * @param string $formattedParent Parent name, for example:
- *                                `projects/project-id/locations/global`. Please see
- *                                {@see DlpServiceClient::locationName()} for help formatting this field.
+ * @param string $formattedParent Resource name of the organization or project, for
+ *                                example, `organizations/433245324/locations/europe` or
+ *                                `projects/project-id/locations/asia`. Please see
+ *                                {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
  */
 function list_connections_sample(string $formattedParent): void
 {
@@ -70,7 +72,7 @@ function list_connections_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
 
     list_connections_sample($formattedParent);
 }

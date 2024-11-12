@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project of the instance config operations.
+     * Required. The project of the instance configuration operations.
      * Values are of the form `projects/<project>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -58,7 +58,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      *     `(error:*)` - Return operations where:
      *     * The operation's metadata type is
      *     [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-     *     * The instance config name contains "custom-config".
+     *     * The instance configuration name contains "custom-config".
      *     * The operation started before 2021-03-28T14:50:00Z.
      *     * The operation resulted in an error.
      *
@@ -84,7 +84,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The project of the instance config operations.
+     * @param string $parent Required. The project of the instance configuration operations.
      *                       Values are of the form `projects/<project>`. Please see
      *                       {@see InstanceAdminClient::projectName()} for help formatting this field.
      *
@@ -105,7 +105,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project of the instance config operations.
+     *           Required. The project of the instance configuration operations.
      *           Values are of the form `projects/<project>`.
      *     @type string $filter
      *           An expression that filters the list of returned operations.
@@ -142,7 +142,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      *               `(error:*)` - Return operations where:
      *               * The operation's metadata type is
      *               [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-     *               * The instance config name contains "custom-config".
+     *               * The instance configuration name contains "custom-config".
      *               * The operation started before 2021-03-28T14:50:00Z.
      *               * The operation resulted in an error.
      *     @type int $page_size
@@ -162,7 +162,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The project of the instance config operations.
+     * Required. The project of the instance configuration operations.
      * Values are of the form `projects/<project>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -174,7 +174,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. The project of the instance config operations.
+     * Required. The project of the instance configuration operations.
      * Values are of the form `projects/<project>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -224,7 +224,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      *     `(error:*)` - Return operations where:
      *     * The operation's metadata type is
      *     [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-     *     * The instance config name contains "custom-config".
+     *     * The instance configuration name contains "custom-config".
      *     * The operation started before 2021-03-28T14:50:00Z.
      *     * The operation resulted in an error.
      *
@@ -271,7 +271,7 @@ class ListInstanceConfigOperationsRequest extends \Google\Protobuf\Internal\Mess
      *     `(error:*)` - Return operations where:
      *     * The operation's metadata type is
      *     [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
-     *     * The instance config name contains "custom-config".
+     *     * The instance configuration name contains "custom-config".
      *     * The operation started before 2021-03-28T14:50:00Z.
      *     * The operation resulted in an error.
      *

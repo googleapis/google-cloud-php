@@ -34,9 +34,8 @@ use Google\Cloud\Dialogflow\Cx\V3\ListDeploymentsRequest;
  * [Environment][google.cloud.dialogflow.cx.v3.Environment].
  *
  * @param string $formattedParent The [Environment][google.cloud.dialogflow.cx.v3.Environment] to
- *                                list all environments for. Format: `projects/<Project
- *                                ID>/locations/<Location ID>/agents/<Agent ID>/environments/<Environment
- *                                ID>`. Please see
+ *                                list all environments for. Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                                {@see DeploymentsClient::environmentName()} for help formatting this field.
  */
 function list_deployments_sample(string $formattedParent): void

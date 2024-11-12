@@ -22,13 +22,13 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.RescheduleMaintenanceRequest.RescheduleType reschedule_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reschedule_type = 0;
+    protected $reschedule_type = 0;
     /**
      * Timestamp when the maintenance shall be rescheduled to if
      * reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
@@ -36,7 +36,7 @@ class RescheduleMaintenanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 3;</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
 
     /**
      * @param string                     $instance       Required. Memcache instance resource name using the form:

@@ -57,15 +57,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createExperimentAsync(CreateExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteExperimentAsync(DeleteExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExperimentAsync(GetExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExperimentsAsync(ListExperimentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startExperimentAsync(StartExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopExperimentAsync(StopExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExperimentAsync(UpdateExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Experiment> createExperimentAsync(CreateExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteExperimentAsync(DeleteExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Experiment> getExperimentAsync(GetExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExperimentsAsync(ListExperimentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Experiment> startExperimentAsync(StartExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Experiment> stopExperimentAsync(StopExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Experiment> updateExperimentAsync(UpdateExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ExperimentsClient
 {

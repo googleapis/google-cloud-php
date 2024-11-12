@@ -50,6 +50,7 @@ use Google\Cloud\Deploy\V1\Config;
 use Google\Cloud\Deploy\V1\CreateAutomationRequest;
 use Google\Cloud\Deploy\V1\CreateCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\CreateDeliveryPipelineRequest;
+use Google\Cloud\Deploy\V1\CreateDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\CreateReleaseRequest;
 use Google\Cloud\Deploy\V1\CreateRolloutRequest;
 use Google\Cloud\Deploy\V1\CreateTargetRequest;
@@ -57,13 +58,16 @@ use Google\Cloud\Deploy\V1\CustomTargetType;
 use Google\Cloud\Deploy\V1\DeleteAutomationRequest;
 use Google\Cloud\Deploy\V1\DeleteCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\DeleteDeliveryPipelineRequest;
+use Google\Cloud\Deploy\V1\DeleteDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\DeleteTargetRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
+use Google\Cloud\Deploy\V1\DeployPolicy;
 use Google\Cloud\Deploy\V1\GetAutomationRequest;
 use Google\Cloud\Deploy\V1\GetAutomationRunRequest;
 use Google\Cloud\Deploy\V1\GetConfigRequest;
 use Google\Cloud\Deploy\V1\GetCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
+use Google\Cloud\Deploy\V1\GetDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\GetJobRunRequest;
 use Google\Cloud\Deploy\V1\GetReleaseRequest;
 use Google\Cloud\Deploy\V1\GetRolloutRequest;
@@ -75,6 +79,7 @@ use Google\Cloud\Deploy\V1\ListAutomationRunsRequest;
 use Google\Cloud\Deploy\V1\ListAutomationsRequest;
 use Google\Cloud\Deploy\V1\ListCustomTargetTypesRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
+use Google\Cloud\Deploy\V1\ListDeployPoliciesRequest;
 use Google\Cloud\Deploy\V1\ListJobRunsRequest;
 use Google\Cloud\Deploy\V1\ListReleasesRequest;
 use Google\Cloud\Deploy\V1\ListRolloutsRequest;
@@ -91,6 +96,7 @@ use Google\Cloud\Deploy\V1\TerminateJobRunResponse;
 use Google\Cloud\Deploy\V1\UpdateAutomationRequest;
 use Google\Cloud\Deploy\V1\UpdateCustomTargetTypeRequest;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
+use Google\Cloud\Deploy\V1\UpdateDeployPolicyRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -116,51 +122,56 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface abandonReleaseAsync(AbandonReleaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface advanceRolloutAsync(AdvanceRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface approveRolloutAsync(ApproveRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelAutomationRunAsync(CancelAutomationRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelRolloutAsync(CancelRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAutomationAsync(CreateAutomationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomTargetTypeAsync(CreateCustomTargetTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDeliveryPipelineAsync(CreateDeliveryPipelineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReleaseAsync(CreateReleaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRolloutAsync(CreateRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTargetAsync(CreateTargetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAutomationAsync(DeleteAutomationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomTargetTypeAsync(DeleteCustomTargetTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDeliveryPipelineAsync(DeleteDeliveryPipelineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTargetAsync(DeleteTargetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAutomationAsync(GetAutomationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAutomationRunAsync(GetAutomationRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomTargetTypeAsync(GetCustomTargetTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeliveryPipelineAsync(GetDeliveryPipelineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobRunAsync(GetJobRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReleaseAsync(GetReleaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRolloutAsync(GetRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTargetAsync(GetTargetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface ignoreJobAsync(IgnoreJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutomationRunsAsync(ListAutomationRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutomationsAsync(ListAutomationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomTargetTypesAsync(ListCustomTargetTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeliveryPipelinesAsync(ListDeliveryPipelinesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobRunsAsync(ListJobRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReleasesAsync(ListReleasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRolloutsAsync(ListRolloutsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTargetsAsync(ListTargetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retryJobAsync(RetryJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackTargetAsync(RollbackTargetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface terminateJobRunAsync(TerminateJobRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAutomationAsync(UpdateAutomationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomTargetTypeAsync(UpdateCustomTargetTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeliveryPipelineAsync(UpdateDeliveryPipelineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTargetAsync(UpdateTargetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AbandonReleaseResponse> abandonReleaseAsync(AbandonReleaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdvanceRolloutResponse> advanceRolloutAsync(AdvanceRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApproveRolloutResponse> approveRolloutAsync(ApproveRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CancelAutomationRunResponse> cancelAutomationRunAsync(CancelAutomationRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CancelRolloutResponse> cancelRolloutAsync(CancelRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAutomationAsync(CreateAutomationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCustomTargetTypeAsync(CreateCustomTargetTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDeliveryPipelineAsync(CreateDeliveryPipelineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDeployPolicyAsync(CreateDeployPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReleaseAsync(CreateReleaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRolloutAsync(CreateRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTargetAsync(CreateTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAutomationAsync(DeleteAutomationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCustomTargetTypeAsync(DeleteCustomTargetTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDeliveryPipelineAsync(DeleteDeliveryPipelineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDeployPolicyAsync(DeleteDeployPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTargetAsync(DeleteTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Automation> getAutomationAsync(GetAutomationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutomationRun> getAutomationRunAsync(GetAutomationRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Config> getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomTargetType> getCustomTargetTypeAsync(GetCustomTargetTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryPipeline> getDeliveryPipelineAsync(GetDeliveryPipelineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeployPolicy> getDeployPolicyAsync(GetDeployPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<JobRun> getJobRunAsync(GetJobRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Release> getReleaseAsync(GetReleaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Rollout> getRolloutAsync(GetRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Target> getTargetAsync(GetTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IgnoreJobResponse> ignoreJobAsync(IgnoreJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutomationRunsAsync(ListAutomationRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutomationsAsync(ListAutomationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomTargetTypesAsync(ListCustomTargetTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeliveryPipelinesAsync(ListDeliveryPipelinesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeployPoliciesAsync(ListDeployPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobRunsAsync(ListJobRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReleasesAsync(ListReleasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRolloutsAsync(ListRolloutsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTargetsAsync(ListTargetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetryJobResponse> retryJobAsync(RetryJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RollbackTargetResponse> rollbackTargetAsync(RollbackTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TerminateJobRunResponse> terminateJobRunAsync(TerminateJobRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAutomationAsync(UpdateAutomationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCustomTargetTypeAsync(UpdateCustomTargetTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDeliveryPipelineAsync(UpdateDeliveryPipelineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDeployPolicyAsync(UpdateDeployPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTargetAsync(UpdateTargetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class CloudDeployClient
 {
@@ -404,6 +415,25 @@ final class CloudDeployClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * deploy_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deployPolicy
+     *
+     * @return string The formatted deploy_policy resource.
+     */
+    public static function deployPolicyName(string $project, string $location, string $deployPolicy): string
+    {
+        return self::getPathTemplate('deployPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'deploy_policy' => $deployPolicy,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a job
      * resource.
      *
@@ -635,6 +665,7 @@ final class CloudDeployClient
      * - config: projects/{project}/locations/{location}/config
      * - customTargetType: projects/{project}/locations/{location}/customTargetTypes/{custom_target_type}
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
+     * - deployPolicy: projects/{project}/locations/{location}/deployPolicies/{deploy_policy}
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
      * - location: projects/{project}/locations/{location}
@@ -954,6 +985,32 @@ final class CloudDeployClient
     }
 
     /**
+     * Creates a new DeployPolicy in a given project and location.
+     *
+     * The async variant is {@see CloudDeployClient::createDeployPolicyAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/create_deploy_policy.php
+     *
+     * @param CreateDeployPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDeployPolicy(CreateDeployPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateDeployPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Release in a given project and location.
      *
      * The async variant is {@see CloudDeployClient::createReleaseAsync()} .
@@ -1114,6 +1171,32 @@ final class CloudDeployClient
     }
 
     /**
+     * Deletes a single DeployPolicy.
+     *
+     * The async variant is {@see CloudDeployClient::deleteDeployPolicyAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/delete_deploy_policy.php
+     *
+     * @param DeleteDeployPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDeployPolicy(DeleteDeployPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDeployPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Target.
      *
      * The async variant is {@see CloudDeployClient::deleteTargetAsync()} .
@@ -1267,6 +1350,32 @@ final class CloudDeployClient
     public function getDeliveryPipeline(GetDeliveryPipelineRequest $request, array $callOptions = []): DeliveryPipeline
     {
         return $this->startApiCall('GetDeliveryPipeline', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single DeployPolicy.
+     *
+     * The async variant is {@see CloudDeployClient::getDeployPolicyAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/get_deploy_policy.php
+     *
+     * @param GetDeployPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DeployPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDeployPolicy(GetDeployPolicyRequest $request, array $callOptions = []): DeployPolicy
+    {
+        return $this->startApiCall('GetDeployPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -1505,6 +1614,32 @@ final class CloudDeployClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListDeliveryPipelines', $request, $callOptions);
+    }
+
+    /**
+     * Lists DeployPolicies in a given project and location.
+     *
+     * The async variant is {@see CloudDeployClient::listDeployPoliciesAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/list_deploy_policies.php
+     *
+     * @param ListDeployPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDeployPolicies(ListDeployPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDeployPolicies', $request, $callOptions);
     }
 
     /**
@@ -1769,6 +1904,32 @@ final class CloudDeployClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('UpdateDeliveryPipeline', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single DeployPolicy.
+     *
+     * The async variant is {@see CloudDeployClient::updateDeployPolicyAsync()} .
+     *
+     * @example samples/V1/CloudDeployClient/update_deploy_policy.php
+     *
+     * @param UpdateDeployPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDeployPolicy(UpdateDeployPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateDeployPolicy', $request, $callOptions)->wait();
     }
 
     /**

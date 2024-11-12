@@ -21,26 +21,26 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A description of the backup with 2048 characters or less.
      * Requests with longer descriptions will be rejected.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The backup state.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Backup.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The time when the backup was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Resource labels to represent user provided metadata.
      *
@@ -52,14 +52,14 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 capacity_gb = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $capacity_gb = 0;
+    protected $capacity_gb = 0;
     /**
      * Output only. The size of the storage used by the backup. As backups share
      * storage, this number is expected to change with backup creation/deletion.
      *
      * Generated from protobuf field <code>int64 storage_bytes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $storage_bytes = 0;
+    protected $storage_bytes = 0;
     /**
      * The resource name of the source Filestore instance, in the format
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`,
@@ -67,21 +67,21 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_instance = 8 [(.google.api.resource_reference) = {</code>
      */
-    private $source_instance = '';
+    protected $source_instance = '';
     /**
      * Name of the file share in the source Filestore instance that the
      * backup is created from.
      *
      * Generated from protobuf field <code>string source_file_share = 9;</code>
      */
-    private $source_file_share = '';
+    protected $source_file_share = '';
     /**
      * Output only. The service tier of the source Filestore instance that this
      * backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_instance_tier = 0;
+    protected $source_instance_tier = 0;
     /**
      * Output only. Amount of bytes that will be downloaded if the backup is
      * restored. This may be different than storage bytes, since sequential
@@ -89,25 +89,25 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 download_bytes = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $download_bytes = 0;
+    protected $download_bytes = 0;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzi = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = false;
+    protected $satisfies_pzi = false;
     /**
      * Immutable. KMS key name used for data encryption.
      *
      * Generated from protobuf field <code>string kms_key = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
 
     /**
      * Constructor.
@@ -502,7 +502,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool|null
      */
-    public function getSatisfiesPzsValue()
+    public function getSatisfiesPzsUnwrapped()
     {
         return $this->readWrapperValue("satisfies_pzs");
     }
@@ -531,7 +531,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setSatisfiesPzsValue($var)
+    public function setSatisfiesPzsUnwrapped($var)
     {
         $this->writeWrapperValue("satisfies_pzs", $var);
         return $this;}

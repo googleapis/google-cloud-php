@@ -20,7 +20,7 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue.Reason reason = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reason = 0;
+    protected $reason = 0;
     /**
      * Output only. Human readable explanation about the issue. Provided to
      * help address the configuration issues. Not guaranteed to be stable. For
@@ -28,7 +28,7 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $details = '';
+    protected $details = '';
 
     /**
      * Constructor.

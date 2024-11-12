@@ -25,7 +25,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of clusters to return in one page.
      * The service may return fewer than this value.
@@ -34,7 +34,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListClusters` call.
      * Provide this to retrieve the subsequent page.
@@ -43,7 +43,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * To filter on multiple expressions, provide each separate expression within
      * parentheses. For example:
@@ -61,7 +61,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Sorts list results by a certain order. By default, returned results are
      * ordered by `name` in ascending order. You can also sort results in
@@ -70,7 +70,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The resource name of the private cloud to query for clusters.

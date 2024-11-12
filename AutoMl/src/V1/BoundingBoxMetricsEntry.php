@@ -22,13 +22,13 @@ class BoundingBoxMetricsEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float iou_threshold = 1;</code>
      */
-    private $iou_threshold = 0.0;
+    protected $iou_threshold = 0.0;
     /**
      * Output only. The mean average precision, most often close to au_prc.
      *
      * Generated from protobuf field <code>float mean_average_precision = 2;</code>
      */
-    private $mean_average_precision = 0.0;
+    protected $mean_average_precision = 0.0;
     /**
      * Output only. Metrics for each label-match confidence_threshold from
      * 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99. Precision-recall curve is

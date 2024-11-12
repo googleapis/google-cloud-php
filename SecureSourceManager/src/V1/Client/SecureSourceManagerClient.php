@@ -42,16 +42,22 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\SecureSourceManager\V1\BranchRule;
+use Google\Cloud\SecureSourceManager\V1\CreateBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateInstanceRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateRepositoryRequest;
+use Google\Cloud\SecureSourceManager\V1\DeleteBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteInstanceRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest;
+use Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\GetInstanceRequest;
 use Google\Cloud\SecureSourceManager\V1\GetRepositoryRequest;
 use Google\Cloud\SecureSourceManager\V1\Instance;
+use Google\Cloud\SecureSourceManager\V1\ListBranchRulesRequest;
 use Google\Cloud\SecureSourceManager\V1\ListInstancesRequest;
 use Google\Cloud\SecureSourceManager\V1\ListRepositoriesRequest;
 use Google\Cloud\SecureSourceManager\V1\Repository;
+use Google\Cloud\SecureSourceManager\V1\UpdateBranchRuleRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -86,22 +92,27 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyRepoAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyRepoAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsRepoAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBranchRuleAsync(CreateBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBranchRuleAsync(DeleteBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BranchRule> getBranchRuleAsync(GetBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyRepoAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Repository> getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBranchRulesAsync(ListBranchRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyRepoAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsRepoAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBranchRuleAsync(UpdateBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SecureSourceManagerClient
 {
@@ -202,6 +213,50 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a branch_rule
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $branchRule
+     *
+     * @return string The formatted branch_rule resource.
+     */
+    public static function branchRuleName(
+        string $project,
+        string $location,
+        string $repository,
+        string $branchRule
+    ): string {
+        return self::getPathTemplate('branchRule')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'branch_rule' => $branchRule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a crypto_key
      * resource.
      *
@@ -278,13 +333,35 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $serviceAttachment
+     *
+     * @return string The formatted service_attachment resource.
+     */
+    public static function serviceAttachmentName(string $project, string $region, string $serviceAttachment): string
+    {
+        return self::getPathTemplate('serviceAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'service_attachment' => $serviceAttachment,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - branchRule: projects/{project}/locations/{location}/repositories/{repository}/branchRules/{branch_rule}
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -377,6 +454,32 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * CreateBranchRule creates a branch rule in a given repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::createBranchRuleAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/create_branch_rule.php
+     *
+     * @param CreateBranchRuleRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBranchRule(CreateBranchRuleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateBranchRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new instance in a given project and location.
      *
      * The async variant is {@see SecureSourceManagerClient::createInstanceAsync()} .
@@ -431,6 +534,32 @@ final class SecureSourceManagerClient
     }
 
     /**
+     * DeleteBranchRule deletes a branch rule.
+     *
+     * The async variant is {@see SecureSourceManagerClient::deleteBranchRuleAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/delete_branch_rule.php
+     *
+     * @param DeleteBranchRuleRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBranchRule(DeleteBranchRuleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBranchRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single instance.
      *
      * The async variant is {@see SecureSourceManagerClient::deleteInstanceAsync()} .
@@ -482,6 +611,32 @@ final class SecureSourceManagerClient
     public function deleteRepository(DeleteRepositoryRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * GetBranchRule gets a branch rule.
+     *
+     * The async variant is {@see SecureSourceManagerClient::getBranchRuleAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/get_branch_rule.php
+     *
+     * @param GetBranchRuleRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BranchRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBranchRule(GetBranchRuleRequest $request, array $callOptions = []): BranchRule
+    {
+        return $this->startApiCall('GetBranchRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -562,6 +717,32 @@ final class SecureSourceManagerClient
     public function getRepository(GetRepositoryRequest $request, array $callOptions = []): Repository
     {
         return $this->startApiCall('GetRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * ListBranchRules lists branch rules in a given repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::listBranchRulesAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/list_branch_rules.php
+     *
+     * @param ListBranchRulesRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBranchRules(ListBranchRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBranchRules', $request, $callOptions);
     }
 
     /**
@@ -672,6 +853,32 @@ final class SecureSourceManagerClient
         array $callOptions = []
     ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissionsRepo', $request, $callOptions)->wait();
+    }
+
+    /**
+     * UpdateBranchRule updates a branch rule.
+     *
+     * The async variant is {@see SecureSourceManagerClient::updateBranchRuleAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/update_branch_rule.php
+     *
+     * @param UpdateBranchRuleRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBranchRule(UpdateBranchRuleRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateBranchRule', $request, $callOptions)->wait();
     }
 
     /**

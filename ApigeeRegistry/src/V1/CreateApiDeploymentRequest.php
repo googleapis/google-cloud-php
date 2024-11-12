@@ -21,13 +21,13 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The deployment to create.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiDeployment api_deployment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_deployment = null;
+    protected $api_deployment = null;
     /**
      * Required. The ID to use for the deployment, which will become the final component of
      * the deployment's resource name.
@@ -37,7 +37,7 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_deployment_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $api_deployment_id = '';
+    protected $api_deployment_id = '';
 
     /**
      * @param string                                        $parent          Required. The parent, which owns this collection of deployments.

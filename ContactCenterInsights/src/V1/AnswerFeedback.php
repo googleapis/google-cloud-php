@@ -21,20 +21,20 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnswerFeedback.CorrectnessLevel correctness_level = 1;</code>
      */
-    private $correctness_level = 0;
+    protected $correctness_level = 0;
     /**
      * Indicates whether an answer or item was clicked by the human agent.
      *
      * Generated from protobuf field <code>bool clicked = 2;</code>
      */
-    private $clicked = false;
+    protected $clicked = false;
     /**
      * Indicates whether an answer or item was displayed to the human agent in the
      * agent desktop UI.
      *
      * Generated from protobuf field <code>bool displayed = 3;</code>
      */
-    private $displayed = false;
+    protected $displayed = false;
 
     /**
      * Constructor.

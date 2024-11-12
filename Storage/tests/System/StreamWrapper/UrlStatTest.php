@@ -27,9 +27,12 @@ class UrlStatTest extends StreamWrapperTestCase
     protected static $fileUrl;
     protected static $dirUrl;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
         self::$fileUrl = self::generateUrl(self::$object->name());
         self::$dirUrl = self::generateUrl('some_folder/');
         mkdir(self::$dirUrl);
@@ -58,7 +61,7 @@ class UrlStatTest extends StreamWrapperTestCase
     {
         $fd = fopen(self::$fileUrl, 'r');
         $stat = fstat($fd);
-        $this->assertEquals(33206, $stat['mode']);
+        $this->assertEquals(33060, $stat['mode']);
     }
 
     public function testIsWritable()

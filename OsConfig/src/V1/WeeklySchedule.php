@@ -20,7 +20,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $day_of_week = 0;
+    protected $day_of_week = 0;
 
     /**
      * Constructor.

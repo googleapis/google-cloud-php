@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\ContactCenterInsights\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -55,15 +54,20 @@ use Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest;
+use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetViewRequest;
+use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
@@ -85,6 +89,7 @@ use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\View;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -99,45 +104,49 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface bulkAnalyzeConversationsAsync(BulkAnalyzeConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface bulkDeleteConversationsAsync(BulkDeleteConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface calculateIssueModelStatsAsync(CalculateIssueModelStatsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface calculateStatsAsync(CalculateStatsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAnalysisAsync(CreateAnalysisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIssueModelAsync(CreateIssueModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPhraseMatcherAsync(CreatePhraseMatcherRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createViewAsync(CreateViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAnalysisAsync(DeleteAnalysisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIssueAsync(DeleteIssueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIssueModelAsync(DeleteIssueModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePhraseMatcherAsync(DeletePhraseMatcherRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteViewAsync(DeleteViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployIssueModelAsync(DeployIssueModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportInsightsDataAsync(ExportInsightsDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnalysisAsync(GetAnalysisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIssueAsync(GetIssueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIssueModelAsync(GetIssueModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPhraseMatcherAsync(GetPhraseMatcherRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getViewAsync(GetViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface ingestConversationsAsync(IngestConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAnalysesAsync(ListAnalysesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIssueModelsAsync(ListIssueModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIssuesAsync(ListIssuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPhraseMatchersAsync(ListPhraseMatchersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listViewsAsync(ListViewsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployIssueModelAsync(UndeployIssueModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIssueAsync(UpdateIssueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIssueModelAsync(UpdateIssueModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePhraseMatcherAsync(UpdatePhraseMatcherRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateViewAsync(UpdateViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uploadConversationAsync(UploadConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkAnalyzeConversationsAsync(BulkAnalyzeConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkDeleteConversationsAsync(BulkDeleteConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CalculateIssueModelStatsResponse> calculateIssueModelStatsAsync(CalculateIssueModelStatsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CalculateStatsResponse> calculateStatsAsync(CalculateStatsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAnalysisAsync(CreateAnalysisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIssueModelAsync(CreateIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PhraseMatcher> createPhraseMatcherAsync(CreatePhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<View> createViewAsync(CreateViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAnalysisAsync(DeleteAnalysisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIssueAsync(DeleteIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIssueModelAsync(DeleteIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePhraseMatcherAsync(DeletePhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteViewAsync(DeleteViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployIssueModelAsync(DeployIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportInsightsDataAsync(ExportInsightsDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportIssueModelAsync(ExportIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Analysis> getAnalysisAsync(GetAnalysisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EncryptionSpec> getEncryptionSpecAsync(GetEncryptionSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Issue> getIssueAsync(GetIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IssueModel> getIssueModelAsync(GetIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PhraseMatcher> getPhraseMatcherAsync(GetPhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Settings> getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<View> getViewAsync(GetViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importIssueModelAsync(ImportIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> ingestConversationsAsync(IngestConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> initializeEncryptionSpecAsync(InitializeEncryptionSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnalysesAsync(ListAnalysesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListIssueModelsResponse> listIssueModelsAsync(ListIssueModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListIssuesResponse> listIssuesAsync(ListIssuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPhraseMatchersAsync(ListPhraseMatchersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listViewsAsync(ListViewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployIssueModelAsync(UndeployIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Issue> updateIssueAsync(UpdateIssueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IssueModel> updateIssueModelAsync(UpdateIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PhraseMatcher> updatePhraseMatcherAsync(UpdatePhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Settings> updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<View> updateViewAsync(UpdateViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> uploadConversationAsync(UploadConversationRequest $request, array $optionalArgs = [])
  */
 final class ContactCenterInsightsClient
 {
@@ -164,9 +173,7 @@ final class ContactCenterInsightsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -212,10 +219,31 @@ final class ContactCenterInsightsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -229,8 +257,12 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted analysis resource.
      */
-    public static function analysisName(string $project, string $location, string $conversation, string $analysis): string
-    {
+    public static function analysisName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $analysis
+    ): string {
         return self::getPathTemplate('analysis')->render([
             'project' => $project,
             'location' => $location,
@@ -268,12 +300,32 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted conversation_profile resource.
      */
-    public static function conversationProfileName(string $project, string $location, string $conversationProfile): string
-    {
+    public static function conversationProfileName(
+        string $project,
+        string $location,
+        string $conversationProfile
+    ): string {
         return self::getPathTemplate('conversationProfile')->render([
             'project' => $project,
             'location' => $location,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * encryption_spec resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted encryption_spec resource.
+     */
+    public static function encryptionSpecName(string $project, string $location): string
+    {
+        return self::getPathTemplate('encryptionSpec')->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -382,8 +434,11 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted project_conversation_participant resource.
      */
-    public static function projectConversationParticipantName(string $project, string $conversation, string $participant): string
-    {
+    public static function projectConversationParticipantName(
+        string $project,
+        string $conversation,
+        string $participant
+    ): string {
         return self::getPathTemplate('projectConversationParticipant')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -402,8 +457,12 @@ final class ContactCenterInsightsClient
      *
      * @return string The formatted project_location_conversation_participant resource.
      */
-    public static function projectLocationConversationParticipantName(string $project, string $location, string $conversation, string $participant): string
-    {
+    public static function projectLocationConversationParticipantName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $participant
+    ): string {
         return self::getPathTemplate('projectLocationConversationParticipant')->render([
             'project' => $project,
             'location' => $location,
@@ -474,6 +533,7 @@ final class ContactCenterInsightsClient
      * - analysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
      * - conversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - conversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - encryptionSpec: projects/{project}/locations/{location}/encryptionSpec
      * - issue: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}
      * - issueModel: projects/{project}/locations/{location}/issueModels/{issue_model}
      * - location: projects/{project}/locations/{location}
@@ -597,8 +657,10 @@ final class ContactCenterInsightsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkAnalyzeConversations(BulkAnalyzeConversationsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function bulkAnalyzeConversations(
+        BulkAnalyzeConversationsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BulkAnalyzeConversations', $request, $callOptions)->wait();
     }
 
@@ -624,8 +686,10 @@ final class ContactCenterInsightsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkDeleteConversations(BulkDeleteConversationsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function bulkDeleteConversations(
+        BulkDeleteConversationsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BulkDeleteConversations', $request, $callOptions)->wait();
     }
 
@@ -651,8 +715,10 @@ final class ContactCenterInsightsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function calculateIssueModelStats(CalculateIssueModelStatsRequest $request, array $callOptions = []): CalculateIssueModelStatsResponse
-    {
+    public function calculateIssueModelStats(
+        CalculateIssueModelStatsRequest $request,
+        array $callOptions = []
+    ): CalculateIssueModelStatsResponse {
         return $this->startApiCall('CalculateIssueModelStats', $request, $callOptions)->wait();
     }
 
@@ -711,6 +777,8 @@ final class ContactCenterInsightsClient
 
     /**
      * Creates a conversation.
+     * Note that this method does not support audio transcription or redaction.
+     * Use `conversations.upload` instead.
      *
      * The async variant is
      * {@see ContactCenterInsightsClient::createConversationAsync()} .
@@ -1021,6 +1089,33 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Exports an issue model to the provided destination.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::exportIssueModelAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/export_issue_model.php
+     *
+     * @param ExportIssueModelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportIssueModel(ExportIssueModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportIssueModel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets an analysis.
      *
      * The async variant is {@see ContactCenterInsightsClient::getAnalysisAsync()} .
@@ -1071,6 +1166,33 @@ final class ContactCenterInsightsClient
     public function getConversation(GetConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('GetConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets location-level encryption key specification.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::getEncryptionSpecAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_encryption_spec.php
+     *
+     * @param GetEncryptionSpecRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EncryptionSpec
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getEncryptionSpec(GetEncryptionSpecRequest $request, array $callOptions = []): EncryptionSpec
+    {
+        return $this->startApiCall('GetEncryptionSpec', $request, $callOptions)->wait();
     }
 
     /**
@@ -1205,6 +1327,33 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Imports an issue model from a Cloud Storage bucket.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::importIssueModelAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/import_issue_model.php
+     *
+     * @param ImportIssueModelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importIssueModel(ImportIssueModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ImportIssueModel', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports conversations and processes them according to the user's
      * configuration.
      *
@@ -1230,6 +1379,39 @@ final class ContactCenterInsightsClient
     public function ingestConversations(IngestConversationsRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('IngestConversations', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initializes a location-level encryption key specification.  An error will
+     * be thrown if the location has resources already created before the
+     * initialization. Once the encryption specification is initialized at a
+     * location, it is immutable and all newly created resources under the
+     * location will be encrypted with the existing specification.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::initializeEncryptionSpecAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/initialize_encryption_spec.php
+     *
+     * @param InitializeEncryptionSpecRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function initializeEncryptionSpec(
+        InitializeEncryptionSpecRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('InitializeEncryptionSpec', $request, $callOptions)->wait();
     }
 
     /**
@@ -1579,8 +1761,8 @@ final class ContactCenterInsightsClient
     }
 
     /**
-     * Create a longrunning conversation upload operation. This method differs
-     * from CreateConversation by allowing audio transcription and optional DLP
+     * Create a long-running conversation upload operation. This method differs
+     * from `CreateConversation` by allowing audio transcription and optional DLP
      * redaction.
      *
      * The async variant is

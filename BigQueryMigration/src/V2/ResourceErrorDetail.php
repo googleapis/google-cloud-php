@@ -20,7 +20,7 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.ResourceInfo resource_info = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource_info = null;
+    protected $resource_info = null;
     /**
      * Required. The error details for the resource.
      *
@@ -34,7 +34,7 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 error_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $error_count = 0;
+    protected $error_count = 0;
 
     /**
      * Constructor.

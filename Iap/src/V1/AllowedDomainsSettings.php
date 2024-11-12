@@ -21,7 +21,7 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool enable = 1;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * List of trusted domains.
      *

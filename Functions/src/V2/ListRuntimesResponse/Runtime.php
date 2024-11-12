@@ -21,19 +21,19 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user facing name, eg 'Go 1.13', 'Node.js 12', etc.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The stage of life this runtime is in, e.g., BETA, GA, etc.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.ListRuntimesResponse.RuntimeStage stage = 2;</code>
      */
-    private $stage = 0;
+    protected $stage = 0;
     /**
      * Warning messages, e.g., a deprecation warning.
      *
@@ -45,7 +45,19 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 4;</code>
      */
-    private $environment = 0;
+    protected $environment = 0;
+    /**
+     * Deprecation date for the runtime.
+     *
+     * Generated from protobuf field <code>.google.type.Date deprecation_date = 6;</code>
+     */
+    protected $deprecation_date = null;
+    /**
+     * Decommission date for the runtime.
+     *
+     * Generated from protobuf field <code>.google.type.Date decommission_date = 7;</code>
+     */
+    protected $decommission_date = null;
 
     /**
      * Constructor.
@@ -63,6 +75,10 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *           Warning messages, e.g., a deprecation warning.
      *     @type int $environment
      *           The environment for the runtime.
+     *     @type \Google\Type\Date $deprecation_date
+     *           Deprecation date for the runtime.
+     *     @type \Google\Type\Date $decommission_date
+     *           Decommission date for the runtime.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,6 +212,78 @@ class Runtime extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Functions\V2\Environment::class);
         $this->environment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deprecation date for the runtime.
+     *
+     * Generated from protobuf field <code>.google.type.Date deprecation_date = 6;</code>
+     * @return \Google\Type\Date|null
+     */
+    public function getDeprecationDate()
+    {
+        return $this->deprecation_date;
+    }
+
+    public function hasDeprecationDate()
+    {
+        return isset($this->deprecation_date);
+    }
+
+    public function clearDeprecationDate()
+    {
+        unset($this->deprecation_date);
+    }
+
+    /**
+     * Deprecation date for the runtime.
+     *
+     * Generated from protobuf field <code>.google.type.Date deprecation_date = 6;</code>
+     * @param \Google\Type\Date $var
+     * @return $this
+     */
+    public function setDeprecationDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Date::class);
+        $this->deprecation_date = $var;
+
+        return $this;
+    }
+
+    /**
+     * Decommission date for the runtime.
+     *
+     * Generated from protobuf field <code>.google.type.Date decommission_date = 7;</code>
+     * @return \Google\Type\Date|null
+     */
+    public function getDecommissionDate()
+    {
+        return $this->decommission_date;
+    }
+
+    public function hasDecommissionDate()
+    {
+        return isset($this->decommission_date);
+    }
+
+    public function clearDecommissionDate()
+    {
+        unset($this->decommission_date);
+    }
+
+    /**
+     * Decommission date for the runtime.
+     *
+     * Generated from protobuf field <code>.google.type.Date decommission_date = 7;</code>
+     * @param \Google\Type\Date $var
+     * @return $this
+     */
+    public function setDecommissionDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Date::class);
+        $this->decommission_date = $var;
 
         return $this;
     }

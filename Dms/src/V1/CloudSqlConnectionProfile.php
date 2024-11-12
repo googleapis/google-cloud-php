@@ -22,25 +22,25 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloud_sql_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cloud_sql_id = '';
+    protected $cloud_sql_id = '';
     /**
      * Immutable. Metadata used to create the destination Cloud SQL database.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.CloudSqlSettings settings = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $settings = null;
+    protected $settings = null;
     /**
      * Output only. The Cloud SQL database instance's private IP.
      *
      * Generated from protobuf field <code>string private_ip = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $private_ip = '';
+    protected $private_ip = '';
     /**
      * Output only. The Cloud SQL database instance's public IP.
      *
      * Generated from protobuf field <code>string public_ip = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $public_ip = '';
+    protected $public_ip = '';
     /**
      * Output only. The Cloud SQL database instance's additional (outgoing) public
      * IP. Used when the Cloud SQL database availability type is REGIONAL (i.e.
@@ -48,7 +48,7 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string additional_public_ip = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $additional_public_ip = '';
+    protected $additional_public_ip = '';
 
     /**
      * Constructor.

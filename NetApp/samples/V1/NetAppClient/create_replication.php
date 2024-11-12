@@ -41,9 +41,10 @@ use Google\Rpc\Status;
  * @param int    $replicationReplicationSchedule                             Indicates the schedule for replication.
  * @param string $formattedReplicationDestinationVolumeParametersStoragePool Existing destination StoragePool name. Please see
  *                                                                           {@see NetAppClient::storagePoolName()} for help formatting this field.
- * @param string $replicationId                                              ID of the replication to create.
- *                                                                           This value must start with a lowercase letter followed by up to 62
- *                                                                           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+ * @param string $replicationId                                              ID of the replication to create. Must be unique within the parent
+ *                                                                           resource. Must contain only letters, numbers, underscore and hyphen, with
+ *                                                                           the first character a letter or underscore, the last a letter or underscore
+ *                                                                           or a number, and a 63 character maximum.
  */
 function create_replication_sample(
     string $formattedParent,

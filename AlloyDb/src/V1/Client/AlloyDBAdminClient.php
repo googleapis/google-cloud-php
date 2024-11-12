@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\AlloyDb\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -49,6 +48,8 @@ use Google\Cloud\AlloyDb\V1\DeleteBackupRequest;
 use Google\Cloud\AlloyDb\V1\DeleteClusterRequest;
 use Google\Cloud\AlloyDb\V1\DeleteInstanceRequest;
 use Google\Cloud\AlloyDb\V1\DeleteUserRequest;
+use Google\Cloud\AlloyDb\V1\ExecuteSqlRequest;
+use Google\Cloud\AlloyDb\V1\ExecuteSqlResponse;
 use Google\Cloud\AlloyDb\V1\FailoverInstanceRequest;
 use Google\Cloud\AlloyDb\V1\GenerateClientCertificateRequest;
 use Google\Cloud\AlloyDb\V1\GenerateClientCertificateResponse;
@@ -61,12 +62,14 @@ use Google\Cloud\AlloyDb\V1\InjectFaultRequest;
 use Google\Cloud\AlloyDb\V1\Instance;
 use Google\Cloud\AlloyDb\V1\ListBackupsRequest;
 use Google\Cloud\AlloyDb\V1\ListClustersRequest;
+use Google\Cloud\AlloyDb\V1\ListDatabasesRequest;
 use Google\Cloud\AlloyDb\V1\ListInstancesRequest;
 use Google\Cloud\AlloyDb\V1\ListSupportedDatabaseFlagsRequest;
 use Google\Cloud\AlloyDb\V1\ListUsersRequest;
 use Google\Cloud\AlloyDb\V1\PromoteClusterRequest;
 use Google\Cloud\AlloyDb\V1\RestartInstanceRequest;
 use Google\Cloud\AlloyDb\V1\RestoreClusterRequest;
+use Google\Cloud\AlloyDb\V1\SwitchoverClusterRequest;
 use Google\Cloud\AlloyDb\V1\UpdateBackupRequest;
 use Google\Cloud\AlloyDb\V1\UpdateClusterRequest;
 use Google\Cloud\AlloyDb\V1\UpdateInstanceRequest;
@@ -75,6 +78,7 @@ use Google\Cloud\AlloyDb\V1\User;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -89,39 +93,42 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateInstancesAsync(BatchCreateInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSecondaryClusterAsync(CreateSecondaryClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSecondaryInstanceAsync(CreateSecondaryInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateClientCertificateAsync(GenerateClientCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectionInfoAsync(GetConnectionInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getUserAsync(GetUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSupportedDatabaseFlagsAsync(ListSupportedDatabaseFlagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface promoteClusterAsync(PromoteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restartInstanceAsync(RestartInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreClusterAsync(RestoreClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateInstancesAsync(BatchCreateInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSecondaryClusterAsync(CreateSecondaryClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSecondaryInstanceAsync(CreateSecondaryInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteSqlResponse> executeSqlAsync(ExecuteSqlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateClientCertificateResponse> generateClientCertificateAsync(GenerateClientCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectionInfo> getConnectionInfoAsync(GetConnectionInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> getUserAsync(GetUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSupportedDatabaseFlagsAsync(ListSupportedDatabaseFlagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> promoteClusterAsync(PromoteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restartInstanceAsync(RestartInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreClusterAsync(RestoreClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> switchoverClusterAsync(SwitchoverClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class AlloyDBAdminClient
 {
@@ -148,9 +155,7 @@ final class AlloyDBAdminClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -196,10 +201,31 @@ final class AlloyDBAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -252,8 +278,13 @@ final class AlloyDBAdminClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -471,8 +502,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateInstances(BatchCreateInstancesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchCreateInstances(
+        BatchCreateInstancesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchCreateInstances', $request, $callOptions)->wait();
     }
 
@@ -576,8 +609,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecondaryCluster(CreateSecondaryClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSecondaryCluster(
+        CreateSecondaryClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSecondaryCluster', $request, $callOptions)->wait();
     }
 
@@ -602,8 +637,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecondaryInstance(CreateSecondaryInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createSecondaryInstance(
+        CreateSecondaryInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateSecondaryInstance', $request, $callOptions)->wait();
     }
 
@@ -736,6 +773,32 @@ final class AlloyDBAdminClient
     }
 
     /**
+     * Executes a SQL statement in a database inside an AlloyDB instance.
+     *
+     * The async variant is {@see AlloyDBAdminClient::executeSqlAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/execute_sql.php
+     *
+     * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExecuteSqlResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeSql(ExecuteSqlRequest $request, array $callOptions = []): ExecuteSqlResponse
+    {
+        return $this->startApiCall('ExecuteSql', $request, $callOptions)->wait();
+    }
+
+    /**
      * Forces a Failover for a highly available instance.
      * Failover promotes the HA standby instance as the new primary.
      * Imperative only.
@@ -789,8 +852,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateClientCertificate(GenerateClientCertificateRequest $request, array $callOptions = []): GenerateClientCertificateResponse
-    {
+    public function generateClientCertificate(
+        GenerateClientCertificateRequest $request,
+        array $callOptions = []
+    ): GenerateClientCertificateResponse {
         return $this->startApiCall('GenerateClientCertificate', $request, $callOptions)->wait();
     }
 
@@ -1004,6 +1069,32 @@ final class AlloyDBAdminClient
     }
 
     /**
+     * Lists Databases in a given project and location.
+     *
+     * The async variant is {@see AlloyDBAdminClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/list_databases.php
+     *
+     * @param ListDatabasesRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDatabases(ListDatabasesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListDatabases', $request, $callOptions);
+    }
+
+    /**
      * Lists Instances in a given project and location.
      *
      * The async variant is {@see AlloyDBAdminClient::listInstancesAsync()} .
@@ -1051,8 +1142,10 @@ final class AlloyDBAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSupportedDatabaseFlags(ListSupportedDatabaseFlagsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSupportedDatabaseFlags(
+        ListSupportedDatabaseFlagsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSupportedDatabaseFlags', $request, $callOptions);
     }
 
@@ -1164,6 +1257,34 @@ final class AlloyDBAdminClient
     public function restoreCluster(RestoreClusterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RestoreCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Switches the roles of PRIMARY and SECONDARY clusters without any data loss.
+     * This promotes the SECONDARY cluster to PRIMARY and sets up the original
+     * PRIMARY cluster to replicate from this newly promoted cluster.
+     *
+     * The async variant is {@see AlloyDBAdminClient::switchoverClusterAsync()} .
+     *
+     * @example samples/V1/AlloyDBAdminClient/switchover_cluster.php
+     *
+     * @param SwitchoverClusterRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function switchoverCluster(SwitchoverClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SwitchoverCluster', $request, $callOptions)->wait();
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,17 +63,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createProjectAsync(CreateProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProjectAsync(DeleteProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProjectAsync(GetProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProjectsAsync(ListProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveProjectAsync(MoveProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchProjectsAsync(SearchProjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteProjectAsync(UndeleteProjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProjectAsync(UpdateProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createProjectAsync(CreateProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteProjectAsync(DeleteProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Project> getProjectAsync(GetProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProjectsAsync(ListProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveProjectAsync(MoveProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchProjectsAsync(SearchProjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteProjectAsync(UndeleteProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateProjectAsync(UpdateProjectRequest $request, array $optionalArgs = [])
  */
 final class ProjectsClient
 {
@@ -149,7 +149,9 @@ final class ProjectsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -626,8 +628,10 @@ final class ProjectsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

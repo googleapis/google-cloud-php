@@ -20,13 +20,13 @@ class Period extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 duration = 1;</code>
      */
-    private $duration = 0;
+    protected $duration = 0;
     /**
      * Period Type.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.PeriodType period_type = 2;</code>
      */
-    private $period_type = 0;
+    protected $period_type = 0;
 
     /**
      * Constructor.

@@ -57,18 +57,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addSignedUrlKeyAsync(AddSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListBackendBucketsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsBackendBucketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendBucket> getAsync(GetBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListBackendBucketsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateBackendBucketRequest $request, array $optionalArgs = [])
  */
 final class BackendBucketsClient
 {

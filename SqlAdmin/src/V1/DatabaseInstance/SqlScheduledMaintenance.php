@@ -20,7 +20,7 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Generated from protobuf field <code>bool can_defer = 2 [deprecated = true];</code>
      * @deprecated
@@ -31,13 +31,13 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool can_reschedule = 3;</code>
      */
-    private $can_reschedule = false;
+    protected $can_reschedule = false;
     /**
      * Maintenance cannot be rescheduled to start beyond this deadline.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp schedule_deadline_time = 4;</code>
      */
-    private $schedule_deadline_time = null;
+    protected $schedule_deadline_time = null;
 
     /**
      * Constructor.

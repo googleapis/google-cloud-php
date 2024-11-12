@@ -25,7 +25,7 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $principal = '';
+    protected $principal = '';
     /**
      * Required. The full resource name that identifies the resource. For example,
      * `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`.
@@ -34,7 +34,7 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_resource_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $full_resource_name = '';
+    protected $full_resource_name = '';
     /**
      * Required. The IAM permission to check for the specified principal and
      * resource.
@@ -45,7 +45,7 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string permission = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $permission = '';
+    protected $permission = '';
 
     /**
      * Constructor.

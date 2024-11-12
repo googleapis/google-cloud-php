@@ -24,45 +24,45 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The canonical identifier of the node type
      * (corresponds to the `NodeType`). For example: standard-72.
      *
      * Generated from protobuf field <code>string node_type_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $node_type_id = '';
+    protected $node_type_id = '';
     /**
      * Output only. The friendly name for this node type.
      * For example: ve1-standard-72
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The total number of virtual CPUs in a single node.
      *
      * Generated from protobuf field <code>int32 virtual_cpu_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $virtual_cpu_count = 0;
+    protected $virtual_cpu_count = 0;
     /**
      * Output only. The total number of CPU cores in a single node.
      *
      * Generated from protobuf field <code>int32 total_core_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $total_core_count = 0;
+    protected $total_core_count = 0;
     /**
      * Output only. The amount of physical memory available, defined in GB.
      *
      * Generated from protobuf field <code>int32 memory_gb = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $memory_gb = 0;
+    protected $memory_gb = 0;
     /**
      * Output only. The amount of storage available, defined in GB.
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * Output only. List of possible values of custom core count.
      *
@@ -74,7 +74,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.NodeType.Kind kind = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * Output only. Families of the node type.
      * For node types to be in the same cluster

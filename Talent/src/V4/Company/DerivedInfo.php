@@ -22,7 +22,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Location headquarters_location = 1;</code>
      */
-    private $headquarters_location = null;
+    protected $headquarters_location = null;
 
     /**
      * Constructor.

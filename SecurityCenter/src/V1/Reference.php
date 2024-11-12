@@ -20,14 +20,14 @@ class Reference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Uri for the mentioned source e.g.
      * https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.

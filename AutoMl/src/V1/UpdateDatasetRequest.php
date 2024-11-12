@@ -20,13 +20,13 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.Dataset dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = null;
+    protected $dataset = null;
     /**
      * Required. The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\AutoMl\V1\Dataset $dataset    Required. The dataset which replaces the resource on the server.

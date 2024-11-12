@@ -26,7 +26,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes id = 1;</code>
      */
-    protected $id = '';
+    private $id = '';
     /**
      * For snapshot read-only transactions, the read timestamp chosen
      * for the transaction. Not returned by default: see
@@ -36,7 +36,21 @@ class Transaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
-    protected $read_timestamp = null;
+    private $read_timestamp = null;
+    /**
+     * A precommit token will be included in the response of a BeginTransaction
+     * request if the read-write transaction is on a multiplexed session and
+     * a mutation_key was specified in the
+     * [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
+     * The precommit token with the highest sequence number from this transaction
+     * attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
+     * request for this transaction.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3;</code>
+     */
+    private $precommit_token = null;
 
     /**
      * Constructor.
@@ -58,6 +72,16 @@ class Transaction extends \Google\Protobuf\Internal\Message
      *           [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
      *           A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds.
      *           Example: `"2014-10-02T15:01:23.045123456Z"`.
+     *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
+     *           A precommit token will be included in the response of a BeginTransaction
+     *           request if the read-write transaction is on a multiplexed session and
+     *           a mutation_key was specified in the
+     *           [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
+     *           The precommit token with the highest sequence number from this transaction
+     *           attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
+     *           request for this transaction.
+     *           This feature is not yet supported and will result in an UNIMPLEMENTED
+     *           error.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +167,58 @@ class Transaction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->read_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * A precommit token will be included in the response of a BeginTransaction
+     * request if the read-write transaction is on a multiplexed session and
+     * a mutation_key was specified in the
+     * [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
+     * The precommit token with the highest sequence number from this transaction
+     * attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
+     * request for this transaction.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3;</code>
+     * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
+     */
+    public function getPrecommitToken()
+    {
+        return $this->precommit_token;
+    }
+
+    public function hasPrecommitToken()
+    {
+        return isset($this->precommit_token);
+    }
+
+    public function clearPrecommitToken()
+    {
+        unset($this->precommit_token);
+    }
+
+    /**
+     * A precommit token will be included in the response of a BeginTransaction
+     * request if the read-write transaction is on a multiplexed session and
+     * a mutation_key was specified in the
+     * [BeginTransaction][google.spanner.v1.BeginTransactionRequest].
+     * The precommit token with the highest sequence number from this transaction
+     * attempt should be passed to the [Commit][google.spanner.v1.Spanner.Commit]
+     * request for this transaction.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 3;</code>
+     * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
+     * @return $this
+     */
+    public function setPrecommitToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
+        $this->precommit_token = $var;
 
         return $this;
     }

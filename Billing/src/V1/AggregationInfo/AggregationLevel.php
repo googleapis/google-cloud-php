@@ -55,6 +55,4 @@ class AggregationLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AggregationLevel::class, \Google\Cloud\Billing\V1\AggregationInfo_AggregationLevel::class);
 

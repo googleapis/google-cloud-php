@@ -27,6 +27,12 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated int64 token_ids = 2;</code>
      */
     private $token_ids;
+    /**
+     * Optional. Optional fields for the role from the corresponding Content.
+     *
+     * Generated from protobuf field <code>string role = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $role = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      *           A list of tokens from the input.
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $token_ids
      *           A list of token ids from the input.
+     *     @type string $role
+     *           Optional. Optional fields for the role from the corresponding Content.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->token_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional fields for the role from the corresponding Content.
+     *
+     * Generated from protobuf field <code>string role = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Optional. Optional fields for the role from the corresponding Content.
+     *
+     * Generated from protobuf field <code>string role = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRole($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->role = $var;
 
         return $this;
     }

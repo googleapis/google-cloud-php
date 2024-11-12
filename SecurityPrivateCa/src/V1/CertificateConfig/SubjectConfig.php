@@ -22,13 +22,13 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.Subject subject = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subject = null;
+    protected $subject = null;
     /**
      * Optional. The subject alternative name fields.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.SubjectAltNames subject_alt_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subject_alt_name = null;
+    protected $subject_alt_name = null;
 
     /**
      * Constructor.

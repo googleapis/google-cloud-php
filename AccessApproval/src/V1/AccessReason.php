@@ -18,13 +18,13 @@ class AccessReason extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.accessapproval.v1.AccessReason.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * More detail about certain reason types. See comments for each type above.
      *
      * Generated from protobuf field <code>string detail = 2;</code>
      */
-    private $detail = '';
+    protected $detail = '';
 
     /**
      * Constructor.

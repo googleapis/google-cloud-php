@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.FeatureRegistryService' => [
+            'BatchCreateFeatures' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\BatchCreateFeaturesResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\BatchCreateFeaturesOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFeature' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AIPlatform\V1\Feature',

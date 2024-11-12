@@ -147,6 +147,4 @@ class IdentityList extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IdentityList::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult_IdentityList::class);
 

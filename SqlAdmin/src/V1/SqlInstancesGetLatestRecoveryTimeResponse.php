@@ -20,13 +20,13 @@ class SqlInstancesGetLatestRecoveryTimeResponse extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Timestamp, identifies the latest recovery time of the source instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_recovery_time = 2;</code>
      */
-    private $latest_recovery_time = null;
+    protected $latest_recovery_time = null;
 
     /**
      * Constructor.

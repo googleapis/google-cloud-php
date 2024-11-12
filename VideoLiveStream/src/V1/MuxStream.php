@@ -16,11 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class MuxStream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A unique key for this multiplexed stream.
+     * A unique key for this multiplexed stream. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The container format. The default is `fmp4`.
      * Supported container formats:
@@ -29,7 +31,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string container = 3;</code>
      */
-    private $container = '';
+    protected $container = '';
     /**
      * List of `ElementaryStream`
      * [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
@@ -46,14 +48,14 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.SegmentSettings segment_settings = 5;</code>
      */
-    private $segment_settings = null;
+    protected $segment_settings = null;
     /**
      * Identifier of the encryption configuration to use. If omitted, output
      * will be unencrypted.
      *
      * Generated from protobuf field <code>string encryption_id = 6;</code>
      */
-    private $encryption_id = '';
+    protected $encryption_id = '';
 
     /**
      * Constructor.
@@ -62,7 +64,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           A unique key for this multiplexed stream.
+     *           A unique key for this multiplexed stream. The key must be 1-63
+     *           characters in length. The key must begin and end with a letter (regardless
+     *           of case) or a number, but can contain dashes or underscores in between.
      *     @type string $container
      *           The container format. The default is `fmp4`.
      *           Supported container formats:
@@ -88,7 +92,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this multiplexed stream.
+     * A unique key for this multiplexed stream. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
@@ -99,7 +105,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this multiplexed stream.
+     * A unique key for this multiplexed stream. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var

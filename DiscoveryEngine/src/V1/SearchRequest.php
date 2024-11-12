@@ -86,6 +86,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $offset = 0;
     /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     */
+    protected $one_box_page_size = 0;
+    /**
      * Specs defining dataStores to filter on in a search call and configurations
      * for those dataStores. This is only considered for engines with multiple
      * dataStores use case. For single dataStore within an engine, they should
@@ -131,8 +139,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      * Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * For more information on ordering for retail search, see
-     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     * For more information on ordering the website search results, see
+     * [Order web search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     * For more information on ordering the healthcare search results, see
+     * [Order healthcare search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -147,6 +159,16 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.UserInfo user_info = 21;</code>
      */
     protected $user_info = null;
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see [Standard
+     * fields](https://cloud.google.com/apis/design/standard_fields). This field
+     * helps to better interpret the query. If a value isn't specified, the query
+     * language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 35;</code>
+     */
+    protected $language_code = '';
     /**
      * Facet specifications for faceted search. If empty, no facets are returned.
      * A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
@@ -242,6 +264,47 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> user_labels = 22;</code>
      */
     private $user_labels;
+    /**
+     * Search as you type configuration. Only supported for the
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec search_as_you_type_spec = 31;</code>
+     */
+    protected $search_as_you_type_spec = null;
+    /**
+     * The session resource name. Optional.
+     * Session allows users to do multi-turn /search API calls or coordination
+     * between /search API calls and /answer API calls.
+     * Example #1 (multi-turn /search API calls):
+     *   1. Call /search API with the auto-session mode (see below).
+     *   2. Call /search API with the session ID generated in the first call.
+     *      Here, the previous search query gets considered in query
+     *      standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *      and the current query is "How about 2023?", the current query will
+     *      be interpreted as "How did Alphabet do in 2023?".
+     * Example #2 (coordination between /search API calls and /answer API calls):
+     *   1. Call /search API with the auto-session mode (see below).
+     *   2. Call /answer API with the session ID generated in the first call.
+     *      Here, the answer generation happens in the context of the search
+     *      results from the first search call.
+     * Auto-session mode: when `projects/.../sessions/-` is used, a new session
+     * gets automatically created. Otherwise, users can use the create-session API
+     * to create a session manually.
+     * Multi-turn Search feature is currently at private GA stage. Please use
+     * v1alpha or v1beta version instead before we launch this feature to public
+     * GA. Or ask for allowlisting through Google Support team.
+     *
+     * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
+     */
+    protected $session = '';
+    /**
+     * Session specification.
+     * Can be used only when `session` is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
+     */
+    protected $session_spec = null;
 
     /**
      * Constructor.
@@ -289,6 +352,10 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token] is
      *           unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type int $one_box_page_size
+     *           The maximum number of results to return for OneBox.
+     *           This applies to each OneBox type individually.
+     *           Default number is 10.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
      *           Specs defining dataStores to filter on in a search call and configurations
      *           for those dataStores. This is only considered for engines with multiple
@@ -323,14 +390,24 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      *           Leave it unset if ordered by relevance. `order_by` expression is
      *           case-sensitive.
-     *           For more information on ordering for retail search, see
-     *           [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     *           For more information on ordering the website search results, see
+     *           [Order web search
+     *           results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     *           For more information on ordering the healthcare search results, see
+     *           [Order healthcare search
+     *           results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1\UserInfo $user_info
      *           Information about the end user.
      *           Highly recommended for analytics.
      *           [UserInfo.user_agent][google.cloud.discoveryengine.v1.UserInfo.user_agent]
      *           is used to deduce `device_type` for analytics.
+     *     @type string $language_code
+     *           The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     *           information, see [Standard
+     *           fields](https://cloud.google.com/apis/design/standard_fields). This field
+     *           helps to better interpret the query. If a value isn't specified, the query
+     *           language code is automatically detected, which may not be accurate.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
@@ -390,6 +467,35 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           See [Google Cloud
      *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
      *           for more details.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec $search_as_you_type_spec
+     *           Search as you type configuration. Only supported for the
+     *           [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     *           vertical.
+     *     @type string $session
+     *           The session resource name. Optional.
+     *           Session allows users to do multi-turn /search API calls or coordination
+     *           between /search API calls and /answer API calls.
+     *           Example #1 (multi-turn /search API calls):
+     *             1. Call /search API with the auto-session mode (see below).
+     *             2. Call /search API with the session ID generated in the first call.
+     *                Here, the previous search query gets considered in query
+     *                standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *                and the current query is "How about 2023?", the current query will
+     *                be interpreted as "How did Alphabet do in 2023?".
+     *           Example #2 (coordination between /search API calls and /answer API calls):
+     *             1. Call /search API with the auto-session mode (see below).
+     *             2. Call /answer API with the session ID generated in the first call.
+     *                Here, the answer generation happens in the context of the search
+     *                results from the first search call.
+     *           Auto-session mode: when `projects/.../sessions/-` is used, a new session
+     *           gets automatically created. Otherwise, users can use the create-session API
+     *           to create a session manually.
+     *           Multi-turn Search feature is currently at private GA stage. Please use
+     *           v1alpha or v1beta version instead before we launch this feature to public
+     *           GA. Or ask for allowlisting through Google Support team.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec $session_spec
+     *           Session specification.
+     *           Can be used only when `session` is set.
      * }
      */
     public function __construct($data = NULL) {
@@ -642,6 +748,36 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     * @return int
+     */
+    public function getOneBoxPageSize()
+    {
+        return $this->one_box_page_size;
+    }
+
+    /**
+     * The maximum number of results to return for OneBox.
+     * This applies to each OneBox type individually.
+     * Default number is 10.
+     *
+     * Generated from protobuf field <code>int32 one_box_page_size = 47;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOneBoxPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->one_box_page_size = $var;
+
+        return $this;
+    }
+
+    /**
      * Specs defining dataStores to filter on in a search call and configurations
      * for those dataStores. This is only considered for engines with multiple
      * dataStores use case. For single dataStore within an engine, they should
@@ -770,8 +906,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      * Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * For more information on ordering for retail search, see
-     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     * For more information on ordering the website search results, see
+     * [Order web search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     * For more information on ordering the healthcare search results, see
+     * [Order healthcare search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -787,8 +927,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1.Document] object.
      * Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
-     * For more information on ordering for retail search, see
-     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
+     * For more information on ordering the website search results, see
+     * [Order web search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results).
+     * For more information on ordering the healthcare search results, see
+     * [Order healthcare search
+     * results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results).
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -841,6 +985,40 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\UserInfo::class);
         $this->user_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see [Standard
+     * fields](https://cloud.google.com/apis/design/standard_fields). This field
+     * helps to better interpret the query. If a value isn't specified, the query
+     * language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 35;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * information, see [Standard
+     * fields](https://cloud.google.com/apis/design/standard_fields). This field
+     * helps to better interpret the query. If a value isn't specified, the query
+     * language code is automatically detected, which may not be accurate.
+     *
+     * Generated from protobuf field <code>string language_code = 35;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }
@@ -1197,6 +1375,150 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->user_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Search as you type configuration. Only supported for the
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec search_as_you_type_spec = 31;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec|null
+     */
+    public function getSearchAsYouTypeSpec()
+    {
+        return $this->search_as_you_type_spec;
+    }
+
+    public function hasSearchAsYouTypeSpec()
+    {
+        return isset($this->search_as_you_type_spec);
+    }
+
+    public function clearSearchAsYouTypeSpec()
+    {
+        unset($this->search_as_you_type_spec);
+    }
+
+    /**
+     * Search as you type configuration. Only supported for the
+     * [IndustryVertical.MEDIA][google.cloud.discoveryengine.v1.IndustryVertical.MEDIA]
+     * vertical.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec search_as_you_type_spec = 31;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec $var
+     * @return $this
+     */
+    public function setSearchAsYouTypeSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec::class);
+        $this->search_as_you_type_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The session resource name. Optional.
+     * Session allows users to do multi-turn /search API calls or coordination
+     * between /search API calls and /answer API calls.
+     * Example #1 (multi-turn /search API calls):
+     *   1. Call /search API with the auto-session mode (see below).
+     *   2. Call /search API with the session ID generated in the first call.
+     *      Here, the previous search query gets considered in query
+     *      standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *      and the current query is "How about 2023?", the current query will
+     *      be interpreted as "How did Alphabet do in 2023?".
+     * Example #2 (coordination between /search API calls and /answer API calls):
+     *   1. Call /search API with the auto-session mode (see below).
+     *   2. Call /answer API with the session ID generated in the first call.
+     *      Here, the answer generation happens in the context of the search
+     *      results from the first search call.
+     * Auto-session mode: when `projects/.../sessions/-` is used, a new session
+     * gets automatically created. Otherwise, users can use the create-session API
+     * to create a session manually.
+     * Multi-turn Search feature is currently at private GA stage. Please use
+     * v1alpha or v1beta version instead before we launch this feature to public
+     * GA. Or ask for allowlisting through Google Support team.
+     *
+     * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    /**
+     * The session resource name. Optional.
+     * Session allows users to do multi-turn /search API calls or coordination
+     * between /search API calls and /answer API calls.
+     * Example #1 (multi-turn /search API calls):
+     *   1. Call /search API with the auto-session mode (see below).
+     *   2. Call /search API with the session ID generated in the first call.
+     *      Here, the previous search query gets considered in query
+     *      standing. I.e., if the first query is "How did Alphabet do in 2022?"
+     *      and the current query is "How about 2023?", the current query will
+     *      be interpreted as "How did Alphabet do in 2023?".
+     * Example #2 (coordination between /search API calls and /answer API calls):
+     *   1. Call /search API with the auto-session mode (see below).
+     *   2. Call /answer API with the session ID generated in the first call.
+     *      Here, the answer generation happens in the context of the search
+     *      results from the first search call.
+     * Auto-session mode: when `projects/.../sessions/-` is used, a new session
+     * gets automatically created. Otherwise, users can use the create-session API
+     * to create a session manually.
+     * Multi-turn Search feature is currently at private GA stage. Please use
+     * v1alpha or v1beta version instead before we launch this feature to public
+     * GA. Or ask for allowlisting through Google Support team.
+     *
+     * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSession($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session = $var;
+
+        return $this;
+    }
+
+    /**
+     * Session specification.
+     * Can be used only when `session` is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec|null
+     */
+    public function getSessionSpec()
+    {
+        return $this->session_spec;
+    }
+
+    public function hasSessionSpec()
+    {
+        return isset($this->session_spec);
+    }
+
+    public function clearSessionSpec()
+    {
+        unset($this->session_spec);
+    }
+
+    /**
+     * Session specification.
+     * Can be used only when `session` is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SessionSpec session_spec = 42;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec $var
+     * @return $this
+     */
+    public function setSessionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec::class);
+        $this->session_spec = $var;
 
         return $this;
     }

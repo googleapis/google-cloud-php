@@ -21,7 +21,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Resource ID must be 1-63 characters long, and comply with
      * <a href="https://www.ietf.org/rfc/rfc1035.txt" target="_blank">RFC1035</a>.
@@ -33,13 +33,13 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_id = '';
+    protected $service_id = '';
     /**
      * Required. A service  with initial fields set.
      *
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1.Service service = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * @param string                                    $parent    Required. The resource name of the namespace this service will belong to. Please see

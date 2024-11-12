@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'ExecuteQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{instance_name=projects/*/instances/*}:executeQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'instance_name' => [
+                        'getters' => [
+                            'getInstanceName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateInitialChangeStreamPartitions' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:generateInitialChangeStreamPartitions',

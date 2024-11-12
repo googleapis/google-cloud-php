@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_DeleteLbTrafficExtension_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\DeleteLbTrafficExtensionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function delete_lb_traffic_extension_sample(string $formattedName): void
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteLbTrafficExtensionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $depServiceClient->deleteLbTrafficExtension($formattedName);
+        $response = $depServiceClient->deleteLbTrafficExtension($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

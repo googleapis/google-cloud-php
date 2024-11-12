@@ -21,19 +21,19 @@ class UpdateParametersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Mask of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * The parameters to apply to the instance.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MemcacheParameters parameters = 3;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * @param string                                       $name       Required. Resource name of the Memcached instance for which the parameters should be

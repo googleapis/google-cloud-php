@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Nearest Neighbors search config.
+ * Nearest Neighbors search config. The ordering provided by FindNearest
+ * supersedes the order_by stage. If multiple documents have the same vector
+ * distance, the returned document order is not guaranteed to be stable
+ * between queries.
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.FindNearest</code>
  */
@@ -31,7 +34,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      */
     private $query_vector = null;
     /**
-     * Required. The Distance Measure to use, required.
+     * Required. The distance measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,6 +46,26 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $limit = null;
+    /**
+     * Optional. Optional name of the field to output the result of the vector
+     * distance calculation. Must conform to [document field
+     * name][google.firestore.v1.Document.fields] limitations.
+     *
+     * Generated from protobuf field <code>string distance_result_field = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $distance_result_field = '';
+    /**
+     * Optional. Option to specify a threshold for which no less similar
+     * documents will be returned. The behavior of the specified
+     * `distance_measure` will affect the meaning of the distance threshold.
+     * Since DOT_PRODUCT distances increase when the vectors are more similar,
+     * the comparison is inverted.
+     * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+     * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $distance_threshold = null;
 
     /**
      * Constructor.
@@ -58,10 +81,22 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *           Required. The query vector that we are searching on. Must be a vector of
      *           no more than 2048 dimensions.
      *     @type int $distance_measure
-     *           Required. The Distance Measure to use, required.
+     *           Required. The distance measure to use, required.
      *     @type \Google\Protobuf\Int32Value $limit
      *           Required. The number of nearest neighbors to return. Must be a positive
      *           integer of no more than 1000.
+     *     @type string $distance_result_field
+     *           Optional. Optional name of the field to output the result of the vector
+     *           distance calculation. Must conform to [document field
+     *           name][google.firestore.v1.Document.fields] limitations.
+     *     @type \Google\Protobuf\DoubleValue $distance_threshold
+     *           Optional. Option to specify a threshold for which no less similar
+     *           documents will be returned. The behavior of the specified
+     *           `distance_measure` will affect the meaning of the distance threshold.
+     *           Since DOT_PRODUCT distances increase when the vectors are more similar,
+     *           the comparison is inverted.
+     *           For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+     *           For DOT_PRODUCT:       WHERE distance >= distance_threshold
      * }
      */
     public function __construct($data = NULL) {
@@ -148,7 +183,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Distance Measure to use, required.
+     * Required. The distance measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -159,7 +194,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Distance Measure to use, required.
+     * Required. The distance measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -238,6 +273,123 @@ class FindNearest extends \Google\Protobuf\Internal\Message
     public function setLimitValue($var)
     {
         $this->writeWrapperValue("limit", $var);
+        return $this;}
+
+    /**
+     * Optional. Optional name of the field to output the result of the vector
+     * distance calculation. Must conform to [document field
+     * name][google.firestore.v1.Document.fields] limitations.
+     *
+     * Generated from protobuf field <code>string distance_result_field = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDistanceResultField()
+    {
+        return $this->distance_result_field;
+    }
+
+    /**
+     * Optional. Optional name of the field to output the result of the vector
+     * distance calculation. Must conform to [document field
+     * name][google.firestore.v1.Document.fields] limitations.
+     *
+     * Generated from protobuf field <code>string distance_result_field = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDistanceResultField($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->distance_result_field = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Option to specify a threshold for which no less similar
+     * documents will be returned. The behavior of the specified
+     * `distance_measure` will affect the meaning of the distance threshold.
+     * Since DOT_PRODUCT distances increase when the vectors are more similar,
+     * the comparison is inverted.
+     * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+     * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\DoubleValue|null
+     */
+    public function getDistanceThreshold()
+    {
+        return $this->distance_threshold;
+    }
+
+    public function hasDistanceThreshold()
+    {
+        return isset($this->distance_threshold);
+    }
+
+    public function clearDistanceThreshold()
+    {
+        unset($this->distance_threshold);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getDistanceThreshold()</code>
+
+     * Optional. Option to specify a threshold for which no less similar
+     * documents will be returned. The behavior of the specified
+     * `distance_measure` will affect the meaning of the distance threshold.
+     * Since DOT_PRODUCT distances increase when the vectors are more similar,
+     * the comparison is inverted.
+     * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+     * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float|null
+     */
+    public function getDistanceThresholdValue()
+    {
+        return $this->readWrapperValue("distance_threshold");
+    }
+
+    /**
+     * Optional. Option to specify a threshold for which no less similar
+     * documents will be returned. The behavior of the specified
+     * `distance_measure` will affect the meaning of the distance threshold.
+     * Since DOT_PRODUCT distances increase when the vectors are more similar,
+     * the comparison is inverted.
+     * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+     * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\DoubleValue $var
+     * @return $this
+     */
+    public function setDistanceThreshold($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\DoubleValue::class);
+        $this->distance_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
+
+     * Optional. Option to specify a threshold for which no less similar
+     * documents will be returned. The behavior of the specified
+     * `distance_measure` will affect the meaning of the distance threshold.
+     * Since DOT_PRODUCT distances increase when the vectors are more similar,
+     * the comparison is inverted.
+     * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
+     * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float|null $var
+     * @return $this
+     */
+    public function setDistanceThresholdValue($var)
+    {
+        $this->writeWrapperValue("distance_threshold", $var);
         return $this;}
 
 }

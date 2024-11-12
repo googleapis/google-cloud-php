@@ -28,11 +28,11 @@ class ClassNode
     use NameTrait;
 
     private $childNode;
-    private array $protoPackages;
     private string $tocName;
 
     public function __construct(
-        private SimpleXMLElement $xmlNode
+        private SimpleXMLElement $xmlNode,
+        private array $protoPackages = [],
     ) {}
 
     public function isProtobufEnumClass(): bool
@@ -98,10 +98,11 @@ class ClassNode
     public function isV2ServiceClass(): bool
     {
         // returns true if the class does not extend another class and isn't a
-        // base class
+        // base class and it contains a "Client" namespace
         if (!$this->getExtends()
             && !$this->isServiceBaseClass()
             && 'Client' === substr($this->getName(), -6)
+            && false !== strpos($this->getFullName(), '\\Client\\')
         ) {
             return true;
         }
@@ -244,14 +245,6 @@ class ClassNode
             }
         }
         return null;
-    }
-
-    public function setProtoPackages(array $protoPackages)
-    {
-        $this->protoPackages = $protoPackages;
-        if ($this->childNode) {
-            $this->childNode->setProtoPackages($protoPackages);
-        }
     }
 
     public function getTocName()

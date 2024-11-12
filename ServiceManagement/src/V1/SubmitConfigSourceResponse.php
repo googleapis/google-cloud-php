@@ -20,7 +20,7 @@ class SubmitConfigSourceResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Service service_config = 1;</code>
      */
-    private $service_config = null;
+    protected $service_config = null;
 
     /**
      * Constructor.

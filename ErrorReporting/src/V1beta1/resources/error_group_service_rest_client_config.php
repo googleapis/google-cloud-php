@@ -26,6 +26,12 @@ return [
             'GetGroup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{group_name=projects/*/groups/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{group_name=projects/*/locations/*/groups/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'group_name' => [
                         'getters' => [
@@ -38,6 +44,13 @@ return [
                 'method' => 'put',
                 'uriTemplate' => '/v1beta1/{group.name=projects/*/groups/*}',
                 'body' => 'group',
+                'additionalBindings' => [
+                    [
+                        'method' => 'put',
+                        'uriTemplate' => '/v1beta1/{group.name=projects/*/locations/*/groups/*}',
+                        'body' => 'group',
+                    ],
+                ],
                 'placeholders' => [
                     'group.name' => [
                         'getters' => [

@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\Operation;
 /**
  * Retrieves the specified Operations resource.
  *
- * @param string $operation Name of the Operations resource to return.
+ * @param string $operation Name of the Operations resource to return, or its unique numeric identifier.
  * @param string $project   Project ID for this request.
  */
 function get_sample(string $operation, string $project): void

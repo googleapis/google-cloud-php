@@ -23,7 +23,7 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The channel partner link to create.
      * Either channel_partner_link.reseller_cloud_identity_id or domain can be
@@ -31,7 +31,7 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $channel_partner_link = null;
+    protected $channel_partner_link = null;
 
     /**
      * Constructor.

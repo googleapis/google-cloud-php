@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface searchAsync(SearchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAsync(SearchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchLiteAsync(SearchRequest $request, array $optionalArgs = [])
  */
 final class SearchServiceClient
 {
@@ -218,6 +219,34 @@ final class SearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $session
+     *
+     * @return string The formatted project_location_collection_data_store_session resource.
+     */
+    public static function projectLocationCollectionDataStoreSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_engine_serving_config resource.
      *
      * @param string $project
@@ -241,6 +270,34 @@ final class SearchServiceClient
             'collection' => $collection,
             'engine' => $engine,
             'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $session
+     *
+     * @return string The formatted project_location_collection_engine_session resource.
+     */
+    public static function projectLocationCollectionEngineSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'session' => $session,
         ]);
     }
 
@@ -315,6 +372,31 @@ final class SearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $session
+     *
+     * @return string The formatted project_location_data_store_session resource.
+     */
+    public static function projectLocationDataStoreSessionName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * serving_config resource.
      *
      * @param string $project
@@ -339,6 +421,27 @@ final class SearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a session
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     */
+    public static function sessionName(string $project, string $location, string $dataStore, string $session): string
+    {
+        return self::getPathTemplate('session')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'session' => $session,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -347,11 +450,15 @@ final class SearchServiceClient
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionDataStoreSession: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}
      * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineSession: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationDataStoreBranch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationDataStoreSession: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - session: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -466,5 +573,43 @@ final class SearchServiceClient
     public function search(SearchRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('Search', $request, $callOptions);
+    }
+
+    /**
+     * Performs a search. Similar to the
+     * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+     * method, but a lite version that allows API key for authentication, where
+     * OAuth and IAM checks are not required.
+     *
+     * Only public website search is supported by this method. If data stores and
+     * engines not associated with public website search are specified, a
+     * `FAILED_PRECONDITION` error is returned.
+     *
+     * This method can be used for easy onboarding without having to implement an
+     * authentication backend. However, it is strongly recommended to use
+     * [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
+     * instead with required OAuth and IAM checks to provide better data security.
+     *
+     * The async variant is {@see SearchServiceClient::searchLiteAsync()} .
+     *
+     * @example samples/V1/SearchServiceClient/search_lite.php
+     *
+     * @param SearchRequest $request     A request to house fields associated with the call.
+     * @param array         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchLite(SearchRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchLite', $request, $callOptions);
     }
 }

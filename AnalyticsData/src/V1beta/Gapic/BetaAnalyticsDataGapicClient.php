@@ -34,6 +34,7 @@ use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
 use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\CohortSpec;
+use Google\Analytics\Data\V1beta\Comparison;
 use Google\Analytics\Data\V1beta\Compatibility;
 use Google\Analytics\Data\V1beta\CreateAudienceExportRequest;
 use Google\Analytics\Data\V1beta\DateRange;
@@ -1157,6 +1158,10 @@ class BetaAnalyticsDataGapicClient
      *     @type bool $returnPropertyQuota
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *     @type Comparison[] $comparisons
+     *           Optional. The configuration of comparisons requested and displayed. The
+     *           request requires both a comparisons field and a comparisons dimension to
+     *           receive a comparison column in the response.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1218,6 +1223,10 @@ class BetaAnalyticsDataGapicClient
             $request->setReturnPropertyQuota(
                 $optionalArgs['returnPropertyQuota']
             );
+        }
+
+        if (isset($optionalArgs['comparisons'])) {
+            $request->setComparisons($optionalArgs['comparisons']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1476,6 +1485,10 @@ class BetaAnalyticsDataGapicClient
      *     @type bool $returnPropertyQuota
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *     @type Comparison[] $comparisons
+     *           Optional. The configuration of comparisons requested and displayed. The
+     *           request only requires a comparisons field in order to receive a comparison
+     *           column in the response.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1551,6 +1564,10 @@ class BetaAnalyticsDataGapicClient
             $request->setReturnPropertyQuota(
                 $optionalArgs['returnPropertyQuota']
             );
+        }
+
+        if (isset($optionalArgs['comparisons'])) {
+            $request->setComparisons($optionalArgs['comparisons']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

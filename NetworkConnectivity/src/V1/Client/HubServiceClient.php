@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\NetworkConnectivity\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -67,6 +66,7 @@ use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -83,30 +83,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteHubAsync(DeleteHubRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSpokeAsync(DeleteSpokeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHubAsync(GetHubRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouteTableAsync(GetRouteTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpokeAsync(GetSpokeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHubSpokesAsync(ListHubSpokesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHubsAsync(ListHubsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRouteTablesAsync(ListRouteTablesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSpokesAsync(ListSpokesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rejectHubSpokeAsync(RejectHubSpokeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateHubAsync(UpdateHubRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpokeAsync(UpdateSpokeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteHubAsync(DeleteHubRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSpokeAsync(DeleteSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Group> getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Hub> getHubAsync(GetHubRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Route> getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RouteTable> getRouteTableAsync(GetRouteTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Spoke> getSpokeAsync(GetSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGroupsAsync(ListGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHubSpokesAsync(ListHubSpokesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHubsAsync(ListHubsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRouteTablesAsync(ListRouteTablesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpokesAsync(ListSpokesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rejectHubSpokeAsync(RejectHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateHubAsync(UpdateHubRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateSpokeAsync(UpdateSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class HubServiceClient
 {
@@ -133,9 +133,7 @@ final class HubServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -181,10 +179,31 @@ final class HubServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -1116,8 +1135,10 @@ final class HubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

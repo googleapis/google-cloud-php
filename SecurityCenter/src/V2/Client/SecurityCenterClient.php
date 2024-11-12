@@ -102,46 +102,46 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateResourceValueConfigsAsync(BatchCreateResourceValueConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface bulkMuteFindingsAsync(BulkMuteFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBigQueryExportAsync(CreateBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFindingAsync(CreateFindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMuteConfigAsync(CreateMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNotificationConfigAsync(CreateNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBigQueryExportAsync(DeleteBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMuteConfigAsync(DeleteMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotificationConfigAsync(DeleteNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteResourceValueConfigAsync(DeleteResourceValueConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBigQueryExportAsync(GetBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMuteConfigAsync(GetMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationConfigAsync(GetNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getResourceValueConfigAsync(GetResourceValueConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSimulationAsync(GetSimulationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getValuedResourceAsync(GetValuedResourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface groupFindingsAsync(GroupFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAttackPathsAsync(ListAttackPathsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBigQueryExportsAsync(ListBigQueryExportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMuteConfigsAsync(ListMuteConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationConfigsAsync(ListNotificationConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listResourceValueConfigsAsync(ListResourceValueConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listValuedResourcesAsync(ListValuedResourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setFindingStateAsync(SetFindingStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMuteAsync(SetMuteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBigQueryExportAsync(UpdateBigQueryExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExternalSystemAsync(UpdateExternalSystemRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFindingAsync(UpdateFindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMuteConfigAsync(UpdateMuteConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNotificationConfigAsync(UpdateNotificationConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateResourceValueConfigAsync(UpdateResourceValueConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSecurityMarksAsync(UpdateSecurityMarksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateResourceValueConfigsResponse> batchCreateResourceValueConfigsAsync(BatchCreateResourceValueConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkMuteFindingsAsync(BulkMuteFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryExport> createBigQueryExportAsync(CreateBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> createFindingAsync(CreateFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MuteConfig> createMuteConfigAsync(CreateMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationConfig> createNotificationConfigAsync(CreateNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> createSourceAsync(CreateSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBigQueryExportAsync(DeleteBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMuteConfigAsync(DeleteMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNotificationConfigAsync(DeleteNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteResourceValueConfigAsync(DeleteResourceValueConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryExport> getBigQueryExportAsync(GetBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MuteConfig> getMuteConfigAsync(GetMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationConfig> getNotificationConfigAsync(GetNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceValueConfig> getResourceValueConfigAsync(GetResourceValueConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Simulation> getSimulationAsync(GetSimulationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> getSourceAsync(GetSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValuedResource> getValuedResourceAsync(GetValuedResourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> groupFindingsAsync(GroupFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAttackPathsAsync(ListAttackPathsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBigQueryExportsAsync(ListBigQueryExportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFindingsAsync(ListFindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMuteConfigsAsync(ListMuteConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationConfigsAsync(ListNotificationConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listResourceValueConfigsAsync(ListResourceValueConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSourcesAsync(ListSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listValuedResourcesAsync(ListValuedResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> setFindingStateAsync(SetFindingStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> setMuteAsync(SetMuteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BigQueryExport> updateBigQueryExportAsync(UpdateBigQueryExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalSystem> updateExternalSystemAsync(UpdateExternalSystemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Finding> updateFindingAsync(UpdateFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MuteConfig> updateMuteConfigAsync(UpdateMuteConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationConfig> updateNotificationConfigAsync(UpdateNotificationConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourceValueConfig> updateResourceValueConfigAsync(UpdateResourceValueConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityMarks> updateSecurityMarksAsync(UpdateSecurityMarksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Source> updateSourceAsync(UpdateSourceRequest $request, array $optionalArgs = [])
  */
 final class SecurityCenterClient
 {
@@ -168,9 +168,7 @@ final class SecurityCenterClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -216,7 +214,9 @@ final class SecurityCenterClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -288,8 +288,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted external_system resource.
      */
-    public static function externalSystemName(string $organization, string $source, string $finding, string $externalsystem): string
-    {
+    public static function externalSystemName(
+        string $organization,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('externalSystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -431,8 +435,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_location_notification_config resource.
      */
-    public static function folderLocationNotificationConfigName(string $folder, string $location, string $notificationConfig): string
-    {
+    public static function folderLocationNotificationConfigName(
+        string $folder,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('folderLocationNotificationConfig')->render([
             'folder' => $folder,
             'location' => $location,
@@ -504,8 +511,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_finding_externalsystem resource.
      */
-    public static function folderSourceFindingExternalsystemName(string $folder, string $source, string $finding, string $externalsystem): string
-    {
+    public static function folderSourceFindingExternalsystemName(
+        string $folder,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('folderSourceFindingExternalsystem')->render([
             'folder' => $folder,
             'source' => $source,
@@ -544,8 +555,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_location_finding resource.
      */
-    public static function folderSourceLocationFindingName(string $folder, string $source, string $location, string $finding): string
-    {
+    public static function folderSourceLocationFindingName(
+        string $folder,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('folderSourceLocationFinding')->render([
             'folder' => $folder,
             'source' => $source,
@@ -566,8 +581,13 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_location_finding_externalsystem resource.
      */
-    public static function folderSourceLocationFindingExternalsystemName(string $folder, string $source, string $location, string $finding, string $externalsystem): string
-    {
+    public static function folderSourceLocationFindingExternalsystemName(
+        string $folder,
+        string $source,
+        string $location,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('folderSourceLocationFindingExternalsystem')->render([
             'folder' => $folder,
             'source' => $source,
@@ -588,8 +608,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted folder_source_location_finding_securityMarks resource.
      */
-    public static function folderSourceLocationFindingSecurityMarksName(string $folder, string $source, string $location, string $finding): string
-    {
+    public static function folderSourceLocationFindingSecurityMarksName(
+        string $folder,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('folderSourceLocationFindingSecurityMarks')->render([
             'folder' => $folder,
             'source' => $source,
@@ -642,8 +666,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted notification_config resource.
      */
-    public static function notificationConfigName(string $organization, string $location, string $notificationConfig): string
-    {
+    public static function notificationConfigName(
+        string $organization,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('notificationConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -727,8 +754,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_export resource.
      */
-    public static function organizationLocationExportName(string $organization, string $location, string $export): string
-    {
+    public static function organizationLocationExportName(
+        string $organization,
+        string $location,
+        string $export
+    ): string {
         return self::getPathTemplate('organizationLocationExport')->render([
             'organization' => $organization,
             'location' => $location,
@@ -746,8 +776,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_mute_config resource.
      */
-    public static function organizationLocationMuteConfigName(string $organization, string $location, string $muteConfig): string
-    {
+    public static function organizationLocationMuteConfigName(
+        string $organization,
+        string $location,
+        string $muteConfig
+    ): string {
         return self::getPathTemplate('organizationLocationMuteConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -765,12 +798,84 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_location_notification_config resource.
      */
-    public static function organizationLocationNotificationConfigName(string $organization, string $location, string $notificationConfig): string
-    {
+    public static function organizationLocationNotificationConfigName(
+        string $organization,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('organizationLocationNotificationConfig')->render([
             'organization' => $organization,
             'location' => $location,
             'notification_config' => $notificationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted organization_location_resource_value_config resource.
+     */
+    public static function organizationLocationResourceValueConfigName(
+        string $organization,
+        string $location,
+        string $resourceValueConfig
+    ): string {
+        return self::getPathTemplate('organizationLocationResourceValueConfig')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_simluation resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simluation
+     *
+     * @return string The formatted organization_location_simluation resource.
+     */
+    public static function organizationLocationSimluationName(
+        string $organization,
+        string $location,
+        string $simluation
+    ): string {
+        return self::getPathTemplate('organizationLocationSimluation')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simluation' => $simluation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_simluation_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simluation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_location_simluation_valued_resource resource.
+     */
+    public static function organizationLocationSimluationValuedResourceName(
+        string $organization,
+        string $location,
+        string $simluation,
+        string $valuedResource
+    ): string {
+        return self::getPathTemplate('organizationLocationSimluationValuedResource')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simluation' => $simluation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -788,6 +893,64 @@ final class SecurityCenterClient
         return self::getPathTemplate('organizationMuteConfig')->render([
             'organization' => $organization,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_resource_value_config resource.
+     *
+     * @param string $organization
+     * @param string $resourceValueConfig
+     *
+     * @return string The formatted organization_resource_value_config resource.
+     */
+    public static function organizationResourceValueConfigName(
+        string $organization,
+        string $resourceValueConfig
+    ): string {
+        return self::getPathTemplate('organizationResourceValueConfig')->render([
+            'organization' => $organization,
+            'resource_value_config' => $resourceValueConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_simulation resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     *
+     * @return string The formatted organization_simulation resource.
+     */
+    public static function organizationSimulationName(string $organization, string $simulation): string
+    {
+        return self::getPathTemplate('organizationSimulation')->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_simulation_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_simulation_valued_resource resource.
+     */
+    public static function organizationSimulationValuedResourceName(
+        string $organization,
+        string $simulation,
+        string $valuedResource
+    ): string {
+        return self::getPathTemplate('organizationSimulationValuedResource')->render([
+            'organization' => $organization,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -838,8 +1001,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_finding_externalsystem resource.
      */
-    public static function organizationSourceFindingExternalsystemName(string $organization, string $source, string $finding, string $externalsystem): string
-    {
+    public static function organizationSourceFindingExternalsystemName(
+        string $organization,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('organizationSourceFindingExternalsystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -858,8 +1025,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_finding_securityMarks resource.
      */
-    public static function organizationSourceFindingSecurityMarksName(string $organization, string $source, string $finding): string
-    {
+    public static function organizationSourceFindingSecurityMarksName(
+        string $organization,
+        string $source,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceFindingSecurityMarks')->render([
             'organization' => $organization,
             'source' => $source,
@@ -878,8 +1048,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_location_finding resource.
      */
-    public static function organizationSourceLocationFindingName(string $organization, string $source, string $location, string $finding): string
-    {
+    public static function organizationSourceLocationFindingName(
+        string $organization,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceLocationFinding')->render([
             'organization' => $organization,
             'source' => $source,
@@ -900,8 +1074,13 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_location_finding_externalsystem resource.
      */
-    public static function organizationSourceLocationFindingExternalsystemName(string $organization, string $source, string $location, string $finding, string $externalsystem): string
-    {
+    public static function organizationSourceLocationFindingExternalsystemName(
+        string $organization,
+        string $source,
+        string $location,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('organizationSourceLocationFindingExternalsystem')->render([
             'organization' => $organization,
             'source' => $source,
@@ -922,13 +1101,42 @@ final class SecurityCenterClient
      *
      * @return string The formatted organization_source_location_finding_securityMarks resource.
      */
-    public static function organizationSourceLocationFindingSecurityMarksName(string $organization, string $source, string $location, string $finding): string
-    {
+    public static function organizationSourceLocationFindingSecurityMarksName(
+        string $organization,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('organizationSourceLocationFindingSecurityMarks')->render([
             'organization' => $organization,
             'source' => $source,
             'location' => $location,
             'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_valued_resource resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $simulation
+     * @param string $valuedResource
+     *
+     * @return string The formatted organization_valued_resource resource.
+     */
+    public static function organizationValuedResourceName(
+        string $organization,
+        string $location,
+        string $simulation,
+        string $valuedResource
+    ): string {
+        return self::getPathTemplate('organizationValuedResource')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'simulation' => $simulation,
+            'valued_resource' => $valuedResource,
         ]);
     }
 
@@ -1082,8 +1290,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_location_notification_config resource.
      */
-    public static function projectLocationNotificationConfigName(string $project, string $location, string $notificationConfig): string
-    {
+    public static function projectLocationNotificationConfigName(
+        string $project,
+        string $location,
+        string $notificationConfig
+    ): string {
         return self::getPathTemplate('projectLocationNotificationConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -1101,8 +1312,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_location_table_profile resource.
      */
-    public static function projectLocationTableProfileName(string $project, string $location, string $tableProfile): string
-    {
+    public static function projectLocationTableProfileName(
+        string $project,
+        string $location,
+        string $tableProfile
+    ): string {
         return self::getPathTemplate('projectLocationTableProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -1174,8 +1388,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_finding_externalsystem resource.
      */
-    public static function projectSourceFindingExternalsystemName(string $project, string $source, string $finding, string $externalsystem): string
-    {
+    public static function projectSourceFindingExternalsystemName(
+        string $project,
+        string $source,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('projectSourceFindingExternalsystem')->render([
             'project' => $project,
             'source' => $source,
@@ -1194,8 +1412,11 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_finding_securityMarks resource.
      */
-    public static function projectSourceFindingSecurityMarksName(string $project, string $source, string $finding): string
-    {
+    public static function projectSourceFindingSecurityMarksName(
+        string $project,
+        string $source,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceFindingSecurityMarks')->render([
             'project' => $project,
             'source' => $source,
@@ -1214,8 +1435,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_location_finding resource.
      */
-    public static function projectSourceLocationFindingName(string $project, string $source, string $location, string $finding): string
-    {
+    public static function projectSourceLocationFindingName(
+        string $project,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceLocationFinding')->render([
             'project' => $project,
             'source' => $source,
@@ -1236,8 +1461,13 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_location_finding_externalsystem resource.
      */
-    public static function projectSourceLocationFindingExternalsystemName(string $project, string $source, string $location, string $finding, string $externalsystem): string
-    {
+    public static function projectSourceLocationFindingExternalsystemName(
+        string $project,
+        string $source,
+        string $location,
+        string $finding,
+        string $externalsystem
+    ): string {
         return self::getPathTemplate('projectSourceLocationFindingExternalsystem')->render([
             'project' => $project,
             'source' => $source,
@@ -1258,8 +1488,12 @@ final class SecurityCenterClient
      *
      * @return string The formatted project_source_location_finding_securityMarks resource.
      */
-    public static function projectSourceLocationFindingSecurityMarksName(string $project, string $source, string $location, string $finding): string
-    {
+    public static function projectSourceLocationFindingSecurityMarksName(
+        string $project,
+        string $source,
+        string $location,
+        string $finding
+    ): string {
         return self::getPathTemplate('projectSourceLocationFindingSecurityMarks')->render([
             'project' => $project,
             'source' => $source,
@@ -1439,7 +1673,13 @@ final class SecurityCenterClient
      * - organizationLocationExport: organizations/{organization}/locations/{location}/bigQueryExports/{export}
      * - organizationLocationMuteConfig: organizations/{organization}/locations/{location}/muteConfigs/{mute_config}
      * - organizationLocationNotificationConfig: organizations/{organization}/locations/{location}/notificationConfigs/{notification_config}
+     * - organizationLocationResourceValueConfig: organizations/{organization}/locations/{location}/resourceValueConfigs/{resource_value_config}
+     * - organizationLocationSimluation: organizations/{organization}/locations/{location}/simulations/{simluation}
+     * - organizationLocationSimluationValuedResource: organizations/{organization}/locations/{location}/simulations/{simluation}/valuedResources/{valued_resource}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
+     * - organizationResourceValueConfig: organizations/{organization}/resourceValueConfigs/{resource_value_config}
+     * - organizationSimulation: organizations/{organization}/simulations/{simulation}
+     * - organizationSimulationValuedResource: organizations/{organization}/simulations/{simulation}/valuedResources/{valued_resource}
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1447,6 +1687,7 @@ final class SecurityCenterClient
      * - organizationSourceLocationFinding: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}
      * - organizationSourceLocationFindingExternalsystem: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceLocationFindingSecurityMarks: organizations/{organization}/sources/{source}/locations/{location}/findings/{finding}/securityMarks
+     * - organizationValuedResource: organizations/{organization}/locations/{location}/simulations/{simulation}/valuedResources/{valued_resource}
      * - policy: organizations/{organization}/policies/{constraint_name}
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
@@ -1587,8 +1828,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateResourceValueConfigs(BatchCreateResourceValueConfigsRequest $request, array $callOptions = []): BatchCreateResourceValueConfigsResponse
-    {
+    public function batchCreateResourceValueConfigs(
+        BatchCreateResourceValueConfigsRequest $request,
+        array $callOptions = []
+    ): BatchCreateResourceValueConfigsResponse {
         return $this->startApiCall('BatchCreateResourceValueConfigs', $request, $callOptions)->wait();
     }
 
@@ -1722,8 +1965,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNotificationConfig(CreateNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function createNotificationConfig(
+        CreateNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('CreateNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -1952,8 +2197,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationConfig(GetNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function getNotificationConfig(
+        GetNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('GetNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -1979,8 +2226,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getResourceValueConfig(GetResourceValueConfigRequest $request, array $callOptions = []): ResourceValueConfig
-    {
+    public function getResourceValueConfig(
+        GetResourceValueConfigRequest $request,
+        array $callOptions = []
+    ): ResourceValueConfig {
         return $this->startApiCall('GetResourceValueConfig', $request, $callOptions)->wait();
     }
 
@@ -2242,8 +2491,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotificationConfigs(ListNotificationConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationConfigs(
+        ListNotificationConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationConfigs', $request, $callOptions);
     }
 
@@ -2269,8 +2520,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listResourceValueConfigs(ListResourceValueConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listResourceValueConfigs(
+        ListResourceValueConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListResourceValueConfigs', $request, $callOptions);
     }
 
@@ -2427,8 +2680,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -2563,8 +2818,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNotificationConfig(UpdateNotificationConfigRequest $request, array $callOptions = []): NotificationConfig
-    {
+    public function updateNotificationConfig(
+        UpdateNotificationConfigRequest $request,
+        array $callOptions = []
+    ): NotificationConfig {
         return $this->startApiCall('UpdateNotificationConfig', $request, $callOptions)->wait();
     }
 
@@ -2590,8 +2847,10 @@ final class SecurityCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateResourceValueConfig(UpdateResourceValueConfigRequest $request, array $callOptions = []): ResourceValueConfig
-    {
+    public function updateResourceValueConfig(
+        UpdateResourceValueConfigRequest $request,
+        array $callOptions = []
+    ): ResourceValueConfig {
         return $this->startApiCall('UpdateResourceValueConfig', $request, $callOptions)->wait();
     }
 

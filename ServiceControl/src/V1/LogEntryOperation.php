@@ -22,7 +22,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. An arbitrary producer identifier. The combination of
      * `id` and `producer` must be globally unique.  Examples for `producer`:
@@ -30,19 +30,19 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string producer = 2;</code>
      */
-    private $producer = '';
+    protected $producer = '';
     /**
      * Optional. Set this to True if this is the first log entry in the operation.
      *
      * Generated from protobuf field <code>bool first = 3;</code>
      */
-    private $first = false;
+    protected $first = false;
     /**
      * Optional. Set this to True if this is the last log entry in the operation.
      *
      * Generated from protobuf field <code>bool last = 4;</code>
      */
-    private $last = false;
+    protected $last = false;
 
     /**
      * Constructor.

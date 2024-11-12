@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,17 +61,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addCatalogAttributeAsync(AddCatalogAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttributesConfigAsync(GetAttributesConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCompletionConfigAsync(GetCompletionConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDefaultBranchAsync(GetDefaultBranchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCatalogsAsync(ListCatalogsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeCatalogAttributeAsync(RemoveCatalogAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceCatalogAttributeAsync(ReplaceCatalogAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setDefaultBranchAsync(SetDefaultBranchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttributesConfigAsync(UpdateAttributesConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCatalogAsync(UpdateCatalogRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCompletionConfigAsync(UpdateCompletionConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> addCatalogAttributeAsync(AddCatalogAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> getAttributesConfigAsync(GetAttributesConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompletionConfig> getCompletionConfigAsync(GetCompletionConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetDefaultBranchResponse> getDefaultBranchAsync(GetDefaultBranchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCatalogsAsync(ListCatalogsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> removeCatalogAttributeAsync(RemoveCatalogAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> replaceCatalogAttributeAsync(ReplaceCatalogAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> setDefaultBranchAsync(SetDefaultBranchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttributesConfig> updateAttributesConfigAsync(UpdateAttributesConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Catalog> updateCatalogAsync(UpdateCatalogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompletionConfig> updateCompletionConfigAsync(UpdateCompletionConfigRequest $request, array $optionalArgs = [])
  */
 final class CatalogServiceClient
 {
@@ -98,9 +98,7 @@ final class CatalogServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -421,8 +419,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDefaultBranch(GetDefaultBranchRequest $request, array $callOptions = []): GetDefaultBranchResponse
-    {
+    public function getDefaultBranch(
+        GetDefaultBranchRequest $request,
+        array $callOptions = []
+    ): GetDefaultBranchResponse {
         return $this->startApiCall('GetDefaultBranch', $request, $callOptions)->wait();
     }
 
@@ -480,8 +480,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeCatalogAttribute(RemoveCatalogAttributeRequest $request, array $callOptions = []): AttributesConfig
-    {
+    public function removeCatalogAttribute(
+        RemoveCatalogAttributeRequest $request,
+        array $callOptions = []
+    ): AttributesConfig {
         return $this->startApiCall('RemoveCatalogAttribute', $request, $callOptions)->wait();
     }
 
@@ -514,8 +516,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function replaceCatalogAttribute(ReplaceCatalogAttributeRequest $request, array $callOptions = []): AttributesConfig
-    {
+    public function replaceCatalogAttribute(
+        ReplaceCatalogAttributeRequest $request,
+        array $callOptions = []
+    ): AttributesConfig {
         return $this->startApiCall('ReplaceCatalogAttribute', $request, $callOptions)->wait();
     }
 
@@ -604,8 +608,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAttributesConfig(UpdateAttributesConfigRequest $request, array $callOptions = []): AttributesConfig
-    {
+    public function updateAttributesConfig(
+        UpdateAttributesConfigRequest $request,
+        array $callOptions = []
+    ): AttributesConfig {
         return $this->startApiCall('UpdateAttributesConfig', $request, $callOptions)->wait();
     }
 
@@ -657,8 +663,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCompletionConfig(UpdateCompletionConfigRequest $request, array $callOptions = []): CompletionConfig
-    {
+    public function updateCompletionConfig(
+        UpdateCompletionConfigRequest $request,
+        array $callOptions = []
+    ): CompletionConfig {
         return $this->startApiCall('UpdateCompletionConfig', $request, $callOptions)->wait();
     }
 }

@@ -20,13 +20,13 @@ class DatabaseType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseProvider provider = 1;</code>
      */
-    private $provider = 0;
+    protected $provider = 0;
     /**
      * The database engine.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEngine engine = 2;</code>
      */
-    private $engine = 0;
+    protected $engine = 0;
 
     /**
      * Constructor.

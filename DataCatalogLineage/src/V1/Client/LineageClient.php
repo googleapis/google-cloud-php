@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,23 +73,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRunAsync(CreateRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLineageEventAsync(DeleteLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProcessAsync(DeleteProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRunAsync(DeleteRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLineageEventAsync(GetLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProcessAsync(GetProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRunAsync(GetRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineageEvent> createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> createRunAsync(CreateRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLineageEventAsync(DeleteLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteProcessAsync(DeleteProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRunAsync(DeleteRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineageEvent> getLineageEventAsync(GetLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> getProcessAsync(GetProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> getRunAsync(GetRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProcessOpenLineageRunEventResponse> processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
  */
 final class LineageClient
 {
@@ -116,9 +116,7 @@ final class LineageClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -164,7 +162,9 @@ final class LineageClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -201,8 +201,13 @@ final class LineageClient
      *
      * @return string The formatted lineage_event resource.
      */
-    public static function lineageEventName(string $project, string $location, string $process, string $run, string $lineageEvent): string
-    {
+    public static function lineageEventName(
+        string $project,
+        string $location,
+        string $process,
+        string $run,
+        string $lineageEvent
+    ): string {
         return self::getPathTemplate('lineageEvent')->render([
             'project' => $project,
             'location' => $location,
@@ -402,8 +407,10 @@ final class LineageClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchSearchLinkProcesses(BatchSearchLinkProcessesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function batchSearchLinkProcesses(
+        BatchSearchLinkProcessesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('BatchSearchLinkProcesses', $request, $callOptions);
     }
 
@@ -744,8 +751,10 @@ final class LineageClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function processOpenLineageRunEvent(ProcessOpenLineageRunEventRequest $request, array $callOptions = []): ProcessOpenLineageRunEventResponse
-    {
+    public function processOpenLineageRunEvent(
+        ProcessOpenLineageRunEventRequest $request,
+        array $callOptions = []
+    ): ProcessOpenLineageRunEventResponse {
         return $this->startApiCall('ProcessOpenLineageRunEvent', $request, $callOptions)->wait();
     }
 

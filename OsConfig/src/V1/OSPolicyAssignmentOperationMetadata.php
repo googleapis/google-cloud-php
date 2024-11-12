@@ -23,31 +23,31 @@ class OSPolicyAssignmentOperationMetadata extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string os_policy_assignment = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $os_policy_assignment = '';
+    protected $os_policy_assignment = '';
     /**
      * The OS policy assignment API method.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignmentOperationMetadata.APIMethod api_method = 2;</code>
      */
-    private $api_method = 0;
+    protected $api_method = 0;
     /**
      * State of the rollout
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignmentOperationMetadata.RolloutState rollout_state = 3;</code>
      */
-    private $rollout_state = 0;
+    protected $rollout_state = 0;
     /**
      * Rollout start time
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp rollout_start_time = 4;</code>
      */
-    private $rollout_start_time = null;
+    protected $rollout_start_time = null;
     /**
      * Rollout update time
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp rollout_update_time = 5;</code>
      */
-    private $rollout_update_time = null;
+    protected $rollout_update_time = null;
 
     /**
      * Constructor.

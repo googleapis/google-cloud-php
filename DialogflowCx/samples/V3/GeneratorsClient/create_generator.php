@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\Phrase;
  * Creates a generator in the specified agent.
  *
  * @param string $formattedParent         The agent to create a generator for.
- *                                        Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                        Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                        {@see GeneratorsClient::agentName()} for help formatting this field.
  * @param string $generatorDisplayName    The human-readable name of the generator, unique within the
  *                                        agent. The prompt contains pre-defined parameters such as $conversation,

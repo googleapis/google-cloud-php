@@ -29,6 +29,7 @@ use Google\Analytics\Admin\V1beta\CreateConversionEventRequest;
 use Google\ApiCore\ApiException;
 
 /**
+ * Deprecated: Use `CreateKeyEvent` instead.
  * Creates a conversion event with the specified attributes.
  *
  * @param string $formattedParent The resource name of the parent property where this conversion

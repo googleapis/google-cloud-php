@@ -22,7 +22,8 @@
 
 namespace Google\Cloud\PubSub\Tests\System\V1;
 
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\ListTopicsRequest;
 use Google\ApiCore\Testing\GeneratedTest;
 
 /**
@@ -43,6 +44,6 @@ class PublisherSmokeTest extends GeneratedTest
 
         $publisherClient = new PublisherClient();
         $formattedProject = $publisherClient->projectName($projectId);
-        $publisherClient->listTopics($formattedProject);
+        $publisherClient->listTopics(ListTopicsRequest::build($formattedProject));
     }
 }

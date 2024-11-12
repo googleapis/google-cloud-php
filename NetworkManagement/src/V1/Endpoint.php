@@ -20,20 +20,20 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * The IP protocol port of the endpoint.
      * Only applicable when protocol is TCP or UDP.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * A Compute Engine instance URI.
      *
      * Generated from protobuf field <code>string instance = 3;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * A forwarding rule and its corresponding IP address represent the frontend
      * configuration of a Google Cloud load balancer. Forwarding rules are also
@@ -44,65 +44,88 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string forwarding_rule = 13;</code>
      */
-    private $forwarding_rule = '';
+    protected $forwarding_rule = '';
     /**
      * Output only. Specifies the type of the target of the forwarding rule.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.Endpoint.ForwardingRuleTarget forwarding_rule_target = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $forwarding_rule_target = null;
+    protected $forwarding_rule_target = null;
     /**
      * Output only. ID of the load balancer the forwarding rule points to. Empty
      * for forwarding rules not related to load balancers.
      *
      * Generated from protobuf field <code>optional string load_balancer_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $load_balancer_id = null;
+    protected $load_balancer_id = null;
     /**
      * Output only. Type of the load balancer the forwarding rule points to.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.LoadBalancerType load_balancer_type = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $load_balancer_type = null;
+    protected $load_balancer_type = null;
     /**
-     * A cluster URI for [Google Kubernetes Engine
-     * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * A cluster URI for [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
      * Generated from protobuf field <code>string gke_master_cluster = 7;</code>
      */
-    private $gke_master_cluster = '';
+    protected $gke_master_cluster = '';
+    /**
+     * DNS endpoint of [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     * ip_address or network. Applicable only to destination endpoint.
+     *
+     * Generated from protobuf field <code>string fqdn = 19;</code>
+     */
+    protected $fqdn = '';
     /**
      * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      *
      * Generated from protobuf field <code>string cloud_sql_instance = 8;</code>
      */
-    private $cloud_sql_instance = '';
+    protected $cloud_sql_instance = '';
+    /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_instance = 17;</code>
+     */
+    protected $redis_instance = '';
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_cluster = 18;</code>
+     */
+    protected $redis_cluster = '';
     /**
      * A [Cloud Function](https://cloud.google.com/functions).
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudFunctionEndpoint cloud_function = 10;</code>
      */
-    private $cloud_function = null;
+    protected $cloud_function = null;
     /**
      * An [App Engine](https://cloud.google.com/appengine) [service
      * version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.AppEngineVersionEndpoint app_engine_version = 11;</code>
      */
-    private $app_engine_version = null;
+    protected $app_engine_version = null;
     /**
      * A [Cloud Run](https://cloud.google.com/run)
      * [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.CloudRunRevisionEndpoint cloud_run_revision = 12;</code>
      */
-    private $cloud_run_revision = null;
+    protected $cloud_run_revision = null;
     /**
      * A Compute Engine network URI.
      *
      * Generated from protobuf field <code>string network = 4;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Type of the network where the endpoint is located.
      * Applicable only to source endpoint, as destination network type can be
@@ -110,7 +133,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.Endpoint.NetworkType network_type = 5;</code>
      */
-    private $network_type = 0;
+    protected $network_type = 0;
     /**
      * Project ID where the endpoint is located.
      * The Project ID can be derived from the URI if you provide a VM instance or
@@ -124,7 +147,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 6;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.
@@ -154,10 +177,21 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type int $load_balancer_type
      *           Output only. Type of the load balancer the forwarding rule points to.
      *     @type string $gke_master_cluster
-     *           A cluster URI for [Google Kubernetes Engine
-     *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     *           A cluster URI for [Google Kubernetes Engine cluster control
+     *           plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     *     @type string $fqdn
+     *           DNS endpoint of [Google Kubernetes Engine cluster control
+     *           plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     *           Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     *           ip_address or network. Applicable only to destination endpoint.
      *     @type string $cloud_sql_instance
      *           A [Cloud SQL](https://cloud.google.com/sql) instance URI.
+     *     @type string $redis_instance
+     *           A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     *           URI.
+     *     @type string $redis_cluster
+     *           A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     *           URI.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
      *           A [Cloud Function](https://cloud.google.com/functions).
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\AppEngineVersionEndpoint $app_engine_version
@@ -416,8 +450,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A cluster URI for [Google Kubernetes Engine
-     * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * A cluster URI for [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
      * Generated from protobuf field <code>string gke_master_cluster = 7;</code>
      * @return string
@@ -428,8 +462,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A cluster URI for [Google Kubernetes Engine
-     * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * A cluster URI for [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
      * Generated from protobuf field <code>string gke_master_cluster = 7;</code>
      * @param string $var
@@ -439,6 +473,38 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gke_master_cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * DNS endpoint of [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     * ip_address or network. Applicable only to destination endpoint.
+     *
+     * Generated from protobuf field <code>string fqdn = 19;</code>
+     * @return string
+     */
+    public function getFqdn()
+    {
+        return $this->fqdn;
+    }
+
+    /**
+     * DNS endpoint of [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     * ip_address or network. Applicable only to destination endpoint.
+     *
+     * Generated from protobuf field <code>string fqdn = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFqdn($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fqdn = $var;
 
         return $this;
     }
@@ -465,6 +531,62 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cloud_sql_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_instance = 17;</code>
+     * @return string
+     */
+    public function getRedisInstance()
+    {
+        return $this->redis_instance;
+    }
+
+    /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_instance = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedisInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redis_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_cluster = 18;</code>
+     * @return string
+     */
+    public function getRedisCluster()
+    {
+        return $this->redis_cluster;
+    }
+
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster)
+     * URI.
+     *
+     * Generated from protobuf field <code>string redis_cluster = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedisCluster($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redis_cluster = $var;
 
         return $this;
     }

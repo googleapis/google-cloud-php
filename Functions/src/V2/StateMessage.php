@@ -20,19 +20,19 @@ class StateMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.StateMessage.Severity severity = 1;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * One-word CamelCase type of the state message.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * The message.
      *
      * Generated from protobuf field <code>string message = 3;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

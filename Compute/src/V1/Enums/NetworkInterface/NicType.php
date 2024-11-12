@@ -34,6 +34,8 @@ class NicType
 
     const GVNIC = 'GVNIC';
 
+    const IDPF = 'IDPF';
+
     const UNSPECIFIED_NIC_TYPE = 'UNSPECIFIED_NIC_TYPE';
 
     const VIRTIO_NET = 'VIRTIO_NET';

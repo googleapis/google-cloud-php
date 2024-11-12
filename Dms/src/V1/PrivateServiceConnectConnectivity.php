@@ -23,7 +23,7 @@ class PrivateServiceConnectConnectivity extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string service_attachment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_attachment = '';
+    protected $service_attachment = '';
 
     /**
      * Constructor.

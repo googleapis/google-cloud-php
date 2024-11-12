@@ -21,7 +21,7 @@ class MembershipState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_name = 1;</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * Membership configuration in the cluster. This represents the actual state
      * in the cluster, while the MembershipSpec in the FeatureSpec represents
@@ -29,31 +29,31 @@ class MembershipState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.MembershipSpec membership_spec = 2;</code>
      */
-    private $membership_spec = null;
+    protected $membership_spec = null;
     /**
      * Current install status of ACM's Operator
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.OperatorState operator_state = 3;</code>
      */
-    private $operator_state = null;
+    protected $operator_state = null;
     /**
      * Current sync status
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.ConfigSyncState config_sync_state = 4;</code>
      */
-    private $config_sync_state = null;
+    protected $config_sync_state = null;
     /**
      * PolicyController status
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.PolicyControllerState policy_controller_state = 5;</code>
      */
-    private $policy_controller_state = null;
+    protected $policy_controller_state = null;
     /**
      * Hierarchy Controller status
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.HierarchyControllerState hierarchy_controller_state = 7;</code>
      */
-    private $hierarchy_controller_state = null;
+    protected $hierarchy_controller_state = null;
 
     /**
      * Constructor.

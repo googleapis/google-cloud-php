@@ -124,6 +124,26 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $global_access_allowed = null;
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_auto_tiering = false;
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replica_zone = '';
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $zone = '';
 
     /**
      * Constructor.
@@ -169,6 +189,14 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type bool $global_access_allowed
      *           Deprecated. Used to allow SO pool to access AD or DNS server from other
      *           regions.
+     *     @type bool $allow_auto_tiering
+     *           Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     *           Default is false. Auto-tiering can be enabled after storage pool creation
+     *           but it can't be disabled once enabled.
+     *     @type string $replica_zone
+     *           Optional. Specifies the replica zone for regional storagePool.
+     *     @type string $zone
+     *           Optional. Specifies the active zone for regional storagePool.
      * }
      */
     public function __construct($data = NULL) {
@@ -648,6 +676,88 @@ class StoragePool extends \Google\Protobuf\Internal\Message
         @trigger_error('global_access_allowed is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->global_access_allowed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowAutoTiering()
+    {
+        return $this->allow_auto_tiering;
+    }
+
+    /**
+     * Optional. True if the storage pool supports Auto Tiering enabled volumes.
+     * Default is false. Auto-tiering can be enabled after storage pool creation
+     * but it can't be disabled once enabled.
+     *
+     * Generated from protobuf field <code>bool allow_auto_tiering = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowAutoTiering($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_auto_tiering = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getReplicaZone()
+    {
+        return $this->replica_zone;
+    }
+
+    /**
+     * Optional. Specifies the replica zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string replica_zone = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReplicaZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->replica_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Optional. Specifies the active zone for regional storagePool.
+     *
+     * Generated from protobuf field <code>string zone = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->zone = $var;
 
         return $this;
     }

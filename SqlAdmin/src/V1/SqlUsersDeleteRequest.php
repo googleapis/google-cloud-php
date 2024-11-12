@@ -18,25 +18,25 @@ class SqlUsersDeleteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 1;</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Database instance ID. This does not include the project ID.
      *
      * Generated from protobuf field <code>string instance = 2;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Name of the user in the instance.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

@@ -30,14 +30,7 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(
-    src=src,
-    dest=dest,
-    copy_excludes=[
-        src / "**/[A-Z]*_*.php",
-        src / "**/*GrpcClient.php"
-    ]
-)
+php.owlbot_main(src=src, dest=dest)
 
 # remove class_alias code
 s.replace(
@@ -56,8 +49,8 @@ subprocess.run([
     '--package=@prettier/plugin-php@^0.16',
     '--',
     'prettier',
-    '**/Gapic/*',
+    '**/Client/*',
     '--write',
     '--parser=php',
     '--single-quote',
-    '--print-width=80'])
+    '--print-width=120'])

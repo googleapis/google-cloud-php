@@ -56,11 +56,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getUserAsync(GetUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> getUserAsync(GetUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
  */
 final class UserServiceClient
 {

@@ -22,7 +22,7 @@ class MetastoreServiceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metastore_service = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $metastore_service = '';
+    protected $metastore_service = '';
 
     /**
      * Constructor.

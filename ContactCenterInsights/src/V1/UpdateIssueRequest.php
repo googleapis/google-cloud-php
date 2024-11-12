@@ -20,13 +20,13 @@ class UpdateIssueRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Issue issue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $issue = null;
+    protected $issue = null;
     /**
      * The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\ContactCenterInsights\V1\Issue $issue      Required. The new values for the issue.

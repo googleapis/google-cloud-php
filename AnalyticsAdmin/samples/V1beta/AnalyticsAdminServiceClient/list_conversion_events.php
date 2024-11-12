@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
+ * Deprecated: Use `ListKeyEvents` instead.
  * Returns a list of conversion events in the specified parent property.
  *
  * Returns an empty list if no conversion events are found.

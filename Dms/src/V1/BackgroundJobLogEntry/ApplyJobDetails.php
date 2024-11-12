@@ -20,13 +20,13 @@ class ApplyJobDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connection_profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $connection_profile = '';
+    protected $connection_profile = '';
     /**
      * Output only. AIP-160 based filter used to specify the entities to apply
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

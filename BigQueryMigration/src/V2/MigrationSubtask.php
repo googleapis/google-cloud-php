@@ -24,13 +24,13 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The unique ID of the task to which this subtask belongs.
      *
      * Generated from protobuf field <code>string task_id = 2;</code>
      */
-    private $task_id = '';
+    protected $task_id = '';
     /**
      * The type of the Subtask. The migration service does not check whether this
      * is a known type. It is up to the task creator (i.e. orchestrator or worker)
@@ -39,20 +39,20 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 3;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Output only. The current state of the subtask.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.MigrationSubtask.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. An explanation that may be populated when the task is in
      * FAILED state.
      *
      * Generated from protobuf field <code>.google.rpc.ErrorInfo processing_error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $processing_error = null;
+    protected $processing_error = null;
     /**
      * Output only. Provides details to errors and issues encountered while
      * processing the subtask. Presence of error details does not mean that the
@@ -69,19 +69,19 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 resource_error_count = 13;</code>
      */
-    private $resource_error_count = 0;
+    protected $resource_error_count = 0;
     /**
      * Time when the subtask was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Time when the subtask was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8;</code>
      */
-    private $last_update_time = null;
+    protected $last_update_time = null;
     /**
      * The metrics for the subtask.
      *

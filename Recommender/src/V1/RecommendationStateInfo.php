@@ -20,7 +20,7 @@ class RecommendationStateInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommendationStateInfo.State state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * A map of metadata for the state, provided by user or automations systems.
      *

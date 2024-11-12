@@ -17,7 +17,7 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: properties/1234/firebaseLinks/5678
+     * Example: `properties/1234/firebaseLinks/5678`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,8 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     *                     Example: properties/1234/firebaseLinks/5678
+     *
+     *                     Example: `properties/1234/firebaseLinks/5678`
      *                     Please see {@see AnalyticsAdminServiceClient::firebaseLinkName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest
@@ -46,7 +47,7 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     *           Example: properties/1234/firebaseLinks/5678
+     *           Example: `properties/1234/firebaseLinks/5678`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +57,7 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: properties/1234/firebaseLinks/5678
+     * Example: `properties/1234/firebaseLinks/5678`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +69,7 @@ class DeleteFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     * Example: properties/1234/firebaseLinks/5678
+     * Example: `properties/1234/firebaseLinks/5678`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -23,7 +23,7 @@ class SBOMReferenceOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.SbomReferenceIntotoPayload payload = 1;</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * The kind of payload that SbomReferenceIntotoPayload takes. Since it's in
      * the intoto format, this value is expected to be
@@ -31,7 +31,7 @@ class SBOMReferenceOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string payload_type = 2;</code>
      */
-    private $payload_type = '';
+    protected $payload_type = '';
     /**
      * The signatures over the payload.
      *

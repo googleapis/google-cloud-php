@@ -21,13 +21,13 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * should be exported. If this dataset does not exist, the export call returns
      * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      * determines the
-     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * [schema](/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
      * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
      * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. The BigQuery table to which the snapshot result should be
      * written. If this table does not exist, a new table with the given name
@@ -35,7 +35,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * If the destination table already exists and this flag is `TRUE`, the
      * table will be overwritten by the contents of assets snapshot. If the flag
@@ -44,7 +44,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      */
-    private $force = false;
+    protected $force = false;
     /**
      * [partition_spec] determines whether to export to partitioned table(s) and
      * how to partition the data.
@@ -64,7 +64,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PartitionSpec partition_spec = 4;</code>
      */
-    private $partition_spec = null;
+    protected $partition_spec = null;
     /**
      * If this flag is `TRUE`, the snapshot results will be written to one or
      * multiple tables, each of which contains results of one asset type. The
@@ -93,7 +93,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool separate_tables_per_asset_type = 5;</code>
      */
-    private $separate_tables_per_asset_type = false;
+    protected $separate_tables_per_asset_type = false;
 
     /**
      * Constructor.
@@ -107,7 +107,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *           should be exported. If this dataset does not exist, the export call returns
      *           an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      *           determines the
-     *           [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     *           [schema](/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
      *           of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
      *           influences the schema.
      *     @type string $table
@@ -173,7 +173,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * should be exported. If this dataset does not exist, the export call returns
      * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      * determines the
-     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * [schema](/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
      * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
      * influences the schema.
      *
@@ -191,7 +191,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * should be exported. If this dataset does not exist, the export call returns
      * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      * determines the
-     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * [schema](/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
      * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
      * influences the schema.
      *

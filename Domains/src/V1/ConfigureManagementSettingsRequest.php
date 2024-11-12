@@ -21,13 +21,13 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $registration = '';
+    protected $registration = '';
     /**
      * Fields of the `ManagementSettings` to update.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.ManagementSettings management_settings = 2;</code>
      */
-    private $management_settings = null;
+    protected $management_settings = null;
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the transfer lock is being updated, the `update_mask`
@@ -35,7 +35,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                      $registration       Required. The name of the `Registration` whose management settings are being updated,

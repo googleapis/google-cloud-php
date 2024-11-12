@@ -29,7 +29,7 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      */
-    private $condition = '';
+    protected $condition = '';
     /**
      * Strength of the condition boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0.
@@ -48,7 +48,7 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float boost = 2;</code>
      */
-    private $boost = 0.0;
+    protected $boost = 0.0;
 
     /**
      * Constructor.

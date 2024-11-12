@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Run\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Run\V2\Client\RevisionsClient;
@@ -33,6 +32,7 @@ use Google\Cloud\Run\V2\GetRevisionRequest;
 use Google\Cloud\Run\V2\ListRevisionsRequest;
 use Google\Cloud\Run\V2\ListRevisionsResponse;
 use Google\Cloud\Run\V2\Revision;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -55,7 +55,9 @@ class RevisionsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RevisionsClient */
@@ -124,8 +126,7 @@ class RevisionsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $request = (new DeleteRevisionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRevisionRequest())->setName($formattedName);
         $response = $gapicClient->deleteRevision($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -181,17 +182,19 @@ class RevisionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $request = (new DeleteRevisionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRevisionRequest())->setName($formattedName);
         $response = $gapicClient->deleteRevision($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -253,8 +256,7 @@ class RevisionsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $request = (new GetRevisionRequest())
-            ->setName($formattedName);
+        $request = (new GetRevisionRequest())->setName($formattedName);
         $response = $gapicClient->getRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -278,17 +280,19 @@ class RevisionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $request = (new GetRevisionRequest())
-            ->setName($formattedName);
+        $request = (new GetRevisionRequest())->setName($formattedName);
         try {
             $gapicClient->getRevision($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -313,17 +317,14 @@ class RevisionsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $revisionsElement = new Revision();
-        $revisions = [
-            $revisionsElement,
-        ];
+        $revisions = [$revisionsElement];
         $expectedResponse = new ListRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRevisions($revisions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new ListRevisionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRevisionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -350,17 +351,19 @@ class RevisionsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $request = (new ListRevisionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRevisionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -431,8 +434,7 @@ class RevisionsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[REVISION]');
-        $request = (new DeleteRevisionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteRevisionRequest())->setName($formattedName);
         $response = $gapicClient->deleteRevisionAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -24,13 +24,13 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * The operation to be checked.
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.Operation operation = 2;</code>
      */
-    private $operation = null;
+    protected $operation = null;
     /**
      * Specifies which version of service configuration should be used to process
      * the request.
@@ -39,7 +39,7 @@ class CheckRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_config_id = 4;</code>
      */
-    private $service_config_id = '';
+    protected $service_config_id = '';
 
     /**
      * Constructor.

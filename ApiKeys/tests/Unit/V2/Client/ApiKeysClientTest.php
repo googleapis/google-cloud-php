@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,9 @@ class ApiKeysClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ApiKeysClient */
@@ -116,9 +118,7 @@ class ApiKeysClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $key = new Key();
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = (new CreateKeyRequest())->setParent($formattedParent)->setKey($key);
         $response = $gapicClient->createKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -176,19 +176,20 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $key = new Key();
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = (new CreateKeyRequest())->setParent($formattedParent)->setKey($key);
         $response = $gapicClient->createKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,8 +253,7 @@ class ApiKeysClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new DeleteKeyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteKeyRequest())->setName($formattedName);
         $response = $gapicClient->deleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -309,17 +309,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new DeleteKeyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteKeyRequest())->setName($formattedName);
         $response = $gapicClient->deleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -365,8 +367,7 @@ class ApiKeysClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyRequest())
-            ->setName($formattedName);
+        $request = (new GetKeyRequest())->setName($formattedName);
         $response = $gapicClient->getKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -390,17 +391,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyRequest())
-            ->setName($formattedName);
+        $request = (new GetKeyRequest())->setName($formattedName);
         try {
             $gapicClient->getKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -429,8 +432,7 @@ class ApiKeysClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyStringRequest())
-            ->setName($formattedName);
+        $request = (new GetKeyStringRequest())->setName($formattedName);
         $response = $gapicClient->getKeyString($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -454,17 +456,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new GetKeyStringRequest())
-            ->setName($formattedName);
+        $request = (new GetKeyStringRequest())->setName($formattedName);
         try {
             $gapicClient->getKeyString($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -489,17 +493,14 @@ class ApiKeysClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $keysElement = new Key();
-        $keys = [
-            $keysElement,
-        ];
+        $keys = [$keysElement];
         $expectedResponse = new ListKeysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setKeys($keys);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKeysRequest())->setParent($formattedParent);
         $response = $gapicClient->listKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -526,17 +527,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListKeysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -567,8 +570,7 @@ class ApiKeysClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $keyString = 'keyString526755313';
-        $request = (new LookupKeyRequest())
-            ->setKeyString($keyString);
+        $request = (new LookupKeyRequest())->setKeyString($keyString);
         $response = $gapicClient->lookupKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -592,17 +594,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $keyString = 'keyString526755313';
-        $request = (new LookupKeyRequest())
-            ->setKeyString($keyString);
+        $request = (new LookupKeyRequest())->setKeyString($keyString);
         try {
             $gapicClient->lookupKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -657,8 +661,7 @@ class ApiKeysClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new UndeleteKeyRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteKeyRequest())->setName($formattedName);
         $response = $gapicClient->undeleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -714,17 +717,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->keyName('[PROJECT]', '[LOCATION]', '[KEY]');
-        $request = (new UndeleteKeyRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteKeyRequest())->setName($formattedName);
         $response = $gapicClient->undeleteKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -788,8 +793,7 @@ class ApiKeysClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $key = new Key();
-        $request = (new UpdateKeyRequest())
-            ->setKey($key);
+        $request = (new UpdateKeyRequest())->setKey($key);
         $response = $gapicClient->updateKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -845,17 +849,19 @@ class ApiKeysClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $key = new Key();
-        $request = (new UpdateKeyRequest())
-            ->setKey($key);
+        $request = (new UpdateKeyRequest())->setKey($key);
         $response = $gapicClient->updateKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -920,9 +926,7 @@ class ApiKeysClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $key = new Key();
-        $request = (new CreateKeyRequest())
-            ->setParent($formattedParent)
-            ->setKey($key);
+        $request = (new CreateKeyRequest())->setParent($formattedParent)->setKey($key);
         $response = $gapicClient->createKeyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

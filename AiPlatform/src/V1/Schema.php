@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Schema is used to define the format of input/output data. Represents a select
  * subset of an [OpenAPI 3.0 schema
- * object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be
- * added in the future as needed.
+ * object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may
+ * be added in the future as needed.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Schema</code>
  */
@@ -78,9 +78,12 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     protected $max_items = 0;
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format.
-     * For example we can define an Enum Direction as :
-     * {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     * Optional. Possible values of the element of primitive type with enum
+     * format. Examples:
+     * 1. We can define direction as :
+     * ```{type:STRING, format:enum, enum:["EAST", "NORTH", "SOUTH", "WEST"]}```
+     * 2. We can define apartment number as :
+     * ```{type:INTEGER, format:enum, enum:["101", "201", "301"]}```
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -92,6 +95,14 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $property_ordering;
     /**
      * Optional. Required properties of Type.OBJECT.
      *
@@ -150,6 +161,13 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Value example = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $example = null;
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $any_of;
 
     /**
      * Constructor.
@@ -181,12 +199,19 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type int|string $max_items
      *           Optional. Maximum number of the elements for Type.ARRAY.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enum
-     *           Optional. Possible values of the element of Type.STRING with enum format.
-     *           For example we can define an Enum Direction as :
-     *           {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     *           Optional. Possible values of the element of primitive type with enum
+     *           format. Examples:
+     *           1. We can define direction as :
+     *           ```{type:STRING, format:enum, enum:["EAST", "NORTH", "SOUTH", "WEST"]}```
+     *           2. We can define apartment number as :
+     *           ```{type:INTEGER, format:enum, enum:["101", "201", "301"]}```
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. SCHEMA FIELDS FOR TYPE OBJECT
      *           Properties of Type.OBJECT.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $property_ordering
+     *           Optional. The order of the properties.
+     *           Not a standard field in open api spec. Only used to support the order of
+     *           the properties.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required
      *           Optional. Required properties of Type.OBJECT.
      *     @type int|string $min_properties
@@ -209,6 +234,9 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $example
      *           Optional. Example of the object. Will only populated when the object is the
      *           root.
+     *     @type array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
+     *           Optional. The value should be validated against any (one or more) of the
+     *           subschemas in the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -481,9 +509,12 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format.
-     * For example we can define an Enum Direction as :
-     * {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     * Optional. Possible values of the element of primitive type with enum
+     * format. Examples:
+     * 1. We can define direction as :
+     * ```{type:STRING, format:enum, enum:["EAST", "NORTH", "SOUTH", "WEST"]}```
+     * 2. We can define apartment number as :
+     * ```{type:INTEGER, format:enum, enum:["101", "201", "301"]}```
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -494,9 +525,12 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format.
-     * For example we can define an Enum Direction as :
-     * {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
+     * Optional. Possible values of the element of primitive type with enum
+     * format. Examples:
+     * 1. We can define direction as :
+     * ```{type:STRING, format:enum, enum:["EAST", "NORTH", "SOUTH", "WEST"]}```
+     * 2. We can define apartment number as :
+     * ```{type:INTEGER, format:enum, enum:["101", "201", "301"]}```
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -534,6 +568,36 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->properties = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPropertyOrdering()
+    {
+        return $this->property_ordering;
+    }
+
+    /**
+     * Optional. The order of the properties.
+     * Not a standard field in open api spec. Only used to support the order of
+     * the properties.
+     *
+     * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPropertyOrdering($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->property_ordering = $arr;
 
         return $this;
     }
@@ -786,6 +850,34 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->example = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnyOf()
+    {
+        return $this->any_of;
+    }
+
+    /**
+     * Optional. The value should be validated against any (one or more) of the
+     * subschemas in the list.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnyOf($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->any_of = $arr;
 
         return $this;
     }

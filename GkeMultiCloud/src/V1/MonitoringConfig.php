@@ -20,7 +20,7 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.ManagedPrometheusConfig managed_prometheus_config = 2;</code>
      */
-    private $managed_prometheus_config = null;
+    protected $managed_prometheus_config = null;
 
     /**
      * Constructor.

@@ -21,19 +21,19 @@ class Bucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value min = 1;</code>
      */
-    private $min = null;
+    protected $min = null;
     /**
      * Upper bound of the range, exclusive; type must match min.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value max = 2;</code>
      */
-    private $max = null;
+    protected $max = null;
     /**
      * Required. Replacement value for this bucket.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $replacement_value = null;
+    protected $replacement_value = null;
 
     /**
      * Constructor.
@@ -167,6 +167,4 @@ class Bucket extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Bucket::class, \Google\Cloud\Dlp\V2\BucketingConfig_Bucket::class);
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,28 +83,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getListingAsync(GetListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSharedResourceSubscriptionsAsync(ListSharedResourceSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface refreshSubscriptionAsync(RefreshSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface revokeSubscriptionAsync(RevokeSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface subscribeDataExchangeAsync(SubscribeDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> getListingAsync(GetListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Subscription> getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSharedResourceSubscriptionsAsync(ListSharedResourceSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> refreshSubscriptionAsync(RefreshSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RevokeSubscriptionResponse> revokeSubscriptionAsync(RevokeSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> subscribeDataExchangeAsync(SubscribeDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubscribeListingResponse> subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsHubServiceClient
 {
@@ -180,7 +180,9 @@ final class AnalyticsHubServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -727,8 +729,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrgDataExchanges(
+        ListOrgDataExchangesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -754,8 +758,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSharedResourceSubscriptions(ListSharedResourceSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSharedResourceSubscriptions(
+        ListSharedResourceSubscriptionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSharedResourceSubscriptions', $request, $callOptions);
     }
 
@@ -837,8 +843,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function revokeSubscription(RevokeSubscriptionRequest $request, array $callOptions = []): RevokeSubscriptionResponse
-    {
+    public function revokeSubscription(
+        RevokeSubscriptionRequest $request,
+        array $callOptions = []
+    ): RevokeSubscriptionResponse {
         return $this->startApiCall('RevokeSubscription', $request, $callOptions)->wait();
     }
 
@@ -891,8 +899,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function subscribeDataExchange(SubscribeDataExchangeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function subscribeDataExchange(
+        SubscribeDataExchangeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SubscribeDataExchange', $request, $callOptions)->wait();
     }
 
@@ -922,8 +932,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
-    {
+    public function subscribeListing(
+        SubscribeListingRequest $request,
+        array $callOptions = []
+    ): SubscribeListingResponse {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -949,8 +961,10 @@ final class AnalyticsHubServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

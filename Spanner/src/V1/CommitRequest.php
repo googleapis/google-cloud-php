@@ -20,7 +20,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $session = '';
+    private $session = '';
     /**
      * The mutations to be executed when this transaction commits. All
      * mutations are applied atomically, in the order they appear in
@@ -36,7 +36,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      */
-    protected $return_commit_stats = false;
+    private $return_commit_stats = false;
     /**
      * Optional. The amount of latency this request is willing to incur in order
      * to improve throughput. If this field is not set, Spanner assumes requests
@@ -46,13 +46,24 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_commit_delay = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $max_commit_delay = null;
+    private $max_commit_delay = null;
     /**
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
      */
-    protected $request_options = null;
+    private $request_options = null;
+    /**
+     * Optional. If the read-write transaction was executed on a multiplexed
+     * session, the precommit token with the highest sequence number received in
+     * this transaction attempt, should be included here. Failing to do so will
+     * result in a FailedPrecondition error.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $precommit_token = null;
     protected $transaction;
 
     /**
@@ -139,6 +150,13 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           and 500 ms.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
+     *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
+     *           Optional. If the read-write transaction was executed on a multiplexed
+     *           session, the precommit token with the highest sequence number received in
+     *           this transaction attempt, should be included here. Failing to do so will
+     *           result in a FailedPrecondition error.
+     *           This feature is not yet supported and will result in an UNIMPLEMENTED
+     *           error.
      * }
      */
     public function __construct($data = NULL) {
@@ -386,6 +404,52 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
         $this->request_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If the read-write transaction was executed on a multiplexed
+     * session, the precommit token with the highest sequence number received in
+     * this transaction attempt, should be included here. Failing to do so will
+     * result in a FailedPrecondition error.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
+     */
+    public function getPrecommitToken()
+    {
+        return $this->precommit_token;
+    }
+
+    public function hasPrecommitToken()
+    {
+        return isset($this->precommit_token);
+    }
+
+    public function clearPrecommitToken()
+    {
+        unset($this->precommit_token);
+    }
+
+    /**
+     * Optional. If the read-write transaction was executed on a multiplexed
+     * session, the precommit token with the highest sequence number received in
+     * this transaction attempt, should be included here. Failing to do so will
+     * result in a FailedPrecondition error.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
+     * @return $this
+     */
+    public function setPrecommitToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
+        $this->precommit_token = $var;
 
         return $this;
     }

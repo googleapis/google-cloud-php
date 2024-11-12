@@ -19,12 +19,12 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Azure VM size name. Example: `Standard_DS2_v2`.
      * See [Supported VM
-     * sizes](https://cloud.google.com/anthos/clusters/docs/azure/reference/supported-vms) for options.
+     * sizes](/anthos/clusters/docs/azure/reference/supported-vms) for options.
      * When unspecified, it defaults to `Standard_DS2_v2`.
      *
      * Generated from protobuf field <code>string vm_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $vm_size = '';
+    protected $vm_size = '';
     /**
      * Optional. Configuration related to the root volume provisioned for each
      * node pool machine.
@@ -32,7 +32,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureDiskTemplate root_volume = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $root_volume = null;
+    protected $root_volume = null;
     /**
      * Optional. A set of tags to apply to all underlying Azure resources for this
      * node pool. This currently only includes Virtual Machine Scale Sets.
@@ -50,25 +50,25 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_type = '';
+    protected $image_type = '';
     /**
      * Required. SSH configuration for how to access the node pool machines.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureSshConfig ssh_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssh_config = null;
+    protected $ssh_config = null;
     /**
      * Optional. Proxy configuration for outbound HTTP(S) traffic.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureProxyConfig proxy_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
     /**
      * Optional. Configuration related to vm config encryption.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureConfigEncryption config_encryption = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $config_encryption = null;
+    protected $config_encryption = null;
     /**
      * Optional. The initial taints assigned to nodes of this node pool.
      *
@@ -93,7 +93,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *     @type string $vm_size
      *           Optional. The Azure VM size name. Example: `Standard_DS2_v2`.
      *           See [Supported VM
-     *           sizes](https://cloud.google.com/anthos/clusters/docs/azure/reference/supported-vms) for options.
+     *           sizes](/anthos/clusters/docs/azure/reference/supported-vms) for options.
      *           When unspecified, it defaults to `Standard_DS2_v2`.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureDiskTemplate $root_volume
      *           Optional. Configuration related to the root volume provisioned for each
@@ -131,7 +131,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Azure VM size name. Example: `Standard_DS2_v2`.
      * See [Supported VM
-     * sizes](https://cloud.google.com/anthos/clusters/docs/azure/reference/supported-vms) for options.
+     * sizes](/anthos/clusters/docs/azure/reference/supported-vms) for options.
      * When unspecified, it defaults to `Standard_DS2_v2`.
      *
      * Generated from protobuf field <code>string vm_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -145,7 +145,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Azure VM size name. Example: `Standard_DS2_v2`.
      * See [Supported VM
-     * sizes](https://cloud.google.com/anthos/clusters/docs/azure/reference/supported-vms) for options.
+     * sizes](/anthos/clusters/docs/azure/reference/supported-vms) for options.
      * When unspecified, it defaults to `Standard_DS2_v2`.
      *
      * Generated from protobuf field <code>string vm_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>

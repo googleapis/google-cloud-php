@@ -44,12 +44,20 @@ class Channel
      * Generated from protobuf enum <code>STABLE = 3;</code>
      */
     const STABLE = 3;
+    /**
+     * Clusters subscribed to EXTENDED receive extended support and availability
+     * for versions which are known to be stable and reliable in production.
+     *
+     * Generated from protobuf enum <code>EXTENDED = 4;</code>
+     */
+    const EXTENDED = 4;
 
     private static $valueToName = [
         self::UNSPECIFIED => 'UNSPECIFIED',
         self::RAPID => 'RAPID',
         self::REGULAR => 'REGULAR',
         self::STABLE => 'STABLE',
+        self::EXTENDED => 'EXTENDED',
     ];
 
     public static function name($value)
@@ -73,6 +81,4 @@ class Channel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Channel::class, \Google\Cloud\Container\V1\ReleaseChannel_Channel::class);
 

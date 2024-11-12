@@ -20,7 +20,7 @@ class AdBreakTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 1;</code>
      */
-    private $duration = null;
+    protected $duration = null;
 
     /**
      * Constructor.

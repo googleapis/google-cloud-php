@@ -99,46 +99,46 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelBatchPredictionJobAsync(CancelBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelCustomJobAsync(CancelCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelDataLabelingJobAsync(CancelDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelHyperparameterTuningJobAsync(CancelHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cancelNasJobAsync(CancelNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBatchPredictionJobAsync(CreateBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomJobAsync(CreateCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataLabelingJobAsync(CreateDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createHyperparameterTuningJobAsync(CreateHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createModelDeploymentMonitoringJobAsync(CreateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNasJobAsync(CreateNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBatchPredictionJobAsync(DeleteBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomJobAsync(DeleteCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataLabelingJobAsync(DeleteDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteHyperparameterTuningJobAsync(DeleteHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelDeploymentMonitoringJobAsync(DeleteModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNasJobAsync(DeleteNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBatchPredictionJobAsync(GetBatchPredictionJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomJobAsync(GetCustomJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataLabelingJobAsync(GetDataLabelingJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHyperparameterTuningJobAsync(GetHyperparameterTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelDeploymentMonitoringJobAsync(GetModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNasJobAsync(GetNasJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNasTrialDetailAsync(GetNasTrialDetailRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBatchPredictionJobsAsync(ListBatchPredictionJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomJobsAsync(ListCustomJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataLabelingJobsAsync(ListDataLabelingJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHyperparameterTuningJobsAsync(ListHyperparameterTuningJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelDeploymentMonitoringJobsAsync(ListModelDeploymentMonitoringJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNasJobsAsync(ListNasJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNasTrialDetailsAsync(ListNasTrialDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseModelDeploymentMonitoringJobAsync(PauseModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeModelDeploymentMonitoringJobAsync(ResumeModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchModelDeploymentMonitoringStatsAnomaliesAsync(SearchModelDeploymentMonitoringStatsAnomaliesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateModelDeploymentMonitoringJobAsync(UpdateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelBatchPredictionJobAsync(CancelBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelCustomJobAsync(CancelCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelDataLabelingJobAsync(CancelDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelHyperparameterTuningJobAsync(CancelHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelNasJobAsync(CancelNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPredictionJob> createBatchPredictionJobAsync(CreateBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomJob> createCustomJobAsync(CreateCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataLabelingJob> createDataLabelingJobAsync(CreateDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HyperparameterTuningJob> createHyperparameterTuningJobAsync(CreateHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelDeploymentMonitoringJob> createModelDeploymentMonitoringJobAsync(CreateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NasJob> createNasJobAsync(CreateNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBatchPredictionJobAsync(DeleteBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCustomJobAsync(DeleteCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataLabelingJobAsync(DeleteDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteHyperparameterTuningJobAsync(DeleteHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteModelDeploymentMonitoringJobAsync(DeleteModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNasJobAsync(DeleteNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPredictionJob> getBatchPredictionJobAsync(GetBatchPredictionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomJob> getCustomJobAsync(GetCustomJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataLabelingJob> getDataLabelingJobAsync(GetDataLabelingJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HyperparameterTuningJob> getHyperparameterTuningJobAsync(GetHyperparameterTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelDeploymentMonitoringJob> getModelDeploymentMonitoringJobAsync(GetModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NasJob> getNasJobAsync(GetNasJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NasTrialDetail> getNasTrialDetailAsync(GetNasTrialDetailRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBatchPredictionJobsAsync(ListBatchPredictionJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomJobsAsync(ListCustomJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataLabelingJobsAsync(ListDataLabelingJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHyperparameterTuningJobsAsync(ListHyperparameterTuningJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelDeploymentMonitoringJobsAsync(ListModelDeploymentMonitoringJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNasJobsAsync(ListNasJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNasTrialDetailsAsync(ListNasTrialDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseModelDeploymentMonitoringJobAsync(PauseModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeModelDeploymentMonitoringJobAsync(ResumeModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchModelDeploymentMonitoringStatsAnomaliesAsync(SearchModelDeploymentMonitoringStatsAnomaliesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateModelDeploymentMonitoringJobAsync(UpdateModelDeploymentMonitoringJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class JobServiceClient
 {
@@ -583,6 +583,25 @@ final class JobServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a tensorboard
      * resource.
      *
@@ -643,6 +662,7 @@ final class JobServiceClient
      * - persistentResource: projects/{project}/locations/{location}/persistentResources/{persistent_resource}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}
      * - trial: projects/{project}/locations/{location}/studies/{study}/trials/{trial}
      *

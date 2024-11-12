@@ -18,8 +18,8 @@ class GetGeneratorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the generator.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,8 +33,8 @@ class GetGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the generator.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/generators/<Generator ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`. Please see
      *                     {@see GeneratorsClient::generatorName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetGeneratorRequest
@@ -55,8 +55,8 @@ class GetGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the generator.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/generators/<Generator ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *     @type string $language_code
      *           The language to list generators for.
      * }
@@ -68,8 +68,8 @@ class GetGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the generator.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,8 +81,8 @@ class GetGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the generator.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

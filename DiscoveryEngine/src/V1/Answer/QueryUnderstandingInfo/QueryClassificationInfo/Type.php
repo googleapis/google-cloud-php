@@ -26,16 +26,30 @@ class Type
      */
     const ADVERSARIAL_QUERY = 1;
     /**
-     * Non-answer-seeking query classification type.
+     * Non-answer-seeking query classification type, for chit chat.
      *
      * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY = 2;</code>
      */
     const NON_ANSWER_SEEKING_QUERY = 2;
+    /**
+     * Jail-breaking query classification type.
+     *
+     * Generated from protobuf enum <code>JAIL_BREAKING_QUERY = 3;</code>
+     */
+    const JAIL_BREAKING_QUERY = 3;
+    /**
+     * Non-answer-seeking query classification type, for no clear intent.
+     *
+     * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY_V2 = 4;</code>
+     */
+    const NON_ANSWER_SEEKING_QUERY_V2 = 4;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::ADVERSARIAL_QUERY => 'ADVERSARIAL_QUERY',
         self::NON_ANSWER_SEEKING_QUERY => 'NON_ANSWER_SEEKING_QUERY',
+        self::JAIL_BREAKING_QUERY => 'JAIL_BREAKING_QUERY',
+        self::NON_ANSWER_SEEKING_QUERY_V2 => 'NON_ANSWER_SEEKING_QUERY_V2',
     ];
 
     public static function name($value)

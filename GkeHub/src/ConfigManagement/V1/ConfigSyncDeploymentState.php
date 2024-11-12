@@ -20,43 +20,43 @@ class ConfigSyncDeploymentState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState importer = 1;</code>
      */
-    private $importer = 0;
+    protected $importer = 0;
     /**
      * Deployment state of the syncer pod
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState syncer = 2;</code>
      */
-    private $syncer = 0;
+    protected $syncer = 0;
     /**
      * Deployment state of the git-sync pod
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState git_sync = 3;</code>
      */
-    private $git_sync = 0;
+    protected $git_sync = 0;
     /**
      * Deployment state of the monitor pod
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState monitor = 4;</code>
      */
-    private $monitor = 0;
+    protected $monitor = 0;
     /**
      * Deployment state of reconciler-manager pod
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState reconciler_manager = 5;</code>
      */
-    private $reconciler_manager = 0;
+    protected $reconciler_manager = 0;
     /**
      * Deployment state of root-reconciler
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState root_reconciler = 6;</code>
      */
-    private $root_reconciler = 0;
+    protected $root_reconciler = 0;
     /**
      * Deployment state of admission-webhook
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState admission_webhook = 7;</code>
      */
-    private $admission_webhook = 0;
+    protected $admission_webhook = 0;
 
     /**
      * Constructor.

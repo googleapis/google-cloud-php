@@ -63,6 +63,4 @@ class Variant
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Variant::class, \Google\Cloud\Container\V1\LoggingVariantConfig_Variant::class);
 

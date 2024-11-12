@@ -49,9 +49,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getJobExecutionDetailsAsync(GetJobExecutionDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobMetricsAsync(GetJobMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStageExecutionDetailsAsync(GetStageExecutionDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> getJobExecutionDetailsAsync(GetJobExecutionDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<JobMetrics> getJobMetricsAsync(GetJobMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> getStageExecutionDetailsAsync(GetStageExecutionDetailsRequest $request, array $optionalArgs = [])
  */
 final class MetricsV1Beta3Client
 {

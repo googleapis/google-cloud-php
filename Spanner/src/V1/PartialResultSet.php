@@ -23,7 +23,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
-    protected $metadata = null;
+    private $metadata = null;
     /**
      * A streamed result set consists of a stream of values, which might
      * be split into many `PartialResultSet` messages to accommodate
@@ -95,7 +95,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      */
-    protected $chunked_value = false;
+    private $chunked_value = false;
     /**
      * Streaming calls might be interrupted for a variety of reasons, such
      * as TCP connection loss. If this occurs, the stream of results can
@@ -105,7 +105,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes resume_token = 4;</code>
      */
-    protected $resume_token = '';
+    private $resume_token = '';
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
@@ -116,7 +116,19 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      */
-    protected $stats = null;
+    private $stats = null;
+    /**
+     * Optional. A precommit token will be included if the read-write transaction
+     * is on a multiplexed session.
+     * The precommit token with the highest sequence number from this transaction
+     * attempt should be passed to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $precommit_token = null;
 
     /**
      * Constructor.
@@ -204,6 +216,14 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *           only once with the last response in the stream.
      *           This field will also be present in the last response for DML
      *           statements.
+     *     @type \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $precommit_token
+     *           Optional. A precommit token will be included if the read-write transaction
+     *           is on a multiplexed session.
+     *           The precommit token with the highest sequence number from this transaction
+     *           attempt should be passed to the
+     *           [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     *           This feature is not yet supported and will result in an UNIMPLEMENTED
+     *           error.
      * }
      */
     public function __construct($data = NULL) {
@@ -497,6 +517,54 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\ResultSetStats::class);
         $this->stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A precommit token will be included if the read-write transaction
+     * is on a multiplexed session.
+     * The precommit token with the highest sequence number from this transaction
+     * attempt should be passed to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken|null
+     */
+    public function getPrecommitToken()
+    {
+        return $this->precommit_token;
+    }
+
+    public function hasPrecommitToken()
+    {
+        return isset($this->precommit_token);
+    }
+
+    public function clearPrecommitToken()
+    {
+        unset($this->precommit_token);
+    }
+
+    /**
+     * Optional. A precommit token will be included if the read-write transaction
+     * is on a multiplexed session.
+     * The precommit token with the highest sequence number from this transaction
+     * attempt should be passed to the
+     * [Commit][google.spanner.v1.Spanner.Commit] request for this transaction.
+     * This feature is not yet supported and will result in an UNIMPLEMENTED
+     * error.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.MultiplexedSessionPrecommitToken precommit_token = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken $var
+     * @return $this
+     */
+    public function setPrecommitToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken::class);
+        $this->precommit_token = $var;
 
         return $this;
     }

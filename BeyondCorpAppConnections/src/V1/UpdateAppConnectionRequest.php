@@ -26,14 +26,14 @@ class UpdateAppConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. AppConnection message with updated fields. Only supported fields
      * specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnections.v1.AppConnection app_connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $app_connection = null;
+    protected $app_connection = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -49,20 +49,20 @@ class UpdateAppConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. If set, validates request by executing a dry-run which would not
      * alter the resource in any way.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Optional. If set as true, will create the resource if it is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
 
     /**
      * @param \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $appConnection Required. AppConnection message with updated fields. Only supported fields

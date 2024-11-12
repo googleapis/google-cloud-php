@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Pa as a source.
+ * Parallelstore as the source of a data transfer.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.SourceParallelstore</code>
  */
@@ -17,7 +17,7 @@ class SourceParallelstore extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Root directory path to the Paralellstore filesystem, starting
-     * with '/'. Defaults to '/' if unset.
+     * with `/`. Defaults to `/` if unset.
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,7 +31,7 @@ class SourceParallelstore extends \Google\Protobuf\Internal\Message
      *
      *     @type string $path
      *           Optional. Root directory path to the Paralellstore filesystem, starting
-     *           with '/'. Defaults to '/' if unset.
+     *           with `/`. Defaults to `/` if unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class SourceParallelstore extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Root directory path to the Paralellstore filesystem, starting
-     * with '/'. Defaults to '/' if unset.
+     * with `/`. Defaults to `/` if unset.
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -53,7 +53,7 @@ class SourceParallelstore extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Root directory path to the Paralellstore filesystem, starting
-     * with '/'. Defaults to '/' if unset.
+     * with `/`. Defaults to `/` if unset.
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

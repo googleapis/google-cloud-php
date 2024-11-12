@@ -24,7 +24,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Annotations for the service. This data can be consumed by service
      * clients.
@@ -62,7 +62,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

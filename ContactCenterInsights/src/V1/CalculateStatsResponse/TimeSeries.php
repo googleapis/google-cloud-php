@@ -20,7 +20,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration interval_duration = 1;</code>
      */
-    private $interval_duration = null;
+    protected $interval_duration = null;
     /**
      * An ordered list of intervals from earliest to latest, where each interval
      * represents the number of conversations that transpired during the time

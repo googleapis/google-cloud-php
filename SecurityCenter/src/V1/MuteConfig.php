@@ -18,13 +18,16 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * This field will be ignored if provided on config creation. Format
-     * "organizations/{organization}/muteConfigs/{mute_config}"
-     * "folders/{folder}/muteConfigs/{mute_config}"
-     * "projects/{project}/muteConfigs/{mute_config}"
+     * `organizations/{organization}/muteConfigs/{mute_config}`
+     * `folders/{folder}/muteConfigs/{mute_config}`
+     * `projects/{project}/muteConfigs/{mute_config}`
+     * `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     * `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     * `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The human readable name to be displayed for the mute config.
      *
@@ -37,7 +40,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. An expression that defines the filter to apply across
      * create/update events of findings. While creating a filter string, be
@@ -60,7 +63,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Output only. The time at which the mute config was created.
      * This field is set by the server and will be ignored if provided on config
@@ -68,7 +71,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The most recent time at which the mute config was updated.
      * This field is set by the server and will be ignored if provided on config
@@ -76,7 +79,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Email address of the user who last edited the mute config.
      * This field is set by the server and will be ignored if provided on config
@@ -84,7 +87,24 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string most_recent_editor = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $most_recent_editor = '';
+    protected $most_recent_editor = '';
+    /**
+     * Optional. The type of the mute config, which determines what type of mute
+     * state the config affects. The static mute state takes precedence over the
+     * dynamic mute state. Immutable after creation. STATIC by default if not set
+     * during creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MuteConfig.MuteConfigType type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $type = 0;
+    /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic
+     * configs. If the expiry is set, when the config expires, it is removed from
+     * all findings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $expiry_time = null;
 
     /**
      * Constructor.
@@ -94,9 +114,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           This field will be ignored if provided on config creation. Format
-     *           "organizations/{organization}/muteConfigs/{mute_config}"
-     *           "folders/{folder}/muteConfigs/{mute_config}"
-     *           "projects/{project}/muteConfigs/{mute_config}"
+     *           `organizations/{organization}/muteConfigs/{mute_config}`
+     *           `folders/{folder}/muteConfigs/{mute_config}`
+     *           `projects/{project}/muteConfigs/{mute_config}`
+     *           `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     *           `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     *           `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *     @type string $display_name
      *           The human readable name to be displayed for the mute config.
      *     @type string $description
@@ -132,6 +155,15 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *           Output only. Email address of the user who last edited the mute config.
      *           This field is set by the server and will be ignored if provided on config
      *           creation or update.
+     *     @type int $type
+     *           Optional. The type of the mute config, which determines what type of mute
+     *           state the config affects. The static mute state takes precedence over the
+     *           dynamic mute state. Immutable after creation. STATIC by default if not set
+     *           during creation.
+     *     @type \Google\Protobuf\Timestamp $expiry_time
+     *           Optional. The expiry of the mute config. Only applicable for dynamic
+     *           configs. If the expiry is set, when the config expires, it is removed from
+     *           all findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,9 +173,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This field will be ignored if provided on config creation. Format
-     * "organizations/{organization}/muteConfigs/{mute_config}"
-     * "folders/{folder}/muteConfigs/{mute_config}"
-     * "projects/{project}/muteConfigs/{mute_config}"
+     * `organizations/{organization}/muteConfigs/{mute_config}`
+     * `folders/{folder}/muteConfigs/{mute_config}`
+     * `projects/{project}/muteConfigs/{mute_config}`
+     * `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     * `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     * `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -155,9 +190,12 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This field will be ignored if provided on config creation. Format
-     * "organizations/{organization}/muteConfigs/{mute_config}"
-     * "folders/{folder}/muteConfigs/{mute_config}"
-     * "projects/{project}/muteConfigs/{mute_config}"
+     * `organizations/{organization}/muteConfigs/{mute_config}`
+     * `folders/{folder}/muteConfigs/{mute_config}`
+     * `projects/{project}/muteConfigs/{mute_config}`
+     * `organizations/{organization}/locations/global/muteConfigs/{mute_config}`
+     * `folders/{folder}/locations/global/muteConfigs/{mute_config}`
+     * `projects/{project}/locations/global/muteConfigs/{mute_config}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -393,6 +431,78 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->most_recent_editor = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of the mute config, which determines what type of mute
+     * state the config affects. The static mute state takes precedence over the
+     * dynamic mute state. Immutable after creation. STATIC by default if not set
+     * during creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MuteConfig.MuteConfigType type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Optional. The type of the mute config, which determines what type of mute
+     * state the config affects. The static mute state takes precedence over the
+     * dynamic mute state. Immutable after creation. STATIC by default if not set
+     * during creation.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MuteConfig.MuteConfigType type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\MuteConfig\MuteConfigType::class);
+        $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic
+     * configs. If the expiry is set, when the config expires, it is removed from
+     * all findings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExpiryTime()
+    {
+        return $this->expiry_time;
+    }
+
+    public function hasExpiryTime()
+    {
+        return isset($this->expiry_time);
+    }
+
+    public function clearExpiryTime()
+    {
+        unset($this->expiry_time);
+    }
+
+    /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic
+     * configs. If the expiry is set, when the config expires, it is removed from
+     * all findings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExpiryTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->expiry_time = $var;
 
         return $this;
     }

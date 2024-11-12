@@ -24,20 +24,20 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A human readable description of this cluster.
      * Cannot be longer than 255 UTF-8 encoded bytes.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Cluster-wide networking configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsClusterNetworking networking = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $networking = null;
+    protected $networking = null;
     /**
      * Required. The AWS region where the cluster runs.
      * Each Google Cloud region supports a subset of nearby AWS regions.
@@ -47,55 +47,55 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aws_region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $aws_region = '';
+    protected $aws_region = '';
     /**
      * Required. Configuration related to the cluster control plane.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsControlPlane control_plane = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $control_plane = null;
+    protected $control_plane = null;
     /**
      * Required. Configuration related to the cluster RBAC settings.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsAuthorization authorization = 15 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorization = null;
+    protected $authorization = null;
     /**
      * Output only. The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsCluster.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The endpoint of the cluster's API server.
      *
      * Generated from protobuf field <code>string endpoint = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Output only. A globally unique identifier for the cluster.
      *
      * Generated from protobuf field <code>string uid = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. If set, there are currently changes in flight to the cluster.
      *
      * Generated from protobuf field <code>bool reconciling = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The time at which this cluster was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this cluster was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Allows clients to perform consistent read-modify-writes
      * through optimistic concurrency control.
@@ -104,7 +104,7 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 13;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Annotations on the cluster.
      * This field has the same restrictions as Kubernetes annotations.
@@ -123,25 +123,25 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.WorkloadIdentityConfig workload_identity_config = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $workload_identity_config = null;
+    protected $workload_identity_config = null;
     /**
      * Output only. PEM encoded x509 certificate of the cluster root of trust.
      *
      * Generated from protobuf field <code>string cluster_ca_certificate = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cluster_ca_certificate = '';
+    protected $cluster_ca_certificate = '';
     /**
      * Required. Fleet configuration.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.Fleet fleet = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $fleet = null;
+    protected $fleet = null;
     /**
      * Optional. Logging configuration for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.LoggingConfig logging_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $logging_config = null;
+    protected $logging_config = null;
     /**
      * Output only. A set of errors found in the cluster.
      *
@@ -153,13 +153,13 @@ class AwsCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MonitoringConfig monitoring_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $monitoring_config = null;
+    protected $monitoring_config = null;
     /**
      * Optional. Binary Authorization configuration for this cluster.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.BinaryAuthorization binary_authorization = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $binary_authorization = null;
+    protected $binary_authorization = null;
 
     /**
      * Constructor.

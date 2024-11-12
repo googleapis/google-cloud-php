@@ -47,18 +47,22 @@ use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
+use Google\Apps\Chat\V1\GetSpaceEventRequest;
 use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
 use Google\Apps\Chat\V1\GetThreadReadStateRequest;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListReactionsRequest;
+use Google\Apps\Chat\V1\ListSpaceEventsRequest;
 use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
+use Google\Apps\Chat\V1\SpaceEvent;
 use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
@@ -82,32 +86,35 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeImportSpaceAsync(CompleteImportSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CompleteImportSpaceResponse> completeImportSpaceAsync(CompleteImportSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Message> createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reaction> createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Message> getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceEvent> getSpaceEventAsync(GetSpaceEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceReadState> getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ThreadReadState> getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Message> updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpaceReadState> updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UploadAttachmentResponse> uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
  */
 final class ChatServiceClient
 {
@@ -135,6 +142,11 @@ final class ChatServiceClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/chat.admin.delete',
+        'https://www.googleapis.com/auth/chat.admin.memberships',
+        'https://www.googleapis.com/auth/chat.admin.memberships.readonly',
+        'https://www.googleapis.com/auth/chat.admin.spaces',
+        'https://www.googleapis.com/auth/chat.admin.spaces.readonly',
         'https://www.googleapis.com/auth/chat.bot',
         'https://www.googleapis.com/auth/chat.delete',
         'https://www.googleapis.com/auth/chat.import',
@@ -283,6 +295,23 @@ final class ChatServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a space_event
+     * resource.
+     *
+     * @param string $space
+     * @param string $spaceEvent
+     *
+     * @return string The formatted space_event resource.
+     */
+    public static function spaceEventName(string $space, string $spaceEvent): string
+    {
+        return self::getPathTemplate('spaceEvent')->render([
+            'space' => $space,
+            'space_event' => $spaceEvent,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * space_read_state resource.
      *
@@ -345,6 +374,7 @@ final class ChatServiceClient
      * - quotedMessageMetadata: spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
      * - space: spaces/{space}
+     * - spaceEvent: spaces/{space}/spaceEvents/{space_event}
      * - spaceReadState: users/{user}/spaces/{space}/spaceReadState
      * - thread: spaces/{space}/threads/{thread}
      * - threadReadState: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -472,30 +502,25 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a human membership or app membership for the calling app. Creating
-     * memberships for other apps isn't supported. For an example, see
-     * [Invite or add a user or a Google Chat app to a
-     * space](https://developers.google.com/workspace/chat/create-members).
+     * Creates a membership for the calling Chat app, a user, or a Google Group.
+     * Creating memberships for other Chat apps isn't supported.
      * When creating a membership, if the specified member has their auto-accept
      * policy turned off, then they're invited, and must accept the space
      * invitation before joining. Otherwise, creating a membership adds the member
-     * directly to the specified space. Requires [user
+     * directly to the specified space.
+     * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
-     * To specify the member to add, set the `membership.member.name` for the
-     * human or app member.
+     * For example usage, see:
      *
-     * - To add the calling app to a space or a direct message between two human
-     * users, use `users/app`. Unable to add other
-     * apps to the space.
+     * - [Invite or add a user to a
+     * space](https://developers.google.com/workspace/chat/create-members#create-user-membership).
      *
-     * - To add a human user, use `users/{user}`, where `{user}` can be the email
-     * address for the user. For users in the same Workspace organization `{user}`
-     * can also be the `id` for the person from the People API, or the `id` for
-     * the user in the Directory API. For example, if the People API Person
-     * profile ID for `user&#64;example.com` is `123456789`, you can add the user to
-     * the space by setting the `membership.member.name` to
-     * `users/user&#64;example.com` or `users/123456789`.
+     * - [Invite or add a Google Group to a
+     * space](https://developers.google.com/workspace/chat/create-members#create-group-membership).
+     *
+     * - [Add the Chat app to a
+     * space](https://developers.google.com/workspace/chat/create-members#create-membership-calling-api).
      *
      * The async variant is {@see ChatServiceClient::createMembershipAsync()} .
      *
@@ -521,18 +546,30 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a message in a Google Chat space. The maximum message size,
-     * including text and cards, is 32,000 bytes. For an example, see [Send a
+     * Creates a message in a Google Chat space. For an example, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
      *
-     * Calling this method requires
-     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize)
-     * and supports the following authentication types:
+     * The `create()` method requires either user or app authentication. Chat
+     * attributes the message sender differently depending on the type of
+     * authentication that you use in your request.
      *
-     * - For text messages, user authentication or app authentication are
-     * supported.
-     * - For card messages, only app authentication is supported. (Only Chat apps
-     * can create card messages.)
+     * The following image shows how Chat attributes a message when you use app
+     * authentication. Chat displays the Chat app as the message
+     * sender. The content of the message can contain text (`text`), cards
+     * (`cardsV2`), and accessory widgets (`accessoryWidgets`).
+     *
+     * ![Message sent with app
+     * authentication](https://developers.google.com/workspace/chat/images/message-app-auth.svg)
+     *
+     * The following image shows how Chat attributes a message when you use user
+     * authentication. Chat displays the user as the message sender and attributes
+     * the Chat app to the message by displaying its name. The content of message
+     * can only contain text (`text`).
+     *
+     * ![Message sent with user
+     * authentication](https://developers.google.com/workspace/chat/images/message-user-auth.svg)
+     *
+     * The maximum message size, including the message contents, is 32,000 bytes.
      *
      * The async variant is {@see ChatServiceClient::createMessageAsync()} .
      *
@@ -589,13 +626,18 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a named space. Spaces grouped by topics aren't supported. For an
-     * example, see [Create a
+     * Creates a space with no members. Can be used to create a named space.
+     * Spaces grouped by topics aren't supported. For an example, see
+     * [Create a
      * space](https://developers.google.com/workspace/chat/create-spaces).
      *
      * If you receive the error message `ALREADY_EXISTS` when creating
      * a space, try a different `displayName`. An existing space within
      * the Google Workspace organization might already use this display name.
+     *
+     * If you're a member of the [Developer Preview
+     * program](https://developers.google.com/workspace/preview), you can create a
+     * group chat in import mode using `spaceType.GROUP_CHAT`.
      *
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -938,6 +980,48 @@ final class ChatServiceClient
     }
 
     /**
+     * Returns an event from a Google Chat space. The [event
+     * payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload)
+     * contains the most recent version of the resource that changed. For example,
+     * if you request an event about a new message but the message was later
+     * updated, the server returns the updated `Message` resource in the event
+     * payload.
+     *
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object of the Space event data for this request.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * To get an event, the authenticated user must be a member of the space.
+     *
+     * For an example, see [Get details about an
+     * event from a Google Chat
+     * space](https://developers.google.com/workspace/chat/get-space-event).
+     *
+     * The async variant is {@see ChatServiceClient::getSpaceEventAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_space_event.php
+     *
+     * @param GetSpaceEventRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSpaceEvent(GetSpaceEventRequest $request, array $callOptions = []): SpaceEvent
+    {
+        return $this->startApiCall('GetSpaceEvent', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns details about a user's read state within a space, used to identify
      * read and unread messages. For an example, see [Get details about a user's
      * space read
@@ -1047,8 +1131,12 @@ final class ChatServiceClient
 
     /**
      * Lists messages in a space that the caller is a member of, including
-     * messages from blocked members and spaces. For an example, see
-     * [List messages](/chat/api/guides/v1/messages/list).
+     * messages from blocked members and spaces. If you list messages from a
+     * space with no messages, the response is an empty object. When using a
+     * REST/HTTP interface, the response contains an empty JSON object, `{}`.
+     * For an example, see
+     * [List
+     * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list).
      * Requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
@@ -1106,6 +1194,45 @@ final class ChatServiceClient
     }
 
     /**
+     * Lists events from a Google Chat space. For each event, the
+     * [payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload)
+     * contains the most recent version of the Chat resource. For example, if you
+     * list events about new space members, the server returns `Membership`
+     * resources that contain the latest membership details. If new members were
+     * removed during the requested period, the event payload contains an empty
+     * `Membership` resource.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * To list events, the authenticated user must be a member of the space.
+     *
+     * For an example, see [List events from a Google Chat
+     * space](https://developers.google.com/workspace/chat/list-space-events).
+     *
+     * The async variant is {@see ChatServiceClient::listSpaceEventsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/list_space_events.php
+     *
+     * @param ListSpaceEventsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSpaceEvents(ListSpaceEventsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSpaceEvents', $request, $callOptions);
+    }
+
+    /**
      * Lists spaces the caller is a member of. Group chats and DMs aren't listed
      * until the first message is sent. For an example, see
      * [List
@@ -1122,6 +1249,9 @@ final class ChatServiceClient
      * Lists spaces visible to the caller or authenticated user. Group chats
      * and DMs aren't listed until the first message is sent.
      *
+     * To list all named spaces by Google Workspace organization, use the
+     * [`spaces.search()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/search)
+     * method using Workspace administrator privileges instead.
      *
      * The async variant is {@see ChatServiceClient::listSpacesAsync()} .
      *
@@ -1147,6 +1277,36 @@ final class ChatServiceClient
     }
 
     /**
+     * Returns a list of spaces in a Google Workspace organization based on an
+     * administrator's search. Requires [user
+     * authentication with administrator
+     * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges).
+     * In the request, set `use_admin_access` to `true`.
+     *
+     * The async variant is {@see ChatServiceClient::searchSpacesAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/search_spaces.php
+     *
+     * @param SearchSpacesRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchSpaces(SearchSpacesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchSpaces', $request, $callOptions);
+    }
+
+    /**
      * Creates a space and adds specified users to it. The calling user is
      * automatically added to the space, and shouldn't be specified as a
      * membership in the request. For an example, see
@@ -1161,6 +1321,17 @@ final class ChatServiceClient
      * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
      * you can add the user to the space by setting the `membership.member.name`
      * to `users/user&#64;example.com` or `users/123456789`.
+     *
+     * To specify the Google groups to add, add memberships with the
+     * appropriate `membership.group_member.name`. To add or invite a Google
+     * group, use `groups/{group}`, where `{group}` is the `id` for the group from
+     * the Cloud Identity Groups API. For example, you can use [Cloud Identity
+     * Groups lookup
+     * API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup)
+     * to retrieve the ID `123456789` for group email `group&#64;example.com`, then
+     * you can add the group to the space by setting the
+     * `membership.group_member.name` to `groups/123456789`. Group email is not
+     * supported, and Google groups can only be added as members in named spaces.
      *
      * For a named space or group chat, if the caller blocks, or is blocked
      * by some members, or doesn't have permission to add some members, then

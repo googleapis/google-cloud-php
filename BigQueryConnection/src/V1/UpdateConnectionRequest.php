@@ -22,19 +22,19 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Connection containing the updated fields.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connection = null;
+    protected $connection = null;
     /**
      * Required. Update mask for the connection fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                          $name       Required. Name of the connection to update, for example:

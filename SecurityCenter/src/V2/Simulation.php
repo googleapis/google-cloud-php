@@ -17,17 +17,17 @@ class Simulation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Full resource name of the Simulation:
-     * organizations/123/simulations/456
+     * `organizations/123/simulations/456`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Time simulation was created
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Resource value configurations' metadata used in this simulation. Maximum of
      * 100.
@@ -35,6 +35,12 @@ class Simulation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ResourceValueConfigMetadata resource_value_configs_metadata = 3;</code>
      */
     private $resource_value_configs_metadata;
+    /**
+     * Indicates which cloud provider was used in this simulation.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
+     */
+    protected $cloud_provider = 0;
 
     /**
      * Constructor.
@@ -44,12 +50,14 @@ class Simulation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Full resource name of the Simulation:
-     *           organizations/123/simulations/456
+     *           `organizations/123/simulations/456`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time simulation was created
      *     @type array<\Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata>|\Google\Protobuf\Internal\RepeatedField $resource_value_configs_metadata
      *           Resource value configurations' metadata used in this simulation. Maximum of
      *           100.
+     *     @type int $cloud_provider
+     *           Indicates which cloud provider was used in this simulation.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,7 +67,7 @@ class Simulation extends \Google\Protobuf\Internal\Message
 
     /**
      * Full resource name of the Simulation:
-     * organizations/123/simulations/456
+     * `organizations/123/simulations/456`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -71,7 +79,7 @@ class Simulation extends \Google\Protobuf\Internal\Message
 
     /**
      * Full resource name of the Simulation:
-     * organizations/123/simulations/456
+     * `organizations/123/simulations/456`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -145,6 +153,32 @@ class Simulation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata::class);
         $this->resource_value_configs_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Indicates which cloud provider was used in this simulation.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
+     * @return int
+     */
+    public function getCloudProvider()
+    {
+        return $this->cloud_provider;
+    }
+
+    /**
+     * Indicates which cloud provider was used in this simulation.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.CloudProvider cloud_provider = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCloudProvider($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\CloudProvider::class);
+        $this->cloud_provider = $var;
 
         return $this;
     }

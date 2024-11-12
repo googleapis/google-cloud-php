@@ -17,7 +17,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the instance, in the format
-     * `projects/{project}/locations/{location}/instances/{instance_id}`
+     * `projects/{project}/locations/{location}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -49,48 +49,34 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Cloud Labels are a flexible and lightweight mechanism for
      * organizing cloud resources into groups that reflect a customer's
-     * organizational needs and deployment strategies. Cloud Labels can be used to
-     * filter collections of resources. They can be used to control how resource
-     * metrics are aggregated. And they can be used as arguments to policy
-     * management rules (e.g. route, firewall, load balancing, etc.).
-     *  * Label keys must be between 1 and 63 characters long and must conform to
-     *    the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
-     *  * Label values must be between 0 and 63 characters long and must conform
-     *    to the regular expression `[a-z0-9_-]{0,63}`.
-     *  * No more than 64 labels can be associated with a given resource.
-     * See https://goo.gl/xmQnxf for more information on and examples of labels.
-     * If you plan to use labels in your own code, please note that additional
-     * characters may be allowed in the future. Therefore, you are advised to use
-     * an internal label representation, such as JSON, which doesn't rely upon
-     * specific characters being disallowed.  For example, representing labels
-     * as the string:  name + "_" + value  would prove problematic if we were to
-     * allow "_" in a future release.
+     * organizational needs and deployment strategies. See
+     * https://cloud.google.com/resource-manager/docs/labels-overview for details.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * Required. Immutable. Storage capacity of Parallelstore instance in
-     * Gibibytes (GiB).
+     * Required. Immutable. The instance's storage capacity in Gibibytes (GiB).
+     * Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
+     * 12000, 16000, 20000, ...
      *
      * Generated from protobuf field <code>int64 capacity_gib = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $capacity_gib = 0;
     /**
-     * Output only. The version of DAOS software running in the instance
+     * Output only. The version of DAOS software running in the instance.
      *
      * Generated from protobuf field <code>string daos_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $daos_version = '';
     /**
-     * Output only. List of access_points.
-     * Contains a list of IPv4 addresses used for client side configuration.
+     * Output only. A list of IPv4 addresses used for client side configuration.
      *
      * Generated from protobuf field <code>repeated string access_points = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $access_points;
     /**
-     * Optional. Immutable. The name of the Google Compute Engine
+     * Optional. Immutable. The name of the Compute Engine
      * [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected.
      *
@@ -98,24 +84,45 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $network = '';
     /**
-     * Optional. Immutable. Contains the id of the allocated IP address range
-     * associated with the private service access connection for example,
-     * "test-default" associated with IP range 10.0.0.0/29. If no range id is
-     * provided all ranges will be considered.
+     * Optional. Immutable. The ID of the IP address range being used by the
+     * instance's VPC network. See [Configure a VPC
+     * network](https://cloud.google.com/parallelstore/docs/vpc#create_and_configure_the_vpc).
+     * If no ID is provided, all ranges are considered.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $reserved_ip_range = '';
     /**
-     * Output only. Immutable. Contains the id of the allocated IP address range
-     * associated with the private service access connection for example,
-     * "test-default" associated with IP range 10.0.0.0/29. This field is
-     * populated by the service and and contains the value currently used by the
-     * service.
+     * Output only. Immutable. The ID of the IP address range being used by the
+     * instance's VPC network. This field is populated by the service and contains
+     * the value currently used by the service.
      *
      * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $effective_reserved_ip_range = '';
+    /**
+     * Optional. Stripe level for files. Allowed values are:
+     * * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
+     *   files.
+     * * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *   involving a mix of small and large files.
+     * * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $file_stripe_level = 0;
+    /**
+     * Optional. Stripe level for directories. Allowed values are:
+     * * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
+     *   small number of files.
+     * * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *   involving a mix of small and large directories.
+     * * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
+     *   number of files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $directory_stripe_level = 0;
 
     /**
      * Constructor.
@@ -125,7 +132,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the instance, in the format
-     *           `projects/{project}/locations/{location}/instances/{instance_id}`
+     *           `projects/{project}/locations/{location}/instances/{instance_id}`.
      *     @type string $description
      *           Optional. The description of the instance. 2048 characters or less.
      *     @type int $state
@@ -137,45 +144,44 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Cloud Labels are a flexible and lightweight mechanism for
      *           organizing cloud resources into groups that reflect a customer's
-     *           organizational needs and deployment strategies. Cloud Labels can be used to
-     *           filter collections of resources. They can be used to control how resource
-     *           metrics are aggregated. And they can be used as arguments to policy
-     *           management rules (e.g. route, firewall, load balancing, etc.).
-     *            * Label keys must be between 1 and 63 characters long and must conform to
-     *              the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
-     *            * Label values must be between 0 and 63 characters long and must conform
-     *              to the regular expression `[a-z0-9_-]{0,63}`.
-     *            * No more than 64 labels can be associated with a given resource.
-     *           See https://goo.gl/xmQnxf for more information on and examples of labels.
-     *           If you plan to use labels in your own code, please note that additional
-     *           characters may be allowed in the future. Therefore, you are advised to use
-     *           an internal label representation, such as JSON, which doesn't rely upon
-     *           specific characters being disallowed.  For example, representing labels
-     *           as the string:  name + "_" + value  would prove problematic if we were to
-     *           allow "_" in a future release.
+     *           organizational needs and deployment strategies. See
+     *           https://cloud.google.com/resource-manager/docs/labels-overview for details.
      *     @type int|string $capacity_gib
-     *           Required. Immutable. Storage capacity of Parallelstore instance in
-     *           Gibibytes (GiB).
+     *           Required. Immutable. The instance's storage capacity in Gibibytes (GiB).
+     *           Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
+     *           12000, 16000, 20000, ...
      *     @type string $daos_version
-     *           Output only. The version of DAOS software running in the instance
+     *           Output only. The version of DAOS software running in the instance.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_points
-     *           Output only. List of access_points.
-     *           Contains a list of IPv4 addresses used for client side configuration.
+     *           Output only. A list of IPv4 addresses used for client side configuration.
      *     @type string $network
-     *           Optional. Immutable. The name of the Google Compute Engine
+     *           Optional. Immutable. The name of the Compute Engine
      *           [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected.
      *     @type string $reserved_ip_range
-     *           Optional. Immutable. Contains the id of the allocated IP address range
-     *           associated with the private service access connection for example,
-     *           "test-default" associated with IP range 10.0.0.0/29. If no range id is
-     *           provided all ranges will be considered.
+     *           Optional. Immutable. The ID of the IP address range being used by the
+     *           instance's VPC network. See [Configure a VPC
+     *           network](https://cloud.google.com/parallelstore/docs/vpc#create_and_configure_the_vpc).
+     *           If no ID is provided, all ranges are considered.
      *     @type string $effective_reserved_ip_range
-     *           Output only. Immutable. Contains the id of the allocated IP address range
-     *           associated with the private service access connection for example,
-     *           "test-default" associated with IP range 10.0.0.0/29. This field is
-     *           populated by the service and and contains the value currently used by the
-     *           service.
+     *           Output only. Immutable. The ID of the IP address range being used by the
+     *           instance's VPC network. This field is populated by the service and contains
+     *           the value currently used by the service.
+     *     @type int $file_stripe_level
+     *           Optional. Stripe level for files. Allowed values are:
+     *           * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
+     *             files.
+     *           * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *             involving a mix of small and large files.
+     *           * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
+     *     @type int $directory_stripe_level
+     *           Optional. Stripe level for directories. Allowed values are:
+     *           * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
+     *             small number of files.
+     *           * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *             involving a mix of small and large directories.
+     *           * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
+     *             number of files.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,7 +191,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the instance, in the format
-     * `projects/{project}/locations/{location}/instances/{instance_id}`
+     * `projects/{project}/locations/{location}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -197,7 +203,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the instance, in the format
-     * `projects/{project}/locations/{location}/instances/{instance_id}`
+     * `projects/{project}/locations/{location}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -338,22 +344,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Cloud Labels are a flexible and lightweight mechanism for
      * organizing cloud resources into groups that reflect a customer's
-     * organizational needs and deployment strategies. Cloud Labels can be used to
-     * filter collections of resources. They can be used to control how resource
-     * metrics are aggregated. And they can be used as arguments to policy
-     * management rules (e.g. route, firewall, load balancing, etc.).
-     *  * Label keys must be between 1 and 63 characters long and must conform to
-     *    the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
-     *  * Label values must be between 0 and 63 characters long and must conform
-     *    to the regular expression `[a-z0-9_-]{0,63}`.
-     *  * No more than 64 labels can be associated with a given resource.
-     * See https://goo.gl/xmQnxf for more information on and examples of labels.
-     * If you plan to use labels in your own code, please note that additional
-     * characters may be allowed in the future. Therefore, you are advised to use
-     * an internal label representation, such as JSON, which doesn't rely upon
-     * specific characters being disallowed.  For example, representing labels
-     * as the string:  name + "_" + value  would prove problematic if we were to
-     * allow "_" in a future release.
+     * organizational needs and deployment strategies. See
+     * https://cloud.google.com/resource-manager/docs/labels-overview for details.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -366,22 +358,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Cloud Labels are a flexible and lightweight mechanism for
      * organizing cloud resources into groups that reflect a customer's
-     * organizational needs and deployment strategies. Cloud Labels can be used to
-     * filter collections of resources. They can be used to control how resource
-     * metrics are aggregated. And they can be used as arguments to policy
-     * management rules (e.g. route, firewall, load balancing, etc.).
-     *  * Label keys must be between 1 and 63 characters long and must conform to
-     *    the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
-     *  * Label values must be between 0 and 63 characters long and must conform
-     *    to the regular expression `[a-z0-9_-]{0,63}`.
-     *  * No more than 64 labels can be associated with a given resource.
-     * See https://goo.gl/xmQnxf for more information on and examples of labels.
-     * If you plan to use labels in your own code, please note that additional
-     * characters may be allowed in the future. Therefore, you are advised to use
-     * an internal label representation, such as JSON, which doesn't rely upon
-     * specific characters being disallowed.  For example, representing labels
-     * as the string:  name + "_" + value  would prove problematic if we were to
-     * allow "_" in a future release.
+     * organizational needs and deployment strategies. See
+     * https://cloud.google.com/resource-manager/docs/labels-overview for details.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -396,8 +374,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Storage capacity of Parallelstore instance in
-     * Gibibytes (GiB).
+     * Required. Immutable. The instance's storage capacity in Gibibytes (GiB).
+     * Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
+     * 12000, 16000, 20000, ...
      *
      * Generated from protobuf field <code>int64 capacity_gib = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -408,8 +387,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. Storage capacity of Parallelstore instance in
-     * Gibibytes (GiB).
+     * Required. Immutable. The instance's storage capacity in Gibibytes (GiB).
+     * Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
+     * 12000, 16000, 20000, ...
      *
      * Generated from protobuf field <code>int64 capacity_gib = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var
@@ -424,7 +404,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The version of DAOS software running in the instance
+     * Output only. The version of DAOS software running in the instance.
      *
      * Generated from protobuf field <code>string daos_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -435,7 +415,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The version of DAOS software running in the instance
+     * Output only. The version of DAOS software running in the instance.
      *
      * Generated from protobuf field <code>string daos_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -450,8 +430,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of access_points.
-     * Contains a list of IPv4 addresses used for client side configuration.
+     * Output only. A list of IPv4 addresses used for client side configuration.
      *
      * Generated from protobuf field <code>repeated string access_points = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -462,8 +441,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of access_points.
-     * Contains a list of IPv4 addresses used for client side configuration.
+     * Output only. A list of IPv4 addresses used for client side configuration.
      *
      * Generated from protobuf field <code>repeated string access_points = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -478,7 +456,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. The name of the Google Compute Engine
+     * Optional. Immutable. The name of the Compute Engine
      * [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected.
      *
@@ -491,7 +469,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. The name of the Google Compute Engine
+     * Optional. Immutable. The name of the Compute Engine
      * [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected.
      *
@@ -508,10 +486,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Contains the id of the allocated IP address range
-     * associated with the private service access connection for example,
-     * "test-default" associated with IP range 10.0.0.0/29. If no range id is
-     * provided all ranges will be considered.
+     * Optional. Immutable. The ID of the IP address range being used by the
+     * instance's VPC network. See [Configure a VPC
+     * network](https://cloud.google.com/parallelstore/docs/vpc#create_and_configure_the_vpc).
+     * If no ID is provided, all ranges are considered.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -522,10 +500,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Contains the id of the allocated IP address range
-     * associated with the private service access connection for example,
-     * "test-default" associated with IP range 10.0.0.0/29. If no range id is
-     * provided all ranges will be considered.
+     * Optional. Immutable. The ID of the IP address range being used by the
+     * instance's VPC network. See [Configure a VPC
+     * network](https://cloud.google.com/parallelstore/docs/vpc#create_and_configure_the_vpc).
+     * If no ID is provided, all ranges are considered.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -540,11 +518,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. Contains the id of the allocated IP address range
-     * associated with the private service access connection for example,
-     * "test-default" associated with IP range 10.0.0.0/29. This field is
-     * populated by the service and and contains the value currently used by the
-     * service.
+     * Output only. Immutable. The ID of the IP address range being used by the
+     * instance's VPC network. This field is populated by the service and contains
+     * the value currently used by the service.
      *
      * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -555,11 +531,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. Contains the id of the allocated IP address range
-     * associated with the private service access connection for example,
-     * "test-default" associated with IP range 10.0.0.0/29. This field is
-     * populated by the service and and contains the value currently used by the
-     * service.
+     * Output only. Immutable. The ID of the IP address range being used by the
+     * instance's VPC network. This field is populated by the service and contains
+     * the value currently used by the service.
      *
      * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -569,6 +543,80 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->effective_reserved_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Stripe level for files. Allowed values are:
+     * * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
+     *   files.
+     * * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *   involving a mix of small and large files.
+     * * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFileStripeLevel()
+    {
+        return $this->file_stripe_level;
+    }
+
+    /**
+     * Optional. Stripe level for files. Allowed values are:
+     * * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size
+     *   files.
+     * * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *   involving a mix of small and large files.
+     * * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.FileStripeLevel file_stripe_level = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFileStripeLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\FileStripeLevel::class);
+        $this->file_stripe_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Stripe level for directories. Allowed values are:
+     * * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
+     *   small number of files.
+     * * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *   involving a mix of small and large directories.
+     * * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
+     *   number of files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDirectoryStripeLevel()
+    {
+        return $this->directory_stripe_level;
+    }
+
+    /**
+     * Optional. Stripe level for directories. Allowed values are:
+     * * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a
+     *   small number of files.
+     * * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads
+     *   involving a mix of small and large directories.
+     * * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
+     *   number of files.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDirectoryStripeLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\DirectoryStripeLevel::class);
+        $this->directory_stripe_level = $var;
 
         return $this;
     }

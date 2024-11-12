@@ -21,7 +21,7 @@ class CloudStoragePath extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

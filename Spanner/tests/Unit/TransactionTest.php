@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\Serializer;
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\TimeTrait;
@@ -185,6 +186,19 @@ class TransactionTest extends TestCase
 
         $res = $this->transaction->executeUpdate($sql, ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]);
         $this->assertEquals(1, $res);
+    }
+
+    public function testExecuteUpdateWithExcludeTxnFromChangeStreamsThrowsException()
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage(
+            'The excludeTxnFromChangeStreams option cannot be set for individual DML requests'
+        );
+
+        $sql = 'UPDATE foo SET bar = @bar';
+        $this->transaction->executeUpdate($sql, [
+           'transaction' => ['begin' => ['excludeTxnFromChangeStreams' => true]]
+        ]);
     }
 
     public function testDmlSeqno()

@@ -23,32 +23,32 @@ class PatchJobInstanceDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The unique identifier for the instance. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>string instance_system_id = 2;</code>
      */
-    private $instance_system_id = '';
+    protected $instance_system_id = '';
     /**
      * Current state of instance patch.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Instance.PatchState state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * If the patch fails, this field provides the reason.
      *
      * Generated from protobuf field <code>string failure_reason = 4;</code>
      */
-    private $failure_reason = '';
+    protected $failure_reason = '';
     /**
      * The number of times the agent that the agent attempts to apply the patch.
      *
      * Generated from protobuf field <code>int64 attempt_count = 5;</code>
      */
-    private $attempt_count = 0;
+    protected $attempt_count = 0;
 
     /**
      * Constructor.

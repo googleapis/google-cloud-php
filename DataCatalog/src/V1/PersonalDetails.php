@@ -20,13 +20,13 @@ class PersonalDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool starred = 1;</code>
      */
-    private $starred = false;
+    protected $starred = false;
     /**
      * Set if the entry is starred; unset otherwise.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp star_time = 2;</code>
      */
-    private $star_time = null;
+    protected $star_time = null;
 
     /**
      * Constructor.

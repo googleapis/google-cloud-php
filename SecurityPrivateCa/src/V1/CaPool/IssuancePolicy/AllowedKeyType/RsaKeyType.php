@@ -24,7 +24,7 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 min_modulus_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $min_modulus_size = 0;
+    protected $min_modulus_size = 0;
     /**
      * Optional. The maximum allowed RSA modulus size (inclusive), in bits.
      * If this is not set, or if set to zero, the service will not enforce
@@ -32,7 +32,7 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_modulus_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_modulus_size = 0;
+    protected $max_modulus_size = 0;
 
     /**
      * Constructor.

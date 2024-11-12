@@ -20,7 +20,7 @@ class TextExtractionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float au_prc = 1;</code>
      */
-    private $au_prc = 0.0;
+    protected $au_prc = 0.0;
     /**
      * Output only. Metrics that have confidence thresholds.
      * Precision-recall curve can be derived from it.

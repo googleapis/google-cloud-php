@@ -35,7 +35,7 @@ class NfsExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.NfsExportOptions.AccessMode access_mode = 2;</code>
      */
-    private $access_mode = 0;
+    protected $access_mode = 0;
     /**
      * Either NO_ROOT_SQUASH, for allowing root access on the exported directory,
      * or ROOT_SQUASH, for not allowing root access. The default is
@@ -43,7 +43,7 @@ class NfsExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.NfsExportOptions.SquashMode squash_mode = 3;</code>
      */
-    private $squash_mode = 0;
+    protected $squash_mode = 0;
     /**
      * An integer representing the anonymous user id with a default value of
      * 65534.
@@ -52,7 +52,7 @@ class NfsExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 anon_uid = 4;</code>
      */
-    private $anon_uid = 0;
+    protected $anon_uid = 0;
     /**
      * An integer representing the anonymous group id with a default value of
      * 65534.
@@ -61,7 +61,7 @@ class NfsExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 anon_gid = 5;</code>
      */
-    private $anon_gid = 0;
+    protected $anon_gid = 0;
 
     /**
      * Constructor.

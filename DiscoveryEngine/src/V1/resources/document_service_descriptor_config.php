@@ -61,6 +61,18 @@ return [
                     ],
                 ],
             ],
+            'BatchGetDocumentsMetadata' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDocument' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DiscoveryEngine\V1\Document',
@@ -133,6 +145,7 @@ return [
             'templateMap' => [
                 'branch' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}',
                 'document' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}',
+                'fhirResource' => 'projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}',
                 'fhirStore' => 'projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}',
                 'projectLocationCollectionDataStoreBranch' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}',
                 'projectLocationCollectionDataStoreBranchDocument' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}',

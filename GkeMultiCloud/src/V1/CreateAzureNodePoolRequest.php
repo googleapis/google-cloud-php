@@ -25,14 +25,14 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The specification of the
      * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $azure_node_pool = null;
+    protected $azure_node_pool = null;
     /**
      * Required. A client provided ID the resource. Must be unique within the
      * parent resource.
@@ -44,14 +44,14 @@ class CreateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string azure_node_pool_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $azure_node_pool_id = '';
+    protected $azure_node_pool_id = '';
     /**
      * If set, only validate the request, but do not actually create the node
      * pool.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                       $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]

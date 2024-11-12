@@ -30,18 +30,6 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
      */
     protected $backoff_mode = 0;
     /**
-     * Output only. The phase ID of the phase that includes the job being retried.
-     *
-     * Generated from protobuf field <code>string phase_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $phase_id = '';
-    /**
-     * Output only. The job ID for the Job to retry.
-     *
-     * Generated from protobuf field <code>string job_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $job_id = '';
-    /**
      * Output only. Detail of a retry action.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RetryAttempt attempts = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -59,10 +47,6 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
      *     @type int $backoff_mode
      *           Output only. The pattern of how the wait time of the retry attempt is
      *           calculated.
-     *     @type string $phase_id
-     *           Output only. The phase ID of the phase that includes the job being retried.
-     *     @type string $job_id
-     *           Output only. The job ID for the Job to retry.
      *     @type array<\Google\Cloud\Deploy\V1\RetryAttempt>|\Google\Protobuf\Internal\RepeatedField $attempts
      *           Output only. Detail of a retry action.
      * }
@@ -122,58 +106,6 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\BackoffMode::class);
         $this->backoff_mode = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. The phase ID of the phase that includes the job being retried.
-     *
-     * Generated from protobuf field <code>string phase_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
-     */
-    public function getPhaseId()
-    {
-        return $this->phase_id;
-    }
-
-    /**
-     * Output only. The phase ID of the phase that includes the job being retried.
-     *
-     * Generated from protobuf field <code>string phase_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setPhaseId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->phase_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. The job ID for the Job to retry.
-     *
-     * Generated from protobuf field <code>string job_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
-     */
-    public function getJobId()
-    {
-        return $this->job_id;
-    }
-
-    /**
-     * Output only. The job ID for the Job to retry.
-     *
-     * Generated from protobuf field <code>string job_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setJobId($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->job_id = $var;
 
         return $this;
     }

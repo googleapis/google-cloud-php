@@ -59,6 +59,4 @@ class TransitEncryptionMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TransitEncryptionMode::class, \Google\Cloud\Redis\V1\Instance_TransitEncryptionMode::class);
 

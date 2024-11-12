@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class CompanyServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CompanyServiceClient */
@@ -104,9 +106,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $company->setDisplayName($companyDisplayName);
         $companyExternalId = 'companyExternalId855180963';
         $company->setExternalId($companyExternalId);
-        $request = (new CreateCompanyRequest())
-            ->setParent($formattedParent)
-            ->setCompany($company);
+        $request = (new CreateCompanyRequest())->setParent($formattedParent)->setCompany($company);
         $response = $gapicClient->createCompany($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -132,12 +132,15 @@ class CompanyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
@@ -146,9 +149,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $company->setDisplayName($companyDisplayName);
         $companyExternalId = 'companyExternalId855180963';
         $company->setExternalId($companyExternalId);
-        $request = (new CreateCompanyRequest())
-            ->setParent($formattedParent)
-            ->setCompany($company);
+        $request = (new CreateCompanyRequest())->setParent($formattedParent)->setCompany($company);
         try {
             $gapicClient->createCompany($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -175,8 +176,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $request = (new DeleteCompanyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCompanyRequest())->setName($formattedName);
         $gapicClient->deleteCompany($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -199,17 +199,19 @@ class CompanyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $request = (new DeleteCompanyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCompanyRequest())->setName($formattedName);
         try {
             $gapicClient->deleteCompany($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -256,8 +258,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $request = (new GetCompanyRequest())
-            ->setName($formattedName);
+        $request = (new GetCompanyRequest())->setName($formattedName);
         $response = $gapicClient->getCompany($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -281,17 +282,19 @@ class CompanyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
-        $request = (new GetCompanyRequest())
-            ->setName($formattedName);
+        $request = (new GetCompanyRequest())->setName($formattedName);
         try {
             $gapicClient->getCompany($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -316,17 +319,14 @@ class CompanyServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $companiesElement = new Company();
-        $companies = [
-            $companiesElement,
-        ];
+        $companies = [$companiesElement];
         $expectedResponse = new ListCompaniesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCompanies($companies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new ListCompaniesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCompaniesRequest())->setParent($formattedParent);
         $response = $gapicClient->listCompanies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -353,17 +353,19 @@ class CompanyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->tenantName('[PROJECT]', '[TENANT]');
-        $request = (new ListCompaniesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCompaniesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCompanies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -414,8 +416,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $company->setDisplayName($companyDisplayName);
         $companyExternalId = 'companyExternalId855180963';
         $company->setExternalId($companyExternalId);
-        $request = (new UpdateCompanyRequest())
-            ->setCompany($company);
+        $request = (new UpdateCompanyRequest())->setCompany($company);
         $response = $gapicClient->updateCompany($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -439,12 +440,15 @@ class CompanyServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $company = new Company();
@@ -452,8 +456,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $company->setDisplayName($companyDisplayName);
         $companyExternalId = 'companyExternalId855180963';
         $company->setExternalId($companyExternalId);
-        $request = (new UpdateCompanyRequest())
-            ->setCompany($company);
+        $request = (new UpdateCompanyRequest())->setCompany($company);
         try {
             $gapicClient->updateCompany($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -505,9 +508,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $company->setDisplayName($companyDisplayName);
         $companyExternalId = 'companyExternalId855180963';
         $company->setExternalId($companyExternalId);
-        $request = (new CreateCompanyRequest())
-            ->setParent($formattedParent)
-            ->setCompany($company);
+        $request = (new CreateCompanyRequest())->setParent($formattedParent)->setCompany($company);
         $response = $gapicClient->createCompanyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

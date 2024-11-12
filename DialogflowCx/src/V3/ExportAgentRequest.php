@@ -18,7 +18,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the agent to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,8 +46,8 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
     protected $data_format = 0;
     /**
      * Optional. Environment name. If not set, draft environment is assumed.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -73,7 +73,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the agent to export.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $agent_uri
      *           Optional. The [Google Cloud
      *           Storage](https://cloud.google.com/storage/docs/) URI to export the agent
@@ -89,8 +89,8 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      *           is assumed.
      *     @type string $environment
      *           Optional. Environment name. If not set, draft environment is assumed.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\ExportAgentRequest\GitDestination $git_destination
      *           Optional. The Git branch to export the agent to.
      *     @type bool $include_bigquery_export_settings
@@ -104,7 +104,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the agent to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -116,7 +116,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the agent to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -202,8 +202,8 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Environment name. If not set, draft environment is assumed.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -215,8 +215,8 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Environment name. If not set, draft environment is assumed.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string environment = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -23,7 +23,7 @@ class AccessReview extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 1;</code>
      */
-    private $group = '';
+    protected $group = '';
     /**
      * Namespace of the action being requested. Currently, there is no
      * distinction between no namespace and all namespaces.  Both
@@ -31,38 +31,38 @@ class AccessReview extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ns = 2;</code>
      */
-    private $ns = '';
+    protected $ns = '';
     /**
      * The name of the resource being requested. Empty means all.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The optional resource type requested. "*" means all.
      *
      * Generated from protobuf field <code>string resource = 4;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The optional subresource type.
      *
      * Generated from protobuf field <code>string subresource = 5;</code>
      */
-    private $subresource = '';
+    protected $subresource = '';
     /**
      * A Kubernetes resource API verb, like get, list, watch, create, update,
      * delete, proxy. "*" means all.
      *
      * Generated from protobuf field <code>string verb = 6;</code>
      */
-    private $verb = '';
+    protected $verb = '';
     /**
      * The API version of the resource. "*" means all.
      *
      * Generated from protobuf field <code>string version = 7;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.
@@ -284,6 +284,4 @@ class AccessReview extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AccessReview::class, \Google\Cloud\SecurityCenter\V2\Kubernetes_AccessReview::class);
 

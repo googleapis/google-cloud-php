@@ -22,7 +22,7 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 1;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. BigQuery usage statistics over each of the predefined time
      * ranges.
@@ -43,7 +43,7 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 favorite_count = 4;</code>
      */
-    private $favorite_count = null;
+    protected $favorite_count = null;
 
     /**
      * Constructor.

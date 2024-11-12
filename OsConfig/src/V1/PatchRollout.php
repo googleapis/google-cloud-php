@@ -21,7 +21,7 @@ class PatchRollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout.Mode mode = 1;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
     /**
      * The maximum number (or percentage) of VMs per zone to disrupt at any given
      * moment. The number of VMs calculated from multiplying the percentage by the
@@ -45,7 +45,7 @@ class PatchRollout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.FixedOrPercent disruption_budget = 2;</code>
      */
-    private $disruption_budget = null;
+    protected $disruption_budget = null;
 
     /**
      * Constructor.

@@ -23,13 +23,13 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The phrase matcher resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.PhraseMatcher phrase_matcher = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phrase_matcher = null;
+    protected $phrase_matcher = null;
 
     /**
      * @param string                                               $parent        Required. The parent resource of the phrase matcher. Required. The location

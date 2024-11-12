@@ -63,14 +63,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEkmConnectionsAsync(GetEkmConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartnerAsync(GetPartnerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartnerPermissionsAsync(GetPartnerPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccessApprovalRequestsAsync(ListAccessApprovalRequestsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EkmConnections> getEkmConnectionsAsync(GetEkmConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Partner> getPartnerAsync(GetPartnerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PartnerPermissions> getPartnerPermissionsAsync(GetPartnerPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccessApprovalRequestsAsync(ListAccessApprovalRequestsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
  */
 final class CloudControlsPartnerCoreClient
 {

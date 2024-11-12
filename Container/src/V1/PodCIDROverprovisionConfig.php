@@ -22,7 +22,7 @@ class PodCIDROverprovisionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable = 1;</code>
      */
-    private $disable = false;
+    protected $disable = false;
 
     /**
      * Constructor.

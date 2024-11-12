@@ -22,14 +22,14 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file = 1;</code>
      */
-    private $file = '';
+    protected $file = '';
     /**
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
      *
      * Generated from protobuf field <code>int64 line = 2;</code>
      */
-    private $line = 0;
+    protected $line = 0;
     /**
      * Optional. Human-readable name of the function or method being invoked, with
      * optional context such as the class or package name. This information may be
@@ -40,7 +40,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string function = 3;</code>
      */
-    private $function = '';
+    protected $function = '';
 
     /**
      * Constructor.

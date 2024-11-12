@@ -27,7 +27,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.
@@ -93,6 +93,4 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GcsDestination::class, \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig_GcsDestination::class);
 

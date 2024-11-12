@@ -20,7 +20,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float quality_score = 1;</code>
      */
-    private $quality_score = 0.0;
+    protected $quality_score = 0.0;
     /**
      * A list of detected defects.
      *

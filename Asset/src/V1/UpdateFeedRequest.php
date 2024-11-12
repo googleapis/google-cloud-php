@@ -24,7 +24,7 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Feed feed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feed = null;
+    protected $feed = null;
     /**
      * Required. Only updates the `feed` fields indicated by this mask.
      * The field mask must not be empty, and it must not contain fields that
@@ -32,7 +32,7 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Asset\V1\Feed $feed Required. The new values of feed details. It must match an existing feed

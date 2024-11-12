@@ -66,6 +66,4 @@ class Mode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Mode::class, \Google\Cloud\DataCatalog\V1\RoutineSpec_Argument_Mode::class);
 

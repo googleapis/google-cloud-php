@@ -25,7 +25,7 @@ class TokenConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_parameter = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query_parameter = '';
+    protected $query_parameter = '';
 
     /**
      * Constructor.

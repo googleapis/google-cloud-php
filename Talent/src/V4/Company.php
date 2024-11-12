@@ -27,13 +27,13 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the company, for example, "Google LLC".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Client side company identifier, used to uniquely identify the
      * company.
@@ -41,13 +41,13 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $external_id = '';
+    protected $external_id = '';
     /**
      * The employer's company size.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompanySize size = 4;</code>
      */
-    private $size = 0;
+    protected $size = 0;
     /**
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
@@ -57,7 +57,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      */
-    private $headquarters_address = '';
+    protected $headquarters_address = '';
     /**
      * Set to true if it is the hiring agency that post jobs for other
      * employers.
@@ -65,7 +65,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool hiring_agency = 6;</code>
      */
-    private $hiring_agency = false;
+    protected $hiring_agency = false;
     /**
      * Equal Employment Opportunity legal disclaimer text to be
      * associated with all jobs, and typically to be displayed in all
@@ -74,7 +74,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string eeo_text = 7;</code>
      */
-    private $eeo_text = '';
+    protected $eeo_text = '';
     /**
      * The URI representing the company's primary web site or home page,
      * for example, "https://www.google.com".
@@ -82,20 +82,20 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string website_uri = 8;</code>
      */
-    private $website_uri = '';
+    protected $website_uri = '';
     /**
      * The URI to employer's career site or careers page on the employer's web
      * site, for example, "https://careers.google.com".
      *
      * Generated from protobuf field <code>string career_site_uri = 9;</code>
      */
-    private $career_site_uri = '';
+    protected $career_site_uri = '';
     /**
      * A URI that hosts the employer's company logo.
      *
      * Generated from protobuf field <code>string image_uri = 10;</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * This field is deprecated. Please set the searchability of the custom
      * attribute in the
@@ -118,7 +118,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Company.DerivedInfo derived_info = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $derived_info = null;
+    protected $derived_info = null;
     /**
      * Output only. Indicates whether a company is flagged to be suspended from
      * public availability by the service when job content appears suspicious,
@@ -126,7 +126,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool suspended = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $suspended = false;
+    protected $suspended = false;
 
     /**
      * Constructor.

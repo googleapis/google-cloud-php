@@ -29,7 +29,7 @@ class ResourceVisibility
     /**
      * May contain public items.
      * For example, if a Cloud Storage bucket has uniform bucket level access
-     * disabled, some objects inside it may be public.
+     * disabled, some objects inside it may be public, but none are known yet.
      *
      * Generated from protobuf enum <code>RESOURCE_VISIBILITY_INCONCLUSIVE = 15;</code>
      */

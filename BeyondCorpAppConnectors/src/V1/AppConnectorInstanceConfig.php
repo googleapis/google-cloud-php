@@ -22,27 +22,27 @@ class AppConnectorInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 sequence_number = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sequence_number = 0;
+    protected $sequence_number = 0;
     /**
      * The SLM instance agent configuration.
      *
      * Generated from protobuf field <code>.google.protobuf.Any instance_config = 2;</code>
      */
-    private $instance_config = null;
+    protected $instance_config = null;
     /**
      * NotificationConfig defines the notification mechanism that the remote
      * instance should subscribe to in order to receive notification.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnectors.v1.NotificationConfig notification_config = 3;</code>
      */
-    private $notification_config = null;
+    protected $notification_config = null;
     /**
      * ImageConfig defines the GCR images to run for the remote agent's control
      * plane.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnectors.v1.ImageConfig image_config = 4;</code>
      */
-    private $image_config = null;
+    protected $image_config = null;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Mask of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Only fields specified in update_mask are updated.
      * If you specify a field in the update_mask but don't specify its value here
@@ -40,7 +40,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.Feature resource = 3;</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -56,7 +56,7 @@ class UpdateFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                          $name       Required. The Feature resource name in the format

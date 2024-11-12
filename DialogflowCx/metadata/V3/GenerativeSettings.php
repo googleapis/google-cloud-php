@@ -18,7 +18,7 @@ class GenerativeSettings
         \GPBMetadata\Google\Cloud\Dialogflow\Cx\V3\SafetySettings::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”	
+–	
 7google/cloud/dialogflow/cx/v3/generative_settings.protogoogle.cloud.dialogflow.cx.v33google/cloud/dialogflow/cx/v3/safety_settings.proto"˚
 GenerativeSettings
 name (	]
@@ -40,8 +40,8 @@ class GenerativeSettings
 business_description (	
 agent_scope (	#
 disable_data_store_fallback (:ÅÍA~
-1dialogflow.googleapis.com/AgentGenerativeSettingsIprojects/{project}/locations/{location}/agents/{agent}/generativeSettingsBΩ
-!com.google.cloud.dialogflow.cx.v3BGenerativeSettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¯¢DF™Google.Cloud.Dialogflow.Cx.V3Í!Google::Cloud::Dialogflow::CX::V3bproto3'
+1dialogflow.googleapis.com/AgentGenerativeSettingsIprojects/{project}/locations/{location}/agents/{agent}/generativeSettingsB∫
+!com.google.cloud.dialogflow.cx.v3BGenerativeSettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¢DF™Google.Cloud.Dialogflow.Cx.V3Í!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 
         static::$is_initialized = true;

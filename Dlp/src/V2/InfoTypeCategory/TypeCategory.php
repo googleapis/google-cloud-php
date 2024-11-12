@@ -99,6 +99,4 @@ class TypeCategory
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TypeCategory::class, \Google\Cloud\Dlp\V2\InfoTypeCategory_TypeCategory::class);
 

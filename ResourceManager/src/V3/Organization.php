@@ -23,7 +23,7 @@ class Organization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. A human-readable string that refers to the organization in the
      * Google Cloud Console. This string is set by the server and cannot be
@@ -32,31 +32,31 @@ class Organization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The organization's current lifecycle state.
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Organization.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Timestamp when the Organization was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when the Organization was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Timestamp when the Organization was requested for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. A checksum computed by the server based on the current value
      * of the Organization resource. This may be sent on update and delete
@@ -64,7 +64,7 @@ class Organization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     protected $owner;
 
     /**

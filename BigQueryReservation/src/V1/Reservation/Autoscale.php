@@ -21,13 +21,13 @@ class Autoscale extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 current_slots = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_slots = 0;
+    protected $current_slots = 0;
     /**
      * Number of slots to be scaled when needed.
      *
      * Generated from protobuf field <code>int64 max_slots = 2;</code>
      */
-    private $max_slots = 0;
+    protected $max_slots = 0;
 
     /**
      * Constructor.

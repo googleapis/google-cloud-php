@@ -30,6 +30,8 @@ use Google\Cloud\ContactCenterInsights\V1\CreateConversationRequest;
 
 /**
  * Creates a conversation.
+ * Note that this method does not support audio transcription or redaction.
+ * Use `conversations.upload` instead.
  *
  * @param string $formattedParent The parent resource of the conversation. Please see
  *                                {@see ContactCenterInsightsClient::locationName()} for help formatting this field.

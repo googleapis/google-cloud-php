@@ -22,7 +22,7 @@ class EntityMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_entity = 1;</code>
      */
-    private $source_entity = '';
+    protected $source_entity = '';
     /**
      * Target entity full name.
      * The draft entity can also include a column, index or constraint using the
@@ -30,19 +30,19 @@ class EntityMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string draft_entity = 2;</code>
      */
-    private $draft_entity = '';
+    protected $draft_entity = '';
     /**
      * Type of source entity.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType source_type = 4;</code>
      */
-    private $source_type = 0;
+    protected $source_type = 0;
     /**
      * Type of draft entity.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType draft_type = 5;</code>
      */
-    private $draft_type = 0;
+    protected $draft_type = 0;
     /**
      * Entity mapping log entries.
      * Multiple rules can be effective and contribute changes to a converted

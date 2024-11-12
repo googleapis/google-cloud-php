@@ -66,6 +66,12 @@ class MetricSource
      * Generated from protobuf enum <code>HIVEMETASTORE = 7;</code>
      */
     const HIVEMETASTORE = 7;
+    /**
+     * flink metric source
+     *
+     * Generated from protobuf enum <code>FLINK = 8;</code>
+     */
+    const FLINK = 8;
 
     private static $valueToName = [
         self::METRIC_SOURCE_UNSPECIFIED => 'METRIC_SOURCE_UNSPECIFIED',
@@ -76,6 +82,7 @@ class MetricSource
         self::SPARK_HISTORY_SERVER => 'SPARK_HISTORY_SERVER',
         self::HIVESERVER2 => 'HIVESERVER2',
         self::HIVEMETASTORE => 'HIVEMETASTORE',
+        self::FLINK => 'FLINK',
     ];
 
     public static function name($value)
@@ -99,6 +106,4 @@ class MetricSource
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricSource::class, \Google\Cloud\Dataproc\V1\DataprocMetricConfig_MetricSource::class);
 

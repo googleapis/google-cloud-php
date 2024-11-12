@@ -21,7 +21,7 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_database = 1;</code>
      */
-    private $default_database = '';
+    protected $default_database = '';
     /**
      * The schema search path. When SQL objects are missing schema name,
      * translation engine will search through this list to find the value.
@@ -29,6 +29,17 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string schema_search_path = 2;</code>
      */
     private $schema_search_path;
+    /**
+     * Optional. Expects a valid BigQuery dataset ID that exists, e.g.,
+     * project-123.metadata_store_123.  If specified, translation will search and
+     * read the required schema information from a metadata store in this dataset.
+     * If metadata store doesn't exist, translation will parse the metadata file
+     * and upload the schema info to a temp table in the dataset to speed up
+     * future translation jobs.
+     *
+     * Generated from protobuf field <code>string metadata_store_dataset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $metadata_store_dataset = '';
 
     /**
      * Constructor.
@@ -42,6 +53,13 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $schema_search_path
      *           The schema search path. When SQL objects are missing schema name,
      *           translation engine will search through this list to find the value.
+     *     @type string $metadata_store_dataset
+     *           Optional. Expects a valid BigQuery dataset ID that exists, e.g.,
+     *           project-123.metadata_store_123.  If specified, translation will search and
+     *           read the required schema information from a metadata store in this dataset.
+     *           If metadata store doesn't exist, translation will parse the metadata file
+     *           and upload the schema info to a temp table in the dataset to speed up
+     *           future translation jobs.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +119,42 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->schema_search_path = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Expects a valid BigQuery dataset ID that exists, e.g.,
+     * project-123.metadata_store_123.  If specified, translation will search and
+     * read the required schema information from a metadata store in this dataset.
+     * If metadata store doesn't exist, translation will parse the metadata file
+     * and upload the schema info to a temp table in the dataset to speed up
+     * future translation jobs.
+     *
+     * Generated from protobuf field <code>string metadata_store_dataset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMetadataStoreDataset()
+    {
+        return $this->metadata_store_dataset;
+    }
+
+    /**
+     * Optional. Expects a valid BigQuery dataset ID that exists, e.g.,
+     * project-123.metadata_store_123.  If specified, translation will search and
+     * read the required schema information from a metadata store in this dataset.
+     * If metadata store doesn't exist, translation will parse the metadata file
+     * and upload the schema info to a temp table in the dataset to speed up
+     * future translation jobs.
+     *
+     * Generated from protobuf field <code>string metadata_store_dataset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataStoreDataset($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_store_dataset = $var;
 
         return $this;
     }

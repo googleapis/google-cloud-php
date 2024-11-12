@@ -17,11 +17,11 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * The location ID. For supported locations, refer to [regional and
-     * multi-regional support](https://cloud.google.com/document-ai/docs/regions).
+     * multi-regional support](/document-ai/docs/regions).
      *
      * Generated from protobuf field <code>string location_id = 1;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * Constructor.
@@ -31,7 +31,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type string $location_id
      *           The location ID. For supported locations, refer to [regional and
-     *           multi-regional support](https://cloud.google.com/document-ai/docs/regions).
+     *           multi-regional support](/document-ai/docs/regions).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The location ID. For supported locations, refer to [regional and
-     * multi-regional support](https://cloud.google.com/document-ai/docs/regions).
+     * multi-regional support](/document-ai/docs/regions).
      *
      * Generated from protobuf field <code>string location_id = 1;</code>
      * @return string
@@ -53,7 +53,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The location ID. For supported locations, refer to [regional and
-     * multi-regional support](https://cloud.google.com/document-ai/docs/regions).
+     * multi-regional support](/document-ai/docs/regions).
      *
      * Generated from protobuf field <code>string location_id = 1;</code>
      * @param string $var

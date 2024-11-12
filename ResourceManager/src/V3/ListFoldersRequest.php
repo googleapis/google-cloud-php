@@ -26,7 +26,7 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of folders to return in the response. The
      * server can return fewer folders than requested. If unspecified, server
@@ -34,14 +34,14 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A pagination token returned from a previous call to `ListFolders`
      * that indicates where this listing should continue from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Controls whether folders in the
      * [DELETE_REQUESTED][google.cloud.resourcemanager.v3.Folder.State.DELETE_REQUESTED]
@@ -49,7 +49,7 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool show_deleted = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * @param string $parent Required. The name of the parent resource whose folders are being listed.

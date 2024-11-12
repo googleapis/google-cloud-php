@@ -39,5 +39,9 @@ class Type
 
     const NETWORK_REGIONAL = 'NETWORK_REGIONAL';
 
+    const SYSTEM_GLOBAL = 'SYSTEM_GLOBAL';
+
+    const SYSTEM_REGIONAL = 'SYSTEM_REGIONAL';
+
     const UNSPECIFIED = 'UNSPECIFIED';
 }

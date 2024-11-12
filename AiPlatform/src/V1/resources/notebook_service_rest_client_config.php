@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CreateNotebookExecutionJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookExecutionJobs',
+                'body' => 'notebook_execution_job',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateNotebookRuntimeTemplate' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookRuntimeTemplates',
@@ -43,6 +55,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNotebookExecutionJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookExecutionJobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -61,6 +84,17 @@ return [
             'DeleteNotebookRuntimeTemplate' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNotebookExecutionJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookExecutionJobs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -91,6 +125,17 @@ return [
                     ],
                 ],
             ],
+            'ListNotebookExecutionJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookExecutionJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListNotebookRuntimeTemplates' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notebookRuntimeTemplates',
@@ -116,6 +161,18 @@ return [
             'StartNotebookRuntime' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimes/*}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StopNotebookRuntime' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/notebookRuntimes/*}:stop',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -209,6 +266,14 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featureOnlineStores/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:getIamPolicy',
                     ],
                     [
@@ -270,6 +335,16 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featureOnlineStores/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/featurestores/*}:setIamPolicy',
                         'body' => '*',
                     ],
@@ -327,6 +402,14 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featureOnlineStores/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:testIamPermissions',
                     ],
                     [
                         'method' => 'post',
@@ -2214,4 +2297,5 @@ return [
             ],
         ],
     ],
+    'numericEnums' => true,
 ];

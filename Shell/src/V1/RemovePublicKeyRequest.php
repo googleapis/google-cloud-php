@@ -22,13 +22,13 @@ class RemovePublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
-    private $environment = '';
+    protected $environment = '';
     /**
      * Key that should be removed from the environment.
      *
      * Generated from protobuf field <code>string key = 2;</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

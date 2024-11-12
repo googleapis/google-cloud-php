@@ -20,7 +20,7 @@ class TcpProxyScript extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string script = 1;</code>
      */
-    private $script = '';
+    protected $script = '';
 
     /**
      * Constructor.

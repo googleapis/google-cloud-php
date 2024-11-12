@@ -72,6 +72,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateBackupSchedule": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "CreateDatabase": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -82,12 +87,22 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "DeleteBackupSchedule": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "DropDatabase": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetBackup": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetBackupSchedule": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -108,6 +123,11 @@
                     "retry_params_name": "retry_policy_2_params"
                 },
                 "ListBackupOperations": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListBackupSchedules": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -148,6 +168,11 @@
                     "retry_params_name": "no_retry_2_params"
                 },
                 "UpdateBackup": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateBackupSchedule": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

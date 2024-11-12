@@ -26,14 +26,14 @@ class Budget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User data for display name in UI. The name must be less than or equal to 60
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Filters that define which resources are used to compute the
      * actual spend against the budget amount, such as projects, services, and the
@@ -41,13 +41,13 @@ class Budget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.Filter budget_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $budget_filter = null;
+    protected $budget_filter = null;
     /**
      * Required. Budgeted amount.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.BudgetAmount amount = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $amount = null;
+    protected $amount = null;
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
@@ -63,7 +63,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.NotificationsRule notifications_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $notifications_rule = null;
+    protected $notifications_rule = null;
     /**
      * Optional. Etag to validate that the object is unchanged for a
      * read-modify-write operation.
@@ -71,7 +71,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

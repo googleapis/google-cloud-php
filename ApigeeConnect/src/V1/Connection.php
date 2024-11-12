@@ -19,19 +19,19 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1;</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
     /**
      * Cluster information.
      *
      * Generated from protobuf field <code>.google.cloud.apigeeconnect.v1.Cluster cluster = 2;</code>
      */
-    private $cluster = null;
+    protected $cluster = null;
     /**
      * The count of streams.
      *
      * Generated from protobuf field <code>int32 stream_count = 3;</code>
      */
-    private $stream_count = 0;
+    protected $stream_count = 0;
 
     /**
      * Constructor.

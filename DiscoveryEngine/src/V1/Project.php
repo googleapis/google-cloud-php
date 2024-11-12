@@ -17,7 +17,7 @@ class Project extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Full resource name of the project, for example
-     * `projects/{project_number}`.
+     * `projects/{project}`.
      * Note that when making requests, project number and project id are both
      * acceptable, but the server will always respond in project number.
      *
@@ -54,7 +54,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Full resource name of the project, for example
-     *           `projects/{project_number}`.
+     *           `projects/{project}`.
      *           Note that when making requests, project number and project id are both
      *           acceptable, but the server will always respond in project number.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -75,7 +75,7 @@ class Project extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Full resource name of the project, for example
-     * `projects/{project_number}`.
+     * `projects/{project}`.
      * Note that when making requests, project number and project id are both
      * acceptable, but the server will always respond in project number.
      *
@@ -89,7 +89,7 @@ class Project extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Full resource name of the project, for example
-     * `projects/{project_number}`.
+     * `projects/{project}`.
      * Note that when making requests, project number and project id are both
      * acceptable, but the server will always respond in project number.
      *

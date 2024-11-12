@@ -783,6 +783,8 @@ class ModelServiceClientTest extends GeneratedTest
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Model();
         $expectedResponse->setName($name2);
         $expectedResponse->setVersionId($versionId);
@@ -795,6 +797,8 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
@@ -1385,6 +1389,8 @@ class ModelServiceClientTest extends GeneratedTest
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Model();
         $expectedResponse->setName($name2);
         $expectedResponse->setVersionId($versionId);
@@ -1397,6 +1403,8 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
@@ -1596,6 +1604,8 @@ class ModelServiceClientTest extends GeneratedTest
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Model();
         $expectedResponse->setName($name);
         $expectedResponse->setVersionId($versionId);
@@ -1608,6 +1618,8 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $model = new Model();

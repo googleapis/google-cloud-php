@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\NetworkManagement\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -46,6 +45,7 @@ use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest;
 use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsResponse;
 use Google\Cloud\NetworkManagement\V1\RerunConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -70,7 +70,9 @@ class ReachabilityServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ReachabilityServiceClient */
@@ -122,17 +124,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $testId = 'testId-1422455832';
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
         $request = (new CreateConnectivityTestRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setTestId($testId)
             ->setResource($resource);
         $response = $gapicClient->createConnectivityTest($request);
@@ -144,9 +144,12 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/CreateConnectivityTest', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/CreateConnectivityTest',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getTestId();
         $this->assertProtobufEquals($testId, $actualValue);
         $actualValue = $actualApiRequestObject->getResource();
@@ -194,25 +197,26 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $testId = 'testId-1422455832';
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
         $request = (new CreateConnectivityTestRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setTestId($testId)
             ->setResource($resource);
         $response = $gapicClient->createConnectivityTest($request);
@@ -267,9 +271,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteConnectivityTestRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new DeleteConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -279,9 +282,12 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/DeleteConnectivityTest', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/DeleteConnectivityTest',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteConnectivityTestTest');
         $response->pollUntilComplete([
@@ -325,17 +331,19 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new DeleteConnectivityTestRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new DeleteConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -380,18 +388,20 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $expectedResponse->setBypassFirewallChecks($bypassFirewallChecks);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $name = 'name3373707';
-        $request = (new GetConnectivityTestRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new GetConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->getConnectivityTest($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/GetConnectivityTest', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/GetConnectivityTest',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -406,17 +416,19 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new GetConnectivityTestRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new GetConnectivityTestRequest())->setName($formattedName);
         try {
             $gapicClient->getConnectivityTest($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -441,17 +453,14 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $resourcesElement = new ConnectivityTest();
-        $resources = [
-            $resourcesElement,
-        ];
+        $resources = [$resourcesElement];
         $expectedResponse = new ListConnectivityTestsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListConnectivityTestsRequest())
-            ->setParent($parent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListConnectivityTestsRequest())->setParent($formattedParent);
         $response = $gapicClient->listConnectivityTests($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -461,9 +470,12 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/ListConnectivityTests', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/ListConnectivityTests',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -478,17 +490,19 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListConnectivityTestsRequest())
-            ->setParent($parent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $request = (new ListConnectivityTestsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConnectivityTests($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -542,9 +556,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $name = 'name3373707';
-        $request = (new RerunConnectivityTestRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new RerunConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->rerunConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -554,9 +567,12 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/RerunConnectivityTest', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/RerunConnectivityTest',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rerunConnectivityTestTest');
         $response->pollUntilComplete([
@@ -600,17 +616,19 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new RerunConnectivityTestRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->connectivityTestName('[PROJECT]', '[TEST]');
+        $request = (new RerunConnectivityTestRequest())->setName($formattedName);
         $response = $gapicClient->rerunConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -675,15 +693,11 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
-        $request = (new UpdateConnectivityTestRequest())
-            ->setUpdateMask($updateMask)
-            ->setResource($resource);
+        $request = (new UpdateConnectivityTestRequest())->setUpdateMask($updateMask)->setResource($resource);
         $response = $gapicClient->updateConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -693,7 +707,10 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/UpdateConnectivityTest', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/UpdateConnectivityTest',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getResource();
@@ -741,25 +758,24 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
-        $request = (new UpdateConnectivityTestRequest())
-            ->setUpdateMask($updateMask)
-            ->setResource($resource);
+        $request = (new UpdateConnectivityTestRequest())->setUpdateMask($updateMask)->setResource($resource);
         $response = $gapicClient->updateConnectivityTest($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -821,12 +837,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -853,9 +872,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -885,12 +902,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -923,8 +943,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -948,17 +967,19 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -990,9 +1011,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1018,19 +1037,20 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1058,9 +1078,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1086,19 +1104,20 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1152,17 +1171,15 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $testId = 'testId-1422455832';
         $resource = new ConnectivityTest();
-        $resourceName = 'resourceName-384566343';
-        $resource->setName($resourceName);
         $resourceSource = new Endpoint();
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
         $request = (new CreateConnectivityTestRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setTestId($testId)
             ->setResource($resource);
         $response = $gapicClient->createConnectivityTestAsync($request)->wait();
@@ -1174,9 +1191,12 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networkmanagement.v1.ReachabilityService/CreateConnectivityTest', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networkmanagement.v1.ReachabilityService/CreateConnectivityTest',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getTestId();
         $this->assertProtobufEquals($testId, $actualValue);
         $actualValue = $actualApiRequestObject->getResource();

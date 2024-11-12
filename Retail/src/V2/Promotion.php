@@ -26,7 +26,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string promotion_id = 1;</code>
      */
-    private $promotion_id = '';
+    protected $promotion_id = '';
 
     /**
      * Constructor.

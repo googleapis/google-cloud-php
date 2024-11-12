@@ -23,31 +23,31 @@ class Offer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Marketing information for the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MarketingInfo marketing_info = 2;</code>
      */
-    private $marketing_info = null;
+    protected $marketing_info = null;
     /**
      * SKU the offer is associated with.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 3;</code>
      */
-    private $sku = null;
+    protected $sku = null;
     /**
      * Describes the payment plan for the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Plan plan = 4;</code>
      */
-    private $plan = null;
+    protected $plan = null;
     /**
      * Constraints on transacting the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Constraints constraints = 5;</code>
      */
-    private $constraints = null;
+    protected $constraints = null;
     /**
      * Price for each monetizable resource type.
      *
@@ -59,13 +59,13 @@ class Offer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. End of the Offer validity time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Parameters required to use current Offer to purchase.
      *
@@ -77,7 +77,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string deal_code = 12;</code>
      */
-    private $deal_code = '';
+    protected $deal_code = '';
 
     /**
      * Constructor.

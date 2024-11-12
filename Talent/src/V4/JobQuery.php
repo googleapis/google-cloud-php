@@ -22,7 +22,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The language code of [query][google.cloud.talent.v4.JobQuery.query]. For
      * example, "en-US". This field helps to better interpret the query.
@@ -34,7 +34,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_language_code = 14;</code>
      */
-    private $query_language_code = '';
+    protected $query_language_code = '';
     /**
      * This filter specifies the company entities to search against.
      * If a value isn't specified, jobs are searched for against all
@@ -85,7 +85,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CommuteFilter commute_filter = 5;</code>
      */
-    private $commute_filter = null;
+    protected $commute_filter = null;
     /**
      * This filter specifies the company
      * [Company.display_name][google.cloud.talent.v4.Company.display_name] of the
@@ -119,7 +119,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationFilter compensation_filter = 7;</code>
      */
-    private $compensation_filter = null;
+    protected $compensation_filter = null;
     /**
      * This filter specifies a structured syntax to match against the
      * [Job.custom_attributes][google.cloud.talent.v4.Job.custom_attributes]
@@ -142,7 +142,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string custom_attribute_filter = 8;</code>
      */
-    private $custom_attribute_filter = '';
+    protected $custom_attribute_filter = '';
     /**
      * This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query,
@@ -151,7 +151,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_spell_check = 9;</code>
      */
-    private $disable_spell_check = false;
+    protected $disable_spell_check = false;
     /**
      * The employment type filter specifies the employment type of jobs to
      * search against, such as
@@ -183,7 +183,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.TimestampRange publish_time_range = 12;</code>
      */
-    private $publish_time_range = null;
+    protected $publish_time_range = null;
     /**
      * This filter specifies a list of job names to be excluded during search.
      * At most 400 excluded job names are allowed.

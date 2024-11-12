@@ -66,6 +66,4 @@ class ConfidenceLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfidenceLevel::class, \Google\Cloud\WebRisk\V1\ThreatInfo_Confidence_ConfidenceLevel::class);
 

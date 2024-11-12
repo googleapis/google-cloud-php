@@ -21,13 +21,13 @@ class LabelFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 1;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

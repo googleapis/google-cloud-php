@@ -20,13 +20,13 @@ class CreateNfsShareRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The NfsShare to create.
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.NfsShare nfs_share = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $nfs_share = null;
+    protected $nfs_share = null;
 
     /**
      * @param string                                      $parent   Required. The parent project and location. Please see

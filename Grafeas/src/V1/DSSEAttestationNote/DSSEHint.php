@@ -27,7 +27,7 @@ class DSSEHint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string human_readable_name = 1;</code>
      */
-    private $human_readable_name = '';
+    protected $human_readable_name = '';
 
     /**
      * Constructor.

@@ -20,19 +20,19 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool run_interruption_annotator = 1;</code>
      */
-    private $run_interruption_annotator = false;
+    protected $run_interruption_annotator = false;
     /**
      * Whether to run the silence annotator.
      *
      * Generated from protobuf field <code>bool run_silence_annotator = 2;</code>
      */
-    private $run_silence_annotator = false;
+    protected $run_silence_annotator = false;
     /**
      * Whether to run the active phrase matcher annotator(s).
      *
      * Generated from protobuf field <code>bool run_phrase_matcher_annotator = 3;</code>
      */
-    private $run_phrase_matcher_annotator = false;
+    protected $run_phrase_matcher_annotator = false;
     /**
      * The list of phrase matchers to run. If not provided, all active phrase
      * matchers will be used. If inactive phrase matchers are provided, they will
@@ -48,26 +48,26 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool run_sentiment_annotator = 5;</code>
      */
-    private $run_sentiment_annotator = false;
+    protected $run_sentiment_annotator = false;
     /**
      * Whether to run the entity annotator.
      *
      * Generated from protobuf field <code>bool run_entity_annotator = 6;</code>
      */
-    private $run_entity_annotator = false;
+    protected $run_entity_annotator = false;
     /**
      * Whether to run the intent annotator.
      *
      * Generated from protobuf field <code>bool run_intent_annotator = 7;</code>
      */
-    private $run_intent_annotator = false;
+    protected $run_intent_annotator = false;
     /**
      * Whether to run the issue model annotator. A model should have already been
      * deployed for this to take effect.
      *
      * Generated from protobuf field <code>bool run_issue_model_annotator = 8;</code>
      */
-    private $run_issue_model_annotator = false;
+    protected $run_issue_model_annotator = false;
     /**
      * The issue model to run. If not provided, the most recently deployed topic
      * model will be used. The provided issue model will only be used for
@@ -83,13 +83,13 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool run_summarization_annotator = 9;</code>
      */
-    private $run_summarization_annotator = false;
+    protected $run_summarization_annotator = false;
     /**
      * Configuration for the summarization annotator.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig summarization_config = 11;</code>
      */
-    private $summarization_config = null;
+    protected $summarization_config = null;
 
     /**
      * Constructor.

@@ -25,7 +25,6 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
-     * While Long Audio is in preview, SSML is temporarily unsupported.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -62,7 +61,6 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/&#42;`.
      *     @type \Google\Cloud\TextToSpeech\V1\SynthesisInput $input
      *           Required. The Synthesizer requires either plain text or SSML as input.
-     *           While Long Audio is in preview, SSML is temporarily unsupported.
      *     @type \Google\Cloud\TextToSpeech\V1\AudioConfig $audio_config
      *           Required. The configuration of the synthesized audio.
      *     @type string $output_gcs_uri
@@ -108,7 +106,6 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
-     * While Long Audio is in preview, SSML is temporarily unsupported.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\TextToSpeech\V1\SynthesisInput|null
@@ -130,7 +127,6 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
-     * While Long Audio is in preview, SSML is temporarily unsupported.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\TextToSpeech\V1\SynthesisInput $var

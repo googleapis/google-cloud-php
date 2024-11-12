@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,17 +62,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBillingAccountAsync(CreateBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBillingAccountAsync(GetBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProjectBillingInfoAsync(GetProjectBillingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBillingAccountsAsync(ListBillingAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProjectBillingInfoAsync(ListProjectBillingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveBillingAccountAsync(MoveBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBillingAccountAsync(UpdateBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProjectBillingInfoAsync(UpdateProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> createBillingAccountAsync(CreateBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> getBillingAccountAsync(GetBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProjectBillingInfo> getProjectBillingInfoAsync(GetProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBillingAccountsAsync(ListBillingAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProjectBillingInfoAsync(ListProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> moveBillingAccountAsync(MoveBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> updateBillingAccountAsync(UpdateBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProjectBillingInfo> updateProjectBillingInfoAsync(UpdateProjectBillingInfoRequest $request, array $optionalArgs = [])
  */
 final class CloudBillingClient
 {
@@ -422,8 +422,10 @@ final class CloudBillingClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProjectBillingInfo(GetProjectBillingInfoRequest $request, array $callOptions = []): ProjectBillingInfo
-    {
+    public function getProjectBillingInfo(
+        GetProjectBillingInfoRequest $request,
+        array $callOptions = []
+    ): ProjectBillingInfo {
         return $this->startApiCall('GetProjectBillingInfo', $request, $callOptions)->wait();
     }
 
@@ -479,8 +481,10 @@ final class CloudBillingClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listProjectBillingInfo(ListProjectBillingInfoRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listProjectBillingInfo(
+        ListProjectBillingInfoRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListProjectBillingInfo', $request, $callOptions);
     }
 
@@ -563,8 +567,10 @@ final class CloudBillingClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -652,8 +658,10 @@ final class CloudBillingClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateProjectBillingInfo(UpdateProjectBillingInfoRequest $request, array $callOptions = []): ProjectBillingInfo
-    {
+    public function updateProjectBillingInfo(
+        UpdateProjectBillingInfoRequest $request,
+        array $callOptions = []
+    ): ProjectBillingInfo {
         return $this->startApiCall('UpdateProjectBillingInfo', $request, $callOptions)->wait();
     }
 }

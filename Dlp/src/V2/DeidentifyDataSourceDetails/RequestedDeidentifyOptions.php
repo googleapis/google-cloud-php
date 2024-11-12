@@ -22,21 +22,21 @@ class RequestedDeidentifyOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate snapshot_deidentify_template = 1;</code>
      */
-    private $snapshot_deidentify_template = null;
+    protected $snapshot_deidentify_template = null;
     /**
      * Snapshot of the state of the structured `DeidentifyTemplate` from the
      * `Deidentify` action at the time this job was run.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate snapshot_structured_deidentify_template = 2;</code>
      */
-    private $snapshot_structured_deidentify_template = null;
+    protected $snapshot_structured_deidentify_template = null;
     /**
      * Snapshot of the state of the image transformation `DeidentifyTemplate`
      * from the `Deidentify` action at the time this job was run.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate snapshot_image_redact_template = 3;</code>
      */
-    private $snapshot_image_redact_template = null;
+    protected $snapshot_image_redact_template = null;
 
     /**
      * Constructor.
@@ -179,6 +179,4 @@ class RequestedDeidentifyOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RequestedDeidentifyOptions::class, \Google\Cloud\Dlp\V2\DeidentifyDataSourceDetails_RequestedDeidentifyOptions::class);
 

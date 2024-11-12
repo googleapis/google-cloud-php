@@ -21,13 +21,13 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $azure_node_pool = null;
+    protected $azure_node_pool = null;
     /**
      * If set, only validate the request, but don't actually update the node pool.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field. The elements of the repeated paths field can only include these
@@ -42,7 +42,7 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool $azureNodePool Required. The [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]

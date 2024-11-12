@@ -25,14 +25,14 @@ class CreateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The specification of the
      * [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsCluster aws_cluster = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $aws_cluster = null;
+    protected $aws_cluster = null;
     /**
      * Required. A client provided ID the resource. Must be unique within the
      * parent resource.
@@ -44,13 +44,13 @@ class CreateAwsClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string aws_cluster_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $aws_cluster_id = '';
+    protected $aws_cluster_id = '';
     /**
      * If set, only validate the request, but do not actually create the cluster.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                    $parent       Required. The parent location where this

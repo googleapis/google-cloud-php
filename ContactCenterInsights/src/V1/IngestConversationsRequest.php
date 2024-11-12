@@ -20,27 +20,36 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Configuration that applies to all conversations.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.ConversationConfig conversation_config = 4;</code>
      */
-    private $conversation_config = null;
+    protected $conversation_config = null;
     /**
      * Optional. DLP settings for transcript redaction. Optional, will default to
      * the config specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $redaction_config = null;
+    protected $redaction_config = null;
     /**
      * Optional. Default Speech-to-Text configuration. Optional, will default to
      * the config specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $speech_config = null;
+    protected $speech_config = null;
+    /**
+     * Optional. If set, this fields indicates the number of objects to ingest
+     * from the Cloud Storage bucket. If empty, the entire bucket will be
+     * ingested. Unless they are first deleted, conversations produced through
+     * sampling won't be ingested by subsequent ingest requests.
+     *
+     * Generated from protobuf field <code>optional int32 sample_size = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sample_size = null;
     protected $source;
     protected $object_config;
 
@@ -79,6 +88,11 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $speech_config
      *           Optional. Default Speech-to-Text configuration. Optional, will default to
      *           the config specified in Settings.
+     *     @type int $sample_size
+     *           Optional. If set, this fields indicates the number of objects to ingest
+     *           from the Cloud Storage bucket. If empty, the entire bucket will be
+     *           ingested. Unless they are first deleted, conversations produced through
+     *           sampling won't be ingested by subsequent ingest requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -284,6 +298,48 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\SpeechConfig::class);
         $this->speech_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, this fields indicates the number of objects to ingest
+     * from the Cloud Storage bucket. If empty, the entire bucket will be
+     * ingested. Unless they are first deleted, conversations produced through
+     * sampling won't be ingested by subsequent ingest requests.
+     *
+     * Generated from protobuf field <code>optional int32 sample_size = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSampleSize()
+    {
+        return isset($this->sample_size) ? $this->sample_size : 0;
+    }
+
+    public function hasSampleSize()
+    {
+        return isset($this->sample_size);
+    }
+
+    public function clearSampleSize()
+    {
+        unset($this->sample_size);
+    }
+
+    /**
+     * Optional. If set, this fields indicates the number of objects to ingest
+     * from the Cloud Storage bucket. If empty, the entire bucket will be
+     * ingested. Unless they are first deleted, conversations produced through
+     * sampling won't be ingested by subsequent ingest requests.
+     *
+     * Generated from protobuf field <code>optional int32 sample_size = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSampleSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->sample_size = $var;
 
         return $this;
     }

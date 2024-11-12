@@ -24,13 +24,13 @@ class License extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string expression = 1;</code>
      */
-    private $expression = '';
+    protected $expression = '';
     /**
      * Comments
      *
      * Generated from protobuf field <code>string comments = 2;</code>
      */
-    private $comments = '';
+    protected $comments = '';
 
     /**
      * Constructor.

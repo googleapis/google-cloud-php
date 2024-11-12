@@ -36,6 +36,25 @@ class CreateHttpRouteRequest extends \Google\Protobuf\Internal\Message
     protected $http_route = null;
 
     /**
+     * @param string                                     $parent      Required. The parent resource of the HttpRoute. Must be in the
+     *                                                                format `projects/&#42;/locations/global`. Please see
+     *                                                                {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute $httpRoute   Required. HttpRoute resource to be created.
+     * @param string                                     $httpRouteId Required. Short name of the HttpRoute resource to be created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateHttpRouteRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\HttpRoute $httpRoute, string $httpRouteId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setHttpRoute($httpRoute)
+            ->setHttpRouteId($httpRouteId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

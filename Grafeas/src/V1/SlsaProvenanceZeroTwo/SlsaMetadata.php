@@ -18,23 +18,23 @@ class SlsaMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string build_invocation_id = 1;</code>
      */
-    private $build_invocation_id = '';
+    protected $build_invocation_id = '';
     /**
      * Generated from protobuf field <code>.google.protobuf.Timestamp build_started_on = 2;</code>
      */
-    private $build_started_on = null;
+    protected $build_started_on = null;
     /**
      * Generated from protobuf field <code>.google.protobuf.Timestamp build_finished_on = 3;</code>
      */
-    private $build_finished_on = null;
+    protected $build_finished_on = null;
     /**
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenanceZeroTwo.SlsaCompleteness completeness = 4;</code>
      */
-    private $completeness = null;
+    protected $completeness = null;
     /**
      * Generated from protobuf field <code>bool reproducible = 5;</code>
      */
-    private $reproducible = false;
+    protected $reproducible = false;
 
     /**
      * Constructor.

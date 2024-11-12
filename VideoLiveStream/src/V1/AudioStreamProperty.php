@@ -20,13 +20,13 @@ class AudioStreamProperty extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 1;</code>
      */
-    private $index = 0;
+    protected $index = 0;
     /**
      * Properties of the audio format.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.AudioFormat audio_format = 2;</code>
      */
-    private $audio_format = null;
+    protected $audio_format = null;
 
     /**
      * Constructor.

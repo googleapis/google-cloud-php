@@ -22,8 +22,8 @@ class IndexEndpoint
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"»
+ÿ
+/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"Ä
 IndexEndpoint
 name (	B‡A
 display_name (	B‡A
@@ -39,11 +39,13 @@ class IndexEndpoint
 private_service_connect_config (27.google.cloud.aiplatform.v1.PrivateServiceConnectConfigB‡A$
 public_endpoint_enabled (B‡A(
 public_endpoint_domain_name (	B‡AH
-encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpecB‡A-
+encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpecB‡A
+satisfies_pzs (B‡A
+satisfies_pzi (B‡A-
 LabelsEntry
 key (	
 value (	:8:uÍAr
-\'aiplatform.googleapis.com/IndexEndpointGprojects/{project}/locations/{location}/indexEndpoints/{index_endpoint}"ó
+\'aiplatform.googleapis.com/IndexEndpointGprojects/{project}/locations/{location}/indexEndpoints/{index_endpoint}"Ì
 DeployedIndex
 id (	B‡A6
 index (	B\'‡A˙A!
@@ -58,7 +60,8 @@ class IndexEndpoint
 deployed_index_auth_config	 (23.google.cloud.aiplatform.v1.DeployedIndexAuthConfigB‡A
 reserved_ip_ranges
  (	B‡A
-deployment_group (	B‡A"Æ
+deployment_group (	B‡AT
+psc_automation_configs (2/.google.cloud.aiplatform.v1.PSCAutomationConfigB‡A"Æ
 DeployedIndexAuthConfigW
 auth_provider (2@.google.cloud.aiplatform.v1.DeployedIndexAuthConfig.AuthProvider:
 AuthProvider

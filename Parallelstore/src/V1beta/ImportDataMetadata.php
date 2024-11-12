@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ImportDataMetadata contains import data operation metadata
+ * Metadata related to the data import operation.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.ImportDataMetadata</code>
  */
 class ImportDataMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Contains the data transfer operation metadata.
+     * Data transfer operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferOperationMetadata operation_metadata = 1;</code>
      */
@@ -75,7 +75,7 @@ class ImportDataMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Parallelstore\V1beta\TransferOperationMetadata $operation_metadata
-     *           Contains the data transfer operation metadata.
+     *           Data transfer operation metadata.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the operation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -102,7 +102,7 @@ class ImportDataMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains the data transfer operation metadata.
+     * Data transfer operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferOperationMetadata operation_metadata = 1;</code>
      * @return \Google\Cloud\Parallelstore\V1beta\TransferOperationMetadata|null
@@ -123,7 +123,7 @@ class ImportDataMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains the data transfer operation metadata.
+     * Data transfer operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.TransferOperationMetadata operation_metadata = 1;</code>
      * @param \Google\Cloud\Parallelstore\V1beta\TransferOperationMetadata $var

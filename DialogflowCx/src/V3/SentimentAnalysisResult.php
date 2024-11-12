@@ -19,7 +19,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     * sentiment).
+     *  sentiment).
      *
      * Generated from protobuf field <code>float score = 1;</code>
      */
@@ -40,7 +40,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
      *
      *     @type float $score
      *           Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     *           sentiment).
+     *            sentiment).
      *     @type float $magnitude
      *           A non-negative number in the [0, +inf) range, which represents the absolute
      *           magnitude of sentiment, regardless of score (positive or negative).
@@ -53,7 +53,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     * sentiment).
+     *  sentiment).
      *
      * Generated from protobuf field <code>float score = 1;</code>
      * @return float
@@ -65,7 +65,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
-     * sentiment).
+     *  sentiment).
      *
      * Generated from protobuf field <code>float score = 1;</code>
      * @param float $var

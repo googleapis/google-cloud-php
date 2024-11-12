@@ -21,25 +21,25 @@ class SubmitUriRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The submission that contains the URI to be scanned.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.Submission submission = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $submission = null;
+    protected $submission = null;
     /**
      * Provides additional information about the submission.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatInfo threat_info = 3;</code>
      */
-    private $threat_info = null;
+    protected $threat_info = null;
     /**
      * Provides additional information about how the submission was discovered.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatDiscovery threat_discovery = 4;</code>
      */
-    private $threat_discovery = null;
+    protected $threat_discovery = null;
 
     /**
      * Constructor.

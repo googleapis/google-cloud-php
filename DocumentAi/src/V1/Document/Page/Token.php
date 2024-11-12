@@ -21,14 +21,14 @@ class Token extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * Detected break at the end of a
      * [Token][google.cloud.documentai.v1.Document.Page.Token].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.DetectedBreak detected_break = 2;</code>
      */
-    private $detected_break = null;
+    protected $detected_break = null;
     /**
      * A list of detected languages together with confidence.
      *
@@ -47,7 +47,7 @@ class Token extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Token.StyleInfo style_info = 5;</code>
      */
-    private $style_info = null;
+    protected $style_info = null;
 
     /**
      * Constructor.

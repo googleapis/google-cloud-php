@@ -29,27 +29,27 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Overall health status. Overall status is derived based on the status of
      * each sub level resources.
      *
      * Generated from protobuf field <code>.google.cloud.beyondcorp.appconnectors.v1.HealthStatus status = 2;</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
      * Specific details for the resource. This is for internal use only.
      *
      * Generated from protobuf field <code>.google.protobuf.Any resource = 3;</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * The timestamp to collect the info. It is suggested to be set by
      * the topmost level resource only.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 4;</code>
      */
-    private $time = null;
+    protected $time = null;
     /**
      * List of Info for the sub level resources.
      *

@@ -15,9 +15,19 @@
                                 "completeQuery"
                             ]
                         },
+                        "ImportCompletionSuggestions": {
+                            "methods": [
+                                "importCompletionSuggestions"
+                            ]
+                        },
                         "ImportSuggestionDenyListEntries": {
                             "methods": [
                                 "importSuggestionDenyListEntries"
+                            ]
+                        },
+                        "PurgeCompletionSuggestions": {
+                            "methods": [
+                                "purgeCompletionSuggestions"
                             ]
                         },
                         "PurgeSuggestionDenyListEntries": {
@@ -71,6 +81,11 @@
                         "Search": {
                             "methods": [
                                 "search"
+                            ]
+                        },
+                        "SearchLite": {
+                            "methods": [
+                                "searchLite"
                             ]
                         }
                     }
@@ -190,6 +205,11 @@
                 "grpc": {
                     "libraryClient": "DocumentServiceGapicClient",
                     "rpcs": {
+                        "BatchGetDocumentsMetadata": {
+                            "methods": [
+                                "batchGetDocumentsMetadata"
+                            ]
+                        },
                         "CreateDocument": {
                             "methods": [
                                 "createDocument"
@@ -272,6 +292,16 @@
                             "methods": [
                                 "checkGrounding"
                             ]
+                        },
+                        "GenerateGroundedContent": {
+                            "methods": [
+                                "generateGroundedContent"
+                            ]
+                        },
+                        "StreamGenerateGroundedContent": {
+                            "methods": [
+                                "streamGenerateGroundedContent"
+                            ]
                         }
                     }
                 }
@@ -347,6 +377,25 @@
                         "UpdateSchema": {
                             "methods": [
                                 "updateSchema"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SearchTuningService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchTuningServiceGapicClient",
+                    "rpcs": {
+                        "ListCustomModels": {
+                            "methods": [
+                                "listCustomModels"
+                            ]
+                        },
+                        "TrainCustomModel": {
+                            "methods": [
+                                "trainCustomModel"
                             ]
                         }
                     }
@@ -435,6 +484,11 @@
                         "ImportUserEvents": {
                             "methods": [
                                 "importUserEvents"
+                            ]
+                        },
+                        "PurgeUserEvents": {
+                            "methods": [
+                                "purgeUserEvents"
                             ]
                         },
                         "WriteUserEvent": {

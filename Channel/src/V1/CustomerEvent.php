@@ -21,13 +21,13 @@ class CustomerEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $customer = '';
+    protected $customer = '';
     /**
      * Type of event which happened on the customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerEvent.Type event_type = 2;</code>
      */
-    private $event_type = 0;
+    protected $event_type = 0;
 
     /**
      * Constructor.

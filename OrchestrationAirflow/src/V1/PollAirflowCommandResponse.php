@@ -27,13 +27,13 @@ class PollAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool output_end = 2;</code>
      */
-    private $output_end = false;
+    protected $output_end = false;
     /**
      * The result exit status of the command.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.ExitInfo exit_info = 3;</code>
      */
-    private $exit_info = null;
+    protected $exit_info = null;
 
     /**
      * Constructor.

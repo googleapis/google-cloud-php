@@ -16,11 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Retrieval extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
+     * Optional. Deprecated. This option is no longer supported.
      *
-     * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool disable_attribution = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $disable_attribution = false;
     protected $source;
@@ -34,9 +33,7 @@ class Retrieval extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\VertexAISearch $vertex_ai_search
      *           Set to use data source powered by Vertex AI Search.
      *     @type bool $disable_attribution
-     *           Optional. Disable using the result from this tool in detecting grounding
-     *           attribution. This does not affect how the result is given to the model for
-     *           generation.
+     *           Optional. Deprecated. This option is no longer supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,29 +73,29 @@ class Retrieval extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
+     * Optional. Deprecated. This option is no longer supported.
      *
-     * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool disable_attribution = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getDisableAttribution()
     {
+        @trigger_error('disable_attribution is deprecated.', E_USER_DEPRECATED);
         return $this->disable_attribution;
     }
 
     /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
+     * Optional. Deprecated. This option is no longer supported.
      *
-     * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool disable_attribution = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDisableAttribution($var)
     {
+        @trigger_error('disable_attribution is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->disable_attribution = $var;
 

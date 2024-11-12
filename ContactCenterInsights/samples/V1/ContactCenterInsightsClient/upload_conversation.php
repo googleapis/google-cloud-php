@@ -31,8 +31,8 @@ use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
 use Google\Rpc\Status;
 
 /**
- * Create a longrunning conversation upload operation. This method differs
- * from CreateConversation by allowing audio transcription and optional DLP
+ * Create a long-running conversation upload operation. This method differs
+ * from `CreateConversation` by allowing audio transcription and optional DLP
  * redaction.
  *
  * @param string $formattedParent The parent resource of the conversation. Please see

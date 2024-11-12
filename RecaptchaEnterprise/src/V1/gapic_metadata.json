@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "RecaptchaEnterpriseServiceGapicClient",
                     "rpcs": {
+                        "AddIpOverride": {
+                            "methods": [
+                                "addIpOverride"
+                            ]
+                        },
                         "AnnotateAssessment": {
                             "methods": [
                                 "annotateAssessment"
@@ -60,6 +65,11 @@
                                 "listFirewallPolicies"
                             ]
                         },
+                        "ListIpOverrides": {
+                            "methods": [
+                                "listIpOverrides"
+                            ]
+                        },
                         "ListKeys": {
                             "methods": [
                                 "listKeys"
@@ -78,6 +88,11 @@
                         "MigrateKey": {
                             "methods": [
                                 "migrateKey"
+                            ]
+                        },
+                        "RemoveIpOverride": {
+                            "methods": [
+                                "removeIpOverride"
                             ]
                         },
                         "ReorderFirewallPolicies": {

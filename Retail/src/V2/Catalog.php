@@ -20,7 +20,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. The catalog display name.
      * This field must be a UTF-8 encoded string with a length limit of 128
@@ -28,13 +28,13 @@ class Catalog extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The product level configuration.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ProductLevelConfig product_level_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $product_level_config = null;
+    protected $product_level_config = null;
 
     /**
      * Constructor.

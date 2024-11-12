@@ -27,19 +27,19 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 2;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Specifies the upgrade settings for NAP created node pools
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 3;</code>
      */
-    private $upgrade_settings = null;
+    protected $upgrade_settings = null;
     /**
      * Specifies the node management options for NAP created node-pools.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeManagement management = 4;</code>
      */
-    private $management = null;
+    protected $management = null;
     /**
      * Deprecated. Minimum CPU platform to be used for NAP created node pools.
      * The instance may be scheduled on the specified or newer CPU platform.
@@ -64,7 +64,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 6;</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or
      * 'pd-balanced')
@@ -72,13 +72,13 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 7;</code>
      */
-    private $disk_type = '';
+    protected $disk_type = '';
     /**
      * Shielded Instance options.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 8;</code>
      */
-    private $shielded_instance_config = null;
+    protected $shielded_instance_config = null;
     /**
      * The Customer Managed Encryption Key used to encrypt the boot disk attached
      * to each node in the node pool. This should be of the form
@@ -89,7 +89,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string boot_disk_kms_key = 9;</code>
      */
-    private $boot_disk_kms_key = '';
+    protected $boot_disk_kms_key = '';
     /**
      * The image type to use for NAP created node. Please see
      * https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for
@@ -97,13 +97,13 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_type = 10;</code>
      */
-    private $image_type = '';
+    protected $image_type = '';
     /**
      * Enable or disable Kubelet read only port.
      *
      * Generated from protobuf field <code>optional bool insecure_kubelet_readonly_port_enabled = 13;</code>
      */
-    private $insecure_kubelet_readonly_port_enabled = null;
+    protected $insecure_kubelet_readonly_port_enabled = null;
 
     /**
      * Constructor.

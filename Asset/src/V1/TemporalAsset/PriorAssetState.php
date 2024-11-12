@@ -73,6 +73,4 @@ class PriorAssetState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PriorAssetState::class, \Google\Cloud\Asset\V1\TemporalAsset_PriorAssetState::class);
 

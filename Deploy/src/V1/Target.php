@@ -85,6 +85,19 @@ class Target extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
+     * Optional. Map of entity IDs to their associated entities. Associated
+     * entities allows specifying places other than the deployment target for
+     * specific features. For example, the Gateway API canary can be configured to
+     * deploy the HTTPRoute to a different cluster(s) than the deployment cluster
+     * using associated entities. An entity ID must consist of lower-case letters,
+     * numbers, and hyphens, start with a letter and end with a letter or a
+     * number, and have a max length of 63 characters. In other words, it must
+     * match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.deploy.v1.AssociatedEntities> associated_entities = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $associated_entities;
+    /**
      * Optional. This checksum is computed by the server based on the value of
      * other fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -159,6 +172,15 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Optional. Information specifying a multiTarget.
      *     @type \Google\Cloud\Deploy\V1\CustomTarget $custom_target
      *           Optional. Information specifying a Custom Target.
+     *     @type array|\Google\Protobuf\Internal\MapField $associated_entities
+     *           Optional. Map of entity IDs to their associated entities. Associated
+     *           entities allows specifying places other than the deployment target for
+     *           specific features. For example, the Gateway API canary can be configured to
+     *           deploy the HTTPRoute to a different cluster(s) than the deployment cluster
+     *           using associated entities. An entity ID must consist of lower-case letters,
+     *           numbers, and hyphens, start with a letter and end with a letter or a
+     *           number, and have a max length of 63 characters. In other words, it must
+     *           match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type string $etag
      *           Optional. This checksum is computed by the server based on the value of
      *           other fields, and may be sent on update and delete requests to ensure the
@@ -611,6 +633,46 @@ class Target extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CustomTarget::class);
         $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Map of entity IDs to their associated entities. Associated
+     * entities allows specifying places other than the deployment target for
+     * specific features. For example, the Gateway API canary can be configured to
+     * deploy the HTTPRoute to a different cluster(s) than the deployment cluster
+     * using associated entities. An entity ID must consist of lower-case letters,
+     * numbers, and hyphens, start with a letter and end with a letter or a
+     * number, and have a max length of 63 characters. In other words, it must
+     * match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.deploy.v1.AssociatedEntities> associated_entities = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAssociatedEntities()
+    {
+        return $this->associated_entities;
+    }
+
+    /**
+     * Optional. Map of entity IDs to their associated entities. Associated
+     * entities allows specifying places other than the deployment target for
+     * specific features. For example, the Gateway API canary can be configured to
+     * deploy the HTTPRoute to a different cluster(s) than the deployment cluster
+     * using associated entities. An entity ID must consist of lower-case letters,
+     * numbers, and hyphens, start with a letter and end with a letter or a
+     * number, and have a max length of 63 characters. In other words, it must
+     * match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.deploy.v1.AssociatedEntities> associated_entities = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAssociatedEntities($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\AssociatedEntities::class);
+        $this->associated_entities = $arr;
 
         return $this;
     }

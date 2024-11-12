@@ -36,7 +36,7 @@ use Google\Cloud\Dialogflow\Cx\V3\CreateAgentRequest;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedParent          The location to create a agent for.
- *                                         Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                         Format: `projects/<ProjectID>/locations/<LocationID>`. Please see
  *                                         {@see AgentsClient::locationName()} for help formatting this field.
  * @param string $agentDisplayName         The human-readable name of the agent, unique within the location.
  * @param string $agentDefaultLanguageCode Immutable. The default language of the agent as a language tag.

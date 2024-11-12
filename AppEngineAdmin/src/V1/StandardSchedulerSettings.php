@@ -20,27 +20,27 @@ class StandardSchedulerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double target_cpu_utilization = 1;</code>
      */
-    private $target_cpu_utilization = 0.0;
+    protected $target_cpu_utilization = 0.0;
     /**
      * Target throughput utilization ratio to maintain when scaling
      *
      * Generated from protobuf field <code>double target_throughput_utilization = 2;</code>
      */
-    private $target_throughput_utilization = 0.0;
+    protected $target_throughput_utilization = 0.0;
     /**
      * Minimum number of instances to run for this version. Set to zero to disable
      * `min_instances` configuration.
      *
      * Generated from protobuf field <code>int32 min_instances = 3;</code>
      */
-    private $min_instances = 0;
+    protected $min_instances = 0;
     /**
      * Maximum number of instances to run for this version. Set to zero to disable
      * `max_instances` configuration.
      *
      * Generated from protobuf field <code>int32 max_instances = 4;</code>
      */
-    private $max_instances = 0;
+    protected $max_instances = 0;
 
     /**
      * Constructor.

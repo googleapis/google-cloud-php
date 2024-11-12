@@ -25,7 +25,7 @@ class GlueRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $host_name = '';
+    protected $host_name = '';
     /**
      * List of IPv4 addresses corresponding to this host in the standard decimal
      * format (e.g. `198.51.100.1`). At least one of `ipv4_address` and

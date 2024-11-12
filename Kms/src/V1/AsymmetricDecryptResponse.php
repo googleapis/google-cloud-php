@@ -21,7 +21,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      */
-    private $plaintext = '';
+    protected $plaintext = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [AsymmetricDecryptResponse.plaintext][google.cloud.kms.v1.AsymmetricDecryptResponse.plaintext].
@@ -39,7 +39,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      */
-    private $plaintext_crc32c = null;
+    protected $plaintext_crc32c = null;
     /**
      * Integrity verification field. A flag indicating whether
      * [AsymmetricDecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c]
@@ -58,7 +58,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_ciphertext_crc32c = 3;</code>
      */
-    private $verified_ciphertext_crc32c = false;
+    protected $verified_ciphertext_crc32c = false;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
@@ -66,7 +66,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.
@@ -195,7 +195,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return int|string|null
      */
-    public function getPlaintextCrc32CValue()
+    public function getPlaintextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("plaintext_crc32c");
     }
@@ -248,7 +248,7 @@ class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setPlaintextCrc32CValue($var)
+    public function setPlaintextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("plaintext_crc32c", $var);
         return $this;}

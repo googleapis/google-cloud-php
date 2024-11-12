@@ -24,7 +24,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human-readable display name of the listing. The display name must
      * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
@@ -33,7 +33,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Short description of the listing. The description must not
      * contain Unicode non-characters and C0 and C1 control codes except tabs
@@ -42,26 +42,26 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Email or URL of the primary point of contact of the listing.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary_contact = '';
+    protected $primary_contact = '';
     /**
      * Optional. Documentation describing the listing.
      *
      * Generated from protobuf field <code>string documentation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $documentation = '';
+    protected $documentation = '';
     /**
      * Output only. Current state of the listing.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. Base64 encoded image representing the listing. Max Size: 3.0MiB
      * Expected image dimensions are 512x512 pixels, however the API only
@@ -71,13 +71,13 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes icon = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $icon = '';
+    protected $icon = '';
     /**
      * Optional. Details of the data provider who owns the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DataProvider data_provider = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_provider = null;
+    protected $data_provider = null;
     /**
      * Optional. Categories of the listing. Up to two categories are allowed.
      *
@@ -90,7 +90,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Publisher publisher = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $publisher = null;
+    protected $publisher = null;
     /**
      * Optional. Email or URL of the request access of the listing.
      * Subscribers can use this reference to request access.
@@ -98,14 +98,20 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_access = '';
+    protected $request_access = '';
     /**
      * Optional. If set, restricted export configuration will be propagated and
      * enforced on the linked dataset.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.Listing.RestrictedExportConfig restricted_export_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $restricted_export_config = null;
+    protected $restricted_export_config = null;
+    /**
+     * Optional. Type of discovery of the listing on the discovery page.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $discovery_type = null;
     protected $source;
 
     /**
@@ -156,6 +162,8 @@ class Listing extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig $restricted_export_config
      *           Optional. If set, restricted export configuration will be propagated and
      *           enforced on the linked dataset.
+     *     @type int $discovery_type
+     *           Optional. Type of discovery of the listing on the discovery page.
      * }
      */
     public function __construct($data = NULL) {
@@ -564,6 +572,42 @@ class Listing extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\RestrictedExportConfig::class);
         $this->restricted_export_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of discovery of the listing on the discovery page.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDiscoveryType()
+    {
+        return isset($this->discovery_type) ? $this->discovery_type : 0;
+    }
+
+    public function hasDiscoveryType()
+    {
+        return isset($this->discovery_type);
+    }
+
+    public function clearDiscoveryType()
+    {
+        unset($this->discovery_type);
+    }
+
+    /**
+     * Optional. Type of discovery of the listing on the discovery page.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.bigquery.analyticshub.v1.DiscoveryType discovery_type = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiscoveryType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\AnalyticsHub\V1\DiscoveryType::class);
+        $this->discovery_type = $var;
 
         return $this;
     }

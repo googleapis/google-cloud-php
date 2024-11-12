@@ -24,7 +24,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Name of the container image in Dockerhub, Google Artifact
      * Registry, or Google Container Registry. If the host is not provided,
@@ -32,7 +32,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $image = '';
+    protected $image = '';
     /**
      * Entrypoint array. Not executed within a shell.
      * The docker image's ENTRYPOINT is used if this is not provided.
@@ -58,7 +58,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ResourceRequirements resources = 6;</code>
      */
-    private $resources = null;
+    protected $resources = null;
     /**
      * List of ports to expose from the container. Only a single port can be
      * specified. The specified ports must be listening on all interfaces
@@ -82,14 +82,14 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string working_dir = 9;</code>
      */
-    private $working_dir = '';
+    protected $working_dir = '';
     /**
      * Periodic probe of container liveness.
      * Container will be restarted if the probe fails.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
      */
-    private $liveness_probe = null;
+    protected $liveness_probe = null;
     /**
      * Startup probe of application within the container.
      * All other probes are disabled if a startup probe is provided, until it
@@ -98,7 +98,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
      */
-    private $startup_probe = null;
+    protected $startup_probe = null;
     /**
      * Names of the containers that must start before this container.
      *

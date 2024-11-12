@@ -27,7 +27,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Fully qualified name of the API method for which this quota operation is
      * requested. This name is used for matching quota rules or metric rules and
@@ -40,7 +40,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string method_name = 2;</code>
      */
-    private $method_name = '';
+    protected $method_name = '';
     /**
      * Identity of the consumer for whom this quota operation is being performed.
      * This can be in one of the following formats:
@@ -50,7 +50,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string consumer_id = 3;</code>
      */
-    private $consumer_id = '';
+    protected $consumer_id = '';
     /**
      * Labels describing the operation.
      *
@@ -77,7 +77,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.QuotaOperation.QuotaMode quota_mode = 6;</code>
      */
-    private $quota_mode = 0;
+    protected $quota_mode = 0;
 
     /**
      * Constructor.

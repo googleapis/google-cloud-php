@@ -29,13 +29,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * An arbitrary and optional user-provided name for the instance.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Resource labels to represent user provided metadata
      *
@@ -51,7 +51,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
     /**
      * Optional. If specified, at least one node will be provisioned in this zone
      * in addition to the zone specified in location_id. Only applicable to
@@ -61,7 +61,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alternative_location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $alternative_location_id = '';
+    protected $alternative_location_id = '';
     /**
      * Optional. The version of Redis software.
      * If not provided, latest supported version will be used. Currently, the
@@ -73,7 +73,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string redis_version = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $redis_version = '';
+    protected $redis_version = '';
     /**
      * Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses
      * that are reserved for this instance. Range must
@@ -86,7 +86,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reserved_ip_range = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reserved_ip_range = '';
+    protected $reserved_ip_range = '';
     /**
      * Optional. Additional IP range for node placement. Required when enabling
      * read replicas on an existing instance. For DIRECT_PEERING mode value must
@@ -96,20 +96,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secondary_ip_range = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $secondary_ip_range = '';
+    protected $secondary_ip_range = '';
     /**
      * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
      * Generated from protobuf field <code>string host = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Output only. The port number of the exposed Redis endpoint.
      *
      * Generated from protobuf field <code>int32 port = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Output only. The current zone where the Redis primary node is located. In
      * basic tier, this will always be the same as [location_id]. In
@@ -117,26 +117,26 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string current_location_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_location_id = '';
+    protected $current_location_id = '';
     /**
      * Output only. The time the instance was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The current state of this instance.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Additional information about the current status of this
      * instance, if available.
      *
      * Generated from protobuf field <code>string status_message = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status_message = '';
+    protected $status_message = '';
     /**
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
@@ -161,13 +161,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tier = 0;
+    protected $tier = 0;
     /**
      * Required. Redis memory size in GiB.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $memory_size_gb = 0;
+    protected $memory_size_gb = 0;
     /**
      * Optional. The full name of the Google Compute Engine
      * [network](https://cloud.google.com/vpc/docs/vpc) to which the
@@ -176,7 +176,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $authorized_network = '';
+    protected $authorized_network = '';
     /**
      * Output only. Cloud IAM identity used by import / export operations to
      * transfer data to/from Cloud Storage. Format is
@@ -186,14 +186,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string persistence_iam_identity = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $persistence_iam_identity = '';
+    protected $persistence_iam_identity = '';
     /**
      * Optional. The network connect mode of the Redis instance.
      * If not provided, the connect mode defaults to DIRECT_PEERING.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.ConnectMode connect_mode = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $connect_mode = 0;
+    protected $connect_mode = 0;
     /**
      * Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If
      * set to "true" AUTH is enabled on the instance. Default value is "false"
@@ -201,7 +201,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auth_enabled = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $auth_enabled = false;
+    protected $auth_enabled = false;
     /**
      * Output only. List of server CA certificates for the instance.
      *
@@ -214,21 +214,21 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.TransitEncryptionMode transit_encryption_mode = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $transit_encryption_mode = 0;
+    protected $transit_encryption_mode = 0;
     /**
      * Optional. The maintenance policy for the instance. If not provided,
      * maintenance events can be performed at any time.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenancePolicy maintenance_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maintenance_policy = null;
+    protected $maintenance_policy = null;
     /**
      * Output only. Date and time of upcoming maintenance events which have been
      * scheduled.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenanceSchedule maintenance_schedule = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $maintenance_schedule = null;
+    protected $maintenance_schedule = null;
     /**
      * Optional. The number of replica nodes. The valid range for the Standard
      * Tier with read replicas enabled is [1-5] and defaults to 2. If read
@@ -238,7 +238,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 replica_count = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replica_count = 0;
+    protected $replica_count = 0;
     /**
      * Output only. Info per node.
      *
@@ -253,34 +253,34 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string read_endpoint = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $read_endpoint = '';
+    protected $read_endpoint = '';
     /**
      * Output only. The port number of the exposed readonly redis
      * endpoint. Standard tier only. Write requests should target 'port'.
      *
      * Generated from protobuf field <code>int32 read_endpoint_port = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $read_endpoint_port = 0;
+    protected $read_endpoint_port = 0;
     /**
      * Optional. Read replicas mode for the instance. Defaults to
      * READ_REPLICAS_DISABLED.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.ReadReplicasMode read_replicas_mode = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $read_replicas_mode = 0;
+    protected $read_replicas_mode = 0;
     /**
      * Optional. The KMS key reference that the customer provides when trying to
      * create the instance.
      *
      * Generated from protobuf field <code>string customer_managed_key = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_managed_key = '';
+    protected $customer_managed_key = '';
     /**
      * Optional. Persistence configuration parameters
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.PersistenceConfig persistence_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $persistence_config = null;
+    protected $persistence_config = null;
     /**
      * Optional. reasons that causes instance in "SUSPENDED" state.
      *
@@ -293,7 +293,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string maintenance_version = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $maintenance_version = '';
+    protected $maintenance_version = '';
     /**
      * Optional. The available maintenance versions that an instance could update
      * to.

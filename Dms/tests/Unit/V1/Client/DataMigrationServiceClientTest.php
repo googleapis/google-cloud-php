@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\CloudDms\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\CloudDms\V1\ApplyConversionWorkspaceRequest;
@@ -91,6 +90,7 @@ use Google\Cloud\CloudDms\V1\UpdateConnectionProfileRequest;
 use Google\Cloud\CloudDms\V1\UpdateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
 use Google\Cloud\CloudDms\V1\VerifyMigrationJobRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -115,7 +115,9 @@ class DataMigrationServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DataMigrationServiceClient */
@@ -166,8 +168,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ApplyConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new ApplyConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->applyConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -177,7 +178,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ApplyConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/ApplyConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -223,17 +227,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ApplyConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new ApplyConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->applyConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -295,8 +301,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new CommitConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new CommitConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->commitConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -306,7 +311,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CommitConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/CommitConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -352,17 +360,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new CommitConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new CommitConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->commitConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -432,7 +442,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ConvertConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/ConvertConversionWorkspace',
+            $actualApiFuncCall
+        );
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/convertConversionWorkspaceTest');
         $response->pollUntilComplete([
@@ -476,12 +489,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new ConvertConversionWorkspaceRequest();
         $response = $gapicClient->convertConversionWorkspace($request);
@@ -606,12 +622,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -709,7 +728,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreateConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/CreateConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getConversionWorkspaceId();
@@ -759,12 +781,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -868,12 +893,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
@@ -1018,12 +1046,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1161,12 +1192,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1229,8 +1263,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new DeleteConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectionProfileRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectionProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1286,17 +1319,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new DeleteConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConnectionProfileRequest())->setName($formattedName);
         $response = $gapicClient->deleteConnectionProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1350,8 +1385,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DeleteConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->deleteConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1361,7 +1395,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeleteConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/DeleteConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1407,17 +1444,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DeleteConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->deleteConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1453,8 +1492,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DeleteMappingRuleRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMappingRuleRequest())->setName($formattedName);
         $gapicClient->deleteMappingRule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1477,17 +1515,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DeleteMappingRuleRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMappingRuleRequest())->setName($formattedName);
         try {
             $gapicClient->deleteMappingRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1532,8 +1572,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $request = (new DeleteMigrationJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMigrationJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteMigrationJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1589,17 +1628,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $request = (new DeleteMigrationJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMigrationJobRequest())->setName($formattedName);
         $response = $gapicClient->deleteMigrationJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1653,8 +1694,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new DeletePrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1710,17 +1750,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new DeletePrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new DeletePrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->deletePrivateConnection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1755,16 +1797,24 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse = new DescribeConversionWorkspaceRevisionsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DescribeConversionWorkspaceRevisionsRequest())
-            ->setConversionWorkspace($formattedConversionWorkspace);
+        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]'
+        );
+        $request = (new DescribeConversionWorkspaceRevisionsRequest())->setConversionWorkspace(
+            $formattedConversionWorkspace
+        );
         $response = $gapicClient->describeConversionWorkspaceRevisions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DescribeConversionWorkspaceRevisions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/DescribeConversionWorkspaceRevisions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getConversionWorkspace();
         $this->assertProtobufEquals($formattedConversionWorkspace, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1781,17 +1831,25 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DescribeConversionWorkspaceRevisionsRequest())
-            ->setConversionWorkspace($formattedConversionWorkspace);
+        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]'
+        );
+        $request = (new DescribeConversionWorkspaceRevisionsRequest())->setConversionWorkspace(
+            $formattedConversionWorkspace
+        );
         try {
             $gapicClient->describeConversionWorkspaceRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1816,17 +1874,18 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $databaseEntitiesElement = new DatabaseEntity();
-        $databaseEntities = [
-            $databaseEntitiesElement,
-        ];
+        $databaseEntities = [$databaseEntitiesElement];
         $expectedResponse = new DescribeDatabaseEntitiesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabaseEntities($databaseEntities);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DescribeDatabaseEntitiesRequest())
-            ->setConversionWorkspace($formattedConversionWorkspace);
+        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]'
+        );
+        $request = (new DescribeDatabaseEntitiesRequest())->setConversionWorkspace($formattedConversionWorkspace);
         $response = $gapicClient->describeDatabaseEntities($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1853,17 +1912,23 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new DescribeDatabaseEntitiesRequest())
-            ->setConversionWorkspace($formattedConversionWorkspace);
+        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]'
+        );
+        $request = (new DescribeDatabaseEntitiesRequest())->setConversionWorkspace($formattedConversionWorkspace);
         try {
             $gapicClient->describeDatabaseEntities($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1888,17 +1953,14 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $staticIpsElement = 'staticIpsElement2078370200';
-        $staticIps = [
-            $staticIpsElement,
-        ];
+        $staticIps = [$staticIpsElement];
         $expectedResponse = new FetchStaticIpsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStaticIps($staticIps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new FetchStaticIpsRequest())
-            ->setName($formattedName);
+        $request = (new FetchStaticIpsRequest())->setName($formattedName);
         $response = $gapicClient->fetchStaticIps($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1925,17 +1987,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new FetchStaticIpsRequest())
-            ->setName($formattedName);
+        $request = (new FetchStaticIpsRequest())->setName($formattedName);
         try {
             $gapicClient->fetchStaticIps($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1964,8 +2028,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $vm = 'vm3767';
-        $request = (new GenerateSshScriptRequest())
-            ->setVm($vm);
+        $request = (new GenerateSshScriptRequest())->setVm($vm);
         $response = $gapicClient->generateSshScript($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1989,17 +2052,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $vm = 'vm3767';
-        $request = (new GenerateSshScriptRequest())
-            ->setVm($vm);
+        $request = (new GenerateSshScriptRequest())->setVm($vm);
         try {
             $gapicClient->generateSshScript($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2061,12 +2126,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $vmName = 'vmName562937619';
@@ -2106,8 +2174,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new GetConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectionProfileRequest())->setName($formattedName);
         $response = $gapicClient->getConnectionProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2131,17 +2198,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $request = (new GetConnectionProfileRequest())
-            ->setName($formattedName);
+        $request = (new GetConnectionProfileRequest())->setName($formattedName);
         try {
             $gapicClient->getConnectionProfile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2176,8 +2245,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new GetConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new GetConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->getConversionWorkspace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2201,17 +2269,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new GetConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new GetConversionWorkspaceRequest())->setName($formattedName);
         try {
             $gapicClient->getConversionWorkspace($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2245,9 +2315,13 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setRevisionId($revisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
-        $request = (new GetMappingRuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->mappingRuleName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]',
+            '[MAPPING_RULE]'
+        );
+        $request = (new GetMappingRuleRequest())->setName($formattedName);
         $response = $gapicClient->getMappingRule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2271,17 +2345,24 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
-        $request = (new GetMappingRuleRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->mappingRuleName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]',
+            '[MAPPING_RULE]'
+        );
+        $request = (new GetMappingRuleRequest())->setName($formattedName);
         try {
             $gapicClient->getMappingRule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2322,8 +2403,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $request = (new GetMigrationJobRequest())
-            ->setName($formattedName);
+        $request = (new GetMigrationJobRequest())->setName($formattedName);
         $response = $gapicClient->getMigrationJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2347,17 +2427,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $request = (new GetMigrationJobRequest())
-            ->setName($formattedName);
+        $request = (new GetMigrationJobRequest())->setName($formattedName);
         try {
             $gapicClient->getMigrationJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2388,8 +2470,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new GetPrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateConnectionRequest())->setName($formattedName);
         $response = $gapicClient->getPrivateConnection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2413,17 +2494,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $request = (new GetPrivateConnectionRequest())
-            ->setName($formattedName);
+        $request = (new GetPrivateConnectionRequest())->setName($formattedName);
         try {
             $gapicClient->getPrivateConnection($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2476,8 +2559,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ImportMappingRulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ImportMappingRulesRequest())->setParent($formattedParent);
         $response = $gapicClient->importMappingRules($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2533,17 +2615,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ImportMappingRulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ImportMappingRulesRequest())->setParent($formattedParent);
         $response = $gapicClient->importMappingRules($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2577,17 +2661,14 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $connectionProfilesElement = new ConnectionProfile();
-        $connectionProfiles = [
-            $connectionProfilesElement,
-        ];
+        $connectionProfiles = [$connectionProfilesElement];
         $expectedResponse = new ListConnectionProfilesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnectionProfiles($connectionProfiles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionProfilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectionProfilesRequest())->setParent($formattedParent);
         $response = $gapicClient->listConnectionProfiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2614,17 +2695,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConnectionProfilesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConnectionProfilesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConnectionProfiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2649,17 +2732,14 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $conversionWorkspacesElement = new ConversionWorkspace();
-        $conversionWorkspaces = [
-            $conversionWorkspacesElement,
-        ];
+        $conversionWorkspaces = [$conversionWorkspacesElement];
         $expectedResponse = new ListConversionWorkspacesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConversionWorkspaces($conversionWorkspaces);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversionWorkspacesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversionWorkspacesRequest())->setParent($formattedParent);
         $response = $gapicClient->listConversionWorkspaces($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2686,17 +2766,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListConversionWorkspacesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListConversionWorkspacesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConversionWorkspaces($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2721,17 +2803,14 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $mappingRulesElement = new MappingRule();
-        $mappingRules = [
-            $mappingRulesElement,
-        ];
+        $mappingRules = [$mappingRulesElement];
         $expectedResponse = new ListMappingRulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMappingRules($mappingRules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ListMappingRulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMappingRulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listMappingRules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2758,17 +2837,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ListMappingRulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMappingRulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMappingRules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2793,17 +2874,14 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $migrationJobsElement = new MigrationJob();
-        $migrationJobs = [
-            $migrationJobsElement,
-        ];
+        $migrationJobs = [$migrationJobsElement];
         $expectedResponse = new ListMigrationJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMigrationJobs($migrationJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMigrationJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMigrationJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listMigrationJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2830,17 +2908,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMigrationJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMigrationJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMigrationJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2865,17 +2945,14 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $privateConnectionsElement = new PrivateConnection();
-        $privateConnections = [
-            $privateConnectionsElement,
-        ];
+        $privateConnections = [$privateConnectionsElement];
         $expectedResponse = new ListPrivateConnectionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPrivateConnections($privateConnections);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPrivateConnections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2902,17 +2979,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListPrivateConnectionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPrivateConnectionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPrivateConnections($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3023,12 +3102,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new PromoteMigrationJobRequest();
         $response = $gapicClient->promoteMigrationJob($request);
@@ -3150,12 +3232,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new RestartMigrationJobRequest();
         $response = $gapicClient->restartMigrationJob($request);
@@ -3277,12 +3362,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new ResumeMigrationJobRequest();
         $response = $gapicClient->resumeMigrationJob($request);
@@ -3346,8 +3434,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new RollbackConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new RollbackConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->rollbackConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3357,7 +3444,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/RollbackConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/RollbackConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3403,17 +3493,19 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new RollbackConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new RollbackConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->rollbackConversionWorkspace($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -3448,9 +3540,12 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse = new SearchBackgroundJobsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new SearchBackgroundJobsRequest())
-            ->setConversionWorkspace($formattedConversionWorkspace);
+        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]'
+        );
+        $request = (new SearchBackgroundJobsRequest())->setConversionWorkspace($formattedConversionWorkspace);
         $response = $gapicClient->searchBackgroundJobs($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3474,17 +3569,23 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new SearchBackgroundJobsRequest())
-            ->setConversionWorkspace($formattedConversionWorkspace);
+        $formattedConversionWorkspace = $gapicClient->conversionWorkspaceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSION_WORKSPACE]'
+        );
+        $request = (new SearchBackgroundJobsRequest())->setConversionWorkspace($formattedConversionWorkspace);
         try {
             $gapicClient->searchBackgroundJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3589,12 +3690,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new SeedConversionWorkspaceRequest();
         $response = $gapicClient->seedConversionWorkspace($request);
@@ -3716,12 +3820,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new StartMigrationJobRequest();
         $response = $gapicClient->startMigrationJob($request);
@@ -3843,12 +3950,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new StopMigrationJobRequest();
         $response = $gapicClient->stopMigrationJob($request);
@@ -3969,12 +4079,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -4068,7 +4181,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/UpdateConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/UpdateConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getConversionWorkspace();
@@ -4116,12 +4232,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -4215,9 +4334,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $migrationJob->setSource($migrationJobSource);
         $migrationJobDestination = 'migrationJobDestination814598015';
         $migrationJob->setDestination($migrationJobDestination);
-        $request = (new UpdateMigrationJobRequest())
-            ->setUpdateMask($updateMask)
-            ->setMigrationJob($migrationJob);
+        $request = (new UpdateMigrationJobRequest())->setUpdateMask($updateMask)->setMigrationJob($migrationJob);
         $response = $gapicClient->updateMigrationJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4275,12 +4392,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
@@ -4291,9 +4411,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $migrationJob->setSource($migrationJobSource);
         $migrationJobDestination = 'migrationJobDestination814598015';
         $migrationJob->setDestination($migrationJobDestination);
-        $request = (new UpdateMigrationJobRequest())
-            ->setUpdateMask($updateMask)
-            ->setMigrationJob($migrationJob);
+        $request = (new UpdateMigrationJobRequest())->setUpdateMask($updateMask)->setMigrationJob($migrationJob);
         $response = $gapicClient->updateMigrationJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4413,12 +4531,15 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         $request = new VerifyMigrationJobRequest();
         $response = $gapicClient->verifyMigrationJob($request);
@@ -4482,8 +4603,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
-        $request = (new ApplyConversionWorkspaceRequest())
-            ->setName($formattedName);
+        $request = (new ApplyConversionWorkspaceRequest())->setName($formattedName);
         $response = $gapicClient->applyConversionWorkspaceAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4493,7 +4613,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ApplyConversionWorkspace', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.clouddms.v1.DataMigrationService/ApplyConversionWorkspace',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();

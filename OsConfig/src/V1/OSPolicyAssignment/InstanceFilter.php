@@ -23,7 +23,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all = 1;</code>
      */
-    private $all = false;
+    protected $all = false;
     /**
      * List of label sets used for VM inclusion.
      * If the list has more than one `LabelSet`, the VM is included if any

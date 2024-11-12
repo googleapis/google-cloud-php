@@ -10,15 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Specifies the logging behavior for transfer operations.
- * For cloud-to-cloud transfers, logs are sent to Cloud Logging. See
+ * Logs can be sent to Cloud Logging for all transfer types. See
  * [Read transfer
  * logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for
  * details.
- * For transfers to or from a POSIX file system, logs are stored in the
- * Cloud Storage bucket that is the source or sink of the transfer.
- * See [Managing Transfer for on-premises jobs]
- * (https://cloud.google.com/storage-transfer/docs/managing-on-prem-jobs#viewing-logs)
- * for details.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.LoggingConfig</code>
  */
@@ -26,29 +21,27 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Specifies the actions to be logged. If empty, no logs are generated.
-     * Not supported for transfers with PosixFilesystem data sources; use
-     * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     * instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableAction log_actions = 1;</code>
      */
     private $log_actions;
     /**
      * States in which `log_actions` are logged. If empty, no logs are generated.
-     * Not supported for transfers with PosixFilesystem data sources; use
-     * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     * instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableActionState log_action_states = 2;</code>
      */
     private $log_action_states;
     /**
-     * For transfers with a PosixFilesystem source, this option enables the Cloud
-     * Storage transfer logs for this transfer.
+     * For PosixFilesystem transfers, enables
+     * [file system transfer
+     * logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format)
+     * instead of, or in addition to, Cloud Logging.
+     * This option ignores [LoggableAction] and [LoggableActionState]. If these
+     * are set, Cloud Logging will also be enabled for this transfer.
      *
      * Generated from protobuf field <code>bool enable_onprem_gcs_transfer_logs = 3;</code>
      */
-    private $enable_onprem_gcs_transfer_logs = false;
+    protected $enable_onprem_gcs_transfer_logs = false;
 
     /**
      * Constructor.
@@ -58,17 +51,15 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_actions
      *           Specifies the actions to be logged. If empty, no logs are generated.
-     *           Not supported for transfers with PosixFilesystem data sources; use
-     *           [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     *           instead.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_action_states
      *           States in which `log_actions` are logged. If empty, no logs are generated.
-     *           Not supported for transfers with PosixFilesystem data sources; use
-     *           [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     *           instead.
      *     @type bool $enable_onprem_gcs_transfer_logs
-     *           For transfers with a PosixFilesystem source, this option enables the Cloud
-     *           Storage transfer logs for this transfer.
+     *           For PosixFilesystem transfers, enables
+     *           [file system transfer
+     *           logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format)
+     *           instead of, or in addition to, Cloud Logging.
+     *           This option ignores [LoggableAction] and [LoggableActionState]. If these
+     *           are set, Cloud Logging will also be enabled for this transfer.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,9 +69,6 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the actions to be logged. If empty, no logs are generated.
-     * Not supported for transfers with PosixFilesystem data sources; use
-     * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     * instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableAction log_actions = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,9 +80,6 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the actions to be logged. If empty, no logs are generated.
-     * Not supported for transfers with PosixFilesystem data sources; use
-     * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     * instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableAction log_actions = 1;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -110,9 +95,6 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * States in which `log_actions` are logged. If empty, no logs are generated.
-     * Not supported for transfers with PosixFilesystem data sources; use
-     * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     * instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableActionState log_action_states = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -124,9 +106,6 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * States in which `log_actions` are logged. If empty, no logs are generated.
-     * Not supported for transfers with PosixFilesystem data sources; use
-     * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs]
-     * instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableActionState log_action_states = 2;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -141,8 +120,12 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For transfers with a PosixFilesystem source, this option enables the Cloud
-     * Storage transfer logs for this transfer.
+     * For PosixFilesystem transfers, enables
+     * [file system transfer
+     * logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format)
+     * instead of, or in addition to, Cloud Logging.
+     * This option ignores [LoggableAction] and [LoggableActionState]. If these
+     * are set, Cloud Logging will also be enabled for this transfer.
      *
      * Generated from protobuf field <code>bool enable_onprem_gcs_transfer_logs = 3;</code>
      * @return bool
@@ -153,8 +136,12 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For transfers with a PosixFilesystem source, this option enables the Cloud
-     * Storage transfer logs for this transfer.
+     * For PosixFilesystem transfers, enables
+     * [file system transfer
+     * logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format)
+     * instead of, or in addition to, Cloud Logging.
+     * This option ignores [LoggableAction] and [LoggableActionState]. If these
+     * are set, Cloud Logging will also be enabled for this transfer.
      *
      * Generated from protobuf field <code>bool enable_onprem_gcs_transfer_logs = 3;</code>
      * @param bool $var

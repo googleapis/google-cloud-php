@@ -21,7 +21,7 @@ class PrepareStepDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.MigrationProgressEvent.ConcurrencyMode concurrency_mode = 1;</code>
      */
-    private $concurrency_mode = 0;
+    protected $concurrency_mode = 0;
 
     /**
      * Constructor.
@@ -69,6 +69,4 @@ class PrepareStepDetails extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrepareStepDetails::class, \Google\Cloud\Datastore\Admin\V1\MigrationProgressEvent_PrepareStepDetails::class);
 

@@ -20,25 +20,25 @@ class EntityDdl extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ddl_type = 1;</code>
      */
-    private $ddl_type = '';
+    protected $ddl_type = '';
     /**
      * The name of the database entity the ddl refers to.
      *
      * Generated from protobuf field <code>string entity = 2;</code>
      */
-    private $entity = '';
+    protected $entity = '';
     /**
      * The actual ddl code.
      *
      * Generated from protobuf field <code>string ddl = 3;</code>
      */
-    private $ddl = '';
+    protected $ddl = '';
     /**
      * The entity type (if the DDL is for a sub entity).
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType entity_type = 4;</code>
      */
-    private $entity_type = 0;
+    protected $entity_type = 0;
     /**
      * EntityIssues found for this ddl.
      *

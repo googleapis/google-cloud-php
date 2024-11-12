@@ -21,7 +21,7 @@ class SignJwtRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The sequence of service accounts in a delegation chain. Each service
      * account must be granted the `roles/iam.serviceAccountTokenCreator` role
@@ -41,7 +41,7 @@ class SignJwtRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string payload = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $payload = '';
+    protected $payload = '';
 
     /**
      * @param string   $name      Required. The resource name of the service account for which the credentials

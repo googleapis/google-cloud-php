@@ -20,20 +20,20 @@ class MediaCdnKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes private_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $private_key = '';
+    protected $private_key = '';
     /**
      * The keyset name of the Media CDN key.
      *
      * Generated from protobuf field <code>string key_name = 2;</code>
      */
-    private $key_name = '';
+    protected $key_name = '';
     /**
      * Optional. If set, the URL will be signed using the Media CDN token.
      * Otherwise, the URL would be signed using the standard Media CDN signature.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.MediaCdnKey.TokenConfig token_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $token_config = null;
+    protected $token_config = null;
 
     /**
      * Constructor.

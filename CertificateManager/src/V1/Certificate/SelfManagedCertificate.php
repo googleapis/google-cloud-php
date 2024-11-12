@@ -23,13 +23,13 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $pem_certificate = '';
+    protected $pem_certificate = '';
     /**
      * Input only. The PEM-encoded private key of the leaf certificate.
      *
      * Generated from protobuf field <code>string pem_private_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $pem_private_key = '';
+    protected $pem_private_key = '';
 
     /**
      * Constructor.

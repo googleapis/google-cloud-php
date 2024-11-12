@@ -22,34 +22,34 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server generated global unique identifier of
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The timestamp when this RestorePlan resource was
      * created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when this RestorePlan resource was last
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User specified descriptive string for this RestorePlan.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Immutable. A reference to the
      * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
@@ -58,7 +58,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $backup_plan = '';
+    protected $backup_plan = '';
     /**
      * Required. Immutable. The target cluster into which Restores created via
      * this RestorePlan will restore data. NOTE: the cluster's region must be the
@@ -68,13 +68,13 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $cluster = '';
+    protected $cluster = '';
     /**
      * Required. Configuration of Restores created via this RestorePlan.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig restore_config = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $restore_config = null;
+    protected $restore_config = null;
     /**
      * Optional. A set of custom labels supplied by user.
      *
@@ -93,7 +93,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. State of the RestorePlan. This State field reflects the
      * various stages a RestorePlan can be in
@@ -101,14 +101,14 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestorePlan.State state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Human-readable description of why RestorePlan is in the
      * current `state`
      *
      * Generated from protobuf field <code>string state_reason = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_reason = '';
+    protected $state_reason = '';
 
     /**
      * Constructor.

@@ -56,11 +56,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEngineAsync(CreateEngineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEngineAsync(DeleteEngineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEngineAsync(GetEngineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEnginesAsync(ListEnginesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEngineAsync(UpdateEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEngineAsync(CreateEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEngineAsync(DeleteEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Engine> getEngineAsync(GetEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEnginesAsync(ListEnginesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Engine> updateEngineAsync(UpdateEngineRequest $request, array $optionalArgs = [])
  */
 final class EngineServiceClient
 {

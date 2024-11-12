@@ -21,25 +21,25 @@ class NetworkUtilization extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_sent_bytes_per_second = 1;</code>
      */
-    private $target_sent_bytes_per_second = 0;
+    protected $target_sent_bytes_per_second = 0;
     /**
      * Target packets sent per second.
      *
      * Generated from protobuf field <code>int32 target_sent_packets_per_second = 11;</code>
      */
-    private $target_sent_packets_per_second = 0;
+    protected $target_sent_packets_per_second = 0;
     /**
      * Target bytes received per second.
      *
      * Generated from protobuf field <code>int32 target_received_bytes_per_second = 12;</code>
      */
-    private $target_received_bytes_per_second = 0;
+    protected $target_received_bytes_per_second = 0;
     /**
      * Target packets received per second.
      *
      * Generated from protobuf field <code>int32 target_received_packets_per_second = 13;</code>
      */
-    private $target_received_packets_per_second = 0;
+    protected $target_received_packets_per_second = 0;
 
     /**
      * Constructor.

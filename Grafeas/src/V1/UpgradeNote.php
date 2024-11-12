@@ -23,14 +23,14 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package = 1;</code>
      */
-    private $package = '';
+    protected $package = '';
     /**
      * Required for non-Windows OS. The version of the package in machine + human
      * readable form.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 2;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * Metadata about the upgrade for each specific operating system.
      *
@@ -42,7 +42,7 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.WindowsUpdate windows_update = 4;</code>
      */
-    private $windows_update = null;
+    protected $windows_update = null;
 
     /**
      * Constructor.

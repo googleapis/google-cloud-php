@@ -56,6 +56,13 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections sections = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sections = null;
+    /**
+     * Optional. The number of recent messages to include in the context.
+     * Supported features: KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>int32 context_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $context_size = 0;
     protected $query_source;
 
     /**
@@ -97,6 +104,9 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections $sections
      *           Optional. The customized sections chosen to return when requesting a
      *           summary of a conversation.
+     *     @type int $context_size
+     *           Optional. The number of recent messages to include in the context.
+     *           Supported features: KNOWLEDGE_ASSIST.
      * }
      */
     public function __construct($data = NULL) {
@@ -355,6 +365,34 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\Sections::class);
         $this->sections = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The number of recent messages to include in the context.
+     * Supported features: KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>int32 context_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getContextSize()
+    {
+        return $this->context_size;
+    }
+
+    /**
+     * Optional. The number of recent messages to include in the context.
+     * Supported features: KNOWLEDGE_ASSIST.
+     *
+     * Generated from protobuf field <code>int32 context_size = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContextSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->context_size = $var;
 
         return $this;
     }

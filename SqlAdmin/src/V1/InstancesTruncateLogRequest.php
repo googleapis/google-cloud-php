@@ -20,7 +20,7 @@ class InstancesTruncateLogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.TruncateLogContext truncate_log_context = 1;</code>
      */
-    private $truncate_log_context = null;
+    protected $truncate_log_context = null;
 
     /**
      * Constructor.

@@ -32,11 +32,12 @@ class Parameter extends \Google\Protobuf\Internal\Message
     protected $required = false;
     /**
      * Required. The entity type of the parameter.
-     * Format: `projects/-/locations/-/agents/-/entityTypes/<System Entity Type
-     * ID>` for system entity types (for example,
+     * Format:
+     * `projects/-/locations/-/agents/-/entityTypes/<SystemEntityTypeID>` for
+     * system entity types (for example,
      * `projects/-/locations/-/agents/-/entityTypes/sys.date`), or
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>` for developer entity types.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`
+     * for developer entity types.
      *
      * Generated from protobuf field <code>string entity_type = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -94,11 +95,12 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *           Required parameters must be filled before form filling concludes.
      *     @type string $entity_type
      *           Required. The entity type of the parameter.
-     *           Format: `projects/-/locations/-/agents/-/entityTypes/<System Entity Type
-     *           ID>` for system entity types (for example,
+     *           Format:
+     *           `projects/-/locations/-/agents/-/entityTypes/<SystemEntityTypeID>` for
+     *           system entity types (for example,
      *           `projects/-/locations/-/agents/-/entityTypes/sys.date`), or
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/entityTypes/<Entity Type ID>` for developer entity types.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`
+     *           for developer entity types.
      *     @type bool $is_list
      *           Indicates whether the parameter represents a list of values.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Form\Parameter\FillBehavior $fill_behavior
@@ -183,11 +185,12 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The entity type of the parameter.
-     * Format: `projects/-/locations/-/agents/-/entityTypes/<System Entity Type
-     * ID>` for system entity types (for example,
+     * Format:
+     * `projects/-/locations/-/agents/-/entityTypes/<SystemEntityTypeID>` for
+     * system entity types (for example,
      * `projects/-/locations/-/agents/-/entityTypes/sys.date`), or
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>` for developer entity types.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`
+     * for developer entity types.
      *
      * Generated from protobuf field <code>string entity_type = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -199,11 +202,12 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The entity type of the parameter.
-     * Format: `projects/-/locations/-/agents/-/entityTypes/<System Entity Type
-     * ID>` for system entity types (for example,
+     * Format:
+     * `projects/-/locations/-/agents/-/entityTypes/<SystemEntityTypeID>` for
+     * system entity types (for example,
      * `projects/-/locations/-/agents/-/entityTypes/sys.date`), or
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<Entity Type ID>` for developer entity types.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`
+     * for developer entity types.
      *
      * Generated from protobuf field <code>string entity_type = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

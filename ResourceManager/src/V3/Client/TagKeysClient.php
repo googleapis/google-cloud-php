@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,15 +61,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTagKeyAsync(CreateTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTagKeyAsync(DeleteTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNamespacedTagKeyAsync(GetNamespacedTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTagKeyAsync(GetTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTagKeysAsync(ListTagKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTagKeyAsync(UpdateTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTagKeyAsync(CreateTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTagKeyAsync(DeleteTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagKey> getNamespacedTagKeyAsync(GetNamespacedTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagKey> getTagKeyAsync(GetTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTagKeysAsync(ListTagKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTagKeyAsync(UpdateTagKeyRequest $request, array $optionalArgs = [])
  */
 final class TagKeysClient
 {
@@ -145,7 +145,9 @@ final class TagKeysClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -504,8 +506,10 @@ final class TagKeysClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

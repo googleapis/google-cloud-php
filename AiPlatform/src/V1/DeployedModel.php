@@ -130,6 +130,13 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateEndpoints private_endpoints = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $private_endpoints = null;
+    /**
+     * System labels to apply to Model Garden deployments.
+     * System labels are managed by Google for internal use only.
+     *
+     * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
+     */
+    private $system_labels;
     protected $prediction_resources;
 
     /**
@@ -219,6 +226,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           requests directly to the deployed model services running on Cloud via
      *           private services access. This field is populated if
      *           [network][google.cloud.aiplatform.v1.Endpoint.network] is configured.
+     *     @type array|\Google\Protobuf\Internal\MapField $system_labels
+     *           System labels to apply to Model Garden deployments.
+     *           System labels are managed by Google for internal use only.
      * }
      */
     public function __construct($data = NULL) {
@@ -737,6 +747,34 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateEndpoints::class);
         $this->private_endpoints = $var;
+
+        return $this;
+    }
+
+    /**
+     * System labels to apply to Model Garden deployments.
+     * System labels are managed by Google for internal use only.
+     *
+     * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getSystemLabels()
+    {
+        return $this->system_labels;
+    }
+
+    /**
+     * System labels to apply to Model Garden deployments.
+     * System labels are managed by Google for internal use only.
+     *
+     * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setSystemLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->system_labels = $arr;
 
         return $this;
     }

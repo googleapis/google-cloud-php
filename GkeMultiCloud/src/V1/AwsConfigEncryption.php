@@ -20,7 +20,7 @@ class AwsConfigEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_arn = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $kms_key_arn = '';
+    protected $kms_key_arn = '';
 
     /**
      * Constructor.

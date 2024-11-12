@@ -43,7 +43,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      * this search, which enables accurate attribution of search model
-     * performance.
+     * performance. This also helps to identify a request during the customer
+     * support scenarios.
      *
      * Generated from protobuf field <code>string attribution_token = 4;</code>
      */
@@ -91,6 +92,15 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
      */
     protected $query_expansion_info = null;
+    /**
+     * Session information.
+     * Only set if
+     * [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
+     * is provided. See its description for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SessionInfo session_info = 19;</code>
+     */
+    protected $session_info = null;
 
     /**
      * Constructor.
@@ -112,7 +122,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           A unique search token. This should be included in the
      *           [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      *           this search, which enables accurate attribution of search model
-     *           performance.
+     *           performance. This also helps to identify a request during the customer
+     *           support scenarios.
      *     @type string $redirect_uri
      *           The URI of a customer-defined redirect page. If redirect action is
      *           triggered, no search is performed, and only
@@ -136,6 +147,11 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           is set.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo $query_expansion_info
      *           Query expansion information for the returned results.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SessionInfo $session_info
+     *           Session information.
+     *           Only set if
+     *           [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
+     *           is provided. See its description for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -233,7 +249,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      * this search, which enables accurate attribution of search model
-     * performance.
+     * performance. This also helps to identify a request during the customer
+     * support scenarios.
      *
      * Generated from protobuf field <code>string attribution_token = 4;</code>
      * @return string
@@ -247,7 +264,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A unique search token. This should be included in the
      * [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      * this search, which enables accurate attribution of search model
-     * performance.
+     * performance. This also helps to identify a request during the customer
+     * support scenarios.
      *
      * Generated from protobuf field <code>string attribution_token = 4;</code>
      * @param string $var
@@ -433,6 +451,48 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo::class);
         $this->query_expansion_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Session information.
+     * Only set if
+     * [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
+     * is provided. See its description for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SessionInfo session_info = 19;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SessionInfo|null
+     */
+    public function getSessionInfo()
+    {
+        return $this->session_info;
+    }
+
+    public function hasSessionInfo()
+    {
+        return isset($this->session_info);
+    }
+
+    public function clearSessionInfo()
+    {
+        unset($this->session_info);
+    }
+
+    /**
+     * Session information.
+     * Only set if
+     * [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
+     * is provided. See its description for more details.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SessionInfo session_info = 19;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SessionInfo $var
+     * @return $this
+     */
+    public function setSessionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SessionInfo::class);
+        $this->session_info = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,9 @@ class TagBindingsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TagBindingsClient */
@@ -110,8 +112,7 @@ class TagBindingsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $tagBinding = new TagBinding();
-        $request = (new CreateTagBindingRequest())
-            ->setTagBinding($tagBinding);
+        $request = (new CreateTagBindingRequest())->setTagBinding($tagBinding);
         $response = $gapicClient->createTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -167,17 +168,19 @@ class TagBindingsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tagBinding = new TagBinding();
-        $request = (new CreateTagBindingRequest())
-            ->setTagBinding($tagBinding);
+        $request = (new CreateTagBindingRequest())->setTagBinding($tagBinding);
         $response = $gapicClient->createTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -231,8 +234,7 @@ class TagBindingsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->tagBindingName('[TAG_BINDING]');
-        $request = (new DeleteTagBindingRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTagBindingRequest())->setName($formattedName);
         $response = $gapicClient->deleteTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -288,17 +290,19 @@ class TagBindingsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->tagBindingName('[TAG_BINDING]');
-        $request = (new DeleteTagBindingRequest())
-            ->setName($formattedName);
+        $request = (new DeleteTagBindingRequest())->setName($formattedName);
         $response = $gapicClient->deleteTagBinding($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -332,17 +336,14 @@ class TagBindingsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $effectiveTagsElement = new EffectiveTag();
-        $effectiveTags = [
-            $effectiveTagsElement,
-        ];
+        $effectiveTags = [$effectiveTagsElement];
         $expectedResponse = new ListEffectiveTagsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEffectiveTags($effectiveTags);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListEffectiveTagsRequest())
-            ->setParent($parent);
+        $request = (new ListEffectiveTagsRequest())->setParent($parent);
         $response = $gapicClient->listEffectiveTags($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -369,17 +370,19 @@ class TagBindingsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListEffectiveTagsRequest())
-            ->setParent($parent);
+        $request = (new ListEffectiveTagsRequest())->setParent($parent);
         try {
             $gapicClient->listEffectiveTags($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -404,17 +407,14 @@ class TagBindingsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $tagBindingsElement = new TagBinding();
-        $tagBindings = [
-            $tagBindingsElement,
-        ];
+        $tagBindings = [$tagBindingsElement];
         $expectedResponse = new ListTagBindingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTagBindings($tagBindings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListTagBindingsRequest())
-            ->setParent($parent);
+        $request = (new ListTagBindingsRequest())->setParent($parent);
         $response = $gapicClient->listTagBindings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -441,17 +441,19 @@ class TagBindingsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListTagBindingsRequest())
-            ->setParent($parent);
+        $request = (new ListTagBindingsRequest())->setParent($parent);
         try {
             $gapicClient->listTagBindings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -504,8 +506,7 @@ class TagBindingsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $tagBinding = new TagBinding();
-        $request = (new CreateTagBindingRequest())
-            ->setTagBinding($tagBinding);
+        $request = (new CreateTagBindingRequest())->setTagBinding($tagBinding);
         $response = $gapicClient->createTagBindingAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

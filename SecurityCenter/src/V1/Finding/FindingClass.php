@@ -100,6 +100,4 @@ class FindingClass
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FindingClass::class, \Google\Cloud\SecurityCenter\V1\Finding_FindingClass::class);
 

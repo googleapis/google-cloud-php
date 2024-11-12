@@ -80,6 +80,12 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.WebhookRequest.SentimentAnalysisResult sentiment_analysis_result = 9;</code>
      */
     protected $sentiment_analysis_result = null;
+    /**
+     * Information about the language of the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LanguageInfo language_info = 18;</code>
+     */
+    protected $language_info = null;
     protected $query;
 
     /**
@@ -98,8 +104,7 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_intent
      *           If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      *           input, this field will contain a copy of the intent identifier. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $transcript
      *           If [natural language speech
      *           audio][google.cloud.dialogflow.cx.v3.AudioInput] was provided as input,
@@ -132,6 +137,8 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\WebhookRequest\SentimentAnalysisResult $sentiment_analysis_result
      *           The sentiment analysis result of the current user request. The field is
      *           filled when sentiment analysis is configured to be enabled for the request.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\LanguageInfo $language_info
+     *           Information about the language of the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -205,8 +212,7 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
     /**
      * If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      * input, this field will contain a copy of the intent identifier. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string trigger_intent = 11 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -224,8 +230,7 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
     /**
      * If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      * input, this field will contain a copy of the intent identifier. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string trigger_intent = 11 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -616,6 +621,42 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\WebhookRequest\SentimentAnalysisResult::class);
         $this->sentiment_analysis_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Information about the language of the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LanguageInfo language_info = 18;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\LanguageInfo|null
+     */
+    public function getLanguageInfo()
+    {
+        return $this->language_info;
+    }
+
+    public function hasLanguageInfo()
+    {
+        return isset($this->language_info);
+    }
+
+    public function clearLanguageInfo()
+    {
+        unset($this->language_info);
+    }
+
+    /**
+     * Information about the language of the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LanguageInfo language_info = 18;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\LanguageInfo $var
+     * @return $this
+     */
+    public function setLanguageInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\LanguageInfo::class);
+        $this->language_info = $var;
 
         return $this;
     }

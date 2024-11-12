@@ -16,9 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class GenerateContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the publisher model requested to serve the
-     * prediction. Format:
+     * Required. The fully qualified name of the publisher model or tuned model
+     * endpoint to use.
+     * Publisher model format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * Tuned model endpoint format:
+     * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -58,6 +61,17 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $tool_config = null;
     /**
+     * Optional. The labels with user-defined metadata for the request. It is used
+     * for billing and reporting only.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
+    /**
      * Optional. Per request settings for blocking unsafe content.
      * Enforced on GenerateContentResponse.candidates.
      *
@@ -72,9 +86,14 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     protected $generation_config = null;
 
     /**
-     * @param string                                $model    Required. The name of the publisher model requested to serve the
-     *                                                        prediction. Format:
+     * @param string                                $model    Required. The fully qualified name of the publisher model or tuned model
+     *                                                        endpoint to use.
+     *
+     *                                                        Publisher model format:
      *                                                        `projects/{project}/locations/{location}/publishers/&#42;/models/*`
+     *
+     *                                                        Tuned model endpoint format:
+     *                                                        `projects/{project}/locations/{location}/endpoints/{endpoint}`
      * @param \Google\Cloud\AIPlatform\V1\Content[] $contents Required. The content of the current conversation with the model.
      *
      *                                                        For single-turn queries, this is a single instance. For multi-turn queries,
@@ -99,9 +118,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $model
-     *           Required. The name of the publisher model requested to serve the
-     *           prediction. Format:
+     *           Required. The fully qualified name of the publisher model or tuned model
+     *           endpoint to use.
+     *           Publisher model format:
      *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *           Tuned model endpoint format:
+     *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
      *           Required. The content of the current conversation with the model.
      *           For single-turn queries, this is a single instance. For multi-turn queries,
@@ -120,6 +142,13 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ToolConfig $tool_config
      *           Optional. Tool config. This config is shared for all tools provided in the
      *           request.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels with user-defined metadata for the request. It is used
+     *           for billing and reporting only.
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints) and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -133,9 +162,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publisher model requested to serve the
-     * prediction. Format:
+     * Required. The fully qualified name of the publisher model or tuned model
+     * endpoint to use.
+     * Publisher model format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * Tuned model endpoint format:
+     * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -146,9 +178,12 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the publisher model requested to serve the
-     * prediction. Format:
+     * Required. The fully qualified name of the publisher model or tuned model
+     * endpoint to use.
+     * Publisher model format:
      * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * Tuned model endpoint format:
+     * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -302,6 +337,42 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ToolConfig::class);
         $this->tool_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request. It is used
+     * for billing and reporting only.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request. It is used
+     * for billing and reporting only.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

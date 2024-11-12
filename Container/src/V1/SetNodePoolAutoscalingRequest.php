@@ -55,7 +55,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling autoscaling = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autoscaling = null;
+    protected $autoscaling = null;
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
@@ -63,7 +63,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.

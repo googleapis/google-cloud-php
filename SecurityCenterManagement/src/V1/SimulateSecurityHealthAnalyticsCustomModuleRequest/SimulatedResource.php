@@ -9,16 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Manually constructed resource name. If the custom module evaluates against
- * only the resource data, you can omit the `iam_policy_data` field. If it
- * evaluates only the `iam_policy_data` field, you can omit the resource data.
+ * Manually constructed information about a resource.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource</code>
  */
 class SimulatedResource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The type of the resource, for example,
+     * Required. The type of the resource. For example,
      * `compute.googleapis.com/Disk`.
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -27,12 +25,16 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A representation of the Google Cloud resource. Should match the
      * Google Cloud resource JSON format.
+     * If the custom module evaluates only the IAM allow policy, then you can
+     * omit this field.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $resource_data = null;
     /**
-     * Optional. A representation of the IAM policy.
+     * Optional. A representation of the IAM allow policy.
+     * If the custom module evaluates only the resource data, then you can omit
+     * this field.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,13 +47,17 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_type
-     *           Required. The type of the resource, for example,
+     *           Required. The type of the resource. For example,
      *           `compute.googleapis.com/Disk`.
      *     @type \Google\Protobuf\Struct $resource_data
      *           Optional. A representation of the Google Cloud resource. Should match the
      *           Google Cloud resource JSON format.
+     *           If the custom module evaluates only the IAM allow policy, then you can
+     *           omit this field.
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy_data
-     *           Optional. A representation of the IAM policy.
+     *           Optional. A representation of the IAM allow policy.
+     *           If the custom module evaluates only the resource data, then you can omit
+     *           this field.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +66,7 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the resource, for example,
+     * Required. The type of the resource. For example,
      * `compute.googleapis.com/Disk`.
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -72,7 +78,7 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the resource, for example,
+     * Required. The type of the resource. For example,
      * `compute.googleapis.com/Disk`.
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -90,6 +96,8 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A representation of the Google Cloud resource. Should match the
      * Google Cloud resource JSON format.
+     * If the custom module evaluates only the IAM allow policy, then you can
+     * omit this field.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -112,6 +120,8 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A representation of the Google Cloud resource. Should match the
      * Google Cloud resource JSON format.
+     * If the custom module evaluates only the IAM allow policy, then you can
+     * omit this field.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
@@ -126,7 +136,9 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A representation of the IAM policy.
+     * Optional. A representation of the IAM allow policy.
+     * If the custom module evaluates only the resource data, then you can omit
+     * this field.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Iam\V1\Policy|null
@@ -147,7 +159,9 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A representation of the IAM policy.
+     * Optional. A representation of the IAM allow policy.
+     * If the custom module evaluates only the resource data, then you can omit
+     * this field.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy_data = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Iam\V1\Policy $var

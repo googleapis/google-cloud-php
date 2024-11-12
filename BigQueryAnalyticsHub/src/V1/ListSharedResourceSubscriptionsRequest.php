@@ -23,26 +23,26 @@ class ListSharedResourceSubscriptionsRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string resource = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * If selected, includes deleted subscriptions in the response
      * (up to 63 days after deletion).
      *
      * Generated from protobuf field <code>bool include_deleted_subscriptions = 2;</code>
      */
-    private $include_deleted_subscriptions = false;
+    protected $include_deleted_subscriptions = false;
     /**
      * The maximum number of results to return in a single response page.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Page token, returned by a previous call.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $resource Required. Resource name of the requested target. This resource may be

@@ -27,14 +27,14 @@ class AnalyzeOrgPolicyGovernedAssetsResponse extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicyConstraint constraint = 2;</code>
      */
-    private $constraint = null;
+    protected $constraint = null;
     /**
      * The page token to fetch the next page for
      * [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

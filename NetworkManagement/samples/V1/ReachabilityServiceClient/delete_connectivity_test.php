@@ -32,17 +32,18 @@ use Google\Rpc\Status;
 /**
  * Deletes a specific `ConnectivityTest`.
  *
- * @param string $name Connectivity Test resource name using the form:
- *                     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ * @param string $formattedName Connectivity Test resource name using the form:
+ *                              `projects/{project_id}/locations/global/connectivityTests/{test_id}`
+ *                              Please see {@see ReachabilityServiceClient::connectivityTestName()} for help formatting this field.
  */
-function delete_connectivity_test_sample(string $name): void
+function delete_connectivity_test_sample(string $formattedName): void
 {
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
     // Prepare the request message.
     $request = (new DeleteConnectivityTestRequest())
-        ->setName($name);
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -73,8 +74,8 @@ function delete_connectivity_test_sample(string $name): void
  */
 function callSample(): void
 {
-    $name = '[NAME]';
+    $formattedName = ReachabilityServiceClient::connectivityTestName('[PROJECT]', '[TEST]');
 
-    delete_connectivity_test_sample($name);
+    delete_connectivity_test_sample($formattedName);
 }
 // [END networkmanagement_v1_generated_ReachabilityService_DeleteConnectivityTest_sync]

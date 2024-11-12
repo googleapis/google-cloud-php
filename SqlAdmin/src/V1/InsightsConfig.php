@@ -21,20 +21,20 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool query_insights_enabled = 1;</code>
      */
-    private $query_insights_enabled = false;
+    protected $query_insights_enabled = false;
     /**
      * Whether Query Insights will record client address when enabled.
      *
      * Generated from protobuf field <code>bool record_client_address = 2;</code>
      */
-    private $record_client_address = false;
+    protected $record_client_address = false;
     /**
      * Whether Query Insights will record application tags from query when
      * enabled.
      *
      * Generated from protobuf field <code>bool record_application_tags = 3;</code>
      */
-    private $record_application_tags = false;
+    protected $record_application_tags = false;
     /**
      * Maximum query length stored in bytes. Default value: 1024 bytes.
      * Range: 256-4500 bytes. Query length more than this field value will be
@@ -43,14 +43,14 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value query_string_length = 4;</code>
      */
-    private $query_string_length = null;
+    protected $query_string_length = null;
     /**
      * Number of query execution plans captured by Insights per minute
      * for all queries combined. Default is 5.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value query_plans_per_minute = 5;</code>
      */
-    private $query_plans_per_minute = null;
+    protected $query_plans_per_minute = null;
 
     /**
      * Constructor.
@@ -195,7 +195,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value query_string_length = 4;</code>
      * @return int|null
      */
-    public function getQueryStringLengthValue()
+    public function getQueryStringLengthUnwrapped()
     {
         return $this->readWrapperValue("query_string_length");
     }
@@ -230,7 +230,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setQueryStringLengthValue($var)
+    public function setQueryStringLengthUnwrapped($var)
     {
         $this->writeWrapperValue("query_string_length", $var);
         return $this;}
@@ -266,7 +266,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value query_plans_per_minute = 5;</code>
      * @return int|null
      */
-    public function getQueryPlansPerMinuteValue()
+    public function getQueryPlansPerMinuteUnwrapped()
     {
         return $this->readWrapperValue("query_plans_per_minute");
     }
@@ -297,7 +297,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setQueryPlansPerMinuteValue($var)
+    public function setQueryPlansPerMinuteUnwrapped($var)
     {
         $this->writeWrapperValue("query_plans_per_minute", $var);
         return $this;}

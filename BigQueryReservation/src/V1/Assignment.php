@@ -24,26 +24,26 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource which will use the reservation. E.g.
      * `projects/myproject`, `folders/123`, or `organizations/456`.
      *
      * Generated from protobuf field <code>string assignee = 4;</code>
      */
-    private $assignee = '';
+    protected $assignee = '';
     /**
      * Which type of jobs will use the reservation.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.JobType job_type = 3;</code>
      */
-    private $job_type = 0;
+    protected $job_type = 0;
     /**
      * Output only. State of the assignment.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

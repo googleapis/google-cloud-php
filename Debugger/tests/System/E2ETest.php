@@ -63,8 +63,10 @@ class E2ETest extends TestCase
             $this->debuggeeId = $data['debuggeeId'];
         }, 5, true);
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::deleteApp();
     }

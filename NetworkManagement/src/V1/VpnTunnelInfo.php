@@ -20,55 +20,55 @@ class VpnTunnelInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a VPN tunnel.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * URI of the VPN gateway at local end of the tunnel.
      *
      * Generated from protobuf field <code>string source_gateway = 3;</code>
      */
-    private $source_gateway = '';
+    protected $source_gateway = '';
     /**
      * URI of a VPN gateway at remote end of the tunnel.
      *
      * Generated from protobuf field <code>string remote_gateway = 4;</code>
      */
-    private $remote_gateway = '';
+    protected $remote_gateway = '';
     /**
      * Remote VPN gateway's IP address.
      *
      * Generated from protobuf field <code>string remote_gateway_ip = 5;</code>
      */
-    private $remote_gateway_ip = '';
+    protected $remote_gateway_ip = '';
     /**
      * Local VPN gateway's IP address.
      *
      * Generated from protobuf field <code>string source_gateway_ip = 6;</code>
      */
-    private $source_gateway_ip = '';
+    protected $source_gateway_ip = '';
     /**
      * URI of a Compute Engine network where the VPN tunnel is configured.
      *
      * Generated from protobuf field <code>string network_uri = 7;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * Name of a Google Cloud region where this VPN tunnel is configured.
      *
      * Generated from protobuf field <code>string region = 8;</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Type of the routing policy.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.VpnTunnelInfo.RoutingType routing_type = 9;</code>
      */
-    private $routing_type = 0;
+    protected $routing_type = 0;
 
     /**
      * Constructor.

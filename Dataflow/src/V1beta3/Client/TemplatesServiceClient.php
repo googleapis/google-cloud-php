@@ -49,9 +49,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createJobFromTemplateAsync(CreateJobFromTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface launchTemplateAsync(LaunchTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobFromTemplateAsync(CreateJobFromTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetTemplateResponse> getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LaunchTemplateResponse> launchTemplateAsync(LaunchTemplateRequest $request, array $optionalArgs = [])
  */
 final class TemplatesServiceClient
 {

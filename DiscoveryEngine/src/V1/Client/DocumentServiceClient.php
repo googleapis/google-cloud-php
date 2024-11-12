@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest;
+use Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataResponse;
 use Google\Cloud\DiscoveryEngine\V1\CreateDocumentRequest;
 use Google\Cloud\DiscoveryEngine\V1\DeleteDocumentRequest;
 use Google\Cloud\DiscoveryEngine\V1\Document;
@@ -58,13 +60,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDocumentsAsync(ImportDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDocumentsAsync(ListDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeDocumentsAsync(PurgeDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDocumentAsync(UpdateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchGetDocumentsMetadataResponse> batchGetDocumentsMetadataAsync(BatchGetDocumentsMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDocumentsAsync(ImportDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDocumentsAsync(ListDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeDocumentsAsync(PurgeDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> updateDocumentAsync(UpdateDocumentRequest $request, array $optionalArgs = [])
  */
 final class DocumentServiceClient
 {
@@ -214,6 +217,37 @@ final class DocumentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * fhir_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $fhirStore
+     * @param string $resourceType
+     * @param string $fhirResourceId
+     *
+     * @return string The formatted fhir_resource resource.
+     */
+    public static function fhirResourceName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $fhirStore,
+        string $resourceType,
+        string $fhirResourceId
+    ): string {
+        return self::getPathTemplate('fhirResource')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'fhir_store' => $fhirStore,
+            'resource_type' => $resourceType,
+            'fhir_resource_id' => $fhirResourceId,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a fhir_store
      * resource.
      *
@@ -352,6 +386,7 @@ final class DocumentServiceClient
      * Template: Pattern
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - fhirResource: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      * - fhirStore: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
@@ -446,6 +481,37 @@ final class DocumentServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Gets index freshness metadata for
+     * [Document][google.cloud.discoveryengine.v1.Document]s. Supported for
+     * website search only.
+     *
+     * The async variant is
+     * {@see DocumentServiceClient::batchGetDocumentsMetadataAsync()} .
+     *
+     * @example samples/V1/DocumentServiceClient/batch_get_documents_metadata.php
+     *
+     * @param BatchGetDocumentsMetadataRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchGetDocumentsMetadataResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchGetDocumentsMetadata(
+        BatchGetDocumentsMetadataRequest $request,
+        array $callOptions = []
+    ): BatchGetDocumentsMetadataResponse {
+        return $this->startApiCall('BatchGetDocumentsMetadata', $request, $callOptions)->wait();
     }
 
     /**

@@ -21,7 +21,7 @@ class ResourceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool excludes_descendants = 1;</code>
      */
-    private $excludes_descendants = false;
+    protected $excludes_descendants = false;
 
     /**
      * Constructor.

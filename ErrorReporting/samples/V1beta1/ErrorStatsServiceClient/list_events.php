@@ -33,13 +33,24 @@ use Google\Cloud\ErrorReporting\V1beta1\ListEventsRequest;
  * Lists the specified events.
  *
  * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
- *                                     as `projects/{projectID}`, where `{projectID}` is the
- *                                     [Google Cloud Platform project
- *                                     ID](https://support.google.com/cloud/answer/6158840).
+ *                                     as `projects/{projectID}` or `projects/{projectID}/locations/{location}`,
+ *                                     where `{projectID}` is the [Google Cloud Platform project
+ *                                     ID](https://support.google.com/cloud/answer/6158840) and `{location}` is
+ *                                     a Cloud region.
  *
- *                                     Example: `projects/my-project-123`. Please see
+ *                                     Examples: `projects/my-project-123`,
+ *                                     `projects/my-project-123/locations/global`.
+ *
+ *                                     For a list of supported locations, see [Supported
+ *                                     Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+ *                                     the default when unspecified. Please see
  *                                     {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
  * @param string $groupId              The group for which events shall be returned.
+ *                                     The `group_id` is a unique identifier for a particular error group. The
+ *                                     identifier is derived from key parts of the error-log content and is
+ *                                     treated as Service Data. For information about how Service Data
+ *                                     is handled, see [Google Cloud Privacy
+ *                                     Notice](https://cloud.google.com/terms/cloud-privacy-notice).
  */
 function list_events_sample(string $formattedProjectName, string $groupId): void
 {

@@ -60,15 +60,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportEntityTypesAsync(ExportEntityTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importEntityTypesAsync(ImportEntityTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportEntityTypesAsync(ExportEntityTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importEntityTypesAsync(ImportEntityTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class EntityTypesClient
 {

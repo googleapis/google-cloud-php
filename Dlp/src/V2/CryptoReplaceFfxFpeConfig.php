@@ -32,7 +32,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $crypto_key = null;
+    protected $crypto_key = null;
     /**
      * The 'tweak', a context may be used for higher security since the same
      * identifier in two different contexts won't be given the same surrogate. If
@@ -51,7 +51,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 2;</code>
      */
-    private $context = null;
+    protected $context = null;
     /**
      * The custom infoType to annotate the surrogate with.
      * This annotation will be applied to the surrogate by prefixing it with
@@ -78,7 +78,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType surrogate_info_type = 8;</code>
      */
-    private $surrogate_info_type = null;
+    protected $surrogate_info_type = null;
     protected $alphabet;
 
     /**
@@ -115,8 +115,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *           This must be encoded as ASCII.
      *           The order of characters does not matter.
      *           The full list of allowed characters is:
-     *           <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-     *           ~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/</code>
+     *           ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/``
      *     @type int $radix
      *           The native way to select the alphabet. Must be in the range [2, 95].
      *     @type \Google\Cloud\Dlp\V2\InfoType $surrogate_info_type
@@ -287,8 +286,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * This must be encoded as ASCII.
      * The order of characters does not matter.
      * The full list of allowed characters is:
-     * <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-     * ~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/</code>
+     * ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/``
      *
      * Generated from protobuf field <code>string custom_alphabet = 5;</code>
      * @return string
@@ -312,8 +310,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * This must be encoded as ASCII.
      * The order of characters does not matter.
      * The full list of allowed characters is:
-     * <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-     * ~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/</code>
+     * ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/``
      *
      * Generated from protobuf field <code>string custom_alphabet = 5;</code>
      * @param string $var

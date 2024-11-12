@@ -21,19 +21,19 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The source engine details.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEngineInfo source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * Required. The destination engine details.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEngineInfo destination = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $destination = null;
+    protected $destination = null;
     /**
      * Optional. A generic list of settings for the workspace.
      * The settings are database pair dependant and can indicate default behavior
@@ -50,37 +50,37 @@ class ConversionWorkspace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool has_uncommitted_changes = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $has_uncommitted_changes = false;
+    protected $has_uncommitted_changes = false;
     /**
      * Output only. The latest commit ID.
      *
      * Generated from protobuf field <code>string latest_commit_id = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_commit_id = '';
+    protected $latest_commit_id = '';
     /**
      * Output only. The timestamp when the workspace was committed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_commit_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_commit_time = null;
+    protected $latest_commit_time = null;
     /**
      * Output only. The timestamp when the workspace resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when the workspace resource was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. The display name for the workspace.
      *
      * Generated from protobuf field <code>string display_name = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

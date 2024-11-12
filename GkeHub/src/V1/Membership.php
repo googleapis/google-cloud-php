@@ -28,7 +28,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Labels for this membership.
      *
@@ -42,31 +42,31 @@ class Membership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. State of the Membership resource.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.MembershipState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Output only. When the Membership was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. When the Membership was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. When the Membership was deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Optional. An externally-generated and managed ID for this Membership. This
      * ID may be modified after creation, but this is not recommended.
@@ -76,7 +76,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $external_id = '';
+    protected $external_id = '';
     /**
      * Output only. For clusters using Connect, the timestamp of the most recent
      * connection established with Google Cloud. This time is updated every
@@ -86,7 +86,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_connection_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_connection_time = null;
+    protected $last_connection_time = null;
     /**
      * Output only. Google-generated UUID for this resource. This is unique across
      * all Membership resources. If a Membership resource is deleted and another
@@ -94,7 +94,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $unique_id = '';
+    protected $unique_id = '';
     /**
      * Optional. How to identify workloads from this Membership.
      * See the documentation on Workload Identity for more details:
@@ -102,13 +102,13 @@ class Membership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.Authority authority = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $authority = null;
+    protected $authority = null;
     /**
      * Optional. The monitoring config information for this membership.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.MonitoringConfig monitoring_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $monitoring_config = null;
+    protected $monitoring_config = null;
     protected $type;
 
     /**

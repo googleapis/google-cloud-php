@@ -21,7 +21,7 @@ class AppendResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value offset = 1;</code>
      */
-    private $offset = null;
+    protected $offset = null;
 
     /**
      * Constructor.
@@ -70,7 +70,7 @@ class AppendResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value offset = 1;</code>
      * @return int|string|null
      */
-    public function getOffsetValue()
+    public function getOffsetUnwrapped()
     {
         return $this->readWrapperValue("offset");
     }
@@ -101,13 +101,11 @@ class AppendResult extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setOffsetValue($var)
+    public function setOffsetUnwrapped($var)
     {
         $this->writeWrapperValue("offset", $var);
         return $this;}
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AppendResult::class, \Google\Cloud\BigQuery\Storage\V1\AppendRowsResponse_AppendResult::class);
 

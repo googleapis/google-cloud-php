@@ -469,6 +469,8 @@ class JobServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $generateExplanation = false;
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new BatchPredictionJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -477,6 +479,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -569,9 +573,13 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CustomJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -762,12 +770,16 @@ class JobServiceClientTest extends GeneratedTest
         $maxTrialCount = 445994933;
         $parallelTrialCount = 1813795950;
         $maxFailedTrialCount = 887662497;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new HyperparameterTuningJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMaxTrialCount($maxTrialCount);
         $expectedResponse->setParallelTrialCount($parallelTrialCount);
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -876,6 +888,8 @@ class JobServiceClientTest extends GeneratedTest
         $predictInstanceSchemaUri = 'predictInstanceSchemaUri1705398098';
         $analysisInstanceSchemaUri = 'analysisInstanceSchemaUri1555410389';
         $enableMonitoringPipelineLogs = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ModelDeploymentMonitoringJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -883,6 +897,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setPredictInstanceSchemaUri($predictInstanceSchemaUri);
         $expectedResponse->setAnalysisInstanceSchemaUri($analysisInstanceSchemaUri);
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -992,10 +1008,14 @@ class JobServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $enableRestrictedImageTraining = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new NasJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableRestrictedImageTraining($enableRestrictedImageTraining);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1828,6 +1848,8 @@ class JobServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $generateExplanation = false;
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new BatchPredictionJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1836,6 +1858,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
@@ -1900,9 +1924,13 @@ class JobServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new CustomJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
@@ -2045,12 +2073,16 @@ class JobServiceClientTest extends GeneratedTest
         $maxTrialCount = 445994933;
         $parallelTrialCount = 1813795950;
         $maxFailedTrialCount = 887662497;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new HyperparameterTuningJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMaxTrialCount($maxTrialCount);
         $expectedResponse->setParallelTrialCount($parallelTrialCount);
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->hyperparameterTuningJobName(
@@ -2127,6 +2159,8 @@ class JobServiceClientTest extends GeneratedTest
         $predictInstanceSchemaUri = 'predictInstanceSchemaUri1705398098';
         $analysisInstanceSchemaUri = 'analysisInstanceSchemaUri1555410389';
         $enableMonitoringPipelineLogs = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ModelDeploymentMonitoringJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -2134,6 +2168,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setPredictInstanceSchemaUri($predictInstanceSchemaUri);
         $expectedResponse->setAnalysisInstanceSchemaUri($analysisInstanceSchemaUri);
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelDeploymentMonitoringJobName(
@@ -2207,10 +2243,14 @@ class JobServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $enableRestrictedImageTraining = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new NasJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEnableRestrictedImageTraining($enableRestrictedImageTraining);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nasJobName('[PROJECT]', '[LOCATION]', '[NAS_JOB]');
@@ -3091,6 +3131,8 @@ class JobServiceClientTest extends GeneratedTest
         $predictInstanceSchemaUri = 'predictInstanceSchemaUri1705398098';
         $analysisInstanceSchemaUri = 'analysisInstanceSchemaUri1555410389';
         $enableMonitoringPipelineLogs = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ModelDeploymentMonitoringJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -3098,6 +3140,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setPredictInstanceSchemaUri($predictInstanceSchemaUri);
         $expectedResponse->setAnalysisInstanceSchemaUri($analysisInstanceSchemaUri);
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -20,19 +20,19 @@ class Media extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * URL of the media.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Type of the media.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MediaType type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

@@ -20,25 +20,25 @@ class VpnGatewayInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a VPN gateway.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * URI of a Compute Engine network where the VPN gateway is configured.
      *
      * Generated from protobuf field <code>string network_uri = 3;</code>
      */
-    private $network_uri = '';
+    protected $network_uri = '';
     /**
      * IP address of the VPN gateway.
      *
      * Generated from protobuf field <code>string ip_address = 4;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * A VPN tunnel that is associated with this VPN gateway.
      * There may be multiple VPN tunnels configured on a VPN gateway, and only
@@ -46,13 +46,13 @@ class VpnGatewayInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vpn_tunnel_uri = 5;</code>
      */
-    private $vpn_tunnel_uri = '';
+    protected $vpn_tunnel_uri = '';
     /**
      * Name of a Google Cloud region where this VPN gateway is configured.
      *
      * Generated from protobuf field <code>string region = 6;</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

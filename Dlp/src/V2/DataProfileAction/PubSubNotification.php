@@ -23,21 +23,21 @@ class PubSubNotification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * The type of event that triggers a Pub/Sub. At most one
      * `PubSubNotification` per EventType is permitted.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.EventType event = 2;</code>
      */
-    private $event = 0;
+    protected $event = 0;
     /**
      * Conditions (e.g., data risk or sensitivity level) for triggering a
      * Pub/Sub.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfilePubSubCondition pubsub_condition = 3;</code>
      */
-    private $pubsub_condition = null;
+    protected $pubsub_condition = null;
     /**
      * How much data to include in the Pub/Sub message. If the user wishes to
      * limit the size of the message, they can use resource_name and fetch the
@@ -45,7 +45,7 @@ class PubSubNotification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PubSubNotification.DetailLevel detail_of_message = 4;</code>
      */
-    private $detail_of_message = 0;
+    protected $detail_of_message = 0;
 
     /**
      * Constructor.
@@ -199,6 +199,4 @@ class PubSubNotification extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PubSubNotification::class, \Google\Cloud\Dlp\V2\DataProfileAction_PubSubNotification::class);
 

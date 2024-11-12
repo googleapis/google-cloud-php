@@ -51,7 +51,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface predictAsync(PredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> predictAsync(PredictRequest $request, array $optionalArgs = [])
  */
 final class PredictionServiceClient
 {

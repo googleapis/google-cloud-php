@@ -20,51 +20,51 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails.ProbingResult result = 1;</code>
      */
-    private $result = 0;
+    protected $result = 0;
     /**
      * The time that reachability was assessed through active probing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp verify_time = 2;</code>
      */
-    private $verify_time = null;
+    protected $verify_time = null;
     /**
      * Details about an internal failure or the cancellation of active probing.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The reason probing was aborted.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails.ProbingAbortCause abort_cause = 4;</code>
      */
-    private $abort_cause = 0;
+    protected $abort_cause = 0;
     /**
      * Number of probes sent.
      *
      * Generated from protobuf field <code>int32 sent_probe_count = 5;</code>
      */
-    private $sent_probe_count = 0;
+    protected $sent_probe_count = 0;
     /**
      * Number of probes that reached the destination.
      *
      * Generated from protobuf field <code>int32 successful_probe_count = 6;</code>
      */
-    private $successful_probe_count = 0;
+    protected $successful_probe_count = 0;
     /**
      * The source and destination endpoints derived from the test input and used
      * for active probing.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.EndpointInfo endpoint_info = 7;</code>
      */
-    private $endpoint_info = null;
+    protected $endpoint_info = null;
     /**
      * Latency as measured by active probing in one direction:
      * from the source to the destination endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LatencyDistribution probing_latency = 8;</code>
      */
-    private $probing_latency = null;
+    protected $probing_latency = null;
     /**
      * The EdgeLocation from which a packet destined for/originating from the
      * internet will egress/ingress the Google network.
@@ -75,7 +75,7 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails.EdgeLocation destination_egress_location = 9;</code>
      */
-    private $destination_egress_location = null;
+    protected $destination_egress_location = null;
 
     /**
      * Constructor.

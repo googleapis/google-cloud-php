@@ -22,7 +22,7 @@ class TroubleshootIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.AccessTuple access_tuple = 1;</code>
      */
-    private $access_tuple = null;
+    protected $access_tuple = null;
 
     /**
      * Constructor.

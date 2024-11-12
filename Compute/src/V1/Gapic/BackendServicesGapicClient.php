@@ -892,7 +892,7 @@ class BackendServicesGapicClient
     }
 
     /**
-     * Retrieves an aggregated list of all usable backend services in the specified project.
+     * Retrieves a list of all usable backend services in the specified project.
      *
      * Sample code:
      * ```

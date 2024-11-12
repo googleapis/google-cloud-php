@@ -21,26 +21,26 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string method = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $method = '';
+    protected $method = '';
     /**
      * Output only. Time when the operation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the operation completed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. Name of the resource that this operation is acting on e.g.
      * projects/my-project/locations/us-central1/connectors/v1.
      *
      * Generated from protobuf field <code>string target = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $target = '';
+    protected $target = '';
 
     /**
      * Constructor.

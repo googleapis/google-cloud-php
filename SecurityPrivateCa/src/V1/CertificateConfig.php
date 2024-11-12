@@ -23,14 +23,14 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig.SubjectConfig subject_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subject_config = null;
+    protected $subject_config = null;
     /**
      * Required. Describes how some of the technical X.509 fields in a certificate
      * should be populated.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.X509Parameters x509_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $x509_config = null;
+    protected $x509_config = null;
     /**
      * Optional. The public key that corresponds to this config. This is, for
      * example, used when issuing
@@ -43,7 +43,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.PublicKey public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $public_key = null;
+    protected $public_key = null;
     /**
      * Optional. When specified this provides a custom SKI to be used in the
      * certificate. This should only be used to maintain a SKI of an existing CA
@@ -52,7 +52,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig.KeyId subject_key_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subject_key_id = null;
+    protected $subject_key_id = null;
 
     /**
      * Constructor.

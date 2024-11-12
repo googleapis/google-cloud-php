@@ -49,12 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteFirewallRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetFirewallRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertFirewallRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListFirewallsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchFirewallRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateFirewallRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteFirewallRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Firewall> getAsync(GetFirewallRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertFirewallRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListFirewallsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchFirewallRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateFirewallRequest $request, array $optionalArgs = [])
  */
 final class FirewallsClient
 {

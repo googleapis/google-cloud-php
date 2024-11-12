@@ -21,7 +21,7 @@ class Mode
     const MODE_UNSPECIFIED = 0;
     /**
      * Default model behavior, model decides to predict either a function call
-     * or a natural language repspose.
+     * or a natural language response.
      *
      * Generated from protobuf enum <code>AUTO = 1;</code>
      */

@@ -23,7 +23,7 @@ class SecretKeySelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $secret = '';
+    protected $secret = '';
     /**
      * The Cloud Secret Manager secret version.
      * Can be 'latest' for the latest version, an integer for a specific version,
@@ -31,7 +31,7 @@ class SecretKeySelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

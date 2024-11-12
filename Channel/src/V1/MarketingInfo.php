@@ -20,19 +20,19 @@ class MarketingInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Human readable description. Description can contain HTML.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Default logo.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Media default_logo = 3;</code>
      */
-    private $default_logo = null;
+    protected $default_logo = null;
 
     /**
      * Constructor.

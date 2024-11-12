@@ -104,10 +104,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConversationModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -602,10 +606,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConversationModel();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
@@ -1139,10 +1147,14 @@ class ConversationModelsClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ConversationModel();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

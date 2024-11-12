@@ -23,20 +23,20 @@ class ListInventoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Inventory view indicating what information should be included in the
      * inventory resource. If unspecified, the default view is BASIC.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.InventoryView view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * The maximum number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A pagination token returned from a previous call to
      * `ListInventories` that indicates where this listing
@@ -44,14 +44,14 @@ class ListInventoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * If provided, this field specifies the criteria that must be met by a
      * `Inventory` API resource to be included in the response.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent resource name.

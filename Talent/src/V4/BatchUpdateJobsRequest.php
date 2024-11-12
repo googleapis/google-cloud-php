@@ -22,7 +22,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The jobs to be updated.
      * A maximum of 200 jobs can be updated in a batch.
@@ -47,7 +47,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                        $parent Required. The resource name of the tenant under which the job is created.

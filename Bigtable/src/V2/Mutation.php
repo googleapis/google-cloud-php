@@ -27,6 +27,8 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           Set a cell's value.
      *     @type \Google\Cloud\Bigtable\V2\Mutation\AddToCell $add_to_cell
      *           Incrementally updates an `Aggregate` cell.
+     *     @type \Google\Cloud\Bigtable\V2\Mutation\MergeToCell $merge_to_cell
+     *           Merges accumulated state to an `Aggregate` cell.
      *     @type \Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn $delete_from_column
      *           Deletes cells from a column.
      *     @type \Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily $delete_from_family
@@ -98,6 +100,37 @@ class Mutation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\AddToCell::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Merges accumulated state to an `Aggregate` cell.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.MergeToCell merge_to_cell = 6;</code>
+     * @return \Google\Cloud\Bigtable\V2\Mutation\MergeToCell|null
+     */
+    public function getMergeToCell()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMergeToCell()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Merges accumulated state to an `Aggregate` cell.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.MergeToCell merge_to_cell = 6;</code>
+     * @param \Google\Cloud\Bigtable\V2\Mutation\MergeToCell $var
+     * @return $this
+     */
+    public function setMergeToCell($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\MergeToCell::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

@@ -26,7 +26,8 @@ class AnswerSkippedReason
      */
     const ADVERSARIAL_QUERY_IGNORED = 1;
     /**
-     * The non-answer seeking query ignored case.
+     * The non-answer seeking query ignored case
+     * Google skips the answer if the query is chit chat.
      *
      * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY_IGNORED = 2;</code>
      */
@@ -46,6 +47,46 @@ class AnswerSkippedReason
      * Generated from protobuf enum <code>POTENTIAL_POLICY_VIOLATION = 4;</code>
      */
     const POTENTIAL_POLICY_VIOLATION = 4;
+    /**
+     * The no relevant content case.
+     * Google skips the answer if there is no relevant content in the
+     * retrieved search results.
+     *
+     * Generated from protobuf enum <code>NO_RELEVANT_CONTENT = 5;</code>
+     */
+    const NO_RELEVANT_CONTENT = 5;
+    /**
+     * The jail-breaking query ignored case.
+     * For example, "Reply in the tone of a competing company's CEO".
+     * Google skips the answer if the query is classified as a jail-breaking
+     * query.
+     *
+     * Generated from protobuf enum <code>JAIL_BREAKING_QUERY_IGNORED = 6;</code>
+     */
+    const JAIL_BREAKING_QUERY_IGNORED = 6;
+    /**
+     * The customer policy violation case.
+     * Google skips the summary if there is a customer policy violation
+     * detected. The policy is defined by the customer.
+     *
+     * Generated from protobuf enum <code>CUSTOMER_POLICY_VIOLATION = 7;</code>
+     */
+    const CUSTOMER_POLICY_VIOLATION = 7;
+    /**
+     * The non-answer seeking query ignored case.
+     * Google skips the answer if the query doesn't have clear intent.
+     *
+     * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY_IGNORED_V2 = 8;</code>
+     */
+    const NON_ANSWER_SEEKING_QUERY_IGNORED_V2 = 8;
+    /**
+     * The low-grounded answer case.
+     * Google skips the answer if a well grounded answer was unable to be
+     * generated.
+     *
+     * Generated from protobuf enum <code>LOW_GROUNDED_ANSWER = 9;</code>
+     */
+    const LOW_GROUNDED_ANSWER = 9;
 
     private static $valueToName = [
         self::ANSWER_SKIPPED_REASON_UNSPECIFIED => 'ANSWER_SKIPPED_REASON_UNSPECIFIED',
@@ -53,6 +94,11 @@ class AnswerSkippedReason
         self::NON_ANSWER_SEEKING_QUERY_IGNORED => 'NON_ANSWER_SEEKING_QUERY_IGNORED',
         self::OUT_OF_DOMAIN_QUERY_IGNORED => 'OUT_OF_DOMAIN_QUERY_IGNORED',
         self::POTENTIAL_POLICY_VIOLATION => 'POTENTIAL_POLICY_VIOLATION',
+        self::NO_RELEVANT_CONTENT => 'NO_RELEVANT_CONTENT',
+        self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
+        self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
+        self::NON_ANSWER_SEEKING_QUERY_IGNORED_V2 => 'NON_ANSWER_SEEKING_QUERY_IGNORED_V2',
+        self::LOW_GROUNDED_ANSWER => 'LOW_GROUNDED_ANSWER',
     ];
 
     public static function name($value)

@@ -23,21 +23,21 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue access_denied_page_uri = 1;</code>
      */
-    private $access_denied_page_uri = null;
+    protected $access_denied_page_uri = null;
     /**
      * Whether to generate a troubleshooting URL on access denied events to this
      * application.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue generate_troubleshooting_uri = 2;</code>
      */
-    private $generate_troubleshooting_uri = null;
+    protected $generate_troubleshooting_uri = null;
     /**
      * Whether to generate remediation token on access denied events to this
      * application.
      *
      * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
      */
-    private $remediation_token_generation_enabled = null;
+    protected $remediation_token_generation_enabled = null;
 
     /**
      * Constructor.
@@ -89,7 +89,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue access_denied_page_uri = 1;</code>
      * @return string|null
      */
-    public function getAccessDeniedPageUriValue()
+    public function getAccessDeniedPageUriUnwrapped()
     {
         return $this->readWrapperValue("access_denied_page_uri");
     }
@@ -118,7 +118,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setAccessDeniedPageUriValue($var)
+    public function setAccessDeniedPageUriUnwrapped($var)
     {
         $this->writeWrapperValue("access_denied_page_uri", $var);
         return $this;}
@@ -154,7 +154,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue generate_troubleshooting_uri = 2;</code>
      * @return bool|null
      */
-    public function getGenerateTroubleshootingUriValue()
+    public function getGenerateTroubleshootingUriUnwrapped()
     {
         return $this->readWrapperValue("generate_troubleshooting_uri");
     }
@@ -185,7 +185,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setGenerateTroubleshootingUriValue($var)
+    public function setGenerateTroubleshootingUriUnwrapped($var)
     {
         $this->writeWrapperValue("generate_troubleshooting_uri", $var);
         return $this;}
@@ -221,7 +221,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.protobuf.BoolValue remediation_token_generation_enabled = 3;</code>
      * @return bool|null
      */
-    public function getRemediationTokenGenerationEnabledValue()
+    public function getRemediationTokenGenerationEnabledUnwrapped()
     {
         return $this->readWrapperValue("remediation_token_generation_enabled");
     }
@@ -252,7 +252,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setRemediationTokenGenerationEnabledValue($var)
+    public function setRemediationTokenGenerationEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("remediation_token_generation_enabled", $var);
         return $this;}

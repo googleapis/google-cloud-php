@@ -20,7 +20,7 @@ class SecurityProjection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct details = 2;</code>
      */
-    private $details = null;
+    protected $details = null;
 
     /**
      * Constructor.

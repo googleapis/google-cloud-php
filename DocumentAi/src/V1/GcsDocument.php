@@ -20,13 +20,13 @@ class GcsDocument extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_uri = 1;</code>
      */
-    private $gcs_uri = '';
+    protected $gcs_uri = '';
     /**
      * An IANA MIME type (RFC6838) of the content.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
 
     /**
      * Constructor.

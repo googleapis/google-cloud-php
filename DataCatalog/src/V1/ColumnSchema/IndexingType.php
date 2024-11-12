@@ -73,6 +73,4 @@ class IndexingType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexingType::class, \Google\Cloud\DataCatalog\V1\ColumnSchema_IndexingType::class);
 

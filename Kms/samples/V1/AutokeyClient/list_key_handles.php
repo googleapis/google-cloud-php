@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_Autokey_ListKeyHandles_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Kms\V1\Client\AutokeyClient;
+use Google\Cloud\Kms\V1\KeyHandle;
 use Google\Cloud\Kms\V1\ListKeyHandlesRequest;
-use Google\Cloud\Kms\V1\ListKeyHandlesResponse;
 
 /**
  * Lists [KeyHandles][google.cloud.kms.v1.KeyHandle].
@@ -47,9 +48,13 @@ function list_key_handles_sample(string $formattedParent): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var ListKeyHandlesResponse $response */
+        /** @var PagedListResponse $response */
         $response = $autokeyClient->listKeyHandles($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+
+        /** @var KeyHandle $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

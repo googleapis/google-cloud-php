@@ -61,6 +61,23 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     private $allowed_ca_certs;
     /**
+     * Optional. The OAuth configuration of the webhook. If specified,
+     * Dialogflow will initiate the OAuth client credential flow to exchange an
+     * access token from the 3rd party platform and put it in the auth header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.OAuthConfig oauth_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $oauth_config = null;
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow
+     * service
+     * agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     * The generated token is sent in the Authorization header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_agent_auth = 0;
+    /**
      * Optional. Type of the webhook.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.WebhookType webhook_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -119,6 +136,15 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *                -out example.com.crt \
      *                -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
      *           ```
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig $oauth_config
+     *           Optional. The OAuth configuration of the webhook. If specified,
+     *           Dialogflow will initiate the OAuth client credential flow to exchange an
+     *           access token from the 3rd party platform and put it in the auth header.
+     *     @type int $service_agent_auth
+     *           Optional. Indicate the auth token type generated from the [Diglogflow
+     *           service
+     *           agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     *           The generated token is sent in the Authorization header.
      *     @type int $webhook_type
      *           Optional. Type of the webhook.
      *     @type int $http_method
@@ -299,6 +325,78 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::BYTES);
         $this->allowed_ca_certs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The OAuth configuration of the webhook. If specified,
+     * Dialogflow will initiate the OAuth client credential flow to exchange an
+     * access token from the 3rd party platform and put it in the auth header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.OAuthConfig oauth_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig|null
+     */
+    public function getOauthConfig()
+    {
+        return $this->oauth_config;
+    }
+
+    public function hasOauthConfig()
+    {
+        return isset($this->oauth_config);
+    }
+
+    public function clearOauthConfig()
+    {
+        unset($this->oauth_config);
+    }
+
+    /**
+     * Optional. The OAuth configuration of the webhook. If specified,
+     * Dialogflow will initiate the OAuth client credential flow to exchange an
+     * access token from the 3rd party platform and put it in the auth header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.OAuthConfig oauth_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig $var
+     * @return $this
+     */
+    public function setOauthConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\OAuthConfig::class);
+        $this->oauth_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow
+     * service
+     * agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     * The generated token is sent in the Authorization header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getServiceAgentAuth()
+    {
+        return $this->service_agent_auth;
+    }
+
+    /**
+     * Optional. Indicate the auth token type generated from the [Diglogflow
+     * service
+     * agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
+     * The generated token is sent in the Authorization header.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServiceAgentAuth($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAgentAuth::class);
+        $this->service_agent_auth = $var;
 
         return $this;
     }

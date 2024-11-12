@@ -21,7 +21,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional inclusive start time of the time range for which the pricing
      * versions will be returned. Timestamps in the future are not allowed.
@@ -32,7 +32,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Optional exclusive end time of the time range for which the pricing
      * versions will be returned. Timestamps in the future are not allowed.
@@ -43,7 +43,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The ISO 4217 currency code for the pricing info in the response proto.
      * Will use the conversion rate as of start_time.
@@ -51,13 +51,13 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 4;</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Requested page size. Defaults to 5000.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying a page of results to return. This should be a
      * `next_page_token` value returned from a previous `ListSkus`
@@ -65,7 +65,7 @@ class ListSkusRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The name of the service.

@@ -20,32 +20,32 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * External sync mode.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.ExternalSyncMode sync_mode = 3;</code>
      */
-    private $sync_mode = 0;
+    protected $sync_mode = 0;
     /**
      * Whether to skip the verification step (VESS).
      *
      * Generated from protobuf field <code>bool skip_verification = 4;</code>
      */
-    private $skip_verification = false;
+    protected $skip_verification = false;
     /**
      * Optional. Parallel level for initial data sync. Currently only applicable
      * for MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sync_parallel_level = 0;
+    protected $sync_parallel_level = 0;
     /**
      * Optional. MigrationType configures the migration to use physical files or
      * logical dump files. If not set, then the logical dump file configuration is
@@ -53,7 +53,7 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $migration_type = 0;
+    protected $migration_type = 0;
     protected $sync_config;
 
     /**

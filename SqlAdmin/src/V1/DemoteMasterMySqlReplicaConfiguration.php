@@ -20,19 +20,19 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The username for the replication connection.
      *
      * Generated from protobuf field <code>string username = 2;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The password for the replication connection.
      *
      * Generated from protobuf field <code>string password = 3;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * PEM representation of the replica's private key. The corresponsing public
      * key is encoded in the client's certificate. The format of the replica's
@@ -40,19 +40,19 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string client_key = 4;</code>
      */
-    private $client_key = '';
+    protected $client_key = '';
     /**
      * PEM representation of the replica's x509 certificate.
      *
      * Generated from protobuf field <code>string client_certificate = 5;</code>
      */
-    private $client_certificate = '';
+    protected $client_certificate = '';
     /**
      * PEM representation of the trusted CA's x509 certificate.
      *
      * Generated from protobuf field <code>string ca_certificate = 6;</code>
      */
-    private $ca_certificate = '';
+    protected $ca_certificate = '';
 
     /**
      * Constructor.

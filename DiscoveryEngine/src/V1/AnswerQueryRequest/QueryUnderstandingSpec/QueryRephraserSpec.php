@@ -21,6 +21,14 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable = 1;</code>
      */
     protected $disable = false;
+    /**
+     * Max rephrase steps.
+     * The max number is 5 steps.
+     * If not set or set to < 1, it will be set to 1 by default.
+     *
+     * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
+     */
+    protected $max_rephrase_steps = 0;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disable
      *           Disable query rephraser.
+     *     @type int $max_rephrase_steps
+     *           Max rephrase steps.
+     *           The max number is 5 steps.
+     *           If not set or set to < 1, it will be set to 1 by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,36 @@ class QueryRephraserSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable = $var;
+
+        return $this;
+    }
+
+    /**
+     * Max rephrase steps.
+     * The max number is 5 steps.
+     * If not set or set to < 1, it will be set to 1 by default.
+     *
+     * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
+     * @return int
+     */
+    public function getMaxRephraseSteps()
+    {
+        return $this->max_rephrase_steps;
+    }
+
+    /**
+     * Max rephrase steps.
+     * The max number is 5 steps.
+     * If not set or set to < 1, it will be set to 1 by default.
+     *
+     * Generated from protobuf field <code>int32 max_rephrase_steps = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxRephraseSteps($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_rephrase_steps = $var;
 
         return $this;
     }

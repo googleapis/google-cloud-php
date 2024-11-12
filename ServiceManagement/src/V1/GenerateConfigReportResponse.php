@@ -20,13 +20,13 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * ID of the service configuration this report belongs to.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * list of ChangeReport, each corresponding to comparison between two
      * service configurations.

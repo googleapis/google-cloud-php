@@ -23,7 +23,7 @@ class DiscoveryNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.NoteKind analysis_kind = 1;</code>
      */
-    private $analysis_kind = 0;
+    protected $analysis_kind = 0;
 
     /**
      * Constructor.

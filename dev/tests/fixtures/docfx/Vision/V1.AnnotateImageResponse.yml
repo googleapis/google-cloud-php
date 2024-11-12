@@ -124,7 +124,7 @@ items:
           description: 'If present, product search has completed successfully.'
         -
           id: '↳ error'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>'
           description: 'If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set.'
         -
           id: '↳ context'
@@ -630,7 +630,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasError()'
     name: hasError
@@ -664,7 +664,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>'
           description: ''
       returns:
         -

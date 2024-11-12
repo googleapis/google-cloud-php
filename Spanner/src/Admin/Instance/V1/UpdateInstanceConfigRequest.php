@@ -17,8 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The user instance config to update, which must always include the
-     * instance config name. Otherwise, only fields mentioned in
+     * Required. The user instance configuration to update, which must always
+     * include the instance configuration name. Otherwise, only fields mentioned
+     * in
      * [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
      * need be included. To prevent conflicts of concurrent updates,
      * [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
@@ -47,8 +48,9 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     protected $validate_only = false;
 
     /**
-     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig Required. The user instance config to update, which must always include the
-     *                                                                               instance config name. Otherwise, only fields mentioned in
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig Required. The user instance configuration to update, which must always
+     *                                                                               include the instance configuration name. Otherwise, only fields mentioned
+     *                                                                               in
      *                                                                               [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
      *                                                                               need be included. To prevent conflicts of concurrent updates,
      *                                                                               [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
@@ -78,8 +80,9 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instance_config
-     *           Required. The user instance config to update, which must always include the
-     *           instance config name. Otherwise, only fields mentioned in
+     *           Required. The user instance configuration to update, which must always
+     *           include the instance configuration name. Otherwise, only fields mentioned
+     *           in
      *           [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
      *           need be included. To prevent conflicts of concurrent updates,
      *           [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
@@ -102,8 +105,9 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The user instance config to update, which must always include the
-     * instance config name. Otherwise, only fields mentioned in
+     * Required. The user instance configuration to update, which must always
+     * include the instance configuration name. Otherwise, only fields mentioned
+     * in
      * [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
      * need be included. To prevent conflicts of concurrent updates,
      * [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
@@ -128,8 +132,9 @@ class UpdateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The user instance config to update, which must always include the
-     * instance config name. Otherwise, only fields mentioned in
+     * Required. The user instance configuration to update, which must always
+     * include the instance configuration name. Otherwise, only fields mentioned
+     * in
      * [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
      * need be included. To prevent conflicts of concurrent updates,
      * [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
