@@ -220,6 +220,7 @@ return [
                 'environment' => 'projects/{project}/locations/{location}/agents/{agent}/environments/{environment}',
                 'flow' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}',
                 'location' => 'projects/{project}/locations/{location}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
                 'securitySettings' => 'projects/{project}/locations/{location}/securitySettings/{security_settings}',
             ],
         ],

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for creating a SecurityHealthAnalyticsCustomModule
+ * Request message for
+ * [SecurityCenterManagement.CreateSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.CreateSecurityHealthAnalyticsCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.CreateSecurityHealthAnalyticsCustomModuleRequest</code>
  */
@@ -17,7 +18,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 {
     /**
      * Required. Name of the parent organization, folder, or project of the
-     * module, specified in one of the following formats:
+     * module, in one of the following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
      * * `projects/{project}/locations/{location}`
@@ -26,20 +27,22 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      */
     protected $parent = '';
     /**
-     * Required. The resource being created
+     * Required. The resource being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_module = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $security_health_analytics_custom_module = null;
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (no module will be created). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually create the module could
-     * still fail because:
-     *  1. the state could have changed (e.g. IAM permission lost) or
-     *  2. A failure occurred during creation of the module.
-     * Defaults to false.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be created. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to create the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,13 +50,13 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * @param string                                                                        $parent                              Required. Name of the parent organization, folder, or project of the
-     *                                                                                                                           module, specified in one of the following formats:
+     *                                                                                                                           module, in one of the following formats:
      *
      *                                                                                                                           * `organizations/{organization}/locations/{location}`
      *                                                                                                                           * `folders/{folder}/locations/{location}`
      *                                                                                                                           * `projects/{project}/locations/{location}`
      *                                                                                                                           Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
-     * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The resource being created
+     * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The resource being created.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\CreateSecurityHealthAnalyticsCustomModuleRequest
      *
@@ -74,21 +77,23 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      *     @type string $parent
      *           Required. Name of the parent organization, folder, or project of the
-     *           module, specified in one of the following formats:
+     *           module, in one of the following formats:
      *           * `organizations/{organization}/locations/{location}`
      *           * `folders/{folder}/locations/{location}`
      *           * `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $security_health_analytics_custom_module
-     *           Required. The resource being created
+     *           Required. The resource being created.
      *     @type bool $validate_only
-     *           Optional. When set to true, only validations (including IAM checks) will
-     *           done for the request (no module will be created). An OK response indicates
-     *           the request is valid while an error response indicates the request is
-     *           invalid. Note that a subsequent request to actually create the module could
-     *           still fail because:
-     *            1. the state could have changed (e.g. IAM permission lost) or
-     *            2. A failure occurred during creation of the module.
-     *           Defaults to false.
+     *           Optional. When set to `true`, the request will be validated (including IAM
+     *           checks), but no module will be created. An `OK` response indicates that the
+     *           request is valid, while an error response indicates that the request is
+     *           invalid.
+     *           If the request is valid, a subsequent request to create the module could
+     *           still fail for one of the following reasons:
+     *           *  The state of your cloud resources changed; for example, you lost a
+     *              required IAM permission
+     *           *  An error occurred during creation of the module
+     *           Defaults to `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,7 +103,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * Required. Name of the parent organization, folder, or project of the
-     * module, specified in one of the following formats:
+     * module, in one of the following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
      * * `projects/{project}/locations/{location}`
@@ -113,7 +118,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
 
     /**
      * Required. Name of the parent organization, folder, or project of the
-     * module, specified in one of the following formats:
+     * module, in one of the following formats:
      * * `organizations/{organization}/locations/{location}`
      * * `folders/{folder}/locations/{location}`
      * * `projects/{project}/locations/{location}`
@@ -131,7 +136,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Required. The resource being created
+     * Required. The resource being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_module = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule|null
@@ -152,7 +157,7 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Required. The resource being created
+     * Required. The resource being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_module = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule $var
@@ -167,14 +172,16 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (no module will be created). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually create the module could
-     * still fail because:
-     *  1. the state could have changed (e.g. IAM permission lost) or
-     *  2. A failure occurred during creation of the module.
-     * Defaults to false.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be created. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to create the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -185,14 +192,16 @@ class CreateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (no module will be created). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually create the module could
-     * still fail because:
-     *  1. the state could have changed (e.g. IAM permission lost) or
-     *  2. A failure occurred during creation of the module.
-     * Defaults to false.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be created. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to create the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

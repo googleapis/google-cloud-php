@@ -64,11 +64,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelOrderAsync(CancelOrderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOrderAsync(GetOrderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrdersAsync(ListOrdersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface modifyOrderAsync(ModifyOrderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface placeOrderAsync(PlaceOrderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelOrderAsync(CancelOrderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Order> getOrderAsync(GetOrderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrdersAsync(ListOrdersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> modifyOrderAsync(ModifyOrderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> placeOrderAsync(PlaceOrderRequest $request, array $optionalArgs = [])
  */
 final class ConsumerProcurementServiceClient
 {

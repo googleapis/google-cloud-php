@@ -28,7 +28,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $auto_healing_policies;
     /**
-     * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      */
@@ -70,6 +70,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
+     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     */
+    private $instance_flexibility_policy = null;
+    /**
      * [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
@@ -107,7 +113,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
@@ -118,6 +124,18 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     */
+    private $satisfies_pzi = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
     /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
@@ -178,7 +196,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
      *           The autohealing policy for this managed instance group. You can specify only one value.
      *     @type string $base_instance_name
-     *           The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     *           The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *     @type string $creation_timestamp
      *           [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $current_actions
@@ -191,6 +209,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $instance_flexibility_policy
+     *           Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
      *     @type string $instance_group
      *           [Output Only] The URL of the Instance Group resource.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy $instance_lifecycle_policy
@@ -205,9 +225,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
-     *           Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     *           [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *     @type string $region
      *           [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     *     @type bool $satisfies_pzi
+     *           [Output Only] Reserved for future use.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] The URL for this managed instance group. The server defines this URL.
      *     @type \Google\Cloud\Compute\V1\StatefulPolicy $stateful_policy
@@ -294,7 +318,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      * @return string
@@ -315,7 +339,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      * @param string $var
@@ -546,6 +570,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy|null
+     */
+    public function getInstanceFlexibilityPolicy()
+    {
+        return $this->instance_flexibility_policy;
+    }
+
+    public function hasInstanceFlexibilityPolicy()
+    {
+        return isset($this->instance_flexibility_policy);
+    }
+
+    public function clearInstanceFlexibilityPolicy()
+    {
+        unset($this->instance_flexibility_policy);
+    }
+
+    /**
+     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $var
+     * @return $this
+     */
+    public function setInstanceFlexibilityPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy::class);
+        $this->instance_flexibility_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
@@ -764,7 +824,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -775,7 +835,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
@@ -821,6 +881,78 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

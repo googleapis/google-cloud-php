@@ -64,19 +64,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface answerQueryAsync(AnswerQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface converseConversationAsync(ConverseConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSessionAsync(CreateSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSessionAsync(DeleteSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnswerAsync(GetAnswerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSessionAsync(GetSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSessionAsync(UpdateSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnswerQueryResponse> answerQueryAsync(AnswerQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConverseConversationResponse> converseConversationAsync(ConverseConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Session> createSessionAsync(CreateSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSessionAsync(DeleteSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Answer> getAnswerAsync(GetAnswerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Session> getSessionAsync(GetSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Session> updateSessionAsync(UpdateSessionRequest $request, array $optionalArgs = [])
  */
 final class ConversationalSearchServiceClient
 {

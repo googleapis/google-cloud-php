@@ -18,8 +18,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
-     * environments for. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>`.
+     * environments for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,8 +40,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
-     *                       environments for. Format: `projects/<Project ID>/locations/<Location
-     *                       ID>/agents/<Agent ID>`. Please see
+     *                       environments for. Format:
+     *                       `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                       {@see EnvironmentsClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListEnvironmentsRequest
@@ -62,8 +62,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
-     *           environments for. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>`.
+     *           environments for. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type int $page_size
      *           The maximum number of items to return in a single page. By default 20 and
      *           at most 100.
@@ -78,8 +78,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
-     * environments for. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>`.
+     * environments for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,8 +91,8 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
-     * environments for. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>`.
+     * environments for. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

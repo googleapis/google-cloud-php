@@ -53,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getViolationAsync(GetViolationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listViolationsAsync(ListViolationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Violation> getViolationAsync(GetViolationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listViolationsAsync(ListViolationsRequest $request, array $optionalArgs = [])
  */
 final class CloudControlsPartnerMonitoringClient
 {

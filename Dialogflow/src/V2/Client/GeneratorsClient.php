@@ -59,13 +59,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createGeneratorAsync(CreateGeneratorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGeneratorAsync(DeleteGeneratorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGeneratorAsync(GetGeneratorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGeneratorsAsync(ListGeneratorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGeneratorAsync(UpdateGeneratorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Generator> createGeneratorAsync(CreateGeneratorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteGeneratorAsync(DeleteGeneratorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Generator> getGeneratorAsync(GetGeneratorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGeneratorsAsync(ListGeneratorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Generator> updateGeneratorAsync(UpdateGeneratorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class GeneratorsClient
 {

@@ -31,8 +31,8 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteFlowRequest;
  * Deletes a specified flow.
  *
  * @param string $formattedName The name of the flow to delete.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                              {@see FlowsClient::flowName()} for help formatting this field.
  */
 function delete_flow_sample(string $formattedName): void

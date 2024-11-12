@@ -56,13 +56,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createRuntimeProjectAttachmentAsync(CreateRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRuntimeProjectAttachmentAsync(DeleteRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeProjectAttachmentAsync(GetRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimeProjectAttachmentsAsync(ListRuntimeProjectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupRuntimeProjectAttachmentAsync(LookupRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeProjectAttachment> createRuntimeProjectAttachmentAsync(CreateRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRuntimeProjectAttachmentAsync(DeleteRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeProjectAttachment> getRuntimeProjectAttachmentAsync(GetRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimeProjectAttachmentsAsync(ListRuntimeProjectAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupRuntimeProjectAttachmentResponse> lookupRuntimeProjectAttachmentAsync(LookupRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class RuntimeProjectAttachmentServiceClient
 {

@@ -2,9 +2,9 @@
 
 > Idiomatic PHP client for [Google Ads Marketing Platform Admin](https://developers.google.com/analytics/devguides/config/gmp/v1).
 
-[![Latest Stable Version](https://poser.pugx.org/google/ads-marketingplatform-admin/v/stable)](https://packagist.org/packages/google/ads-marketingplatform-admin) [![Packagist](https://img.shields.io/packagist/dm/google/ads-marketingplatform-admin.svg)](https://packagist.org/packages/google/ads-marketingplatform-admin)
+[![Latest Stable Version](https://poser.pugx.org/googleads/marketingplatform-admin/v/stable)](https://packagist.org/packages/googleads/marketingplatform-admin) [![Packagist](https://img.shields.io/packagist/dm/googleads/marketingplatform-admin.svg)](https://packagist.org/packages/googleads/marketingplatform-admin)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/ads-marketingplatform-admin/latest)
+* [API documentation](https://cloud.google.com/php/docs/referenc/googleeads/marketingplatform-admin/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/ads-marketingplatform-admin
+$ composer require googleads/marketingplatform-admin
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)

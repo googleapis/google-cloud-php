@@ -146,7 +146,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $target_id = null;
     /**
-     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
+     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the disk that the snapshot was created from.
      *
      * Generated from protobuf field <code>optional string target_link = 62671336;</code>
      */
@@ -220,7 +220,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type int|string $target_id
      *           [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *     @type string $target_link
-     *           [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
+     *           [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the disk that the snapshot was created from.
      *     @type string $user
      *           [Output Only] User who requested the operation, for example: `user&#64;example.com` or `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
@@ -1023,7 +1023,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
+     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the disk that the snapshot was created from.
      *
      * Generated from protobuf field <code>optional string target_link = 62671336;</code>
      * @return string
@@ -1044,7 +1044,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
+     * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the disk that the snapshot was created from.
      *
      * Generated from protobuf field <code>optional string target_link = 62671336;</code>
      * @param string $var

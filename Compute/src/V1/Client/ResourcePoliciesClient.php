@@ -54,15 +54,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListResourcePoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteResourcePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetResourcePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyResourcePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertResourcePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListResourcePoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchResourcePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyResourcePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListResourcePoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResourcePolicy> getAsync(GetResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListResourcePoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyResourcePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsResourcePolicyRequest $request, array $optionalArgs = [])
  */
 final class ResourcePoliciesClient
 {

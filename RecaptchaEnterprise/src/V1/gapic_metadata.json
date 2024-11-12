@@ -65,6 +65,11 @@
                                 "listFirewallPolicies"
                             ]
                         },
+                        "ListIpOverrides": {
+                            "methods": [
+                                "listIpOverrides"
+                            ]
+                        },
                         "ListKeys": {
                             "methods": [
                                 "listKeys"
@@ -83,6 +88,11 @@
                         "MigrateKey": {
                             "methods": [
                                 "migrateKey"
+                            ]
+                        },
+                        "RemoveIpOverride": {
+                            "methods": [
+                                "removeIpOverride"
                             ]
                         },
                         "ReorderFirewallPolicies": {

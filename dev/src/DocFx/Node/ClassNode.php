@@ -28,11 +28,11 @@ class ClassNode
     use NameTrait;
 
     private $childNode;
-    private array $protoPackages;
     private string $tocName;
 
     public function __construct(
-        private SimpleXMLElement $xmlNode
+        private SimpleXMLElement $xmlNode,
+        private array $protoPackages = [],
     ) {}
 
     public function isProtobufEnumClass(): bool
@@ -245,14 +245,6 @@ class ClassNode
             }
         }
         return null;
-    }
-
-    public function setProtoPackages(array $protoPackages)
-    {
-        $this->protoPackages = $protoPackages;
-        if ($this->childNode) {
-            $this->childNode->setProtoPackages($protoPackages);
-        }
     }
 
     public function getTocName()

@@ -72,20 +72,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDataScanAsync(CreateDataScanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataScanAsync(DeleteDataScanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateDataQualityRulesAsync(GenerateDataQualityRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataScanAsync(GetDataScanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataScanJobAsync(GetDataScanJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataScanJobsAsync(ListDataScanJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataScansAsync(ListDataScansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runDataScanAsync(RunDataScanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataScanAsync(UpdateDataScanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDataScanAsync(CreateDataScanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataScanAsync(DeleteDataScanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateDataQualityRulesResponse> generateDataQualityRulesAsync(GenerateDataQualityRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataScan> getDataScanAsync(GetDataScanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataScanJob> getDataScanJobAsync(GetDataScanJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataScanJobsAsync(ListDataScanJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataScansAsync(ListDataScansRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunDataScanResponse> runDataScanAsync(RunDataScanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDataScanAsync(UpdateDataScanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DataScanServiceClient
 {

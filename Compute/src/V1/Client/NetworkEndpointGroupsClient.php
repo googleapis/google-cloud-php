@@ -53,15 +53,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface attachNetworkEndpointsAsync(AttachNetworkEndpointsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachNetworkEndpointsAsync(DetachNetworkEndpointsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkEndpointsAsync(ListNetworkEndpointsNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachNetworkEndpointsAsync(AttachNetworkEndpointsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachNetworkEndpointsAsync(DetachNetworkEndpointsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkEndpointGroup> getAsync(GetNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworkEndpointsAsync(ListNetworkEndpointsNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
  */
 final class NetworkEndpointGroupsClient
 {

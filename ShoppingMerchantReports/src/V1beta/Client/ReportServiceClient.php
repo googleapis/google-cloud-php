@@ -46,7 +46,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface searchAsync(SearchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAsync(SearchRequest $request, array $optionalArgs = [])
  */
 final class ReportServiceClient
 {

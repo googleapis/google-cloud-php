@@ -61,11 +61,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUserEventsAsync(ListUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeUserEventsAsync(PurgeUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeUserEventAsync(WriteUserEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUserEventsAsync(ListUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeUserEventsAsync(PurgeUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserEvent> writeUserEventAsync(WriteUserEventRequest $request, array $optionalArgs = [])
  */
 final class UserEventServiceClient
 {

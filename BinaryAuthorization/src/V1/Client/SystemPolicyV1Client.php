@@ -47,7 +47,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getSystemPolicyAsync(GetSystemPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getSystemPolicyAsync(GetSystemPolicyRequest $request, array $optionalArgs = [])
  */
 final class SystemPolicyV1Client
 {

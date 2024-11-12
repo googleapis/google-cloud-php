@@ -49,9 +49,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeleteSnapshotResponse> deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListSnapshotsResponse> listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
  */
 final class SnapshotsV1Beta3Client
 {

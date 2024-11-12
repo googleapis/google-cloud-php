@@ -96,12 +96,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportEntitiesAsync(ExportEntitiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importEntitiesAsync(ImportEntitiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportEntitiesAsync(ExportEntitiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Index> getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importEntitiesAsync(ImportEntitiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
  */
 final class DatastoreAdminClient
 {

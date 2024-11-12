@@ -56,11 +56,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createNotificationSubscriptionAsync(CreateNotificationSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotificationSubscriptionAsync(DeleteNotificationSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotificationSubscriptionAsync(GetNotificationSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationSubscriptionsAsync(ListNotificationSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNotificationSubscriptionAsync(UpdateNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationSubscription> createNotificationSubscriptionAsync(CreateNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNotificationSubscriptionAsync(DeleteNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationSubscription> getNotificationSubscriptionAsync(GetNotificationSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationSubscriptionsAsync(ListNotificationSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotificationSubscription> updateNotificationSubscriptionAsync(UpdateNotificationSubscriptionRequest $request, array $optionalArgs = [])
  */
 final class NotificationsApiServiceClient
 {

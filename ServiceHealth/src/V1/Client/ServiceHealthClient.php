@@ -58,14 +58,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getEventAsync(GetEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOrganizationEventAsync(GetOrganizationEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOrganizationImpactAsync(GetOrganizationImpactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrganizationEventsAsync(ListOrganizationEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrganizationImpactsAsync(ListOrganizationImpactsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Event> getEventAsync(GetEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OrganizationEvent> getOrganizationEventAsync(GetOrganizationEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OrganizationImpact> getOrganizationImpactAsync(GetOrganizationImpactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEventsAsync(ListEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrganizationEventsAsync(ListOrganizationEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrganizationImpactsAsync(ListOrganizationImpactsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ServiceHealthClient
 {

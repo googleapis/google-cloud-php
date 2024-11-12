@@ -52,8 +52,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getTermsOfServiceAgreementStateAsync(GetTermsOfServiceAgreementStateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveForApplicationTermsOfServiceAgreementStateAsync(RetrieveForApplicationTermsOfServiceAgreementStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TermsOfServiceAgreementState> getTermsOfServiceAgreementStateAsync(GetTermsOfServiceAgreementStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TermsOfServiceAgreementState> retrieveForApplicationTermsOfServiceAgreementStateAsync(RetrieveForApplicationTermsOfServiceAgreementStateRequest $request, array $optionalArgs = [])
  */
 final class TermsOfServiceAgreementStateServiceClient
 {

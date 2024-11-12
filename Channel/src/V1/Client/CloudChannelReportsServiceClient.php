@@ -63,9 +63,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @deprecated This class will be removed in the next major version update.
  *
- * @method PromiseInterface fetchReportResultsAsync(FetchReportResultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportsAsync(ListReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runReportJobAsync(RunReportJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchReportResultsAsync(FetchReportResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportsAsync(ListReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runReportJobAsync(RunReportJobRequest $request, array $optionalArgs = [])
  */
 final class CloudChannelReportsServiceClient
 {

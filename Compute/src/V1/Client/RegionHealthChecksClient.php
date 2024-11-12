@@ -49,12 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HealthCheck> getAsync(GetRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionHealthChecksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionHealthCheckRequest $request, array $optionalArgs = [])
  */
 final class RegionHealthChecksClient
 {

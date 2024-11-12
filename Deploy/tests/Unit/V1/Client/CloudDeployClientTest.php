@@ -1306,6 +1306,7 @@ class CloudDeployClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $controllerRollout = 'controllerRollout-146558962';
         $rollbackOfRollout = 'rollbackOfRollout-1880699004';
+        $activeRepairAutomationRun = 'activeRepairAutomationRun-2089265700';
         $expectedResponse = new Rollout();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -1316,6 +1317,7 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setControllerRollout($controllerRollout);
         $expectedResponse->setRollbackOfRollout($rollbackOfRollout);
+        $expectedResponse->setActiveRepairAutomationRun($activeRepairAutomationRun);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2824,6 +2826,7 @@ class CloudDeployClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $controllerRollout = 'controllerRollout-146558962';
         $rollbackOfRollout = 'rollbackOfRollout-1880699004';
+        $activeRepairAutomationRun = 'activeRepairAutomationRun-2089265700';
         $expectedResponse = new Rollout();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -2834,6 +2837,7 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $expectedResponse->setControllerRollout($controllerRollout);
         $expectedResponse->setRollbackOfRollout($rollbackOfRollout);
+        $expectedResponse->setActiveRepairAutomationRun($activeRepairAutomationRun);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->rolloutName(

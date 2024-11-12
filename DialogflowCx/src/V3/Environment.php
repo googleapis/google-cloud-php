@@ -24,8 +24,8 @@ class Environment extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the environment.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -80,8 +80,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the environment.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the environment (unique in an agent).
      *           Limit of 64 characters.
@@ -108,8 +108,8 @@ class Environment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the environment.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -121,8 +121,8 @@ class Environment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the environment.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -54,9 +54,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface exportTaxonomiesAsync(ExportTaxonomiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importTaxonomiesAsync(ImportTaxonomiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceTaxonomyAsync(ReplaceTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExportTaxonomiesResponse> exportTaxonomiesAsync(ExportTaxonomiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportTaxonomiesResponse> importTaxonomiesAsync(ImportTaxonomiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> replaceTaxonomyAsync(ReplaceTaxonomyRequest $request, array $optionalArgs = [])
  */
 final class PolicyTagManagerSerializationClient
 {

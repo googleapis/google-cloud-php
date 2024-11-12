@@ -33,9 +33,10 @@ use Google\Cloud\Dialogflow\Cx\V3\SessionEntityType;
  * Returns the list of all session entity types in the specified session.
  *
  * @param string $formattedParent The session to list all session entity types from.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
- *                                ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`.
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>`
+ *                                or
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`.
  *                                If `Environment ID` is not specified, we assume default 'draft'
  *                                environment. Please see
  *                                {@see SessionEntityTypesClient::sessionName()} for help formatting this field.

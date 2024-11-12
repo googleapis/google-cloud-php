@@ -134,6 +134,8 @@ class ConversationsGapicClient
 
     private static $messageNameTemplate;
 
+    private static $phraseSetNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $projectAgentNameTemplate;
@@ -273,6 +275,15 @@ class ConversationsGapicClient
         }
 
         return self::$messageNameTemplate;
+    }
+
+    private static function getPhraseSetNameTemplate()
+    {
+        if (self::$phraseSetNameTemplate == null) {
+            self::$phraseSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/phraseSets/{phrase_set}');
+        }
+
+        return self::$phraseSetNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -424,6 +435,7 @@ class ConversationsGapicClient
                 'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'message' => self::getMessageNameTemplate(),
+                'phraseSet' => self::getPhraseSetNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAgent' => self::getProjectAgentNameTemplate(),
                 'projectConversation' => self::getProjectConversationNameTemplate(),
@@ -620,6 +632,25 @@ class ConversationsGapicClient
             'project' => $project,
             'conversation' => $conversation,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName($project, $location, $phraseSet)
+    {
+        return self::getPhraseSetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -908,6 +939,7 @@ class ConversationsGapicClient
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}

@@ -54,10 +54,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface claimHomepageAsync(ClaimHomepageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHomepageAsync(GetHomepageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface unclaimHomepageAsync(UnclaimHomepageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateHomepageAsync(UpdateHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> claimHomepageAsync(ClaimHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> getHomepageAsync(GetHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> unclaimHomepageAsync(UnclaimHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> updateHomepageAsync(UpdateHomepageRequest $request, array $optionalArgs = [])
  */
 final class HomepageServiceClient
 {

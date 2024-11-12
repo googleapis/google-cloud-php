@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicySnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicySnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> getAsync(GetSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicySnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicySnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsSnapshotRequest $request, array $optionalArgs = [])
  */
 final class SnapshotsClient
 {

@@ -37,10 +37,10 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteTransitionRouteGroupRequest;
  *
  * @param string $formattedName The name of the
  *                              [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
- *                              to delete. Format: `projects/<Project ID>/locations/<Location
- *                              ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
- *                              Route Group ID>` or `projects/<Project ID>/locations/<Location
- *                              ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`. Please see
+ *                              to delete. Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+ *                              or
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`. Please see
  *                              {@see TransitionRouteGroupsClient::transitionRouteGroupName()} for help formatting this field.
  */
 function delete_transition_route_group_sample(string $formattedName): void

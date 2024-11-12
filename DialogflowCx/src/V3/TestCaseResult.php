@@ -17,8 +17,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name for the test case result. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/testCases/
-     * <TestCase ID>/results/<TestCaseResult ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -58,8 +57,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name for the test case result. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/testCases/
-     *           <TestCase ID>/results/<TestCaseResult ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *     @type string $environment
      *           Environment where the test was run. If not set, it indicates the draft
      *           environment.
@@ -79,8 +77,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the test case result. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/testCases/
-     * <TestCase ID>/results/<TestCaseResult ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -92,8 +89,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the test case result. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/testCases/
-     * <TestCase ID>/results/<TestCaseResult ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

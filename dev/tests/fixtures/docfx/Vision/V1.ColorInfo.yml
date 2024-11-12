@@ -41,7 +41,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ color'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>'
+          var_type: '<xref uid="\Google\Type\Color">Google\Type\Color</xref>'
           description: 'RGB components of the color.'
         -
           id: '↳ score'
@@ -63,7 +63,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>|null'
+          var_type: '<xref uid="\Google\Type\Color">Google\Type\Color</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ColorInfo::hasColor()'
     name: hasColor
@@ -93,7 +93,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>'
+          var_type: '<xref uid="\Google\Type\Color">Google\Type\Color</xref>'
           description: ''
       returns:
         -

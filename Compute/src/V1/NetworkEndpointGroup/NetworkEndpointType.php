@@ -32,6 +32,12 @@ class NetworkEndpointType
      */
     const GCE_VM_IP_PORT = 501838375;
     /**
+     * The network endpoint is represented by an IP, Port and Client Destination Port.
+     *
+     * Generated from protobuf enum <code>GCE_VM_IP_PORTMAP = 22819253;</code>
+     */
+    const GCE_VM_IP_PORTMAP = 22819253;
+    /**
      * The network endpoint is represented by fully qualified domain name and port.
      *
      * Generated from protobuf enum <code>INTERNET_FQDN_PORT = 404154477;</code>
@@ -66,6 +72,7 @@ class NetworkEndpointType
         self::UNDEFINED_NETWORK_ENDPOINT_TYPE => 'UNDEFINED_NETWORK_ENDPOINT_TYPE',
         self::GCE_VM_IP => 'GCE_VM_IP',
         self::GCE_VM_IP_PORT => 'GCE_VM_IP_PORT',
+        self::GCE_VM_IP_PORTMAP => 'GCE_VM_IP_PORTMAP',
         self::INTERNET_FQDN_PORT => 'INTERNET_FQDN_PORT',
         self::INTERNET_IP_PORT => 'INTERNET_IP_PORT',
         self::NON_GCP_PRIVATE_IP_PORT => 'NON_GCP_PRIVATE_IP_PORT',

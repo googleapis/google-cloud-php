@@ -18,13 +18,13 @@ class AppliedLabel
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì
+‰
 +google/ads/admanager/v1/applied_label.protogoogle.ads.admanager.v1google/api/resource.proto"V
 AppliedLabel5
 label (	B&àAúA 
 admanager.googleapis.com/Label
-negated (B¨
-com.google.ads.admanager.v1BAppliedLabelProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+negated (BÅ
+com.google.ads.admanager.v1BAppliedLabelProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

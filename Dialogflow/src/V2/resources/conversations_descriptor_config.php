@@ -199,6 +199,7 @@ return [
                 'knowledgeBase' => 'projects/{project}/knowledgeBases/{knowledge_base}',
                 'location' => 'projects/{project}/locations/{location}',
                 'message' => 'projects/{project}/conversations/{conversation}/messages/{message}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'project' => 'projects/{project}',
                 'projectAgent' => 'projects/{project}/agent',
                 'projectConversation' => 'projects/{project}/conversations/{conversation}',

@@ -50,12 +50,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteExternalVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetExternalVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertExternalVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListExternalVpnGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsExternalVpnGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsExternalVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteExternalVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalVpnGateway> getAsync(GetExternalVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertExternalVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListExternalVpnGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsExternalVpnGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsExternalVpnGatewayRequest $request, array $optionalArgs = [])
  */
 final class ExternalVpnGatewaysClient
 {

@@ -53,15 +53,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListUrlMapsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface invalidateCacheAsync(InvalidateCacheUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListUrlMapsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateAsync(ValidateUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListUrlMapsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UrlMap> getAsync(GetUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> invalidateCacheAsync(InvalidateCacheUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListUrlMapsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UrlMapsValidateResponse> validateAsync(ValidateUrlMapRequest $request, array $optionalArgs = [])
  */
 final class UrlMapsClient
 {

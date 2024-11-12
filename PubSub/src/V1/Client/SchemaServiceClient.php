@@ -64,19 +64,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface commitSchemaAsync(CommitSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSchemaAsync(CreateSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSchemaAsync(DeleteSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSchemaRevisionAsync(DeleteSchemaRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSchemaAsync(GetSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSchemaRevisionsAsync(ListSchemaRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSchemasAsync(ListSchemasRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackSchemaAsync(RollbackSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateMessageAsync(ValidateMessageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateSchemaAsync(ValidateSchemaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schema> commitSchemaAsync(CommitSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schema> createSchemaAsync(CreateSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSchemaAsync(DeleteSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schema> deleteSchemaRevisionAsync(DeleteSchemaRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schema> getSchemaAsync(GetSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSchemaRevisionsAsync(ListSchemaRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSchemasAsync(ListSchemasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schema> rollbackSchemaAsync(RollbackSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValidateMessageResponse> validateMessageAsync(ValidateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValidateSchemaResponse> validateSchemaAsync(ValidateSchemaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class SchemaServiceClient
 {

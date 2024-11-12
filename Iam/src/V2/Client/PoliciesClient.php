@@ -49,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createPolicyAsync(CreatePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePolicyAsync(DeletePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPoliciesAsync(ListPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPolicyAsync(CreatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePolicyAsync(DeletePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPoliciesAsync(ListPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
  */
 final class PoliciesClient
 {

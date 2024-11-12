@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createCommentAsync(CreateCommentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCommentsAsync(ListCommentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Comment> createCommentAsync(CreateCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCommentsAsync(ListCommentsRequest $request, array $optionalArgs = [])
  */
 final class CommentServiceClient
 {

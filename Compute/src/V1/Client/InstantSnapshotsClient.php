@@ -54,15 +54,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListInstantSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstantSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstantSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstantSnapshot> getAsync(GetInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstantSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInstantSnapshotRequest $request, array $optionalArgs = [])
  */
 final class InstantSnapshotsClient
 {

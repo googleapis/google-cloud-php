@@ -47,8 +47,8 @@ use Google\Rpc\Status;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedName The flow to train.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                              {@see FlowsClient::flowName()} for help formatting this field.
  */
 function train_flow_sample(string $formattedName): void

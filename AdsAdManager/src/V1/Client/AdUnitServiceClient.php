@@ -50,9 +50,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getAdUnitAsync(GetAdUnitRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAdUnitSizesAsync(ListAdUnitSizesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAdUnitsAsync(ListAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdUnit> getAdUnitAsync(GetAdUnitRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdUnitSizesAsync(ListAdUnitSizesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAdUnitsAsync(ListAdUnitsRequest $request, array $optionalArgs = [])
  */
 final class AdUnitServiceClient
 {

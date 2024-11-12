@@ -36,7 +36,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ lat_lng'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>'
           description: 'lat/long location coordinates.'
   -
     uid: '\Google\Cloud\Vision\V1\LocationInfo::getLatLng()'
@@ -50,7 +50,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>|null'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LocationInfo::hasLatLng()'
     name: hasLatLng
@@ -80,7 +80,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>'
           description: ''
       returns:
         -

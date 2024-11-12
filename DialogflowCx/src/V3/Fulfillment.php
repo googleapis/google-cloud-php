@@ -35,8 +35,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
     private $messages;
     /**
      * The webhook to call.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string webhook = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -107,8 +107,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           The list of rich message responses to present to the user.
      *     @type string $webhook
      *           The webhook to call.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/webhooks/<Webhook ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *     @type bool $return_partial_responses
      *           Whether Dialogflow should return currently queued fulfillment response
      *           messages in streaming APIs. If a webhook is specified, it happens before
@@ -175,8 +175,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
 
     /**
      * The webhook to call.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string webhook = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -188,8 +188,8 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
 
     /**
      * The webhook to call.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/webhooks/<Webhook ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/webhooks/<WebhookID>`.
      *
      * Generated from protobuf field <code>string webhook = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

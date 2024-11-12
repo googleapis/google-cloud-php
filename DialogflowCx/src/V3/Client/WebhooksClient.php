@@ -55,13 +55,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createWebhookAsync(CreateWebhookRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWebhookAsync(DeleteWebhookRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWebhookAsync(GetWebhookRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWebhooksAsync(ListWebhooksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWebhookAsync(UpdateWebhookRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Webhook> createWebhookAsync(CreateWebhookRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWebhookAsync(DeleteWebhookRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Webhook> getWebhookAsync(GetWebhookRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWebhooksAsync(ListWebhooksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Webhook> updateWebhookAsync(UpdateWebhookRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class WebhooksClient
 {

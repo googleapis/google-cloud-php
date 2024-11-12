@@ -57,18 +57,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListSubnetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteSubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface expandIpCidrRangeAsync(ExpandIpCidrRangeSubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetSubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicySubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertSubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListSubnetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchSubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicySubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setPrivateIpGoogleAccessAsync(SetPrivateIpGoogleAccessSubnetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListSubnetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> expandIpCidrRangeAsync(ExpandIpCidrRangeSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Subnetwork> getAsync(GetSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicySubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListSubnetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicySubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setPrivateIpGoogleAccessAsync(SetPrivateIpGoogleAccessSubnetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsSubnetworkRequest $request, array $optionalArgs = [])
  */
 final class SubnetworksClient
 {

@@ -75,17 +75,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runReportAsync(RunReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRunPivotReportsResponse> batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRunReportsResponse> batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckCompatibilityResponse> checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceExport> getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Metadata> getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceExportResponse> queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunPivotReportResponse> runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunRealtimeReportResponse> runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunReportResponse> runReportAsync(RunReportRequest $request, array $optionalArgs = [])
  */
 final class BetaAnalyticsDataClient
 {

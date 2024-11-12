@@ -46,7 +46,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface listJobMessagesAsync(ListJobMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobMessagesAsync(ListJobMessagesRequest $request, array $optionalArgs = [])
  */
 final class MessagesV1Beta3Client
 {

@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
  * Calculates the test coverage for an agent.
  *
  * @param string $formattedAgent The agent to calculate coverage for.
- *                               Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                               Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                               {@see TestCasesClient::agentName()} for help formatting this field.
  * @param int    $type           The type of coverage requested.
  */

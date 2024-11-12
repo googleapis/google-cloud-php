@@ -54,10 +54,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface endActiveConferenceAsync(EndActiveConferenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> endActiveConferenceAsync(EndActiveConferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
  */
 final class SpacesServiceClient
 {

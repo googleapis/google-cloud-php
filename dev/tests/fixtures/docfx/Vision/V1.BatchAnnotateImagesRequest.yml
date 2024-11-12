@@ -19,6 +19,8 @@ items:
       - '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::setRequests()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::getParent()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::getLabels()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::setLabels()'
       - '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::__construct()'
@@ -43,6 +45,10 @@ items:
           id: '↳ parent'
           var_type: string
           description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ labels'
+          var_type: 'array|<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+          description: 'Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::getRequests()'
     name: getRequests
@@ -119,6 +125,49 @@ items:
         -
           id: var
           var_type: string
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::getLabels()'
+    name: getLabels
+    id: getLabels
+    summary: |-
+      Optional. The labels with user-defined metadata for the request.
+
+      Label keys and values can be no longer than 63 characters
+      (Unicode codepoints), can only contain lowercase letters, numeric
+      characters, underscores and dashes. International characters are allowed.
+      Label values are optional. Label keys must start with a letter.
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::setLabels()'
+    name: setLabels
+    id: setLabels
+    summary: |-
+      Optional. The labels with user-defined metadata for the request.
+
+      Label keys and values can be no longer than 63 characters
+      (Unicode codepoints), can only contain lowercase letters, numeric
+      characters, underscores and dashes. International characters are allowed.
+      Label values are optional. Label keys must start with a letter.
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array|<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
           description: ''
       returns:
         -

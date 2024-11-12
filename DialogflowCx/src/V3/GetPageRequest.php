@@ -18,8 +18,8 @@ class GetPageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the page.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,8 +51,8 @@ class GetPageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the page.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/flows/<Flow ID>/pages/<Page ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`. Please see
      *                     {@see PagesClient::pageName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetPageRequest
@@ -73,8 +73,8 @@ class GetPageRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the page.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *     @type string $language_code
      *           The language to retrieve the page for. The following fields are language
      *           dependent:
@@ -104,8 +104,8 @@ class GetPageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the page.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -117,8 +117,8 @@ class GetPageRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the page.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -47,7 +47,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createClientEventAsync(CreateClientEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClientEvent> createClientEventAsync(CreateClientEventRequest $request, array $optionalArgs = [])
  */
 final class EventServiceClient
 {

@@ -47,11 +47,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListGlobalOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteGlobalOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface waitAsync(WaitGlobalOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListGlobalOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeleteGlobalOperationResponse> deleteAsync(DeleteGlobalOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getAsync(GetGlobalOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> waitAsync(WaitGlobalOperationRequest $request, array $optionalArgs = [])
  */
 final class GlobalOperationsClient
 {

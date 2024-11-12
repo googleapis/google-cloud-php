@@ -28,6 +28,10 @@ class Type
      */
     const NETWORK = 413984270;
     /**
+     * Generated from protobuf enum <code>SYSTEM = 313484847;</code>
+     */
+    const SYSTEM = 313484847;
+    /**
      * Generated from protobuf enum <code>UNSPECIFIED = 526786327;</code>
      */
     const UNSPECIFIED = 526786327;
@@ -36,6 +40,7 @@ class Type
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::HIERARCHY => 'HIERARCHY',
         self::NETWORK => 'NETWORK',
+        self::SYSTEM => 'SYSTEM',
         self::UNSPECIFIED => 'UNSPECIFIED',
     ];
 

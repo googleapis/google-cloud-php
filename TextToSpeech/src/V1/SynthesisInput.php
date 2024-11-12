@@ -49,6 +49,9 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. For
      *           more information, see
      *           [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
+     *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $multi_speaker_markup
+     *           The multi-speaker input to be synthesized. Only applicable for
+     *           multi-speaker synthesis.
      *     @type \Google\Cloud\TextToSpeech\V1\CustomPronunciations $custom_pronunciations
      *           Optional. The pronunciation customizations to be applied to the input. If
      *           this is set, the input will be synthesized using the given pronunciation
@@ -133,6 +136,39 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The multi-speaker input to be synthesized. Only applicable for
+     * multi-speaker synthesis.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerMarkup multi_speaker_markup = 4;</code>
+     * @return \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup|null
+     */
+    public function getMultiSpeakerMarkup()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasMultiSpeakerMarkup()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * The multi-speaker input to be synthesized. Only applicable for
+     * multi-speaker synthesis.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.MultiSpeakerMarkup multi_speaker_markup = 4;</code>
+     * @param \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $var
+     * @return $this
+     */
+    public function setMultiSpeakerMarkup($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

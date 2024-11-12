@@ -647,6 +647,11 @@
                 "grpc": {
                     "libraryClient": "FeatureRegistryServiceGapicClient",
                     "rpcs": {
+                        "BatchCreateFeatures": {
+                            "methods": [
+                                "batchCreateFeatures"
+                            ]
+                        },
                         "CreateFeature": {
                             "methods": [
                                 "createFeature"
@@ -1793,6 +1798,11 @@
                         "StartNotebookRuntime": {
                             "methods": [
                                 "startNotebookRuntime"
+                            ]
+                        },
+                        "StopNotebookRuntime": {
+                            "methods": [
+                                "stopNotebookRuntime"
                             ]
                         },
                         "UpdateNotebookRuntimeTemplate": {

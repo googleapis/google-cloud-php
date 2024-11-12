@@ -33,8 +33,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Page;
  * Returns the list of all pages in the specified flow.
  *
  * @param string $formattedParent The flow to list all pages for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                ID>/flows/<Flow ID>`. Please see
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                                {@see PagesClient::flowName()} for help formatting this field.
  */
 function list_pages_sample(string $formattedParent): void

@@ -67,18 +67,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFlowAsync(CreateFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFlowAsync(DeleteFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportFlowAsync(ExportFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFlowAsync(GetFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFlowValidationResultAsync(GetFlowValidationResultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importFlowAsync(ImportFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFlowsAsync(ListFlowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface trainFlowAsync(TrainFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFlowAsync(UpdateFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateFlowAsync(ValidateFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Flow> createFlowAsync(CreateFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFlowAsync(DeleteFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportFlowAsync(ExportFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Flow> getFlowAsync(GetFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FlowValidationResult> getFlowValidationResultAsync(GetFlowValidationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importFlowAsync(ImportFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFlowsAsync(ListFlowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> trainFlowAsync(TrainFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Flow> updateFlowAsync(UpdateFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FlowValidationResult> validateFlowAsync(ValidateFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class FlowsClient
 {

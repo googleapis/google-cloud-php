@@ -57,12 +57,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubAccountsAsync(ListSubAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubAccountsAsync(ListSubAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
  */
 final class AccountsServiceClient
 {

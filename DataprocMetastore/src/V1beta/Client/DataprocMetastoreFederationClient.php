@@ -79,16 +79,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createFederationAsync(CreateFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFederationAsync(DeleteFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFederationAsync(GetFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFederationsAsync(ListFederationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFederationAsync(UpdateFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFederationAsync(CreateFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFederationAsync(DeleteFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Federation> getFederationAsync(GetFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFederationsAsync(ListFederationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFederationAsync(UpdateFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DataprocMetastoreFederationClient
 {

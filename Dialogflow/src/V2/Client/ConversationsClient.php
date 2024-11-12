@@ -64,17 +64,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSuggestionResponse> generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSummaryResponse> generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchKnowledgeResponse> searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestConversationSummaryResponse> suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationsClient
 {
@@ -300,6 +300,25 @@ final class ConversationsClient
             'project' => $project,
             'conversation' => $conversation,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -588,6 +607,7 @@ final class ConversationsClient
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}

@@ -18,16 +18,15 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the parent agent to export intents.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Required. The name of the intents to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,12 +48,11 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the parent agent to export intents.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $intents
      *           Required. The name of the intents to export.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $intents_uri
      *           Optional. The [Google Cloud
      *           Storage](https://cloud.google.com/storage/docs/) URI to export the
@@ -79,8 +77,7 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the parent agent to export intents.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,8 +89,7 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the parent agent to export intents.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -109,8 +105,8 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the intents to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -122,8 +118,8 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the intents to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

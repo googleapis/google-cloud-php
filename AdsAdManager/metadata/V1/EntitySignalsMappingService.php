@@ -22,7 +22,7 @@ class EntitySignalsMappingService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã
+€
 <google/ads/admanager/v1/entity_signals_mapping_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"e
 GetEntitySignalsMappingRequestC
 name (	B5àAúA/
@@ -63,8 +63,8 @@ total_size ("Ã
 CreateEntitySignalsMapping:.google.ads.admanager.v1.CreateEntitySignalsMappingRequest-.google.ads.admanager.v1.EntitySignalsMapping"mÚAparent,entity_signals_mapping‚Óä“G"-/v1/{parent=networks/*}/entitySignalsMappings:entity_signals_mapping“
 UpdateEntitySignalsMapping:.google.ads.admanager.v1.UpdateEntitySignalsMappingRequest-.google.ads.admanager.v1.EntitySignalsMapping"‰ÚA"entity_signals_mapping,update_mask‚Óä“^2D/v1/{entity_signals_mapping.name=networks/*/entitySignalsMappings/*}:entity_signals_mappingÿ
  BatchCreateEntitySignalsMappings@.google.ads.admanager.v1.BatchCreateEntitySignalsMappingsRequestA.google.ads.admanager.v1.BatchCreateEntitySignalsMappingsResponse"VÚAparent,requests‚Óä“>"9/v1/{parent=networks/*}/entitySignalsMappings:batchCreate:*ÿ
- BatchUpdateEntitySignalsMappings@.google.ads.admanager.v1.BatchUpdateEntitySignalsMappingsRequestA.google.ads.admanager.v1.BatchUpdateEntitySignalsMappingsResponse"VÚAparent,requests‚Óä“>"9/v1/{parent=networks/*}/entitySignalsMappings:batchUpdate:*ÊAadmanager.googleapis.comB·
-com.google.ads.admanager.v1B EntitySignalsMappingServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+ BatchUpdateEntitySignalsMappings@.google.ads.admanager.v1.BatchUpdateEntitySignalsMappingsRequestA.google.ads.admanager.v1.BatchUpdateEntitySignalsMappingsResponse"VÚAparent,requests‚Óä“>"9/v1/{parent=networks/*}/entitySignalsMappings:batchUpdate:*ÊAadmanager.googleapis.comBÔ
+com.google.ads.admanager.v1B EntitySignalsMappingServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

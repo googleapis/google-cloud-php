@@ -53,11 +53,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createHostProjectRegistrationAsync(CreateHostProjectRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHostProjectRegistrationAsync(GetHostProjectRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHostProjectRegistrationsAsync(ListHostProjectRegistrationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HostProjectRegistration> createHostProjectRegistrationAsync(CreateHostProjectRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HostProjectRegistration> getHostProjectRegistrationAsync(GetHostProjectRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHostProjectRegistrationsAsync(ListHostProjectRegistrationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class HostProjectRegistrationServiceClient
 {

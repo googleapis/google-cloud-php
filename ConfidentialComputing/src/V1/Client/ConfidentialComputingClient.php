@@ -53,10 +53,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createChallengeAsync(CreateChallengeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface verifyAttestationAsync(VerifyAttestationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Challenge> createChallengeAsync(CreateChallengeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VerifyAttestationResponse> verifyAttestationAsync(VerifyAttestationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConfidentialComputingClient
 {

@@ -162,6 +162,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $autoRenew = false;
         $category = 'category50511102';
         $creationTimestamp = 'creationTimestamp567396278';
+        $customEndTimestamp = 'customEndTimestamp-1965712796';
         $description = 'description-1724546052';
         $endTimestamp = 'endTimestamp1004967602';
         $id = 3355;
@@ -179,6 +180,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $expectedResponse->setAutoRenew($autoRenew);
         $expectedResponse->setCategory($category);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
+        $expectedResponse->setCustomEndTimestamp($customEndTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEndTimestamp($endTimestamp);
         $expectedResponse->setId($id);

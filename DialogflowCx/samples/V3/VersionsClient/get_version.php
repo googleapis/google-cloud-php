@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Version;
  * Retrieves the specified [Version][google.cloud.dialogflow.cx.v3.Version].
  *
  * @param string $formattedName The name of the [Version][google.cloud.dialogflow.cx.v3.Version].
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
  *                              {@see VersionsClient::versionName()} for help formatting this field.
  */
 function get_version_sample(string $formattedName): void

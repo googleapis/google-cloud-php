@@ -56,7 +56,8 @@ items:
     name: getParent
     id: getParent
     summary: |-
-      Required. Resource name of the product in which to create the reference image.
+      Required. Resource name of the product in which to create the reference
+      image.
 
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
@@ -73,7 +74,8 @@ items:
     name: setParent
     id: setParent
     summary: |-
-      Required. Resource name of the product in which to create the reference image.
+      Required. Resource name of the product in which to create the reference
+      image.
 
       Format is
       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
@@ -196,7 +198,8 @@ items:
           id: parent
           var_type: string
           description: |-
-            Required. Resource name of the product in which to create the reference image.
+            Required. Resource name of the product in which to create the reference
+            image.
 
             Format is
             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see

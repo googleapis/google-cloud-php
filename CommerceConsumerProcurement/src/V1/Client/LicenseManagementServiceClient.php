@@ -54,11 +54,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface assignAsync(AssignRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enumerateLicensedUsersAsync(EnumerateLicensedUsersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLicensePoolAsync(GetLicensePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface unassignAsync(UnassignRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateLicensePoolAsync(UpdateLicensePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AssignResponse> assignAsync(AssignRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> enumerateLicensedUsersAsync(EnumerateLicensedUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LicensePool> getLicensePoolAsync(GetLicensePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UnassignResponse> unassignAsync(UnassignRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LicensePool> updateLicensePoolAsync(UpdateLicensePoolRequest $request, array $optionalArgs = [])
  */
 final class LicenseManagementServiceClient
 {
