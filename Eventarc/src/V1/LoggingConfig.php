@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The configuration for Platform Telemetry logging for Eventarc Avdvanced
+ * The configuration for Platform Telemetry logging for Eventarc Advanced
  * resources.
  *
  * Generated from protobuf message <code>google.cloud.eventarc.v1.LoggingConfig</code>
