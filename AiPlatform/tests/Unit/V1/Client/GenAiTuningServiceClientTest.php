@@ -158,12 +158,14 @@ class GenAiTuningServiceClientTest extends GeneratedTest
         $tunedModelDisplayName = 'tunedModelDisplayName358986993';
         $description = 'description-1724546052';
         $experiment = 'experiment-85337091';
+        $serviceAccount = 'serviceAccount-1948028253';
         $expectedResponse = new TuningJob();
         $expectedResponse->setBaseModel($baseModel);
         $expectedResponse->setName($name);
         $expectedResponse->setTunedModelDisplayName($tunedModelDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setExperiment($experiment);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -235,12 +237,14 @@ class GenAiTuningServiceClientTest extends GeneratedTest
         $tunedModelDisplayName = 'tunedModelDisplayName358986993';
         $description = 'description-1724546052';
         $experiment = 'experiment-85337091';
+        $serviceAccount = 'serviceAccount-1948028253';
         $expectedResponse = new TuningJob();
         $expectedResponse->setBaseModel($baseModel);
         $expectedResponse->setName($name2);
         $expectedResponse->setTunedModelDisplayName($tunedModelDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setExperiment($experiment);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->tuningJobName('[PROJECT]', '[LOCATION]', '[TUNING_JOB]');
@@ -391,12 +395,14 @@ class GenAiTuningServiceClientTest extends GeneratedTest
         $tunedModelDisplayName = 'tunedModelDisplayName358986993';
         $description = 'description-1724546052';
         $experiment = 'experiment-85337091';
+        $serviceAccount = 'serviceAccount-1948028253';
         $expectedResponse = new TuningJob();
         $expectedResponse->setBaseModel($baseModel);
         $expectedResponse->setName($name);
         $expectedResponse->setTunedModelDisplayName($tunedModelDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setExperiment($experiment);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

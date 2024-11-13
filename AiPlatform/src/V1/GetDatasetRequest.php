@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for
  * [DatasetService.GetDataset][google.cloud.aiplatform.v1.DatasetService.GetDataset].
+ * Next ID: 4
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GetDatasetRequest</code>
  */

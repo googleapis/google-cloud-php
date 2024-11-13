@@ -131,6 +131,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     protected $private_endpoints = null;
     /**
+     * Configuration for faster model deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FasterDeploymentConfig faster_deployment_config = 23;</code>
+     */
+    protected $faster_deployment_config = null;
+    /**
      * System labels to apply to Model Garden deployments.
      * System labels are managed by Google for internal use only.
      *
@@ -226,6 +232,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           requests directly to the deployed model services running on Cloud via
      *           private services access. This field is populated if
      *           [network][google.cloud.aiplatform.v1.Endpoint.network] is configured.
+     *     @type \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig $faster_deployment_config
+     *           Configuration for faster model deployment.
      *     @type array|\Google\Protobuf\Internal\MapField $system_labels
      *           System labels to apply to Model Garden deployments.
      *           System labels are managed by Google for internal use only.
@@ -747,6 +755,42 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateEndpoints::class);
         $this->private_endpoints = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for faster model deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FasterDeploymentConfig faster_deployment_config = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig|null
+     */
+    public function getFasterDeploymentConfig()
+    {
+        return $this->faster_deployment_config;
+    }
+
+    public function hasFasterDeploymentConfig()
+    {
+        return isset($this->faster_deployment_config);
+    }
+
+    public function clearFasterDeploymentConfig()
+    {
+        unset($this->faster_deployment_config);
+    }
+
+    /**
+     * Configuration for faster model deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FasterDeploymentConfig faster_deployment_config = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig $var
+     * @return $this
+     */
+    public function setFasterDeploymentConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig::class);
+        $this->faster_deployment_config = $var;
 
         return $this;
     }
