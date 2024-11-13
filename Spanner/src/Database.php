@@ -237,7 +237,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return int|null
      */
-    public function state(array $options = [])
+    public function state(array $options = []): ?int
     {
         $info = $this->info($options);
 
@@ -269,7 +269,7 @@ class Database
      *
      * @return ItemIterator<Backup>
      */
-    public function backups(array $options = [])
+    public function backups(array $options = []): ItemIterator
     {
         $filter = 'database:' . $this->name();
 
@@ -297,9 +297,9 @@ class Database
      *        eligible to be automatically deleted by Cloud Spanner.
      * @param array $options [optional] Configuration options.
      *
-     * @return OperationResponse
+     * @return OperationResponse<Backup>
      */
-    public function createBackup($name, \DateTimeInterface $expireTime, array $options = [])
+    public function createBackup($name, \DateTimeInterface $expireTime, array $options = []): OperationResponse
     {
         $backup = $this->instance->backup($name);
         return $backup->create($this->name(), $expireTime, $options);
@@ -315,7 +315,7 @@ class Database
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -335,7 +335,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         return $this->info ?: $this->reload($options);
     }
@@ -355,7 +355,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
@@ -384,7 +384,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         try {
             $this->reload($options);
@@ -414,10 +414,10 @@ class Database
      * }
      * @return OperationResponse<Database>
      */
-    public function create(array $options = [])
+    public function create(array $options = []): OperationResponse
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $dialect = $data['databaseDialect'] ?? null;
+        $dialect = $data['databaseDialect'] ?? DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
 
         $data += [
             'parent' => $this->instance->name(),
@@ -448,7 +448,7 @@ class Database
      *
      * @return OperationResponse<Database>
      */
-    public function restore($backup, array $options = [])
+    public function restore($backup, array $options = []): OperationResponse
     {
         return $this->instance->createDatabaseFromBackup($this->name, $backup, $options);
     }
@@ -471,9 +471,9 @@ class Database
      *     @type bool $enableDropProtection If `true`, delete operations for Database
      *           and Instance will be blocked. **Defaults to** `false`.
      * }
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      */
-    public function updateDatabase(array $options = [])
+    public function updateDatabase(array $options = []): OperationResponse
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $fieldMask = [];
@@ -520,9 +520,9 @@ class Database
      *
      * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return OperationResponse
+     * @return OperationResponse<Database>
      */
-    public function updateDdl($statement, array $options = [])
+    public function updateDdl($statement, array $options = []): OperationResponse
     {
         return $this->updateDdlBatch([$statement], $options);
     }
@@ -555,9 +555,9 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return OperationResponse
+     * @return OperationResponse<void>
      */
-    public function updateDdlBatch(array $statements, array $options = [])
+    public function updateDdlBatch(array $statements, array $options = []): OperationResponse
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
@@ -593,7 +593,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function drop(array $options = [])
+    public function drop(array $options = []): void
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
@@ -630,7 +630,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function ddl(array $options = [])
+    public function ddl(array $options = []): array
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
@@ -735,7 +735,7 @@ class Database
      *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
-    public function snapshot(array $options = [])
+    public function snapshot(array $options = []): Snapshot
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -800,7 +800,7 @@ class Database
      * @throws \BadMethodCallException If attempting to call this method within
      *         an existing transaction.
      */
-    public function transaction(array $options = [])
+    public function transaction(array $options = []): Transaction
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -1033,7 +1033,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insert($table, array $data, array $options = [])
+    public function insert(string $table, array $data, array $options = []): Timestamp
     {
         return $this->insertBatch($table, [$data], $options);
     }
@@ -1082,7 +1082,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insertBatch($table, array $dataSet, array $options = [])
+    public function insertBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1128,7 +1128,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function update($table, array $data, array $options = [])
+    public function update(string $table, array $data, array $options = []): Timestamp
     {
         return $this->updateBatch($table, [$data], $options);
     }
@@ -1174,7 +1174,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function updateBatch($table, array $dataSet, array $options = [])
+    public function updateBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1221,7 +1221,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insertOrUpdate($table, array $data, array $options = [])
+    public function insertOrUpdate(string $table, array $data, array $options = []): Timestamp
     {
         return $this->insertOrUpdateBatch($table, [$data], $options);
     }
@@ -1269,7 +1269,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function insertOrUpdateBatch($table, array $dataSet, array $options = [])
+    public function insertOrUpdateBatch(string $table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1316,7 +1316,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function replace($table, array $data, array $options = [])
+    public function replace(string $table, array $data, array $options = []): Timestamp
     {
         return $this->replaceBatch($table, [$data], $options);
     }
@@ -1364,7 +1364,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function replaceBatch($table, array $dataSet, array $options = [])
+    public function replaceBatch($table, array $dataSet, array $options = []): Timestamp
     {
         $mutations = [];
         foreach ($dataSet as $data) {
@@ -1414,7 +1414,7 @@ class Database
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function delete($table, KeySet $keySet, array $options = [])
+    public function delete($table, KeySet $keySet, array $options = []): Timestamp
     {
         $mutations = [$this->operation->deleteMutation($table, $keySet)];
 
@@ -1673,7 +1673,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function execute($sql, array $options = [])
+    public function execute($sql, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
@@ -1707,7 +1707,7 @@ class Database
      *
      * @return MutationGroup
      */
-    public function mutationGroup()
+    public function mutationGroup(): MutationGroup
     {
         return new MutationGroup($this->returnInt64AsObject);
     }
@@ -1754,11 +1754,11 @@ class Database
      *           transactions.
      * }
      *
-     * @retur \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
+     * @return \Generator {@see \Google\Cloud\Spanner\V1\BatchWriteResponse}
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchWrite(array $mutationGroups, array $options = [])
+    public function batchWrite(array $mutationGroups, array $options = []): \Generator
     {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
@@ -1913,7 +1913,7 @@ class Database
      * }
      * @return int The number of rows modified.
      */
-    public function executePartitionedUpdate($statement, array $options = [])
+    public function executePartitionedUpdate($statement, array $options = []): int
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
@@ -2058,7 +2058,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Result
      */
-    public function read($table, KeySet $keySet, array $columns, array $options = [])
+    public function read($table, KeySet $keySet, array $columns, array $options = []): Result
     {
         unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(
@@ -2096,7 +2096,7 @@ class Database
      *
      * @return SessionPoolInterface|null
      */
-    public function sessionPool()
+    public function sessionPool(): ?SessionPoolInterface
     {
         return $this->sessionPool;
     }
@@ -2114,7 +2114,7 @@ class Database
      * $database->close();
      * ```
      */
-    public function close()
+    public function close(): void
     {
         if ($this->session) {
             if ($this->sessionPool) {
@@ -2152,7 +2152,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return Session
      */
-    public function createSession(array $options = [])
+    public function createSession(array $options = []): Session
     {
         return $this->operation->createSession($this->name, $options);
     }
@@ -2169,7 +2169,7 @@ class Database
      * @param string $sessionName The session's name.
      * @return Session
      */
-    public function session($sessionName)
+    public function session(string $sessionName): Session
     {
         return $this->operation->session($sessionName);
     }
@@ -2180,7 +2180,7 @@ class Database
      * @access private
      * @return array
      */
-    public function identity()
+    public function identity(): array
     {
         $databaseParts = explode('/', $this->name);
         $instanceParts = explode('/', $this->instance->name());
@@ -2200,7 +2200,7 @@ class Database
      *     @type int $sessionCount
      * }
      */
-    public function batchCreateSessions(array $options)
+    public function batchCreateSessions(array $options): array
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
@@ -2210,6 +2210,7 @@ class Database
         $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
         $response = $this->spannerClient->batchCreateSessions($request, $callOptions);
+        return $this->handleResponse($response);
     }
 
     /**
@@ -2219,10 +2220,10 @@ class Database
      * @param array $options {
      *     @type name The session name to be deleted
      * }
-     * @return PromiseInterface
+     * @return PromiseInterface<void>
      * @experimental
      */
-    public function deleteSessionAsync(array $options)
+    public function deleteSessionAsync(array $options): PromiseInterface
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
 
@@ -2253,7 +2254,7 @@ class Database
      *
      * @return ItemIterator<OperationResponse>
      */
-    public function backupOperations(array $options = [])
+    public function backupOperations(array $options = []): ItemIterator
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = $this->instance->name();
@@ -2298,7 +2299,7 @@ class Database
      *
      * @return OperationResponse
      */
-    public function createDatabaseFromBackup($name, $backup, array $options = [])
+    public function createDatabaseFromBackup($name, $backup, array $options = []): OperationResponse
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data += [
@@ -2335,7 +2336,7 @@ class Database
      *
      * @return ItemIterator<OperationResponse>
      */
-    public function databaseOperations(array $options = [])
+    public function databaseOperations(array $options = []): ItemIterator
     {
         list($data, $callOptions) = $this->splitOptionalArgs($options);
         $data['parent'] = $this->instance->name();
@@ -2380,7 +2381,7 @@ class Database
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName)
+    public function resumeOperation($operationName): OperationResponse
     {
         return new OperationResponse(
             $operationName,
@@ -2398,7 +2399,7 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return Session
      */
-    private function selectSession($context = SessionPoolInterface::CONTEXT_READ, array $options = [])
+    private function selectSession($context = SessionPoolInterface::CONTEXT_READ, array $options = []): Session
     {
         if ($this->session) {
             return $this->session;
@@ -2431,7 +2432,7 @@ class Database
      * }
      * @return Timestamp The commit timestamp.
      */
-    private function commitInSingleUseTransaction(array $mutations, array $options = [])
+    private function commitInSingleUseTransaction(array $mutations, array $options = []): Timestamp
     {
         unset($options['requestOptions']['transactionTag']);
         $options['mutations'] = $mutations;
@@ -2448,7 +2449,7 @@ class Database
      *
      * @return string
      */
-    private function fullyQualifiedDatabaseName($name)
+    private function fullyQualifiedDatabaseName($name): string
     {
         $instance = DatabaseAdminClient::parseName($this->instance->name())['instance'];
 
@@ -2468,10 +2469,10 @@ class Database
     /**
      * Returns the 'CREATE DATABASE' statement as per the given database dialect
      *
-     * @param string $dialect The dialect of the database to be created
+     * @param int $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */
-    private function getCreateDbStatement($dialect)
+    private function getCreateDbStatement(int $dialect): string
     {
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
 
@@ -2488,7 +2489,7 @@ class Database
      * @param string $name The database name or id.
      * @return string
      */
-    private function databaseIdOnly($name)
+    private function databaseIdOnly(string $name): string
     {
         try {
             return DatabaseAdminClient::parseName($name)['database'];
@@ -2497,7 +2498,7 @@ class Database
         }
     }
 
-    private function parseMutations($rawMutations)
+    private function parseMutations(array $rawMutations): array
     {
         if (!is_array($rawMutations)) {
             return [];
@@ -2549,7 +2550,7 @@ class Database
      * @param mixed $param
      * @return Value
      */
-    private function fieldValue($param)
+    private function fieldValue($param): Value
     {
         $field = new Value();
         $value = $this->formatValueForApi($param);

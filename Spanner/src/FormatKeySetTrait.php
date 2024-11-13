@@ -35,4 +35,3 @@ trait FormatKeySetTrait
         return $keySet;
     }
 }
-

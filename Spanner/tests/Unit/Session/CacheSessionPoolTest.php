@@ -22,8 +22,11 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Lock\MockValues;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Protobuf\GPBEmpty;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
 use PHPUnit\Framework\TestCase;
@@ -42,6 +45,7 @@ class CacheSessionPoolTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
     const PROJECT_ID = 'project';
@@ -856,9 +860,11 @@ class CacheSessionPoolTest extends TestCase
 
     private function getDatabase($shouldCreateFails = false, $willDeleteSessions = false, $expectedCreateCalls = null)
     {
-        $database = $this->prophesize(DatabaseStub::class);
-        $session = $this->prophesize(SessionStub::class);
+        $database = $this->prophesize(Database::class);
+        $session = $this->prophesize(Session::class);
         $requestHandler = $this->prophesize(RequestHandler::class);
+        $result = $this->prophesize(Result::class);
+        $result->rows()->willReturn($this->resultGeneratorChunks([]));
 
         $session->expiration()
             ->willReturn($this->time + 3600);
@@ -866,16 +872,12 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn(false);
         if ($willDeleteSessions) {
             $session->delete()
-            ->willReturn(null);
+                ->willReturn(null);
             $database->deleteSessionAsync(Argument::any())
-                ->willReturn(new FulfilledPromise(
-                    new DumbObject()
-                ));
+                ->willReturn(new FulfilledPromise(new GPBEmpty()));
         } else {
             $database->deleteSessionAsync(Argument::any())
-                ->willReturn(new RejectedPromise(
-                    new DumbObject()
-                ));
+                ->willReturn(new RejectedPromise(new GPBEmpty()));
         }
 
         $database->session(Argument::any())
@@ -894,7 +896,7 @@ class CacheSessionPoolTest extends TestCase
         $database->name()
             ->willReturn(self::DATABASE_NAME);
         $database->execute(Argument::exact('SELECT 1'), Argument::withKey('session'))
-            ->willReturn(new DumbObject());
+            ->willReturn($result->reveal());
 
         $createRes = function ($args, $mock, $method) use ($shouldCreateFails) {
             if ($shouldCreateFails) {
@@ -1001,7 +1003,7 @@ class CacheSessionPoolTest extends TestCase
     public function testMaintainException()
     {
         $data = $this->cacheData(['dead' => 3700, 'old' => 3200, 'fresh' => 100, 'other' => 1500], 300);
-        $database = $this->prophesize(DatabaseStub::class);
+        $database = $this->prophesize(Database::class);
         $database->identity()->willReturn([
             'projectId' => self::PROJECT_ID,
             'database' => self::DATABASE_NAME,
@@ -1179,7 +1181,7 @@ class CacheSessionPoolTest extends TestCase
         $config = ['minSessions' => 1, 'databaseRole' => 'Reader'];
         $cache = $this->getCacheItemPool($initialData);
         $pool = new CacheSessionPoolStub($cache, $config, $this->time);
-        $database = $this->prophesize(DatabaseStub::class);
+        $database = $this->prophesize(Database::class);
         $database->identity()
         ->willReturn([
             'projectId' => self::PROJECT_ID,
@@ -1212,42 +1214,6 @@ class CacheSessionPoolStub extends CacheSessionPool
     protected function time()
     {
         return $this->time ?: parent::time();
-    }
-}
-
-class DatabaseStub extends Database
-{
-    // prevent "get_class() expects parameter 1 to be object" warning when debugging
-    public function __debugInfo()
-    {
-        return [];
-    }
-}
-
-class SessionStub extends Session
-{
-    // prevent "get_class() expects parameter 1 to be object" warning when debugging
-    public function __debugInfo()
-    {
-        return [];
-    }
-}
-
-class DumbObject
-{
-    public function __get($name)
-    {
-        return $this;
-    }
-
-    public function __call($name, $args)
-    {
-        return $this;
-    }
-
-    public function serializeToString()
-    {
-        return '';
     }
 }
 //@codingStandardsIgnoreEnd

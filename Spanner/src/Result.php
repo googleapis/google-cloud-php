@@ -183,7 +183,7 @@ class Result implements \IteratorAggregate
      * @throws \RuntimeException When duplicate column names exist with a
      *         selected format of `Result::RETURN_ASSOCIATIVE`.
      */
-    public function rows($format = self::RETURN_ASSOCIATIVE)
+    public function rows($format = self::RETURN_ASSOCIATIVE): \Generator
     {
         $bufferedResults = [];
         $call = $this->call;

@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
@@ -30,6 +31,7 @@ use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Middleware\ExceptionMiddleware;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -274,11 +276,17 @@ class SpannerClient
             'libName' => 'gccl',
             'serializer' => $this->serializer,
         ];
+        $middleware = function (MiddlewareInterface $handler) {
+            return new ExceptionMiddleware($handler);
+        };
         $this->spannerClient = $config['gapicSpannerClient'] ?? new GapicSpannerClient($clientConfig);
+        $this->spannerClient->addMiddleware($middleware);
         $this->instanceAdminClient = $config['gapicSpannerInstanceAdminClient']
             ?? new InstanceAdminClient($clientConfig);
+        $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient = $config['gapicSpannerDatabaseAdminClient']
             ?? new DatabaseAdminClient($clientConfig);
+        $this->databaseAdminClient->addMiddleware($middleware);
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
     }
 
