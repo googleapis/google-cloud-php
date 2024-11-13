@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\TimeTrait;

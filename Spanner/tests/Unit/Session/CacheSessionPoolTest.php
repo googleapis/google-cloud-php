@@ -864,7 +864,7 @@ class CacheSessionPoolTest extends TestCase
         $session = $this->prophesize(Session::class);
         $requestHandler = $this->prophesize(RequestHandler::class);
         $result = $this->prophesize(Result::class);
-        $result->rows()->willReturn($this->resultGeneratorChunks([]));
+        $result->rows()->willReturn($this->resultGeneratorJson([]));
 
         $session->expiration()
             ->willReturn($this->time + 3600);

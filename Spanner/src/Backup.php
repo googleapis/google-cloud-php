@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 use Closure;
 use DateTimeInterface;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;

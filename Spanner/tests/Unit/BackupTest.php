@@ -20,8 +20,8 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use DateTime;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -70,20 +70,7 @@ class BackupTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.ListValue' => function ($v) {
-                return $this->flattenListValue($v);
-            },
-            'google.protobuf.Struct' => function ($v) {
-                return $this->flattenStruct($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ]);
+        $this->serializer = new Serializer();
 
         $this->database = $this->prophesize(Database::class);
         $this->database->name()->willReturn(

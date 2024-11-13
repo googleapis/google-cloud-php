@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;

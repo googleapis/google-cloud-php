@@ -21,7 +21,7 @@ use Closure;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;

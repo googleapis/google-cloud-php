@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
-use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -59,20 +59,7 @@ class BatchClientTest extends TestCase
 
     public function setUp(): void
     {
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.ListValue' => function ($v) {
-                return $this->flattenListValue($v);
-            },
-            'google.protobuf.Struct' => function ($v) {
-                return $this->flattenStruct($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ]);
+        $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(GapicSpannerClient::class);
         $this->batchClient = new BatchClient(
             new Operation($this->spannerClient->reveal(), $this->serializer, false),

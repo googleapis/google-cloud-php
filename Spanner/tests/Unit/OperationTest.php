@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
@@ -79,20 +79,7 @@ class OperationTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.ListValue' => function ($v) {
-                return $this->flattenListValue($v);
-            },
-            'google.protobuf.Struct' => function ($v) {
-                return $this->flattenStruct($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ]);
+        $this->serializer = new Serializer();
         $this->spannerClient = $this->prophesize(SpannerClient::class);
 
         $this->operation = new Operation(

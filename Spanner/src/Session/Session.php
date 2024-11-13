@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Session;
 
 use Google\ApiCore\ArrayTrait;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Database;

@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
