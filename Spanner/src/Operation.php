@@ -17,12 +17,6 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Core\Serializer;
-use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\RequestProcessorTrait;
-use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Session\Session;
@@ -53,14 +47,8 @@ use InvalidArgumentException;
  */
 class Operation
 {
-    use ApiHelperTrait;
-    use ArrayTrait;
     use RequestTrait;
-    use RequestProcessorTrait;
     use MutationTrait;
-    use TimeTrait;
-    use ValidateTrait;
-    use FormatKeySetTrait;
 
     const OP_INSERT = 'insert';
     const OP_UPDATE = 'update';
@@ -813,7 +801,8 @@ class Operation
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
-            'keySet' => $this->formatKeySet($this->flattenKeySet($keySet)),
+            // 'keySet' => $this->formatKeySet($this->flattenKeySet($keySet)),
+            'keySet' => $this->flattenKeySet($keySet),
             'partitionOptions' => $this->partitionOptions($data)
         ];
 
@@ -932,9 +921,9 @@ class Operation
 
                 switch ($type) {
                     case Operation::OP_DELETE:
-                        if (isset($data['keySet'])) {
-                            $data['keySet'] = $this->formatKeySet($data['keySet']);
-                        }
+                        // if (isset($data['keySet'])) {
+                        //     $data['keySet'] = $this->formatKeySet($data['keySet']);
+                        // }
                         break;
                     default:
                         $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
@@ -1088,7 +1077,7 @@ class Operation
     private function streamingRead(array $args)
     {
         list($data, $callOptions) = $this->splitOptionalArgs($args);
-        $data['keySet'] = $this->formatKeySet($this->pluck('keySet', $data));
+        // $data['keySet'] = ($this->pluck('keySet', $data);
         $data['transaction'] = $this->createTransactionSelector($data);
         $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);

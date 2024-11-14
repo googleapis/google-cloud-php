@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;

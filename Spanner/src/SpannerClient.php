@@ -32,7 +32,6 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Middleware\ExceptionMiddleware;
 use Google\Cloud\Core\RequestProcessorTrait;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
@@ -108,13 +107,10 @@ use Psr\Http\StreamInterface;
  */
 class SpannerClient
 {
-    use ApiHelperTrait;
     use ClientOptionsTrait;
     use ClientTrait;
     use EmulatorTrait;
-    use ValidateTrait;
     use RequestTrait;
-    use RequestProcessorTrait;
 
     const VERSION = '1.89.0';
 
@@ -255,7 +251,30 @@ class SpannerClient
             );
         }
         $this->projectId = $this->detectProjectId($config);
-        $this->serializer = new Serializer([], [], [], [], [
+        $this->serializer = new Serializer([], [
+            'google.spanner.v1.KeySet' => function ($v) {
+                // exit("TEST");
+                $keys = $this->pluck('keys', $keySet, false);
+                if ($keys) {
+                    $keySet['keys'] = array_map(
+                        fn ($key) => $this->formatListForApi((array) $key),
+                        $keys
+                    );
+                }
+
+                if (isset($keySet['ranges'])) {
+                    $keySet['ranges'] = array_map(function ($rangeItem) {
+                        return array_map([$this, 'formatListForApi'], $rangeItem);
+                    }, $keySet['ranges']);
+
+                    if (empty($keySet['ranges'])) {
+                        unset($keySet['ranges']);
+                    }
+                }
+
+                return $this->decodeMessage(new KeySet(), $keySet);
+            },
+        ], [], [], [
             // A custom encoder that short-circuits the encodeMessage in Serializer class,
             // but only if the argument is of the type PartialResultSet.
             PartialResultSet::class => function ($msg) {

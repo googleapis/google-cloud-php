@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Closure;
 use DateTimeInterface;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\ApiCore\ValidationException;
@@ -52,8 +51,6 @@ use Google\LongRunning\Operation;
  */
 class Backup
 {
-    use ApiHelperTrait;
-    use RequestProcessorTrait;
     use RequestTrait;
 
     const STATE_READY = State::READY;

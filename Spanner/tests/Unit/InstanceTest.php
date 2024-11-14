@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;

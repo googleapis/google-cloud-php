@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Session;
 
 use Google\ApiCore\ArrayTrait;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Database;
@@ -32,8 +32,6 @@ use Google\Cloud\Spanner\V1\GetSessionRequest;
  */
 class Session
 {
-    use ApiHelperTrait;
-    use ArrayTrait;
     use RequestTrait;
 
     /**

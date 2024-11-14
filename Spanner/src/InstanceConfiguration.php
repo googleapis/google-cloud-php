@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Closure;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestProcessorTrait;
@@ -52,9 +51,7 @@ use Google\Rpc\Code;
  */
 class InstanceConfiguration
 {
-    use ApiHelperTrait;
     use RequestTrait;
-    use RequestProcessorTrait;
 
     /**
      * @var string

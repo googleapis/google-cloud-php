@@ -21,7 +21,7 @@ use DateTime;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;

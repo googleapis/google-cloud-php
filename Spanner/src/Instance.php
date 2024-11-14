@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Closure;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
@@ -55,10 +54,7 @@ use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
  */
 class Instance
 {
-    use ApiHelperTrait;
-    use ArrayTrait;
     use RequestTrait;
-    use RequestProcessorTrait;
 
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;

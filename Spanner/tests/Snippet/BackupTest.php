@@ -23,7 +23,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;

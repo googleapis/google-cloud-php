@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\PartitionInterface;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
 use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\KeySet as KeySetProto;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -73,7 +74,28 @@ class BatchSnapshotTest extends TestCase
 
         $this->timestamp = new Timestamp(new \DateTime());
 
-        $this->serializer = new Serializer();
+        $this->serializer = new Serializer([], [], [], [
+            'google.spanner.v1.KeySet' => function ($keySet) {
+                $keys = $this->pluck('keys', $keySet, false);
+                if ($keys) {
+                    $keySet['keys'] = array_map(
+                        fn ($key) => $this->formatListForApi((array) $key),
+                        $keys
+                    );
+                }
+
+                if (isset($keySet['ranges'])) {
+                    $keySet['ranges'] = array_map(function ($rangeItem) {
+                        return array_map([$this, 'formatListForApi'], $rangeItem);
+                    }, $keySet['ranges']);
+
+                    if (empty($keySet['ranges'])) {
+                        unset($keySet['ranges']);
+                    }
+                }
+                return $keySet;
+            },
+        ]);
         $this->spannerClient = $this->prophesize(SpannerClient::class);
 
         $this->snapshot = new BatchSnapshot(
@@ -123,6 +145,7 @@ class BatchSnapshotTest extends TestCase
         $this->spannerClient->partitionRead(
             Argument::that(function (PartitionReadRequest $request) use ($expectedArguments) {
                 $actualArguments = $this->serializer->encodeMessage($request);
+                // var_dump($actualArguments, $expectedArguments);exit;
                 return $actualArguments == $expectedArguments;
             }),
             Argument::type('array')

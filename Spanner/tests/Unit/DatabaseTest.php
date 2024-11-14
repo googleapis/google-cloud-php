@@ -28,7 +28,7 @@ use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;

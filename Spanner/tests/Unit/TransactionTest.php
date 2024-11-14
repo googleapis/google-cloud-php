@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;

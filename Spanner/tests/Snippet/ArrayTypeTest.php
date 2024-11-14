@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;

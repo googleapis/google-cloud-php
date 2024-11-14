@@ -21,7 +21,6 @@ use Closure;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
-use Google\Cloud\Core\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -89,9 +88,6 @@ class Database
 {
     use TransactionConfigurationTrait;
     use RequestTrait;
-    use RequestProcessorTrait;
-    use ApiHelperTrait;
-    use FormatKeySetTrait;
 
     const STATE_CREATING = State::CREATING;
     const STATE_READY = State::READY;

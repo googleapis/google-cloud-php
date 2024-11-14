@@ -18,6 +18,8 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestProcessorTrait;
 
 /**
  * Shared functionality for Spanner requests.
@@ -26,6 +28,9 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait RequestTrait
 {
+    use ApiHelperTrait;
+    use RequestProcessorTrait;
+
     private $larHeader = 'x-goog-spanner-route-to-leader';
     private $resourcePrefixHeader = 'google-cloud-resource-prefix';
 
