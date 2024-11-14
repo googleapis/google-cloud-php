@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A customer-managed encryption key specification that can be applied to all
- * created resources (e.g. Conversation).
+ * created resources (e.g. `Conversation`).
  *
  * Generated from protobuf message <code>google.cloud.contactcenterinsights.v1.EncryptionSpec</code>
  */
@@ -27,8 +27,8 @@ class EncryptionSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of customer-managed encryption key that is used to
      * secure a resource and its sub-resources. If empty, the resource is secured
-     * by the default Google encryption key. Only the key in the same location as
-     * this resource is allowed to be used for encryption. Format:
+     * by our default encryption key. Only the key in the same location as this
+     * resource is allowed to be used for encryption. Format:
      * `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -48,8 +48,8 @@ class EncryptionSpec extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key
      *           Required. The name of customer-managed encryption key that is used to
      *           secure a resource and its sub-resources. If empty, the resource is secured
-     *           by the default Google encryption key. Only the key in the same location as
-     *           this resource is allowed to be used for encryption. Format:
+     *           by our default encryption key. Only the key in the same location as this
+     *           resource is allowed to be used for encryption. Format:
      *           `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`
      * }
      */
@@ -91,8 +91,8 @@ class EncryptionSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of customer-managed encryption key that is used to
      * secure a resource and its sub-resources. If empty, the resource is secured
-     * by the default Google encryption key. Only the key in the same location as
-     * this resource is allowed to be used for encryption. Format:
+     * by our default encryption key. Only the key in the same location as this
+     * resource is allowed to be used for encryption. Format:
      * `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -106,8 +106,8 @@ class EncryptionSpec extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of customer-managed encryption key that is used to
      * secure a resource and its sub-resources. If empty, the resource is secured
-     * by the default Google encryption key. Only the key in the same location as
-     * this resource is allowed to be used for encryption. Format:
+     * by our default encryption key. Only the key in the same location as this
+     * resource is allowed to be used for encryption. Format:
      * `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>

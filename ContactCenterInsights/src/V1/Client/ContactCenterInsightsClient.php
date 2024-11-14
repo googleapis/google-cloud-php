@@ -35,34 +35,54 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
+use Google\Cloud\ContactCenterInsights\V1\AnalysisRule;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkUploadFeedbackLabelsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\Conversation;
 use Google\Cloud\ContactCenterInsights\V1\CreateAnalysisRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreateConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreateIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreatePhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateQaScorecardRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteAnalysisRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteQaScorecardRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeployQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest;
 use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\FeedbackLabel;
 use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetEncryptionSpecRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetQaScorecardRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
@@ -70,21 +90,37 @@ use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
+use Google\Cloud\ContactCenterInsights\V1\ListAllFeedbackLabelsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListAnalysisRulesRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListFeedbackLabelsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListIssueModelsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListIssueModelsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListIssuesRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListIssuesResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListQaQuestionsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListQaScorecardRevisionsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListQaScorecardsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListViewsRequest;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
+use Google\Cloud\ContactCenterInsights\V1\QaQuestion;
+use Google\Cloud\ContactCenterInsights\V1\QaScorecard;
+use Google\Cloud\ContactCenterInsights\V1\QaScorecardRevision;
+use Google\Cloud\ContactCenterInsights\V1\QueryMetricsRequest;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
+use Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
+use Google\Cloud\ContactCenterInsights\V1\UndeployQaScorecardRevisionRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateQaScorecardRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
@@ -106,44 +142,75 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface<OperationResponse> bulkAnalyzeConversationsAsync(BulkAnalyzeConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> bulkDeleteConversationsAsync(BulkDeleteConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkDownloadFeedbackLabelsAsync(BulkDownloadFeedbackLabelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> bulkUploadFeedbackLabelsAsync(BulkUploadFeedbackLabelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CalculateIssueModelStatsResponse> calculateIssueModelStatsAsync(CalculateIssueModelStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CalculateStatsResponse> calculateStatsAsync(CalculateStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAnalysisAsync(CreateAnalysisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalysisRule> createAnalysisRuleAsync(CreateAnalysisRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeedbackLabel> createFeedbackLabelAsync(CreateFeedbackLabelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createIssueModelAsync(CreateIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PhraseMatcher> createPhraseMatcherAsync(CreatePhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaQuestion> createQaQuestionAsync(CreateQaQuestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecard> createQaScorecardAsync(CreateQaScorecardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecardRevision> createQaScorecardRevisionAsync(CreateQaScorecardRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<View> createViewAsync(CreateViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAnalysisAsync(DeleteAnalysisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAnalysisRuleAsync(DeleteAnalysisRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFeedbackLabelAsync(DeleteFeedbackLabelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteIssueAsync(DeleteIssueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteIssueModelAsync(DeleteIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deletePhraseMatcherAsync(DeletePhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteQaQuestionAsync(DeleteQaQuestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteQaScorecardAsync(DeleteQaScorecardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteQaScorecardRevisionAsync(DeleteQaScorecardRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteViewAsync(DeleteViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deployIssueModelAsync(DeployIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecardRevision> deployQaScorecardRevisionAsync(DeployQaScorecardRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportInsightsDataAsync(ExportInsightsDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportIssueModelAsync(ExportIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Analysis> getAnalysisAsync(GetAnalysisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalysisRule> getAnalysisRuleAsync(GetAnalysisRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EncryptionSpec> getEncryptionSpecAsync(GetEncryptionSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeedbackLabel> getFeedbackLabelAsync(GetFeedbackLabelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Issue> getIssueAsync(GetIssueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IssueModel> getIssueModelAsync(GetIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PhraseMatcher> getPhraseMatcherAsync(GetPhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaQuestion> getQaQuestionAsync(GetQaQuestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecard> getQaScorecardAsync(GetQaScorecardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecardRevision> getQaScorecardRevisionAsync(GetQaScorecardRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Settings> getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<View> getViewAsync(GetViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importIssueModelAsync(ImportIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> ingestConversationsAsync(IngestConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> initializeEncryptionSpecAsync(InitializeEncryptionSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAllFeedbackLabelsAsync(ListAllFeedbackLabelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAnalysesAsync(ListAnalysesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnalysisRulesAsync(ListAnalysisRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeedbackLabelsAsync(ListFeedbackLabelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListIssueModelsResponse> listIssueModelsAsync(ListIssueModelsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListIssuesResponse> listIssuesAsync(ListIssuesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPhraseMatchersAsync(ListPhraseMatchersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQaQuestionsAsync(ListQaQuestionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQaScorecardRevisionsAsync(ListQaScorecardRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQaScorecardsAsync(ListQaScorecardsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listViewsAsync(ListViewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> queryMetricsAsync(QueryMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> tuneQaScorecardRevisionAsync(TuneQaScorecardRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> undeployIssueModelAsync(UndeployIssueModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecardRevision> undeployQaScorecardRevisionAsync(UndeployQaScorecardRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalysisRule> updateAnalysisRuleAsync(UpdateAnalysisRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Conversation> updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeedbackLabel> updateFeedbackLabelAsync(UpdateFeedbackLabelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Issue> updateIssueAsync(UpdateIssueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IssueModel> updateIssueModelAsync(UpdateIssueModelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PhraseMatcher> updatePhraseMatcherAsync(UpdatePhraseMatcherRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaQuestion> updateQaQuestionAsync(UpdateQaQuestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QaScorecard> updateQaScorecardAsync(UpdateQaScorecardRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Settings> updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<View> updateViewAsync(UpdateViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> uploadConversationAsync(UploadConversationRequest $request, array $optionalArgs = [])
@@ -272,6 +339,25 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * analysis_rule resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $analysisRule
+     *
+     * @return string The formatted analysis_rule resource.
+     */
+    public static function analysisRuleName(string $project, string $location, string $analysisRule): string
+    {
+        return self::getPathTemplate('analysisRule')->render([
+            'project' => $project,
+            'location' => $location,
+            'analysis_rule' => $analysisRule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a conversation
      * resource.
      *
@@ -326,6 +412,31 @@ final class ContactCenterInsightsClient
         return self::getPathTemplate('encryptionSpec')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * feedback_label resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $feedbackLabel
+     *
+     * @return string The formatted feedback_label resource.
+     */
+    public static function feedbackLabelName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $feedbackLabel
+    ): string {
+        return self::getPathTemplate('feedbackLabel')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+            'feedback_label' => $feedbackLabel,
         ]);
     }
 
@@ -472,6 +583,97 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a qa_question
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $qaScorecard
+     * @param string $revision
+     * @param string $qaQuestion
+     *
+     * @return string The formatted qa_question resource.
+     */
+    public static function qaQuestionName(
+        string $project,
+        string $location,
+        string $qaScorecard,
+        string $revision,
+        string $qaQuestion
+    ): string {
+        return self::getPathTemplate('qaQuestion')->render([
+            'project' => $project,
+            'location' => $location,
+            'qa_scorecard' => $qaScorecard,
+            'revision' => $revision,
+            'qa_question' => $qaQuestion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a qa_scorecard
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $qaScorecard
+     *
+     * @return string The formatted qa_scorecard resource.
+     */
+    public static function qaScorecardName(string $project, string $location, string $qaScorecard): string
+    {
+        return self::getPathTemplate('qaScorecard')->render([
+            'project' => $project,
+            'location' => $location,
+            'qa_scorecard' => $qaScorecard,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * qa_scorecard_result resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $qaScorecardResult
+     *
+     * @return string The formatted qa_scorecard_result resource.
+     */
+    public static function qaScorecardResultName(string $project, string $location, string $qaScorecardResult): string
+    {
+        return self::getPathTemplate('qaScorecardResult')->render([
+            'project' => $project,
+            'location' => $location,
+            'qa_scorecard_result' => $qaScorecardResult,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * qa_scorecard_revision resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $qaScorecard
+     * @param string $revision
+     *
+     * @return string The formatted qa_scorecard_revision resource.
+     */
+    public static function qaScorecardRevisionName(
+        string $project,
+        string $location,
+        string $qaScorecard,
+        string $revision
+    ): string {
+        return self::getPathTemplate('qaScorecardRevision')->render([
+            'project' => $project,
+            'location' => $location,
+            'qa_scorecard' => $qaScorecard,
+            'revision' => $revision,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a recognizer
      * resource.
      *
@@ -531,9 +733,11 @@ final class ContactCenterInsightsClient
      * The following name formats are supported:
      * Template: Pattern
      * - analysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
+     * - analysisRule: projects/{project}/locations/{location}/analysisRules/{analysis_rule}
      * - conversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - conversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
      * - encryptionSpec: projects/{project}/locations/{location}/encryptionSpec
+     * - feedbackLabel: projects/{project}/locations/{location}/conversations/{conversation}/feedbackLabels/{feedback_label}
      * - issue: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}
      * - issueModel: projects/{project}/locations/{location}/issueModels/{issue_model}
      * - location: projects/{project}/locations/{location}
@@ -541,6 +745,10 @@ final class ContactCenterInsightsClient
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
+     * - qaQuestion: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}/revisions/{revision}/qaQuestions/{qa_question}
+     * - qaScorecard: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}
+     * - qaScorecardResult: projects/{project}/locations/{location}/qaScorecardResults/{qa_scorecard_result}
+     * - qaScorecardRevision: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}/revisions/{revision}
      * - recognizer: projects/{project}/locations/{location}/recognizers/{recognizer}
      * - settings: projects/{project}/locations/{location}/settings
      * - view: projects/{project}/locations/{location}/views/{view}
@@ -694,6 +902,64 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Download feedback labels in bulk.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::bulkDownloadFeedbackLabelsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/bulk_download_feedback_labels.php
+     *
+     * @param BulkDownloadFeedbackLabelsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkDownloadFeedbackLabels(
+        BulkDownloadFeedbackLabelsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('BulkDownloadFeedbackLabels', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Upload feedback labels in bulk.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::bulkUploadFeedbackLabelsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/bulk_upload_feedback_labels.php
+     *
+     * @param BulkUploadFeedbackLabelsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkUploadFeedbackLabels(
+        BulkUploadFeedbackLabelsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('BulkUploadFeedbackLabels', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets an issue model's statistics.
      *
      * The async variant is
@@ -776,6 +1042,33 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Creates a analysis rule.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::createAnalysisRuleAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_analysis_rule.php
+     *
+     * @param CreateAnalysisRuleRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnalysisRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAnalysisRule(CreateAnalysisRuleRequest $request, array $callOptions = []): AnalysisRule
+    {
+        return $this->startApiCall('CreateAnalysisRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a conversation.
      * Note that this method does not support audio transcription or redaction.
      * Use `conversations.upload` instead.
@@ -802,6 +1095,33 @@ final class ContactCenterInsightsClient
     public function createConversation(CreateConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('CreateConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create feedback label.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::createFeedbackLabelAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_feedback_label.php
+     *
+     * @param CreateFeedbackLabelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FeedbackLabel
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createFeedbackLabel(CreateFeedbackLabelRequest $request, array $callOptions = []): FeedbackLabel
+    {
+        return $this->startApiCall('CreateFeedbackLabel', $request, $callOptions)->wait();
     }
 
     /**
@@ -859,6 +1179,89 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Create a QaQuestion.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::createQaQuestionAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_qa_question.php
+     *
+     * @param CreateQaQuestionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaQuestion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createQaQuestion(CreateQaQuestionRequest $request, array $callOptions = []): QaQuestion
+    {
+        return $this->startApiCall('CreateQaQuestion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a QaScorecard.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::createQaScorecardAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_qa_scorecard.php
+     *
+     * @param CreateQaScorecardRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecard
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createQaScorecard(CreateQaScorecardRequest $request, array $callOptions = []): QaScorecard
+    {
+        return $this->startApiCall('CreateQaScorecard', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a QaScorecardRevision.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::createQaScorecardRevisionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_qa_scorecard_revision.php
+     *
+     * @param CreateQaScorecardRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecardRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createQaScorecardRevision(
+        CreateQaScorecardRevisionRequest $request,
+        array $callOptions = []
+    ): QaScorecardRevision {
+        return $this->startApiCall('CreateQaScorecardRevision', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a view.
      *
      * The async variant is {@see ContactCenterInsightsClient::createViewAsync()} .
@@ -909,6 +1312,31 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Deletes a analysis rule.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::deleteAnalysisRuleAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_analysis_rule.php
+     *
+     * @param DeleteAnalysisRuleRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAnalysisRule(DeleteAnalysisRuleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteAnalysisRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a conversation.
      *
      * The async variant is
@@ -931,6 +1359,31 @@ final class ContactCenterInsightsClient
     public function deleteConversation(DeleteConversationRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Delete feedback label.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::deleteFeedbackLabelAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_feedback_label.php
+     *
+     * @param DeleteFeedbackLabelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteFeedbackLabel(DeleteFeedbackLabelRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteFeedbackLabel', $request, $callOptions)->wait();
     }
 
     /**
@@ -1010,6 +1463,81 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Deletes a QaQuestion.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::deleteQaQuestionAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_qa_question.php
+     *
+     * @param DeleteQaQuestionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteQaQuestion(DeleteQaQuestionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteQaQuestion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a QaScorecard.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::deleteQaScorecardAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_qa_scorecard.php
+     *
+     * @param DeleteQaScorecardRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteQaScorecard(DeleteQaScorecardRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteQaScorecard', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a QaScorecardRevision.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::deleteQaScorecardRevisionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_qa_scorecard_revision.php
+     *
+     * @param DeleteQaScorecardRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteQaScorecardRevision(DeleteQaScorecardRevisionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteQaScorecardRevision', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a view.
      *
      * The async variant is {@see ContactCenterInsightsClient::deleteViewAsync()} .
@@ -1059,6 +1587,35 @@ final class ContactCenterInsightsClient
     public function deployIssueModel(DeployIssueModelRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeployIssueModel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deploy a QaScorecardRevision.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::deployQaScorecardRevisionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/deploy_qa_scorecard_revision.php
+     *
+     * @param DeployQaScorecardRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecardRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deployQaScorecardRevision(
+        DeployQaScorecardRevisionRequest $request,
+        array $callOptions = []
+    ): QaScorecardRevision {
+        return $this->startApiCall('DeployQaScorecardRevision', $request, $callOptions)->wait();
     }
 
     /**
@@ -1142,6 +1699,33 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Get a analysis rule.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::getAnalysisRuleAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_analysis_rule.php
+     *
+     * @param GetAnalysisRuleRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnalysisRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAnalysisRule(GetAnalysisRuleRequest $request, array $callOptions = []): AnalysisRule
+    {
+        return $this->startApiCall('GetAnalysisRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a conversation.
      *
      * The async variant is {@see ContactCenterInsightsClient::getConversationAsync()}
@@ -1193,6 +1777,33 @@ final class ContactCenterInsightsClient
     public function getEncryptionSpec(GetEncryptionSpecRequest $request, array $callOptions = []): EncryptionSpec
     {
         return $this->startApiCall('GetEncryptionSpec', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get feedback label.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::getFeedbackLabelAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_feedback_label.php
+     *
+     * @param GetFeedbackLabelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FeedbackLabel
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getFeedbackLabel(GetFeedbackLabelRequest $request, array $callOptions = []): FeedbackLabel
+    {
+        return $this->startApiCall('GetFeedbackLabel', $request, $callOptions)->wait();
     }
 
     /**
@@ -1272,6 +1883,87 @@ final class ContactCenterInsightsClient
     public function getPhraseMatcher(GetPhraseMatcherRequest $request, array $callOptions = []): PhraseMatcher
     {
         return $this->startApiCall('GetPhraseMatcher', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a QaQuestion.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::getQaQuestionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_qa_question.php
+     *
+     * @param GetQaQuestionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaQuestion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getQaQuestion(GetQaQuestionRequest $request, array $callOptions = []): QaQuestion
+    {
+        return $this->startApiCall('GetQaQuestion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a QaScorecard.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::getQaScorecardAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_qa_scorecard.php
+     *
+     * @param GetQaScorecardRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecard
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getQaScorecard(GetQaScorecardRequest $request, array $callOptions = []): QaScorecard
+    {
+        return $this->startApiCall('GetQaScorecard', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a QaScorecardRevision.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::getQaScorecardRevisionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_qa_scorecard_revision.php
+     *
+     * @param GetQaScorecardRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecardRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getQaScorecardRevision(
+        GetQaScorecardRevisionRequest $request,
+        array $callOptions = []
+    ): QaScorecardRevision {
+        return $this->startApiCall('GetQaScorecardRevision', $request, $callOptions)->wait();
     }
 
     /**
@@ -1382,9 +2074,9 @@ final class ContactCenterInsightsClient
     }
 
     /**
-     * Initializes a location-level encryption key specification.  An error will
-     * be thrown if the location has resources already created before the
-     * initialization. Once the encryption specification is initialized at a
+     * Initializes a location-level encryption key specification. An error will
+     * result if the location has resources already created before the
+     * initialization. After the encryption specification is initialized at a
      * location, it is immutable and all newly created resources under the
      * location will be encrypted with the existing specification.
      *
@@ -1415,6 +2107,35 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * List all feedback labels by project number.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::listAllFeedbackLabelsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_all_feedback_labels.php
+     *
+     * @param ListAllFeedbackLabelsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAllFeedbackLabels(
+        ListAllFeedbackLabelsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListAllFeedbackLabels', $request, $callOptions);
+    }
+
+    /**
      * Lists analyses.
      *
      * The async variant is {@see ContactCenterInsightsClient::listAnalysesAsync()} .
@@ -1438,6 +2159,33 @@ final class ContactCenterInsightsClient
     public function listAnalyses(ListAnalysesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListAnalyses', $request, $callOptions);
+    }
+
+    /**
+     * Lists analysis rules.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::listAnalysisRulesAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_analysis_rules.php
+     *
+     * @param ListAnalysisRulesRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAnalysisRules(ListAnalysisRulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAnalysisRules', $request, $callOptions);
     }
 
     /**
@@ -1465,6 +2213,33 @@ final class ContactCenterInsightsClient
     public function listConversations(ListConversationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListConversations', $request, $callOptions);
+    }
+
+    /**
+     * List feedback labels.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::listFeedbackLabelsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_feedback_labels.php
+     *
+     * @param ListFeedbackLabelsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listFeedbackLabels(ListFeedbackLabelsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListFeedbackLabels', $request, $callOptions);
     }
 
     /**
@@ -1548,6 +2323,89 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Lists QaQuestions.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::listQaQuestionsAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_qa_questions.php
+     *
+     * @param ListQaQuestionsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listQaQuestions(ListQaQuestionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListQaQuestions', $request, $callOptions);
+    }
+
+    /**
+     * Lists all revisions under the parent QaScorecard.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::listQaScorecardRevisionsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_qa_scorecard_revisions.php
+     *
+     * @param ListQaScorecardRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listQaScorecardRevisions(
+        ListQaScorecardRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListQaScorecardRevisions', $request, $callOptions);
+    }
+
+    /**
+     * Lists QaScorecards.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::listQaScorecardsAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_qa_scorecards.php
+     *
+     * @param ListQaScorecardsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listQaScorecards(ListQaScorecardsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListQaScorecards', $request, $callOptions);
+    }
+
+    /**
      * Lists views.
      *
      * The async variant is {@see ContactCenterInsightsClient::listViewsAsync()} .
@@ -1571,6 +2429,61 @@ final class ContactCenterInsightsClient
     public function listViews(ListViewsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListViews', $request, $callOptions);
+    }
+
+    /**
+     * Query metrics.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::queryMetricsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/query_metrics.php
+     *
+     * @param QueryMetricsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function queryMetrics(QueryMetricsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('QueryMetrics', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fine tune one or more QaModels.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::tuneQaScorecardRevisionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/tune_qa_scorecard_revision.php
+     *
+     * @param TuneQaScorecardRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function tuneQaScorecardRevision(
+        TuneQaScorecardRevisionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('TuneQaScorecardRevision', $request, $callOptions)->wait();
     }
 
     /**
@@ -1602,6 +2515,62 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Undeploy a QaScorecardRevision.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::undeployQaScorecardRevisionAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/undeploy_qa_scorecard_revision.php
+     *
+     * @param UndeployQaScorecardRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecardRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function undeployQaScorecardRevision(
+        UndeployQaScorecardRevisionRequest $request,
+        array $callOptions = []
+    ): QaScorecardRevision {
+        return $this->startApiCall('UndeployQaScorecardRevision', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a analysis rule.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::updateAnalysisRuleAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/update_analysis_rule.php
+     *
+     * @param UpdateAnalysisRuleRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnalysisRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAnalysisRule(UpdateAnalysisRuleRequest $request, array $callOptions = []): AnalysisRule
+    {
+        return $this->startApiCall('UpdateAnalysisRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a conversation.
      *
      * The async variant is
@@ -1626,6 +2595,33 @@ final class ContactCenterInsightsClient
     public function updateConversation(UpdateConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('UpdateConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Update feedback label.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::updateFeedbackLabelAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/update_feedback_label.php
+     *
+     * @param UpdateFeedbackLabelRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FeedbackLabel
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateFeedbackLabel(UpdateFeedbackLabelRequest $request, array $callOptions = []): FeedbackLabel
+    {
+        return $this->startApiCall('UpdateFeedbackLabel', $request, $callOptions)->wait();
     }
 
     /**
@@ -1706,6 +2702,60 @@ final class ContactCenterInsightsClient
     public function updatePhraseMatcher(UpdatePhraseMatcherRequest $request, array $callOptions = []): PhraseMatcher
     {
         return $this->startApiCall('UpdatePhraseMatcher', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a QaQuestion.
+     *
+     * The async variant is {@see ContactCenterInsightsClient::updateQaQuestionAsync()}
+     * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/update_qa_question.php
+     *
+     * @param UpdateQaQuestionRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaQuestion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateQaQuestion(UpdateQaQuestionRequest $request, array $callOptions = []): QaQuestion
+    {
+        return $this->startApiCall('UpdateQaQuestion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a QaScorecard.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::updateQaScorecardAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/update_qa_scorecard.php
+     *
+     * @param UpdateQaScorecardRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QaScorecard
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateQaScorecard(UpdateQaScorecardRequest $request, array $callOptions = []): QaScorecard
+    {
+        return $this->startApiCall('UpdateQaScorecard', $request, $callOptions)->wait();
     }
 
     /**
