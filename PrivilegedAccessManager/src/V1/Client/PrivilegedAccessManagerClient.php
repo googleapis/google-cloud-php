@@ -568,7 +568,7 @@ final class PrivilegedAccessManagerClient
     }
 
     /**
-     * CheckOnboardingStatus reports the onboarding status for a
+     * `CheckOnboardingStatus` reports the onboarding status for a
      * project/folder/organization. Any findings reported by this API need to be
      * fixed before PAM can be used on the resource.
      *
@@ -627,7 +627,8 @@ final class PrivilegedAccessManagerClient
     }
 
     /**
-     * Creates a new grant in a given project and location.
+     * Creates a new grant in a given project/folder/organization and
+     * location.
      *
      * The async variant is {@see PrivilegedAccessManagerClient::createGrantAsync()} .
      *
@@ -654,7 +655,7 @@ final class PrivilegedAccessManagerClient
 
     /**
      * Deletes a single entitlement. This method can only be called when there
-     * are no in-progress (ACTIVE/ACTIVATING/REVOKING) grants under the
+     * are no in-progress (`ACTIVE`/`ACTIVATING`/`REVOKING`) grants under the
      * entitlement.
      *
      * The async variant is
