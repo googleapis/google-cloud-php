@@ -22,8 +22,16 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -87,12 +95,12 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('configuration', $config->reveal());
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'createInstance',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->instanceAdminClient->createInstance(
+            Argument::type(CreateInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -116,12 +124,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'info');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'getInstance',
-            null,
-            ['nodeCount' => 1]
-        );
+        $this->instanceAdminClient->getInstance(
+            Argument::type(GetInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetInstanceResponse(['nodeCount' => 1]));
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -136,12 +144,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'exists');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'getInstance',
-            null,
-            ['foo' => 'bar']
-        );
+        $this->instanceAdminClient->getInstance(
+            Argument::type(GetInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetInstanceResponse(['foo' => 'bar']));
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -156,12 +164,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'reload');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'getInstance',
-            null,
-            ['nodeCount' => 1]
-        );
+        $this->instanceAdminClient->getInstance(
+            Argument::type(GetInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetInstanceResponse(['nodeCount' => 1]));
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -178,12 +186,12 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('instance', $this->instance);
         $snippet->addUse(Instance::class);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'getInstance',
-            null,
-            ['state' => Instance::STATE_READY]
-        );
+        $this->instanceAdminClient->getInstance(
+            Argument::type(GetInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetInstanceResponse(['state' => Instance::STATE_READY]));
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -198,12 +206,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'update');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'updateInstance',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->instanceAdminClient->updateInstance(
+            Argument::type(UpdateInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -231,12 +239,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'createDatabase');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'createDatabase',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->createDatabase(
+            Argument::type(CreateDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -253,12 +261,12 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('instance', $this->instance);
         $snippet->addLocal('backup', $backup);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'restoreDatabase',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->restoreDatabase(
+            Argument::type(RestoreDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $this->instance->___setProperty(
             'requestHandler',
@@ -283,11 +291,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'databases');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'listDatabases',
-            null,
-            [
+        $this->databaseAdminClient->listDatabases(
+            Argument::type(ListDatabasesRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'databases' => [
                     [
                         'name' => DatabaseAdminClient::databaseName(
@@ -325,11 +334,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'backups');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'listBackups',
-            null,
-            [
+        $this->databaseAdminClient->listBackups(
+            Argument::type(ListBackupsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'backups' => [
                     [
                         'name' => DatabaseAdminClient::backupName(
@@ -363,11 +373,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'backupOperations');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'listBackupOperations',
-            null,
-            [
+        $this->databaseAdminClient->listBackupOperations(
+            Argument::type(ListBackupOperationsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'operations' => [
                     [
                         'name' => $backupOperationName
@@ -397,11 +408,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'databaseOperations');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'listDatabaseOperations',
-            null,
-            [
+        $this->databaseAdminClient->listDatabaseOperations(
+            Argument::type(ListDatabaseOperationsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'operations' => [
                     [
                         'name' => $databaseOperationName
@@ -445,9 +457,6 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'longRunningOperations');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->requestHandler
-            ->getClientObject(Argument::any())
-            ->willReturn(new DatabaseAdminClient());
         $this->requestHandler
             ->sendRequest(
                 Argument::any(),

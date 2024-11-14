@@ -168,6 +168,7 @@ class Snippet implements \JsonSerializable
                 $out = ob_get_clean();
             } catch (\Exception $e) {
                 ob_end_clean();
+                var_dump($content);
                 throw $e;
             }
 

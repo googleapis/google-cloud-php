@@ -128,7 +128,6 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->session->delete([])
             ->shouldBeCalled();
 
-        $this->snapshot->___setProperty('session', $this->session->reveal());
 
         $snippet = $this->snippetFromMethod(BatchSnapshot::class, 'close');
         $snippet->addLocal('snapshot', $this->snapshot);

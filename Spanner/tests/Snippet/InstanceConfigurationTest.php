@@ -22,6 +22,9 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -73,12 +76,12 @@ class InstanceConfigurationTest extends SnippetTestCase
     public function testCreate()
     {
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'create');
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'createInstanceConfig',
-            null,
-            $this->getOperationResponseMock(),
-        );
+        $this->instanceAdminClient->createInstanceConfig(
+            Argument::type(CreateInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CreateInstanceConfigResponse($this->getOperationResponseMock(),));
 
         $baseConfig = new InstanceConfiguration(
             $this->requestHandler->reveal(),
@@ -108,12 +111,12 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'update');
         $snippet->addLocal('instanceConfig', $this->config);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'updateInstanceConfig',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->instanceAdminClient->updateInstanceConfig(
+            Argument::type(UpdateInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->config->___setProperty('serializer', $this->serializer);
@@ -166,11 +169,12 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'exists');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'getInstanceConfig',
-            null,
-            [
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
                 'displayName' => self::CONFIG
             ]

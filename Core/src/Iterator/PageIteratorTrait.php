@@ -260,6 +260,7 @@ trait PageIteratorTrait
         if ($items) {
             foreach ($items as $key => $item) {
                 $items[$key] = $resultMapper($item);
+
                 $this->itemCount++;
 
                 if ($this->config['resultLimit'] && $this->config['resultLimit'] <= $this->itemCount) {

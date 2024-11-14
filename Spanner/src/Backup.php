@@ -21,6 +21,8 @@ use Closure;
 use DateTimeInterface;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Serializer;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -33,6 +35,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
+use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -352,12 +356,68 @@ class Backup
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName)
+    public function resumeOperation($operationName, array $options = [])
     {
         return (new OperationResponse(
             $operationName,
-            $this->databaseAdminClient->getOperationsClient()
+            $this->databaseAdminClient->getOperationsClient(),
+            $options
         ))->withResultFunction($this->backupResultFunction());
+    }
+
+    /**
+     * List long running operations.
+     *
+     * Example:
+     * ```
+     * $operations = $backup->longRunningOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $name The name of the operation collection.
+     *     @type string $filter The standard list filter.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return PagedListResponse<OperationResponse>
+     */
+    public function longRunningOperations(array $options = [])
+    {
+        $options += ['name' => $this->name . '/operations'];
+        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
+
+        return new ItemIterator(
+            new PageIterator(
+                function (Operation $operation) {
+                    return $this->resumeOperation(
+                        $operation->getName(),
+                        ['lastProtoResponse' => $operation]
+                    );
+                },
+                function (array $args) {
+                    $nextPageToken = $this->pluck('pageToken', $args, false) ?: null;
+                    $operationsClient = $this->databaseAdminClient->getOperationsClient();
+                    $page = $operationsClient->listOperations(...$args)->getPage();
+                    return [
+                        'operations' => iterator_to_array($page->getResponseObject()->getOperations()),
+                        'nextResultTokenPath' => $page->getNextPageToken(),
+                    ];
+                },
+                [$request, $callOptions],
+                [
+                    'itemsKey' => 'operations',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

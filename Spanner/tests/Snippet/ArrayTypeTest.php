@@ -94,27 +94,21 @@ class ArrayTypeTest extends SnippetTestCase
 
     public function testConstructor()
     {
-        $field = [
-            'code' => Database::TYPE_ARRAY,
-            'arrayElementType' => [
-                'code' => Database::TYPE_STRING
-            ]
-        ];
-
         $this->spannerClient->executeStreamingSql(
-            Argument::that(function ($args) use ($values, $field) {
-                $message = $this->serializer->encodeMessage($args);
-                $this->assertEquals($message['sql'], 'SELECT @arrayParam as arrayValue');
-                $this->assertEquals($message['params'], ['arrayParam' => [
-                    'foo', 'bar', null
-                ]]);
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals('SELECT @arrayParam as arrayValue', $request->getSql());
                 $this->assertEquals(
-                    $message['paramTypes']['arrayParam']['arrayElementType']['code'],
-                    $field['arrayElementType']['code']
+                    ['arrayParam' => ['foo', 'bar', null]],
+                    $message['params']
                 );
                 $this->assertEquals(
+                    Database::TYPE_STRING,
+                    $message['paramTypes']['arrayParam']['arrayElementType']['code'],
+                );
+                $this->assertEquals(
+                    Database::TYPE_ARRAY,
                     $message['paramTypes']['arrayParam']['code'],
-                    $field['code']
                 );
                 return true;
             }),
@@ -128,7 +122,12 @@ class ArrayTypeTest extends SnippetTestCase
                             'fields' => [
                                 [
                                     'name' => 'arrayValue',
-                                    'type' => $field
+                                    'type' => [
+                                        'code' => Database::TYPE_ARRAY,
+                                        'arrayElementType' => [
+                                            'code' => Database::TYPE_STRING
+                                        ]
+                                    ]
                                 ]
                             ]
                         ]

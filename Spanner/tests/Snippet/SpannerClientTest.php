@@ -23,6 +23,8 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
@@ -86,11 +88,12 @@ class SpannerClientTest extends SnippetTestCase
      */
     public function testInstanceConfigurations()
     {
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'listInstanceConfigs',
-            null,
-            [
+        $this->instanceAdminClient->listInstanceConfigs(
+            Argument::type(ListInstanceConfigsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'instanceConfigs' => [
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/foo'],
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/bar'],
@@ -136,12 +139,12 @@ class SpannerClientTest extends SnippetTestCase
         $snippet->addLocal('spanner', $this->client);
         $snippet->addLocal('configuration', $this->client->instanceConfiguration(self::CONFIG));
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'createInstance',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->instanceAdminClient->createInstance(
+            Argument::type(CreateInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
@@ -171,11 +174,12 @@ class SpannerClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instances');
         $snippet->addLocal('spanner', $this->client);
 
-        $this->mockSendRequest(
-            InstanceAdminClient::class,
-            'listInstances',
-            null,
-            [
+        $this->instanceAdminClient->listInstances(
+            Argument::type(ListInstancesRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'instances' => [
                     ['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)],
                     ['name' => InstanceAdminClient::instanceName(self::PROJECT, 'bar')]

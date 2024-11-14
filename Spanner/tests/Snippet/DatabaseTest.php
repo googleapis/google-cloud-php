@@ -24,6 +24,15 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -128,15 +137,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
         $snippet->addUse(Database::class);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabase',
-            null,
-            ['state' => Database::STATE_READY]
-        );
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetDatabaseResponse(['state' => Database::STATE_READY]));
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke();
         $this->assertEquals('Database is ready!', $res->output());
@@ -150,11 +157,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'backups');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'listBackups',
-            null,
-            [
+        $this->databaseAdminClient->listBackups(
+            Argument::type(ListBackupsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
                 'backups' => [
                     [
                         'name' => DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP)
@@ -163,7 +171,6 @@ class DatabaseTest extends SnippetTestCase
             ]
         );
 
-        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
         $res = $snippet->invoke('backups');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -178,15 +185,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'createBackup');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'createBackup',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->createBackup(
+            Argument::type(CreateBackupRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -207,15 +212,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'exists');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabase',
-            null,
-            ['statements' => []]
-        );
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetDatabaseResponse(['statements' => []]));
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke();
         $this->assertEquals('Database exists!', $res->output());
@@ -231,15 +234,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'info');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabase',
-            null,
-            $db
-        );
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetDatabaseResponse($db));
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('info');
         $this->assertEquals($db, $res->returnVal());
@@ -256,16 +257,15 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'reload');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabase',
-            null,
-            $db,
+        $this->databaseAdminClient->getDatabase(
+            Argument::type(GetDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($db,
             2
         );
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('info');
         $this->assertEquals($db, $res->returnVal());
@@ -280,15 +280,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'create');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'createDatabase',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->createDatabase(
+            Argument::type(CreateDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
@@ -304,15 +302,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
         $snippet->addLocal('backup', $backup);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'restoreDatabase',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->restoreDatabase(
+            Argument::type(RestoreDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
@@ -326,15 +322,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdl');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'updateDatabaseDdl',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->updateDatabaseDdl(
+            Argument::type(UpdateDatabaseDdlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $snippet->invoke();
     }
@@ -347,15 +341,13 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdlBatch');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'updateDatabaseDdl',
-            null,
-            $this->getOperationResponseMock()
-        );
+        $this->databaseAdminClient->updateDatabaseDdl(
+            Argument::type(UpdateDatabaseDdlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $snippet->invoke();
     }
@@ -368,15 +360,12 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'drop');
         $snippet->addLocal('database', $this->database);
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'dropDatabase',
-            null,
-            null
-        );
+        $this->databaseAdminClient->dropDatabase(
+            Argument::type(DropDatabaseRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $snippet->invoke();
     }
@@ -394,15 +383,13 @@ class DatabaseTest extends SnippetTestCase
             'CREATE TABLE TestCases'
         ];
 
-        $this->mockSendRequest(
-            DatabaseAdminClient::class,
-            'getDatabaseDdl',
-            null,
-            ['statements' => $stmts]
-        );
+        $this->databaseAdminClient->getDatabaseDdl(
+            Argument::type(GetDatabaseDdlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new GetDatabaseDdlResponse(['statements' => $stmts]));
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('statements');
         $this->assertEquals($stmts, $res->returnVal());
@@ -955,9 +942,6 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('database', $this->database);
 
         $this->requestHandler
-            ->getClientObject(Argument::any())
-            ->willReturn(new DatabaseAdminClient());
-        $this->requestHandler
             ->sendRequest(
                 Argument::any(),
                 'listOperations',
@@ -965,8 +949,6 @@ class DatabaseTest extends SnippetTestCase
             )
             ->willReturn([$this->getOperationResponseMock()]);
 
-        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

@@ -136,7 +136,6 @@ class BatchClientTest extends SnippetTestCase
             ]
         ]);
 
-        $pubsub->___setProperty('requestHandler', $requestHandler->reveal());
 
         // setup spanner service call stubs
         $this->spannerClient->partitionQuery(

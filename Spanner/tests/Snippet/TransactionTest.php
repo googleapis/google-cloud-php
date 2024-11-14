@@ -497,7 +497,6 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'isRetry');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->transaction->___setProperty('isRetry', true);
 
         $res = $snippet->invoke();
         $this->assertEquals('This is a retry transaction!', $res->output());

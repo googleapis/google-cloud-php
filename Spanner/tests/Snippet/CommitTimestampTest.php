@@ -23,6 +23,9 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\CommitRequest;
 
 /**
  * @group spanner
@@ -52,18 +55,17 @@ class CommitTimestampTest extends SnippetTestCase
             ['requestHandler', 'serializer']
         );
 
-        $this->mockSendRequest(
-            GapicSpannerClient::class,
-            'createSession',
-            null,
-            ['name' => self::SESSION]
-        );
-        $this->mockSendRequest(
-            GapicSpannerClient::class,
-            'deleteSession',
-            null,
-            null
-        );
+        $this->GapicSpannerClient->createSession(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CreateSessionResponse(['name' => self::SESSION]));
+        $this->GapicSpannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
         $mutation = [
             'insert' => [
                 'table' => 'myTable',
@@ -71,10 +73,12 @@ class CommitTimestampTest extends SnippetTestCase
                 'values' => [[$id, CommitTimestamp::SPECIAL_VALUE]]
             ]
         ];
-        $this->mockSendRequest(
-            GapicSpannerClient::class,
-            'commit',
-            function ($args) use ($mutation) {
+        $this->GapicSpannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(function ($args) use ($mutation) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($message['mutations'][0], $mutation);
                 return true;
@@ -84,8 +88,6 @@ class CommitTimestampTest extends SnippetTestCase
             ]
         );
 
-        $client->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $client->___setProperty('serializer', $this->serializer);
 
         $snippet = $this->snippetFromClass(CommitTimestamp::class);
         $snippet->addLocal('id', $id);
