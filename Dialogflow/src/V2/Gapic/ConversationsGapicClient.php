@@ -52,6 +52,7 @@ use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesResponse;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
@@ -60,6 +61,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\Struct;
 
 /**
  * Service Description: Service for managing
@@ -124,6 +126,8 @@ class ConversationsGapicClient
 
     private static $conversationProfileNameTemplate;
 
+    private static $dataStoreNameTemplate;
+
     private static $documentNameTemplate;
 
     private static $generatorNameTemplate;
@@ -154,6 +158,8 @@ class ConversationsGapicClient
 
     private static $projectLocationAgentNameTemplate;
 
+    private static $projectLocationCollectionDataStoreNameTemplate;
+
     private static $projectLocationConversationNameTemplate;
 
     private static $projectLocationConversationMessageNameTemplate;
@@ -161,6 +167,8 @@ class ConversationsGapicClient
     private static $projectLocationConversationModelNameTemplate;
 
     private static $projectLocationConversationProfileNameTemplate;
+
+    private static $projectLocationDataStoreNameTemplate;
 
     private static $projectLocationKnowledgeBaseNameTemplate;
 
@@ -230,6 +238,15 @@ class ConversationsGapicClient
         }
 
         return self::$conversationProfileNameTemplate;
+    }
+
+    private static function getDataStoreNameTemplate()
+    {
+        if (self::$dataStoreNameTemplate == null) {
+            self::$dataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}');
+        }
+
+        return self::$dataStoreNameTemplate;
     }
 
     private static function getDocumentNameTemplate()
@@ -367,6 +384,15 @@ class ConversationsGapicClient
         return self::$projectLocationAgentNameTemplate;
     }
 
+    private static function getProjectLocationCollectionDataStoreNameTemplate()
+    {
+        if (self::$projectLocationCollectionDataStoreNameTemplate == null) {
+            self::$projectLocationCollectionDataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}');
+        }
+
+        return self::$projectLocationCollectionDataStoreNameTemplate;
+    }
+
     private static function getProjectLocationConversationNameTemplate()
     {
         if (self::$projectLocationConversationNameTemplate == null) {
@@ -403,6 +429,15 @@ class ConversationsGapicClient
         return self::$projectLocationConversationProfileNameTemplate;
     }
 
+    private static function getProjectLocationDataStoreNameTemplate()
+    {
+        if (self::$projectLocationDataStoreNameTemplate == null) {
+            self::$projectLocationDataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataStores/{data_store}');
+        }
+
+        return self::$projectLocationDataStoreNameTemplate;
+    }
+
     private static function getProjectLocationKnowledgeBaseNameTemplate()
     {
         if (self::$projectLocationKnowledgeBaseNameTemplate == null) {
@@ -430,6 +465,7 @@ class ConversationsGapicClient
                 'conversation' => self::getConversationNameTemplate(),
                 'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
+                'dataStore' => self::getDataStoreNameTemplate(),
                 'document' => self::getDocumentNameTemplate(),
                 'generator' => self::getGeneratorNameTemplate(),
                 'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
@@ -445,10 +481,12 @@ class ConversationsGapicClient
                 'projectKnowledgeBase' => self::getProjectKnowledgeBaseNameTemplate(),
                 'projectKnowledgeBaseDocument' => self::getProjectKnowledgeBaseDocumentNameTemplate(),
                 'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
+                'projectLocationCollectionDataStore' => self::getProjectLocationCollectionDataStoreNameTemplate(),
                 'projectLocationConversation' => self::getProjectLocationConversationNameTemplate(),
                 'projectLocationConversationMessage' => self::getProjectLocationConversationMessageNameTemplate(),
                 'projectLocationConversationModel' => self::getProjectLocationConversationModelNameTemplate(),
                 'projectLocationConversationProfile' => self::getProjectLocationConversationProfileNameTemplate(),
+                'projectLocationDataStore' => self::getProjectLocationDataStoreNameTemplate(),
                 'projectLocationKnowledgeBase' => self::getProjectLocationKnowledgeBaseNameTemplate(),
                 'projectLocationKnowledgeBaseDocument' => self::getProjectLocationKnowledgeBaseDocumentNameTemplate(),
             ];
@@ -541,6 +579,27 @@ class ConversationsGapicClient
         return self::getConversationProfileNameTemplate()->render([
             'project' => $project,
             'conversation_profile' => $conversationProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName($project, $location, $collection, $dataStore)
+    {
+        return self::getDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
         ]);
     }
 
@@ -809,6 +868,27 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName($project, $location, $collection, $dataStore)
+    {
+        return self::getProjectLocationCollectionDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -887,6 +967,25 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName($project, $location, $dataStore)
+    {
+        return self::getProjectLocationDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_knowledge_base resource.
      *
      * @param string $project
@@ -934,6 +1033,7 @@ class ConversationsGapicClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - dataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
@@ -949,10 +1049,12 @@ class ConversationsGapicClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
      * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
@@ -1139,9 +1241,9 @@ class ConversationsGapicClient
      *           Google. Only set it if you cannot wait for the response to return a
      *           auto-generated one to you.
      *
-     *           The conversation ID must be compliant with the regression fomula
+     *           The conversation ID must be compliant with the regression formula
      *           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
-     *           If the field is provided, the caller is resposible for
+     *           If the field is provided, the caller is responsible for
      *           1. the uniqueness of the ID, otherwise the request will be rejected.
      *           2. the consistency for whether to use custom ID or not under a project to
      *           better ensure uniqueness.
@@ -1556,6 +1658,31 @@ class ConversationsGapicClient
      *           triggered.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type int $querySource
+     *           Optional. The source of the query in the request.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\QuerySource}
+     *     @type Struct $endUserMetadata
+     *           Optional. Information about the end-user to improve the relevance and
+     *           accuracy of generative answers.
+     *
+     *           This will be interpreted and used by a language model, so, for good
+     *           results, the data should be self-descriptive, and in a simple structure.
+     *
+     *           Example:
+     *
+     *           ```json
+     *           {
+     *           "subscription plan": "Business Premium Plus",
+     *           "devices owned": [
+     *           {"model": "Google Pixel 7"},
+     *           {"model": "Google Pixel Tablet"}
+     *           ]
+     *           }
+     *           ```
+     *     @type SearchConfig $searchConfig
+     *           Optional. Configuration specific to search queries with data stores.
+     *     @type bool $exactSearch
+     *           Optional. Whether to search the query exactly without query rewrite.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1588,6 +1715,22 @@ class ConversationsGapicClient
 
         if (isset($optionalArgs['latestMessage'])) {
             $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        if (isset($optionalArgs['querySource'])) {
+            $request->setQuerySource($optionalArgs['querySource']);
+        }
+
+        if (isset($optionalArgs['endUserMetadata'])) {
+            $request->setEndUserMetadata($optionalArgs['endUserMetadata']);
+        }
+
+        if (isset($optionalArgs['searchConfig'])) {
+            $request->setSearchConfig($optionalArgs['searchConfig']);
+        }
+
+        if (isset($optionalArgs['exactSearch'])) {
+            $request->setExactSearch($optionalArgs['exactSearch']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
