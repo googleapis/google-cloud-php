@@ -44,27 +44,27 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ web_entities'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebEntity">Google\Cloud\Vision\V1\WebDetection\WebEntity</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebEntity">WebDetection\WebEntity</xref>&gt;'
           description: 'Deduced entities from similar images on the Internet.'
         -
           id: '↳ full_matching_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
           description: 'Fully matching images from the Internet. Can include resized copies of the query image.'
         -
           id: '↳ partial_matching_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
           description: 'Partial matching images from the Internet. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.'
         -
           id: '↳ pages_with_matching_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebPage">Google\Cloud\Vision\V1\WebDetection\WebPage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebPage">WebDetection\WebPage</xref>&gt;'
           description: 'Web pages containing the matching images from the Internet.'
         -
           id: '↳ visually_similar_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
           description: 'The visually similar image results.'
         -
           id: '↳ best_guess_labels'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">Google\Cloud\Vision\V1\WebDetection\WebLabel</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">WebDetection\WebLabel</xref>&gt;'
           description: "The service's best guess as to the topic of the request image. Inferred from similar images on the open web."
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getWebEntities()'
@@ -92,7 +92,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebEntity">Google\Cloud\Vision\V1\WebDetection\WebEntity</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebEntity">WebDetection\WebEntity</xref>&gt;'
           description: ''
       returns:
         -
@@ -129,7 +129,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
           description: ''
       returns:
         -
@@ -168,7 +168,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
           description: ''
       returns:
         -
@@ -199,7 +199,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebPage">Google\Cloud\Vision\V1\WebDetection\WebPage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebPage">WebDetection\WebPage</xref>&gt;'
           description: ''
       returns:
         -
@@ -230,7 +230,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
           description: ''
       returns:
         -
@@ -267,7 +267,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">Google\Cloud\Vision\V1\WebDetection\WebLabel</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">WebDetection\WebLabel</xref>&gt;'
           description: ''
       returns:
         -

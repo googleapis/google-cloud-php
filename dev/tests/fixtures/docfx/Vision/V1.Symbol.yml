@@ -44,11 +44,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ property'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation\TextProperty</xref>'
           description: 'Additional information detected for the symbol.'
         -
           id: '↳ bounding_box'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: "The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * * when the text is horizontal it might look like: 0----1 | | 3----2 * * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3)."
         -
           id: '↳ text'
@@ -70,7 +70,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation\TextProperty</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::hasProperty()'
     name: hasProperty
@@ -100,7 +100,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">TextAnnotation\TextProperty</xref>'
           description: ''
       returns:
         -
@@ -133,7 +133,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::hasBoundingBox()'
     name: hasBoundingBox
@@ -179,7 +179,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -

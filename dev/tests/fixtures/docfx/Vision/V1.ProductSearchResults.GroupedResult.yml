@@ -45,11 +45,11 @@ items:
           description: 'The bounding polygon around the product detected in the query image.'
         -
           id: '↳ results'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Google\Cloud\Vision\V1\ProductSearchResults\Result</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Result</xref>&gt;'
           description: 'List of results, one for each product match.'
         -
           id: '↳ object_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation">Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation">ObjectAnnotation</xref>&gt;'
           description: 'List of generic predictions for the object in the bounding box.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::getBoundingPoly()'
@@ -124,7 +124,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Google\Cloud\Vision\V1\ProductSearchResults\Result</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Result</xref>&gt;'
           description: ''
       returns:
         -
@@ -155,7 +155,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation">Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation">ObjectAnnotation</xref>&gt;'
           description: ''
       returns:
         -

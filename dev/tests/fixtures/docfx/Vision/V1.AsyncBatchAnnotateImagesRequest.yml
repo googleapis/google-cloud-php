@@ -43,11 +43,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ requests'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">AnnotateImageRequest</xref>&gt;'
           description: 'Required. Individual image annotation requests for this batch.'
         -
           id: '↳ output_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: 'Required. The desired output location and metadata (e.g. format).'
         -
           id: '↳ parent'
@@ -83,7 +83,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">AnnotateImageRequest</xref>&gt;'
           description: ''
       returns:
         -
@@ -100,7 +100,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::hasOutputConfig()'
     name: hasOutputConfig
@@ -130,7 +130,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: ''
       returns:
         -
@@ -239,12 +239,12 @@ items:
       parameters:
         -
           id: requests
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">AnnotateImageRequest</xref>&gt;'
           description: 'Required. Individual image annotation requests for this batch.'
         -
           id: outputConfig
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: 'Required. The desired output location and metadata (e.g. format).'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">AsyncBatchAnnotateImagesRequest</xref>'

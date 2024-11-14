@@ -36,11 +36,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ vertices'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Vertex">Google\Cloud\Vision\V1\Vertex</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Vertex">Vertex</xref>&gt;'
           description: 'The bounding polygon vertices.'
         -
           id: '↳ normalized_vertices'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\NormalizedVertex">Google\Cloud\Vision\V1\NormalizedVertex</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\NormalizedVertex">NormalizedVertex</xref>&gt;'
           description: 'The bounding polygon normalized vertices.'
   -
     uid: '\Google\Cloud\Vision\V1\BoundingPoly::getVertices()'
@@ -68,7 +68,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Vertex">Google\Cloud\Vision\V1\Vertex</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Vertex">Vertex</xref>&gt;'
           description: ''
       returns:
         -
@@ -99,7 +99,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\NormalizedVertex">Google\Cloud\Vision\V1\NormalizedVertex</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\NormalizedVertex">NormalizedVertex</xref>&gt;'
           description: ''
       returns:
         -

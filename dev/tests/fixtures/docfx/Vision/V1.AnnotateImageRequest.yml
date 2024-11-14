@@ -43,15 +43,15 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ image'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: '↳ features'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Feature</xref>&gt;'
           description: 'Requested features.'
         -
           id: '↳ image_context'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref>'
           description: 'Additional context that may accompany the image.'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImage()'
@@ -65,7 +65,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImage()'
     name: hasImage
@@ -95,7 +95,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: ''
       returns:
         -
@@ -126,7 +126,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Feature</xref>&gt;'
           description: ''
       returns:
         -
@@ -143,7 +143,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImageContext()'
     name: hasImageContext
@@ -173,7 +173,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref>'
           description: ''
       returns:
         -

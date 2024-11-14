@@ -69,7 +69,7 @@ items:
             web location.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::annotateImage()'
     name: annotateImage
@@ -94,11 +94,11 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: features
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;|int[]'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Feature</xref>&gt;|int[]'
           description: 'Requested features.'
         -
           id: optionalArgs
@@ -114,7 +114,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::faceDetection()'
     name: faceDetection
@@ -135,7 +135,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -151,7 +151,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::landmarkDetection()'
     name: landmarkDetection
@@ -172,7 +172,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -188,7 +188,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::logoDetection()'
     name: logoDetection
@@ -209,7 +209,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -225,7 +225,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::labelDetection()'
     name: labelDetection
@@ -246,7 +246,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -262,7 +262,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::textDetection()'
     name: textDetection
@@ -283,7 +283,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -299,7 +299,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::documentTextDetection()'
     name: documentTextDetection
@@ -320,7 +320,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -336,7 +336,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::safeSearchDetection()'
     name: safeSearchDetection
@@ -357,7 +357,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -373,7 +373,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::imagePropertiesDetection()'
     name: imagePropertiesDetection
@@ -394,7 +394,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -410,7 +410,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::cropHintsDetection()'
     name: cropHintsDetection
@@ -431,7 +431,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -447,7 +447,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::webDetection()'
     name: webDetection
@@ -468,7 +468,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -484,7 +484,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::objectLocalization()'
     name: objectLocalization
@@ -505,7 +505,7 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: optionalArgs
@@ -521,7 +521,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSearch()'
     name: productSearch
@@ -551,15 +551,15 @@ items:
       parameters:
         -
           id: image
-          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          var_type: 'resource|string|<xref uid="\Google\Cloud\Vision\V1\Image">Image</xref>'
           description: 'The image to be processed.'
         -
           id: productSearchParams
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">ProductSearchParams</xref>'
           description: |-
             Parameters for a product search request. Please note, this
-            value will override the <xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref> in the
-            <xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref> instance if provided.
+            value will override the <xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">ProductSearchParams</xref> in the
+            <xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref> instance if provided.
         -
           id: optionalArgs
           var_type: array
@@ -574,4 +574,4 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>'

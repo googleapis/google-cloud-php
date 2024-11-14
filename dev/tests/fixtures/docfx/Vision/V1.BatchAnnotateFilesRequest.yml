@@ -39,7 +39,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ requests'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">AnnotateFileRequest</xref>&gt;'
           description: 'Required. The list of file annotation requests. Right now we support only one AnnotateFileRequest in BatchAnnotateFilesRequest.'
         -
           id: '↳ parent'
@@ -79,7 +79,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">AnnotateFileRequest</xref>&gt;'
           description: ''
       returns:
         -
@@ -188,10 +188,10 @@ items:
       parameters:
         -
           id: requests
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">Google\Cloud\Vision\V1\AnnotateFileRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileRequest">AnnotateFileRequest</xref>&gt;'
           description: |-
             Required. The list of file annotation requests. Right now we support only
             one AnnotateFileRequest in BatchAnnotateFilesRequest.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">BatchAnnotateFilesRequest</xref>'
