@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class EntryGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the entry group in URL format.
+     * Identifier. The resource name of the entry group in URL format.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -54,7 +54,7 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the entry group in URL format.
+     *           Identifier. The resource name of the entry group in URL format.
      *           Note: The entry group itself and its child resources might not be
      *           stored in the location specified in its name.
      *     @type string $display_name
@@ -74,11 +74,11 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the entry group in URL format.
+     * Identifier. The resource name of the entry group in URL format.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -87,11 +87,11 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the entry group in URL format.
+     * Identifier. The resource name of the entry group in URL format.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
