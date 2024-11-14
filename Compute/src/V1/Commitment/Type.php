@@ -60,6 +60,10 @@ class Type
      */
     const GENERAL_PURPOSE_C4 = 301911817;
     /**
+     * Generated from protobuf enum <code>GENERAL_PURPOSE_C4A = 232460888;</code>
+     */
+    const GENERAL_PURPOSE_C4A = 232460888;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE_E2 = 301911877;</code>
      */
     const GENERAL_PURPOSE_E2 = 301911877;
@@ -112,6 +116,7 @@ class Type
         self::COMPUTE_OPTIMIZED_H3 => 'COMPUTE_OPTIMIZED_H3',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_C4 => 'GENERAL_PURPOSE_C4',
+        self::GENERAL_PURPOSE_C4A => 'GENERAL_PURPOSE_C4A',
         self::GENERAL_PURPOSE_E2 => 'GENERAL_PURPOSE_E2',
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
