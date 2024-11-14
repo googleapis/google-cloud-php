@@ -213,6 +213,27 @@ final class ConversationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName(string $project, string $location, string $collection, string $dataStore): string
+    {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a document
      * resource.
      *
@@ -477,6 +498,27 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -555,6 +597,25 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_knowledge_base resource.
      *
      * @param string $project
@@ -602,6 +663,7 @@ final class ConversationsClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - dataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
@@ -617,10 +679,12 @@ final class ConversationsClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
      * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
