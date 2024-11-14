@@ -17,6 +17,7 @@ class Catalog
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\FieldInfo::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Dataplex\V1\Service::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
@@ -26,8 +27,8 @@ class Catalog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ın
-&google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
+˚å
+&google/cloud/dataplex/v1/catalog.protogoogle.cloud.dataplex.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto&google/cloud/dataplex/v1/service.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"”
 
 AspectType8
 name (	B*‡A˙A$
@@ -127,11 +128,12 @@ entryTypes2	entryType"ë
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A*
 data (2.google.protobuf.StructB‡AB
-aspect_source	 (2&.google.cloud.dataplex.v1.AspectSourceB‡A"p
+aspect_source	 (2&.google.cloud.dataplex.v1.AspectSourceB‡A"Ü
 AspectSource/
 create_time
  (2.google.protobuf.Timestamp/
-update_time (2.google.protobuf.Timestamp"ƒ
+update_time (2.google.protobuf.Timestamp
+data_version (	"ƒ
 Entry
 name (	B‡A
 
@@ -290,9 +292,10 @@ page_token (	B‡A
 aspect_types (	B‡A
 paths (	B‡A4
 entry (	B%‡A˙A
-dataplex.googleapis.com/Entry"ô
-SearchEntriesRequest
-name (	B‡A
+dataplex.googleapis.com/Entry"ø
+SearchEntriesRequest7
+name (	B)‡A˙A#
+!locations.googleapis.com/Location
 query (	B‡A
 	page_size (B‡A
 
@@ -310,7 +313,101 @@ page_token (	B‡A
 
 total_size (
 next_page_token (	
-unreachable (	*Q
+unreachable (	"Ç
+
+ImportItem.
+entry (2.google.cloud.dataplex.v1.Entry/
+update_mask (2.google.protobuf.FieldMask
+aspect_keys (	"—
+CreateMetadataJobRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location@
+metadata_job (2%.google.cloud.dataplex.v1.MetadataJobB‡A
+metadata_job_id (	B‡A
+validate_only (B‡A"R
+GetMetadataJobRequest9
+name (	B+‡A˙A%
+#dataplex.googleapis.com/MetadataJob"±
+ListMetadataJobsRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/Location
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"ê
+ListMetadataJobsResponse<
+metadata_jobs (2%.google.cloud.dataplex.v1.MetadataJob
+next_page_token (	
+unreachable_locations (	"U
+CancelMetadataJobRequest9
+name (	B+‡A˙A%
+#dataplex.googleapis.com/MetadataJob"À
+MetadataJob
+name (	B‡A‡A
+uid (	B‡A‚åœ◊4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡AF
+labels (21.google.cloud.dataplex.v1.MetadataJob.LabelsEntryB‡A=
+type (2*.google.cloud.dataplex.v1.MetadataJob.TypeB‡AJ
+import_specd (23.google.cloud.dataplex.v1.MetadataJob.ImportJobSpecH T
+import_result» (25.google.cloud.dataplex.v1.MetadataJob.ImportJobResultB‡AHA
+status (2,.google.cloud.dataplex.v1.MetadataJob.StatusB‡A·
+ImportJobResult
+deleted_entries (B‡A
+updated_entries (B‡A
+created_entries (B‡A
+unchanged_entries (B‡A
+recreated_entries (B‡A4
+update_time (2.google.protobuf.TimestampB‡A©
+ImportJobSpec
+source_storage_uri (	B‡A;
+source_create_time (2.google.protobuf.TimestampB‡AV
+scope (2B.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.ImportJobScopeB‡AZ
+entry_sync_mode (2<.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncModeB‡A[
+aspect_sync_mode (2<.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.SyncModeB‡AT
+	log_level (2<.google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.LogLevelB‡A‘
+ImportJobScope@
+entry_groups (	B*‡A˙A$
+"dataplex.googleapis.com/EntryGroup>
+entry_types (	B)‡A˙A#
+!dataplex.googleapis.com/EntryType@
+aspect_types (	B*‡A˙A$
+"dataplex.googleapis.com/AspectType"@
+SyncMode
+SYNC_MODE_UNSPECIFIED 
+FULL
+INCREMENTAL":
+LogLevel
+LOG_LEVEL_UNSPECIFIED 	
+DEBUG
+INFO 
+StatusF
+state (22.google.cloud.dataplex.v1.MetadataJob.Status.StateB‡A
+message (	B‡A
+completion_percent (B‡A4
+update_time (2.google.protobuf.TimestampB‡A"ä
+State
+STATE_UNSPECIFIED 
+
+QUEUED
+RUNNING
+	CANCELING
+CANCELED
+	SUCCEEDED
+
+FAILED
+SUCCEEDED_WITH_ERRORS-
+LabelsEntry
+key (	
+value (	:8"(
+Type
+TYPE_UNSPECIFIED 
+
+IMPORT:lÍAi
+#dataplex.googleapis.com/MetadataJobBprojects/{project}/locations/{location}/metadataJobs/{metadataJob}B
+specB
+result*Q
 	EntryView
 ENTRY_VIEW_UNSPECIFIED 	
 BASIC
@@ -321,7 +418,7 @@ total_size (
 TransferStatus
 TRANSFER_STATUS_UNSPECIFIED 
 TRANSFER_STATUS_MIGRATED
-TRANSFER_STATUS_TRANSFERRED2Ç#
+TRANSFER_STATUS_TRANSFERRED2ï)
 CatalogServiceÍ
 CreateEntryType0.google.cloud.dataplex.v1.CreateEntryTypeRequest.google.longrunning.Operation"Ö A
 	EntryTypeOperationMetadata⁄Aparent,entry_type,entry_type_idÇ”‰ì<"./v1/{parent=projects/*/locations/*}/entryTypes:
@@ -360,7 +457,12 @@ EntryGroupOperationMetadata⁄Aentry_group,update_maskÇ”‰ìJ2;/v1/{entry_group.
 GetEntry).google.cloud.dataplex.v1.GetEntryRequest.google.cloud.dataplex.v1.Entry"I⁄AnameÇ”‰ì<:/v1/{name=projects/*/locations/*/entryGroups/*/entries/**}ì
 LookupEntry,.google.cloud.dataplex.v1.LookupEntryRequest.google.cloud.dataplex.v1.Entry"5Ç”‰ì/-/v1/{name=projects/*/locations/*}:lookupEntry∂
 SearchEntries..google.cloud.dataplex.v1.SearchEntriesRequest/.google.cloud.dataplex.v1.SearchEntriesResponse"D⁄A
-name,queryÇ”‰ì1"//v1/{name=projects/*/locations/*}:searchEntriesK Adataplex.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBº
+name,queryÇ”‰ì1"//v1/{name=projects/*/locations/*}:searchEntries¯
+CreateMetadataJob2.google.cloud.dataplex.v1.CreateMetadataJobRequest.google.longrunning.Operation"è A 
+MetadataJobOperationMetadata⁄A#parent,metadata_job,metadata_job_idÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/metadataJobs:metadata_job©
+GetMetadataJob/.google.cloud.dataplex.v1.GetMetadataJobRequest%.google.cloud.dataplex.v1.MetadataJob"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/metadataJobs/*}º
+ListMetadataJobs1.google.cloud.dataplex.v1.ListMetadataJobsRequest2.google.cloud.dataplex.v1.ListMetadataJobsResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/metadataJobs™
+CancelMetadataJob2.google.cloud.dataplex.v1.CancelMetadataJobRequest.google.protobuf.Empty"I⁄AnameÇ”‰ì<"7/v1/{name=projects/*/locations/*/metadataJobs/*}:cancel:*K Adataplex.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBº
 com.google.cloud.dataplex.v1BCatalogProtoPZ8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpb™Google.Cloud.Dataplex.V1 Google\\Cloud\\Dataplex\\V1ÍGoogle::Cloud::Dataplex::V1bproto3'
         , true);
 

@@ -18,15 +18,15 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the EntryType location, of the form:
      * `projects/{project_number}/locations/{location_id}`
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Optional. Maximum number of EntryTypes to return. The service may return
-     * fewer than this value. If unspecified, at most 10 EntryTypes will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * fewer than this value. If unspecified, the service returns at most 10
+     * EntryTypes. The maximum value is 1000; values above 1000 will be coerced to
      * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -35,25 +35,25 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListEntryTypes` call.
      * Provide this to retrieve the subsequent page. When paginating, all other
-     * parameters provided to `ListEntryTypes` must match the call that provided
-     * the page token.
+     * parameters you provided to `ListEntryTypes` must match the call that
+     * provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
      * Optional. Filter request. Filters are case-sensitive.
-     * The following formats are supported:
-     * labels.key1 = "value1"
-     * labels:key1
-     * name = "value"
-     * These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     * The service supports the following formats:
+     * * labels.key1 = "value1"
+     * * labels:key1
+     * * name = "value"
+     * These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Optional. Order by fields (`name` or `create_time`) for the result.
+     * Optional. Orders the result by `name` or `create_time` fields.
      * If not specified, the ordering is undefined.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,7 +63,7 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name of the EntryType location, of the form:
      *                       `projects/{project_number}/locations/{location_id}`
-     *                       where `location_id` refers to a GCP region. Please see
+     *                       where `location_id` refers to a Google Cloud region. Please see
      *                       {@see CatalogServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dataplex\V1\ListEntryTypesRequest
@@ -85,26 +85,26 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the EntryType location, of the form:
      *           `projects/{project_number}/locations/{location_id}`
-     *           where `location_id` refers to a GCP region.
+     *           where `location_id` refers to a Google Cloud region.
      *     @type int $page_size
      *           Optional. Maximum number of EntryTypes to return. The service may return
-     *           fewer than this value. If unspecified, at most 10 EntryTypes will be
-     *           returned. The maximum value is 1000; values above 1000 will be coerced to
+     *           fewer than this value. If unspecified, the service returns at most 10
+     *           EntryTypes. The maximum value is 1000; values above 1000 will be coerced to
      *           1000.
      *     @type string $page_token
      *           Optional. Page token received from a previous `ListEntryTypes` call.
      *           Provide this to retrieve the subsequent page. When paginating, all other
-     *           parameters provided to `ListEntryTypes` must match the call that provided
-     *           the page token.
+     *           parameters you provided to `ListEntryTypes` must match the call that
+     *           provided the page token.
      *     @type string $filter
      *           Optional. Filter request. Filters are case-sensitive.
-     *           The following formats are supported:
-     *           labels.key1 = "value1"
-     *           labels:key1
-     *           name = "value"
-     *           These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     *           The service supports the following formats:
+     *           * labels.key1 = "value1"
+     *           * labels:key1
+     *           * name = "value"
+     *           These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      *     @type string $order_by
-     *           Optional. Order by fields (`name` or `create_time`) for the result.
+     *           Optional. Orders the result by `name` or `create_time` fields.
      *           If not specified, the ordering is undefined.
      * }
      */
@@ -116,7 +116,7 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the EntryType location, of the form:
      * `projects/{project_number}/locations/{location_id}`
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -129,7 +129,7 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the EntryType location, of the form:
      * `projects/{project_number}/locations/{location_id}`
-     * where `location_id` refers to a GCP region.
+     * where `location_id` refers to a Google Cloud region.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -145,8 +145,8 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of EntryTypes to return. The service may return
-     * fewer than this value. If unspecified, at most 10 EntryTypes will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * fewer than this value. If unspecified, the service returns at most 10
+     * EntryTypes. The maximum value is 1000; values above 1000 will be coerced to
      * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -159,8 +159,8 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of EntryTypes to return. The service may return
-     * fewer than this value. If unspecified, at most 10 EntryTypes will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
+     * fewer than this value. If unspecified, the service returns at most 10
+     * EntryTypes. The maximum value is 1000; values above 1000 will be coerced to
      * 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -178,8 +178,8 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListEntryTypes` call.
      * Provide this to retrieve the subsequent page. When paginating, all other
-     * parameters provided to `ListEntryTypes` must match the call that provided
-     * the page token.
+     * parameters you provided to `ListEntryTypes` must match the call that
+     * provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -192,8 +192,8 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Page token received from a previous `ListEntryTypes` call.
      * Provide this to retrieve the subsequent page. When paginating, all other
-     * parameters provided to `ListEntryTypes` must match the call that provided
-     * the page token.
+     * parameters you provided to `ListEntryTypes` must match the call that
+     * provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -209,11 +209,11 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Filter request. Filters are case-sensitive.
-     * The following formats are supported:
-     * labels.key1 = "value1"
-     * labels:key1
-     * name = "value"
-     * These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     * The service supports the following formats:
+     * * labels.key1 = "value1"
+     * * labels:key1
+     * * name = "value"
+     * These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -225,11 +225,11 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Filter request. Filters are case-sensitive.
-     * The following formats are supported:
-     * labels.key1 = "value1"
-     * labels:key1
-     * name = "value"
-     * These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     * The service supports the following formats:
+     * * labels.key1 = "value1"
+     * * labels:key1
+     * * name = "value"
+     * These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -244,7 +244,7 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Order by fields (`name` or `create_time`) for the result.
+     * Optional. Orders the result by `name` or `create_time` fields.
      * If not specified, the ordering is undefined.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -256,7 +256,7 @@ class ListEntryTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Order by fields (`name` or `create_time`) for the result.
+     * Optional. Orders the result by `name` or `create_time` fields.
      * If not specified, the ordering is undefined.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>

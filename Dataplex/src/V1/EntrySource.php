@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * EntrySource contains source system related information for the
- * entry.
+ * Information related to the source system of the data resource that is
+ * represented by the entry.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.EntrySource</code>
  */
@@ -18,35 +18,35 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the resource in the source system.
-     * The maximum size of the field is 4000 characters.
+     * Maximum length is 4,000 characters.
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
     protected $resource = '';
     /**
      * The name of the source system.
-     * The maximum size of the field is 64 characters.
+     * Maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string system = 2;</code>
      */
     protected $system = '';
     /**
      * The platform containing the source system.
-     * The maximum size of the field is 64 characters.
+     * Maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string platform = 3;</code>
      */
     protected $platform = '';
     /**
-     * User friendly display name.
-     * The maximum size of the field is 500 characters.
+     * A user-friendly display name.
+     * Maximum length is 500 characters.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
     protected $display_name = '';
     /**
-     * Description of the Entry.
-     * The maximum size of the field is 2000 characters.
+     * A description of the data resource.
+     * Maximum length is 2,000 characters.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
@@ -59,28 +59,32 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Immutable. The ancestors of the Entry in the source system.
+     * Immutable. The entries representing the ancestors of the data resource in
+     * the source system.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntrySource.Ancestor ancestors = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $ancestors;
     /**
-     * The create time of the resource in the source system.
+     * The time when the resource was created in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
     protected $create_time = null;
     /**
-     * The update time of the resource in the source system.
+     * The time when the resource was last updated in the source system. If the
+     * entry exists in the system and its `EntrySource` has `update_time`
+     * populated, further updates to the `EntrySource` of the entry must provide
+     * incremental updates to its `update_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
     protected $update_time = null;
     /**
-     * Output only. Location of the resource in the source system. Entry will be
-     * searchable by this location. By default, this should match the location of
-     * the EntryGroup containing this entry. A different value allows capturing
-     * source location for data external to GCP.
+     * Output only. Location of the resource in the source system. You can search
+     * the entry by this location. By default, this should match the location of
+     * the entry group containing this entry. A different value allows capturing
+     * the source location for data external to Google Cloud.
      *
      * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -94,33 +98,37 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      *
      *     @type string $resource
      *           The name of the resource in the source system.
-     *           The maximum size of the field is 4000 characters.
+     *           Maximum length is 4,000 characters.
      *     @type string $system
      *           The name of the source system.
-     *           The maximum size of the field is 64 characters.
+     *           Maximum length is 64 characters.
      *     @type string $platform
      *           The platform containing the source system.
-     *           The maximum size of the field is 64 characters.
+     *           Maximum length is 64 characters.
      *     @type string $display_name
-     *           User friendly display name.
-     *           The maximum size of the field is 500 characters.
+     *           A user-friendly display name.
+     *           Maximum length is 500 characters.
      *     @type string $description
-     *           Description of the Entry.
-     *           The maximum size of the field is 2000 characters.
+     *           A description of the data resource.
+     *           Maximum length is 2,000 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels.
      *           The maximum size of keys and values is 128 characters each.
      *     @type array<\Google\Cloud\Dataplex\V1\EntrySource\Ancestor>|\Google\Protobuf\Internal\RepeatedField $ancestors
-     *           Immutable. The ancestors of the Entry in the source system.
+     *           Immutable. The entries representing the ancestors of the data resource in
+     *           the source system.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The create time of the resource in the source system.
+     *           The time when the resource was created in the source system.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The update time of the resource in the source system.
+     *           The time when the resource was last updated in the source system. If the
+     *           entry exists in the system and its `EntrySource` has `update_time`
+     *           populated, further updates to the `EntrySource` of the entry must provide
+     *           incremental updates to its `update_time`.
      *     @type string $location
-     *           Output only. Location of the resource in the source system. Entry will be
-     *           searchable by this location. By default, this should match the location of
-     *           the EntryGroup containing this entry. A different value allows capturing
-     *           source location for data external to GCP.
+     *           Output only. Location of the resource in the source system. You can search
+     *           the entry by this location. By default, this should match the location of
+     *           the entry group containing this entry. A different value allows capturing
+     *           the source location for data external to Google Cloud.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +138,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the resource in the source system.
-     * The maximum size of the field is 4000 characters.
+     * Maximum length is 4,000 characters.
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @return string
@@ -142,7 +150,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the resource in the source system.
-     * The maximum size of the field is 4000 characters.
+     * Maximum length is 4,000 characters.
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
@@ -158,7 +166,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the source system.
-     * The maximum size of the field is 64 characters.
+     * Maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string system = 2;</code>
      * @return string
@@ -170,7 +178,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the source system.
-     * The maximum size of the field is 64 characters.
+     * Maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string system = 2;</code>
      * @param string $var
@@ -186,7 +194,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 
     /**
      * The platform containing the source system.
-     * The maximum size of the field is 64 characters.
+     * Maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string platform = 3;</code>
      * @return string
@@ -198,7 +206,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
 
     /**
      * The platform containing the source system.
-     * The maximum size of the field is 64 characters.
+     * Maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string platform = 3;</code>
      * @param string $var
@@ -213,8 +221,8 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User friendly display name.
-     * The maximum size of the field is 500 characters.
+     * A user-friendly display name.
+     * Maximum length is 500 characters.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      * @return string
@@ -225,8 +233,8 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User friendly display name.
-     * The maximum size of the field is 500 characters.
+     * A user-friendly display name.
+     * Maximum length is 500 characters.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      * @param string $var
@@ -241,8 +249,8 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the Entry.
-     * The maximum size of the field is 2000 characters.
+     * A description of the data resource.
+     * Maximum length is 2,000 characters.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      * @return string
@@ -253,8 +261,8 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the Entry.
-     * The maximum size of the field is 2000 characters.
+     * A description of the data resource.
+     * Maximum length is 2,000 characters.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      * @param string $var
@@ -297,7 +305,8 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The ancestors of the Entry in the source system.
+     * Immutable. The entries representing the ancestors of the data resource in
+     * the source system.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntrySource.Ancestor ancestors = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -308,7 +317,8 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The ancestors of the Entry in the source system.
+     * Immutable. The entries representing the ancestors of the data resource in
+     * the source system.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntrySource.Ancestor ancestors = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array<\Google\Cloud\Dataplex\V1\EntrySource\Ancestor>|\Google\Protobuf\Internal\RepeatedField $var
@@ -323,7 +333,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The create time of the resource in the source system.
+     * The time when the resource was created in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -344,7 +354,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The create time of the resource in the source system.
+     * The time when the resource was created in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -359,7 +369,10 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update time of the resource in the source system.
+     * The time when the resource was last updated in the source system. If the
+     * entry exists in the system and its `EntrySource` has `update_time`
+     * populated, further updates to the `EntrySource` of the entry must provide
+     * incremental updates to its `update_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -380,7 +393,10 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update time of the resource in the source system.
+     * The time when the resource was last updated in the source system. If the
+     * entry exists in the system and its `EntrySource` has `update_time`
+     * populated, further updates to the `EntrySource` of the entry must provide
+     * incremental updates to its `update_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -395,10 +411,10 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Location of the resource in the source system. Entry will be
-     * searchable by this location. By default, this should match the location of
-     * the EntryGroup containing this entry. A different value allows capturing
-     * source location for data external to GCP.
+     * Output only. Location of the resource in the source system. You can search
+     * the entry by this location. By default, this should match the location of
+     * the entry group containing this entry. A different value allows capturing
+     * the source location for data external to Google Cloud.
      *
      * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -409,10 +425,10 @@ class EntrySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Location of the resource in the source system. Entry will be
-     * searchable by this location. By default, this should match the location of
-     * the EntryGroup containing this entry. A different value allows capturing
-     * source location for data external to GCP.
+     * Output only. Location of the resource in the source system. You can search
+     * the entry by this location. By default, this should match the location of
+     * the entry group containing this entry. A different value allows capturing
+     * the source location for data external to Google Cloud.
      *
      * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

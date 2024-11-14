@@ -59,10 +59,9 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      *           Must be a .py file. The execution args are passed in as a sequence of
      *           named process arguments (`--key=value`).
      *     @type string $sql_script_file
-     *           A reference to a query file. This can be the Cloud Storage URI of the
-     *           query file or it can the path to a SqlScript Content. The execution
-     *           args are used to declare a set of script variables
-     *           (`set key="value";`).
+     *           A reference to a query file. This should be the Cloud Storage URI of
+     *           the query file. The execution args are used to declare a set of script
+     *           variables (`set key="value";`).
      *     @type string $sql_script
      *           The query text.
      *           The execution args are used to declare a set of script variables
@@ -193,10 +192,9 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to a query file. This can be the Cloud Storage URI of the
-     * query file or it can the path to a SqlScript Content. The execution
-     * args are used to declare a set of script variables
-     * (`set key="value";`).
+     * A reference to a query file. This should be the Cloud Storage URI of
+     * the query file. The execution args are used to declare a set of script
+     * variables (`set key="value";`).
      *
      * Generated from protobuf field <code>string sql_script_file = 104;</code>
      * @return string
@@ -212,10 +210,9 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A reference to a query file. This can be the Cloud Storage URI of the
-     * query file or it can the path to a SqlScript Content. The execution
-     * args are used to declare a set of script variables
-     * (`set key="value";`).
+     * A reference to a query file. This should be the Cloud Storage URI of
+     * the query file. The execution args are used to declare a set of script
+     * variables (`set key="value";`).
      *
      * Generated from protobuf field <code>string sql_script_file = 104;</code>
      * @param string $var

@@ -36,25 +36,27 @@ use Google\Cloud\Dataplex\V1\Entry;
  *                                {@see CatalogServiceClient::entryGroupName()} for help formatting this field.
  * @param string $entryId         Entry identifier. It has to be unique within an Entry Group.
  *
- *                                Entries corresponding to Google Cloud resources use Entry ID format based
- *                                on Full Resource Names
- *                                (https://cloud.google.com/apis/design/resource_names#full_resource_name).
- *                                The format is a Full Resource Name of the resource without the
- *                                prefix double slashes in the API Service Name part of Full Resource Name.
- *                                This allows retrieval of entries using their associated resource name.
+ *                                Entries corresponding to Google Cloud resources use an Entry ID format
+ *                                based on [full resource
+ *                                names](https://cloud.google.com/apis/design/resource_names#full_resource_name).
+ *                                The format is a full resource name of the resource without the
+ *                                prefix double slashes in the API service name part of the full resource
+ *                                name. This allows retrieval of entries using their associated resource
+ *                                name.
  *
- *                                For example if the Full Resource Name of a resource is
+ *                                For example, if the full resource name of a resource is
  *                                `//library.googleapis.com/shelves/shelf1/books/book2`,
  *                                then the suggested entry_id is
  *                                `library.googleapis.com/shelves/shelf1/books/book2`.
  *
  *                                It is also suggested to follow the same convention for entries
- *                                corresponding to resources from other providers or systems than Google
+ *                                corresponding to resources from providers or systems other than Google
  *                                Cloud.
  *
  *                                The maximum size of the field is 4000 characters.
- * @param string $entryEntryType  Immutable. The resource name of the EntryType used to create this
- *                                Entry.
+ * @param string $entryEntryType  Immutable. The relative resource name of the entry type that was
+ *                                used to create this entry, in the format
+ *                                `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
  */
 function create_entry_sample(
     string $formattedParent,

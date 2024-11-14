@@ -34,7 +34,7 @@ use Google\Cloud\Dataplex\V1\ListAspectTypesRequest;
  *
  * @param string $formattedParent The resource name of the AspectType location, of the form:
  *                                `projects/{project_number}/locations/{location_id}`
- *                                where `location_id` refers to a GCP region. Please see
+ *                                where `location_id` refers to a Google Cloud region. Please see
  *                                {@see CatalogServiceClient::locationName()} for help formatting this field.
  */
 function list_aspect_types_sample(string $formattedParent): void
