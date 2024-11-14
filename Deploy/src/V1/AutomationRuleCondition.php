@@ -22,6 +22,7 @@ class AutomationRuleCondition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.TargetsPresentCondition targets_present_condition = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $targets_present_condition = null;
+    protected $rule_type_condition;
 
     /**
      * Constructor.
@@ -31,6 +32,9 @@ class AutomationRuleCondition extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Deploy\V1\TargetsPresentCondition $targets_present_condition
      *           Optional. Details around targets enumerated in the rule.
+     *     @type \Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition $timed_promote_release_condition
+     *           Optional. TimedPromoteReleaseCondition contains rule conditions specific
+     *           to a an Automation with a timed promote release rule defined.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,6 +76,47 @@ class AutomationRuleCondition extends \Google\Protobuf\Internal\Message
         $this->targets_present_condition = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. TimedPromoteReleaseCondition contains rule conditions specific
+     * to a an Automation with a timed promote release rule defined.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseCondition timed_promote_release_condition = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition|null
+     */
+    public function getTimedPromoteReleaseCondition()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasTimedPromoteReleaseCondition()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Optional. TimedPromoteReleaseCondition contains rule conditions specific
+     * to a an Automation with a timed promote release rule defined.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseCondition timed_promote_release_condition = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition $var
+     * @return $this
+     */
+    public function setTimedPromoteReleaseCondition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition::class);
+        $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRuleTypeCondition()
+    {
+        return $this->whichOneof("rule_type_condition");
     }
 
 }
