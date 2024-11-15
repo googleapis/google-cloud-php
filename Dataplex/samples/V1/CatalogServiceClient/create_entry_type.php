@@ -31,11 +31,11 @@ use Google\Cloud\Dataplex\V1\EntryType;
 use Google\Rpc\Status;
 
 /**
- * Creates an EntryType
+ * Creates an EntryType.
  *
  * @param string $formattedParent The resource name of the EntryType, of the form:
  *                                projects/{project_number}/locations/{location_id}
- *                                where `location_id` refers to a GCP region. Please see
+ *                                where `location_id` refers to a Google Cloud region. Please see
  *                                {@see CatalogServiceClient::locationName()} for help formatting this field.
  * @param string $entryTypeId     EntryType identifier.
  */

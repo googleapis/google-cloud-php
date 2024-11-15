@@ -33,14 +33,26 @@ use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Updates a AspectType resource.
+ * Updates an AspectType.
  *
  * @param string $aspectTypeMetadataTemplateName The name of the field.
  * @param string $aspectTypeMetadataTemplateType The datatype of this field. The following values are supported:
- *                                               Primitive types (string, integer, boolean, double, datetime); datetime
- *                                               must be of the format RFC3339 UTC "Zulu" (Examples:
- *                                               "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex
- *                                               types (enum, array, map, record).
+ *
+ *                                               Primitive types:
+ *
+ *                                               * string
+ *                                               * integer
+ *                                               * boolean
+ *                                               * double
+ *                                               * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
+ *                                               "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").
+ *
+ *                                               Complex types:
+ *
+ *                                               * enum
+ *                                               * array
+ *                                               * map
+ *                                               * record
  */
 function update_aspect_type_sample(
     string $aspectTypeMetadataTemplateName,

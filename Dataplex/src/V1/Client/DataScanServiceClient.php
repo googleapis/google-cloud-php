@@ -186,6 +186,25 @@ final class DataScanServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a connection
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted connection resource.
+     */
+    public static function connectionName(string $project, string $location, string $connection): string
+    {
+        return self::getPathTemplate('connection')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a data_scan
      * resource.
      *
@@ -222,6 +241,23 @@ final class DataScanServiceClient
             'location' => $location,
             'dataScan' => $dataScan,
             'job' => $job,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a dataset
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     *
+     * @return string The formatted dataset resource.
+     */
+    public static function datasetName(string $project, string $dataset): string
+    {
+        return self::getPathTemplate('dataset')->render([
+            'project' => $project,
+            'dataset' => $dataset,
         ]);
     }
 
@@ -274,8 +310,10 @@ final class DataScanServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - dataScan: projects/{project}/locations/{location}/dataScans/{dataScan}
      * - dataScanJob: projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}
+     * - dataset: projects/{project}/datasets/{dataset}
      * - entity: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}
      * - location: projects/{project}/locations/{location}
      *
