@@ -18,11 +18,14 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -35,9 +38,9 @@ class ResultTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
-    use ResultTestTrait;
+    use ResultGeneratorTrait;
 
-    private $metadata = [
+    private const METADATA = [
         'rowType' => [
             'fields' => [
                 [
@@ -47,10 +50,29 @@ class ResultTest extends TestCase
             ]
         ]
     ];
+    private $operation;
+    private $session;
+    private $transaction;
+    private $snapshot;
+    private $mapper;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
+
+        $this->operation = $this->prophesize(Operation::class);
+        $this->session = $this->prophesize(Session::class);
+        $this->transaction = $this->prophesize(Transaction::class);
+        $this->snapshot = $this->prophesize(Snapshot::class);
+
+        $this->mapper = $this->prophesize(ValueMapper::class);
+        $this->mapper->decodeValues(
+            Argument::any(),
+            Argument::any(),
+            Argument::any()
+        )->will(function ($args) {
+            return $args[1];
+        });
     }
 
     /**
@@ -58,31 +80,47 @@ class ResultTest extends TestCase
      */
     public function testRows($chunks, $expectedValues)
     {
-        $result = iterator_to_array($this->getResultClass($chunks)->rows());
-        $this->assertEquals($expectedValues, $result);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($chunks) {
+                return $this->resultGeneratorJson($chunks);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
+        $this->assertEquals($expectedValues, iterator_to_array($result->rows()));
     }
 
     public function testIterator()
     {
-        $fixture = $this->getStreamingDataFixture()['tests'][0];
-        $result = iterator_to_array($this->getResultClass($fixture['chunks']));
+        $fixtures = $this->getStreamingDataFixture()['tests'][0];
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixtures) {
+                return $this->resultGeneratorJson($fixtures['chunks']);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
 
-        $this->assertEquals($fixture['result']['value'], $result);
+        $this->assertEquals($fixtures['result']['value'], iterator_to_array($result));
     }
 
     public function testFailsWhenStreamThrowsUnrecoverableException()
     {
         $this->expectException(\Exception::class);
 
-        $result = $this->getResultClass(
-            null,
-            'r',
-            null,
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
             function () {
-                throw new \Exception;
-            }
+                throw new \Exception();
+            },
+            'r',
+            $this->mapper->reveal()
         );
-
         iterator_to_array($result->rows());
     }
 
@@ -91,22 +129,19 @@ class ResultTest extends TestCase
         $timesCalled = 0;
         $chunks = [
             [
-                'metadata' => $this->metadata,
+                'metadata' => self::METADATA,
                 'values' => ['a']
             ],
             [
                 'values' => ['b'],
                 'resumeToken' => 'abc'
             ],
-            [
-                'values' => ['c']
-            ]
+            ['values' => ['c']]
         ];
 
-        $result = $this->getResultClass(
-            null,
-            'r',
-            null,
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
             function () use ($chunks, &$timesCalled) {
                 $timesCalled++;
 
@@ -116,7 +151,9 @@ class ResultTest extends TestCase
                     }
                     yield $chunk;
                 }
-            }
+            },
+            'r',
+            $this->mapper->reveal()
         );
 
         iterator_to_array($result->rows());
@@ -128,21 +165,16 @@ class ResultTest extends TestCase
         $timesCalled = 0;
         $chunks = [
             [
-                'metadata' => $this->metadata,
+                'metadata' => self::METADATA,
                 'values' => ['a']
             ],
-            [
-                'values' => ['b']
-            ],
-            [
-                'values' => ['c']
-            ]
+            ['values' => ['b']],
+            ['values' => ['c']]
         ];
 
-        $result = $this->getResultClass(
-            null,
-            'r',
-            null,
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
             function () use ($chunks, &$timesCalled) {
                 $timesCalled++;
                 if ($timesCalled === 1) {
@@ -152,7 +184,9 @@ class ResultTest extends TestCase
                 foreach ($chunks as $key => $chunk) {
                     yield $chunk;
                 }
-            }
+            },
+            'r',
+            $this->mapper->reveal()
         );
 
         iterator_to_array($result->rows());
@@ -164,21 +198,16 @@ class ResultTest extends TestCase
         $timesCalled = 0;
         $chunks = [
             [
-                'metadata' => $this->metadata,
+                'metadata' => self::METADATA,
                 'values' => ['a']
             ],
-            [
-                'values' => ['b']
-            ],
-            [
-                'values' => ['c']
-            ]
+            ['values' => ['b']],
+            ['values' => ['c']]
         ];
 
-        $result = $this->getResultClass(
-            null,
-            'r',
-            null,
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
             function () use ($chunks, &$timesCalled) {
                 $timesCalled++;
                 foreach ($chunks as $key => $chunk) {
@@ -187,7 +216,9 @@ class ResultTest extends TestCase
                     }
                     yield $chunk;
                 }
-            }
+            },
+            'r',
+            $this->mapper->reveal()
         );
 
         iterator_to_array($result->rows());
@@ -199,22 +230,17 @@ class ResultTest extends TestCase
         $timesCalled = 0;
         $chunks = [
             [
-                'metadata' => $this->metadata,
+                'metadata' => self::METADATA,
                 'values' => ['a'],
                 'resumeToken' => 'abc'
             ],
-            [
-                'values' => ['b']
-            ],
-            [
-                'values' => ['c']
-            ]
+            ['values' => ['b']],
+            ['values' => ['c']]
         ];
 
-        $result = $this->getResultClass(
-            null,
-            'r',
-            null,
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
             function () use ($chunks, &$timesCalled) {
                 $timesCalled++;
                 foreach ($chunks as $key => $chunk) {
@@ -223,7 +249,9 @@ class ResultTest extends TestCase
                     }
                     yield $chunk;
                 }
-            }
+            },
+            'r',
+            $this->mapper->reveal()
         );
 
         iterator_to_array($result->rows());
@@ -236,18 +264,15 @@ class ResultTest extends TestCase
 
         $chunks = [
             [
-                'metadata' => $this->metadata,
+                'metadata' => self::METADATA,
                 'values' => ['a']
             ],
-            [
-                'values' => ['b']
-            ]
+            ['values' => ['b']]
         ];
 
-        $result = $this->getResultClass(
-            null,
-            'r',
-            null,
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
             function () use ($chunks) {
                 foreach ($chunks as $key => $chunk) {
                     if ($key === 1) {
@@ -255,7 +280,9 @@ class ResultTest extends TestCase
                     }
                     yield $chunk;
                 }
-            }
+            },
+            'r',
+            $this->mapper->reveal()
         );
 
         iterator_to_array($result->rows());
@@ -264,7 +291,15 @@ class ResultTest extends TestCase
     public function testColumns()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][0];
-        $result = $this->getResultClass($fixture['chunks']);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
         $expectedColumnNames = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7'];
 
         $this->assertNull($result->columns());
@@ -275,7 +310,15 @@ class ResultTest extends TestCase
     public function testMetadata()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][0];
-        $result = $this->getResultClass($fixture['chunks']);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
         $expectedMetadata = json_decode($fixture['chunks'][0], true)['metadata'];
 
         $this->assertNull($result->stats());
@@ -286,7 +329,15 @@ class ResultTest extends TestCase
     public function testSession()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][0];
-        $result = $this->getResultClass($fixture['chunks']);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
 
         $this->assertInstanceOf(Session::class, $result->session());
     }
@@ -294,7 +345,15 @@ class ResultTest extends TestCase
     public function testStats()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][1];
-        $result = $this->getResultClass($fixture['chunks']);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
         $expectedStats = json_decode($fixture['chunks'][0], true)['stats'];
 
         $this->assertNull($result->stats());
@@ -305,7 +364,15 @@ class ResultTest extends TestCase
     public function testTransaction()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][1];
-        $result = $this->getResultClass($fixture['chunks'], 'rw');
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'rw',
+            $this->mapper->reveal()
+        );
 
         $this->assertInstanceOf(Transaction::class, $result->transaction());
     }
@@ -313,7 +380,15 @@ class ResultTest extends TestCase
     public function testSnapshot()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][1];
-        $result = $this->getResultClass($fixture['chunks']);
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $this->mapper->reveal()
+        );
 
         $this->assertInstanceOf(Snapshot::class, $result->snapshot());
     }
@@ -327,7 +402,16 @@ class ResultTest extends TestCase
             Argument::any(),
             'associative'
         )->shouldBeCalled();
-        $result = $this->getResultClass($fixture['chunks'], 'r', $mapper->reveal());
+
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $mapper->reveal()
+        );
 
         $rows = $result->rows();
         $rows->current();
@@ -345,7 +429,16 @@ class ResultTest extends TestCase
             Argument::any(),
             $format
         )->shouldBeCalled();
-        $result = $this->getResultClass($fixture['chunks'], 'r', $mapper->reveal());
+
+        $result = new Result(
+            $this->operation->reveal(),
+            $this->session->reveal(),
+            function () use ($fixture) {
+                return $this->resultGeneratorJson($fixture['chunks']);
+            },
+            'r',
+            $mapper->reveal()
+        );
 
         $rows = $result->rows($format);
         $rows->current();

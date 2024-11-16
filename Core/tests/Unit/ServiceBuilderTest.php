@@ -23,7 +23,6 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Tests\Unit\Fixtures;
 use GuzzleHttp\Psr7\Response;
@@ -157,11 +156,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'language',
                 LanguageClient::class
-            ], [
-                'spanner',
-                SpannerClient::class,
-                [],
-                [$this, 'checkAndSkipGrpcTests']
             ], [
                 'storage',
                 StorageClient::class

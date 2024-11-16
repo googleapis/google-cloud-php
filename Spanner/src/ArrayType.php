@@ -29,7 +29,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\Database;
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $arrayType = new ArrayType(Database::TYPE_STRING);
@@ -61,18 +61,11 @@ namespace Google\Cloud\Spanner;
  */
 class ArrayType
 {
-    /**
-     * @var int|null
-     */
-    private $type;
+    private int|string|null $type;
+    private StructType|null $structType;
 
     /**
-     * @var StructType|null
-     */
-    private $structType;
-
-    /**
-     * @param int|string|null|StructType $type A value type code or nested struct
+     * @param int|string|StructType|null $type A value type code or nested struct
      *        definition. Accepted integer and string values are defined as constants on
      *        {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
@@ -87,7 +80,7 @@ class ArrayType
      *        a struct is defined but the given type is not
      *        `Database::TYPE_STRUCT`.
      */
-    public function __construct($type)
+    public function __construct(int|string|StructType|null $type)
     {
         if ($type === Database::TYPE_STRUCT) {
             throw new \InvalidArgumentException(
@@ -125,7 +118,7 @@ class ArrayType
      * @access private
      * @return int|string|null
      */
-    public function type()
+    public function type(): int|string|null
     {
         return $this->type;
     }
@@ -136,7 +129,7 @@ class ArrayType
      * @access private
      * @return StructType|null
      */
-    public function structType()
+    public function structType(): StructType|null
     {
         return $this->structType;
     }
