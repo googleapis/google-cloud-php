@@ -5,7 +5,7 @@
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 
 $spannerClient = new SpannerClient();
 try {

@@ -30,14 +30,14 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The schedule specification based on which the backup creations
      * are triggered.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.BackupScheduleSpec spec = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $spec = null;
+    protected $spec = null;
     /**
      * Optional. The retention duration of a backup that must be at least 6 hours
      * and at most 366 days. The backup is eligible to be automatically deleted
@@ -45,7 +45,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_duration = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $retention_duration = null;
+    protected $retention_duration = null;
     /**
      * Optional. The encryption configuration that will be used to encrypt the
      * backup. If this field is not specified, the backup will use the same
@@ -53,7 +53,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     /**
      * Output only. The timestamp at which the schedule was last updated.
      * If the schedule has never been updated, this field contains the timestamp
@@ -61,7 +61,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $backup_type_spec;
 
     /**

@@ -24,7 +24,7 @@ class UpdateInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstancePartition instance_partition = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_partition = null;
+    protected $instance_partition = null;
     /**
      * Required. A mask specifying which fields in
      * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition]
@@ -35,7 +35,7 @@ class UpdateInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field_mask = null;
+    protected $field_mask = null;
 
     /**
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition $instancePartition Required. The instance partition to update, which must always include the

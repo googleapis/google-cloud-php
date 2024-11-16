@@ -24,14 +24,14 @@ class FreeInstanceMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. If present, the timestamp at which the free instance was
      * upgraded to a provisioned instance.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp upgrade_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $upgrade_time = null;
+    protected $upgrade_time = null;
     /**
      * Specifies the expiration behavior of a free instance. The default of
      * ExpireBehavior is `REMOVE_AFTER_GRACE_PERIOD`. This can be modified during
@@ -39,7 +39,7 @@ class FreeInstanceMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata.ExpireBehavior expire_behavior = 3;</code>
      */
-    private $expire_behavior = 0;
+    protected $expire_behavior = 0;
 
     /**
      * Constructor.
