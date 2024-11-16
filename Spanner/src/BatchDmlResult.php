@@ -25,7 +25,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\Transaction;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $batchDmlResult = $database->runTransaction(function (Transaction $t) {
@@ -84,7 +84,7 @@ class BatchDmlResult
      *
      * @return int[]
      */
-    public function rowCounts()
+    public function rowCounts(): array
     {
         if (!$this->rowCounts) {
             foreach ($this->data['resultSets'] as $resultSet) {
@@ -112,7 +112,7 @@ class BatchDmlResult
      *
      * @return array|null
      */
-    public function error()
+    public function error(): array|null
     {
         if ($this->errorStatement) {
             return [
