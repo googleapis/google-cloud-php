@@ -138,19 +138,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      */
     protected $data_boost_enabled = false;
-    /**
-     * Optional. If set to true, this statement marks the end of the transaction.
-     * The transaction should be committed or aborted after this statement
-     * executes, and attempts to execute any other requests against this
-     * transaction (including reads and queries) will be rejected.
-     * For DML statements, setting this option may cause some error reporting to
-     * be deferred until commit time (e.g. validation of unique constraints).
-     * Given this, successful execution of a DML statement should not be assumed
-     * until a subsequent Commit call completes successfully.
-     *
-     * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $last_statement = false;
 
     /**
      * Constructor.
