@@ -23,7 +23,7 @@ class MultiplexedSessionPrecommitToken extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes precommit_token = 1;</code>
      */
-    private $precommit_token = '';
+    protected $precommit_token = '';
     /**
      * An incrementing seq number is generated on every precommit token
      * that is returned. Clients should remember the precommit token with the
@@ -31,7 +31,7 @@ class MultiplexedSessionPrecommitToken extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 seq_num = 2;</code>
      */
-    private $seq_num = 0;
+    protected $seq_num = 0;
 
     /**
      * Constructor.
