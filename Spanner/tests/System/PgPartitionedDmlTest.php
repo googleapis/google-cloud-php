@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner\Tests\System\SpannerPgTestCase;
-
 /**
  * @group spanner
  * @group spanner-pdml

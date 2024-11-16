@@ -72,7 +72,7 @@ class ArrayTypeTest extends TestCase
 
     public function testArrayTypeStruct()
     {
-        $struct = new StructType;
+        $struct = new StructType();
         $struct->add('foo', Database::TYPE_STRING);
 
         $arr = new ArrayType($struct);
