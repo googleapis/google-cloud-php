@@ -67,6 +67,4 @@ class MutationGroup extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MutationGroup::class, \Google\Cloud\Spanner\V1\BatchWriteRequest_MutationGroup::class);
 

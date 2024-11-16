@@ -22,7 +22,7 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the instance configuration to create. Valid identifiers
      * are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
@@ -31,7 +31,7 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_config_id = '';
+    protected $instance_config_id = '';
     /**
      * Required. The InstanceConfig proto of the configuration to create.
      * instance_config.name must be
@@ -41,14 +41,14 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.InstanceConfig instance_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_config = null;
+    protected $instance_config = null;
     /**
      * An option to validate, but not actually execute, a request,
      * and provide the same response.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                                 $parent           Required. The name of the project in which to create the instance

@@ -24,7 +24,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * The backup will contain an externally consistent copy of the database at
      * the timestamp specified by `version_time`. If `version_time` is not
@@ -33,7 +33,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 9;</code>
      */
-    private $version_time = null;
+    protected $version_time = null;
     /**
      * Required for the
      * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
@@ -45,7 +45,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only for the
      * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
@@ -64,7 +64,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time the
      * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
@@ -73,13 +73,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Size of the backup in bytes.
      *
      * Generated from protobuf field <code>int64 size_bytes = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Output only. The number of bytes that will be freed by deleting this
      * backup. This value will be zero if, for example, this backup is part of an
@@ -108,7 +108,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Backup.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The names of the restored databases that reference the backup.
      * The database names are of
@@ -126,7 +126,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionInfo encryption_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_info = null;
+    protected $encryption_info = null;
     /**
      * Output only. The encryption information for the backup, whether it is
      * protected by one or more KMS keys. The information includes all Cloud
@@ -143,7 +143,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $database_dialect = 0;
+    protected $database_dialect = 0;
     /**
      * Output only. The names of the destination backups being created by copying
      * this source backup. The backup names are of the form

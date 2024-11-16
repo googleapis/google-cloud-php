@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ use Google\Cloud\Spanner\V1\ResultSet;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
+use Google\LongRunning\Client\OperationsClient;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
