@@ -18,10 +18,10 @@
 namespace Google\Cloud\Core\Tests\Unit\LongRunning;
 
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\ApiCore\Serializer;
 use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
