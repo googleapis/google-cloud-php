@@ -11,46 +11,115 @@ PHP Version  | Status
 
 View the [list of supported APIs and Services](https://cloud.google.com/php/docs/reference).
 
-If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
+If you need support for other Google APIs, please check out the
+[Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
-## Quick Start
-
-We recommend installing individual component packages. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fcloud-).
+We recommend installing individual component packages. A list of available packages can be found on
+[Packagist](https://packagist.org/search/?q=google%2Fcloud-).
 
 For example:
-
 ```sh
 $ composer require google/cloud-storage
 $ composer require google/cloud-bigquery
 $ composer require google/cloud-datastore
 ```
 
-You can then include the autoloader and create your client:
+## Quickstart
+
+In this guide we'll focus on how to configure your client for local development using the Google
+Cloud CLI (`gcloud`).
+
+### For local development:
+* Install the Google Cloud CLI.
+* Authenticate with `gcloud` to generate the credentials file.
+* Instantiate a client.
+
+### Installing the Google Cloud CLI
+In order to generate our needed credentials file we need to authenticate to gcloud first.
+Installation is handled differently depending on your platform. Here is a link to help you setup
+the Google Cloud CLI:
+
+https://cloud.google.com/sdk/docs/install
+
+### Authenticate via the `gcloud` command
+Once the Google Cloud CLI tools are installed it is required that we authenticate via the `gcloud`:
+```shell
+$ gcloud init
+$ gcloud auth application-default login
+```
+
+This will create a local file in your system that the authentication library for our client will
+read in order to make requests to the apis with those credentials. This file is located in different
+place depending on your system.
+
+Windows:
+```
+%APPDATA%\gcloud\application_default_credentials.json
+```
+
+Linux and MacOS:
+```
+$HOME/.config/gcloud/application_default_credentials.json
+```
+
+To read more about Authentication, see [AUTHENTICATION.md](AUTHENTICATION.md)
+
+### Installing a client
+Install the Google Translate client library with composer
+```sh
+composer install google/cloud-translate
+```
+**Note**: For this example, we are using the Google Translate client library. Check the
+[the complete list of packages](https://cloud.google.com/php/docs/reference/) to find your required
+library.
+
+### Instantiating the client
+Now that we've authenticated and installed the client library, we can instantiate a client which will
+detect the JSON file created by the gcloud CLI and use it to authenticate your requests:
 
 ```php
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
-use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\TranslateTextRequest;
 
-$storage = new StorageClient();
+// Instantiating the client gathers the credentials from the `application_default_credentials.json`
+$client = new TranslationServiceClient([]);
 
-$bucket = $storage->bucket('my_bucket');
+$request = new TranslateTextRequest();
+$request->setParent('projects/<YOUR_PROJECT_ID>');
+$request->setTargetLanguageCode('en-US');
+$request->setContents(['こんにちは']);
 
-// Upload a file to the bucket.
-$bucket->upload(
-    fopen('/data/file.txt', 'r')
-);
+// The request will contain the authentication token based on the default credentials file
+$response = $client->translateText($request);
 
-// Download and store an object from the bucket locally.
-$object = $bucket->object('file_backup.txt');
-$object->downloadToFile('/data/file_backup.txt');
+var_dump($response->getTranslations()[0]);
+// {
+//     ["translatedText"]=>
+//     string(5) "Hello"
+//     ["detectedLanguageCode"]=>
+//     string(2) "ja"
+// }
+
 ```
 
 ### Authentication
 
-Authentication is handled by the client library automatically. You just need to provide the authentication details when creating a client. Generally, authentication is accomplished using a Service Account. For more information on obtaining Service Account credentials, see our [Authentication Guide](https://cloud.google.com/docs/authentication/production#manually).
+#### Note
+This quickstart is built with local development in mind. The steps for deploying your project are
+different depending on the environment you use. Here we provide some basic instruction in how to get
+started with deployment of your project:
 
-Once you've obtained your credentials file, it may be used to create an authenticated client.
+ * For applications running elsewhere, authentication is usually accomplished using a Service
+   Account.
+
+For more information on obtaining Service Account credentials see our
+[Authentication Guide](https://cloud.google.com/docs/authentication/production#manually). Set the
+`GOOGLE_APPLICATION_CREDENTIALS` environment variable pointing to your credentials file.
+
+#### Note:
+Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials file:
 
 ```php
 require 'vendor/autoload.php';
@@ -67,6 +136,21 @@ $cloud = new StorageClient([
     'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
 ]);
 ```
+A list of clients that accept these parameters are:
+- [Bigtable](https://github.com/googleapis/google-cloud-php-bigtable)
+- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
+- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
+- [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
+- [Pubsub](https://github.com/googleapis/google-cloud-php-pubsub)
+- [Debugger](https://github.com/googleapis/google-cloud-php-debugger)
+- [Logging](https://github.com/googleapis/google-cloud-php-logging)
+- [Translate](https://github.com/googleapis/google-cloud-php-translate)
+- [Bigquery](https://github.com/googleapis/google-cloud-php-bigquery)
+- [Storage](https://github.com/googleapis/google-cloud-php-storage)
+
+We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using for more in depth information.
+
+[php-ref-docs]: https://cloud.google.com/php/docs/reference
 
 If you do not wish to embed your authentication information in your application code, you may also make use of [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
 
