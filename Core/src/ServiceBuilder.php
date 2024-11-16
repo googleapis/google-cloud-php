@@ -254,7 +254,7 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $spanner = $cloud->spanner();
+     * $spanner = $cloud->spanner(['projectId' => 'my-project']);
      * ```
      *
      * @param array $config [optional] {

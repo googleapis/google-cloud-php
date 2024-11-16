@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Numeric;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**
  * @group spanner

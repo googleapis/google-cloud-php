@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $batch = $spanner->batch('instance-id', 'database-id');
  * $snapshot = $batch->snapshot();
  *
@@ -62,17 +62,17 @@ class ReadPartition implements PartitionInterface
     /**
      * @var string
      */
-    private $table;
+    private string $table;
 
     /**
      * @var KeySet
      */
-    private $keySet;
+    private KeySet $keySet;
 
     /**
      * @var array
      */
-    private $columns;
+    private array $columns;
 
     /**
      * @param string $token The token identifying the partition.
@@ -95,8 +95,8 @@ class ReadPartition implements PartitionInterface
      * }
      */
     public function __construct(
-        $token,
-        $table,
+        string $token,
+        string $table,
         KeySet $keySet,
         array $columns,
         array $options

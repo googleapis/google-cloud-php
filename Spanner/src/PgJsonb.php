@@ -30,7 +30,7 @@ use JsonSerializable;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $pgJsonb = $spanner->pgJsonb('{}');
  * ```
  */

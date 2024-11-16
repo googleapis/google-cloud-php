@@ -42,7 +42,7 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
 
     public function testAdminClientEmulatorSupport()
     {
-        if (!getenv("SPANNER_EMULATOR_HOST")) {
+        if (!getenv('SPANNER_EMULATOR_HOST')) {
             self::markTestSkipped('This test is required to run only in the emulator.');
         }
 

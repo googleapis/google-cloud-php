@@ -5,7 +5,7 @@ include __DIR__ . '/forked-process-test.php';
 
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
-list ($dbName, $tableName, $id) = getInputArgs();
+list($dbName, $tableName, $id) = getInputArgs();
 
 $tmpFile = sys_get_temp_dir() . '/ConcurrentTransactionsIncremementValueWithExecute.txt';
 setupIterationTracker($tmpFile);
@@ -22,7 +22,7 @@ $callable = function ($dbName, $tableName, $id) use ($tmpFile) {
             ]
         ])->rows()->current();
 
-        $row['number'] +=1;
+        $row['number'] += 1;
 
         $transaction->update($tableName, $row);
         $transaction->commit();

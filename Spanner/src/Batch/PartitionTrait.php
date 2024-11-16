@@ -25,12 +25,12 @@ trait PartitionTrait
     /**
      * @var string
      */
-    private $token;
+    private string $token;
 
     /**
      * @var array
      */
-    private $options;
+    private array $options;
 
     /**
      * Returns the partition token.
@@ -42,7 +42,7 @@ trait PartitionTrait
      *
      * @return string
      */
-    public function token()
+    public function token(): string
     {
         return $this->token;
     }
@@ -57,7 +57,7 @@ trait PartitionTrait
      *
      * @return array
      */
-    public function options()
+    public function options(): array
     {
         return $this->options;
     }
