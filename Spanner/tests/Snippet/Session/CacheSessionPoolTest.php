@@ -35,7 +35,7 @@ class CacheSessionPoolTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(CacheSessionPool::class);
         $snippet->replace('$cache =', '//$cache =');
-        $snippet->addLocal('cache', new MemoryCacheItemPool);
+        $snippet->addLocal('cache', new MemoryCacheItemPool());
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
     }
@@ -48,7 +48,7 @@ class CacheSessionPoolTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(CacheSessionPool::class, 1);
         $snippet->replace('$cache =', '//$cache =');
-        $snippet->addLocal('cache', new MemoryCacheItemPool);
+        $snippet->addLocal('cache', new MemoryCacheItemPool());
         $res = $snippet->invoke();
     }
 
@@ -60,7 +60,7 @@ class CacheSessionPoolTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(CacheSessionPool::class, 2);
         $snippet->replace('$cache =', '//$cache =');
-        $snippet->addLocal('cache', new MemoryCacheItemPool);
+        $snippet->addLocal('cache', new MemoryCacheItemPool());
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
     }

@@ -23,8 +23,8 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgJsonb;
+use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
@@ -63,7 +63,7 @@ class PgQueryTest extends SpannerPgTestCase
             )'
         )->pollUntilComplete();
 
-        self::$timestampVal = new Timestamp(new \DateTime);
+        self::$timestampVal = new Timestamp(new \DateTime());
 
         self::$database->insertOrUpdateBatch(self::TABLE_NAME, [
             [
@@ -312,7 +312,7 @@ class PgQueryTest extends SpannerPgTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(PgNumeric::class, $row['age']);
         $this->assertEquals($str, $val->formatAsString());
-        $this->assertEquals($str, (string)$val->get());
+        $this->assertEquals($str, (string) $val->get());
     }
 
     public function testBindPgNumericParameterNull()
@@ -358,7 +358,7 @@ class PgQueryTest extends SpannerPgTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(Bytes::class, $row['bytes_col']);
         $this->assertEquals($str, base64_decode($bytes->formatAsString()));
-        $this->assertEquals($str, (string)$bytes->get());
+        $this->assertEquals($str, (string) $bytes->get());
     }
 
     public function testBindBytesParameterNull()
@@ -437,7 +437,7 @@ class PgQueryTest extends SpannerPgTestCase
 
     public function testBindDateParameter()
     {
-        $res = self::$database->execute("SELECT * FROM " . self::TABLE_NAME . " WHERE dt BETWEEN $1 AND $2", [
+        $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE dt BETWEEN $1 AND $2', [
             'parameters' => [
                 'p1' => new Date(new \DateTime('2020-01-01')),
                 'p2' => new Date(new \DateTime('2021-01-01'))
@@ -512,7 +512,7 @@ class PgQueryTest extends SpannerPgTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(PgJsonb::class, $row['data']);
         $this->assertEquals($str, $val->formatAsString());
-        $this->assertEquals($str, (string)$val->get());
+        $this->assertEquals($str, (string) $val->get());
     }
 
     public function testBindJsonbParameterNull()
@@ -579,16 +579,16 @@ class PgQueryTest extends SpannerPgTestCase
     {
         return [
             // boolean
-            [[true,true,false]],
+            [[true, true, false]],
 
             // int64
-            [[5,4,3,2,1]],
+            [[5, 4, 3, 2, 1]],
 
             // float64
             [[3.14, 4.13, 1.43]],
 
             // string
-            [['hello','world','google','cloud']],
+            [['hello', 'world', 'google', 'cloud']],
 
             // bytes
             [
@@ -661,7 +661,7 @@ class PgQueryTest extends SpannerPgTestCase
                 [
                     new PgJsonb('{}'),
                     new PgJsonb('{"a": "b"}'),
-                    new PgJsonb(["a" => "b"])
+                    new PgJsonb(['a' => 'b'])
                 ],
                 ['{}', '{"a": "b"}', '{"a": "b"}'],
                 PgJsonb::class,
@@ -674,7 +674,7 @@ class PgQueryTest extends SpannerPgTestCase
                 }
             ],
             // pg_oid
-            [[5,4,3,2,1]],
+            [[5, 4, 3, 2, 1]],
         ];
     }
 

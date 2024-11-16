@@ -17,12 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -63,7 +62,7 @@ class AdminTest extends SpannerTestCase
             'processingUnits' => $processingUnits,
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
         $op->pollUntilComplete();
 
         $instance = $client->instance(self::INSTANCE_NAME);
@@ -95,8 +94,9 @@ class AdminTest extends SpannerTestCase
         $dbName = uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
-        $db = $op->pollUntilComplete();
+        $this->assertInstanceOf(OperationResponse::class, $op);
+        $op->pollUntilComplete();
+        $db = $op->getResult();
         $this->assertInstanceOf(Database::class, $db);
 
         self::$deletionQueue->add(function () use ($db) {
@@ -114,7 +114,7 @@ class AdminTest extends SpannerTestCase
         $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
 
         // TODO: Remove this, when the emulator supports PGSQL
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
             $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
         }
 
@@ -122,7 +122,7 @@ class AdminTest extends SpannerTestCase
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .
-            ") PRIMARY KEY(id)";
+            ') PRIMARY KEY(id)';
 
         $op = $db->updateDdl($stmt);
         $op->pollUntilComplete();
@@ -138,7 +138,7 @@ class AdminTest extends SpannerTestCase
         $dbName = uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 
@@ -203,7 +203,7 @@ class AdminTest extends SpannerTestCase
         $replicas[array_rand($replicas)]['defaultLeaderLocation'] = true;
         $op = $customConfiguration->create($baseConfig, $replicas);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
         $op->pollUntilComplete();
 
         $this->assertTrue($customConfiguration->exists());
@@ -289,7 +289,7 @@ class AdminTest extends SpannerTestCase
             'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(OperationResponse::class, $op);
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 

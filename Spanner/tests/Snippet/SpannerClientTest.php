@@ -17,31 +17,30 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgOid;
-use Google\Cloud\Spanner\PgJsonb;
-use Prophecy\Argument;
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Timestamp;
+use Google\Protobuf\Duration;
 
 /**
  * @group spanner
@@ -49,22 +48,24 @@ use Prophecy\Argument;
 class SpannerClientTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'foo';
     const INSTANCE = 'my-instance';
 
     private $client;
-    private $connection;
+    private $spannerClient;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
-        $this->client = TestHelpers::stub(SpannerClient::class);
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->serializer = new Serializer();
+        $this->client = new SpannerClient(
+            [['projectId' => self::PROJECT]],
+            ['requestHandler', 'serializer']
+        );
     }
 
     public function testClass()
@@ -87,16 +88,18 @@ class SpannerClientTest extends SnippetTestCase
      */
     public function testInstanceConfigurations()
     {
-        $this->connection->listInstanceConfigs(Argument::any())
-            ->shouldBeCalled()
+        $this->instanceAdminClient->listInstanceConfigs(
+            Argument::type(ListInstanceConfigsRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
             ->willReturn([
                 'instanceConfigs' => [
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/foo'],
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/bar'],
                 ]
-            ]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            ]
+        );
 
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfigurations');
         $snippet->addLocal('spanner', $this->client);
@@ -136,14 +139,15 @@ class SpannerClientTest extends SnippetTestCase
         $snippet->addLocal('spanner', $this->client);
         $snippet->addLocal('configuration', $this->client->instanceConfiguration(self::CONFIG));
 
-        $this->connection->createInstance(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->instanceAdminClient->createInstance(
+            Argument::type(CreateInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     /**
@@ -170,16 +174,18 @@ class SpannerClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instances');
         $snippet->addLocal('spanner', $this->client);
 
-        $this->connection->listInstances(Argument::any())
-            ->shouldBeCalled()
+        $this->instanceAdminClient->listInstances(
+            Argument::type(ListInstancesRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
             ->willReturn([
                 'instances' => [
                     ['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)],
                     ['name' => InstanceAdminClient::instanceName(self::PROJECT, 'bar')]
                 ]
-            ]);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
+            ]
+        );
 
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -273,7 +279,7 @@ class SpannerClientTest extends SnippetTestCase
         $snippet->addLocal('operationName', 'operations/foo');
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testEmulator()

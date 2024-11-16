@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -63,7 +63,7 @@ class BytesTest extends SnippetTestCase
         $res = $snippet->invoke('stream');
 
         $this->assertInstanceOf(StreamInterface::class, $res->returnVal());
-        $this->assertEquals(self::BYTES, (string)$res->returnVal());
+        $this->assertEquals(self::BYTES, (string) $res->returnVal());
     }
 
     public function testType()

@@ -17,16 +17,24 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Closure;
 use DateTimeInterface;
+use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
+use Google\LongRunning\ListOperationsRequest;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -35,110 +43,39 @@ use DateTimeInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $backup = $spanner->instance('my-instance')->backup('my-backup');
  * ```
- *
- * @method resumeOperation() {
- *     Resume a long running operation
- *
- *     Example:
- *     ```
- *     $operation = $backup->resumeOperation($operationName);
- *     ```
- *
- *     @param string $operationName The long running operation name.
- *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
- * }
- * @method longRunningOperations() {
- *     List long running operations.
- *
- *     Example:
- *     ```
- *     $operations = $backup->longRunningOperations();
- *     ```
- *
- *     @param array $options [optional] {
- *         Configuration Options.
- *
- *         @type string $name The name of the operation collection.
- *         @type string $filter The standard list filter.
- *         @type int $pageSize Maximum number of results to return per
- *               request.
- *         @type int $resultLimit Limit the number of results returned in total.
- *               **Defaults to** `0` (return all results).
- *         @type string $pageToken A previously-returned page token used to
- *               resume the loading of results from a specific point.
- *     }
- *     @return ItemIterator<LongRunningOperation>
- * }
  */
 class Backup
 {
-    use ArrayTrait;
-    use LROTrait;
+    use RequestTrait;
 
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;
 
     /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
-     * @var Instance
-     */
-    private $instance;
-
-    /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var array
-     */
-    private $info;
-
-    /**
      * Create an object representing a Backup.
      *
-     * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
+     * @internal Backup is constructed by the {@see Instance} class.
+     *
+     * @param DatabaseAdminClient The database admin client to make backup RPC calls.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the backup exists.
-     * @param LongRunningConnectionInterface $lroConnection An implementation
-     *        mapping to methods which handle LRO resolution in the service.
-     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The backup name or ID.
      * @param array $info [optional] An array representing the backup resource.
      */
     public function __construct(
-        ConnectionInterface $connection,
-        Instance $instance,
-        LongRunningConnectionInterface $lroConnection,
-        array $lroCallables,
-        $projectId,
-        $name,
-        array $info = []
+        private DatabaseAdminClient $databaseAdminClient,
+        private Serializer $serializer,
+        private Instance $instance,
+        private string $projectId,
+        private string $name,
+        private array $info = []
     ) {
-        $this->connection = $connection;
-        $this->instance = $instance;
-        $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedBackupName($name);
-        $this->info = $info;
-
-        $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
 
     /**
@@ -161,32 +98,32 @@ class Backup
      *              consistent copy of the database. If not present, it will be the same
      *              as the create time of the backup.
      *     }
-     * @return LongRunningOperation<Backup>
+     * @return OperationResponse
      * @throws \InvalidArgumentException
      */
     public function create($database, DateTimeInterface $expireTime, array $options = [])
     {
-        if (isset($options['versionTime'])) {
-            if (!($options['versionTime'] instanceof DateTimeInterface)) {
-                throw new \InvalidArgumentException(
-                    'Optional argument `versionTime` must be a DateTimeInterface, got ' .
-                    (is_object($options['versionTime'])
-                        ? get_class($options['versionTime'])
-                        : gettype($options['versionTime']))
-                );
-            }
-            $options['versionTime'] = $options['versionTime']->format('Y-m-d\TH:i:s.u\Z');
-        }
-        $operation = $this->connection->createBackup([
-            'instance' => $this->instance->name(),
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $data = $this->validateAndFormatVersionTime($data);
+
+        $data += [
+            'parent' => $this->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($this->name)['backup'],
             'backup' => [
                 'database' => $this->instance->database($database)->name(),
-                'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z'),
+                'expireTime' => $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
             ],
-        ] + $options);
+        ];
+        if (isset($data['versionTime'])) {
+            $data['backup']['versionTime'] = $data['versionTime'];
+            unset($data['versionTime']);
+        }
 
-        return $this->resumeOperation($operation['name'], $operation);
+        $request = $this->serializer->decodeMessage(new CreateBackupRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
+
+        return $this->databaseAdminClient->createBackup($request, $callOptions)
+            ->withResultFunction($this->backupResultFunction());
     }
 
     /**
@@ -209,24 +146,25 @@ class Backup
      *        eligible to be automatically deleted by Cloud Spanner.
      * @param array $options [optional] {
      *         Configuration Options.
-     *
-     *         @type DateTimeInterface $versionTime The version time for the externally
-     *              consistent copy of the database. If not present, it will be the same
-     *              as the create time of the backup.
      *     }
-     * @return LongRunningOperation<Backup>
+     * @return OperationResponse
      * @throws \InvalidArgumentException
      */
     public function createCopy(Backup $newBackup, DateTimeInterface $expireTime, array $options = [])
     {
-        $operation = $this->connection->copyBackup([
-            'instance' => $newBackup->instance->name(),
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $data += [
+            'parent' => $newBackup->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
-            'sourceBackupId' => $this->fullyQualifiedBackupName($this->name),
-            'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
-        ] + $options);
+            'sourceBackup' => $this->fullyQualifiedBackupName($this->name),
+            'expireTime' => $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
+        ];
 
-        return $this->resumeOperation($operation['name'], $operation);
+        $request = $this->serializer->decodeMessage(new CopyBackupRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
+
+        return $this->databaseAdminClient->copyBackup($request, $callOptions)
+            ->withResultFunction($this->backupResultFunction());
     }
 
     /**
@@ -242,7 +180,15 @@ class Backup
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteBackup(['name' => $this->name] + $options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $data += [
+            'name' => $this->name
+        ];
+
+        $request = $this->serializer->decodeMessage(new DeleteBackupRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $this->databaseAdminClient->deleteBackup($request, $callOptions);
     }
 
     /**
@@ -318,9 +264,16 @@ class Backup
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getBackup([
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $data += [
             'name' => $this->name
-        ] + $options);
+        ];
+
+        $request = $this->serializer->decodeMessage(new GetBackupRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $response = $this->databaseAdminClient->getBackup($request, $callOptions);
+        return $this->info = $this->handleResponse($response);
     }
 
     /**
@@ -368,15 +321,79 @@ class Backup
      */
     public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = [])
     {
-        return $this->info = $this->connection->updateBackup([
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $data += [
             'backup' => [
                 'name' => $this->name(),
-                'expireTime' => $newTimestamp->format('Y-m-d\TH:i:s.u\Z'),
+                'expireTime' => $this->formatTimestampForApi(
+                    $newTimestamp->format('Y-m-d\TH:i:s.u\Z')
+                ),
             ],
             'updateMask' => [
                 'paths' => ['expire_time']
             ]
-        ] + $options);
+        ];
+
+        $request = $this->serializer->decodeMessage(new UpdateBackupRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+
+        $response = $this->databaseAdminClient->updateBackup($request, $callOptions);
+        return $this->info = $this->handleResponse($response);
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, array $options = [])
+    {
+        return (new OperationResponse(
+            $operationName,
+            $this->databaseAdminClient->getOperationsClient(),
+            $options
+        ))->withResultFunction($this->backupResultFunction());
+    }
+
+    /**
+     * List long running operations.
+     *
+     * Example:
+     * ```
+     * $operations = $backup->longRunningOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $name The name of the operation collection.
+     *     @type string $filter The standard list filter.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return PagedListResponse<OperationResponse>
+     */
+    public function longRunningOperations(array $options = [])
+    {
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
+        $request->setName($this->name . '/operations');
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
+            $request,
+            $callOptions
+        );
     }
 
     /**
@@ -399,5 +416,36 @@ class Backup
             return $name;
         }
         //@codeCoverageIgnoreEnd
+    }
+
+    /**
+     * @param array $options
+     * @return array
+     */
+    private function validateAndFormatVersionTime(array $options)
+    {
+        if (isset($options['versionTime'])) {
+            if (!($options['versionTime'] instanceof DateTimeInterface)) {
+                throw new \InvalidArgumentException(
+                    'Optional argument `versionTime` must be a DateTimeInterface, got ' .
+                    (is_object($options['versionTime'])
+                        ? get_class($options['versionTime'])
+                        : gettype($options['versionTime']))
+                );
+            }
+            $options['versionTime'] = $this->formatTimestampForApi(
+                $options['versionTime']->format('Y-m-d\TH:i:s.u\Z')
+            );
+        }
+        return $options;
+    }
+
+    private function backupResultFunction(): Closure
+    {
+        return function (BackupProto $backup) {
+            $name = DatabaseAdminClient::parseName($backup->getName());
+            $info = $this->serializer->decodeMessage($backup);
+            return $this->instance->backup($name['name'], $info);
+        };
     }
 }

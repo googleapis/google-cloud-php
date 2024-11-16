@@ -28,7 +28,7 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $pgOid = $spanner->pgOid('123');
  * ```
  */

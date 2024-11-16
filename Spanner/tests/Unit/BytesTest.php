@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Bytes;
 use PHPUnit\Framework\TestCase;
 
 /**

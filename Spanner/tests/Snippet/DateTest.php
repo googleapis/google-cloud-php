@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**
  * @group spanner
@@ -36,7 +36,7 @@ class DateTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->dt = new \DateTimeImmutable;
+        $this->dt = new \DateTimeImmutable();
         $this->date = new Date($this->dt);
     }
 
