@@ -46,7 +46,7 @@ class PgJsonbTest extends TestCase
     {
         $obj = $this->prophesize('stdClass');
         $obj->willImplement('JsonSerializable');
-        $obj->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
+        $obj->jsonSerialize()->willReturn(['a' => 1, 'b' => null]);
 
         return
             [
@@ -56,7 +56,7 @@ class PgJsonbTest extends TestCase
                 // // null value shouldn't be casted
                 [null, null],
                 // // arrays should be converted to JSON
-                [["a"=>1.1, "b"=>"2"], '{"a":1.1,"b":"2"}'],
+                [['a' => 1.1, 'b' => '2'], '{"a":1.1,"b":"2"}'],
                 // JsonSerializable should be used after a json_encode call
                 [$obj->reveal(), '{"a":1,"b":null}']
             ];

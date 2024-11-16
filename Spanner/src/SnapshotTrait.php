@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
@@ -25,6 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 trait SnapshotTrait
 {
+    use ArrayTrait;
     use TransactionalReadTrait;
 
     /**
@@ -64,9 +66,9 @@ trait SnapshotTrait
             throw new \InvalidArgumentException('$options.readTimestamp must be an instance of Timestamp.');
         }
 
-        $this->transactionId = $options['id'] ?: null;
-        $this->readTimestamp = $options['readTimestamp'];
-        $this->type = $options['id']
+        $this->transactionId = $this->pluck('id', $options) ?: null;
+        $this->readTimestamp = $this->pluck('readTimestamp', $options) ?: null;
+        $this->type = $this->transactionId
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 

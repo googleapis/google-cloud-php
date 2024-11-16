@@ -372,7 +372,7 @@ class ReadTest extends SpannerTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
@@ -394,7 +394,7 @@ class ReadTest extends SpannerTestCase
         };
 
         $limitCount = count(iterator_to_array($res(10)));
-        $unlimitCount = count(iterator_to_array($res(null)));
+        $unlimitCount = count(iterator_to_array($res(0)));
 
         $this->assertEquals(10, $limitCount);
         $this->assertNotEquals($limitCount, $unlimitCount);
