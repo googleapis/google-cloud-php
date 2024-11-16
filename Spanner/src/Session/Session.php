@@ -112,7 +112,7 @@ class Session
      */
     public function exists(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name()
         ];
@@ -137,7 +137,7 @@ class Session
      */
     public function delete(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data = [
             'name' => $this->name()
         ];

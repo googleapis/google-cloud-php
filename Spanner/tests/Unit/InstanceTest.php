@@ -604,6 +604,7 @@ class InstanceTest extends TestCase
         ];
 
         $this->page->getResponseObject()->willReturn(new ListBackupOperationsResponse(['operations' => $operations]));
+        $this->page->getNextPageToken()->willReturn(null);
 
         $this->databaseAdminClient->listBackupOperations(
             Argument::that(function ($request) {
@@ -637,6 +638,7 @@ class InstanceTest extends TestCase
         ];
 
         $this->page->getResponseObject()->willReturn(new ListDatabaseOperationsResponse(['operations' => $operations]));
+        $this->page->getNextPageToken()->willReturn(null);
 
         $this->databaseAdminClient->listDatabaseOperations(
             Argument::that(function ($request) {

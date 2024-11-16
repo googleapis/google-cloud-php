@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\LongRunning\ListOperationsRequest;
 
 /**
  * Represents a Cloud Spanner instance
@@ -193,7 +194,7 @@ class Instance
      */
     public function exists(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         try {
             if ($this->info) {
                 $data += [
@@ -237,7 +238,7 @@ class Instance
      */
     public function reload(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
         ];
@@ -408,7 +409,7 @@ class Instance
      */
     public function delete(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new DeleteInstanceRequest(), $data);
@@ -538,7 +539,7 @@ class Instance
      */
     public function databases(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['parent'] = $this->name;
 
         $resultLimit = $this->pluck('resultLimit', $data, false);
@@ -624,7 +625,7 @@ class Instance
      */
     public function backups(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['parent'] = $this->name;
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
@@ -829,11 +830,47 @@ class Instance
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName)
+    public function resumeOperation($operationName, array $options = [])
     {
-        return new OperationResponse(
+        return (new OperationResponse(
             $operationName,
-            $this->instanceAdminClient->getOperationsClient()
+            $this->instanceAdminClient->getOperationsClient(),
+            $options
+        ))->withResultFunction($this->instanceResultFunction());
+    }
+
+    /**
+     * List long running operations.
+     *
+     * Example:
+     * ```
+     * $operations = $backup->longRunningOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $name The name of the operation collection.
+     *     @type string $filter The standard list filter.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return PagedListResponse<OperationResponse>
+     */
+    public function longRunningOperations(array $options = [])
+    {
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
+        $request->setName($this->name . '/operations');
+
+        return $this->buildLongRunningIterator(
+            [$this->instanceAdminClient->getOperationsClient(), 'listOperations'],
+            $request,
+            $callOptions
         );
     }
 

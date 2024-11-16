@@ -31,6 +31,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
+use Google\LongRunning\ListOperationsRequest;
 use Google\Rpc\Code;
 
 /**
@@ -170,7 +171,7 @@ class InstanceConfiguration
      */
     public function reload(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
         $callOptions = $this->addResourcePrefixHeader(
             $callOptions,
@@ -221,7 +222,7 @@ class InstanceConfiguration
      */
     public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
 
         $leaderOptions = $baseConfig->__debugInfo()['info']['leaderOptions'] ?? [];
         $validateOnly = $data['validateOnly'] ?? false;
@@ -283,7 +284,7 @@ class InstanceConfiguration
      */
     public function update(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $validateOnly = $data['validateOnly'] ?? false;
         unset($data['validateOnly']);
         $data += ['name' => $this->name];
@@ -322,13 +323,33 @@ class InstanceConfiguration
      */
     public function delete(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
 
         $this->instanceAdminClient->deleteInstanceConfig(
             $this->serializer->decodeMessage(new DeleteInstanceConfigRequest(), $data),
             $this->addResourcePrefixHeader($callOptions, $this->name)
         );
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, array $options = [])
+    {
+        return (new OperationResponse(
+            $operationName,
+            $this->instanceAdminClient->getOperationsClient(),
+            $options
+        ))->withResultFunction($this->instanceConfigResultFunction());
     }
 
     /**

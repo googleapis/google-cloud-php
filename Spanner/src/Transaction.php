@@ -517,6 +517,8 @@ class Transaction implements TransactionalReadInterface
         $selector = $this->transactionSelector($options);
         $options['transaction'] = $selector[0];
 
-        return $this->addLarHeader($options);
+        $options['headers']['spanner-route-to-leader'] = ['true'];
+
+        return $options;
     }
 }

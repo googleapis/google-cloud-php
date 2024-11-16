@@ -153,7 +153,7 @@ class Operation
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $mutations = $this->serializeMutations($mutations);
         $data += [
             'transactionId' => null,
@@ -195,7 +195,7 @@ class Operation
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
 
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data = [
             'session' => $session->name(),
             'transactionId' => $transactionId
@@ -369,7 +369,7 @@ class Operation
         array $statements,
         array $options = []
     ) {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['transaction'] = $this->createTransactionSelector($data, $transaction->id());
         $data += [
             'session' => $session->name(),
@@ -647,7 +647,7 @@ class Operation
      */
     public function createSession($databaseName, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data = [
             'database' => $databaseName,
             'session' => [
@@ -732,7 +732,7 @@ class Operation
     {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
 
         $data = $this->formatPartitionQueryOptions($data);
         $data += [
@@ -795,7 +795,7 @@ class Operation
     ) {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'transaction' => $this->createTransactionSelector($data, $transactionId),
             'session' => $session->name(),
@@ -853,7 +853,7 @@ class Operation
      */
     private function beginTransaction(Session $session, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $transactionOptions = $this->formatTransactionOptions(
             $this->pluck('transactionOptions', $data, false) ?: []
         );

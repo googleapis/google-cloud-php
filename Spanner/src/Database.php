@@ -55,6 +55,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\LongRunning\ListOperationsRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
@@ -353,7 +354,7 @@ class Database
      */
     public function reload(array $options = []): array
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);
@@ -412,7 +413,7 @@ class Database
      */
     public function create(array $options = []): OperationResponse
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $dialect = $data['databaseDialect'] ?? DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
 
         $data += [
@@ -471,7 +472,7 @@ class Database
      */
     public function updateDatabase(array $options = []): OperationResponse
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $fieldMask = [];
 
         if (isset($data['enableDropProtection'])) {
@@ -555,7 +556,7 @@ class Database
      */
     public function updateDdlBatch(array $statements, array $options = []): OperationResponse
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'database' => $this->name,
             'statements' => $statements
@@ -591,7 +592,7 @@ class Database
      */
     public function drop(array $options = []): void
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new DropDatabaseRequest(), $data);
@@ -628,7 +629,7 @@ class Database
      */
     public function ddl(array $options = []): array
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new GetDatabaseDdlRequest(), $data);
@@ -1774,7 +1775,7 @@ class Database
         );
 
         try {
-            list($data, $callOptions) = $this->splitOptionalArgs($options);
+            [$data, $callOptions] = $this->splitOptionalArgs($options);
             $data += [
                 'session' => $session->name(),
                 'mutationGroups' => $mutationGroups
@@ -2198,7 +2199,7 @@ class Database
      */
     public function batchCreateSessions(array $options): array
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
@@ -2221,7 +2222,7 @@ class Database
      */
     public function deleteSessionAsync(array $options): PromiseInterface
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
 
         $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
         $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
@@ -2252,35 +2253,15 @@ class Database
      */
     public function backupOperations(array $options = []): ItemIterator
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $data['parent'] = $this->instance->name();
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+        $request = $this->serializer->decodeMessage(new ListBackupOperationsRequest(), $data);
+        $request->setParent($this->instance->name());
 
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $operation) {
-                    return new OperationResponse(
-                        $operation['name'],
-                        $this->databaseAdminClient->getOperationsClient(),
-                    );
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
-
-                    $request = $this->serializer->decodeMessage(new ListBackupOperationsRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-
-                    $response = $this->databaseAdminClient->listBackupOperations($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'operations',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listBackupOperations'],
+            $request,
+            $callOptions
         );
     }
 
@@ -2297,7 +2278,7 @@ class Database
      */
     public function createDatabaseFromBackup($name, $backup, array $options = []): OperationResponse
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $this->instance->name(),
             'databaseId' => $this->databaseIdOnly($name),
@@ -2334,35 +2315,15 @@ class Database
      */
     public function databaseOperations(array $options = []): ItemIterator
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $data['parent'] = $this->instance->name();
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
+        $request = $this->serializer->decodeMessage(new ListDatabaseOperationsRequest(), $data);
+        $request->setParent($this->instance->name());
 
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $operation) {
-                    return new OperationResponse(
-                        $operation['name'],
-                        $this->databaseAdminClient->getOperationsClient(),
-                    );
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
-
-                    $request = $this->serializer->decodeMessage(new ListDatabaseOperationsRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
-
-                    $response = $this->databaseAdminClient->listDatabaseOperations($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'operations',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient, 'listDatabaseOperations'],
+            $request,
+            $callOptions
         );
     }
 
@@ -2377,11 +2338,47 @@ class Database
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName): OperationResponse
+    public function resumeOperation($operationName, array $options = [])
     {
-        return new OperationResponse(
+        return (new OperationResponse(
             $operationName,
-            $this->databaseAdminClient->getOperationsClient()
+            $this->databaseAdminClient->getOperationsClient(),
+            $options
+        ))->withResultFunction($this->databaseResultFunction());
+    }
+
+    /**
+     * List long running operations.
+     *
+     * Example:
+     * ```
+     * $operations = $backup->longRunningOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $name The name of the operation collection.
+     *     @type string $filter The standard list filter.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return PagedListResponse<OperationResponse>
+     */
+    public function longRunningOperations(array $options = [])
+    {
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
+        $request->setName($this->name . '/operations');
+
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
+            $request,
+            $callOptions
         );
     }
 
@@ -2507,10 +2504,6 @@ class Database
 
             switch ($type) {
                 case Operation::OP_DELETE:
-                    if (isset($data['keySet'])) {
-                        $data['keySet'] = $this->formatKeySet($data['keySet']);
-                    }
-
                     $operation = $this->serializer->decodeMessage(
                         new Delete(),
                         $data

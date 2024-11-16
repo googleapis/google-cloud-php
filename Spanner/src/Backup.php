@@ -35,7 +35,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\LongRunning\ListOperationsRequest;
-use Google\LongRunning\Operation;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -104,7 +103,7 @@ class Backup
      */
     public function create($database, DateTimeInterface $expireTime, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data = $this->validateAndFormatVersionTime($data);
 
         $data += [
@@ -153,7 +152,7 @@ class Backup
      */
     public function createCopy(Backup $newBackup, DateTimeInterface $expireTime, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $newBackup->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
@@ -181,7 +180,7 @@ class Backup
      */
     public function delete(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
         ];
@@ -265,7 +264,7 @@ class Backup
      */
     public function reload(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'name' => $this->name
         ];
@@ -322,7 +321,7 @@ class Backup
      */
     public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'backup' => [
                 'name' => $this->name(),
@@ -386,34 +385,14 @@ class Backup
      */
     public function longRunningOperations(array $options = [])
     {
-        $options += ['name' => $this->name . '/operations'];
-        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
+        $request->setName($this->name . '/operations');
 
-        return new ItemIterator(
-            new PageIterator(
-                function (Operation $operation) {
-                    return $this->resumeOperation(
-                        $operation->getName(),
-                        ['lastProtoResponse' => $operation]
-                    );
-                },
-                function (array $args) {
-                    $nextPageToken = $this->pluck('pageToken', $args, false) ?: null;
-                    $operationsClient = $this->databaseAdminClient->getOperationsClient();
-                    $page = $operationsClient->listOperations(...$args)->getPage();
-                    return [
-                        'operations' => iterator_to_array($page->getResponseObject()->getOperations()),
-                        'nextResultTokenPath' => $page->getNextPageToken(),
-                    ];
-                },
-                [$request, $callOptions],
-                [
-                    'itemsKey' => 'operations',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildLongRunningIterator(
+            [$this->databaseAdminClient->getOperationsClient(), 'listOperations'],
+            $request,
+            $callOptions
         );
     }
 

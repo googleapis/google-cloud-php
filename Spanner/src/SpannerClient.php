@@ -42,6 +42,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\LongRunning\ListOperationsRequest;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
@@ -465,7 +466,7 @@ class SpannerClient
      */
     public function instanceConfigurations(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['parent'] = $this->projectName;
 
         $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
@@ -555,31 +556,24 @@ class SpannerClient
      */
     public function instanceConfigOperations(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        $data['parent'] = $this->projectName;
-        return new ItemIterator(
-            new PageIterator(
-                function (OperationResponse $operation) {
-                    return $operation;
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
+        $request = $this->serializer->decodeMessage(new ListInstanceConfigOperationsRequest(), $data);
+        $request->setParent($this->projectName);
 
-                    $request = $this->serializer->decodeMessage(new ListInstanceConfigOperationsRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
-
-                    $response = $this->instanceAdminClient->listInstanceConfigOperations($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'operations',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildLongRunningIterator(
+            [$this->instanceAdminClient, 'listInstanceConfigOperations'],
+            $request,
+            $callOptions,
+            function (Operation $operation) {
+                return $this->resumeOperation(
+                    $operation->getName(),
+                    ['lastProtoResponse' => $operation]
+                )->withResultFunction(function (InstanceConfig $result) {
+                    $config = $this->serializer->encodeMessage($result);
+                    return $this->instanceConfiguration($config['name'], $config);
+                });
+            },
         );
     }
 
@@ -671,7 +665,7 @@ class SpannerClient
      */
     public function instances(array $options = [])
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($options);
+        [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += ['filter' => '', 'parent' => $this->projectName];
 
         $resultLimit = $this->pluck('resultLimit', $data, false);
@@ -750,11 +744,12 @@ class SpannerClient
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName)
+    public function resumeOperation($operationName, array $options = [])
     {
         return new OperationResponse(
             $operationName,
-            $this->databaseAdminClient->getOperationsClient()
+            $this->databaseAdminClient->getOperationsClient(),
+            $options
         );
     }
 

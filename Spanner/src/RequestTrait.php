@@ -17,9 +17,14 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Internal\Message;
 
 /**
  * Shared functionality for Spanner requests.
@@ -68,5 +73,55 @@ trait RequestTrait
     {
         $args['headers'][$this->resourcePrefixHeader] = [$value];
         return $args;
+    }
+
+    /**
+     * Helper making list calls for long running operations.
+     *
+     *
+     * @param callable $call The GAPIC client and method for the list operations request
+     * @param Message $request The list operations request
+     * @param array $callOptions [optional] Call options for the request
+     * @param callable $operationResponseMapper [optional] A callable to map the Operation to an
+     *        operation response. Defaults to `$this->resumeOperation()`.
+     * @return ItemIterator<OperationResponse>
+     */
+    private function buildLongRunningIterator(
+        callable $call,
+        Message $request,
+        array $callOptions = [],
+        ?callable $operationResponseMapper = null
+    ): ItemIterator {
+        $resultLimit = $this->pluck('resultLimit', $callOptions, false) ?: 0;
+        return new ItemIterator(
+            new PageIterator(
+                $operationResponseMapper ?: function (Operation $operation) {
+                    return $this->resumeOperation(
+                        $operation->getName(),
+                        ['lastProtoResponse' => $operation]
+                    );
+                },
+                function (array $args) use ($call) {
+                    if ($pageToken = $this->pluck('pageToken', $args, false) ?: null) {
+                        $args['request']->setPageToken($pageToken);
+                    }
+                    try {
+                        $page = $call($args['request'], $args['callOptions'])->getPage();
+                    } catch (ApiException $e) {
+                        throw $this->convertToGoogleException($e);
+                    }
+                    return [
+                        'operations' => iterator_to_array($page->getResponseObject()->getOperations()),
+                        'nextResultToken' => $page->getNextPageToken(),
+                    ];
+                }, [
+                    'request' => $request,
+                    'callOptions' => $callOptions
+                ], [
+                    'itemsKey' => 'operations',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 }
