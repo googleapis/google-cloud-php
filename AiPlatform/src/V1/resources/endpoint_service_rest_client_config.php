@@ -120,6 +120,19 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateEndpointLongRunning' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{endpoint.name=projects/*/locations/*/endpoints/*}:update',
+                'body' => '*',
+                'placeholders' => [
+                    'endpoint.name' => [
+                        'getters' => [
+                            'getEndpoint',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

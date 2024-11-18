@@ -243,6 +243,11 @@
                                 "updateEndpoint"
                             ]
                         },
+                        "UpdateEndpointLongRunning": {
+                            "methods": [
+                                "updateEndpointLongRunning"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
