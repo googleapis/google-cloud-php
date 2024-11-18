@@ -206,6 +206,27 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * git_repository_link resource.
      *
@@ -267,13 +288,36 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a service
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $namespace
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     */
+    public static function serviceName(string $project, string $location, string $namespace, string $service): string
+    {
+        return self::getPathTemplate('service')->render([
+            'project' => $project,
+            'location' => $location,
+            'namespace' => $namespace,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - connection: projects/{project}/locations/{location}/connections/{connection}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
+     * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
