@@ -141,7 +141,7 @@ class Instance
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -168,7 +168,7 @@ class Instance
      *
      * @return array
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         if (!$this->info) {
             $this->reload($options);
@@ -192,7 +192,7 @@ class Instance
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         try {
@@ -236,7 +236,7 @@ class Instance
      * }
      * @return array
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
@@ -287,7 +287,7 @@ class Instance
      * @throws \InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
-    public function create(InstanceConfiguration $config, array $options = [])
+    public function create(InstanceConfiguration $config, array $options = []): OperationResponse
     {
         list($instance, $callOptions) = $this->splitOptionalArgs($options);
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
@@ -332,7 +332,7 @@ class Instance
      * @param array $options [optional] Configuration options.
      * @return int|null
      */
-    public function state(array $options = [])
+    public function state(array $options = []): int|null
     {
         $info = $this->info($options);
 
@@ -371,7 +371,7 @@ class Instance
      * @return OperationResponse
      * @throws \InvalidArgumentException
      */
-    public function update(array $options = [])
+    public function update(array $options = []): OperationResponse
     {
         list($instance, $callOptions) = $this->splitOptionalArgs($options);
 
@@ -407,7 +407,7 @@ class Instance
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): void
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['name'] = $this->name;
@@ -440,7 +440,7 @@ class Instance
      * }
      * @return OperationResponse
      */
-    public function createDatabase($name, array $options = [])
+    public function createDatabase($name, array $options = []): OperationResponse
     {
         $instantiation = $this->pluckArray(['sessionPool'], $options);
 
@@ -464,7 +464,7 @@ class Instance
      *
      * @return OperationResponse
      */
-    public function createDatabaseFromBackup($name, $backup, array $options = [])
+    public function createDatabaseFromBackup($name, $backup, array $options = []): OperationResponse
     {
         return $this->database($name)->createDatabaseFromBackup($name, $backup, $options);
     }
@@ -493,7 +493,7 @@ class Instance
      * }
      * @return Database
      */
-    public function database($name, array $options = [])
+    public function database($name, array $options = []): Database
     {
         return new Database(
             $this->spannerClient,
@@ -537,34 +537,23 @@ class Instance
      * }
      * @return ItemIterator<Database>
      */
-    public function databases(array $options = [])
+    public function databases(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['parent'] = $this->name;
 
-        $resultLimit = $this->pluck('resultLimit', $data, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $database) {
-                    return $this->database($database['name'], ['database' => $database]);
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
+        $request = $this->serializer->decodeMessage(new ListDatabasesRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-                    $request = $this->serializer->decodeMessage(new ListDatabasesRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-
-                    $response = $this->databaseAdminClient->listDatabases($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'databases',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildListItemsIterator(
+            [$this->databaseAdminClient, 'listDatabases'],
+            $request,
+            $callOptions,
+            function (array $database) {
+                return $this->database($database['name'], ['database' => $database]);
+            },
+            'databases',
+            $this->pluck('resultLimit', $options, false)
         );
     }
 
@@ -580,7 +569,7 @@ class Instance
      *
      * @return Backup
      */
-    public function backup($name, array $backup = [])
+    public function backup($name, array $backup = []): Backup
     {
         return new Backup(
             $this->databaseAdminClient,
@@ -623,37 +612,23 @@ class Instance
      *
      * @return ItemIterator<Backup>
      */
-    public function backups(array $options = [])
+    public function backups(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['parent'] = $this->name;
 
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $backup) {
-                    return $this->backup(
-                        $backup['name'],
-                        $backup
-                    );
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
+        $request = $this->serializer->decodeMessage(new ListBackupsRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-                    $request = $this->serializer->decodeMessage(new ListBackupsRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-
-                    $response = $this->databaseAdminClient->listBackups($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'backups',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildListItemsIterator(
+            [$this->databaseAdminClient, 'listBackups'],
+            $request,
+            $callOptions,
+            function (array $backup) {
+                return $this->backup($backup['name'], $backup);
+            },
+            'backups',
+            $this->pluck('resultLimit', $options, false)
         );
     }
 
@@ -683,7 +658,7 @@ class Instance
      *
      * @return ItemIterator<OperationResponse>
      */
-    public function backupOperations(array $options = [])
+    public function backupOperations(array $options = []): ItemIterator
     {
         return $this->database($this->name)->backupOperations($options);
     }
@@ -714,7 +689,7 @@ class Instance
      *
      * @return ItemIterator<OperationResponse>
      */
-    public function databaseOperations(array $options = [])
+    public function databaseOperations(array $options = []): ItemIterator
     {
         return $this->database($this->name)->databaseOperations($options);
     }
@@ -729,7 +704,7 @@ class Instance
      *
      * @return IamManager
      */
-    public function iam()
+    public function iam(): IamManager
     {
         if (!$this->iam) {
             $this->iam = new IamManager(
@@ -750,7 +725,7 @@ class Instance
      * @param string $project The project ID.
      * @return string
      */
-    private function fullyQualifiedInstanceName($name, $project)
+    private function fullyQualifiedInstanceName($name, $project): string
     {
         return InstanceAdminClient::instanceName(
             $project,
@@ -786,7 +761,7 @@ class Instance
      *
      * @return array
      */
-    public function directedReadOptions()
+    public function directedReadOptions(): array
     {
         return $this->directedReadOptions;
     }
@@ -795,7 +770,7 @@ class Instance
      * @param array $instanceArray
      * @return array
      */
-    private function fieldMask(array $instanceArray)
+    private function fieldMask(array $instanceArray): array
     {
         $mask = [];
         foreach (array_keys($instanceArray) as $key) {
@@ -809,8 +784,10 @@ class Instance
      * @param InstanceConfiguration $config
      * @return array
      */
-    public function createInstanceArray(array $instanceArray, InstanceConfiguration $config = null)
-    {
+    public function createInstanceArray(
+        array $instanceArray,
+        InstanceConfiguration $config = null
+    ): array {
         return $instanceArray + [
             'name' => $this->name,
             'displayName' => InstanceAdminClient::parseName($this->name)['instance'],
@@ -830,7 +807,7 @@ class Instance
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName, array $options = [])
+    public function resumeOperation($operationName, array $options = []): OperationResponse
     {
         return (new OperationResponse(
             $operationName,
@@ -859,9 +836,9 @@ class Instance
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return PagedListResponse<OperationResponse>
+     * @return ItemIterator<OperationResponse>
      */
-    public function longRunningOperations(array $options = [])
+    public function longRunningOperations(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);

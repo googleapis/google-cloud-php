@@ -82,20 +82,20 @@ trait RequestTrait
      * @param callable $call The GAPIC client and method for the list operations request
      * @param Message $request The list operations request
      * @param array $callOptions [optional] Call options for the request
-     * @param callable $operationResponseMapper [optional] A callable to map the Operation to an
+     * @param callable $resultMapper [optional] A callable to map the Operation to an
      *        operation response. Defaults to `$this->resumeOperation()`.
      * @return ItemIterator<OperationResponse>
      */
     private function buildLongRunningIterator(
         callable $call,
         Message $request,
-        array $callOptions = [],
-        ?callable $operationResponseMapper = null
+        array $callOptions,
+        ?callable $resultMapper = null
     ): ItemIterator {
         $resultLimit = $this->pluck('resultLimit', $callOptions, false) ?: 0;
         return new ItemIterator(
             new PageIterator(
-                $operationResponseMapper ?: function (Operation $operation) {
+                $resultMapper ?: function (Operation $operation) {
                     return $this->resumeOperation(
                         $operation->getName(),
                         ['lastProtoResponse' => $operation]
@@ -119,6 +119,36 @@ trait RequestTrait
                     'callOptions' => $callOptions
                 ], [
                     'itemsKey' => 'operations',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
+    }
+
+    private function buildListItemsIterator(
+        callable $call,
+        Message $request,
+        array $callOptions,
+        callable $resultMapper,
+        string $itemsKey,
+        ?int $resultLimit = null
+    ) {
+        return new ItemIterator(
+            new PageIterator(
+                $resultMapper,
+                function ($args) use ($call) {
+                    if ($pageToken = $this->pluck('pageToken', $args, false) ?: null) {
+                        $args['request']->setPageToken($pageToken);
+                    }
+                    $response = $call($args['request'], $args['callOptions']);
+                    return $this->handleResponse($response);
+                },
+                [
+                    'request' => $request,
+                    'callOptions' => $callOptions
+                ],
+                [
+                    'itemsKey' => $itemsKey,
                     'resultLimit' => $resultLimit
                 ]
             )

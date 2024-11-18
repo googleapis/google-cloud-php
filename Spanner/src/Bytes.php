@@ -63,7 +63,7 @@ class Bytes implements ValueInterface
      *
      * @return StreamInterface
      */
-    public function get()
+    public function get(): StreamInterface
     {
         return $this->value;
     }
@@ -78,7 +78,7 @@ class Bytes implements ValueInterface
      *
      * @return int
      */
-    public function type()
+    public function type(): int
     {
         return Database::TYPE_BYTES;
     }
@@ -93,7 +93,7 @@ class Bytes implements ValueInterface
      *
      * @return string
      */
-    public function formatAsString()
+    public function formatAsString(): string
     {
         return base64_encode((string) $this->value);
     }

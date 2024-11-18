@@ -25,7 +25,6 @@ use Google\ApiCore\OperationResponse;
 use \Google\Protobuf\Internal\Message;
 use Google\Rpc\RetryInfo;
 use Google\Rpc\BadRequest;
-use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * @internal
@@ -46,7 +45,7 @@ trait RequestProcessorTrait
      * Serializes a gRPC response.
      *
      * @param mixed $response
-     * @return \Generator|OperationResponse|array|PromiseInterface|null
+     * @return \Generator|OperationResponse|array|null
      */
     private function handleResponse($response)
     {
@@ -58,7 +57,7 @@ trait RequestProcessorTrait
             return $this->serializer->encodeMessage($response);
         }
 
-        if ($response instanceof OperationResponse || $response instanceof PromiseInterface) {
+        if ($response instanceof OperationResponse) {
             return $response;
         }
 

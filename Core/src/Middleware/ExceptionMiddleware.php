@@ -43,9 +43,9 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Throwable;
 
 /**
- * Middleware that adds autopopulation functionality. This middlware is
- * added iff auto population settings are present in the resource
- * descriptor config for the rpc method in context.
+ * Middleware that wraps any Api Exception to a `Google\Cloud\Core\Exception`
+ * exception class. This is primarily to maintain backwards compatibility with
+ * previous Spanner versions.
  *
  * @internal
  */

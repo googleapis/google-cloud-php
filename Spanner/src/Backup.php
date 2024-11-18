@@ -101,22 +101,29 @@ class Backup
      * @return OperationResponse
      * @throws \InvalidArgumentException
      */
-    public function create($database, DateTimeInterface $expireTime, array $options = [])
-    {
+    public function create(
+        $database,
+        DateTimeInterface $expireTime,
+        array $options = []
+    ): OperationResponse {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $data = $this->validateAndFormatVersionTime($data);
 
         $data += [
             'parent' => $this->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($this->name)['backup'],
             'backup' => [
                 'database' => $this->instance->database($database)->name(),
-                'expireTime' => $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
+                'expireTime' => $this->formatTimeAsArray($expireTime),
             ],
         ];
-        if (isset($data['versionTime'])) {
-            $data['backup']['versionTime'] = $data['versionTime'];
-            unset($data['versionTime']);
+
+        if ($versionTime = $this->pluck('versionTime', $data, false)) {
+            if (!$versionTime instanceof DateTimeInterface) {
+                throw new \InvalidArgumentException(
+                    'Optional argument `versionTime` must be a DateTimeInterface'
+                );
+            }
+            $data['backup']['versionTime'] = $this->formatTimeAsArray($versionTime);
         }
 
         $request = $this->serializer->decodeMessage(new CreateBackupRequest(), $data);
@@ -150,14 +157,17 @@ class Backup
      * @return OperationResponse
      * @throws \InvalidArgumentException
      */
-    public function createCopy(Backup $newBackup, DateTimeInterface $expireTime, array $options = [])
-    {
+    public function createCopy(
+        Backup $newBackup,
+        DateTimeInterface $expireTime,
+        array $options = []
+    ): OperationResponse {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $newBackup->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
             'sourceBackup' => $this->fullyQualifiedBackupName($this->name),
-            'expireTime' => $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
+            'expireTime' => $this->formatTimeAsArray($expireTime)
         ];
 
         $request = $this->serializer->decodeMessage(new CopyBackupRequest(), $data);
@@ -178,7 +188,7 @@ class Backup
      * @param array $options [optional] Configuration options.
      * @return void
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): void
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
@@ -206,7 +216,7 @@ class Backup
      * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists(array $options = [])
+    public function exists(array $options = []): bool
     {
         try {
             $this->reload($options);
@@ -228,7 +238,7 @@ class Backup
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function info(array $options = [])
+    public function info(array $options = []): array
     {
         if (!$this->info) {
             $this->info = $this->reload($options);
@@ -246,7 +256,7 @@ class Backup
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -262,7 +272,7 @@ class Backup
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function reload(array $options = [])
+    public function reload(array $options = []): array
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
@@ -297,7 +307,7 @@ class Backup
      * @param array $options [optional] Configuration options.
      * @return int|null
      */
-    public function state(array $options = [])
+    public function state(array $options = []): int|null
     {
         $info = $this->info($options);
 
@@ -317,17 +327,15 @@ class Backup
      * @param DateTimeInterface $newTimestamp New expire time.
      * @param array $options [optional] Configuration options.
      *
-     * @return Backup
+     * @return array
      */
-    public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = [])
+    public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = []): array
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'backup' => [
                 'name' => $this->name(),
-                'expireTime' => $this->formatTimestampForApi(
-                    $newTimestamp->format('Y-m-d\TH:i:s.u\Z')
-                ),
+                'expireTime' => $this->formatTimeAsArray($newTimestamp),
             ],
             'updateMask' => [
                 'paths' => ['expire_time']
@@ -352,7 +360,7 @@ class Backup
      * @param string $operationName The Long Running Operation name.
      * @return OperationResponse
      */
-    public function resumeOperation($operationName, array $options = [])
+    public function resumeOperation($operationName, array $options = []): OperationResponse
     {
         return (new OperationResponse(
             $operationName,
@@ -381,9 +389,9 @@ class Backup
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return PagedListResponse<OperationResponse>
+     * @return ItemIterator<OperationResponse>
      */
-    public function longRunningOperations(array $options = [])
+    public function longRunningOperations(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
@@ -401,7 +409,7 @@ class Backup
      *
      * @return string
      */
-    private function fullyQualifiedBackupName($name)
+    private function fullyQualifiedBackupName($name): string
     {
         $instance = DatabaseAdminClient::parseName($this->instance->name())['instance'];
 
@@ -416,28 +424,6 @@ class Backup
             return $name;
         }
         //@codeCoverageIgnoreEnd
-    }
-
-    /**
-     * @param array $options
-     * @return array
-     */
-    private function validateAndFormatVersionTime(array $options)
-    {
-        if (isset($options['versionTime'])) {
-            if (!($options['versionTime'] instanceof DateTimeInterface)) {
-                throw new \InvalidArgumentException(
-                    'Optional argument `versionTime` must be a DateTimeInterface, got ' .
-                    (is_object($options['versionTime'])
-                        ? get_class($options['versionTime'])
-                        : gettype($options['versionTime']))
-                );
-            }
-            $options['versionTime'] = $this->formatTimestampForApi(
-                $options['versionTime']->format('Y-m-d\TH:i:s.u\Z')
-            );
-        }
-        return $options;
     }
 
     private function backupResultFunction(): Closure

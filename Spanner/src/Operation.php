@@ -120,7 +120,7 @@ class Operation
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function commit(Session $session, array $mutations, array $options = [])
+    public function commit(Session $session, array $mutations, array $options = []): Timestamp
     {
         return $this->commitWithResponse($session, $mutations, $options)[0];
     }
@@ -151,7 +151,7 @@ class Operation
      * @return array An array containing {@see \Google\Cloud\Spanner\Timestamp}
      *               at index 0 and the commit response as an array at index 1.
      */
-    public function commitWithResponse(Session $session, array $mutations, array $options = [])
+    public function commitWithResponse(Session $session, array $mutations, array $options = []): array
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $mutations = $this->serializeMutations($mutations);
@@ -189,7 +189,7 @@ class Operation
      * @return void
      * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
-    public function rollback(Session $session, $transactionId, array $options = [])
+    public function rollback(Session $session, $transactionId, array $options = []): void
     {
         if (empty($transactionId)) {
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
@@ -231,7 +231,7 @@ class Operation
      * }
      * @return Result
      */
-    public function execute(Session $session, $sql, array $options = [])
+    public function execute(Session $session, $sql, array $options = []): Result
     {
         $options += [
             'parameters' => [],
@@ -296,7 +296,7 @@ class Operation
         Transaction $transaction,
         $sql,
         array $options = []
-    ) {
+    ): int {
         if (!isset($options['transaction']['begin'])) {
             $options['transaction'] = ['id' => $transaction->id()];
         }
@@ -368,7 +368,7 @@ class Operation
         Transaction $transaction,
         array $statements,
         array $options = []
-    ) {
+    ): BatchDmlResult {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['transaction'] = $this->createTransactionSelector($data, $transaction->id());
         $data += [
@@ -433,7 +433,7 @@ class Operation
         KeySet $keySet,
         array $columns,
         array $options = []
-    ) {
+    ): Result {
         $context = $this->pluck('transactionContext', $options, false);
 
         $call = function ($resumeToken = null, $transaction = null) use (
@@ -483,7 +483,7 @@ class Operation
      * }
      * @return Transaction
      */
-    public function transaction(Session $session, array $options = [])
+    public function transaction(Session $session, array $options = []): Transaction
     {
         $options += [
             'singleUse' => false,
@@ -529,8 +529,11 @@ class Operation
      *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * @return Transaction
      */
-    public function createTransaction(Session $session, array $res = [], array $options = [])
-    {
+    public function createTransaction(
+        Session $session,
+        array $res = [],
+        array $options = []
+    ): Transaction {
         $res += [
             'id' => null
         ];
@@ -571,7 +574,7 @@ class Operation
      * }
      * @return mixed
      */
-    public function snapshot(Session $session, array $options = [])
+    public function snapshot(Session $session, array $options = []): TransactionalReadInterface
     {
         $options += [
             'singleUse' => false,
@@ -605,8 +608,11 @@ class Operation
      *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
      * @return mixed
      */
-    public function createSnapshot(Session $session, array $res = [], $className = Snapshot::class)
-    {
+    public function createSnapshot(
+        Session $session,
+        array $res = [],
+        $className = Snapshot::class
+    ): TransactionalReadInterface {
         $res += [
             'id' => null,
             'readTimestamp' => null
@@ -645,7 +651,7 @@ class Operation
      * }
      * @return Session
      */
-    public function createSession($databaseName, array $options = [])
+    public function createSession($databaseName, array $options = []): Session
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data = [
@@ -677,7 +683,7 @@ class Operation
      * @param string $sessionName The session's name.
      * @return Session
      */
-    public function session($sessionName)
+    public function session($sessionName): Session
     {
         $sessionNameComponents = SpannerClient::parseName($sessionName);
         return new Session(
@@ -728,8 +734,12 @@ class Operation
      * }
      * @return QueryPartition[]
      */
-    public function partitionQuery(Session $session, $transactionId, $sql, array $options = [])
-    {
+    public function partitionQuery(
+        Session $session,
+        $transactionId,
+        string $sql,
+        array $options = []
+    ): array {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
         [$data, $callOptions] = $this->splitOptionalArgs($options);
@@ -792,7 +802,7 @@ class Operation
         KeySet $keySet,
         array $columns,
         array $options = []
-    ) {
+    ): array {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
         [$data, $callOptions] = $this->splitOptionalArgs($options);
@@ -833,7 +843,7 @@ class Operation
      * @param array $options
      * @return array
      */
-    private function partitionOptions(array &$options)
+    private function partitionOptions(array &$options): array
     {
         return array_filter([
             'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),
@@ -851,7 +861,7 @@ class Operation
      *
      * @return array
      */
-    private function beginTransaction(Session $session, array $options = [])
+    private function beginTransaction(Session $session, array $options = []): array
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $transactionOptions = $this->formatTransactionOptions(
@@ -879,7 +889,7 @@ class Operation
      * @param KeySet $keySet The keySet object.
      * @return array [KeySet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#keyset)
      */
-    private function flattenKeySet(KeySet $keySet)
+    private function flattenKeySet(KeySet $keySet): array
     {
         $keys = $keySet->keySetObject();
 
@@ -900,7 +910,8 @@ class Operation
         return $this->arrayFilterRemoveNull($keys);
     }
 
-    private function getDatabaseNameFromSession(Session $session)
+
+    private function getDatabaseNameFromSession(Session $session): string
     {
         return $session->info()['databaseName'];
     }
@@ -911,7 +922,7 @@ class Operation
      * @param array $mutations
      * @return array
      */
-    private function serializeMutations(array $mutations)
+    private function serializeMutations(array $mutations): array
     {
         $serializedMutations = [];
         if (is_array($mutations)) {
@@ -945,7 +956,7 @@ class Operation
      * @param array $statements
      * @return array
      */
-    private function formatStatements(array $statements)
+    private function formatStatements(array $statements): array
     {
         $result = [];
         foreach ($statements as $statement) {
@@ -968,7 +979,7 @@ class Operation
      * @param array $args
      * @return array
      */
-    private function formatSqlParams(array $args)
+    private function formatSqlParams(array $args): array
     {
         $params = $this->pluck('params', $args);
         if ($params) {
@@ -985,7 +996,7 @@ class Operation
      *
      * @return array
      */
-    private function createTransactionSelector(array &$args, ?string $transactionId = null)
+    private function createTransactionSelector(array &$args, ?string $transactionId = null): array
     {
         $transactionSelector = [];
         if (isset($args['transaction'])) {
@@ -1012,7 +1023,7 @@ class Operation
      *
      * @return array
      */
-    private function createQueryOptions(array $args)
+    private function createQueryOptions(array $args): array
     {
         $queryOptions = $this->pluck('queryOptions', $args, false) ?: [];
         // Query options precedence is query-level, then environment-level, then client-level.
@@ -1025,6 +1036,7 @@ class Operation
             $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
         }
         $queryOptions += $this->defaultQueryOptions ?: [];
+
         return $queryOptions;
     }
 
@@ -1032,7 +1044,7 @@ class Operation
      * @param array $transactionOptions
      * @return array
      */
-    private function formatTransactionOptions(array $transactionOptions)
+    private function formatTransactionOptions(array $transactionOptions): array
     {
         if (isset($transactionOptions['readOnly'])) {
             $ro = $transactionOptions['readOnly'];
@@ -1074,10 +1086,9 @@ class Operation
      * @param array $args
      * @return \Generator
      */
-    private function streamingRead(array $args)
+    private function streamingRead(array $args): \Generator
     {
         list($data, $callOptions) = $this->splitOptionalArgs($args);
-        // $data['keySet'] = ($this->pluck('keySet', $data);
         $data['transaction'] = $this->createTransactionSelector($data);
         $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
@@ -1086,6 +1097,7 @@ class Operation
         $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
 
         $response = $this->spannerClient->streamingRead($request, $callOptions);
+
         return $this->handleResponse($response);
     }
 
@@ -1093,7 +1105,7 @@ class Operation
      * @param array $args
      * @return array
      */
-    private function formatSingleUseTransactionOptions(array $args)
+    private function formatSingleUseTransactionOptions(array $args): array
     {
         // Internal flag, need to unset before passing to serializer
         unset($args['singleUse']);
@@ -1102,6 +1114,7 @@ class Operation
             // request ignores singleUseTransaction even if the transactionId is set to null
             unset($args['transactionId']);
         }
+
         return $args;
     }
 
@@ -1111,12 +1124,13 @@ class Operation
      *
      * @return array
      */
-    private function formatPartitionQueryOptions(array $args)
+    private function formatPartitionQueryOptions(array $args): array
     {
         $parameters = $this->pluck('parameters', $args, false) ?: [];
         $types = $this->pluck('types', $args, false) ?: [];
         $args += $this->mapper->formatParamsForExecuteSql($parameters, $types);
         $args = $this->formatSqlParams($args);
+
         return $args;
     }
 
@@ -1130,7 +1144,7 @@ class Operation
     private function conditionallyUnsetLarHeader(
         array $args,
         bool $value = true
-    ) {
+    ): array {
         if (!$value) {
             unset($args['headers'][$this->larHeader]);
         }

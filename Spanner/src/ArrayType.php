@@ -125,7 +125,7 @@ class ArrayType
      * @access private
      * @return int|string|null
      */
-    public function type()
+    public function type(): int|string|null
     {
         return $this->type;
     }
@@ -136,7 +136,7 @@ class ArrayType
      * @access private
      * @return StructType|null
      */
-    public function structType()
+    public function structType(): StructType|null
     {
         return $this->structType;
     }

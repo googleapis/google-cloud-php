@@ -296,8 +296,11 @@ class Database
      *
      * @return OperationResponse<Backup>
      */
-    public function createBackup($name, \DateTimeInterface $expireTime, array $options = []): OperationResponse
-    {
+    public function createBackup(
+        $name,
+        \DateTimeInterface $expireTime,
+        array $options = []
+    ): OperationResponse {
         $backup = $this->instance->backup($name);
         return $backup->create($this->name(), $expireTime, $options);
     }

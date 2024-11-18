@@ -469,29 +469,18 @@ class SpannerClient
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data['parent'] = $this->projectName;
 
-        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
-        return new ItemIterator(
-            new PageIterator(
-                function (array $config) {
-                    return $this->instanceConfiguration($config['name'], $config);
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
+        $request = $this->serializer->decodeMessage(new ListInstanceConfigsRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
 
-                    $request = $this->serializer->decodeMessage(new ListInstanceConfigsRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
-
-                    $response = $this->instanceAdminClient->listInstanceConfigs($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'instanceConfigs',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildListItemsIterator(
+            [$this->instanceAdminClient, 'listInstanceConfigs'],
+            $request,
+            $callOptions,
+            function (array $config) {
+                return $this->instanceConfiguration($config['name'], $config);
+            },
+            'instanceConfigs',
+            $this->pluck('resultLimit', $options, false)
         );
     }
 
@@ -668,30 +657,19 @@ class SpannerClient
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += ['filter' => '', 'parent' => $this->projectName];
 
-        $resultLimit = $this->pluck('resultLimit', $data, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $instance) {
-                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
-                    return $this->instance($name, $instance);
-                },
-                function ($callOptions) use ($data) {
-                    if (isset($callOptions['pageToken'])) {
-                        $data['pageToken'] = $callOptions['pageToken'];
-                    }
+        $request = $this->serializer->decodeMessage(new ListInstancesRequest(), $data);
+        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
 
-                    $request = $this->serializer->decodeMessage(new ListInstancesRequest(), $data);
-                    $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
-
-                    $response = $this->instanceAdminClient->listInstances($request, $callOptions);
-                    return $this->handleResponse($response);
-                },
-                $callOptions,
-                [
-                    'itemsKey' => 'instances',
-                    'resultLimit' => $resultLimit
-                ]
-            )
+        return $this->buildListItemsIterator(
+            [$this->instanceAdminClient, 'listInstances'],
+            $request,
+            $callOptions,
+            function (array $instance) {
+                $name = InstanceAdminClient::parseName($instance['name'])['instance'];
+                return $this->instance($name, $instance);
+            },
+            'instances',
+            $this->pluck('resultLimit', $options, false)
         );
     }
 

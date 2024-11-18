@@ -84,7 +84,7 @@ class BatchDmlResult
      *
      * @return int[]
      */
-    public function rowCounts()
+    public function rowCounts(): array
     {
         if (!$this->rowCounts) {
             foreach ($this->data['resultSets'] as $resultSet) {
@@ -112,7 +112,7 @@ class BatchDmlResult
      *
      * @return array|null
      */
-    public function error()
+    public function error(): array|null
     {
         if ($this->errorStatement) {
             return [

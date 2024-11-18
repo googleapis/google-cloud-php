@@ -83,7 +83,7 @@ class TransactionTypeTest extends TestCase
 
         $time = \DateTime::createFromFormat('U', time());
         $nanos = 500000005;
-        $this->timestamp = (new Timestamp($time, $nanos))->formatAsString();
+        $this->timestamp = new Timestamp($time, $nanos);
         $this->protoTimestamp = new TimestampProto(['seconds' => $time->format('U'), 'nanos' => $nanos]);
 
         $this->spannerClient = $this->prophesize(SpannerClient::class);
@@ -256,9 +256,6 @@ class TransactionTypeTest extends TestCase
     {
         $seconds = 1;
         $nanos = 2;
-
-        $time = $this->parseTimeString($this->timestamp);
-        $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
 
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
@@ -266,7 +263,7 @@ class TransactionTypeTest extends TestCase
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
-                    'minReadTimestamp' => ['seconds' => $time[0]->format('U'), 'nanos' => $time[1]],
+                    'minReadTimestamp' => $this->protoTimestamp->__debugInfo(),
                     'maxStaleness' => $duration,
                 ]
             ]
@@ -283,7 +280,7 @@ class TransactionTypeTest extends TestCase
         $database = $this->database($this->spannerClient->reveal(), $serializer);
         $snapshot = $database->snapshot([
             'singleUse' => true,
-            'minReadTimestamp' => $timestamp,
+            'minReadTimestamp' => $this->timestamp,
             'maxStaleness' => $duration
         ]);
 
@@ -294,9 +291,6 @@ class TransactionTypeTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $time = $this->parseTimeString($this->timestamp);
-        $timestamp = new Timestamp($time[0], $time[1]);
-
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->executeStreamingSql(Argument::cetera())->shouldNotBeCalled();
         $this->spannerClient->deleteSession(Argument::cetera())->shouldNotBeCalled();
@@ -304,7 +298,7 @@ class TransactionTypeTest extends TestCase
         $database = $this->database($this->spannerClient->reveal());
 
         $snapshot = $database->snapshot([
-            'minReadTimestamp' => $timestamp,
+            'minReadTimestamp' => $this->timestamp,
         ]);
     }
 
@@ -314,7 +308,6 @@ class TransactionTypeTest extends TestCase
 
         $seconds = 1;
         $nanos = 2;
-
         $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
 
         $this->spannerClient->beginTransaction(Argument::cetera())->shouldNotBeCalled();
@@ -335,14 +328,12 @@ class TransactionTypeTest extends TestCase
     {
         $seconds = 1;
         $nanos = 2;
-
-        $time = $this->parseTimeString($this->timestamp);
-        $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
+
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
-                    'readTimestamp' => $this->formatTimestampForApi($this->timestamp),
+                    'readTimestamp' => $this->protoTimestamp->__debugInfo(),
                     'exactStaleness' => $duration,
                 ]
             ]
@@ -362,7 +353,7 @@ class TransactionTypeTest extends TestCase
 
         $snapshot = $database->snapshot([
             'singleUse' => true,
-            'readTimestamp' => $timestamp,
+            'readTimestamp' => $this->timestamp,
             'exactStaleness' => $duration
         ]);
 
@@ -377,12 +368,10 @@ class TransactionTypeTest extends TestCase
         $seconds = 1;
         $nanos = 2;
 
-        $time = $this->parseTimeString($this->timestamp);
-        $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
         $options = [
             'readOnly' => [
-                'readTimestamp' => $this->formatTimestampForApi($this->timestamp),
+                'readTimestamp' => $this->protoTimestamp->__debugInfo(),
                 'exactStaleness' => $duration,
             ]
         ];
@@ -419,7 +408,7 @@ class TransactionTypeTest extends TestCase
         $database = $this->database($this->spannerClient->reveal(), $serializer);
 
         $snapshot = $database->snapshot([
-            'readTimestamp' => $timestamp,
+            'readTimestamp' => $this->timestamp,
             'exactStaleness' => $duration
         ]);
 
