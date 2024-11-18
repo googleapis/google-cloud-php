@@ -110,6 +110,8 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      *           The contents of an input notebook file.
      *     @type string $notebook_runtime_template_resource_name
      *           The NotebookRuntimeTemplate to source compute configuration from.
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\CustomEnvironmentSpec $custom_environment_spec
+     *           The custom compute configuration for an execution job.
      *     @type string $gcs_output_uri
      *           The Cloud Storage location to upload the result to. Format:
      *           `gs://bucket-name`
@@ -281,6 +283,37 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * The custom compute configuration for an execution job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookExecutionJob.CustomEnvironmentSpec custom_environment_spec = 16;</code>
+     * @return \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\CustomEnvironmentSpec|null
+     */
+    public function getCustomEnvironmentSpec()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasCustomEnvironmentSpec()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * The custom compute configuration for an execution job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookExecutionJob.CustomEnvironmentSpec custom_environment_spec = 16;</code>
+     * @param \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\CustomEnvironmentSpec $var
+     * @return $this
+     */
+    public function setCustomEnvironmentSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\CustomEnvironmentSpec::class);
+        $this->writeOneof(16, $var);
 
         return $this;
     }
