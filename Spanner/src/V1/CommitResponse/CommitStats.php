@@ -26,7 +26,7 @@ class CommitStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 mutation_count = 1;</code>
      */
-    private $mutation_count = 0;
+    protected $mutation_count = 0;
 
     /**
      * Constructor.
@@ -89,6 +89,4 @@ class CommitStats extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommitStats::class, \Google\Cloud\Spanner\V1\CommitResponse_CommitStats::class);
 

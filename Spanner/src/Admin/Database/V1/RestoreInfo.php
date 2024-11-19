@@ -20,7 +20,7 @@ class RestoreInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreSourceType source_type = 1;</code>
      */
-    private $source_type = 0;
+    protected $source_type = 0;
     protected $source_info;
 
     /**

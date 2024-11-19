@@ -34,7 +34,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * Required. DDL statements to be applied to the database.
      *
@@ -64,7 +64,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_id = 3;</code>
      */
-    private $operation_id = '';
+    protected $operation_id = '';
     /**
      * Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
      * Contains a protobuf-serialized
@@ -83,7 +83,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes proto_descriptors = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proto_descriptors = '';
+    protected $proto_descriptors = '';
 
     /**
      * @param string   $database   Required. The database to update. Please see

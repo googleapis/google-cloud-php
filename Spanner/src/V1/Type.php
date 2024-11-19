@@ -21,7 +21,7 @@ class Type extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.TypeCode code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * If [code][google.spanner.v1.Type.code] ==
      * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
@@ -29,7 +29,7 @@ class Type extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
-    private $array_element_type = null;
+    protected $array_element_type = null;
     /**
      * If [code][google.spanner.v1.Type.code] ==
      * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
@@ -37,7 +37,7 @@ class Type extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
-    private $struct_type = null;
+    protected $struct_type = null;
     /**
      * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that
      * disambiguates SQL type that Spanner will use to represent values of this
@@ -50,7 +50,7 @@ class Type extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.TypeAnnotationCode type_annotation = 4;</code>
      */
-    private $type_annotation = 0;
+    protected $type_annotation = 0;
     /**
      * If [code][google.spanner.v1.Type.code] ==
      * [PROTO][google.spanner.v1.TypeCode.PROTO] or
@@ -60,7 +60,7 @@ class Type extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string proto_type_fqn = 5;</code>
      */
-    private $proto_type_fqn = '';
+    protected $proto_type_fqn = '';
 
     /**
      * Constructor.

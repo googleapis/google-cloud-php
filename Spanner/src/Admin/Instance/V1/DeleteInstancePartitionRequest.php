@@ -23,7 +23,7 @@ class DeleteInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If not empty, the API only deletes the instance partition when
      * the etag provided matches the current status of the requested instance
@@ -32,7 +32,7 @@ class DeleteInstancePartitionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 2;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The name of the instance partition to be deleted.

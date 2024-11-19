@@ -23,13 +23,13 @@ class OptimizeRestoredDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The progress of the post-restore optimizations.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 2;</code>
      */
-    private $progress = null;
+    protected $progress = null;
 
     /**
      * Constructor.

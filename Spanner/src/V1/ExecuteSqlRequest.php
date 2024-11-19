@@ -21,7 +21,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The transaction to use.
      * For queries, if none is provided, the default is a temporary read-only
@@ -33,13 +33,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
-    private $transaction = null;
+    protected $transaction = null;
     /**
      * Required. The SQL string.
      *
      * Generated from protobuf field <code>string sql = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sql = '';
+    protected $sql = '';
     /**
      * Parameter names and values that bind to placeholders in the SQL string.
      * A parameter placeholder consists of the `&#64;` character followed by the
@@ -53,7 +53,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      */
-    private $params = null;
+    protected $params = null;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
@@ -77,7 +77,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes resume_token = 6;</code>
      */
-    private $resume_token = '';
+    protected $resume_token = '';
     /**
      * Used to control the amount of debugging information returned in
      * [ResultSetStats][google.spanner.v1.ResultSetStats]. If
@@ -88,7 +88,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
-    private $query_mode = 0;
+    protected $query_mode = 0;
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionQuery().  There must be an exact
@@ -97,7 +97,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes partition_token = 8;</code>
      */
-    private $partition_token = '';
+    protected $partition_token = '';
     /**
      * A per-transaction sequence number used to identify this request. This field
      * makes each request idempotent such that if the request is received multiple
@@ -110,25 +110,25 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 seqno = 9;</code>
      */
-    private $seqno = 0;
+    protected $seqno = 0;
     /**
      * Query optimizer configuration to use for the given query.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
      */
-    private $query_options = null;
+    protected $query_options = null;
     /**
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
      */
-    private $request_options = null;
+    protected $request_options = null;
     /**
      * Directed read options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
      */
-    private $directed_read_options = null;
+    protected $directed_read_options = null;
     /**
      * If this is for a partitioned query and this field is set to `true`, the
      * request is executed with Spanner Data Boost independent compute resources.
@@ -137,7 +137,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      */
-    private $data_boost_enabled = false;
+    protected $data_boost_enabled = false;
 
     /**
      * Constructor.

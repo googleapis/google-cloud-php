@@ -22,7 +22,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The id of the backup copy.
      * The `backup_id` appended to `parent` forms the full backup_uri of the form
@@ -30,7 +30,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup_id = '';
+    protected $backup_id = '';
     /**
      * Required. The source backup to be copied.
      * The source backup needs to be in READY state for it to be copied.
@@ -41,7 +41,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_backup = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $source_backup = '';
+    protected $source_backup = '';
     /**
      * Required. The expiration time of the backup in microsecond granularity.
      * The expiration time must be at least 6 hours and at most 366 days
@@ -51,7 +51,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Optional. The encryption configuration used to encrypt the backup. If this
      * field is not specified, the backup will use the same encryption
@@ -61,7 +61,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CopyBackupEncryptionConfig encryption_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
 
     /**
      * @param string                     $parent       Required. The name of the destination instance that will contain the backup

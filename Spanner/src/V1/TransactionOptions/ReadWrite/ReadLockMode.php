@@ -65,6 +65,4 @@ class ReadLockMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadLockMode::class, \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite_ReadLockMode::class);
 

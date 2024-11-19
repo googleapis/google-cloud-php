@@ -25,7 +25,7 @@ class PartitionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 partition_size_bytes = 1;</code>
      */
-    private $partition_size_bytes = 0;
+    protected $partition_size_bytes = 0;
     /**
      * **Note:** This hint is currently ignored by PartitionQuery and
      * PartitionRead requests.
@@ -37,7 +37,7 @@ class PartitionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_partitions = 2;</code>
      */
-    private $max_partitions = 0;
+    protected $max_partitions = 0;
 
     /**
      * Constructor.
