@@ -445,15 +445,24 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'longRunningOperations');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->requestHandler
-            ->sendRequest(
-                Argument::any(),
-                'listOperations',
-                Argument::cetera()
-            )
-            ->willReturn([$this->getOperationResponseMock()]);
+        $operation = new Operation();
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn(new ListOperationsResponse(['operations' => [$operation]]));
+        $page->getNextPageToken()
+            ->willReturn(null);
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
 
-        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $operationsClient = $this->prophesize(OperationsClient::class);
+        $operationsClient->listOperations(Argument::cetera())
+            ->willReturn($pagedListResponse->reveal());
+
+        $this->databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledTimes(2)
+            ->willReturn($operationsClient->reveal());
+
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(OperationResponse::class, $res->returnVal());
