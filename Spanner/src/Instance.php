@@ -801,7 +801,7 @@ class Instance
      *
      * Example:
      * ```
-     * $operation = $spanner->resumeOperation($operationName);
+     * $operation = $instance->resumeOperation($operationName);
      * ```
      *
      * @param string $operationName The Long Running Operation name.
@@ -821,7 +821,7 @@ class Instance
      *
      * Example:
      * ```
-     * $operations = $backup->longRunningOperations();
+     * $operations = $instance->longRunningOperations();
      * ```
      *
      * @param array $options [optional] {

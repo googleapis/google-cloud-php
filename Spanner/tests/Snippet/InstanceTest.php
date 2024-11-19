@@ -51,6 +51,7 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Serializer;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
+use Google\LongRunning\ListOperationsResponse;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -437,7 +438,7 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
-        $this->assertEquals('foo', $res->returnVal()->name());
+        $this->assertEquals('foo', $res->returnVal()->getName());
     }
 
     public function testLongRunningOperations()
@@ -459,7 +460,7 @@ class InstanceTest extends SnippetTestCase
         $operationsClient->listOperations(Argument::cetera())
             ->willReturn($pagedListResponse->reveal());
 
-        $this->databaseAdminClient->getOperationsClient()
+        $this->instanceAdminClient->getOperationsClient()
             ->shouldBeCalledTimes(2)
             ->willReturn($operationsClient->reveal());
 

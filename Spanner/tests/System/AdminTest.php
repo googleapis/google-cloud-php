@@ -19,9 +19,9 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;

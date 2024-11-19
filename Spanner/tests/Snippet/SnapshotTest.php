@@ -23,6 +23,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -62,14 +63,16 @@ class SnapshotTest extends SnippetTestCase
     public function testClass()
     {
         $database = $this->prophesize(Database::class);
-        $database->snapshot()->shouldBeCalled()->willReturn('foo');
+        $database->snapshot()
+            ->shouldBeCalledOnce()
+            ->willReturn($this->snapshot);
 
         $snippet = $this->snippetFromClass(Snapshot::class);
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $database->reveal());
 
         $res = $snippet->invoke('transaction');
-        $this->assertEquals('foo', $res->returnVal());
+        $this->assertEquals($this->snapshot, $res->returnVal());
     }
 
     public function testId()

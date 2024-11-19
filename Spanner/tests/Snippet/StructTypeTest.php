@@ -20,13 +20,18 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructType;
+use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,12 +43,14 @@ class StructTypeTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
 
     private $spannerClient;
+    private $databaseAdminClient;
     private $serializer;
     private $database;
     private $type;
@@ -72,9 +79,12 @@ class StructTypeTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $this->serializer = new Serializer();
         $this->database = new Database(
-            $this->requestHandler->reveal(),
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
@@ -106,27 +116,33 @@ class StructTypeTest extends SnippetTestCase
         ];
 
         $values = [
-            'John',
-            'Testuser'
+            ['stringValue' => 'John'],
+            ['stringValue' => 'Testuser'],
         ];
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($fields, $values) {
-                $message = $this->serializer->encodeMessage($args);
-                $this->assertEquals('SELECT @userStruct.firstName, @userStruct.lastName', $args->getSql());
-                $this->assertEquals($message['params']['userStruct'], $values);
+            Argument::that(function ($request) use ($fields) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals('SELECT @userStruct.firstName, @userStruct.lastName', $request->getSql());
+                $this->assertEquals($message['params']['userStruct'], ['John', 'Testuser']);
                 $this->assertEquals($message['paramTypes']['userStruct']['structType']['fields'], $fields);
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => $fields
-                    ]
-                ],
-                'values' => $values
-            ])
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => $fields
+                        ]
+                    ],
+                    'values' => $values
+                ]
+            )]));
+
         $snippet = $this->snippetFromClass(StructType::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');
         $snippet->addLocal('database', $this->database);
@@ -138,7 +154,8 @@ class StructTypeTest extends SnippetTestCase
     public function testConstruct()
     {
         $snippet = $this->snippetFromMethod(StructType::class, '__construct');
-        $snippet->invoke();
+        $res = $snippet->invoke();
+        $this->assertNull($res->returnVal());
     }
 
     public function testAdd()
@@ -194,10 +211,5 @@ class StructTypeTest extends SnippetTestCase
                 'child' => null
             ]
         ], $this->type->fields());
-    }
-
-    private function resultGenerator(array $data)
-    {
-        yield $data;
     }
 }

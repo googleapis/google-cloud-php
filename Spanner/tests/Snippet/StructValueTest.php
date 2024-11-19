@@ -20,12 +20,17 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\StructValue;
+use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -37,12 +42,14 @@ class StructValueTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
 
     private $spannerClient;
+    private $databaseAdminClient;
     private $serializer;
     private $database;
     private $value;
@@ -71,9 +78,12 @@ class StructValueTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $this->serializer = new Serializer();
         $this->database = new Database(
-            $this->requestHandler->reveal(),
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
@@ -112,19 +122,19 @@ class StructValueTest extends SnippetTestCase
         ];
 
         $values = [
-            'bar',
-            2,
-            'this field is unnamed'
+            ['stringValue' => 'bar'],
+            ['numberValue' => 2],
+            ['stringValue' => 'this field is unnamed'],
         ];
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($values, $fields) {
+            Argument::that(function ($request) use ($fields) {
                 $this->assertEquals(
-                    $args->getSql(),
+                    $request->getSql(),
                     'SELECT * FROM UNNEST(ARRAY(SELECT @structParam))'
                 );
-                $message = $this->serializer->encodeMessage($args);
-                $this->assertEquals($message['params'], ['structParam' => $values]);
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['params'], ['structParam' => ['bar', 2, 'this field is unnamed']]);
                 $this->assertEquals(
                     $message['paramTypes'],
                     [
@@ -139,16 +149,21 @@ class StructValueTest extends SnippetTestCase
                     ]
                 );
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => $fields
-                    ]
-                ],
-                'values' => $values
-            ])
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => $fields
+                        ]
+                    ],
+                    'values' => $values
+                ]
+            )]));
 
         $snippet = $this->snippetFromClass(StructValue::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');

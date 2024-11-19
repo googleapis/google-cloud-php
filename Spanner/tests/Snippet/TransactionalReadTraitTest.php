@@ -19,7 +19,8 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -28,9 +29,14 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -43,10 +49,11 @@ use Prophecy\PhpUnit\ProphecyTrait;
  * @group spanner
  * @group spanner-transactionalread
  */
-class TransactionalReadMethodsTest extends SnippetTestCase
+class TransactionalReadTraitTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -55,6 +62,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
     private $spannerClient;
+    private $databaseAdminClient;
     private $serializer;
     private $session;
     private $operation;
@@ -75,52 +83,46 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             ]);
         $this->session->name()
             ->willReturn('sessionName');
+        $this->session->setExpiration()
+            ->willReturn();
         $this->operation = $this->prophesize(Operation::class);
         $this->spannerClient = $this->prophesize(SpannerClient::class);
-    }
-
-    public function clientAndSnippetExecute()
-    {
-        return [
-            ['database', $this->setupDatabase(), $this->snippetFromMethod(Database::class, 'execute')],
-            ['transaction', $this->setupTransaction(), $this->snippetFromMethod(Transaction::class, 'execute')],
-            ['transaction', $this->setupSnapshot(), $this->snippetFromMethod(Snapshot::class, 'execute')],
-            ['transaction', $this->setupBatch(), $this->snippetFromMethod(BatchSnapshot::class, 'execute')],
-        ];
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
     }
 
     /**
      * @dataProvider clientAndSnippetExecute
      */
-    public function testExecute($localName, $client, $snippet)
+    public function testExecute($localName, $class)
     {
         $this->checkAndSkipGrpcTests();
+
+        $snippet = $this->snippetFromMethod($class, 'execute');
+        $client = $this->createClientForClass($class);
 
         $this->spannerClient->executeStreamingSql(
             Argument::type(ExecuteSqlRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => ['code' => Database::TYPE_INT64]
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'loginCount',
+                                    'type' => ['code' => Database::TYPE_INT64]
+                                ]
                             ]
                         ]
+                    ],
+                    'values' => [
+                        ['numberValue' => 0]
                     ]
-                ],
-                'values' => [0]
-            ])
-        );
-
-        $this->refreshOperation(
-            $client,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+                ]
+            )]));
 
         $snippet->addLocal($localName, $client);
 
@@ -128,26 +130,29 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->assertInstanceOf(Result::class, $res->returnVal());
     }
 
-    public function clientAndSnippetExecuteParameterType()
+    public function clientAndSnippetExecute()
     {
         return [
-            ['database', $this->setupDatabase(), $this->snippetFromMethod(Database::class, 'execute', 1)],
-            ['transaction', $this->setupTransaction(), $this->snippetFromMethod(Transaction::class, 'execute', 1)],
-            ['transaction', $this->setupSnapshot(), $this->snippetFromMethod(Snapshot::class, 'execute', 1)],
-            ['transaction', $this->setupBatch(), $this->snippetFromMethod(BatchSnapshot::class, 'execute', 1)],
+            ['database', Database::class],
+            ['transaction', Transaction::class],
+            ['transaction', Snapshot::class],
+            ['transaction', BatchSnapshot::class],
         ];
     }
 
     /**
      * @dataProvider clientAndSnippetExecuteParameterType
      */
-    public function testExecuteWithParameterType($localName, $client, $snippet)
+    public function testExecuteWithParameterType($localName, $class)
     {
         $this->checkAndSkipGrpcTests();
 
+        $snippet = $this->snippetFromMethod($class, 'execute', 1);
+        $client = $this->createClientForClass($class);
+
         $this->spannerClient->executeStreamingSql(
-            function ($args) {
-                $message = $this->serializer->encodeMessage($args);
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
                 $this->assertTrue(isset($message['params']));
                 $this->assertTrue(isset($message['paramTypes']));
                 $this->assertEquals(
@@ -155,23 +160,30 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     Database::TYPE_TIMESTAMP
                 );
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'timestamp',
-                                'type' => [
-                                    'code' => Database::TYPE_TIMESTAMP
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'timestamp',
+                                    'type' => [
+                                        'code' => Database::TYPE_TIMESTAMP
+                                    ]
                                 ]
                             ]
                         ]
+                    ],
+                    'values' => [
+                        ['nullValue' => 0]
                     ]
-                ],
-                'values' => [null]
-            ])
-        );
+                ]
+            )]));
 
         $snippet->addLocal($localName, $client);
 
@@ -179,26 +191,29 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->assertNull($res->returnVal());
     }
 
-    public function clientAndSnippetExecuteEmptyArray()
+    public function clientAndSnippetExecuteParameterType()
     {
         return [
-            ['database', $this->setupDatabase(), $this->snippetFromMethod(Database::class, 'execute', 2)],
-            ['transaction', $this->setupTransaction(), $this->snippetFromMethod(Transaction::class, 'execute', 2)],
-            ['transaction', $this->setupSnapshot(), $this->snippetFromMethod(Snapshot::class, 'execute', 2)],
-            ['transaction', $this->setupBatch(), $this->snippetFromMethod(BatchSnapshot::class, 'execute', 2)],
+            ['database', Database::class],
+            ['transaction', Transaction::class],
+            ['transaction', Snapshot::class],
+            ['transaction', BatchSnapshot::class],
         ];
     }
 
     /**
      * @dataProvider clientAndSnippetExecuteEmptyArray
      */
-    public function testExecuteWithEmptyArray($localName, $client, $snippet)
+    public function testExecuteWithEmptyArray($localName, $class)
     {
         $this->checkAndSkipGrpcTests();
 
+        $snippet = $this->snippetFromMethod($class, 'execute', 2);
+        $client = $this->createClientForClass($class);
+
         $this->spannerClient->executeStreamingSql(
-            function ($args) {
-                $message = $this->serializer->encodeMessage($args);
+            Argument::that(function ($request) {
+                $message = $this->serializer->encodeMessage($request);
                 $this->assertTrue(isset($message['params']));
                 $this->assertTrue(isset($message['paramTypes']));
                 $this->assertEquals(
@@ -210,26 +225,31 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     Database::TYPE_INT64
                 );
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'numbers',
-                                'type' => [
-                                    'code' => Database::TYPE_ARRAY,
-                                    'arrayElementType' => [
-                                        'code' => Database::TYPE_INT64
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'numbers',
+                                    'type' => [
+                                        'code' => Database::TYPE_ARRAY,
+                                        'arrayElementType' => [
+                                            'code' => Database::TYPE_INT64
+                                        ]
                                     ]
                                 ]
                             ]
                         ]
-                    ]
-                ],
-                'values' => [[]]
-            ])
-        );
+                    ],
+                    'values' => [[]]
+                ]
+            )]));
 
         $snippet->addLocal($localName, $client);
 
@@ -237,22 +257,25 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->assertEmpty($res->returnVal());
     }
 
-    public function clientAndSnippetExecuteStruct()
+    public function clientAndSnippetExecuteEmptyArray()
     {
         return [
-            ['database', $this->setupDatabase(), $this->snippetFromMethod(Database::class, 'execute', 3)],
-            ['transaction', $this->setupTransaction(), $this->snippetFromMethod(Transaction::class, 'execute', 3)],
-            ['transaction', $this->setupSnapshot(), $this->snippetFromMethod(Snapshot::class, 'execute', 3)],
-            ['transaction', $this->setupBatch(), $this->snippetFromMethod(BatchSnapshot::class, 'execute', 3)],
+            ['database', Database::class],
+            ['transaction', Transaction::class],
+            ['transaction', Snapshot::class],
+            ['transaction', BatchSnapshot::class],
         ];
     }
 
     /**
      * @dataProvider clientAndSnippetExecuteStruct
      */
-    public function testExecuteStruct($localName, $client, $snippet)
+    public function testExecuteStruct($localName, $class)
     {
         $this->checkAndSkipGrpcTests();
+
+        $snippet = $this->snippetFromMethod($class, 'execute', 3);
+        $client = $this->createClientForClass($class);
 
         $fields = [
             [
@@ -278,8 +301,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         ];
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($values, $fields) {
-                $message = $this->serializer->encodeMessage($args);
+            Argument::that(function ($request) use ($values, $fields) {
+                $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals($message['sql'], 'SELECT @userStruct.firstName, @userStruct.lastName');
                 $this->assertEquals(
                     $message['params'],
@@ -290,16 +313,24 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     $fields
                 );
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => $fields
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => $fields
+                        ]
+                    ],
+                    'values' => [
+                        ['stringValue' => 'John'],
+                        ['stringValue' => 'Testuser'],
                     ]
-                ],
-                'values' => $values
-            ])
-        );
+                ]
+            )]));
 
         $snippet->addLocal($localName, $client);
 
@@ -307,22 +338,25 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->assertEquals('John Testuser', $res->returnVal());
     }
 
-    public function clientAndSnippetExecuteDuplicateAndUnnamedFields()
+    public function clientAndSnippetExecuteStruct()
     {
         return [
-            ['database', $this->setupDatabase(), $this->snippetFromMethod(Database::class, 'execute', 4)],
-            ['transaction', $this->setupTransaction(), $this->snippetFromMethod(Transaction::class, 'execute', 4)],
-            ['transaction', $this->setupSnapshot(), $this->snippetFromMethod(Snapshot::class, 'execute', 4)],
-            ['transaction', $this->setupBatch(), $this->snippetFromMethod(BatchSnapshot::class, 'execute', 4)],
+            ['database', Database::class],
+            ['transaction', Transaction::class],
+            ['transaction', Snapshot::class],
+            ['transaction', BatchSnapshot::class],
         ];
     }
 
     /**
      * @dataProvider clientAndSnippetExecuteDuplicateAndUnnamedFields
      */
-    public function testExecuteStructDuplicateAndUnnamedFields($localName, $client, $snippet)
+    public function testExecuteStructDuplicateAndUnnamedFields($localName, $class)
     {
         $this->checkAndSkipGrpcTests();
+
+        $snippet = $this->snippetFromMethod($class, 'execute', 4);
+        $client = $this->createClientForClass($class);
 
         $fields = [
             [
@@ -356,8 +390,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         ];
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($values, $fields) {
-                $message = $this->serializer->encodeMessage($args);
+            Argument::that(function ($request) use ($values, $fields) {
+                $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['sql'],
                     'SELECT * FROM UNNEST(ARRAY(SELECT @structParam))'
@@ -377,22 +411,25 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                     ]
                 );
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => $fields
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => $fields
+                        ]
+                    ],
+                    'values' => [
+                        ['stringValue' => 'bar'],
+                        ['numberValue' => 2],
+                        ['stringValue' => 'this field is unnamed']
                     ]
-                ],
-                'values' => $values
-            ])
-        );
-
-        $this->refreshOperation(
-            $client,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+                ]
+            )]));
 
         $snippet->addLocal($localName, $client);
 
@@ -402,42 +439,50 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->assertEquals('2: this field is unnamed', $res[2]);
     }
 
-    public function clientAndSnippetRead()
+    public function clientAndSnippetExecuteDuplicateAndUnnamedFields()
     {
         return [
-            ['database', $this->setupDatabase(), $this->snippetFromMethod(Database::class, 'read')],
-            ['transaction', $this->setupTransaction(), $this->snippetFromMethod(Transaction::class, 'read')],
-            ['transaction', $this->setupSnapshot(), $this->snippetFromMethod(Snapshot::class, 'read')],
-            ['transaction', $this->setupBatch(), $this->snippetFromMethod(BatchSnapshot::class, 'read')],
+            ['database', Database::class],
+            ['transaction', Transaction::class],
+            ['transaction', Snapshot::class],
+            ['transaction', BatchSnapshot::class],
         ];
     }
 
     /**
      * @dataProvider clientAndSnippetRead
      */
-    public function testRead($localName, $client, $snippet)
+    public function testRead($localName, $class)
     {
         $this->checkAndSkipGrpcTests();
+
+        $snippet = $this->snippetFromMethod($class, 'read');
+        $client = $this->createClientForClass($class);
 
         $this->spannerClient->streamingRead(
             Argument::type(ReadRequest::class),
             Argument::type('array')
-        )->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
+        )
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'loginCount',
+                                    'type' => [
+                                        'code' => Database::TYPE_INT64
+                                    ]
                                 ]
                             ]
                         ]
+                    ],
+                    'values' => [
+                        ['numberValue' => 0]
                     ]
-                ],
-                'rows' => [0]
-            ])
-        );
+                ]
+            )]));
 
         $snippet->addLocal($localName, $client);
 
@@ -445,12 +490,21 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->assertInstanceOf(Result::class, $res->returnVal());
     }
 
-    private function setupDatabase()
+    public function clientAndSnippetRead()
     {
-        $this->setUp();
+        return [
+            ['database', Database::class],
+            ['transaction', Transaction::class],
+            ['transaction', Snapshot::class],
+            ['transaction', BatchSnapshot::class],
+        ];
+    }
 
+    private function createDatabase()
+    {
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
+        $instance->directedReadOptions()->willReturn([]);
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())
@@ -459,7 +513,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             ->willReturn(null);
 
         return new Database(
-            $this->requestHandler->reveal(),
+            $this->spannerClient->reveal(),
+            $this->databaseAdminClient->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
@@ -468,23 +523,31 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         );
     }
 
-    private function setupTransaction()
+    private function createTransaction()
     {
-        $this->setUp();
+        $operation = new Operation(
+            $this->spannerClient->reveal(),
+            $this->serializer,
+            true
+        );
 
         return new Transaction(
-            $this->operation->reveal(),
+            $operation,
             $this->session->reveal(),
             self::TRANSACTION
         );
     }
 
-    private function setupSnapshot()
+    private function createSnapshot()
     {
-        $this->setUp();
+        $operation = new Operation(
+            $this->spannerClient->reveal(),
+            $this->serializer,
+            true
+        );
 
         return new Snapshot(
-            $this->operation->reveal(),
+            $operation,
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
@@ -493,7 +556,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         );
     }
 
-    private function setupBatch()
+    private function createBatchSnapshot()
     {
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session->name()->willReturn(self::SESSION);
@@ -516,8 +579,13 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         );
     }
 
-    private function resultGenerator(array $data)
+    private function createClientForClass($class)
     {
-        yield $data;
+        return match($class) {
+            Database::class => $this->createDatabase(),
+            Transaction::class => $this->createTransaction(),
+            Snapshot::class => $this->createSnapshot(),
+            BatchSnapshot::class => $this->createBatchSnapshot(),
+        };
     }
 }

@@ -30,8 +30,20 @@ use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
+use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\ResultSet;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\RollbackRequest;
+use Google\Protobuf\Timestamp as TimestampProto;
+use Google\Rpc\Status;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -55,7 +67,7 @@ class TransactionTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
-        $operation = $this->prophesize(Operation::class);
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
         $session = $this->prophesize(Session::class);
         $session->info()
             ->willReturn([
@@ -63,9 +75,13 @@ class TransactionTest extends SnippetTestCase
             ]);
         $session->name()
             ->willReturn('database');
-
+        $operation = new Operation(
+            $this->spannerClient->reveal(),
+            $this->serializer,
+            true
+        );
         $this->transaction = new Transaction(
-            $operation->reveal(),
+            $operation,
             $session->reveal(),
             self::TRANSACTION
         );
@@ -85,15 +101,16 @@ class TransactionTest extends SnippetTestCase
 
     public function testClassReturnTransaction()
     {
+        $transaction = $this->prophesize(Transaction::class);
         $database = $this->prophesize(Database::class);
         $database->transaction()
             ->shouldBeCalled()
-            ->willReturn('foo');
+            ->willReturn($transaction->reveal());
 
         $snippet = $this->snippetFromClass(Transaction::class, 1);
         $snippet->addLocal('database', $database->reveal());
         $res = $snippet->invoke('transaction');
-        $this->assertEquals('foo', $res->returnVal());
+        $this->assertEquals($transaction->reveal(), $res->returnVal());
     }
 
     public function testExecute()
@@ -103,8 +120,7 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream()
-        );
+            ->willReturn($this->resultGeneratorStream());
 
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'execute');
         $snippet->addLocal('transaction', $this->transaction);
@@ -120,8 +136,10 @@ class TransactionTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGenerator(true)
-        );
+            ->willReturn($this->resultGeneratorStream(
+                [],
+                new ResultSetStats(['row_count_exact' => 1])
+            ));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate');
         $snippet->addLocal('transaction', $this->transaction);
@@ -158,15 +176,20 @@ class TransactionTest extends SnippetTestCase
         ];
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($expectedSql, $expectedParams, $expectedStructData) {
+            Argument::that(function ($args) use ($expectedSql, $expectedParams, $expectedStructData) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals($expectedSql, $args->getSql());
                 $this->assertEquals($message['params'], $expectedParams);
                 $this->assertEquals($message['paramTypes']['post']['structType']['fields'], $expectedStructData);
                 return true;
-            },
-            $this->resultGenerator(true)
-        );
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream(
+                [],
+                new ResultSetStats(['row_count_exact' => 1]))
+            );
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate', 1);
         $snippet->addUse(Database::class);
@@ -184,22 +207,15 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient->executeBatchDml(
             Argument::type(ExecuteBatchDmlRequest::class),
             Argument::type('array')
-        )->willReturn(new ExecuteBatchDmlResponse([
-                'resultSets' => [
-                    [
-                        'stats' => [
-                            'rowCountExact' => 1
-                        ]
-                    ]
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new ExecuteBatchDmlResponse([
+                'result_sets' => [
+                    new ResultSet([
+                        'stats' => new ResultSetStats(['row_count_exact' => 1])
+                    ])
                 ]
-            ]
-        ));
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            ]));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdateBatch');
         $snippet->addLocal('transaction', $this->transaction);
@@ -222,12 +238,6 @@ class TransactionTest extends SnippetTestCase
             ]
         ));
 
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdateBatch');
         $snippet->addLocal('transaction', $this->transaction);
         $res = $snippet->invoke();
@@ -241,12 +251,6 @@ class TransactionTest extends SnippetTestCase
             Argument::type(ReadRequest::class),
             Argument::type('array')
         )->willReturn($this->resultGeneratorStream()
-        );
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
         );
 
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'read');
@@ -265,175 +269,13 @@ class TransactionTest extends SnippetTestCase
         $this->assertEquals(self::TRANSACTION, $res->returnVal());
     }
 
-    public function testInsert()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'insert');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('insert', $mutations[0]);
-    }
-
-    public function testInsertBatch()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'insertBatch');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('insert', $mutations[0]);
-    }
-
-    public function testUpdate()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'update');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('update', $mutations[0]);
-    }
-
-    public function testUpdateBatch()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'updateBatch');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('update', $mutations[0]);
-    }
-
-    public function testInsertOrUpdate()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdate');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
-    }
-
-    public function testInsertOrUpdateBatch()
-    {
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $snippet = $this->snippetFromMethod(Transaction::class, 'insertOrUpdateBatch');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
-    }
-
-    public function testReplace()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'replace');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('replace', $mutations[0]);
-    }
-
-    public function testReplaceBatch()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'replaceBatch');
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('replace', $mutations[0]);
-    }
-
-    public function testDelete()
-    {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'delete');
-        $snippet->addUse(KeySet::class);
-        $snippet->addLocal('mutationGroup', $this->transaction);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
-
-        $res = $snippet->invoke();
-
-        $mutations = $this->transaction->___getProperty('mutationData');
-        $this->assertArrayHasKey('delete', $mutations[0]);
-    }
-
     public function testRollback()
     {
-        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null);
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+        $this->spannerClient->rollback(
+            Argument::type(RollbackRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
@@ -446,16 +288,11 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient->commit(
             Argument::type(CommitRequest::class),
             Argument::type('array')
-        )->willReturn(new CommitResponse([
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
                 'commit_timestamp' => new TimestampProto(['seconds' => time()])
-            ]
-        ));
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+            ]));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);
@@ -469,22 +306,18 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient->commit(
             Argument::type(CommitRequest::class),
             Argument::type('array')
-        )->willReturn(new CommitResponse([
-            'commit_timestamp' => new TimestampProto(['seconds' => time()]),
-            'commit_stats' => $expectedCommitStats,
-        ]));
-
-        $this->refreshOperation(
-            $this->transaction,
-            $this->requestHandler->reveal(),
-            $this->serializer
-        );
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()]),
+                'commit_stats' => $expectedCommitStats,
+            ]));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'getCommitStats');
         $snippet->addLocal('transaction', $this->transaction);
 
         $res = $snippet->invoke('commitStats');
-        $this->assertEquals($expectedCommitStats, $res->returnVal());
+        $this->assertEquals(['mutationCount' => 4], $res->returnVal());
     }
 
     public function testState()
@@ -498,9 +331,15 @@ class TransactionTest extends SnippetTestCase
 
     public function testIsRetry()
     {
-        $snippet = $this->snippetFromMethod(Transaction::class, 'isRetry');
-        $snippet->addLocal('transaction', $this->transaction);
+        $transaction = new Transaction(
+            $this->prophesize(Operation::class)->reveal(),
+            $this->prophesize(Session::class)->reveal(),
+            self::TRANSACTION,
+            true
+        );
 
+        $snippet = $this->snippetFromMethod(Transaction::class, 'isRetry');
+        $snippet->addLocal('transaction', $transaction);
 
         $res = $snippet->invoke();
         $this->assertEquals('This is a retry transaction!', $res->output());

@@ -18,12 +18,19 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Page;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Bytes;
@@ -42,12 +49,16 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Serializer;
 use Google\Protobuf\Duration;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
+
 
 /**
  * @group spanner
  */
 class SpannerClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
     use GrpcTestTrait;
 
     const PROJECT = 'my-awesome-project';
@@ -56,17 +67,31 @@ class SpannerClientTest extends SnippetTestCase
 
     private $client;
     private $spannerClient;
+    private $instanceAdminClient;
     private $serializer;
+    private $page;
+    private $pagedListResponse;
+    private $operationResponse;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->page = $this->prophesize(Page::class);
+        $this->page->getNextPageToken()
+            ->willReturn(null);
+        $this->pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $this->pagedListResponse->getPage()
+            ->willReturn($this->page->reveal());
         $this->serializer = new Serializer();
-        $this->client = new SpannerClient(
-            [['projectId' => self::PROJECT]],
-            ['requestHandler', 'serializer']
-        );
+        $this->client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
+        ]);
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
     }
 
     public function testClass()
@@ -89,18 +114,18 @@ class SpannerClientTest extends SnippetTestCase
      */
     public function testInstanceConfigurations()
     {
+        $this->page->getResponseObject()
+            ->willReturn(new ListInstanceConfigsResponse(['instance_configs' => [
+                new InstanceConfig(['name' => 'projects/my-awesome-projects/instanceConfigs/foo']),
+                new InstanceConfig(['name' => 'projects/my-awesome-projects/instanceConfigs/bar']),
+            ]]));
+
         $this->instanceAdminClient->listInstanceConfigs(
             Argument::type(ListInstanceConfigsRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
-                'instanceConfigs' => [
-                    ['name' => 'projects/my-awesome-projects/instanceConfigs/foo'],
-                    ['name' => 'projects/my-awesome-projects/instanceConfigs/bar'],
-                ]
-            ]
-        );
+            ->willReturn($this->pagedListResponse->reveal());
 
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfigurations');
         $snippet->addLocal('spanner', $this->client);
@@ -145,7 +170,7 @@ class SpannerClientTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
@@ -175,18 +200,18 @@ class SpannerClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'instances');
         $snippet->addLocal('spanner', $this->client);
 
+        $this->page->getResponseObject()
+            ->willReturn(new ListInstancesResponse(['instances' => [
+                new InstanceProto(['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)]),
+                new InstanceProto(['name' => InstanceAdminClient::instanceName(self::PROJECT, 'bar')]),
+            ]]));
+
         $this->instanceAdminClient->listInstances(
             Argument::type(ListInstancesRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
-                'instances' => [
-                    ['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)],
-                    ['name' => InstanceAdminClient::instanceName(self::PROJECT, 'bar')]
-                ]
-            ]
-        );
+            ->willReturn($this->pagedListResponse->reveal());
 
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
