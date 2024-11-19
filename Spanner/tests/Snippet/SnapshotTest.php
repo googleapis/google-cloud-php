@@ -49,14 +49,14 @@ class SnapshotTest extends SnippetTestCase
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 
-        $this->snapshot = TestHelpers::stub(Snapshot::class, [
+        $this->snapshot = new Snapshot(
             $operation->reveal(),
             $session->reveal(),
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => new Timestamp(new \DateTime())
             ]
-        ], ['operation']);
+        );
     }
 
     public function testClass()

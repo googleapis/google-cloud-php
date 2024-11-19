@@ -34,95 +34,78 @@ use Google\Protobuf\Value;
  */
 trait ResultGeneratorTrait
 {
-    /**
-     * Yield rows with user-specified data.
-     *
-     * @param array[] $rows A list of arrays containing `name`, `type` and `value` keys.
-     * @param ResultSetStats|null $stats If true, statistics will be included.
-     *        **Defaults to** `false`.
-     * @param string|null $transactionId If set, the value will be included as the
-     *        transaction ID. **Defaults to** `null`.
-     * @return \Generator
-     */
-    private function yieldRows(array $rows, $stats = null, $transactionId = null)
-    {
-        $fields = [];
-        $values = [];
-        foreach ($rows as $row) {
-            $fields[] = new Field([
-                'name' => $row['name'],
-                'type' => new Type(['code' => $row['type']])
-            ]);
-
-            $values[] = new Value(['string_value' => $row['value']]);
-        }
-
-        $result = [
-            'metadata' => new ResultSetMetadata([
-                'row_type' => new StructType([
-                    'fields' => $fields
-                ])
-            ]),
-            'values' => $values
-        ];
-
-        if ($stats) {
-            $result['stats'] = $stats;
-        }
-
-        if ($transactionId) {
-            $result['metadata']->setTransaction(new Transaction(['id' => $transactionId]));
-        }
-
-        if (isset($result['stats'])) {
-            $result['stats'] = $stats;
-        }
-
-        yield new PartialResultSet($result);
-    }
-
-    /**
-     * Yield the given array as a generator.
-     *
-     * @param array $data The input data
-     * @return \Generator
-     */
-    private function resultGeneratorData(array $data)
-    {
-        yield $data;
-    }
-
     private function resultGeneratorStream(
         array $chunks = null,
         ResultSetStats $stats = null,
         string $transactionId = null
     ) {
         $this->stream = $this->prophesize(ServerStream::class);
+        $chunks = $chunks ?: [
+            [
+                'name' => 'ID',
+                'type' => Database::TYPE_INT64,
+                'value' => '10'
+            ]
+        ];
+
+        $rows = [];
+
         if ($chunks) {
             foreach ($chunks as $i => $chunk) {
-                $result = new PartialResultSet();
-                $result->mergeFromJsonString($chunk);
-                $chunks[$i] = $result;
+                if (is_string($chunk)) {
+                    // merge from JSON string
+                    $result = new PartialResultSet();
+                    $result->mergeFromJsonString($chunk);
+                    $rows[$i] = $result;
+                } elseif ($chunk instanceof PartialResultSet) {
+                    $rows[$i] = $chunk;
+                }
+            }
+        }
+
+        if (!$rows) {
+            $fields = [];
+            $values = [];
+            foreach ($chunks as $row) {
+                $fields[] = new Field([
+                    'name' => $row['name'],
+                    'type' => new Type(['code' => $row['type']])
+                ]);
+
+                $values[] = new Value(['string_value' => $row['value']]);
             }
 
-            $this->stream->readAll()
-                ->willReturn($this->resultGeneratorChunks($chunks));
-        } else {
-            $rows = [
-                [
-                    'name' => 'ID',
-                    'type' => Database::TYPE_INT64,
-                    'value' => '10'
-                ]
+            $result = [
+                'metadata' => new ResultSetMetadata([
+                    'row_type' => new StructType([
+                        'fields' => $fields
+                    ])
+                ]),
+                'values' => $values
             ];
-            $this->stream->readAll()
-                ->willReturn($this->yieldRows($rows, $stats, $transactionId));
+
+            if ($stats) {
+                $result['stats'] = $stats;
+            }
+
+            if ($transactionId) {
+                $result['metadata']->setTransaction(new Transaction(['id' => $transactionId]));
+            }
+
+            if (isset($result['stats'])) {
+                $result['stats'] = $stats;
+            }
+
+            $rows[] = new PartialResultSet($result);
         }
+
+        $this->stream->readAll()
+            ->willReturn($this->resultGeneratorArray($rows));
 
         return $this->stream->reveal();
     }
 
-    private function resultGeneratorChunks($chunks)
+    private function resultGeneratorArray($chunks)
     {
         foreach ($chunks as $chunk) {
             yield $chunk;

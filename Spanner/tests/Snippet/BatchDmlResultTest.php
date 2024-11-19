@@ -24,8 +24,18 @@ use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -47,6 +57,7 @@ class BatchDmlResultTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->result = new BatchDmlResult([
             'resultSets' => [
                 [
@@ -70,21 +81,22 @@ class BatchDmlResultTest extends SnippetTestCase
     public function testClass()
     {
         $this->spannerClient->executeBatchDml(
-            null,
-            ['resultSets' => []]
-        );
+            Argument::type(ExecuteBatchDmlRequest::class),
+            Argument::type('array')
+        )->willReturn(new ExecuteBatchDmlResponse(['result_sets' => []]));
 
         $this->spannerClient->beginTransaction(
-            null,
-            ['id' => 'id']
-        );
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto(['id' => 'id']));
 
         $this->spannerClient->commit(
-            null,
-            [
-                'commitTimestamp' => $this->formatTimeAsString(new \DateTime(), 0)
-            ]
-        );
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
         $session = $this->prophesize(Session::class);
         $session->name()->willReturn(
@@ -106,14 +118,17 @@ class BatchDmlResultTest extends SnippetTestCase
         $instance->name()->willReturn('projects/test-project/instances/my-instance');
         $instance->directedReadOptions()->willReturn([]);
 
-        $database = TestHelpers::stub(Database::class, [
-            $this->requestHandler->reveal(),
+        $databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+
+        $database = new Database(
+            $this->spannerClient->reveal(),
+            $databaseAdminClient->reveal(),
             $this->serializer,
             $instance->reveal(),
             'test-project',
             'projects/test-project/instances/my-instance/databases/my-database',
             $sessionPool->reveal()
-        ]);
+        );
 
         $snippet = $this->snippetFromClass(BatchDmlResult::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');

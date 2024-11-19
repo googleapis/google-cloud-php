@@ -22,9 +22,11 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\PubSub\V1\Client\PublisherClient;
-use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
@@ -32,6 +34,17 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
+use Google\Protobuf\Timestamp as TimestampProto;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
 
 /**
@@ -40,7 +53,9 @@ use Prophecy\Argument;
  */
 class BatchClientTest extends SnippetTestCase
 {
+    use ProphecyTrait;
     use GrpcTestTrait;
+    use ResultGeneratorTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -54,9 +69,10 @@ class BatchClientTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
         $this->client = new BatchClient(
-            new Operation($this->requestHandler->reveal(), $this->serializer, false),
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             self::DATABASE
         );
     }
@@ -98,59 +114,46 @@ class BatchClientTest extends SnippetTestCase
         $message2 = $message1;
         $message2['attributes']['partition'] = $partition2->serialize();
 
-        if (!property_exists(PubSubClient::class, 'requestHandler')) {
-            $this->markTestSkipped("Skipping testPubSubExample test as property 'requestHandler' is missing");
-        }
-
         // setup pubsub service call stubs
-        $pubsub = TestHelpers::stub(PubSubClient::class, [['projectId' => 'test']], ['requestHandler']);
-        $requestHandler = $this->prophesize(RequestHandler::class);
-        $requestHandler->sendRequest(
-            PublisherClient::class,
-            'publish',
-            Argument::cetera()
-        )->shouldBeCalled()
-        ->will(function () use ($requestHandler) {
-            $requestHandler->sendRequest(
-                PublisherClient::class,
-                'publish',
-                Argument::cetera()
-            )->shouldBeCalled();
-        });
+        $topic = $this->prophesize(Topic::class);
+        $topic->publish(Argument::cetera())
+            ->shouldBeCalledTimes(2);
+        $pubsub = $this->prophesize(PubSubClient::class);
+        $pubsub->topic(Argument::cetera())
+            ->shouldBeCalled()
+            ->willReturn($topic->reveal());
 
-        $requestHandler->sendRequest(
-            SubscriberClient::class,
-            'pull',
-            Argument::cetera()
-        )->shouldBeCalled()
-        ->willReturn([
-            'receivedMessages' => [
-                [
-                    'message' => [
-                        'attributes' => [
-                            'snapshot' => $snapshotString,
-                            'partition' => $partition1->serialize()
-                        ]
+        $subscription = $this->prophesize(Subscription::class);
+        $subscription->pull(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                new Message([
+                    'attributes' => [
+                        'snapshot' => $snapshotString,
+                        'partition' => $partition1->serialize()
                     ]
-                ]
-            ]
-        ]);
+                ])
+            ]);
 
+        $pubsub->subscription(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn($subscription->reveal());
 
         // setup spanner service call stubs
         $this->spannerClient->partitionQuery(
-            null,
-            [
+            Argument::type(PartitionQueryRequest::class),
+            Argument::type('array')
+        )->willReturn(new PartitionResponse([
                 'partitions' => [
-                    ['partitionToken' => $partition1->token()],
-                    ['partitionToken' => $partition2->token()]
+                    new Partition(['partition_token' => $partition1->token()]),
+                    new Partition(['partition_token' => $partition2->token()]),
                 ]
-            ]
+            ])
         );
 
         $this->spannerClient->executeStreamingSql(
-            function ($args) use ($partition1) {
-                $message = $this->serializer->encodeMessage($args);
+            Argument::that(function ($request) use ($partition1) {
+                $message = $this->serializer->encodeMessage($request);
                 $this->assertEquals(
                     $message['partitionToken'],
                     $partition1->token()
@@ -161,50 +164,62 @@ class BatchClientTest extends SnippetTestCase
                 );
                 $this->assertEquals($message['session'], self::SESSION);
                 return true;
-            },
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'loginCount',
+                                    'type' => [
+                                        'code' => Database::TYPE_INT64
+                                    ]
                                 ]
                             ]
                         ]
+                    ],
+                    'values' => [
+                        ['numberValue' => 0]
                     ]
-                ],
-                'values' => [0]
-            ])
-        );
-        $this->spannerClient->createSession(
-            null,
-            ['name' => self::SESSION]
-        );
-        $this->spannerClient->beginTransaction(
-            null,
-            [
-                'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-            ]
-        );
+                ]
+            )]));
 
-        $this->mockSendRequest(SpannerClient::class, 'deleteSession', null, null);
+        $this->spannerClient->createSession(
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )->willReturn(new SessionProto(['name' => self::SESSION]));
+
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto([
+                'id' => self::TRANSACTION,
+                'read_timestamp' => new TimestampProto(['seconds' => $time])
+            ]));
+
+        $this->spannerClient->deleteSession(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
         // inject clients
         $publisher->addLocal('batch', $this->client);
-        $publisher->addLocal('pubsub', $pubsub);
+        $publisher->addLocal('pubsub', $pubsub->reveal());
         $publisher->replace('$pubsub = new PubSubClient();', '');
         $publisher->insertAfterLine(0, 'function areWorkersDone() { return true; }');
         $subscriber->addLocal('batch', $this->client);
-        $subscriber->addLocal('pubsub', $pubsub);
+        $subscriber->addLocal('pubsub', $pubsub->reveal());
         $subscriber->replace('$pubsub = new PubSubClient();', '');
         $publisher->insertAfterLine(0, 'function processResult($res) {iterator_to_array($res);}');
 
-        $this->refreshOperation($this->client, $this->requestHandler->reveal(), $this->serializer);
         $publisher->invoke();
-
         $subscriber->invoke();
     }
 
@@ -216,19 +231,17 @@ class BatchClientTest extends SnippetTestCase
         $time = time();
 
         $this->spannerClient->beginTransaction(
-            null,
-            [
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new TransactionProto([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-            ]
-        );
+                'read_timestamp' => new TimestampProto(['seconds' => $time])
+            ]));
         $this->spannerClient->createSession(
-            null,
-            [
-                'name' => self::SESSION
-            ]
-        );
-        $this->refreshOperation($this->client, $this->requestHandler->reveal(), $this->serializer);
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )->willReturn(new SessionProto(['name' => self::SESSION]));
 
         $res = $snippet->invoke('snapshot');
         $this->assertInstanceOf(BatchSnapshot::class, $res->returnVal());

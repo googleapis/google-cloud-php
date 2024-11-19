@@ -2335,7 +2335,7 @@ class Database
      *
      * Example:
      * ```
-     * $operation = $spanner->resumeOperation($operationName);
+     * $operation = $database->resumeOperation($operationName);
      * ```
      *
      * @param string $operationName The Long Running Operation name.
@@ -2355,7 +2355,7 @@ class Database
      *
      * Example:
      * ```
-     * $operations = $backup->longRunningOperations();
+     * $operations = $database->longRunningOperations();
      * ```
      *
      * @param array $options [optional] {

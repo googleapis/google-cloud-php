@@ -45,7 +45,7 @@ class ResultTest extends SnippetTestCase
         $result = $this->prophesize(Result::class);
         $database = $this->prophesize(Database::class);
         $result->rows()
-            ->willReturn($this->resultGenerator());
+            ->willReturn($this->resultGeneratorStream());
         $result->metadata()
             ->willReturn([]);
         $result->columns()
@@ -139,7 +139,7 @@ class ResultTest extends SnippetTestCase
         $this->assertInstanceOf(Transaction::class, $res->returnVal());
     }
 
-    private function resultGenerator()
+    private function resultGeneratorStream()
     {
         yield [];
     }

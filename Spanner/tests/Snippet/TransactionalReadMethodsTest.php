@@ -76,6 +76,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->session->name()
             ->willReturn('sessionName');
         $this->operation = $this->prophesize(Operation::class);
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
     }
 
     public function clientAndSnippetExecute()
@@ -96,8 +97,11 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->spannerClient->executeStreamingSql(
-            null,
-            $this->resultGenerator([
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -169,8 +173,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             ])
         );
 
-        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
-
         $snippet->addLocal($localName, $client);
 
         $res = $snippet->invoke('timestamp');
@@ -228,8 +230,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                 'values' => [[]]
             ])
         );
-
-        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -300,8 +300,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                 'values' => $values
             ])
         );
-
-        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -422,8 +420,9 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->spannerClient->streamingRead(
-            null,
-            $this->resultGenerator([
+            Argument::type(ReadRequest::class),
+            Argument::type('array')
+        )->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -439,8 +438,6 @@ class TransactionalReadMethodsTest extends SnippetTestCase
                 'rows' => [0]
             ])
         );
-
-        $this->refreshOperation($client, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet->addLocal($localName, $client);
 
@@ -461,39 +458,39 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         $sessionPool->setDatabase(Argument::any())
             ->willReturn(null);
 
-        return \Google\Cloud\Core\Testing\TestHelpers::stub(Database::class, [
+        return new Database(
             $this->requestHandler->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['operation']);
+        );
     }
 
     private function setupTransaction()
     {
         $this->setUp();
 
-        return \Google\Cloud\Core\Testing\TestHelpers::stub(Transaction::class, [
+        return new Transaction(
             $this->operation->reveal(),
             $this->session->reveal(),
             self::TRANSACTION
-        ], ['operation']);
+        );
     }
 
     private function setupSnapshot()
     {
         $this->setUp();
 
-        return \Google\Cloud\Core\Testing\TestHelpers::stub(Snapshot::class, [
+        return new Snapshot(
             $this->operation->reveal(),
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => new Timestamp(new \DateTime())
             ]
-        ], ['operation']);
+        );
     }
 
     private function setupBatch()
@@ -509,14 +506,14 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             )
         ]);
 
-        return \Google\Cloud\Core\Testing\TestHelpers::stub(BatchSnapshot::class, [
-            new Operation($this->requestHandler->reveal(), $this->serializer, false),
+        return new BatchSnapshot(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) time()))
             ]
-        ], ['operation', 'session']);
+        );
     }
 
     private function resultGenerator(array $data)

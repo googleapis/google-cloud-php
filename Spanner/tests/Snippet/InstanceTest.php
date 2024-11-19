@@ -18,6 +18,8 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\Page;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -25,17 +27,30 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\Serializer;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -55,16 +70,37 @@ class InstanceTest extends SnippetTestCase
     const OPERATION = 'my-operation';
 
     private $spannerClient;
+    private $instanceAdminClient;
+    private $databaseAdminClient;
     private $serializer;
     private $instance;
+    private $operationResponse;
+    private $page;
+    private $pagedListResponse;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
+
+        $this->page = $this->prophesize(Page::class);
+        $this->page->getNextPageToken()
+            ->willReturn(null);
+        $this->pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $this->pagedListResponse->getPage()
+            ->willReturn($this->page->reveal());
+
         $this->serializer = new Serializer();
         $this->instance = new Instance(
-            $this->requestHandler->reveal(),
+            $this->spannerClient->reveal(),
+            $this->instanceAdminClient->reveal(),
+            $this->databaseAdminClient->reveal(),
             $this->serializer,
             self::PROJECT,
             self::INSTANCE
@@ -100,12 +136,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -129,12 +161,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new GetInstanceResponse(['nodeCount' => 1]));
+            ->willReturn(new InstanceProto(['node_count' => 1]));
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
     }
@@ -149,12 +177,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new GetInstanceResponse(['foo' => 'bar']));
-
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
+            ->willReturn(new InstanceProto(['name' => 'foo']));
+;
         $res = $snippet->invoke();
         $this->assertEquals('Instance exists!', $res->output());
     }
@@ -169,12 +193,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new GetInstanceResponse(['nodeCount' => 1]));
+            ->willReturn(new InstanceProto(['node_count' => 1]));
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('info');
         $info = $this->instance->info();
         $this->assertEquals($info, $res->returnVal());
@@ -191,12 +211,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new GetInstanceResponse(['state' => Instance::STATE_READY]));
+            ->willReturn(new InstanceProto(['state' => Instance::STATE_READY]));
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke();
         $this->assertEquals('Instance is ready!', $res->output());
     }
@@ -211,12 +227,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $snippet->invoke();
     }
 
@@ -225,12 +237,12 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'delete');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->mockSendRequest(InstanceAdminClient::class, 'deleteInstance', null, null);
+        $this->instanceAdminClient->deleteInstance(
+            Argument::type(DeleteInstanceRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $snippet->invoke();
     }
 
@@ -244,12 +256,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -266,12 +274,8 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -291,28 +295,24 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'databases');
         $snippet->addLocal('instance', $this->instance);
 
+        $database = new DatabaseProto([
+            'name' => DatabaseAdminClient::databaseName(
+                self::PROJECT,
+                self::INSTANCE,
+                self::DATABASE
+            )
+        ]);
+
+        $this->page->getResponseObject()
+            ->willReturn(new ListDatabasesResponse(['databases' => [$database]]));
+
         $this->databaseAdminClient->listDatabases(
             Argument::type(ListDatabasesRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
-                'databases' => [
-                    [
-                        'name' => DatabaseAdminClient::databaseName(
-                            self::PROJECT,
-                            self::INSTANCE,
-                            self::DATABASE
-                        )
-                    ]
-                ]
-            ]
-        );
+            ->willReturn($this->pagedListResponse->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('databases');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -334,28 +334,24 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'backups');
         $snippet->addLocal('instance', $this->instance);
 
+        $backup = new BackupProto([
+            'name' => DatabaseAdminClient::backupName(
+                self::PROJECT,
+                self::INSTANCE,
+                self::BACKUP
+            )
+        ]);
+
+        $this->page->getResponseObject()
+            ->willReturn(new ListBackupsResponse(['backups' => [$backup]]));
+
         $this->databaseAdminClient->listBackups(
             Argument::type(ListBackupsRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
-                'backups' => [
-                    [
-                        'name' => DatabaseAdminClient::backupName(
-                            self::PROJECT,
-                            self::INSTANCE,
-                            self::BACKUP
-                        )
-                    ]
-                ]
-            ]
-        );
+            ->willReturn($this->pagedListResponse->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('backups');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -370,6 +366,10 @@ class InstanceTest extends SnippetTestCase
             self::OPERATION
         );
 
+        $operation = new Operation(['name' => $backupOperationName]);
+        $this->page->getResponseObject()
+            ->willReturn(new ListBackupOperationsResponse(['operations' => [$operation]]));
+
         $snippet = $this->snippetFromMethod(Instance::class, 'backupOperations');
         $snippet->addLocal('instance', $this->instance);
 
@@ -378,19 +378,11 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
-                'operations' => [
-                    [
-                        'name' => $backupOperationName
-                    ]
-                ]
-            ]
-        );
+            ->willReturn($this->pagedListResponse->reveal());
+        $this->databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('backupOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -405,6 +397,10 @@ class InstanceTest extends SnippetTestCase
             self::OPERATION
         );
 
+        $operation = new Operation(['name' => $databaseOperationName]);
+        $this->page->getResponseObject()
+            ->willReturn(new ListDatabaseOperationsResponse(['operations' => [$operation]]));
+
         $snippet = $this->snippetFromMethod(Instance::class, 'databaseOperations');
         $snippet->addLocal('instance', $this->instance);
 
@@ -413,19 +409,11 @@ class InstanceTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
-                'operations' => [
-                    [
-                        'name' => $databaseOperationName
-                    ]
-                ]
-            ]
-        );
+            ->willReturn($this->pagedListResponse->reveal());
+        $this->databaseAdminClient->getOperationsClient()
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
 
-        $this->instance->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
         $res = $snippet->invoke('databaseOperations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

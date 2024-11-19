@@ -2318,8 +2318,12 @@ class DatabaseTest extends TestCase
                 $prop = new \ReflectionProperty($t, 'state');
                 $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
-            },
-            ['transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn([
+'transactionOptions' => ['excludeTxnFromChangeStreams' => true]]
         );
     }
 

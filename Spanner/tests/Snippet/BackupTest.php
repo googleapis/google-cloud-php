@@ -41,6 +41,7 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -59,8 +60,9 @@ class BackupTest extends SnippetTestCase
     const BACKUP = 'my-backup';
 
     private $serializer;
+    private $operationResponse;
+    private $databaseAdminClient;
     private $backup;
-    private $spanner;
     private $instance;
     private $expireTime;
 
@@ -71,7 +73,11 @@ class BackupTest extends SnippetTestCase
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
 
         $this->serializer = new Serializer();
-        $this->spanner = new SpannerClient(['projectId' => 'my-project']);
+
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
+
         $this->expireTime = new \DateTime('+ 7 hours');
         $database = $this->prophesize(Database::class);
         $database->name()->willReturn(DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE));
@@ -110,28 +116,41 @@ class BackupTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
-        // $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
-    // public function testCreateCopy()
-    // {
-    //     $snippet = $this->snippetFromMethod(Backup::class, 'createCopy');
-    //     $snippet->addLocal('spanner', $this->spanner);
+    public function testCreateCopy()
+    {
+        $sourceInstance = $this->prophesize(Instance::class);
+        $destInstance = $this->prophesize(Instance::class);
+        $sourceInstance->backup('source-backup-id')
+            ->shouldBeCalledOnce()
+            ->willReturn($this->backup);
+        $destInstance->backup('new-backup-id')
+            ->shouldBeCalledOnce()
+            ->willReturn($this->backup);
 
-    //     $this->databaseAdminClient->copyBackup(
-    //         Argument::type(CopyBackupRequest::class),
-    //         Argument::type('array')
-    //     )
-    //         ->shouldBeCalledOnce()
-    //         ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+        $spanner = $this->prophesize(SpannerClient::class);
+        $spanner->instance('source-instance-id')->willReturn($sourceInstance);
+        $spanner->instance('destination-instance-id')->willReturn($destInstance);
+
+        $snippet = $this->snippetFromMethod(Backup::class, 'createCopy');
+        $snippet->addLocal('spanner', $spanner->reveal());
+
+        $this->databaseAdminClient->copyBackup(
+            Argument::type(CopyBackupRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->operationResponse->reveal());
 
 
-    //     $res = $snippet->invoke('operation');
-    //     $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
-    // }
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+    }
 
     public function testDelete()
     {
@@ -237,7 +256,7 @@ class BackupTest extends SnippetTestCase
     {
         $backup = [
             'name' => 'foo',
-            'expire_time' => new \Google\Protobuf\Timestamp(['seconds' => $this->expireTime->format('U')])
+            'expire_time' => new TimestampProto(['seconds' => $this->expireTime->format('U')])
         ];
 
         $snippet = $this->snippetFromMethod(Backup::class, 'updateExpireTime');
@@ -262,7 +281,7 @@ class BackupTest extends SnippetTestCase
     public function testResumeOperation()
     {
         $snippet = $this->snippetFromMagicMethod(Backup::class, 'resumeOperation');
-        $snippet->addLocal('spanner', $this->spanner);
+        $snippet->addLocal('spanner', new SpannerClient(['projectId' => 'my-project']));
         $snippet->addLocal('backup', $this->backup);
         $snippet->addLocal('operationName', 'foo');
 

@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\PartitionInterface;
@@ -31,7 +32,19 @@ use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -41,6 +54,7 @@ class BatchSnapshotTest extends SnippetTestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -57,6 +71,7 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
 
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(Session::class);
@@ -67,37 +82,38 @@ class BatchSnapshotTest extends SnippetTestCase
         ]);
 
         $this->time = time();
-        $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [
-            new Operation($this->requestHandler->reveal(), $this->serializer, false),
+        $this->snapshot = new BatchSnapshot(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             $this->session->reveal(),
             [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => new Timestamp(\DateTime::createFromFormat('U', (string) $this->time))
             ]
-        ], ['operation', 'session']);
+        );
     }
 
     public function testClass()
     {
         $this->spannerClient->createSession(
-            null,
-            ['name' => self::SESSION]
-        );
-        $this->spannerClient->beginTransaction(
-            null,
-            [
-                'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat(
-                    'U',
-                    (string) $this->time
-                )->format(Timestamp::FORMAT)
-            ]
-        );
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )->willReturn(new SessionProto(['name' => self::SESSION]));
 
-        $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($this->requestHandler->reveal(), $this->serializer, false),
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new Transaction([
+                'id' => self::TRANSACTION,
+                'read_timestamp' => new TimestampProto([
+                    'seconds' => $this->time
+                ])
+            ]));
+
+        $client = new BatchClient(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             self::DATABASE
-        ]);
+        );
 
         $snippet = $this->snippetFromClass(BatchSnapshot::class);
         $snippet->setLine(3, '');
@@ -136,33 +152,44 @@ class BatchSnapshotTest extends SnippetTestCase
         $res = $snippet->invoke();
     }
 
-    /**
-     * @dataProvider providePartitionMethods
-     */
-    public function testPartitionRead($method)
+    public function testPartitionRead()
     {
-        $this->mockSendRequest(
-            SpannerClient::class,
-            $method,
-            null,
-            [
+        $this->spannerClient->partitionRead(
+            Argument::type(PartitionReadRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new PartitionResponse([
                 'partitions' => [
-                    ['partitionToken' => 'foo']
+                    new Partition(['partition_token' => 'foo'])
                 ]
-            ]
-        );
-        $this->refreshOperation($this->snapshot, $this->requestHandler->reveal(), $this->serializer);
+            ]));
 
-        $snippet = $this->snippetFromMethod(BatchSnapshot::class, $method);
+        $snippet = $this->snippetFromMethod(BatchSnapshot::class, 'partitionRead');
         $snippet->addLocal('snapshot', $this->snapshot);
 
         $res = $snippet->invoke('partitions');
         $this->assertContainsOnlyInstancesOf(PartitionInterface::class, $res->returnVal());
     }
 
-    public function providePartitionMethods()
+    public function testPartitionQuery()
     {
-        return [['partitionRead'], ['partitionQuery']];
+        $this->spannerClient->partitionQuery(
+            Argument::type(PartitionQueryRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new PartitionResponse([
+                'partitions' => [
+                    new Partition(['partition_token' => 'foo'])
+                ]
+            ]));
+
+        $snippet = $this->snippetFromMethod(BatchSnapshot::class, 'partitionQuery');
+        $snippet->addLocal('snapshot', $this->snapshot);
+
+        $res = $snippet->invoke('partitions');
+        $this->assertContainsOnlyInstancesOf(PartitionInterface::class, $res->returnVal());
     }
 
     public function testExecutePartition()
@@ -173,24 +200,30 @@ class BatchSnapshotTest extends SnippetTestCase
         $partition = new QueryPartition($token, $sql, $opts);
 
         $this->spannerClient->executeStreamingSql(
-            null,
-            $this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
+            Argument::type(ExecuteSqlRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
+                new PartialResultSet(),
+                [
+                    'metadata' => [
+                        'rowType' => [
+                            'fields' => [
+                                [
+                                    'name' => 'loginCount',
+                                    'type' => [
+                                        'code' => Database::TYPE_INT64
+                                    ]
                                 ]
                             ]
                         ]
+                    ],
+                    'values' => [
+                        ['numberValue' => 0]
                     ]
-                ],
-                'values' => [0]
-            ])
-        );
-        $this->refreshOperation($this->snapshot, $this->requestHandler->reveal(), $this->serializer);
+                ]
+            )]));
 
         $snippet = $this->snippetFromMethod(BatchSnapshot::class, 'executePartition');
         $snippet->addLocal('snapshot', $this->snapshot);

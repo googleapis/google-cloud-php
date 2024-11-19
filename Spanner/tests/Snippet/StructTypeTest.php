@@ -73,14 +73,14 @@ class StructTypeTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->serializer = new Serializer();
-        $this->database = TestHelpers::stub(Database::class, [
+        $this->database = new Database(
             $this->requestHandler->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['operation', 'requestHandler', 'serializer']);
+        );
 
         $this->type = new StructType();
     }
@@ -127,8 +127,6 @@ class StructTypeTest extends SnippetTestCase
                 'values' => $values
             ])
         );
-        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
-
         $snippet = $this->snippetFromClass(StructType::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');
         $snippet->addLocal('database', $this->database);

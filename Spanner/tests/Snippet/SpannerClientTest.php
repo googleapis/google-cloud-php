@@ -40,6 +40,7 @@ use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Serializer;
 use Google\Protobuf\Duration;
 
 /**

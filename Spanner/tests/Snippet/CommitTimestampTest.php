@@ -24,8 +24,14 @@ use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\V1\CommitResponse;
+use Google\Protobuf\Timestamp as TimestampProto;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -33,6 +39,7 @@ use Google\Cloud\Spanner\V1\CommitRequest;
  */
 class CommitTimestampTest extends SnippetTestCase
 {
+    use ProphecyTrait;
     use GrpcTestTrait;
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -43,6 +50,7 @@ class CommitTimestampTest extends SnippetTestCase
     public function setUp(): void
     {
         $this->serializer = new Serializer();
+        $this->spannerClient = $this->prophesize(GapicSpannerClient::class);
         $this->checkAndSkipGrpcTests();
     }
 
@@ -50,22 +58,20 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
-        $client = new SpannerClient(
-            [['projectId' => 'my-project']],
-            ['requestHandler', 'serializer']
-        );
-
-        $this->GapicSpannerClient->createSession(
+        $this->spannerClient->createSession(
             Argument::type(CreateSessionRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CreateSessionResponse(['name' => self::SESSION]));
-        $this->GapicSpannerClient->deleteSession(
+            ->willReturn(new Session(['name' => self::SESSION]));
+        $this->spannerClient->deleteSession(
             Argument::type(DeleteSessionRequest::class),
             Argument::type('array')
         )
             ->shouldBeCalledOnce();
+        $this->spannerClient->addMiddleware(Argument::type('callable'))
+            ->shouldBeCalledOnce();
+
         $mutation = [
             'insert' => [
                 'table' => 'myTable',
@@ -73,21 +79,23 @@ class CommitTimestampTest extends SnippetTestCase
                 'values' => [[$id, CommitTimestamp::SPECIAL_VALUE]]
             ]
         ];
-        $this->GapicSpannerClient->commit(
-            Argument::type(CommitRequest::class),
+        $this->spannerClient->commit(
+            Argument::that(function (CommitRequest $request) use ($mutation) {
+                $message = $this->serializer->encodeMessage($request);
+                $this->assertEquals($message['mutations'][0], $mutation);
+                return true;
+            }),
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(function ($args) use ($mutation) {
-                $message = $this->serializer->encodeMessage($args);
-                $this->assertEquals($message['mutations'][0], $mutation);
-                return true;
-            },
-            [
-                'commitTimestamp' => \DateTime::createFromFormat('U', (string) time())->format(Timestamp::FORMAT)
-            ]
-        );
+            ->willReturn(new CommitResponse([
+                'commit_timestamp' => new TimestampProto(['seconds' => time()])
+            ]));
 
+        $client = new SpannerClient([
+            'projectId' => 'my-project',
+            'gapicSpannerClient' => $this->spannerClient->reveal()
+        ]);
 
         $snippet = $this->snippetFromClass(CommitTimestamp::class);
         $snippet->addLocal('id', $id);

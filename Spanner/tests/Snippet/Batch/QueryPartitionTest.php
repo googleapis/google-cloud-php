@@ -22,8 +22,20 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionResponse;
+use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\Transaction;
+use Google\Protobuf\Timestamp as TimestampProto;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -31,6 +43,7 @@ use Google\Cloud\Spanner\Timestamp;
  */
 class QueryPartitionTest extends SnippetTestCase
 {
+    use ProphecyTrait;
     use GrpcTestTrait;
     use PartitionSharedSnippetTestTrait;
 
@@ -48,6 +61,7 @@ class QueryPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->serializer = new Serializer();
         $this->time = time();
         $this->partition = new QueryPartition($this->token, $this->sql, $this->options);
@@ -56,29 +70,32 @@ class QueryPartitionTest extends SnippetTestCase
     public function testClass()
     {
         $this->spannerClient->createSession(
-            null,
-            ['name' => self::SESSION]
-        );
+            Argument::type(CreateSessionRequest::class),
+            Argument::type('array')
+        )->willReturn(new SessionProto(['name' => self::SESSION]));
+
         $this->spannerClient->beginTransaction(
-            null,
-            [
+            Argument::type(BeginTransactionRequest::class),
+            Argument::type('array')
+        )
+            ->willReturn(new Transaction([
                 'id' => self::TRANSACTION,
-                'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
-            ]
+                'read_timestamp' => new TimestampProto(['seconds' => $this->time])
+            ])
         );
         $this->spannerClient->partitionQuery(
-            null,
-            [
+            Argument::type(PartitionQueryRequest::class),
+            Argument::type('array')
+        )->willReturn(new PartitionResponse([
                 'partitions' => [
-                    ['partitionToken' => 'foo']
+                    new Partition(['partition_token' => 'foo'])
                 ]
-            ]
-        );
+            ]));
 
-        $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($this->requestHandler->reveal(), $this->serializer, false),
+        $client = new BatchClient(
+            new Operation($this->spannerClient->reveal(), $this->serializer, false),
             self::DATABASE
-        ]);
+        );
 
         $snippet = $this->snippetFromClass(QueryPartition::class);
         $snippet->setLine(3, '');

@@ -72,14 +72,14 @@ class StructValueTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->serializer = new Serializer();
-        $this->database = TestHelpers::stub(Database::class, [
+        $this->database = new Database(
             $this->requestHandler->reveal(),
             $this->serializer,
             $instance->reveal(),
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['operation']);
+        );
 
         $this->value = new StructValue();
     }
@@ -149,8 +149,6 @@ class StructValueTest extends SnippetTestCase
                 'values' => $values
             ])
         );
-
-        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $snippet = $this->snippetFromClass(StructValue::class);
         $snippet->replace('$database = $spanner->connect(\'my-instance\', \'my-database\');', '');

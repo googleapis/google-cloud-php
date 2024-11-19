@@ -23,11 +23,14 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Prophecy\Argument;
+use Google\Cloud\Spanner\Serializer;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -41,7 +44,8 @@ class InstanceConfigurationTest extends SnippetTestCase
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
 
-    private $spannerClient;
+    private $instanceAdminClient;
+    private $operationResponse;
     private $serializer;
     private $config;
 
@@ -50,8 +54,13 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->serializer = new Serializer();
+        $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->operationResponse = $this->prophesize(OperationResponse::class);
+        $this->operationResponse->withResultFunction(Argument::type('callable'))
+            ->willReturn($this->operationResponse->reveal());
+
         $this->config = new InstanceConfiguration(
-            $this->requestHandler->reveal(),
+            $this->instanceAdminClient->reveal(),
             $this->serializer,
             self::PROJECT,
             self::CONFIG,
@@ -81,22 +90,14 @@ class InstanceConfigurationTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn(new CreateInstanceConfigResponse($this->getOperationResponseMock(),));
+            ->willReturn($this->operationResponse->reveal());
 
         $baseConfig = new InstanceConfiguration(
-            $this->requestHandler->reveal(),
+            $this->instanceAdminClient->reveal(),
             $this->serializer,
             self::PROJECT,
             self::CONFIG,
             []
-        );
-        $this->config->___setProperty(
-            'requestHandler',
-            $this->requestHandler->reveal()
-        );
-        $this->config->___setProperty(
-            'serializer',
-            $this->serializer
         );
         $snippet->addLocal('baseConfig', $baseConfig);
         $snippet->addLocal('options', []);
@@ -118,9 +119,6 @@ class InstanceConfigurationTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(OperationResponse::class)->reveal());
 
-        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->config->___setProperty('serializer', $this->serializer);
-
         $snippet->invoke();
     }
 
@@ -129,10 +127,12 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'delete');
         $snippet->addLocal('instanceConfig', $this->config);
 
-        $this->mockSendRequest(InstanceAdminClient::class, 'deleteInstanceConfig', null, null);
+        $this->instanceAdminClient->deleteInstanceConfig(
+            Argument::type(DeleteInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
 
-        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->config->___setProperty('serializer', $this->serializer);
         $snippet->invoke();
     }
 
@@ -155,13 +155,19 @@ class InstanceConfigurationTest extends SnippetTestCase
             'displayName' => self::CONFIG
         ];
 
-        $this->mockSendRequest(InstanceAdminClient::class, 'getInstanceConfig', null, $info);
-
-        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->config->___setProperty('serializer', $this->serializer);
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig([
+                'name' => $info['name'],
+                'display_name' => $info['displayName']
+            ]));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($info, $res->returnVal());
+        $this->assertEquals($info['name'], $res->returnVal()['name']);
+        $this->assertEquals($info['displayName'], $res->returnVal()['displayName']);
     }
 
     public function testExists()
@@ -174,14 +180,10 @@ class InstanceConfigurationTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn([
+            ->willReturn(new InstanceConfig([
                 'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
-                'displayName' => self::CONFIG
-            ]
-        );
-
-        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->config->___setProperty('serializer', $this->serializer);
+                'display_name' => self::CONFIG
+            ]));
 
         $res = $snippet->invoke();
         $this->assertEquals('Configuration exists!', $res->output());
@@ -197,12 +199,18 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'reload');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->mockSendRequest(InstanceAdminClient::class, 'getInstanceConfig', null, $info);
-
-        $this->config->___setProperty('requestHandler', $this->requestHandler->reveal());
-        $this->config->___setProperty('serializer', $this->serializer);
+        $this->instanceAdminClient->getInstanceConfig(
+            Argument::type(GetInstanceConfigRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new InstanceConfig([
+                'name' => $info['name'],
+                'display_name' => $info['displayName']
+            ]));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($info, $res->returnVal());
+        $this->assertEquals($info['name'], $res->returnVal()['name']);
+        $this->assertEquals($info['displayName'], $res->returnVal()['displayName']);
     }
 }
