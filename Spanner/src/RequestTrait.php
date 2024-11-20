@@ -18,11 +18,11 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ApiException;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
 
@@ -114,10 +114,12 @@ trait RequestTrait
                         'operations' => iterator_to_array($page->getResponseObject()->getOperations()),
                         'nextResultToken' => $page->getNextPageToken(),
                     ];
-                }, [
+                },
+                [
                     'request' => $request,
                     'callOptions' => $callOptions
-                ], [
+                ],
+                [
                     'itemsKey' => 'operations',
                     'resultLimit' => $resultLimit
                 ]

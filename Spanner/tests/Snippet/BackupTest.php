@@ -23,19 +23,18 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\ListOperationsRequest;
@@ -147,7 +146,6 @@ class BackupTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
 
-
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -162,7 +160,6 @@ class BackupTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce();
-
 
         $snippet->invoke();
     }
@@ -197,7 +194,6 @@ class BackupTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn(new BackupProto($backup));
 
-
         $res = $snippet->invoke('info');
         $this->assertEquals($backup['name'], $res->returnVal()['name']);
         $snippet->invoke();
@@ -229,7 +225,6 @@ class BackupTest extends SnippetTestCase
             ->shouldBeCalledTimes(2)
             ->willReturn(new BackupProto($backup));
 
-
         $res = $snippet->invoke('info');
         $this->assertEquals($backup['name'], $res->returnVal()['name']);
         $snippet->invoke();
@@ -246,7 +241,6 @@ class BackupTest extends SnippetTestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn(new BackupProto(['state' => Backup::STATE_READY]));
-
 
         $res = $snippet->invoke();
         $this->assertEquals('Backup is ready!', $res->output());
@@ -268,7 +262,6 @@ class BackupTest extends SnippetTestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn(new BackupProto($backup));
-
 
         $res = $snippet->invoke('info');
         $this->assertEquals($backup['name'], $res->returnVal()['name']);

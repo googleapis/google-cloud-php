@@ -17,35 +17,33 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
-use Google\Cloud\Spanner\Serializer;
-use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
+use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\Session as SessionProto;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
-use Google\Cloud\Spanner\V1\Partition;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
 use Google\Protobuf\Timestamp as TimestampProto;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -148,8 +146,7 @@ class BatchClientTest extends SnippetTestCase
                     new Partition(['partition_token' => $partition1->token()]),
                     new Partition(['partition_token' => $partition2->token()]),
                 ]
-            ])
-        );
+            ]));
 
         $this->spannerClient->executeStreamingSql(
             Argument::that(function ($request) use ($partition1) {

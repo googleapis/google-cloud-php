@@ -23,16 +23,11 @@ use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\EmulatorTrait;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\Middleware\ExceptionMiddleware;
-use Google\Cloud\Core\RequestProcessorTrait;
-use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
@@ -40,9 +35,9 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
+use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
-use Google\LongRunning\ListOperationsRequest;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
@@ -252,62 +247,7 @@ class SpannerClient
             );
         }
         $this->projectId = $this->detectProjectId($config);
-        $this->serializer = new Serializer([], [
-            'google.spanner.v1.KeySet' => function ($v) {
-                // exit("TEST");
-                $keys = $this->pluck('keys', $keySet, false);
-                if ($keys) {
-                    $keySet['keys'] = array_map(
-                        fn ($key) => $this->formatListForApi((array) $key),
-                        $keys
-                    );
-                }
-
-                if (isset($keySet['ranges'])) {
-                    $keySet['ranges'] = array_map(function ($rangeItem) {
-                        return array_map([$this, 'formatListForApi'], $rangeItem);
-                    }, $keySet['ranges']);
-
-                    if (empty($keySet['ranges'])) {
-                        unset($keySet['ranges']);
-                    }
-                }
-
-                return $this->decodeMessage(new KeySet(), $keySet);
-            },
-        ], [], [], [
-            // A custom encoder that short-circuits the encodeMessage in Serializer class,
-            // but only if the argument is of the type PartialResultSet.
-            PartialResultSet::class => function ($msg) {
-                $data = json_decode($msg->serializeToJsonString(), true);
-
-                // We only override metadata fields, if it actually exists in the response.
-                // This is specially important for large data sets which is received in chunks.
-                // Metadata is only received in the first 'chunk' and we don't want to set empty metadata fields
-                // when metadata was not returned from the server.
-                if (isset($data['metadata'])) {
-                    // The transaction id is serialized as a base64 encoded string in $data. So, we
-                    // add a step to get the transaction id using a getter instead of the serialized value.
-                    // The null-safe operator is used to handle edge cases where the relevant fields are not present.
-                    $data['metadata']['transaction']['id'] = (string) $msg?->getMetadata()?->getTransaction()?->getId();
-
-                    // Helps convert metadata enum values from string types to their respective code/annotation
-                    // pairs. Ex: INT64 is converted to {code: 2, typeAnnotation: 0}.
-                    $fields = $msg->getMetadata()?->getRowType()?->getFields();
-                    $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
-                }
-
-                // These fields in stats should be an int
-                if (isset($data['stats']['rowCountLowerBound'])) {
-                    $data['stats']['rowCountLowerBound'] = (int) $data['stats']['rowCountLowerBound'];
-                }
-                if (isset($data['stats']['rowCountExact'])) {
-                    $data['stats']['rowCountExact'] = (int) $data['stats']['rowCountExact'];
-                }
-
-                return $data;
-            }
-        ]);
+        $this->serializer = new Serializer();
 
         // Adds some defaults
         // gccl needs to be present for handwritten clients
@@ -316,7 +256,7 @@ class SpannerClient
             'serializer' => $this->serializer,
         ];
         $middleware = function (MiddlewareInterface $handler) {
-            return new ExceptionMiddleware($handler);
+            return new SpannerMiddleware($handler);
         };
         $this->spannerClient = $config['gapicSpannerClient'] ?? new GapicSpannerClient($clientConfig);
         $this->spannerClient->addMiddleware($middleware);

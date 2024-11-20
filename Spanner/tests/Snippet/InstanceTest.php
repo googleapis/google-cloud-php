@@ -18,40 +18,40 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
-use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
-use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
-use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\LongRunning\Client\OperationsClient;
-use Google\LongRunning\Operation;
 use Google\LongRunning\ListOperationsResponse;
+use Google\LongRunning\Operation;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -179,7 +179,7 @@ class InstanceTest extends SnippetTestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn(new InstanceProto(['name' => 'foo']));
-;
+
         $res = $snippet->invoke();
         $this->assertEquals('Instance exists!', $res->output());
     }

@@ -19,24 +19,24 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -211,6 +211,30 @@ class TransactionalReadTraitTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod($class, 'execute', 2);
         $client = $this->createClientForClass($class);
 
+        $partialResultSet = $this->serializer->decodeMessage(
+            new PartialResultSet(),
+            [
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'numbers',
+                                'type' => [
+                                    'code' => Database::TYPE_ARRAY,
+                                    'arrayElementType' => [
+                                        'code' => Database::TYPE_INT64
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                'values' => [
+                    ['listValue' => []]
+                ]
+            ]
+        );
+
         $this->spannerClient->executeStreamingSql(
             Argument::that(function ($request) {
                 $message = $this->serializer->encodeMessage($request);
@@ -229,27 +253,7 @@ class TransactionalReadTraitTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream([$this->serializer->decodeMessage(
-                new PartialResultSet(),
-                [
-                    'metadata' => [
-                        'rowType' => [
-                            'fields' => [
-                                [
-                                    'name' => 'numbers',
-                                    'type' => [
-                                        'code' => Database::TYPE_ARRAY,
-                                        'arrayElementType' => [
-                                            'code' => Database::TYPE_INT64
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    'values' => [[]]
-                ]
-            )]));
+            ->willReturn($this->resultGeneratorStream([$partialResultSet]));
 
         $snippet->addLocal($localName, $client);
 
@@ -581,7 +585,7 @@ class TransactionalReadTraitTest extends SnippetTestCase
 
     private function createClientForClass($class)
     {
-        return match($class) {
+        return match ($class) {
             Database::class => $this->createDatabase(),
             Transaction::class => $this->createTransaction(),
             Snapshot::class => $this->createSnapshot(),

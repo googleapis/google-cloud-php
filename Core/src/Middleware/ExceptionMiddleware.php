@@ -37,6 +37,7 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\Middleware\MiddlewareInterface;
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\RequestProcessorTrait;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -56,8 +57,10 @@ class ExceptionMiddleware implements MiddlewareInterface
     /** @var callable */
     private $nextHandler;
 
-    public function __construct(callable $nextHandler) {
+    public function __construct(callable $nextHandler)
+    {
         $this->nextHandler = $nextHandler;
+        $this->serializer = new Serializer();
     }
 
     /**
@@ -71,7 +74,7 @@ class ExceptionMiddleware implements MiddlewareInterface
         $response = ($this->nextHandler)($call, $options);
         if ($response instanceof PromiseInterface) {
             return $response->then(null, function ($value) {
-                if ($value instanceof \Google\ApiCore\ApiException) {
+                if ($value instanceof ApiException) {
                     throw $this->convertToGoogleException($value);
                 }
                 if ($value instanceof Throwable) {
@@ -83,4 +86,3 @@ class ExceptionMiddleware implements MiddlewareInterface
         return $response;
     }
 }
-

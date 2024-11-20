@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
@@ -27,6 +26,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\Serializer;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
@@ -186,15 +186,12 @@ class InstanceConfigurationTest extends TestCase
             'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, 'foo'),
             'display_name' => 'bar2'
         ]);
-        $any = $this->prophesize(Any::class);
-        $any->getValue()->willReturn($expectedInstanceConfig->serializeToString());
-        $operation = $this->prophesize(Operation::class);
-        $operation->getResponse()->willReturn($any->reveal());
-        $operation->getDone()->willReturn(true);
+        $any = new Any(['value' => $expectedInstanceConfig->serializeToString()]);
+        $operationProto = new Operation(['response' => $any, 'done' => true]);
         $operationClient = $this->prophesize(\Google\LongRunning\Client\OperationsClient::class);
         $operationResponse = new OperationResponse('operation-name', $operationClient->reveal(), [
             'operationReturnType' => InstanceConfig::class,
-            'lastProtoResponse' => $operation->reveal(),
+            'lastProtoResponse' => $operationProto,
         ]);
 
         $this->instanceAdminClient->updateInstanceConfig(

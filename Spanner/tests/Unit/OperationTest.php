@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
@@ -28,6 +27,7 @@ use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
@@ -506,7 +506,10 @@ class OperationTest extends TestCase
             Argument::that(function ($request) use ($sql, $transactionId, $partitionToken1, $partitionToken2) {
                 $this->assertEquals($request->getSql(), $sql);
                 $this->assertEquals(self::SESSION, $request->getSession());
-                $this->assertEquals(['id' => '10'], $request->getParams()->__debugInfo());
+                $this->assertEquals(
+                    ['id' => '10'],
+                    json_decode($request->getParams()->serializeToJsonString(), true)
+                );
                 $this->assertEquals(Database::TYPE_INT64, $request->getParamTypes()['id']->getCode());
                 $this->assertEquals($transactionId, $request->getTransaction()->getId());
                 return true;

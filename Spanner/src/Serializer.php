@@ -4,6 +4,10 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\Serializer as ApiCoreSerializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Spanner\V1\PartialResultSet;
+use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\Value;
 
 /**
  * @internal
@@ -12,6 +16,7 @@ use Google\Cloud\Core\ApiHelperTrait;
 class Serializer extends ApiCoreSerializer
 {
     use ApiHelperTrait;
+    private Serializer $serializer; // Self reference for ApiHelperTrait
 
     public function __construct()
     {
@@ -95,5 +100,74 @@ class Serializer extends ApiCoreSerializer
             $decodeMessageTypeTransformers,
             $customEncoders,
         );
+
+        $this->serializer = $this;
+    }
+
+    /**
+     * Utility method to return "fields data" in the format:
+     * [
+     *   "name" => ""
+     *   "type" => []
+     * ].
+     *
+     * The type is converted from a string like INT64 to ["code" => 2, "typeAnnotation" => 0]
+     * conforming with the Google\Cloud\Spanner\V1\TypeCode class.
+     *
+     * @param ?RepeatedField $fields The array contain list of fields.
+     *
+     * @return array The formatted fields data.
+     */
+    private function getFieldDataFromRepeatedFields(?RepeatedField $fields): array
+    {
+        if (is_null($fields)) {
+            return [];
+        }
+
+        $fieldsData = [];
+        foreach ($fields as $key => $field) {
+            $type = $field->getType();
+            $typeData = $this->getTypeData($type);
+
+            $fieldsData[$key] = [
+                'name' => $field->getName(),
+                'type' => $typeData
+            ];
+        }
+
+        return $fieldsData;
+    }
+
+    /**
+     * Utiltiy method to take in a Google\Cloud\Spanner\V1\Type value and return
+     * the data as an array. The method takes care of array and struct elements.
+     *
+     * @param Type $type The "type" object
+     *
+     * @return array The formatted data.
+     */
+    private function getTypeData(Type $type): array
+    {
+        $data = [
+            'code' => $type->getCode(),
+            'typeAnnotation' => $type->getTypeAnnotation(),
+            'protoTypeFqn' => $type->getProtoTypeFqn()
+        ];
+
+        // If this is a struct field, then recursisevly call getTypeData
+        if ($type->hasStructType()) {
+            $nestedType = $type->getStructType();
+            $fields = $nestedType->getFields();
+            $data['structType'] = [
+                'fields' => $this->getFieldDataFromRepeatedFields($fields)
+            ];
+        }
+        // If this is an array field, then recursisevly call getTypeData
+        if ($type->hasArrayElementType()) {
+            $nestedType = $type->getArrayElementType();
+            $data['arrayElementType'] = $this->getTypeData($nestedType);
+        }
+
+        return $data;
     }
 }

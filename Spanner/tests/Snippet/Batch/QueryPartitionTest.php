@@ -19,23 +19,21 @@ namespace Google\Cloud\Spanner\Tests\Snippet\Batch;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\Session as SessionProto;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\Partition;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
-use Google\Cloud\Spanner\V1\Partition;
+use Google\Cloud\Spanner\V1\Session as SessionProto;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Protobuf\Timestamp as TimestampProto;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @group spanner
@@ -81,8 +79,7 @@ class QueryPartitionTest extends SnippetTestCase
             ->willReturn(new Transaction([
                 'id' => self::TRANSACTION,
                 'read_timestamp' => new TimestampProto(['seconds' => $this->time])
-            ])
-        );
+            ]));
         $this->spannerClient->partitionQuery(
             Argument::type(PartitionQueryRequest::class),
             Argument::type('array')

@@ -19,28 +19,25 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
-use Google\Cloud\Spanner\V1\ResultSetStats;
-use Google\Cloud\Spanner\V1\ResultSet;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\ResultSet;
+use Google\Cloud\Spanner\V1\ResultSetStats;
 use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Rpc\Status;
@@ -188,8 +185,8 @@ class TransactionTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->resultGeneratorStream(
                 [],
-                new ResultSetStats(['row_count_exact' => 1]))
-            );
+                new ResultSetStats(['row_count_exact' => 1])
+            ));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate', 1);
         $snippet->addUse(Database::class);
@@ -235,8 +232,7 @@ class TransactionTest extends SnippetTestCase
                     'code' => 3,
                     'message' => 'foo'
                 ])
-            ]
-        ));
+            ]));
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdateBatch');
         $snippet->addLocal('transaction', $this->transaction);
@@ -250,8 +246,7 @@ class TransactionTest extends SnippetTestCase
         $this->spannerClient->streamingRead(
             Argument::type(ReadRequest::class),
             Argument::type('array')
-        )->willReturn($this->resultGeneratorStream()
-        );
+        )->willReturn($this->resultGeneratorStream());
 
         $snippet = $this->snippetFromMagicMethod(Transaction::class, 'read');
         $snippet->addLocal('transaction', $this->transaction);

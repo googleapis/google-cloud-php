@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -27,6 +26,7 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;

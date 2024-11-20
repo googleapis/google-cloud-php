@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Spanner\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -28,6 +27,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
@@ -263,7 +263,7 @@ class TransactionTypeTest extends TestCase
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
-                    'minReadTimestamp' => $this->protoTimestamp->__debugInfo(),
+                    'minReadTimestamp' => $this->timestamp->formatForApi(),
                     'maxStaleness' => $duration,
                 ]
             ]
@@ -333,7 +333,7 @@ class TransactionTypeTest extends TestCase
         $transaction = [
             'singleUse' => [
                 'readOnly' => [
-                    'readTimestamp' => $this->protoTimestamp->__debugInfo(),
+                    'readTimestamp' => $this->timestamp->formatForApi(),
                     'exactStaleness' => $duration,
                 ]
             ]
@@ -371,7 +371,7 @@ class TransactionTypeTest extends TestCase
         $duration = new Duration(['seconds' => $seconds, 'nanos' => $nanos]);
         $options = [
             'readOnly' => [
-                'readTimestamp' => $this->protoTimestamp->__debugInfo(),
+                'readTimestamp' => $this->timestamp->formatForApi(),
                 'exactStaleness' => $duration,
             ]
         ];

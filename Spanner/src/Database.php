@@ -22,15 +22,12 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
@@ -2134,8 +2131,8 @@ class Database
     {
         try {
             $this->close();
-        //@codingStandardsIgnoreStart
-        //@codeCoverageIgnoreStart
+            //@codingStandardsIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (\Exception $ex) {
         }
         //@codeCoverageIgnoreEnd
@@ -2455,7 +2452,7 @@ class Database
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

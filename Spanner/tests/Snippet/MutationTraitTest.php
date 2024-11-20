@@ -19,29 +19,14 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\StructType;
-use Google\Cloud\Spanner\StructValue;
-use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\MutationTrait;
+use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Serializer;
+use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
-use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
-use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
-use Google\Cloud\Spanner\V1\ResultSetStats;
-use Google\Cloud\Spanner\V1\ResultSet;
-use Google\Cloud\Spanner\V1\ReadRequest;
-use Google\Rpc\Status;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**

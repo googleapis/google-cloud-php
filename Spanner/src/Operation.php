@@ -811,7 +811,6 @@ class Operation
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
-            // 'keySet' => $this->formatKeySet($this->flattenKeySet($keySet)),
             'keySet' => $this->flattenKeySet($keySet),
             'partitionOptions' => $this->partitionOptions($data)
         ];
@@ -909,7 +908,6 @@ class Operation
 
         return $this->arrayFilterRemoveNull($keys);
     }
-
 
     private function getDatabaseNameFromSession(Session $session): string
     {

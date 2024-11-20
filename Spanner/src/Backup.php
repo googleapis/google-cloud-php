@@ -20,12 +20,9 @@ namespace Google\Cloud\Spanner;
 use Closure;
 use DateTimeInterface;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup\State;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -419,7 +416,7 @@ class Backup
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

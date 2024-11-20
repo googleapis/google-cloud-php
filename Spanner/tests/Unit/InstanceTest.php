@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -39,6 +38,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -486,8 +486,14 @@ class InstanceTest extends TestCase
         $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
 
         // Make sure the database->info is prefilled.
-        $this->assertEquals($databases[0]->__debugInfo(), array_filter($dbs[0]->info()));
-        $this->assertEquals($databases[1]->__debugInfo(), array_filter($dbs[1]->info()));
+        $this->assertEquals(
+            json_decode($databases[0]->serializeToJsonString(), true),
+            array_filter($dbs[0]->info())
+        );
+        $this->assertEquals(
+            json_decode($databases[1]->serializeToJsonString(), true),
+            array_filter($dbs[1]->info())
+        );
     }
 
     public function testDatabasesPaged()

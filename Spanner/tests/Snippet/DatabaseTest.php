@@ -18,28 +18,26 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
 use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
-use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
-use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -52,20 +50,20 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\ReadRequest;
-use Google\Cloud\Spanner\V1\RollbackRequest;
-use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\ResultSetStats;
+use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\Transaction as TransactionProto;
-use Google\Protobuf\Timestamp as TimestampProto;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Timestamp as TimestampProto;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -178,7 +176,6 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn(new DatabaseProto(['state' => Database::STATE_READY]));
 
-
         $res = $snippet->invoke();
         $this->assertEquals('Database is ready!', $res->output());
     }
@@ -259,7 +256,6 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn(new DatabaseProto(['name' => 'foo']));
 
-
         $res = $snippet->invoke();
         $this->assertEquals('Database exists!', $res->output());
     }
@@ -278,7 +274,6 @@ class DatabaseTest extends SnippetTestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn(new DatabaseProto(['name' => 'foo']));
-
 
         $res = $snippet->invoke('info');
         $this->assertEquals('foo', $res->returnVal()['name']);
@@ -300,7 +295,6 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalledTimes(2)
             ->willReturn(new DatabaseProto(['name' => 'foo']));
 
-
         $res = $snippet->invoke('info');
         $this->assertEquals('foo', $res->returnVal()['name']);
         $snippet->invoke();
@@ -320,7 +314,6 @@ class DatabaseTest extends SnippetTestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
-
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
@@ -343,7 +336,6 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
 
-
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
@@ -363,7 +355,6 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
 
-
         $snippet->invoke();
     }
 
@@ -382,7 +373,6 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->operationResponse->reveal());
 
-
         $snippet->invoke();
     }
 
@@ -399,7 +389,6 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce();
-
 
         $snippet->invoke();
     }
@@ -423,7 +412,6 @@ class DatabaseTest extends SnippetTestCase
         )
             ->shouldBeCalledOnce()
             ->willReturn(new GetDatabaseDdlResponse(['statements' => $stmts]));
-
 
         $res = $snippet->invoke('statements');
         $this->assertEquals($stmts, $res->returnVal());
@@ -853,7 +841,9 @@ class DatabaseTest extends SnippetTestCase
                             ]
                         ]
                     ],
-                    'values' => [[]]
+                    'values' => [
+                        ['listValue' => []]
+                    ]
                 ]
             )]));
 
@@ -871,8 +861,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION)
-        );
+            ->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 5);
         $snippet->addLocal('database', $this->database);
@@ -889,8 +878,7 @@ class DatabaseTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION)
-        );
+            ->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 6);
         $snippet->addLocal('database', $this->database);
@@ -957,8 +945,7 @@ class DatabaseTest extends SnippetTestCase
         $this->spannerClient->streamingRead(
             Argument::type(ReadRequest::class),
             Argument::type('array')
-        )->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION)
-        );
+        )->willReturn($this->resultGeneratorStream([], null, self::TRANSACTION));
 
         $snippet = $this->snippetFromMethod(Database::class, 'read', 2);
         $snippet->addLocal('database', $this->database);
@@ -1028,7 +1015,6 @@ class DatabaseTest extends SnippetTestCase
         $this->databaseAdminClient->getOperationsClient()
             ->shouldBeCalledTimes(2)
             ->willReturn($operationsClient->reveal());
-
 
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
