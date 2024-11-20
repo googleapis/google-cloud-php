@@ -29,10 +29,18 @@ class DataplexTransferStatus
      * Generated from protobuf enum <code>MIGRATED = 1 [deprecated = true];</code>
      */
     const MIGRATED = 1;
+    /**
+     * TagTemplate and its tags are auto-copied to Dataplex service.
+     * Visible in both services. Editable in Dataplex, read-only in DataCatalog.
+     *
+     * Generated from protobuf enum <code>TRANSFERRED = 2;</code>
+     */
+    const TRANSFERRED = 2;
 
     private static $valueToName = [
         self::DATAPLEX_TRANSFER_STATUS_UNSPECIFIED => 'DATAPLEX_TRANSFER_STATUS_UNSPECIFIED',
         self::MIGRATED => 'MIGRATED',
+        self::TRANSFERRED => 'TRANSFERRED',
     ];
 
     public static function name($value)
