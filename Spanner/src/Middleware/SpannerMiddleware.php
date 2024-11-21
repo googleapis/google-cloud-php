@@ -30,32 +30,42 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\Cloud\Core\Middleware;
+namespace Google\Cloud\Spanner\Middleware;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\Middleware\MiddlewareInterface;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Spanner\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\RequestProcessorTrait;
 use GuzzleHttp\Promise\PromiseInterface;
 use Throwable;
 
 /**
- * Middleware that wraps any Api Exception to a `Google\Cloud\Core\Exception`
- * exception class. This is primarily to maintain backwards compatibility with
- * previous Spanner versions.
+ * Middleware for Spanner that adds the following functionality:
+ *
+ *  - Wraps any Api Exception to a `Google\Cloud\Core\Exception` exception
+ *    class. This is primarily to maintain backwards compatibility with previous
+ *    Spanner versions.
+ *  -
  *
  * @internal
  */
-class ExceptionMiddleware implements MiddlewareInterface
+class SpannerMiddleware implements MiddlewareInterface
 {
+    use ArrayTrait;
+
+    private const ROUTE_TO_LEADER_HEADER = 'x-goog-spanner-route-to-leader';
+    private const RESOURCE_PREFIX_HEADER = 'google-cloud-resource-prefix';
+
     use RequestProcessorTrait;
 
     /** @var callable */
     private $nextHandler;
+    private $serializer;
 
     public function __construct(callable $nextHandler)
     {
@@ -71,6 +81,14 @@ class ExceptionMiddleware implements MiddlewareInterface
      */
     public function __invoke(Call $call, array $options)
     {
+        if ($resourcePrefix = $this->pluck('resource-prefix', $options, false)) {
+            $options['headers'][self::RESOURCE_PREFIX_HEADER] = [$options['resource-prefix']];
+        }
+
+        if (true === $this->pluck('route-to-leader', $options, false)) {
+            $options['headers'][self::ROUTE_TO_LEADER_HEADER] = ['true'];
+        }
+
         $response = ($this->nextHandler)($call, $options);
         if ($response instanceof PromiseInterface) {
             return $response->then(null, function ($value) {
@@ -82,6 +100,7 @@ class ExceptionMiddleware implements MiddlewareInterface
                 }
             });
         }
+
         // this can also be a Stream
         return $response;
     }

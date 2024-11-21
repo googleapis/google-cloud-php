@@ -26,7 +26,6 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
-    // use RequestTrait;
 
     /**
      * @var Operation
@@ -303,15 +302,12 @@ trait TransactionalReadTrait
             $this->directedReadOptions ?? []
         );
 
-        if ($this->context === SessionPoolInterface::CONTEXT_READWRITE) {
-            // add LAR header
-            $options['headers']['x-goog-spanner-route-to-leader'] = ['true'];
-        }
-
         // Unsetting the internal flag
         unset($options['singleUse']);
 
-        $result = $this->operation->execute($this->session, $sql, $options);
+        $result = $this->operation->execute($this->session, $sql, $options + [
+            'route-to-leader' => $this->context === SessionPoolInterface::CONTEXT_READWRITE
+        ]);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
@@ -389,12 +385,9 @@ trait TransactionalReadTrait
             $this->directedReadOptions ?? []
         );
 
-        if ($this->context === SessionPoolInterface::CONTEXT_READWRITE) {
-            // add LAR header
-            $options['headers']['x-goog-spanner-route-to-leader'] = ['true'];
-        }
-
-        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options + [
+            'route-to-leader' => $this->context === SessionPoolInterface::CONTEXT_READWRITE
+        ]);
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
         }

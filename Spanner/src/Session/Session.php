@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\RequestTrait;
 use Google\Cloud\Spanner\Serializer;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
@@ -30,7 +30,7 @@ use Google\Cloud\Spanner\V1\GetSessionRequest;
  */
 class Session
 {
-    use RequestTrait;
+    use ApiHelperTrait;
 
     /**
      * @var int|null
@@ -117,10 +117,11 @@ class Session
 
         try {
             $request = $this->serializer->decodeMessage(new GetSessionRequest(), $data);
-            $callOptions = $this->addResourcePrefixHeader($callOptions, $this->databaseName);
-            $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
-            $this->spannerClient->getSession($request, $callOptions);
+            $this->spannerClient->getSession($request, $callOptions + [
+                'resource-prefix' => $this->databaseName,
+                'route-to-leader' => $this->routeToLeader,
+            ]);
         } catch (NotFoundException $e) {
             return false;
         }
@@ -141,9 +142,10 @@ class Session
         ];
 
         $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->databaseName);
 
-        $this->spannerClient->deleteSession($request, $callOptions);
+        $this->spannerClient->deleteSession($request, $callOptions + [
+            'resource-prefix' => $this->databaseName,
+        ]);
     }
 
     /**

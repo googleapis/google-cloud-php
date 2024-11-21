@@ -198,9 +198,10 @@ class Instance
                     'fieldMask' => ['paths' => ['name']],
                 ];
                 $request = $this->serializer->decodeMessage(new GetInstanceRequest(), $data);
-                $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
 
-                $this->instanceAdminClient->getInstance($request, $callOptions);
+                $this->instanceAdminClient->getInstance($request, $callOptions + [
+                    'resource-prefix' => $this->projectName
+                ]);
             } else {
                 $this->reload($options);
             }
@@ -252,9 +253,10 @@ class Instance
         }
 
         $request = $this->serializer->decodeMessage(new GetInstanceRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
 
-        $response = $this->instanceAdminClient->getInstance($request, $callOptions);
+        $response = $this->instanceAdminClient->getInstance($request, $callOptions + [
+            'resource-prefix' => $this->projectName
+        ]);
         return $this->info = $this->handleResponse($response);
     }
 
@@ -303,9 +305,10 @@ class Instance
         ];
 
         $request = $this->serializer->decodeMessage(new CreateInstanceRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        return $this->instanceAdminClient->createInstance($request, $callOptions)
+        return $this->instanceAdminClient->createInstance($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ])
             ->withResultFunction($this->instanceResultFunction());
     }
 
@@ -382,9 +385,10 @@ class Instance
         ];
 
         $request = $this->serializer->decodeMessage(new UpdateInstanceRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        return $this->instanceAdminClient->updateInstance($request, $callOptions)
+        return $this->instanceAdminClient->updateInstance($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ])
             ->withResultFunction($this->instanceResultFunction());
     }
 
@@ -409,9 +413,10 @@ class Instance
         $data['name'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new DeleteInstanceRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $this->instanceAdminClient->deleteInstance($request, $callOptions);
+        $this->instanceAdminClient->deleteInstance($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
     }
 
     /**
@@ -539,12 +544,11 @@ class Instance
         $data['parent'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new ListDatabasesRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         return $this->buildListItemsIterator(
             [$this->databaseAdminClient, 'listDatabases'],
             $request,
-            $callOptions,
+            $callOptions + ['resource-prefix' => $this->name],
             function (array $database) {
                 return $this->database($database['name'], ['database' => $database]);
             },
@@ -614,12 +618,11 @@ class Instance
         $data['parent'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new ListBackupsRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         return $this->buildListItemsIterator(
             [$this->databaseAdminClient, 'listBackups'],
             $request,
-            $callOptions,
+            $callOptions + ['resource-prefix' => $this->name],
             function (array $backup) {
                 return $this->backup($backup['name'], $backup);
             },

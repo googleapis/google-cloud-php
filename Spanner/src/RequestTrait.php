@@ -36,45 +36,6 @@ trait RequestTrait
     use ApiHelperTrait;
     use RequestProcessorTrait;
 
-    private $larHeader = 'x-goog-spanner-route-to-leader';
-    private $resourcePrefixHeader = 'google-cloud-resource-prefix';
-
-    /**
-     * Add the `x-goog-spanner-route-to-leader` header value to the request.
-     *
-     * @param array $args Request arguments.
-     * @param bool $value LAR header value.
-     * @param string $context Transaction context.
-     * @return array
-     */
-    private function addLarHeader(
-        array $args,
-        bool $value = true,
-        string $context = SessionPoolInterface::CONTEXT_READWRITE
-    ) {
-        if (!$value) {
-            return $args;
-        }
-        // If value is true and context is READWRITE, set LAR header.
-        if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $args['headers'][$this->larHeader] = ['true'];
-        }
-        return $args;
-    }
-
-    /**
-     * Add the `google-cloud-resource-prefix` header value to the request.
-     *
-     * @param array $args Request arguments.
-     * @param string $value Resource prefix header value.
-     * @return array
-     */
-    private function addResourcePrefixHeader(array $args, string $value)
-    {
-        $args['headers'][$this->resourcePrefixHeader] = [$value];
-        return $args;
-    }
-
     /**
      * Helper making list calls for long running operations.
      *

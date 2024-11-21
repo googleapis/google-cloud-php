@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Session\Session;
@@ -47,7 +49,8 @@ use InvalidArgumentException;
  */
 class Operation
 {
-    use RequestTrait;
+    use ApiHelperTrait;
+    use RequestProcessorTrait;
     use MutationTrait;
 
     const OP_INSERT = 'insert';
@@ -163,10 +166,10 @@ class Operation
         $data = $this->formatSingleUseTransactionOptions($data);
 
         $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
-
-        $response = $this->spannerClient->commit($request, $callOptions);
+        $response = $this->spannerClient->commit($request, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
         $timestamp = $response->getCommitTimestamp();
 
         return [
@@ -202,10 +205,10 @@ class Operation
         ];
 
         $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
-
-        $this->spannerClient->rollback($request, $callOptions);
+        $this->spannerClient->rollback($request, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
     }
 
     /**
@@ -377,10 +380,10 @@ class Operation
         ];
 
         $request = $this->serializer->decodeMessage(new ExecuteBatchDmlRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
-
-        $response = $this->spannerClient->executeBatchDml($request, $callOptions);
+        $response = $this->spannerClient->executeBatchDml($request, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
         $res = $this->handleResponse($response);
 
         if (empty($transaction->id())) {
@@ -663,10 +666,10 @@ class Operation
 
         $request = $this->serializer->decodeMessage(new CreateSessionRequest(), $data);
 
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
-
-        $response = $this->spannerClient->createSession($request, $callOptions);
+        $response = $this->spannerClient->createSession($request, $callOptions + [
+            'resource-prefix' => $databaseName,
+            'route-to-leader' => $this->routeToLeader
+        ]);
         $res = $this->handleResponse($response);
 
         return $this->session($res['name']);
@@ -753,10 +756,11 @@ class Operation
         ];
 
         $request = $this->serializer->decodeMessage(new PartitionQueryRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
-        $response = $this->spannerClient->partitionQuery($request, $callOptions);
+        $response = $this->spannerClient->partitionQuery($request, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
         $res = $this->handleResponse($response);
 
         $partitions = [];
@@ -816,10 +820,11 @@ class Operation
         ];
 
         $request = $this->serializer->decodeMessage(new PartitionReadRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
-        $response = $this->spannerClient->partitionRead($request, $callOptions);
+        $response = $this->spannerClient->partitionRead($request, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $this->routeToLeader
+        ]);
         $res = $this->handleResponse($response);
 
         $partitions = [];
@@ -866,19 +871,21 @@ class Operation
         $transactionOptions = $this->formatTransactionOptions(
             $this->pluck('transactionOptions', $data, false) ?: []
         );
-        if (isset($transactionOptions['readWrite'])
-            || isset($transactionOptions['partitionedDml'])) {
-            $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
-        }
+        $routeToLeader = (
+            isset($transactionOptions['readWrite']) || isset($transactionOptions['partitionedDml'])
+        ) && $this->routeToLeader;
+
         $data += [
             'session' => $session->name(),
             'options' => $transactionOptions
         ];
 
         $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->getDatabaseNameFromSession($session));
 
-        $response = $this->spannerClient->beginTransaction($request, $callOptions);
+        $response = $this->spannerClient->beginTransaction($request, $callOptions + [
+            'resource-prefix' => $this->getDatabaseNameFromSession($session),
+            'route-to-leader' => $routeToLeader,
+        ]);
         return $this->handleResponse($response);
     }
 
@@ -1066,17 +1073,21 @@ class Operation
      */
     private function executeStreamingSql(array $args)
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($args);
+        list($data, $callOptions) = $this->splitOptionalArgs($args, ['route-to-leader']);
         $data = $this->formatSqlParams($data);
         $data['transaction'] = $this->createTransactionSelector($data);
         $data['queryOptions'] = $this->createQueryOptions($data);
-        $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
+        if (!$this->routeToLeader) {
+            unset($callOptions['route-to-leader']);
+        }
+
         $databaseName = $this->pluck('database', $data);
 
         $request = $this->serializer->decodeMessage(new ExecuteSqlRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
 
-        $response = $this->spannerClient->executeStreamingSql($request, $callOptions);
+        $response = $this->spannerClient->executeStreamingSql($request, $callOptions + [
+            'resource-prefix' => $databaseName,
+        ]);
         return $this->handleResponse($response);
     }
 
@@ -1086,15 +1097,18 @@ class Operation
      */
     private function streamingRead(array $args): \Generator
     {
-        list($data, $callOptions) = $this->splitOptionalArgs($args);
+        list($data, $callOptions) = $this->splitOptionalArgs($args, ['route-to-leader']);
         $data['transaction'] = $this->createTransactionSelector($data);
-        $callOptions = $this->conditionallyUnsetLarHeader($callOptions, $this->routeToLeader);
+        if (!$this->routeToLeader) {
+            unset($callOptions['route-to-leader']);
+        }
         $databaseName = $this->pluck('database', $data);
 
         $request = $this->serializer->decodeMessage(new ReadRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $databaseName);
 
-        $response = $this->spannerClient->streamingRead($request, $callOptions);
+        $response = $this->spannerClient->streamingRead($request, $callOptions + [
+            'resource-prefix' => $databaseName,
+        ]);
 
         return $this->handleResponse($response);
     }
@@ -1129,23 +1143,6 @@ class Operation
         $args += $this->mapper->formatParamsForExecuteSql($parameters, $types);
         $args = $this->formatSqlParams($args);
 
-        return $args;
-    }
-
-    /**
-     * Conditionally unset the LAR header.
-     *
-     * @param array $args Request arguments.
-     * @param bool $value Whether to set or unset the LAR header.
-     * @return array
-     */
-    private function conditionallyUnsetLarHeader(
-        array $args,
-        bool $value = true
-    ): array {
-        if (!$value) {
-            unset($args['headers'][$this->larHeader]);
-        }
         return $args;
     }
 

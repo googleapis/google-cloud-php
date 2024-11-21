@@ -170,15 +170,12 @@ class InstanceConfiguration
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
-        $callOptions = $this->addResourcePrefixHeader(
-            $callOptions,
-            InstanceAdminClient::projectName($this->projectId)
-        );
 
-        $response = $this->instanceAdminClient->getInstanceConfig(
-            $this->serializer->decodeMessage(new GetInstanceConfigRequest(), $data),
-            $callOptions
-        );
+        $request = $this->serializer->decodeMessage(new GetInstanceConfigRequest(), $data);
+
+        $response = $this->instanceAdminClient->getInstanceConfig($request, $callOptions + [
+            'resource-prefix' => InstanceAdminClient::projectName($this->projectId),
+        ]);
 
         return $this->info = $this->handleResponse($response);
     }
@@ -241,11 +238,10 @@ class InstanceConfiguration
             new CreateInstanceConfigRequest(),
             $requestArray
         );
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         $operationResponse = $this->instanceAdminClient->createInstanceConfig(
             $request,
-            $callOptions
+            $callOptions + ['resource-prefix' => $this->name]
         );
 
         return $operationResponse
@@ -291,11 +287,10 @@ class InstanceConfiguration
             'updateMask' => $this->fieldMask($data),
             'validateOnly' => $validateOnly
         ]);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
         $operationResponse = $this->instanceAdminClient->updateInstanceConfig(
             $request,
-            $callOptions
+            $callOptions + ['resource-prefix' => $this->name]
         );
 
         return $operationResponse
@@ -323,10 +318,11 @@ class InstanceConfiguration
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += ['name' => $this->name];
 
-        $this->instanceAdminClient->deleteInstanceConfig(
-            $this->serializer->decodeMessage(new DeleteInstanceConfigRequest(), $data),
-            $this->addResourcePrefixHeader($callOptions, $this->name)
-        );
+        $request = $this->serializer->decodeMessage(new DeleteInstanceConfigRequest(), $data);
+
+        $this->instanceAdminClient->deleteInstanceConfig($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
     }
 
     /**

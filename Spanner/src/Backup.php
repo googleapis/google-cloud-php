@@ -124,9 +124,9 @@ class Backup
         }
 
         $request = $this->serializer->decodeMessage(new CreateBackupRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
-
-        return $this->databaseAdminClient->createBackup($request, $callOptions)
+        return $this->databaseAdminClient->createBackup($request, $callOptions + [
+            'resource-prefix' => $this->instance->name(),
+        ])
             ->withResultFunction($this->backupResultFunction());
     }
 
@@ -168,9 +168,10 @@ class Backup
         ];
 
         $request = $this->serializer->decodeMessage(new CopyBackupRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
 
-        return $this->databaseAdminClient->copyBackup($request, $callOptions)
+        return $this->databaseAdminClient->copyBackup($request, $callOptions + [
+            'resource-prefix' => $this->instance->name(),
+        ])
             ->withResultFunction($this->backupResultFunction());
     }
 
@@ -193,9 +194,10 @@ class Backup
         ];
 
         $request = $this->serializer->decodeMessage(new DeleteBackupRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $this->databaseAdminClient->deleteBackup($request, $callOptions);
+        $this->databaseAdminClient->deleteBackup($request, $callOptions + [
+            'resource-prefix' => $this->name,
+        ]);
     }
 
     /**
@@ -277,9 +279,10 @@ class Backup
         ];
 
         $request = $this->serializer->decodeMessage(new GetBackupRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $response = $this->databaseAdminClient->getBackup($request, $callOptions);
+        $response = $this->databaseAdminClient->getBackup($request, $callOptions + [
+            'resource-prefix' => $this->name,
+        ]);
         return $this->info = $this->handleResponse($response);
     }
 
@@ -340,9 +343,10 @@ class Backup
         ];
 
         $request = $this->serializer->decodeMessage(new UpdateBackupRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $response = $this->databaseAdminClient->updateBackup($request, $callOptions);
+        $response = $this->databaseAdminClient->updateBackup($request, $callOptions + [
+            'resource-prefix' => $this->name,
+        ]);
         return $this->info = $this->handleResponse($response);
     }
 

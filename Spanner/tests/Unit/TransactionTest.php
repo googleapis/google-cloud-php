@@ -130,10 +130,7 @@ class TransactionTest extends TestCase
                 return true;
             }),
             Argument::that(function (array $callOptions) {
-                $this->assertEquals(
-                    $callOptions['headers']['x-goog-spanner-route-to-leader'],
-                    ['true']
-                );
+                $this->assertEquals($callOptions['route-to-leader'], true);
                 return true;
             })
         )
@@ -256,10 +253,7 @@ class TransactionTest extends TestCase
                 return true;
             }),
             Argument::that(function (array $callOptions) {
-                $this->assertEquals(
-                    $callOptions['headers']['x-goog-spanner-route-to-leader'],
-                    ['true']
-                );
+                $this->assertEquals($callOptions['route-to-leader'], true);
                 return true;
             })
         )
@@ -427,10 +421,8 @@ class TransactionTest extends TestCase
                 return true;
             }),
             Argument::that(function (array $callOptions) {
-                $this->assertEquals(
-                    $callOptions['headers']['x-goog-spanner-route-to-leader'],
-                    ['true']
-                );
+                $this->assertArrayHasKey('route-to-leader', $callOptions);
+                $this->assertEquals(true, $callOptions['route-to-leader']);
 
                 return true;
             })

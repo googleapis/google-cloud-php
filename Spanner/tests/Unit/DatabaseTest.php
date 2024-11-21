@@ -1332,9 +1332,8 @@ class DatabaseTest extends TestCase
                 return $request->getSql() == $sql;
             }),
             Argument::that(function ($callOptions) {
-                $this->assertArrayHasKey('headers', $callOptions);
-                $this->assertArrayHasKey('x-goog-spanner-route-to-leader', $callOptions['headers']);
-                $this->assertEquals(['true'], $callOptions['headers']['x-goog-spanner-route-to-leader']);
+                $this->assertArrayHasKey('route-to-leader', $callOptions);
+                $this->assertEquals(true, $callOptions['route-to-leader']);
                 return true;
             })
         )
@@ -1428,9 +1427,8 @@ class DatabaseTest extends TestCase
                 return true;
             }),
             Argument::that(function ($callOptions) {
-                $this->assertArrayHasKey('headers', $callOptions);
-                $this->assertArrayHasKey('x-goog-spanner-route-to-leader', $callOptions['headers']);
-                $this->assertEquals(['true'], $callOptions['headers']['x-goog-spanner-route-to-leader']);
+                $this->assertArrayHasKey('route-to-leader', $callOptions);
+                $this->assertEquals(true, $callOptions['route-to-leader']);
                 return true;
             })
         )

@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -255,17 +256,21 @@ class SpannerClient
             'libName' => 'gccl',
             'serializer' => $this->serializer,
         ];
+        $this->spannerClient = $config['gapicSpannerClient'] ?? new GapicSpannerClient($clientConfig);
+        $this->instanceAdminClient = $config['gapicSpannerInstanceAdminClient']
+            ?? new InstanceAdminClient($clientConfig);
+        $this->databaseAdminClient = $config['gapicSpannerDatabaseAdminClient']
+            ?? new DatabaseAdminClient($clientConfig);
+
+        // Add the SpannerMiddleware, which wraps API Exceptions, and adds
+        // Resource Prefix and LAR headers
         $middleware = function (MiddlewareInterface $handler) {
             return new SpannerMiddleware($handler);
         };
-        $this->spannerClient = $config['gapicSpannerClient'] ?? new GapicSpannerClient($clientConfig);
         $this->spannerClient->addMiddleware($middleware);
-        $this->instanceAdminClient = $config['gapicSpannerInstanceAdminClient']
-            ?? new InstanceAdminClient($clientConfig);
         $this->instanceAdminClient->addMiddleware($middleware);
-        $this->databaseAdminClient = $config['gapicSpannerDatabaseAdminClient']
-            ?? new DatabaseAdminClient($clientConfig);
         $this->databaseAdminClient->addMiddleware($middleware);
+
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
     }
 
@@ -410,12 +415,11 @@ class SpannerClient
         $data['parent'] = $this->projectName;
 
         $request = $this->serializer->decodeMessage(new ListInstanceConfigsRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
 
         return $this->buildListItemsIterator(
             [$this->instanceAdminClient, 'listInstanceConfigs'],
             $request,
-            $callOptions,
+            $callOptions + ['resource-prefix' => $this->projectName],
             function (array $config) {
                 return $this->instanceConfiguration($config['name'], $config);
             },
@@ -486,14 +490,13 @@ class SpannerClient
     public function instanceConfigOperations(array $options = [])
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
         $request = $this->serializer->decodeMessage(new ListInstanceConfigOperationsRequest(), $data);
         $request->setParent($this->projectName);
 
         return $this->buildLongRunningIterator(
             [$this->instanceAdminClient, 'listInstanceConfigOperations'],
             $request,
-            $callOptions,
+            $callOptions + ['resource-prefix' => $this->projectName],
             function (Operation $operation) {
                 return $this->resumeOperation(
                     $operation->getName(),
@@ -598,12 +601,11 @@ class SpannerClient
         $data += ['filter' => '', 'parent' => $this->projectName];
 
         $request = $this->serializer->decodeMessage(new ListInstancesRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->projectName);
 
         return $this->buildListItemsIterator(
             [$this->instanceAdminClient, 'listInstances'],
             $request,
-            $callOptions,
+            $callOptions + ['resource-prefix' => $this->projectName],
             function (array $instance) {
                 $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                 return $this->instance($name, $instance);

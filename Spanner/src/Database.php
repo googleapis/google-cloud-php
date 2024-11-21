@@ -358,9 +358,10 @@ class Database
         $data['name'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $response = $this->databaseAdminClient->getDatabase($request, $callOptions);
+        $response = $this->databaseAdminClient->getDatabase($request, $callOptions + [
+            'resource-prefix' => $this->name,
+        ]);
         return $this->info = $this->handleResponse($response);
     }
 
@@ -423,9 +424,9 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->instance->name());
-
-        return $this->databaseAdminClient->createDatabase($request, $callOptions)
+        return $this->databaseAdminClient->createDatabase($request, $callOptions + [
+            'resource-prefix' => $this->instance->name(),
+        ])
             ->withResultFunction($this->databaseResultFunction());
     }
 
@@ -488,9 +489,10 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new UpdateDatabaseRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        return $this->databaseAdminClient->updateDatabase($request, $callOptions)
+        return $this->databaseAdminClient->updateDatabase($request, $callOptions + [
+            'resource-prefix' => $this->name,
+        ])
             ->withResultFunction($this->databaseResultFunction());
     }
 
@@ -563,9 +565,9 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new UpdateDatabaseDdlRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-
-        return $this->databaseAdminClient->updateDatabaseDdl($request, $callOptions);
+        return $this->databaseAdminClient->updateDatabaseDdl($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
     }
 
     /**
@@ -596,9 +598,10 @@ class Database
         $data['database'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new DropDatabaseRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $this->databaseAdminClient->dropDatabase($request, $callOptions);
+        $this->databaseAdminClient->dropDatabase($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
 
         if ($this->sessionPool) {
             $this->sessionPool->clear();
@@ -633,9 +636,10 @@ class Database
         $data['database'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new GetDatabaseDdlRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
 
-        $response = $this->databaseAdminClient->getDatabaseDdl($request, $callOptions);
+        $response = $this->databaseAdminClient->getDatabaseDdl($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
         $ddl = $this->handleResponse($response);
 
         if (isset($ddl['statements'])) {
@@ -1683,7 +1687,6 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
-        $options = $this->addLarHeader($options, true, $options['transactionContext']);
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
@@ -1693,7 +1696,9 @@ class Database
         try {
             // Unset the internal flag.
             unset($options['singleUse']);
-            return $this->operation->execute($session, $sql, $options);
+            return $this->operation->execute($session, $sql, $options + [
+                'route-to-leader' => $options['transactionContext'] === SessionPoolInterface::CONTEXT_READWRITE
+            ]);
         } finally {
             $session->setExpiration();
         }
@@ -1782,10 +1787,11 @@ class Database
             ];
 
             $request = $this->serializer->decodeMessage(new BatchWriteRequest(), $data);
-            $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-            $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
 
-            $response = $this->spannerClient->batchWrite($request, $callOptions);
+            $response = $this->spannerClient->batchWrite($request, $callOptions + [
+                'resource-prefix' => $this->name,
+                'route-to-leader' => $this->routeToLeader,
+            ]);
             return $this->handleResponse($response);
         } finally {
             $this->isRunningTransaction = false;
@@ -1927,11 +1933,10 @@ class Database
         }
         $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
-        $options = $this->addLarHeader($options);
-
         try {
             return $this->operation->executeUpdate($session, $transaction, $statement, [
-                'statsItem' => 'rowCountLowerBound'
+                'statsItem' => 'rowCountLowerBound',
+                'route-to-leader' => true,
             ] + $options);
         } finally {
             $session->setExpiration();
@@ -2072,12 +2077,12 @@ class Database
             $this->directedReadOptions ?? []
         );
 
-        $options = $this->addLarHeader($options, true, $context);
-
         try {
             // Unset the internal flag.
             unset($options['singleUse']);
-            return $this->operation->read($session, $table, $keySet, $columns, $options);
+            return $this->operation->read($session, $table, $keySet, $columns, $options + [
+                'route-to-leader' => $context === SessionPoolInterface::CONTEXT_READ
+            ]);
         } finally {
             $session->setExpiration();
         }
@@ -2203,10 +2208,10 @@ class Database
         $data['database'] = $this->name;
 
         $request = $this->serializer->decodeMessage(new BatchCreateSessionsRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-        $callOptions = $this->addLarHeader($callOptions, $this->routeToLeader);
-
-        $response = $this->spannerClient->batchCreateSessions($request, $callOptions);
+        $response = $this->spannerClient->batchCreateSessions($request, $callOptions + [
+            'resource-prefix' => $this->name,
+            'route-to-leader' => $this->routeToLeader
+        ]);
         return $this->handleResponse($response);
     }
 
@@ -2225,9 +2230,9 @@ class Database
         [$data, $callOptions] = $this->splitOptionalArgs($options);
 
         $request = $this->serializer->decodeMessage(new DeleteSessionRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-
-        return $this->spannerClient->deleteSessionAsync($request, $callOptions);
+        return $this->spannerClient->deleteSessionAsync($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ]);
     }
 
     /**
@@ -2254,14 +2259,13 @@ class Database
     public function backupOperations(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
         $request = $this->serializer->decodeMessage(new ListBackupOperationsRequest(), $data);
         $request->setParent($this->instance->name());
 
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listBackupOperations'],
             $request,
-            $callOptions
+            $callOptions +  ['resource-prefix' => $this->name]
         );
     }
 
@@ -2286,9 +2290,9 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new RestoreDatabaseRequest(), $data);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
-
-        return $this->databaseAdminClient->restoreDatabase($request, $callOptions)
+        return $this->databaseAdminClient->restoreDatabase($request, $callOptions + [
+            'resource-prefix' => $this->name
+        ])
             ->withResultFunction($this->databaseResultFunction());
     }
 
@@ -2316,14 +2320,13 @@ class Database
     public function databaseOperations(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
-        $callOptions = $this->addResourcePrefixHeader($callOptions, $this->name);
         $request = $this->serializer->decodeMessage(new ListDatabaseOperationsRequest(), $data);
         $request->setParent($this->instance->name());
 
         return $this->buildLongRunningIterator(
             [$this->databaseAdminClient, 'listDatabaseOperations'],
             $request,
-            $callOptions
+            $callOptions + ['resource-prefix' => $this->name]
         );
     }
 
