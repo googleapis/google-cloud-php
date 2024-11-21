@@ -42,6 +42,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $max_concurrent_backfill_tasks = 0;
     protected $large_objects_handling;
+    protected $cdc_method;
 
     /**
      * Constructor.
@@ -62,7 +63,11 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig\DropLargeObjects $drop_large_objects
      *           Drop large object values.
      *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig\StreamLargeObjects $stream_large_objects
-     *           Stream large object values. NOTE: This feature is currently experimental.
+     *           Stream large object values.
+     *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig\LogMiner $log_miner
+     *           Use LogMiner.
+     *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig\BinaryLogParser $binary_log_parser
+     *           Use Binary Log Parser.
      * }
      */
     public function __construct($data = NULL) {
@@ -230,7 +235,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Stream large object values. NOTE: This feature is currently experimental.
+     * Stream large object values.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.StreamLargeObjects stream_large_objects = 102;</code>
      * @return \Google\Cloud\Datastream\V1\OracleSourceConfig\StreamLargeObjects|null
@@ -246,7 +251,7 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Stream large object values. NOTE: This feature is currently experimental.
+     * Stream large object values.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.StreamLargeObjects stream_large_objects = 102;</code>
      * @param \Google\Cloud\Datastream\V1\OracleSourceConfig\StreamLargeObjects $var
@@ -261,11 +266,81 @@ class OracleSourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Use LogMiner.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.LogMiner log_miner = 103;</code>
+     * @return \Google\Cloud\Datastream\V1\OracleSourceConfig\LogMiner|null
+     */
+    public function getLogMiner()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasLogMiner()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * Use LogMiner.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.LogMiner log_miner = 103;</code>
+     * @param \Google\Cloud\Datastream\V1\OracleSourceConfig\LogMiner $var
+     * @return $this
+     */
+    public function setLogMiner($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\OracleSourceConfig\LogMiner::class);
+        $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use Binary Log Parser.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.BinaryLogParser binary_log_parser = 104;</code>
+     * @return \Google\Cloud\Datastream\V1\OracleSourceConfig\BinaryLogParser|null
+     */
+    public function getBinaryLogParser()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasBinaryLogParser()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * Use Binary Log Parser.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig.BinaryLogParser binary_log_parser = 104;</code>
+     * @param \Google\Cloud\Datastream\V1\OracleSourceConfig\BinaryLogParser $var
+     * @return $this
+     */
+    public function setBinaryLogParser($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\OracleSourceConfig\BinaryLogParser::class);
+        $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getLargeObjectsHandling()
     {
         return $this->whichOneof("large_objects_handling");
+    }
+
+    /**
+     * @return string
+     */
+    public function getCdcMethod()
+    {
+        return $this->whichOneof("cdc_method");
     }
 
 }

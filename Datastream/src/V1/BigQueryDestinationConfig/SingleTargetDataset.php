@@ -17,6 +17,8 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
 {
     /**
      * The dataset ID of the target dataset.
+     * DatasetIds allowed characters:
+     * https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.
      *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      */
@@ -30,6 +32,8 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
      *
      *     @type string $dataset_id
      *           The dataset ID of the target dataset.
+     *           DatasetIds allowed characters:
+     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,6 +43,8 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
 
     /**
      * The dataset ID of the target dataset.
+     * DatasetIds allowed characters:
+     * https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.
      *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      * @return string
@@ -50,6 +56,8 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
 
     /**
      * The dataset ID of the target dataset.
+     * DatasetIds allowed characters:
+     * https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.
      *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      * @param string $var
