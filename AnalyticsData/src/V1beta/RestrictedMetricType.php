@@ -7,8 +7,8 @@ namespace Google\Analytics\Data\V1beta;
 use UnexpectedValueException;
 
 /**
- * Categories of data that you may be restricted from viewing on certain GA4
- * properties.
+ * Categories of data that you may be restricted from viewing on certain
+ * Google Analytics properties.
  *
  * Protobuf type <code>google.analytics.data.v1beta.RestrictedMetricType</code>
  */
