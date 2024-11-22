@@ -880,6 +880,16 @@ class SpannerGapicClient
      *
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type bool $lastStatements
+     *           Optional. If set to true, this request marks the end of the transaction.
+     *           The transaction should be committed or aborted after these statements
+     *           execute, and attempts to execute any other requests against this
+     *           transaction (including reads and queries) will be rejected.
+     *
+     *           Setting this option may cause some error reporting to be deferred until
+     *           commit time (e.g. validation of unique constraints). Given this, successful
+     *           execution of statements should not be assumed until a subsequent Commit
+     *           call completes successfully.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -906,6 +916,10 @@ class SpannerGapicClient
         $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['lastStatements'])) {
+            $request->setLastStatements($optionalArgs['lastStatements']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1032,6 +1046,16 @@ class SpannerGapicClient
      *
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
+     *     @type bool $lastStatement
+     *           Optional. If set to true, this statement marks the end of the transaction.
+     *           The transaction should be committed or aborted after this statement
+     *           executes, and attempts to execute any other requests against this
+     *           transaction (including reads and queries) will be rejected.
+     *
+     *           For DML statements, setting this option may cause some error reporting to
+     *           be deferred until commit time (e.g. validation of unique constraints).
+     *           Given this, successful execution of a DML statement should not be assumed
+     *           until a subsequent Commit call completes successfully.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1093,6 +1117,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
             $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
+        }
+
+        if (isset($optionalArgs['lastStatement'])) {
+            $request->setLastStatement($optionalArgs['lastStatement']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1215,6 +1243,16 @@ class SpannerGapicClient
      *
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
+     *     @type bool $lastStatement
+     *           Optional. If set to true, this statement marks the end of the transaction.
+     *           The transaction should be committed or aborted after this statement
+     *           executes, and attempts to execute any other requests against this
+     *           transaction (including reads and queries) will be rejected.
+     *
+     *           For DML statements, setting this option may cause some error reporting to
+     *           be deferred until commit time (e.g. validation of unique constraints).
+     *           Given this, successful execution of a DML statement should not be assumed
+     *           until a subsequent Commit call completes successfully.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1277,6 +1315,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
             $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
+        }
+
+        if (isset($optionalArgs['lastStatement'])) {
+            $request->setLastStatement($optionalArgs['lastStatement']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
