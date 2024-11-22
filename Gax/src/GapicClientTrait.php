@@ -238,6 +238,12 @@ trait GapicClientTrait
             'libName',
             'libVersion',
         ]);
+
+        // "hasEmulator" is not a supported Client Option, but is used
+        // internally to determine if the client is running in emulator mode.
+        // Therefore, we need to remove it from the $options array before
+        // creating the ClientOptions.
+        $hasEmulator = $this->pluck('hasEmulator', $options, false) ?? false;
         if ($this->isBackwardsCompatibilityMode()) {
             if (is_string($options['clientConfig'])) {
                 // perform validation for V1 surfaces which is done in the
@@ -314,7 +320,7 @@ trait GapicClientTrait
                 $transport,
                 $options['transportConfig'],
                 $options['clientCertSource'],
-                $options['hasEmulator'] ?? false
+                $hasEmulator
             );
     }
 

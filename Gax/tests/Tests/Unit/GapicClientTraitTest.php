@@ -1655,6 +1655,36 @@ class GapicClientTraitTest extends TestCase
 
         $response = $client->startCall('SimpleMethod', 'decodeType');
     }
+
+    public function testHasEmulatorOption()
+    {
+        $gapic = new class() {
+            public bool $hasEmulator;
+
+            use GapicClientTrait {
+                buildClientOptions as public;
+                setClientOptions as public;
+            }
+            use ClientDefaultsTrait {
+                ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
+            }
+
+            private function createTransport(
+                string $apiEndpoint,
+                $transport,
+                $transportConfig,
+                callable $clientCertSource = null,
+                bool $hasEmulator = false
+            ) {
+                $this->hasEmulator = $hasEmulator;
+            }
+        };
+
+        $options = $gapic->buildClientOptions(['hasEmulator' => true]);
+        $gapic->setClientOptions($options);
+
+        $this->assertTrue($gapic->hasEmulator);
+    }
 }
 
 class StubGapicClient
@@ -1679,7 +1709,13 @@ class StubGapicClient
         startOperationsCall as public;
     }
     use GapicClientStubTrait;
+    use ClientDefaultsTrait {
+        ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
+    }
+}
 
+trait ClientDefaultsTrait
+{
     public static function getClientDefaults()
     {
         return [
@@ -1687,7 +1723,6 @@ class StubGapicClient
             'serviceName' => 'test.interface.v1.api',
             'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
             'descriptorsConfigPath' => __DIR__ . '/testdata/test_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/testdata/test_service_grpc_config.json',
             'disableRetries' => false,
             'auth' => null,
             'authConfig' => null,
@@ -1798,26 +1833,13 @@ class RestOnlyGapicClient
         buildClientOptions as public;
         getTransport as public;
     }
-
+    use ClientDefaultsTrait {
+        ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
+    }
     public function __construct($options = [])
     {
         $options['apiEndpoint'] = 'api.example.com';
         $this->setClientOptions($this->buildClientOptions($options));
-    }
-
-    public static function getClientDefaults()
-    {
-        return [
-            'apiEndpoint' => 'test.address.com:443',
-            'serviceName' => 'test.interface.v1.api',
-            'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/testdata/test_service_descriptor_config.php',
-            'transportConfig' => [
-                'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/testdata/test_service_rest_client_config.php',
-                ]
-            ],
-        ];
     }
 
     private static function supportedTransports()
@@ -1859,26 +1881,14 @@ class GapicV2SurfaceClient
         startCall as public;
     }
     use GapicClientStubTrait;
+    use ClientDefaultsTrait {
+        ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
+    }
 
     public function __construct(array $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-    }
-
-    public static function getClientDefaults()
-    {
-        return [
-            'apiEndpoint' => 'test.address.com:443',
-            'serviceName' => 'test.interface.v1.api',
-            'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/testdata/test_service_descriptor_config.php',
-            'transportConfig' => [
-                'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/testdata/test_service_rest_client_config.php',
-                ]
-            ],
-        ];
     }
 
     public function getAgentHeader()
