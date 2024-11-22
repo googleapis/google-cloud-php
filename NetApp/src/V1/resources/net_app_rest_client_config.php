@@ -293,6 +293,18 @@ return [
                     ],
                 ],
             ],
+            'EstablishPeering' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*/replications/*}:establishPeering',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetActiveDirectory' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/activeDirectories/*}',
@@ -542,6 +554,18 @@ return [
             'SwitchActiveReplicaZone' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}:switch',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SyncReplication' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*/replications/*}:sync',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

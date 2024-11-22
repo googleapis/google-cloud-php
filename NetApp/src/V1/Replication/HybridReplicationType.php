@@ -59,6 +59,4 @@ class HybridReplicationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HybridReplicationType::class, \Google\Cloud\NetApp\V1\Replication_HybridReplicationType::class);
 
