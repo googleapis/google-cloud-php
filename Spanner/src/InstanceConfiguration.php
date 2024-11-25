@@ -19,7 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
@@ -210,7 +211,7 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return OperationResponse
+     * @return LongRunningOperation
      * @throws ValidationException
      * @codingStandardsIgnoreEnd
      */
@@ -239,13 +240,12 @@ class InstanceConfiguration
             $requestArray
         );
 
-        $operationResponse = $this->instanceAdminClient->createInstanceConfig(
+        $operation = $this->instanceAdminClient->createInstanceConfig(
             $request,
             $callOptions + ['resource-prefix' => $this->name]
         );
 
-        return $operationResponse
-            ->withResultFunction($this->instanceConfigResultFunction());
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -272,7 +272,7 @@ class InstanceConfiguration
      *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
      *           response. **Defaults to** `false`.
      * }
-     * @return OperationResponse
+     * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -288,13 +288,12 @@ class InstanceConfiguration
             'validateOnly' => $validateOnly
         ]);
 
-        $operationResponse = $this->instanceAdminClient->updateInstanceConfig(
+        $operation = $this->instanceAdminClient->updateInstanceConfig(
             $request,
             $callOptions + ['resource-prefix' => $this->name]
         );
 
-        return $operationResponse
-            ->withResultFunction($this->instanceConfigResultFunction());
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -334,15 +333,25 @@ class InstanceConfiguration
      * ```
      *
      * @param string $operationName The Long Running Operation name.
-     * @return OperationResponse
+     * @return LongRunningOperation
      */
     public function resumeOperation($operationName, array $options = [])
     {
-        return (new OperationResponse(
+        return new LongRunningOperation(
+            new LongRunningGapicConnection($this->instanceAdminClient, $this->serializer),
             $operationName,
-            $this->instanceAdminClient->getOperationsClient(),
+            [
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
+                    'callable' => $this->instanceConfigResultFunction(),
+                ],
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
+                    'callable' => $this->instanceConfigResultFunction(),
+                ]
+            ],
             $options
-        ))->withResultFunction($this->instanceConfigResultFunction());
+        );
     }
 
     /**
@@ -395,14 +404,14 @@ class InstanceConfiguration
 
     private function instanceConfigResultFunction(): Closure
     {
-        return function (InstanceConfig $result) {
-            $name = InstanceAdminClient::parseName($result->getName());
+        return function (array $result) {
+            $name = InstanceAdminClient::parseName($result['name']);
             return new self(
                 $this->instanceAdminClient,
                 $this->serializer,
                 $this->projectId,
                 $name['instance_config'],
-                $this->serializer->encodeMessage($result)
+                $result
             );
         };
     }

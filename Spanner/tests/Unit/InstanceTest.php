@@ -24,6 +24,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -96,9 +97,6 @@ class InstanceTest extends TestCase
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
-
         $this->page = $this->prophesize(Page::class);
         $this->pagedListResponse = $this->prophesize(PagedListResponse::class);
         $this->pagedListResponse->getPage()->willReturn($this->page->reveal());
@@ -404,7 +402,7 @@ class InstanceTest extends TestCase
             'statements' => $extra
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $database);
+        $this->assertInstanceOf(LongRunningOperation::class, $database);
     }
 
     public function testCreateDatabaseFromBackupName()
@@ -424,7 +422,7 @@ class InstanceTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupName);
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     public function testCreateDatabaseFromBackupObject()
@@ -444,7 +442,7 @@ class InstanceTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupObject);
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     public function testDatabase()
@@ -622,18 +620,14 @@ class InstanceTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->pagedListResponse->reveal());
 
-        $this->databaseAdminClient->getOperationsClient()
-            ->shouldBeCalledTimes(2)
-            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
-
         $bkpOps = $this->instance->backupOperations();
 
         $this->assertInstanceOf(ItemIterator::class, $bkpOps);
 
         $bkpOps = iterator_to_array($bkpOps);
         $this->assertCount(2, $bkpOps);
-        $this->assertEquals('operation1', $bkpOps[0]->getName());
-        $this->assertEquals('operation2', $bkpOps[1]->getName());
+        $this->assertEquals('operation1', $bkpOps[0]->name());
+        $this->assertEquals('operation2', $bkpOps[1]->name());
     }
 
     public function testListDatabaseOperations()
@@ -656,18 +650,14 @@ class InstanceTest extends TestCase
             ->shouldBeCalledOnce()
             ->willReturn($this->pagedListResponse->reveal());
 
-        $this->databaseAdminClient->getOperationsClient()
-            ->shouldBeCalledTimes(2)
-            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
-
         $dbOps = $this->instance->databaseOperations();
 
         $this->assertInstanceOf(ItemIterator::class, $dbOps);
 
         $dbOps = iterator_to_array($dbOps);
         $this->assertCount(2, $dbOps);
-        $this->assertEquals('operation1', $dbOps[0]->getName());
-        $this->assertEquals('operation2', $dbOps[1]->getName());
+        $this->assertEquals('operation1', $dbOps[0]->name());
+        $this->assertEquals('operation2', $dbOps[1]->name());
     }
 
     public function testInstanceDatabaseRole()

@@ -24,9 +24,12 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Serializer;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
@@ -47,13 +50,17 @@ class InstanceConfigurationTest extends TestCase
     const NAME = 'test-config';
 
     private $instanceAdminClient;
+    private $operationsClient;
     private Serializer $serializer;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->operationsClient = $this->prophesize(OperationsClient::class);
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
+        $this->instanceAdminClient->getOperationsClient()
+            ->willReturn($this->operationsClient->reveal());
         $this->serializer = new Serializer();
     }
 
@@ -186,13 +193,23 @@ class InstanceConfigurationTest extends TestCase
             'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, 'foo'),
             'display_name' => 'bar2'
         ]);
-        $any = new Any(['value' => $expectedInstanceConfig->serializeToString()]);
-        $operationProto = new Operation(['response' => $any, 'done' => true]);
-        $operationClient = $this->prophesize(\Google\LongRunning\Client\OperationsClient::class);
-        $operationResponse = new OperationResponse('operation-name', $operationClient->reveal(), [
+        $result = new Any();
+        $result->pack($expectedInstanceConfig);
+        $metadata = new Any();
+        $metadata->pack(new UpdateInstanceConfigMetadata());
+        $operationProto = new Operation([
+            'response' => $result,
+            'metadata' => $metadata,
+            'done' => true
+        ]);
+
+        $operationResponse = new OperationResponse('operation-name', $this->operationsClient->reveal(), [
             'operationReturnType' => InstanceConfig::class,
             'lastProtoResponse' => $operationProto,
         ]);
+        $this->instanceAdminClient->resumeOperation($operationResponse->getName())
+            ->shouldBeCalledOnce()
+            ->willReturn($operationResponse);
 
         $this->instanceAdminClient->updateInstanceConfig(
             Argument::that(function (UpdateInstanceConfigRequest $request) use ($expectedInstanceConfig) {
@@ -214,7 +231,7 @@ class InstanceConfigurationTest extends TestCase
 
         $operation = $instanceConfig->update(['displayName' => 'bar2']);
         $operation->pollUntilComplete();
-        $updatedInstanceConfig = $operation->getResult();
+        $updatedInstanceConfig = $operation->result();
 
         $info = $updatedInstanceConfig->info();
         $this->assertEquals('bar2', $info['displayName']);

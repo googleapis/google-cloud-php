@@ -18,10 +18,12 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
@@ -45,7 +47,7 @@ trait RequestTrait
      * @param array $callOptions [optional] Call options for the request
      * @param callable $resultMapper [optional] A callable to map the Operation to an
      *        operation response. Defaults to `$this->resumeOperation()`.
-     * @return ItemIterator<OperationResponse>
+     * @return ItemIterator<LongRunningOperation>
      */
     private function buildLongRunningIterator(
         callable $call,
@@ -59,7 +61,7 @@ trait RequestTrait
                 $resultMapper ?: function (Operation $operation) {
                     return $this->resumeOperation(
                         $operation->getName(),
-                        ['lastProtoResponse' => $operation]
+                        $this->handleResponse($operation)
                     );
                 },
                 function (array $args) use ($call) {
@@ -115,6 +117,15 @@ trait RequestTrait
                     'resultLimit' => $resultLimit
                 ]
             )
+        );
+    }
+
+    private function operationFromOperationResponse(
+        OperationResponse $operation
+    ): LongRunningOperation {
+        return $this->resumeOperation(
+            $operation->getName(),
+            $this->handleResponse($operation->getLastProtoResponse()) ?? []
         );
     }
 }

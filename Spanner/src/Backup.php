@@ -19,7 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Closure;
 use DateTimeInterface;
-use Google\ApiCore\OperationResponse;
+use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -95,14 +96,14 @@ class Backup
      *              consistent copy of the database. If not present, it will be the same
      *              as the create time of the backup.
      *     }
-     * @return OperationResponse
+     * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
     public function create(
         $database,
         DateTimeInterface $expireTime,
         array $options = []
-    ): OperationResponse {
+    ): LongRunningOperation {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
 
         $data += [
@@ -124,10 +125,10 @@ class Backup
         }
 
         $request = $this->serializer->decodeMessage(new CreateBackupRequest(), $data);
-        return $this->databaseAdminClient->createBackup($request, $callOptions + [
+        $operation = $this->databaseAdminClient->createBackup($request, $callOptions + [
             'resource-prefix' => $this->instance->name(),
-        ])
-            ->withResultFunction($this->backupResultFunction());
+        ]);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -151,14 +152,14 @@ class Backup
      * @param array $options [optional] {
      *         Configuration Options.
      *     }
-     * @return OperationResponse
+     * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
     public function createCopy(
         Backup $newBackup,
         DateTimeInterface $expireTime,
         array $options = []
-    ): OperationResponse {
+    ): LongRunningOperation {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $newBackup->instance->name(),
@@ -169,10 +170,10 @@ class Backup
 
         $request = $this->serializer->decodeMessage(new CopyBackupRequest(), $data);
 
-        return $this->databaseAdminClient->copyBackup($request, $callOptions + [
+        $operation = $this->databaseAdminClient->copyBackup($request, $callOptions + [
             'resource-prefix' => $this->instance->name(),
-        ])
-            ->withResultFunction($this->backupResultFunction());
+        ]);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -355,19 +356,25 @@ class Backup
      *
      * Example:
      * ```
-     * $operation = $spanner->resumeOperation($operationName);
+     * $operation = $backup->resumeOperation($operationName);
      * ```
      *
      * @param string $operationName The Long Running Operation name.
-     * @return OperationResponse
+     * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = []): OperationResponse
+    public function resumeOperation($operationName, array $options = []): LongRunningOperation
     {
-        return (new OperationResponse(
+        return new LongRunningOperation(
+            new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
             $operationName,
-            $this->databaseAdminClient->getOperationsClient(),
+            [
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
+                    'callable' => $this->backupResultFunction(),
+                ]
+            ],
             $options
-        ))->withResultFunction($this->backupResultFunction());
+        );
     }
 
     /**
@@ -390,7 +397,7 @@ class Backup
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<OperationResponse>
+     * @return ItemIterator<LongRunningOperation>
      */
     public function longRunningOperations(array $options = []): ItemIterator
     {
@@ -429,10 +436,9 @@ class Backup
 
     private function backupResultFunction(): Closure
     {
-        return function (BackupProto $backup) {
-            $name = DatabaseAdminClient::parseName($backup->getName());
-            $info = $this->serializer->decodeMessage($backup);
-            return $this->instance->backup($name['name'], $info);
+        return function (array $backup) {
+            $name = DatabaseAdminClient::parseName($backup['name']);
+            return $this->instance->backup($name['name'], $backup);
         };
     }
 }

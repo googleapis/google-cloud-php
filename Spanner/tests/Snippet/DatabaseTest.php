@@ -24,6 +24,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
@@ -99,8 +100,6 @@ class DatabaseTest extends SnippetTestCase
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
         $this->serializer = new Serializer();
 
         $session = $this->prophesize(Session::class);
@@ -230,7 +229,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testName()
@@ -316,7 +315,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     /**
@@ -337,7 +336,7 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     /**
@@ -989,8 +988,8 @@ class DatabaseTest extends SnippetTestCase
         $snippet->addLocal('operationName', 'foo');
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
-        $this->assertEquals('foo', $res->returnVal()->getName());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()->name());
     }
 
     public function testLongRunningOperations()
@@ -1013,11 +1012,11 @@ class DatabaseTest extends SnippetTestCase
             ->willReturn($pagedListResponse->reveal());
 
         $this->databaseAdminClient->getOperationsClient()
-            ->shouldBeCalledTimes(2)
+            ->shouldBeCalledOnce()
             ->willReturn($operationsClient->reveal());
 
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertContainsOnlyInstancesOf(OperationResponse::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
     }
 }

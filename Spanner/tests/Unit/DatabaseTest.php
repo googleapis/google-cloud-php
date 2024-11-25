@@ -30,6 +30,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -77,6 +78,7 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Google\Protobuf\Value;
+use Google\LongRunning\Client\OperationsClient;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
@@ -148,6 +150,8 @@ class DatabaseTest extends TestCase
         $this->spannerClient = $this->prophesize(SpannerClient::class);
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $this->databaseAdminClient->getOperationsClient()
+            ->willReturn($this->prophesize(OperationsClient::class));
 
         $this->session = new Session(
             $this->spannerClient->reveal(),
@@ -191,8 +195,6 @@ class DatabaseTest extends TestCase
         );
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
     }
 
     public function testName()
@@ -263,7 +265,7 @@ class DatabaseTest extends TestCase
 
         $op = $this->database->createBackup(self::BACKUP, $expireTime);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     public function testBackups()
@@ -436,7 +438,7 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     /**
@@ -460,7 +462,7 @@ class DatabaseTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $op = $this->database->updateDatabase(['enableDropProtection' => true]);
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     /**
@@ -486,7 +488,7 @@ class DatabaseTest extends TestCase
             'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     /**
@@ -513,7 +515,7 @@ class DatabaseTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $op = $this->database->restore($backupName);
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     /**
@@ -540,7 +542,7 @@ class DatabaseTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $op = $this->database->restore($backupObj);
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     /**
@@ -566,7 +568,7 @@ class DatabaseTest extends TestCase
 
         $res = $this->database->updateDdl($statement);
 
-        $this->assertInstanceOf(OperationResponse::class, $res);
+        $this->assertInstanceOf(LongRunningOperation::class, $res);
     }
     /**
      * @group spanner-admin
@@ -616,7 +618,7 @@ class DatabaseTest extends TestCase
             ->willReturn($this->operationResponse->reveal());
 
         $res = $this->database->updateDdl($statement);
-        $this->assertInstanceOf(OperationResponse::class, $res);
+        $this->assertInstanceOf(LongRunningOperation::class, $res);
     }
 
     /**

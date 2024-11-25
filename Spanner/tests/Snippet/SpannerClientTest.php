@@ -24,6 +24,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
@@ -89,8 +90,6 @@ class SpannerClientTest extends SnippetTestCase
             'gapicSpannerInstanceAdminClient' => $this->instanceAdminClient->reveal(),
         ]);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
     }
 
     public function testClass()
@@ -172,7 +171,7 @@ class SpannerClientTest extends SnippetTestCase
             ->willReturn($this->operationResponse->reveal());
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     /**
@@ -295,16 +294,6 @@ class SpannerClientTest extends SnippetTestCase
             [PgJsonB::class, 'pgJsonb'],
             [PgOid::class, 'pgOid'],
         ];
-    }
-
-    public function testResumeOperation()
-    {
-        $snippet = $this->snippetFromMagicMethod(SpannerClient::class, 'resumeOperation');
-        $snippet->addLocal('spanner', $this->client);
-        $snippet->addLocal('operationName', 'operations/foo');
-
-        $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
     }
 
     public function testEmulator()

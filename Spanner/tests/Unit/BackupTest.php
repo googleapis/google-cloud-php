@@ -21,6 +21,7 @@ use DateTime;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup as BackupProto;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -33,6 +34,7 @@ use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Serializer;
+use Google\LongRunning\Client\OperationsClient;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
@@ -70,6 +72,8 @@ class BackupTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->databaseAdminClient = $this->prophesize(DatabaseAdminClient::class);
+        $this->databaseAdminClient->getOperationsClient()
+            ->willReturn($this->prophesize(OperationsClient::class)->reveal());
         $this->serializer = new Serializer();
 
         $this->database = $this->prophesize(Database::class);
@@ -82,8 +86,6 @@ class BackupTest extends TestCase
         $this->instance->database(Argument::any())->willReturn($this->database);
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
 
         $this->expireTime = new DateTime('+7 hours');
         $this->versionTime = new DateTime('-2 hours');
@@ -138,7 +140,7 @@ class BackupTest extends TestCase
         $operation = $backup->create(self::DATABASE, $this->expireTime, [
             'versionTime' => $this->versionTime,
         ]);
-        $this->assertInstanceOf(OperationResponse::class, $operation);
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
     }
 
     public function testCreateCopy()
@@ -178,7 +180,7 @@ class BackupTest extends TestCase
         );
 
         $op = $backup->createCopy($copiedBackup, $this->expireTime);
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
     public function testDelete()

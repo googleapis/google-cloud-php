@@ -17,9 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
-use Closure;
-use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
+use Closure;use Google\ApiCore\ApiException;
+
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -29,6 +28,8 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
+use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as DatabaseProto;
@@ -291,13 +292,13 @@ class Database
      *        eligible to be automatically deleted by Cloud Spanner.
      * @param array $options [optional] Configuration options.
      *
-     * @return OperationResponse<Backup>
+     * @return LongRunningOperation<Backup>
      */
     public function createBackup(
         $name,
         \DateTimeInterface $expireTime,
         array $options = []
-    ): OperationResponse {
+    ): LongRunningOperation {
         $backup = $this->instance->backup($name);
         return $backup->create($this->name(), $expireTime, $options);
     }
@@ -410,9 +411,9 @@ class Database
      *
      *     @type string[] $statements Additional DDL statements.
      * }
-     * @return OperationResponse<Database>
+     * @return LongRunningOperation<Database>
      */
-    public function create(array $options = []): OperationResponse
+    public function create(array $options = []): LongRunningOperation
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $dialect = $data['databaseDialect'] ?? DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
@@ -424,10 +425,10 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
-        return $this->databaseAdminClient->createDatabase($request, $callOptions + [
+        $operation = $this->databaseAdminClient->createDatabase($request, $callOptions + [
             'resource-prefix' => $this->instance->name(),
-        ])
-            ->withResultFunction($this->databaseResultFunction());
+        ]);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -444,9 +445,9 @@ class Database
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return OperationResponse<Database>
+     * @return LongRunningOperation<Database>
      */
-    public function restore($backup, array $options = []): OperationResponse
+    public function restore($backup, array $options = []): LongRunningOperation
     {
         return $this->instance->createDatabaseFromBackup($this->name, $backup, $options);
     }
@@ -469,9 +470,9 @@ class Database
      *     @type bool $enableDropProtection If `true`, delete operations for Database
      *           and Instance will be blocked. **Defaults to** `false`.
      * }
-     * @return OperationResponse<Database>
+     * @return LongRunningOperation<Database>
      */
-    public function updateDatabase(array $options = []): OperationResponse
+    public function updateDatabase(array $options = []): LongRunningOperation
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $fieldMask = [];
@@ -490,10 +491,10 @@ class Database
 
         $request = $this->serializer->decodeMessage(new UpdateDatabaseRequest(), $data);
 
-        return $this->databaseAdminClient->updateDatabase($request, $callOptions + [
+        $operation = $this->databaseAdminClient->updateDatabase($request, $callOptions + [
             'resource-prefix' => $this->name,
-        ])
-            ->withResultFunction($this->databaseResultFunction());
+        ]);
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -519,9 +520,9 @@ class Database
      *
      * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return OperationResponse<Database>
+     * @return LongRunningOperation<Database>
      */
-    public function updateDdl($statement, array $options = []): OperationResponse
+    public function updateDdl($statement, array $options = []): LongRunningOperation
     {
         return $this->updateDdlBatch([$statement], $options);
     }
@@ -554,9 +555,9 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return OperationResponse<void>
+     * @return LongRunningOperation<void>
      */
-    public function updateDdlBatch(array $statements, array $options = []): OperationResponse
+    public function updateDdlBatch(array $statements, array $options = []): LongRunningOperation
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
@@ -565,9 +566,11 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new UpdateDatabaseDdlRequest(), $data);
-        return $this->databaseAdminClient->updateDatabaseDdl($request, $callOptions + [
+        $operation = $this->databaseAdminClient->updateDatabaseDdl($request, $callOptions + [
             'resource-prefix' => $this->name
         ]);
+
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -2254,7 +2257,7 @@ class Database
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<OperationResponse>
+     * @return ItemIterator<LongRunningOperation>
      */
     public function backupOperations(array $options = []): ItemIterator
     {
@@ -2278,9 +2281,9 @@ class Database
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return OperationResponse
+     * @return LongRunningOperation
      */
-    public function createDatabaseFromBackup($name, $backup, array $options = []): OperationResponse
+    public function createDatabaseFromBackup($name, $backup, array $options = []): LongRunningOperation
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $data += [
@@ -2290,10 +2293,11 @@ class Database
         ];
 
         $request = $this->serializer->decodeMessage(new RestoreDatabaseRequest(), $data);
-        return $this->databaseAdminClient->restoreDatabase($request, $callOptions + [
+        $operation = $this->databaseAdminClient->restoreDatabase($request, $callOptions + [
             'resource-prefix' => $this->name
-        ])
-            ->withResultFunction($this->databaseResultFunction());
+        ]);
+
+        return $this->operationFromOperationResponse($operation);
     }
 
     /**
@@ -2315,7 +2319,7 @@ class Database
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<OperationResponse>
+     * @return ItemIterator<LongRunningOperation>
      */
     public function databaseOperations(array $options = []): ItemIterator
     {
@@ -2339,15 +2343,25 @@ class Database
      * ```
      *
      * @param string $operationName The Long Running Operation name.
-     * @return OperationResponse
+     * @return LongRunningOperation
      */
-    public function resumeOperation($operationName, array $options = [])
+    public function resumeOperation($operationName, array $options = []): LongRunningOperation
     {
-        return (new OperationResponse(
+        return new LongRunningOperation(
+            new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
             $operationName,
-            $this->databaseAdminClient->getOperationsClient(),
+            [
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+                    'callable' => $this->databaseResultFunction(),
+                ],
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
+                    'callable' => $this->databaseResultFunction(),
+                ]
+            ],
             $options
-        ))->withResultFunction($this->databaseResultFunction());
+        );
     }
 
     /**
@@ -2370,9 +2384,9 @@ class Database
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return PagedListResponse<OperationResponse>
+     * @return ItemIterator<LongRunningOperation>
      */
-    public function longRunningOperations(array $options = [])
+    public function longRunningOperations(array $options = []): ItemIterator
     {
         [$data, $callOptions] = $this->splitOptionalArgs($options);
         $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
@@ -2395,8 +2409,10 @@ class Database
      * @param array $options [optional] Configuration options.
      * @return Session
      */
-    private function selectSession($context = SessionPoolInterface::CONTEXT_READ, array $options = []): Session
-    {
+    private function selectSession(
+        $context = SessionPoolInterface::CONTEXT_READ,
+        array $options = []
+    ): Session {
         if ($this->session) {
             return $this->session;
         }
@@ -2594,11 +2610,11 @@ class Database
 
     private function databaseResultFunction(): Closure
     {
-        return function (DatabaseProto $database): self {
-            $name = DatabaseAdminClient::parseName($database->getName());
+        return function (array $database): self {
+            $name = DatabaseAdminClient::parseName($database['name']);
             return $this->instance->database($name['database'], [
                 'sessionPool' => $this->sessionPool,
-                'database' => $this->serializer->encodeMessage($database),
+                'database' => $database,
                 'databaseRole' => $this->databaseRole,
             ]);
         };

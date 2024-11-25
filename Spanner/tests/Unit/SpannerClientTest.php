@@ -24,6 +24,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance as InstanceProto;
@@ -97,8 +98,6 @@ class SpannerClientTest extends TestCase
         ]);
 
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
     }
 
     public function testBatch()
@@ -269,7 +268,7 @@ class SpannerClientTest extends TestCase
 
         $operation = $this->spannerClient->createInstance($config->reveal(), self::INSTANCE);
 
-        $this->assertInstanceOf(OperationResponse::class, $operation);
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
     }
 
     /**
@@ -305,7 +304,7 @@ class SpannerClientTest extends TestCase
             'nodeCount' => 2
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $operation);
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
     }
 
     /**
@@ -344,7 +343,7 @@ class SpannerClientTest extends TestCase
             'processingUnits' => 2000
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $operation);
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
     }
 
     /**
@@ -417,18 +416,6 @@ class SpannerClientTest extends TestCase
         $this->assertCount(2, $instances);
         $this->assertEquals('foo', InstanceAdminClient::parseName($instances[0]->name())['instance']);
         $this->assertEquals('bar', InstanceAdminClient::parseName($instances[1]->name())['instance']);
-    }
-
-    /**
-     * @group spanner-admin
-     */
-    public function testResumeOperation()
-    {
-        $opName = 'operations/foo';
-
-        $op = $this->spannerClient->resumeOperation($opName);
-        $this->assertInstanceOf(OperationResponse::class, $op);
-        $this->assertEquals($op->getName(), $opName);
     }
 
     public function testConnect()

@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
@@ -55,8 +56,6 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->serializer = new Serializer();
         $this->instanceAdminClient = $this->prophesize(InstanceAdminClient::class);
         $this->operationResponse = $this->prophesize(OperationResponse::class);
-        $this->operationResponse->withResultFunction(Argument::type('callable'))
-            ->willReturn($this->operationResponse->reveal());
 
         $this->config = new InstanceConfiguration(
             $this->instanceAdminClient->reveal(),
@@ -103,7 +102,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $snippet->addLocal('instanceConfig', $this->config);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(OperationResponse::class, $res->returnVal());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testUpdate()
@@ -116,7 +115,7 @@ class InstanceConfigurationTest extends SnippetTestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce()
-            ->willReturn($this->prophesize(OperationResponse::class)->reveal());
+            ->willReturn($this->operationResponse->reveal());
 
         $snippet->invoke();
     }
