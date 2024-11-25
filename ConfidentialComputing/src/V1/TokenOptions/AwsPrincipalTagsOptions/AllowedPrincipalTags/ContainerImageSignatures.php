@@ -74,6 +74,4 @@ class ContainerImageSignatures extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ContainerImageSignatures::class, \Google\Cloud\ConfidentialComputing\V1\TokenOptions_AwsPrincipalTagsOptions_AllowedPrincipalTags_ContainerImageSignatures::class);
 
