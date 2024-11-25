@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,46 +22,39 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START netapp_v1_generated_NetApp_CreateBackupPolicy_sync]
+// [START netapp_v1_generated_NetApp_SyncReplication_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetApp\V1\BackupPolicy;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
-use Google\Cloud\NetApp\V1\CreateBackupPolicyRequest;
+use Google\Cloud\NetApp\V1\Replication;
+use Google\Cloud\NetApp\V1\SyncReplicationRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates new backup policy
+ * Syncs the replication. This will invoke one time volume data transfer from
+ * source to destination.
  *
- * @param string $formattedParent The location to create the backup policies of, in the format
- *                                `projects/{project_id}/locations/{location}`
- *                                Please see {@see NetAppClient::locationName()} for help formatting this field.
- * @param string $backupPolicyId  The ID to use for the backup policy.
- *                                The ID must be unique within the specified location.
- *                                Must contain only letters, numbers and hyphen, with the first
- *                                character a letter, the last a letter or a
- *                                number, and a 63 character maximum.
+ * @param string $formattedName The resource name of the replication, in the format of
+ *                              projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}. Please see
+ *                              {@see NetAppClient::replicationName()} for help formatting this field.
  */
-function create_backup_policy_sample(string $formattedParent, string $backupPolicyId): void
+function sync_replication_sample(string $formattedName): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $backupPolicy = new BackupPolicy();
-    $request = (new CreateBackupPolicyRequest())
-        ->setParent($formattedParent)
-        ->setBackupPolicy($backupPolicy)
-        ->setBackupPolicyId($backupPolicyId);
+    $request = (new SyncReplicationRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $netAppClient->createBackupPolicy($request);
+        $response = $netAppClient->syncReplication($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var BackupPolicy $result */
+            /** @var Replication $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -85,9 +78,13 @@ function create_backup_policy_sample(string $formattedParent, string $backupPoli
  */
 function callSample(): void
 {
-    $formattedParent = NetAppClient::locationName('[PROJECT]', '[LOCATION]');
-    $backupPolicyId = '[BACKUP_POLICY_ID]';
+    $formattedName = NetAppClient::replicationName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[VOLUME]',
+        '[REPLICATION]'
+    );
 
-    create_backup_policy_sample($formattedParent, $backupPolicyId);
+    sync_replication_sample($formattedName);
 }
-// [END netapp_v1_generated_NetApp_CreateBackupPolicy_sync]
+// [END netapp_v1_generated_NetApp_SyncReplication_sync]
