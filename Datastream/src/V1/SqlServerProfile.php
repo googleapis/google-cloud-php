@@ -9,44 +9,44 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * MySQL database profile.
- * Next ID: 7.
+ * SQLServer database profile.
+ * Next ID: 8.
  *
- * Generated from protobuf message <code>google.cloud.datastream.v1.MysqlProfile</code>
+ * Generated from protobuf message <code>google.cloud.datastream.v1.SqlServerProfile</code>
  */
-class MysqlProfile extends \Google\Protobuf\Internal\Message
+class SqlServerProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Hostname for the MySQL connection.
+     * Required. Hostname for the SQLServer connection.
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $hostname = '';
     /**
-     * Port for the MySQL connection, default value is 3306.
+     * Port for the SQLServer connection, default value is 1433.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      */
     protected $port = 0;
     /**
-     * Required. Username for the MySQL connection.
+     * Required. Username for the SQLServer connection.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $username = '';
     /**
-     * Optional. Input only. Password for the MySQL connection. Mutually exclusive
-     * with the `secret_manager_stored_password` field.
+     * Optional. Password for the SQLServer connection. Mutually exclusive with
+     * the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $password = '';
     /**
-     * SSL configuration for the MySQL connection.
+     * Required. Database for the SQLServer connection.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSslConfig ssl_config = 5;</code>
+     * Generated from protobuf field <code>string database = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $ssl_config = null;
+    protected $database = '';
 
     /**
      * Constructor.
@@ -55,16 +55,16 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $hostname
-     *           Required. Hostname for the MySQL connection.
+     *           Required. Hostname for the SQLServer connection.
      *     @type int $port
-     *           Port for the MySQL connection, default value is 3306.
+     *           Port for the SQLServer connection, default value is 1433.
      *     @type string $username
-     *           Required. Username for the MySQL connection.
+     *           Required. Username for the SQLServer connection.
      *     @type string $password
-     *           Optional. Input only. Password for the MySQL connection. Mutually exclusive
-     *           with the `secret_manager_stored_password` field.
-     *     @type \Google\Cloud\Datastream\V1\MysqlSslConfig $ssl_config
-     *           SSL configuration for the MySQL connection.
+     *           Optional. Password for the SQLServer connection. Mutually exclusive with
+     *           the `secret_manager_stored_password` field.
+     *     @type string $database
+     *           Required. Database for the SQLServer connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +73,7 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Hostname for the MySQL connection.
+     * Required. Hostname for the SQLServer connection.
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,7 +84,7 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Hostname for the MySQL connection.
+     * Required. Hostname for the SQLServer connection.
      *
      * Generated from protobuf field <code>string hostname = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -99,7 +99,7 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port for the MySQL connection, default value is 3306.
+     * Port for the SQLServer connection, default value is 1433.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      * @return int
@@ -110,7 +110,7 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Port for the MySQL connection, default value is 3306.
+     * Port for the SQLServer connection, default value is 1433.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      * @param int $var
@@ -125,7 +125,7 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Username for the MySQL connection.
+     * Required. Username for the SQLServer connection.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -136,7 +136,7 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Username for the MySQL connection.
+     * Required. Username for the SQLServer connection.
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -151,10 +151,10 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Password for the MySQL connection. Mutually exclusive
-     * with the `secret_manager_stored_password` field.
+     * Optional. Password for the SQLServer connection. Mutually exclusive with
+     * the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPassword()
@@ -163,10 +163,10 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Password for the MySQL connection. Mutually exclusive
-     * with the `secret_manager_stored_password` field.
+     * Optional. Password for the SQLServer connection. Mutually exclusive with
+     * the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -179,37 +179,27 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SSL configuration for the MySQL connection.
+     * Required. Database for the SQLServer connection.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSslConfig ssl_config = 5;</code>
-     * @return \Google\Cloud\Datastream\V1\MysqlSslConfig|null
+     * Generated from protobuf field <code>string database = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
      */
-    public function getSslConfig()
+    public function getDatabase()
     {
-        return $this->ssl_config;
-    }
-
-    public function hasSslConfig()
-    {
-        return isset($this->ssl_config);
-    }
-
-    public function clearSslConfig()
-    {
-        unset($this->ssl_config);
+        return $this->database;
     }
 
     /**
-     * SSL configuration for the MySQL connection.
+     * Required. Database for the SQLServer connection.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSslConfig ssl_config = 5;</code>
-     * @param \Google\Cloud\Datastream\V1\MysqlSslConfig $var
+     * Generated from protobuf field <code>string database = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
      * @return $this
      */
-    public function setSslConfig($var)
+    public function setDatabase($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlSslConfig::class);
-        $this->ssl_config = $var;
+        GPBUtil::checkString($var, True);
+        $this->database = $var;
 
         return $this;
     }

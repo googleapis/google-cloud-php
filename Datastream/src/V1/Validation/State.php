@@ -37,12 +37,19 @@ class State
      * Generated from protobuf enum <code>PASSED = 3;</code>
      */
     const PASSED = 3;
+    /**
+     * Validation executed with warnings.
+     *
+     * Generated from protobuf enum <code>WARNING = 4;</code>
+     */
+    const WARNING = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::NOT_EXECUTED => 'NOT_EXECUTED',
         self::FAILED => 'FAILED',
         self::PASSED => 'PASSED',
+        self::WARNING => 'WARNING',
     ];
 
     public static function name($value)
