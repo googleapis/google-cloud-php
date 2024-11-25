@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for
- * [FeaturestoreOnlineServingService.StreamingFeatureValuesRead][].
+ * [FeaturestoreOnlineServingService.StreamingReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.StreamingReadFeatureValues].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.StreamingReadFeatureValuesRequest</code>
  */

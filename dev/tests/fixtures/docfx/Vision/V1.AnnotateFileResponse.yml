@@ -45,11 +45,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ input_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">InputConfig</xref>'
           description: 'Information about the file for which this response is generated.'
         -
           id: '↳ responses'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>&gt;'
           description: 'Individual responses to images found within the file. This field will be empty if the `error` field is set.'
         -
           id: '↳ total_pages'
@@ -71,7 +71,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">InputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::hasInputConfig()'
     name: hasInputConfig
@@ -101,7 +101,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">InputConfig</xref>'
           description: ''
       returns:
         -
@@ -136,7 +136,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">AnnotateImageResponse</xref>&gt;'
           description: ''
       returns:
         -

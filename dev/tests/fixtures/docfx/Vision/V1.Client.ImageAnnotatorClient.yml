@@ -95,7 +95,7 @@ items:
       `Operation.metadata` contains `OperationMetadata` (metadata).
       `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()</xref>
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()">ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()</xref>
       .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
@@ -179,7 +179,7 @@ items:
       GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
 
       The async variant is
-      <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()</xref> .
+      <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()">ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:
@@ -262,7 +262,7 @@ items:
       file provided and perform detection and annotation for each image
       extracted.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()">ImageAnnotatorClient::batchAnnotateFilesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:
@@ -324,7 +324,7 @@ items:
     summary: |-
       Run image detection and annotation for a batch of images.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()">ImageAnnotatorClient::batchAnnotateImagesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:

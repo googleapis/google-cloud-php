@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class EntryGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The relative resource name of the EntryGroup, of the form:
-     * projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.
+     * Output only. The relative resource name of the EntryGroup, in the format
+     * projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
-     * Output only. System generated globally unique ID for the EntryGroup. This
-     * ID will be different if the EntryGroup is deleted and re-created with the
-     * same name.
+     * Output only. System generated globally unique ID for the EntryGroup. If you
+     * delete and recreate the EntryGroup with the same name, this ID will be
+     * different.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -61,9 +61,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * This checksum is computed by the service, and might be sent on update and
+     * delete requests to ensure the client has an up-to-date value before
+     * proceeding.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      */
@@ -83,12 +83,12 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The relative resource name of the EntryGroup, of the form:
-     *           projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.
+     *           Output only. The relative resource name of the EntryGroup, in the format
+     *           projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the EntryGroup. This
-     *           ID will be different if the EntryGroup is deleted and re-created with the
-     *           same name.
+     *           Output only. System generated globally unique ID for the EntryGroup. If you
+     *           delete and recreate the EntryGroup with the same name, this ID will be
+     *           different.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the EntryGroup was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -100,9 +100,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. User-defined labels for the EntryGroup.
      *     @type string $etag
-     *           This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
-     *           client has an up-to-date value before proceeding.
+     *           This checksum is computed by the service, and might be sent on update and
+     *           delete requests to ensure the client has an up-to-date value before
+     *           proceeding.
      *     @type int $transfer_status
      *           Output only. Denotes the transfer status of the Entry Group. It is
      *           unspecified for Entry Group created from Dataplex API.
@@ -114,8 +114,8 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The relative resource name of the EntryGroup, of the form:
-     * projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.
+     * Output only. The relative resource name of the EntryGroup, in the format
+     * projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -126,8 +126,8 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The relative resource name of the EntryGroup, of the form:
-     * projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}.
+     * Output only. The relative resource name of the EntryGroup, in the format
+     * projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -142,9 +142,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the EntryGroup. This
-     * ID will be different if the EntryGroup is deleted and re-created with the
-     * same name.
+     * Output only. System generated globally unique ID for the EntryGroup. If you
+     * delete and recreate the EntryGroup with the same name, this ID will be
+     * different.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -155,9 +155,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the EntryGroup. This
-     * ID will be different if the EntryGroup is deleted and re-created with the
-     * same name.
+     * Output only. System generated globally unique ID for the EntryGroup. If you
+     * delete and recreate the EntryGroup with the same name, this ID will be
+     * different.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -322,9 +322,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * This checksum is computed by the service, and might be sent on update and
+     * delete requests to ensure the client has an up-to-date value before
+     * proceeding.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      * @return string
@@ -335,9 +335,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * This checksum is computed by the service, and might be sent on update and
+     * delete requests to ensure the client has an up-to-date value before
+     * proceeding.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      * @param string $var

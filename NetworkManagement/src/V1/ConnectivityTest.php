@@ -125,6 +125,22 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      */
     protected $probing_details = null;
     /**
+     * Whether run analysis for the return path from destination to source.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool round_trip = 15;</code>
+     */
+    protected $round_trip = false;
+    /**
+     * Output only. The reachability details of this test from the latest run for
+     * the return path. The details are updated when creating a new test,
+     * updating an existing test, or triggering a one-time rerun of an existing
+     * test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails return_reachability_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $return_reachability_details = null;
+    /**
      * Whether the test should skip firewall checking.
      * If not provided, we assume false.
      *
@@ -199,6 +215,14 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           for applicable tests only. The details are updated when creating a new
      *           test, updating an existing test, or triggering a one-time rerun of an
      *           existing test.
+     *     @type bool $round_trip
+     *           Whether run analysis for the return path from destination to source.
+     *           Default value is false.
+     *     @type \Google\Cloud\NetworkManagement\V1\ReachabilityDetails $return_reachability_details
+     *           Output only. The reachability details of this test from the latest run for
+     *           the return path. The details are updated when creating a new test,
+     *           updating an existing test, or triggering a one-time rerun of an existing
+     *           test.
      *     @type bool $bypass_firewall_checks
      *           Whether the test should skip firewall checking.
      *           If not provided, we assume false.
@@ -651,6 +675,76 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ProbingDetails::class);
         $this->probing_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether run analysis for the return path from destination to source.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool round_trip = 15;</code>
+     * @return bool
+     */
+    public function getRoundTrip()
+    {
+        return $this->round_trip;
+    }
+
+    /**
+     * Whether run analysis for the return path from destination to source.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool round_trip = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRoundTrip($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->round_trip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reachability details of this test from the latest run for
+     * the return path. The details are updated when creating a new test,
+     * updating an existing test, or triggering a one-time rerun of an existing
+     * test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails return_reachability_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ReachabilityDetails|null
+     */
+    public function getReturnReachabilityDetails()
+    {
+        return $this->return_reachability_details;
+    }
+
+    public function hasReturnReachabilityDetails()
+    {
+        return isset($this->return_reachability_details);
+    }
+
+    public function clearReturnReachabilityDetails()
+    {
+        unset($this->return_reachability_details);
+    }
+
+    /**
+     * Output only. The reachability details of this test from the latest run for
+     * the return path. The details are updated when creating a new test,
+     * updating an existing test, or triggering a one-time rerun of an existing
+     * test.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ReachabilityDetails return_reachability_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ReachabilityDetails $var
+     * @return $this
+     */
+    public function setReturnReachabilityDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ReachabilityDetails::class);
+        $this->return_reachability_details = $var;
 
         return $this;
     }

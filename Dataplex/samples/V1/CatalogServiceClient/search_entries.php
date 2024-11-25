@@ -30,20 +30,21 @@ use Google\Cloud\Dataplex\V1\SearchEntriesRequest;
 use Google\Cloud\Dataplex\V1\SearchEntriesResult;
 
 /**
- * Searches for entries matching given query and scope.
+ * Searches for Entries matching the given query and scope.
  *
- * @param string $name  The project to which the request should be attributed in the
- *                      following form: `projects/{project}/locations/{location}`.
- * @param string $query The query against which entries in scope should be matched.
+ * @param string $formattedName The project to which the request should be attributed in the
+ *                              following form: `projects/{project}/locations/{location}`. Please see
+ *                              {@see CatalogServiceClient::locationName()} for help formatting this field.
+ * @param string $query         The query against which entries in scope should be matched.
  */
-function search_entries_sample(string $name, string $query): void
+function search_entries_sample(string $formattedName, string $query): void
 {
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
     // Prepare the request message.
     $request = (new SearchEntriesRequest())
-        ->setName($name)
+        ->setName($formattedName)
         ->setQuery($query);
 
     // Call the API and handle any network failures.
@@ -71,9 +72,9 @@ function search_entries_sample(string $name, string $query): void
  */
 function callSample(): void
 {
-    $name = '[NAME]';
+    $formattedName = CatalogServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $query = '[QUERY]';
 
-    search_entries_sample($name, $query);
+    search_entries_sample($formattedName, $query);
 }
 // [END dataplex_v1_generated_CatalogService_SearchEntries_sync]

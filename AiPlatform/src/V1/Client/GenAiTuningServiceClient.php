@@ -553,8 +553,6 @@ final class GenAiTuningServiceClient
 
     /**
      * Rebase a TunedModel.
-     * Creates a LongRunningOperation that takes a legacy Tuned GenAI model
-     * Reference and creates a TuningJob based on newly available model.
      *
      * The async variant is {@see GenAiTuningServiceClient::rebaseTunedModelAsync()} .
      *

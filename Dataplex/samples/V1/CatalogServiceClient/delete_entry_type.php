@@ -30,7 +30,7 @@ use Google\Cloud\Dataplex\V1\DeleteEntryTypeRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a EntryType resource.
+ * Deletes an EntryType.
  *
  * @param string $formattedName The resource name of the EntryType:
  *                              `projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}`. Please see

@@ -142,7 +142,7 @@ items:
 
       * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSetAsync()">ProductSearchClient::addProductToProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -224,7 +224,7 @@ items:
       * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
       * Returns INVALID_ARGUMENT if product_category is missing or invalid.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()">ProductSearchClient::createProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -306,7 +306,7 @@ items:
       * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
       4096 characters.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()">ProductSearchClient::createProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -400,7 +400,7 @@ items:
       compatible with the parent product's product_category is detected.
       * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()">ProductSearchClient::createReferenceImageAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -486,7 +486,7 @@ items:
       search queries against ProductSets containing the product may still work
       until all related caches are refreshed.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()">ProductSearchClient::deleteProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -558,7 +558,7 @@ items:
 
       The actual image files are not deleted from Google Cloud Storage.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()">ProductSearchClient::deleteProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -633,7 +633,7 @@ items:
 
       The actual image files are not deleted from Google Cloud Storage.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()">ProductSearchClient::deleteReferenceImageAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -711,7 +711,7 @@ items:
 
       * Returns NOT_FOUND if the Product does not exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()">ProductSearchClient::getProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -789,7 +789,7 @@ items:
 
       * Returns NOT_FOUND if the ProductSet does not exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()">ProductSearchClient::getProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -867,7 +867,7 @@ items:
 
       * Returns NOT_FOUND if the specified image does not exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()">ProductSearchClient::getReferenceImageAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -956,7 +956,7 @@ items:
       For the format of the csv file please see
       <xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource::getCsvFileUri()">ImportProductSetsGcsSource.csv_file_uri</xref>.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()">ProductSearchClient::importProductSetsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1050,7 +1050,7 @@ items:
       * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
       than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()">ProductSearchClient::listProductSetsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1132,7 +1132,7 @@ items:
 
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()">ProductSearchClient::listProductsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1217,7 +1217,7 @@ items:
 
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()</xref>
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()">ProductSearchClient::listProductsInProductSetAsync()</xref>
       .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
@@ -1303,7 +1303,7 @@ items:
       * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
       than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()">ProductSearchClient::listReferenceImagesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1405,7 +1405,7 @@ items:
       used to keep track of the progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()">ProductSearchClient::purgeProductsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1488,7 +1488,7 @@ items:
       Removes a Product from the specified ProductSet.
 
       The async variant is
-      <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()</xref> .
+      <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()">ProductSearchClient::removeProductFromProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1580,7 +1580,7 @@ items:
       longer than 4096 characters.
       * Returns INVALID_ARGUMENT if product_category is present in update_mask.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()">ProductSearchClient::updateProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
@@ -1649,7 +1649,7 @@ items:
       * Returns INVALID_ARGUMENT if display_name is present in update_mask but
       missing from the request or longer than 4096 characters.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()">ProductSearchClient::updateProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:

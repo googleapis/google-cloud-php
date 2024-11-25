@@ -19,7 +19,7 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
     /**
      * The dimension name a rule belongs to. Supported dimensions are
      * ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     * "INTEGRITY"]
+     * "FRESHNESS", "VOLUME"]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -34,7 +34,7 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The dimension name a rule belongs to. Supported dimensions are
      *           ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     *           "INTEGRITY"]
+     *           "FRESHNESS", "VOLUME"]
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
     /**
      * The dimension name a rule belongs to. Supported dimensions are
      * ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     * "INTEGRITY"]
+     * "FRESHNESS", "VOLUME"]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -58,7 +58,7 @@ class DataQualityDimension extends \Google\Protobuf\Internal\Message
     /**
      * The dimension name a rule belongs to. Supported dimensions are
      * ["COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS",
-     * "INTEGRITY"]
+     * "FRESHNESS", "VOLUME"]
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

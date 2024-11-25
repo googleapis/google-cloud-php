@@ -22,6 +22,8 @@ namespace Google\Cloud\Dev\DocFx\Node;
  */
 trait XrefTrait
 {
+    private string $namespace;
+
     /**
      * @param string $type The parameter type to replace
      */
@@ -156,8 +158,13 @@ trait XrefTrait
 
     private function replaceUidWithLink(string $uid, string $name = null): string
     {
-        // Remove preceeding "\" from namespace
-        $name = $name ?: ltrim($uid, '\\');
+        if (is_null($name)) {
+            $name = ltrim($uid, '\\');
+            // Remove the namespace from the name if it matches the current namespace
+            if (!empty($this->namespace) && str_starts_with($uid, $this->namespace)) {
+                $name = substr($uid, strlen($this->namespace) + 1);
+            }
+        }
 
         // Case for generic types
         if (preg_match('/(.*)<(.*)>/', $uid, $matches)) {

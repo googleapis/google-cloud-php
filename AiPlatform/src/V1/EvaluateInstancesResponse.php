@@ -76,6 +76,11 @@ class EvaluateInstancesResponse extends \Google\Protobuf\Internal\Message
      *           Results for tool parameter key match  metric.
      *     @type \Google\Cloud\AIPlatform\V1\ToolParameterKVMatchResults $tool_parameter_kv_match_results
      *           Results for tool parameter key value match metric.
+     *     @type \Google\Cloud\AIPlatform\V1\CometResult $comet_result
+     *           Translation metrics.
+     *           Result for Comet metric.
+     *     @type \Google\Cloud\AIPlatform\V1\MetricxResult $metricx_result
+     *           Result for Metricx metric.
      * }
      */
     public function __construct($data = NULL) {
@@ -806,6 +811,70 @@ class EvaluateInstancesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ToolParameterKVMatchResults::class);
         $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Translation metrics.
+     * Result for Comet metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CometResult comet_result = 29;</code>
+     * @return \Google\Cloud\AIPlatform\V1\CometResult|null
+     */
+    public function getCometResult()
+    {
+        return $this->readOneof(29);
+    }
+
+    public function hasCometResult()
+    {
+        return $this->hasOneof(29);
+    }
+
+    /**
+     * Translation metrics.
+     * Result for Comet metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CometResult comet_result = 29;</code>
+     * @param \Google\Cloud\AIPlatform\V1\CometResult $var
+     * @return $this
+     */
+    public function setCometResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CometResult::class);
+        $this->writeOneof(29, $var);
+
+        return $this;
+    }
+
+    /**
+     * Result for Metricx metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetricxResult metricx_result = 30;</code>
+     * @return \Google\Cloud\AIPlatform\V1\MetricxResult|null
+     */
+    public function getMetricxResult()
+    {
+        return $this->readOneof(30);
+    }
+
+    public function hasMetricxResult()
+    {
+        return $this->hasOneof(30);
+    }
+
+    /**
+     * Result for Metricx metric.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MetricxResult metricx_result = 30;</code>
+     * @param \Google\Cloud\AIPlatform\V1\MetricxResult $var
+     * @return $this
+     */
+    public function setMetricxResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\MetricxResult::class);
+        $this->writeOneof(30, $var);
 
         return $this;
     }

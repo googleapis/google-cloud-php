@@ -36,7 +36,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ output_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: 'The output location and metadata from AsyncBatchAnnotateImagesRequest.'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::getOutputConfig()'
@@ -50,7 +50,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::hasOutputConfig()'
     name: hasOutputConfig
@@ -80,7 +80,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: ''
       returns:
         -

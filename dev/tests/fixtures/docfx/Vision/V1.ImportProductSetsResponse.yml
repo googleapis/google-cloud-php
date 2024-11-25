@@ -42,7 +42,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ reference_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>&gt;'
           description: 'The list of reference_images that are imported successfully.'
         -
           id: '↳ statuses'
@@ -74,7 +74,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>&gt;'
           description: ''
       returns:
         -
