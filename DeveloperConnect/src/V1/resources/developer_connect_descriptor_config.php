@@ -295,9 +295,11 @@ return [
             ],
             'templateMap' => [
                 'connection' => 'projects/{project}/locations/{location}/connections/{connection}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'gitRepositoryLink' => 'projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}',
                 'location' => 'projects/{project}/locations/{location}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
+                'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
             ],
         ],
     ],
