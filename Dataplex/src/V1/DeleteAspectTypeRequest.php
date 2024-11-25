@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Delele AspectType Request
+ * Delele AspectType Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DeleteAspectTypeRequest</code>
  */
@@ -24,7 +24,8 @@ class DeleteAspectTypeRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteAspectTypeRequest method returns an ABORTED error response
+     * value, the DeleteAspectTypeRequest method returns an ABORTED error
+     * response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,7 +57,8 @@ class DeleteAspectTypeRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}`.
      *     @type string $etag
      *           Optional. If the client provided etag value does not match the current etag
-     *           value, the DeleteAspectTypeRequest method returns an ABORTED error response
+     *           value, the DeleteAspectTypeRequest method returns an ABORTED error
+     *           response.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +96,8 @@ class DeleteAspectTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteAspectTypeRequest method returns an ABORTED error response
+     * value, the DeleteAspectTypeRequest method returns an ABORTED error
+     * response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -106,7 +109,8 @@ class DeleteAspectTypeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If the client provided etag value does not match the current etag
-     * value, the DeleteAspectTypeRequest method returns an ABORTED error response
+     * value, the DeleteAspectTypeRequest method returns an ABORTED error
+     * response.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

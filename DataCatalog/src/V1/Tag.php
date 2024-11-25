@@ -20,12 +20,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Tag extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the tag in URL format where tag ID is a
+     * Identifier. The resource name of the tag in URL format where tag ID is a
      * system-generated identifier.
      * Note: The tag itself might not be stored in the location specified in its
      * name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -60,7 +60,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the tag in URL format where tag ID is a
+     *           Identifier. The resource name of the tag in URL format where tag ID is a
      *           system-generated identifier.
      *           Note: The tag itself might not be stored in the location specified in its
      *           name.
@@ -88,12 +88,12 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the tag in URL format where tag ID is a
+     * Identifier. The resource name of the tag in URL format where tag ID is a
      * system-generated identifier.
      * Note: The tag itself might not be stored in the location specified in its
      * name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -102,12 +102,12 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the tag in URL format where tag ID is a
+     * Identifier. The resource name of the tag in URL format where tag ID is a
      * system-generated identifier.
      * Note: The tag itself might not be stored in the location specified in its
      * name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

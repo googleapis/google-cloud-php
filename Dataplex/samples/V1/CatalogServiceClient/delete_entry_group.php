@@ -30,7 +30,7 @@ use Google\Cloud\Dataplex\V1\DeleteEntryGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a EntryGroup resource.
+ * Deletes an EntryGroup.
  *
  * @param string $formattedName The resource name of the EntryGroup:
  *                              `projects/{project_number}/locations/{location_id}/entryGroups/{entry_group_id}`. Please see

@@ -64,7 +64,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * The machine type to use for instances that are created from these properties.
+     * The machine type to use for instances that are created from these properties. This field only accepts a machine type name, for example `n2-standard-4`. If you use the machine type full or partial URL, for example `projects/my-l7ilb-project/zones/us-central1-a/machineTypes/n2-standard-4`, the request will result in an `INTERNAL_ERROR`.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
@@ -167,7 +167,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to instances that are created from these properties.
      *     @type string $machine_type
-     *           The machine type to use for instances that are created from these properties.
+     *           The machine type to use for instances that are created from these properties. This field only accepts a machine type name, for example `n2-standard-4`. If you use the machine type full or partial URL, for example `projects/my-l7ilb-project/zones/us-central1-a/machineTypes/n2-standard-4`, the request will result in an `INTERNAL_ERROR`.
      *     @type \Google\Cloud\Compute\V1\Metadata $metadata
      *           The metadata key/value pairs to assign to instances that are created from these properties. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *     @type string $min_cpu_platform
@@ -461,7 +461,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The machine type to use for instances that are created from these properties.
+     * The machine type to use for instances that are created from these properties. This field only accepts a machine type name, for example `n2-standard-4`. If you use the machine type full or partial URL, for example `projects/my-l7ilb-project/zones/us-central1-a/machineTypes/n2-standard-4`, the request will result in an `INTERNAL_ERROR`.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @return string
@@ -482,7 +482,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The machine type to use for instances that are created from these properties.
+     * The machine type to use for instances that are created from these properties. This field only accepts a machine type name, for example `n2-standard-4`. If you use the machine type full or partial URL, for example `projects/my-l7ilb-project/zones/us-central1-a/machineTypes/n2-standard-4`, the request will result in an `INTERNAL_ERROR`.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var

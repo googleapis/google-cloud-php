@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getPlacementAsync(GetPlacementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPlacementsAsync(ListPlacementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Placement> getPlacementAsync(GetPlacementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPlacementsAsync(ListPlacementsRequest $request, array $optionalArgs = [])
  */
 final class PlacementServiceClient
 {

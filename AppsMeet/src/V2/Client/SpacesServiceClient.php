@@ -50,10 +50,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface endActiveConferenceAsync(EndActiveConferenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> endActiveConferenceAsync(EndActiveConferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
  */
 final class SpacesServiceClient
 {

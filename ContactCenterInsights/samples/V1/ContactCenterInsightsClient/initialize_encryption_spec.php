@@ -32,16 +32,16 @@ use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecResponse;
 use Google\Rpc\Status;
 
 /**
- * Initializes a location-level encryption key specification.  An error will
- * be thrown if the location has resources already created before the
- * initialization. Once the encryption specification is initialized at a
+ * Initializes a location-level encryption key specification. An error will
+ * result if the location has resources already created before the
+ * initialization. After the encryption specification is initialized at a
  * location, it is immutable and all newly created resources under the
  * location will be encrypted with the existing specification.
  *
  * @param string $encryptionSpecKmsKey The name of customer-managed encryption key that is used to
  *                                     secure a resource and its sub-resources. If empty, the resource is secured
- *                                     by the default Google encryption key. Only the key in the same location as
- *                                     this resource is allowed to be used for encryption. Format:
+ *                                     by our default encryption key. Only the key in the same location as this
+ *                                     resource is allowed to be used for encryption. Format:
  *                                     `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`
  */
 function initialize_encryption_spec_sample(string $encryptionSpecKmsKey): void

@@ -50,8 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getProtectedResourcesSummaryAsync(GetProtectedResourcesSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchProtectedResourcesAsync(SearchProtectedResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProtectedResourcesSummary> getProtectedResourcesSummaryAsync(GetProtectedResourcesSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchProtectedResourcesAsync(SearchProtectedResourcesRequest $request, array $optionalArgs = [])
  */
 final class KeyTrackingServiceClient
 {

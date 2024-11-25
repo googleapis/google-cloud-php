@@ -79,18 +79,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createCustomConstraintAsync(CreateCustomConstraintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPolicyAsync(CreatePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomConstraintAsync(DeleteCustomConstraintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePolicyAsync(DeletePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomConstraintAsync(GetCustomConstraintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEffectivePolicyAsync(GetEffectivePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConstraintsAsync(ListConstraintsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomConstraintsAsync(ListCustomConstraintsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPoliciesAsync(ListPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomConstraintAsync(UpdateCustomConstraintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomConstraint> createCustomConstraintAsync(CreateCustomConstraintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> createPolicyAsync(CreatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCustomConstraintAsync(DeleteCustomConstraintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePolicyAsync(DeletePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomConstraint> getCustomConstraintAsync(GetCustomConstraintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getEffectivePolicyAsync(GetEffectivePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConstraintsAsync(ListConstraintsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomConstraintsAsync(ListCustomConstraintsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPoliciesAsync(ListPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomConstraint> updateCustomConstraintAsync(UpdateCustomConstraintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
  */
 final class OrgPolicyClient
 {

@@ -62,16 +62,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createManagedFolderAsync(CreateManagedFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteManagedFolderAsync(DeleteManagedFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStorageLayoutAsync(GetStorageLayoutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listManagedFoldersAsync(ListManagedFoldersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Folder> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ManagedFolder> createManagedFolderAsync(CreateManagedFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteManagedFolderAsync(DeleteManagedFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ManagedFolder> getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StorageLayout> getStorageLayoutAsync(GetStorageLayoutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listManagedFoldersAsync(ListManagedFoldersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
  */
 final class StorageControlClient
 {

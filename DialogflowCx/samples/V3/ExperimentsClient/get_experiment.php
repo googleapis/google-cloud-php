@@ -34,8 +34,7 @@ use Google\Cloud\Dialogflow\Cx\V3\GetExperimentRequest;
  *
  * @param string $formattedName The name of the
  *                              [Environment][google.cloud.dialogflow.cx.v3.Environment]. Format:
- *                              `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/environments/<Environment ID>/experiments/<Experiment ID>`. Please see
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>`. Please see
  *                              {@see ExperimentsClient::experimentName()} for help formatting this field.
  */
 function get_experiment_sample(string $formattedName): void

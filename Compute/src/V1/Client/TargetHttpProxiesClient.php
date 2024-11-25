@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetHttpProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetHttpProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUrlMapAsync(SetUrlMapTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetHttpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetHttpProxy> getAsync(GetTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetHttpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUrlMapAsync(SetUrlMapTargetHttpProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetHttpProxiesClient
 {

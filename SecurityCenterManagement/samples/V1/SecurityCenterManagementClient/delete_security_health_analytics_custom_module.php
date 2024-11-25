@@ -28,18 +28,18 @@ use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClie
 use Google\Cloud\SecurityCenterManagement\V1\DeleteSecurityHealthAnalyticsCustomModuleRequest;
 
 /**
- * Deletes the specified SecurityHealthAnalyticsCustomModule and all of its
- * descendants in the CRM hierarchy. This method is only supported for
- * resident custom modules.
+ * Deletes the specified
+ * [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+ * and all of its descendants in the resource hierarchy. This method is only
+ * supported for resident custom modules.
  *
- * @param string $formattedName The resource name of the SHA custom module.
+ * @param string $formattedName The resource name of the SHA custom module, in one of the
+ *                              following formats:
  *
- *                              Its format is:
- *
- *                              * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
- *                              * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
- *                              * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`. Please see
- *                              {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
+ *                              * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+ *                              * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+ *                              * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`
+ *                              Please see {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
  */
 function delete_security_health_analytics_custom_module_sample(string $formattedName): void
 {

@@ -53,11 +53,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface deleteLogAsync(DeleteLogRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLogEntriesAsync(ListLogEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLogsAsync(ListLogsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeLogEntriesAsync(WriteLogEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLogAsync(DeleteLogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLogEntriesAsync(ListLogEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLogsAsync(ListLogsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteLogEntriesResponse> writeLogEntriesAsync(WriteLogEntriesRequest $request, array $optionalArgs = [])
  */
 final class LoggingServiceV2Client
 {

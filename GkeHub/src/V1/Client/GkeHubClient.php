@@ -79,17 +79,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateConnectManifestAsync(GenerateConnectManifestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateConnectManifestResponse> generateConnectManifestAsync(GenerateConnectManifestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feature> getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  */
 final class GkeHubClient
 {

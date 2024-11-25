@@ -50,8 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSkusAsync(ListSkusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSkusAsync(ListSkusRequest $request, array $optionalArgs = [])
  */
 final class CloudCatalogClient
 {

@@ -55,16 +55,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListReservationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListReservationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resizeAsync(ResizeReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListReservationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reservation> getAsync(GetReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListReservationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resizeAsync(ResizeReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateReservationRequest $request, array $optionalArgs = [])
  */
 final class ReservationsClient
 {

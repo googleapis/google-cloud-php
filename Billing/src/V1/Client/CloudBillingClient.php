@@ -62,17 +62,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBillingAccountAsync(CreateBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBillingAccountAsync(GetBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProjectBillingInfoAsync(GetProjectBillingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBillingAccountsAsync(ListBillingAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProjectBillingInfoAsync(ListProjectBillingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveBillingAccountAsync(MoveBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBillingAccountAsync(UpdateBillingAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProjectBillingInfoAsync(UpdateProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> createBillingAccountAsync(CreateBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> getBillingAccountAsync(GetBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProjectBillingInfo> getProjectBillingInfoAsync(GetProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBillingAccountsAsync(ListBillingAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProjectBillingInfoAsync(ListProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> moveBillingAccountAsync(MoveBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BillingAccount> updateBillingAccountAsync(UpdateBillingAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProjectBillingInfo> updateProjectBillingInfoAsync(UpdateProjectBillingInfoRequest $request, array $optionalArgs = [])
  */
 final class CloudBillingClient
 {

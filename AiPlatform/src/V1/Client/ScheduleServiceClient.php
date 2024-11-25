@@ -66,18 +66,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createScheduleAsync(CreateScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteScheduleAsync(DeleteScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScheduleAsync(GetScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSchedulesAsync(ListSchedulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseScheduleAsync(PauseScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeScheduleAsync(ResumeScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateScheduleAsync(UpdateScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schedule> createScheduleAsync(CreateScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteScheduleAsync(DeleteScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schedule> getScheduleAsync(GetScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSchedulesAsync(ListSchedulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseScheduleAsync(PauseScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeScheduleAsync(ResumeScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schedule> updateScheduleAsync(UpdateScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ScheduleServiceClient
 {
@@ -650,8 +650,9 @@ final class ScheduleServiceClient
      *
      * When the Schedule is resumed, new runs will be scheduled starting from the
      * next execution time after the current time based on the time_specification
-     * in the Schedule. If [Schedule.catchUp][] is set up true, all
-     * missed runs will be scheduled for backfill first.
+     * in the Schedule. If
+     * [Schedule.catch_up][google.cloud.aiplatform.v1.Schedule.catch_up] is set up
+     * true, all missed runs will be scheduled for backfill first.
      *
      * The async variant is {@see ScheduleServiceClient::resumeScheduleAsync()} .
      *

@@ -54,13 +54,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface aggregatedListJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkActiveJobsAsync(CheckActiveJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface snapshotJobAsync(SnapshotJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckActiveJobsResponse> checkActiveJobsAsync(CheckActiveJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> snapshotJobAsync(SnapshotJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
  */
 final class JobsV1Beta3Client
 {

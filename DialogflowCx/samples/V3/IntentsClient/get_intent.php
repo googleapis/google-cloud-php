@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Intent;
  * Retrieves the specified intent.
  *
  * @param string $formattedName The name of the intent.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/intents/<Intent ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`. Please see
  *                              {@see IntentsClient::intentName()} for help formatting this field.
  */
 function get_intent_sample(string $formattedName): void

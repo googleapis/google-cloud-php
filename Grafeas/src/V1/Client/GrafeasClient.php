@@ -77,20 +77,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateNotesAsync(BatchCreateNotesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchCreateOccurrencesAsync(BatchCreateOccurrencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNoteAsync(CreateNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createOccurrenceAsync(CreateOccurrenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNoteAsync(DeleteNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteOccurrenceAsync(DeleteOccurrenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNoteAsync(GetNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOccurrenceAsync(GetOccurrenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOccurrenceNoteAsync(GetOccurrenceNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNoteOccurrencesAsync(ListNoteOccurrencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotesAsync(ListNotesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOccurrencesAsync(ListOccurrencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNoteAsync(UpdateNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateOccurrenceAsync(UpdateOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateNotesResponse> batchCreateNotesAsync(BatchCreateNotesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateOccurrencesResponse> batchCreateOccurrencesAsync(BatchCreateOccurrencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> createNoteAsync(CreateNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Occurrence> createOccurrenceAsync(CreateOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNoteAsync(DeleteNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteOccurrenceAsync(DeleteOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> getNoteAsync(GetNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Occurrence> getOccurrenceAsync(GetOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> getOccurrenceNoteAsync(GetOccurrenceNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNoteOccurrencesAsync(ListNoteOccurrencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotesAsync(ListNotesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOccurrencesAsync(ListOccurrencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> updateNoteAsync(UpdateNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Occurrence> updateOccurrenceAsync(UpdateOccurrenceRequest $request, array $optionalArgs = [])
  */
 final class GrafeasClient
 {

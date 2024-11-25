@@ -54,11 +54,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchUpdateGenerativeQuestionConfigsAsync(BatchUpdateGenerativeQuestionConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGenerativeQuestionsFeatureConfigAsync(GetGenerativeQuestionsFeatureConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGenerativeQuestionConfigsAsync(ListGenerativeQuestionConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGenerativeQuestionConfigAsync(UpdateGenerativeQuestionConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGenerativeQuestionsFeatureConfigAsync(UpdateGenerativeQuestionsFeatureConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateGenerativeQuestionConfigsResponse> batchUpdateGenerativeQuestionConfigsAsync(BatchUpdateGenerativeQuestionConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerativeQuestionsFeatureConfig> getGenerativeQuestionsFeatureConfigAsync(GetGenerativeQuestionsFeatureConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListGenerativeQuestionConfigsResponse> listGenerativeQuestionConfigsAsync(ListGenerativeQuestionConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerativeQuestionConfig> updateGenerativeQuestionConfigAsync(UpdateGenerativeQuestionConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerativeQuestionsFeatureConfig> updateGenerativeQuestionsFeatureConfigAsync(UpdateGenerativeQuestionsFeatureConfigRequest $request, array $optionalArgs = [])
  */
 final class GenerativeQuestionServiceClient
 {

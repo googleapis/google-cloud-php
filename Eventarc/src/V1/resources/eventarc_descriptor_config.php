@@ -61,6 +61,82 @@ return [
                     ],
                 ],
             ],
+            'CreateEnrollment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\Enrollment',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateGoogleApiSource' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\GoogleApiSource',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateMessageBus' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\MessageBus',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreatePipeline' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\Pipeline',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTrigger' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Eventarc\V1\Trigger',
@@ -118,6 +194,82 @@ return [
                     ],
                 ],
             ],
+            'DeleteEnrollment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\Enrollment',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGoogleApiSource' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\GoogleApiSource',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMessageBus' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\MessageBus',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePipeline' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\Pipeline',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTrigger' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Eventarc\V1\Trigger',
@@ -152,6 +304,86 @@ return [
                         'keyName' => 'channel.name',
                         'fieldAccessors' => [
                             'getChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateEnrollment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\Enrollment',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'enrollment.name',
+                        'fieldAccessors' => [
+                            'getEnrollment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGoogleApiSource' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\GoogleApiSource',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'google_api_source.name',
+                        'fieldAccessors' => [
+                            'getGoogleApiSource',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMessageBus' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\MessageBus',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'message_bus.name',
+                        'fieldAccessors' => [
+                            'getMessageBus',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePipeline' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Eventarc\V1\Pipeline',
+                    'metadataReturnType' => '\Google\Cloud\Eventarc\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'pipeline.name',
+                        'fieldAccessors' => [
+                            'getPipeline',
                             'getName',
                         ],
                     ],
@@ -201,9 +433,57 @@ return [
                     ],
                 ],
             ],
+            'GetEnrollment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\Enrollment',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoogleApiSource' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\GoogleApiSource',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGoogleChannelConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Eventarc\V1\GoogleChannelConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMessageBus' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\MessageBus',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPipeline' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\Pipeline',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -268,6 +548,106 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Eventarc\V1\ListChannelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEnrollments' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEnrollments',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListEnrollmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoogleApiSources' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGoogleApiSources',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListGoogleApiSourcesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMessageBusEnrollments' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEnrollments',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListMessageBusEnrollmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMessageBuses' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMessageBuses',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListMessageBusesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPipelines' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPipelines',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Eventarc\V1\ListPipelinesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -408,10 +788,16 @@ return [
                 'channelConnection' => 'projects/{project}/locations/{location}/channelConnections/{channel_connection}',
                 'cloudFunction' => 'projects/{project}/locations/{location}/functions/{function}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
+                'enrollment' => 'projects/{project}/locations/{location}/enrollments/{enrollment}',
+                'googleApiSource' => 'projects/{project}/locations/{location}/googleApiSources/{google_api_source}',
                 'googleChannelConfig' => 'projects/{project}/locations/{location}/googleChannelConfig',
                 'location' => 'projects/{project}/locations/{location}',
+                'messageBus' => 'projects/{project}/locations/{location}/messageBuses/{message_bus}',
+                'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{networkattachment}',
+                'pipeline' => 'projects/{project}/locations/{location}/pipelines/{pipeline}',
                 'provider' => 'projects/{project}/locations/{location}/providers/{provider}',
                 'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
+                'topic' => 'projects/{project}/topics/{topic}',
                 'trigger' => 'projects/{project}/locations/{location}/triggers/{trigger}',
                 'workflow' => 'projects/{project}/locations/{location}/workflows/{workflow}',
             ],

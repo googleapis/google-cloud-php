@@ -58,12 +58,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createReportAsync(CreateReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchReportResultRowsAsync(FetchReportResultRowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportAsync(GetReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportsAsync(ListReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runReportAsync(RunReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReportAsync(UpdateReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Report> createReportAsync(CreateReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchReportResultRowsResponse> fetchReportResultRowsAsync(FetchReportResultRowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Report> getReportAsync(GetReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportsAsync(ListReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runReportAsync(RunReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Report> updateReportAsync(UpdateReportRequest $request, array $optionalArgs = [])
  */
 final class ReportServiceClient
 {

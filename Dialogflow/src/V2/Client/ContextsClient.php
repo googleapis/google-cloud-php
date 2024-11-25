@@ -56,14 +56,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createContextAsync(CreateContextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAllContextsAsync(DeleteAllContextsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteContextAsync(DeleteContextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getContextAsync(GetContextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listContextsAsync(ListContextsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateContextAsync(UpdateContextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Context> createContextAsync(CreateContextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAllContextsAsync(DeleteAllContextsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteContextAsync(DeleteContextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Context> getContextAsync(GetContextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listContextsAsync(ListContextsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Context> updateContextAsync(UpdateContextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ContextsClient
 {

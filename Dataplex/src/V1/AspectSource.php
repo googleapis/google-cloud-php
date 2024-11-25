@@ -9,25 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * AspectSource contains source system related information for the
- * aspect.
+ * Information related to the source system of the aspect.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectSource</code>
  */
 class AspectSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The create time of the aspect in the source system.
+     * The time the aspect was created in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
     protected $create_time = null;
     /**
-     * The update time of the aspect in the source system.
+     * The time the aspect was last updated in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
     protected $update_time = null;
+    /**
+     * The version of the data format used to produce this data. This field is
+     * used to indicated when the underlying data format changes (e.g., schema
+     * modifications, changes to the source URL format definition, etc).
+     *
+     * Generated from protobuf field <code>string data_version = 12;</code>
+     */
+    protected $data_version = '';
 
     /**
      * Constructor.
@@ -36,9 +43,13 @@ class AspectSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The create time of the aspect in the source system.
+     *           The time the aspect was created in the source system.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The update time of the aspect in the source system.
+     *           The time the aspect was last updated in the source system.
+     *     @type string $data_version
+     *           The version of the data format used to produce this data. This field is
+     *           used to indicated when the underlying data format changes (e.g., schema
+     *           modifications, changes to the source URL format definition, etc).
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +58,7 @@ class AspectSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The create time of the aspect in the source system.
+     * The time the aspect was created in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -68,7 +79,7 @@ class AspectSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The create time of the aspect in the source system.
+     * The time the aspect was created in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -83,7 +94,7 @@ class AspectSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update time of the aspect in the source system.
+     * The time the aspect was last updated in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -104,7 +115,7 @@ class AspectSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update time of the aspect in the source system.
+     * The time the aspect was last updated in the source system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -114,6 +125,36 @@ class AspectSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The version of the data format used to produce this data. This field is
+     * used to indicated when the underlying data format changes (e.g., schema
+     * modifications, changes to the source URL format definition, etc).
+     *
+     * Generated from protobuf field <code>string data_version = 12;</code>
+     * @return string
+     */
+    public function getDataVersion()
+    {
+        return $this->data_version;
+    }
+
+    /**
+     * The version of the data format used to produce this data. This field is
+     * used to indicated when the underlying data format changes (e.g., schema
+     * modifications, changes to the source URL format definition, etc).
+     *
+     * Generated from protobuf field <code>string data_version = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->data_version = $var;
 
         return $this;
     }

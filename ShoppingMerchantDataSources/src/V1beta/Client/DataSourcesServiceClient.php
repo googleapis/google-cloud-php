@@ -59,12 +59,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createDataSourceAsync(CreateDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataSourceAsync(DeleteDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchDataSourceAsync(FetchDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSource> createDataSourceAsync(CreateDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataSourceAsync(DeleteDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> fetchDataSourceAsync(FetchDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSource> updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
  */
 final class DataSourcesServiceClient
 {

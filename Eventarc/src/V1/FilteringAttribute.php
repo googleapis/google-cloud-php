@@ -29,15 +29,15 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Output only. If true, the triggers for this provider should always specify a filter
-     * on these attributes. Trigger creation will fail otherwise.
+     * Output only. If true, the triggers for this provider should always specify
+     * a filter on these attributes. Trigger creation will fail otherwise.
      *
      * Generated from protobuf field <code>bool required = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $required = false;
     /**
-     * Output only. If true, the attribute accepts matching expressions in the Eventarc
-     * PathPattern format.
+     * Output only. If true, the attribute accepts matching expressions in the
+     * Eventarc PathPattern format.
      *
      * Generated from protobuf field <code>bool path_pattern_supported = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -54,11 +54,11 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Output only. Description of the purpose of the attribute.
      *     @type bool $required
-     *           Output only. If true, the triggers for this provider should always specify a filter
-     *           on these attributes. Trigger creation will fail otherwise.
+     *           Output only. If true, the triggers for this provider should always specify
+     *           a filter on these attributes. Trigger creation will fail otherwise.
      *     @type bool $path_pattern_supported
-     *           Output only. If true, the attribute accepts matching expressions in the Eventarc
-     *           PathPattern format.
+     *           Output only. If true, the attribute accepts matching expressions in the
+     *           Eventarc PathPattern format.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,8 +119,8 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If true, the triggers for this provider should always specify a filter
-     * on these attributes. Trigger creation will fail otherwise.
+     * Output only. If true, the triggers for this provider should always specify
+     * a filter on these attributes. Trigger creation will fail otherwise.
      *
      * Generated from protobuf field <code>bool required = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -131,8 +131,8 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If true, the triggers for this provider should always specify a filter
-     * on these attributes. Trigger creation will fail otherwise.
+     * Output only. If true, the triggers for this provider should always specify
+     * a filter on these attributes. Trigger creation will fail otherwise.
      *
      * Generated from protobuf field <code>bool required = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -147,8 +147,8 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If true, the attribute accepts matching expressions in the Eventarc
-     * PathPattern format.
+     * Output only. If true, the attribute accepts matching expressions in the
+     * Eventarc PathPattern format.
      *
      * Generated from protobuf field <code>bool path_pattern_supported = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -159,8 +159,8 @@ class FilteringAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If true, the attribute accepts matching expressions in the Eventarc
-     * PathPattern format.
+     * Output only. If true, the attribute accepts matching expressions in the
+     * Eventarc PathPattern format.
      *
      * Generated from protobuf field <code>bool path_pattern_supported = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

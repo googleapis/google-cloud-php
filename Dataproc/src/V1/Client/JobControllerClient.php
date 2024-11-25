@@ -55,16 +55,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface submitJobAsync(SubmitJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface submitJobAsOperationAsync(SubmitJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> submitJobAsync(SubmitJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> submitJobAsOperationAsync(SubmitJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class JobControllerClient
 {

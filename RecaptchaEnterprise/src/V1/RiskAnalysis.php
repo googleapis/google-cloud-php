@@ -36,6 +36,12 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $extended_verdict_reasons;
+    /**
+     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $challenge = 0;
 
     /**
      * Constructor.
@@ -52,6 +58,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $extended_verdict_reasons
      *           Output only. Extended verdict reasons to be used for experimentation only.
      *           The set of possible reasons is subject to change.
+     *     @type int $challenge
+     *           Output only. Challenge information for SCORE_AND_CHALLENGE keys
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +147,32 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->extended_verdict_reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getChallenge()
+    {
+        return $this->challenge;
+    }
+
+    /**
+     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setChallenge($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis\Challenge::class);
+        $this->challenge = $var;
 
         return $this;
     }

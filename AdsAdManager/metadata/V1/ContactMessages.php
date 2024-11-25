@@ -18,14 +18,14 @@ class ContactMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸
+Õ
 .google/ads/admanager/v1/contact_messages.protogoogle.ads.admanager.v1google/api/resource.proto"›
 Contact
 name (	BàA
 
 contact_id (BàA:dêAa
- admanager.googleapis.com/Contact*networks/{network_code}/contacts/{contact}*contacts2contactB«
-com.google.ads.admanager.v1BContactMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+ admanager.googleapis.com/Contact*networks/{network_code}/contacts/{contact}*contacts2contactBÈ
+com.google.ads.admanager.v1BContactMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

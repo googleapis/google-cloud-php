@@ -34,7 +34,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ responses'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileResponse">Google\Cloud\Vision\V1\AnnotateFileResponse</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileResponse">AnnotateFileResponse</xref>&gt;'
           description: 'The list of file annotation responses, each response corresponding to each AnnotateFileRequest in BatchAnnotateFilesRequest.'
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse::getResponses()'
@@ -66,7 +66,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileResponse">Google\Cloud\Vision\V1\AnnotateFileResponse</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateFileResponse">AnnotateFileResponse</xref>&gt;'
           description: ''
       returns:
         -

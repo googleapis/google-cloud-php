@@ -90,6 +90,18 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig summarization_config = 11;</code>
      */
     protected $summarization_config = null;
+    /**
+     * Whether to run the QA annotator.
+     *
+     * Generated from protobuf field <code>bool run_qa_annotator = 12;</code>
+     */
+    protected $run_qa_annotator = false;
+    /**
+     * Configuration for the QA annotator.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig qa_config = 13;</code>
+     */
+    protected $qa_config = null;
 
     /**
      * Constructor.
@@ -128,6 +140,10 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *           Whether to run the summarization annotator.
      *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\SummarizationConfig $summarization_config
      *           Configuration for the summarization annotator.
+     *     @type bool $run_qa_annotator
+     *           Whether to run the QA annotator.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\QaConfig $qa_config
+     *           Configuration for the QA annotator.
      * }
      */
     public function __construct($data = NULL) {
@@ -445,6 +461,68 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\SummarizationConfig::class);
         $this->summarization_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to run the QA annotator.
+     *
+     * Generated from protobuf field <code>bool run_qa_annotator = 12;</code>
+     * @return bool
+     */
+    public function getRunQaAnnotator()
+    {
+        return $this->run_qa_annotator;
+    }
+
+    /**
+     * Whether to run the QA annotator.
+     *
+     * Generated from protobuf field <code>bool run_qa_annotator = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRunQaAnnotator($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->run_qa_annotator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the QA annotator.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig qa_config = 13;</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\QaConfig|null
+     */
+    public function getQaConfig()
+    {
+        return $this->qa_config;
+    }
+
+    public function hasQaConfig()
+    {
+        return isset($this->qa_config);
+    }
+
+    public function clearQaConfig()
+    {
+        unset($this->qa_config);
+    }
+
+    /**
+     * Configuration for the QA annotator.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig qa_config = 13;</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\QaConfig $var
+     * @return $this
+     */
+    public function setQaConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\QaConfig::class);
+        $this->qa_config = $var;
 
         return $this;
     }

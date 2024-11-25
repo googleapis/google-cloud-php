@@ -130,6 +130,19 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateEndpoints private_endpoints = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $private_endpoints = null;
+    /**
+     * Configuration for faster model deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FasterDeploymentConfig faster_deployment_config = 23;</code>
+     */
+    protected $faster_deployment_config = null;
+    /**
+     * System labels to apply to Model Garden deployments.
+     * System labels are managed by Google for internal use only.
+     *
+     * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
+     */
+    private $system_labels;
     protected $prediction_resources;
 
     /**
@@ -219,6 +232,11 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           requests directly to the deployed model services running on Cloud via
      *           private services access. This field is populated if
      *           [network][google.cloud.aiplatform.v1.Endpoint.network] is configured.
+     *     @type \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig $faster_deployment_config
+     *           Configuration for faster model deployment.
+     *     @type array|\Google\Protobuf\Internal\MapField $system_labels
+     *           System labels to apply to Model Garden deployments.
+     *           System labels are managed by Google for internal use only.
      * }
      */
     public function __construct($data = NULL) {
@@ -737,6 +755,70 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateEndpoints::class);
         $this->private_endpoints = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for faster model deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FasterDeploymentConfig faster_deployment_config = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig|null
+     */
+    public function getFasterDeploymentConfig()
+    {
+        return $this->faster_deployment_config;
+    }
+
+    public function hasFasterDeploymentConfig()
+    {
+        return isset($this->faster_deployment_config);
+    }
+
+    public function clearFasterDeploymentConfig()
+    {
+        unset($this->faster_deployment_config);
+    }
+
+    /**
+     * Configuration for faster model deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FasterDeploymentConfig faster_deployment_config = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig $var
+     * @return $this
+     */
+    public function setFasterDeploymentConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig::class);
+        $this->faster_deployment_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * System labels to apply to Model Garden deployments.
+     * System labels are managed by Google for internal use only.
+     *
+     * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getSystemLabels()
+    {
+        return $this->system_labels;
+    }
+
+    /**
+     * System labels to apply to Model Garden deployments.
+     * System labels are managed by Google for internal use only.
+     *
+     * Generated from protobuf field <code>map<string, string> system_labels = 28;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setSystemLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->system_labels = $arr;
 
         return $this;
     }

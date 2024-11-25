@@ -47,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionInstanceTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceTemplate> getAsync(GetRegionInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionInstanceTemplatesRequest $request, array $optionalArgs = [])
  */
 final class RegionInstanceTemplatesClient
 {

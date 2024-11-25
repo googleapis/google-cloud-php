@@ -53,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getShippingSettingsAsync(GetShippingSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertShippingSettingsAsync(InsertShippingSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ShippingSettings> getShippingSettingsAsync(GetShippingSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ShippingSettings> insertShippingSettingsAsync(InsertShippingSettingsRequest $request, array $optionalArgs = [])
  */
 final class ShippingSettingsServiceClient
 {

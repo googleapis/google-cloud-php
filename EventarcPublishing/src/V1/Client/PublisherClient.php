@@ -35,6 +35,8 @@ use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
+use Google\Cloud\Eventarc\Publishing\V1\PublishRequest;
+use Google\Cloud\Eventarc\Publishing\V1\PublishResponse;
 use Google\Protobuf\Any;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -67,8 +69,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface publishChannelConnectionEventsAsync(PublishChannelConnectionEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface publishEventsAsync(PublishEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishResponse> publishAsync(PublishRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishChannelConnectionEventsResponse> publishChannelConnectionEventsAsync(PublishChannelConnectionEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishEventsResponse> publishEventsAsync(PublishEventsRequest $request, array $optionalArgs = [])
  */
 final class PublisherClient
 {
@@ -184,6 +187,32 @@ final class PublisherClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Publish events to a message bus.
+     *
+     * The async variant is {@see PublisherClient::publishAsync()} .
+     *
+     * @example samples/V1/PublisherClient/publish.php
+     *
+     * @param PublishRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PublishResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function publish(PublishRequest $request, array $callOptions = []): PublishResponse
+    {
+        return $this->startApiCall('Publish', $request, $callOptions)->wait();
     }
 
     /**

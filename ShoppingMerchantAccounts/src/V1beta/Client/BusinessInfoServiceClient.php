@@ -52,8 +52,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getBusinessInfoAsync(GetBusinessInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBusinessInfoAsync(UpdateBusinessInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BusinessInfo> getBusinessInfoAsync(GetBusinessInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BusinessInfo> updateBusinessInfoAsync(UpdateBusinessInfoRequest $request, array $optionalArgs = [])
  */
 final class BusinessInfoServiceClient
 {

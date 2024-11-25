@@ -69,21 +69,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createLbRouteExtensionAsync(CreateLbRouteExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createLbTrafficExtensionAsync(CreateLbTrafficExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLbRouteExtensionAsync(DeleteLbRouteExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLbTrafficExtensionAsync(DeleteLbTrafficExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLbRouteExtensionAsync(GetLbRouteExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLbTrafficExtensionAsync(GetLbTrafficExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLbRouteExtensionsAsync(ListLbRouteExtensionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLbTrafficExtensionsAsync(ListLbTrafficExtensionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateLbRouteExtensionAsync(UpdateLbRouteExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateLbTrafficExtensionAsync(UpdateLbTrafficExtensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createLbRouteExtensionAsync(CreateLbRouteExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createLbTrafficExtensionAsync(CreateLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteLbRouteExtensionAsync(DeleteLbRouteExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteLbTrafficExtensionAsync(DeleteLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LbRouteExtension> getLbRouteExtensionAsync(GetLbRouteExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LbTrafficExtension> getLbTrafficExtensionAsync(GetLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLbRouteExtensionsAsync(ListLbRouteExtensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLbTrafficExtensionsAsync(ListLbTrafficExtensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateLbRouteExtensionAsync(UpdateLbRouteExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateLbTrafficExtensionAsync(UpdateLbTrafficExtensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DepServiceClient
 {

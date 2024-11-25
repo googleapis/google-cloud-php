@@ -60,11 +60,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAlertPolicyAsync(CreateAlertPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAlertPolicyAsync(DeleteAlertPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAlertPolicyAsync(GetAlertPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAlertPoliciesAsync(ListAlertPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAlertPolicyAsync(UpdateAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AlertPolicy> createAlertPolicyAsync(CreateAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAlertPolicyAsync(DeleteAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AlertPolicy> getAlertPolicyAsync(GetAlertPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAlertPoliciesAsync(ListAlertPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AlertPolicy> updateAlertPolicyAsync(UpdateAlertPolicyRequest $request, array $optionalArgs = [])
  */
 final class AlertPolicyServiceClient
 {

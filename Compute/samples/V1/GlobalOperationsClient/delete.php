@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\GlobalOperationsClient;
 /**
  * Deletes the specified Operations resource.
  *
- * @param string $operation Name of the Operations resource to delete.
+ * @param string $operation Name of the Operations resource to delete, or its unique numeric identifier.
  * @param string $project   Project ID for this request.
  */
 function delete_sample(string $operation, string $project): void

@@ -9,8 +9,10 @@ items:
       Response message for the `ImportProductSets` method.
 
       This message is returned by the
-      <xref uid="\Google\LongRunning\OperationsClient::getOperation()">google.longrunning.Operations.GetOperation</xref> method in the returned
-      <xref uid="\Google\LongRunning\Operation::getResponse()">google.longrunning.Operation.response</xref> field.
+      <xref uid="\Google\LongRunning\OperationsClient::getOperation()">google.longrunning.Operations.GetOperation</xref>
+      method in the returned
+      <xref uid="\Google\LongRunning\Operation::getResponse()">google.longrunning.Operation.response</xref>
+      field.
 
       Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsResponse</code>
     type: class
@@ -40,11 +42,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ reference_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>&gt;'
           description: 'The list of reference_images that are imported successfully.'
         -
           id: '↳ statuses'
-          var_type: 'array&lt;<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>&gt;'
           description: 'The rpc status for each ImportProductSet request, including both successes and errors. The number of statuses here matches the number of lines in the csv file, and statuses[i] stores the success or failure status of processing the i-th line of the csv, starting from line 0.'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getReferenceImages()'
@@ -72,7 +74,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>&gt;'
           description: ''
       returns:
         -
@@ -115,7 +117,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>&gt;'
           description: ''
       returns:
         -

@@ -69,20 +69,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAgentPoolAsync(CreateAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTransferJobAsync(CreateTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAgentPoolAsync(DeleteAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTransferJobAsync(DeleteTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAgentPoolAsync(GetAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGoogleServiceAccountAsync(GetGoogleServiceAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTransferJobAsync(GetTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAgentPoolsAsync(ListAgentPoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransferJobsAsync(ListTransferJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseTransferOperationAsync(PauseTransferOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeTransferOperationAsync(ResumeTransferOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runTransferJobAsync(RunTransferJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAgentPoolAsync(UpdateAgentPoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTransferJobAsync(UpdateTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> createAgentPoolAsync(CreateAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> createTransferJobAsync(CreateTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAgentPoolAsync(DeleteAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTransferJobAsync(DeleteTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> getAgentPoolAsync(GetAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleServiceAccount> getGoogleServiceAccountAsync(GetGoogleServiceAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> getTransferJobAsync(GetTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAgentPoolsAsync(ListAgentPoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransferJobsAsync(ListTransferJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseTransferOperationAsync(PauseTransferOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeTransferOperationAsync(ResumeTransferOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runTransferJobAsync(RunTransferJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentPool> updateAgentPoolAsync(UpdateAgentPoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransferJob> updateTransferJobAsync(UpdateTransferJobRequest $request, array $optionalArgs = [])
  */
 final class StorageTransferServiceClient
 {

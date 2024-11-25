@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Effective firewalls from firewall policy.
+     * [Output only] Effective firewalls from firewall policy. It applies to Regional Network Firewall Policies in the specified region, Global Network Firewall Policies and Hierachial Firewall Policies which are associated with the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
      */
@@ -34,7 +34,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policys
-     *           Effective firewalls from firewall policy.
+     *           [Output only] Effective firewalls from firewall policy. It applies to Regional Network Firewall Policies in the specified region, Global Network Firewall Policies and Hierachial Firewall Policies which are associated with the network.
      *     @type array<\Google\Cloud\Compute\V1\Firewall>|\Google\Protobuf\Internal\RepeatedField $firewalls
      *           Effective firewalls on the network.
      * }
@@ -45,7 +45,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
     }
 
     /**
-     * Effective firewalls from firewall policy.
+     * [Output only] Effective firewalls from firewall policy. It applies to Regional Network Firewall Policies in the specified region, Global Network Firewall Policies and Hierachial Firewall Policies which are associated with the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +56,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
     }
 
     /**
-     * Effective firewalls from firewall policy.
+     * [Output only] Effective firewalls from firewall policy. It applies to Regional Network Firewall Policies in the specified region, Global Network Firewall Policies and Hierachial Firewall Policies which are associated with the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
      * @param array<\Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $var

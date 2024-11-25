@@ -29,7 +29,7 @@ use Google\Cloud\Dataplex\V1\EntryType;
 use Google\Cloud\Dataplex\V1\GetEntryTypeRequest;
 
 /**
- * Retrieves a EntryType resource.
+ * Gets an EntryType.
  *
  * @param string $formattedName The resource name of the EntryType:
  *                              `projects/{project_number}/locations/{location_id}/entryTypes/{entry_type_id}`. Please see

@@ -53,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getBusinessIdentityAsync(GetBusinessIdentityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBusinessIdentityAsync(UpdateBusinessIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BusinessIdentity> getBusinessIdentityAsync(GetBusinessIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BusinessIdentity> updateBusinessIdentityAsync(UpdateBusinessIdentityRequest $request, array $optionalArgs = [])
  */
 final class BusinessIdentityServiceClient
 {

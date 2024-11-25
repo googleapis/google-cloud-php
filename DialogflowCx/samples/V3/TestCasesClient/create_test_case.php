@@ -32,7 +32,7 @@ use Google\Cloud\Dialogflow\Cx\V3\TestCase;
  * Creates a test case for the given agent.
  *
  * @param string $formattedParent     The agent to create the test case for.
- *                                    Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                    Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                    {@see TestCasesClient::agentName()} for help formatting this field.
  * @param string $testCaseDisplayName The human-readable name of the test case, unique within the
  *                                    agent. Limit of 200 characters.

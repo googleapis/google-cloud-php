@@ -58,15 +58,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDataPolicyAsync(CreateDataPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataPolicyAsync(DeleteDataPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataPolicyAsync(GetDataPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataPoliciesAsync(ListDataPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface renameDataPolicyAsync(RenameDataPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataPolicyAsync(UpdateDataPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataPolicy> createDataPolicyAsync(CreateDataPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataPolicyAsync(DeleteDataPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataPolicy> getDataPolicyAsync(GetDataPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataPoliciesAsync(ListDataPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataPolicy> renameDataPolicyAsync(RenameDataPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataPolicy> updateDataPolicyAsync(UpdateDataPolicyRequest $request, array $optionalArgs = [])
  */
 final class DataPolicyServiceClient
 {

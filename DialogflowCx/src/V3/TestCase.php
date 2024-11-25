@@ -19,8 +19,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * The unique identifier of the test case.
      * [TestCases.CreateTestCase][google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]
      * will populate the name automatically. Otherwise use format:
-     * `projects/<Project ID>/locations/<LocationID>/agents/
-     * <AgentID>/testCases/<TestCase ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -83,8 +82,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      *           The unique identifier of the test case.
      *           [TestCases.CreateTestCase][google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]
      *           will populate the name automatically. Otherwise use format:
-     *           `projects/<Project ID>/locations/<LocationID>/agents/
-     *           <AgentID>/testCases/<TestCase ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Tags are short descriptions that users may apply to test cases for
      *           organizational and filtering purposes. Each tag should start with "#" and
@@ -115,8 +113,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * The unique identifier of the test case.
      * [TestCases.CreateTestCase][google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]
      * will populate the name automatically. Otherwise use format:
-     * `projects/<Project ID>/locations/<LocationID>/agents/
-     * <AgentID>/testCases/<TestCase ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -130,8 +127,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * The unique identifier of the test case.
      * [TestCases.CreateTestCase][google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]
      * will populate the name automatically. Otherwise use format:
-     * `projects/<Project ID>/locations/<LocationID>/agents/
-     * <AgentID>/testCases/<TestCase ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

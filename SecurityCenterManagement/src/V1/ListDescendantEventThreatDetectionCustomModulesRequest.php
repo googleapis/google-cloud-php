@@ -9,19 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing descendant Event Threat Detection custom
- * modules.
+ * Request message for
+ * [SecurityCenterManagement.ListDescendantEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListDescendantEventThreatDetectionCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListDescendantEventThreatDetectionCustomModulesRequest</code>
  */
 class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list custom modules, in one of the following
+     * formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,18 +35,22 @@ class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Pro
      */
     protected $page_size = 0;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent to list custom modules. Its format is
-     *                       `organizations/{organization}/locations/{location}`,
-     *                       `folders/{folder}/locations/{location}`,
-     *                       or
-     *                       `projects/{project}/locations/{location}`
+     * @param string $parent Required. Name of parent to list custom modules, in one of the following
+     *                       formats:
+     *
+     *                       * `organizations/{organization}/locations/{location}`
+     *                       * `folders/{folder}/locations/{location}`
+     *                       * `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListDescendantEventThreatDetectionCustomModulesRequest
@@ -66,17 +70,20 @@ class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Pro
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent to list custom modules. Its format is
-     *           `organizations/{organization}/locations/{location}`,
-     *           `folders/{folder}/locations/{location}`,
-     *           or
-     *           `projects/{project}/locations/{location}`
+     *           Required. Name of parent to list custom modules, in one of the following
+     *           formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of modules to return. The service may return
      *           fewer than this value. If unspecified, at most 10 configs will be returned.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results the server should return.
+     *           Optional. A pagination token returned from a previous request. Provide this
+     *           token to retrieve the next page of results.
+     *           When paginating, the rest of the request must match the request that
+     *           generated the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,11 +92,11 @@ class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Pro
     }
 
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list custom modules, in one of the following
+     * formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,11 +107,11 @@ class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Pro
     }
 
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list custom modules, in one of the following
+     * formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -149,7 +156,10 @@ class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Pro
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -160,7 +170,10 @@ class ListDescendantEventThreatDetectionCustomModulesRequest extends \Google\Pro
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

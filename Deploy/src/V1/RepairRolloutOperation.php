@@ -22,6 +22,12 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      */
     protected $rollout = '';
     /**
+     * Output only. The index of the current repair action in the repair sequence.
+     *
+     * Generated from protobuf field <code>int64 current_repair_phase_index = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $current_repair_phase_index = 0;
+    /**
      * Output only. Records of the repair attempts. Each repair phase may have
      * multiple retry attempts or single rollback attempt.
      *
@@ -50,6 +56,8 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $rollout
      *           Output only. The name of the rollout that initiates the `AutomationRun`.
+     *     @type int|string $current_repair_phase_index
+     *           Output only. The index of the current repair action in the repair sequence.
      *     @type array<\Google\Cloud\Deploy\V1\RepairPhase>|\Google\Protobuf\Internal\RepeatedField $repair_phases
      *           Output only. Records of the repair attempts. Each repair phase may have
      *           multiple retry attempts or single rollback attempt.
@@ -87,6 +95,32 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->rollout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The index of the current repair action in the repair sequence.
+     *
+     * Generated from protobuf field <code>int64 current_repair_phase_index = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getCurrentRepairPhaseIndex()
+    {
+        return $this->current_repair_phase_index;
+    }
+
+    /**
+     * Output only. The index of the current repair action in the repair sequence.
+     *
+     * Generated from protobuf field <code>int64 current_repair_phase_index = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setCurrentRepairPhaseIndex($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->current_repair_phase_index = $var;
 
         return $this;
     }

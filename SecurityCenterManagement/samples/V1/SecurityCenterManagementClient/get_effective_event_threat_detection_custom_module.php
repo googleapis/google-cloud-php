@@ -29,22 +29,26 @@ use Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustom
 use Google\Cloud\SecurityCenterManagement\V1\GetEffectiveEventThreatDetectionCustomModuleRequest;
 
 /**
- * Gets an effective ETD custom module. Retrieves the effective module at the
- * given level. The difference between an EffectiveCustomModule and a
- * CustomModule is that the fields for an EffectiveCustomModule are computed
- * from ancestors if needed. For example, the enablement_state for a
- * CustomModule can be either ENABLED, DISABLED, or INHERITED. Where as the
- * enablement_state for an EffectiveCustomModule is always computed to ENABLED
- * or DISABLED (the effective enablement_state).
+ * Gets the effective Event Threat Detection custom module at the given level.
  *
- * @param string $formattedName The resource name of the ETD custom module.
+ * The difference between an
+ * [EffectiveEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule]
+ * and an
+ * [EventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]
+ * is that the fields for an `EffectiveEventThreatDetectionCustomModule` are
+ * computed from ancestors if needed. For example, the enablement state for an
+ * `EventThreatDetectionCustomModule` can be `ENABLED`, `DISABLED`, or
+ * `INHERITED`. In contrast, the enablement state for an
+ * `EffectiveEventThreatDetectionCustomModule` is always computed as `ENABLED`
+ * or `DISABLED`.
  *
- *                              Its format is:
+ * @param string $formattedName The resource name of the Event Threat Detection custom module, in
+ *                              one of the following formats:
  *
- *                              * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
- *                              * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
- *                              * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`. Please see
- *                              {@see SecurityCenterManagementClient::effectiveEventThreatDetectionCustomModuleName()} for help formatting this field.
+ *                              * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+ *                              * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+ *                              * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{custom_module}`
+ *                              Please see {@see SecurityCenterManagementClient::effectiveEventThreatDetectionCustomModuleName()} for help formatting this field.
  */
 function get_effective_event_threat_detection_custom_module_sample(string $formattedName): void
 {

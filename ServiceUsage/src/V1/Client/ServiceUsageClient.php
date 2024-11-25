@@ -55,12 +55,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchEnableServicesAsync(BatchEnableServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchGetServicesAsync(BatchGetServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableServiceAsync(DisableServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableServiceAsync(EnableServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchEnableServicesAsync(BatchEnableServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchGetServicesResponse> batchGetServicesAsync(BatchGetServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableServiceAsync(DisableServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableServiceAsync(EnableServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
  */
 final class ServiceUsageClient
 {

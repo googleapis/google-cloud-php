@@ -55,12 +55,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateEntitySignalsMappingsAsync(BatchCreateEntitySignalsMappingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchUpdateEntitySignalsMappingsAsync(BatchUpdateEntitySignalsMappingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntitySignalsMappingAsync(CreateEntitySignalsMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntitySignalsMappingAsync(GetEntitySignalsMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitySignalsMappingsAsync(ListEntitySignalsMappingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntitySignalsMappingAsync(UpdateEntitySignalsMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateEntitySignalsMappingsResponse> batchCreateEntitySignalsMappingsAsync(BatchCreateEntitySignalsMappingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateEntitySignalsMappingsResponse> batchUpdateEntitySignalsMappingsAsync(BatchUpdateEntitySignalsMappingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntitySignalsMapping> createEntitySignalsMappingAsync(CreateEntitySignalsMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntitySignalsMapping> getEntitySignalsMappingAsync(GetEntitySignalsMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitySignalsMappingsAsync(ListEntitySignalsMappingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntitySignalsMapping> updateEntitySignalsMappingAsync(UpdateEntitySignalsMappingRequest $request, array $optionalArgs = [])
  */
 final class EntitySignalsMappingServiceClient
 {

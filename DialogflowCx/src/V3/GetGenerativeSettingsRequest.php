@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/generativeSettings`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,8 +32,8 @@ class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
     protected $language_code = '';
 
     /**
-     * @param string $name         Required. Format: `projects/<Project ID>/locations/<Location
-     *                             ID>/agents/<Agent ID>/generativeSettings`. Please see
+     * @param string $name         Required. Format:
+     *                             `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`. Please see
      *                             {@see AgentsClient::agentGenerativeSettingsName()} for help formatting this field.
      * @param string $languageCode Required. Language code of the generative settings.
      *
@@ -55,8 +55,8 @@ class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/generativeSettings`.
+     *           Required. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *     @type string $language_code
      *           Required. Language code of the generative settings.
      * }
@@ -67,8 +67,8 @@ class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/generativeSettings`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,8 +79,8 @@ class GetGenerativeSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/generativeSettings`.
+     * Required. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

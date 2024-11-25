@@ -51,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionUrlMapsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionUrlMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface validateAsync(ValidateRegionUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UrlMap> getAsync(GetRegionUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionUrlMapsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UrlMapsValidateResponse> validateAsync(ValidateRegionUrlMapRequest $request, array $optionalArgs = [])
  */
 final class RegionUrlMapsClient
 {

@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListNetworksResponse> listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
  */
 final class NetworkServiceClient
 {

@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getRoleAsync(GetRoleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRolesAsync(ListRolesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Role> getRoleAsync(GetRoleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRolesAsync(ListRolesRequest $request, array $optionalArgs = [])
  */
 final class RoleServiceClient
 {

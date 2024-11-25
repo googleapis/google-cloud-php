@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 /**
  * Retrieves the specified region-specific Operations resource.
  *
- * @param string $operation Name of the Operations resource to return.
+ * @param string $operation Name of the Operations resource to return, or its unique numeric identifier.
  * @param string $project   Project ID for this request.
  * @param string $region    Name of the region for this request.
  */

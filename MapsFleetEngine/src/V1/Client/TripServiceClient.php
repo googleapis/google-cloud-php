@@ -52,11 +52,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTripAsync(CreateTripRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTripAsync(GetTripRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reportBillableTripAsync(ReportBillableTripRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchTripsAsync(SearchTripsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTripAsync(UpdateTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Trip> createTripAsync(CreateTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Trip> getTripAsync(GetTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> reportBillableTripAsync(ReportBillableTripRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchTripsAsync(SearchTripsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Trip> updateTripAsync(UpdateTripRequest $request, array $optionalArgs = [])
  */
 final class TripServiceClient
 {

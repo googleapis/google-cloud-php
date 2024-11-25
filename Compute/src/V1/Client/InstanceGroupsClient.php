@@ -52,15 +52,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addInstancesAsync(AddInstancesInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListInstanceGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstanceGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesInstanceGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeInstancesAsync(RemoveInstancesInstanceGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNamedPortsAsync(SetNamedPortsInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addInstancesAsync(AddInstancesInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstanceGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceGroup> getAsync(GetInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstanceGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesInstanceGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeInstancesAsync(RemoveInstancesInstanceGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setNamedPortsAsync(SetNamedPortsInstanceGroupRequest $request, array $optionalArgs = [])
  */
 final class InstanceGroupsClient
 {

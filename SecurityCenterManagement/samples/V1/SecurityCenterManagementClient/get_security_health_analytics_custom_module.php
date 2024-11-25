@@ -29,10 +29,12 @@ use Google\Cloud\SecurityCenterManagement\V1\GetSecurityHealthAnalyticsCustomMod
 use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule;
 
 /**
- * Retrieves a SecurityHealthAnalyticsCustomModule.
+ * Retrieves a
+ * [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule].
  *
- * @param string $formattedName Name of the resource
- *                              Please see {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
+ * @param string $formattedName Name of the resource, in the format
+ *                              `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`. Please see
+ *                              {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
  */
 function get_security_health_analytics_custom_module_sample(string $formattedName): void
 {

@@ -88,22 +88,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface approveGrantAsync(ApproveGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkOnboardingStatusAsync(CheckOnboardingStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntitlementAsync(CreateEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGrantAsync(CreateGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntitlementAsync(DeleteEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface denyGrantAsync(DenyGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntitlementAsync(GetEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGrantAsync(GetGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGrantsAsync(ListGrantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface revokeGrantAsync(RevokeGrantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchEntitlementsAsync(SearchEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchGrantsAsync(SearchGrantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntitlementAsync(UpdateEntitlementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> approveGrantAsync(ApproveGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckOnboardingStatusResponse> checkOnboardingStatusAsync(CheckOnboardingStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntitlementAsync(CreateEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> createGrantAsync(CreateGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEntitlementAsync(DeleteEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> denyGrantAsync(DenyGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entitlement> getEntitlementAsync(GetEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Grant> getGrantAsync(GetGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGrantsAsync(ListGrantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> revokeGrantAsync(RevokeGrantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchEntitlementsAsync(SearchEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchGrantsAsync(SearchGrantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEntitlementAsync(UpdateEntitlementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class PrivilegedAccessManagerClient
 {
@@ -568,7 +568,7 @@ final class PrivilegedAccessManagerClient
     }
 
     /**
-     * CheckOnboardingStatus reports the onboarding status for a
+     * `CheckOnboardingStatus` reports the onboarding status for a
      * project/folder/organization. Any findings reported by this API need to be
      * fixed before PAM can be used on the resource.
      *
@@ -627,7 +627,8 @@ final class PrivilegedAccessManagerClient
     }
 
     /**
-     * Creates a new grant in a given project and location.
+     * Creates a new grant in a given project/folder/organization and
+     * location.
      *
      * The async variant is {@see PrivilegedAccessManagerClient::createGrantAsync()} .
      *
@@ -654,7 +655,7 @@ final class PrivilegedAccessManagerClient
 
     /**
      * Deletes a single entitlement. This method can only be called when there
-     * are no in-progress (ACTIVE/ACTIVATING/REVOKING) grants under the
+     * are no in-progress (`ACTIVE`/`ACTIVATING`/`REVOKING`) grants under the
      * entitlement.
      *
      * The async variant is

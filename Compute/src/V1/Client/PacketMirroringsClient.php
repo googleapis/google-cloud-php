@@ -51,13 +51,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListPacketMirroringsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeletePacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetPacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertPacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListPacketMirroringsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchPacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListPacketMirroringsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeletePacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PacketMirroring> getAsync(GetPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListPacketMirroringsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsPacketMirroringRequest $request, array $optionalArgs = [])
  */
 final class PacketMirroringsClient
 {

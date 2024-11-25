@@ -78,15 +78,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ParallelstoreClient
 {

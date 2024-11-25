@@ -44,8 +44,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetSnapshotSettingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchSnapshotSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SnapshotSettings> getAsync(GetSnapshotSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchSnapshotSettingRequest $request, array $optionalArgs = [])
  */
 final class SnapshotSettingsServiceClient
 {

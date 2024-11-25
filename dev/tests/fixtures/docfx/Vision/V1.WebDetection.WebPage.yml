@@ -54,11 +54,11 @@ items:
           description: 'Title for the web page, may contain HTML markups.'
         -
           id: '↳ full_matching_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebImage</xref>&gt;'
           description: 'Fully matching images on the page. Can include resized copies of the query image.'
         -
           id: '↳ partial_matching_images'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebImage</xref>&gt;'
           description: 'Partial matching images on the page. Those images are similar enough to share some key-point features. For example an original image will likely have partial matching for its crops.'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getUrl()'
@@ -185,7 +185,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebImage</xref>&gt;'
           description: ''
       returns:
         -
@@ -226,7 +226,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebImage</xref>&gt;'
           description: ''
       returns:
         -

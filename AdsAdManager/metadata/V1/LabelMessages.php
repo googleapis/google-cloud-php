@@ -18,12 +18,12 @@ class LabelMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ž
+«
 ,google/ads/admanager/v1/label_messages.protogoogle.ads.admanager.v1google/api/resource.proto"v
 Label
 name (	BàA:ZêAW
-admanager.googleapis.com/Label&networks/{network_code}/labels/{label}*labels2labelB©
-com.google.ads.admanager.v1BLabelMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+admanager.googleapis.com/Label&networks/{network_code}/labels/{label}*labels2labelBÆ
+com.google.ads.admanager.v1BLabelMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

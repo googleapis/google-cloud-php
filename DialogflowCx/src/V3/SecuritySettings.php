@@ -23,8 +23,8 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * [SecuritySettingsService.UpdateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]
      * method.
      * [SecuritySettingsService.CreateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.CreateSecuritySettings]
-     * populates the name automatically. Format: `projects/<Project
-     * ID>/locations/<Location ID>/securitySettings/<Security Settings ID>`.
+     * populates the name automatically. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -59,9 +59,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for your agent's project.
      * If empty, we use the default DLP inspect config.
      * The template name will have one of the following formats:
-     * `projects/<Project ID>/locations/<Location ID>/inspectTemplates/<Template
-     * ID>` OR `organizations/<Organization ID>/locations/<Location
-     * ID>/inspectTemplates/<Template ID>`
+     * `projects/<ProjectID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
+     * OR
+     * `organizations/<OrganizationID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
      * Note: `inspect_template` must be located in the same region as the
      * `SecuritySettings`.
      *
@@ -77,9 +77,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for your agent's project.
      * If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      * The template name will have one of the following formats:
-     * `projects/<Project ID>/locations/<Location
-     * ID>/deidentifyTemplates/<Template ID>` OR `organizations/<Organization
-     * ID>/locations/<Location ID>/deidentifyTemplates/<Template ID>`
+     * `projects/<ProjectID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
+     * OR
+     * `organizations/<OrganizationID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
      * Note: `deidentify_template` must be located in the same region as the
      * `SecuritySettings`.
      *
@@ -136,8 +136,8 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           [SecuritySettingsService.UpdateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]
      *           method.
      *           [SecuritySettingsService.CreateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.CreateSecuritySettings]
-     *           populates the name automatically. Format: `projects/<Project
-     *           ID>/locations/<Location ID>/securitySettings/<Security Settings ID>`.
+     *           populates the name automatically. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the security settings, unique within
      *           the location.
@@ -156,9 +156,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           for your agent's project.
      *           If empty, we use the default DLP inspect config.
      *           The template name will have one of the following formats:
-     *           `projects/<Project ID>/locations/<Location ID>/inspectTemplates/<Template
-     *           ID>` OR `organizations/<Organization ID>/locations/<Location
-     *           ID>/inspectTemplates/<Template ID>`
+     *           `projects/<ProjectID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
+     *           OR
+     *           `organizations/<OrganizationID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
      *           Note: `inspect_template` must be located in the same region as the
      *           `SecuritySettings`.
      *     @type string $deidentify_template
@@ -170,9 +170,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           for your agent's project.
      *           If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      *           The template name will have one of the following formats:
-     *           `projects/<Project ID>/locations/<Location
-     *           ID>/deidentifyTemplates/<Template ID>` OR `organizations/<Organization
-     *           ID>/locations/<Location ID>/deidentifyTemplates/<Template ID>`
+     *           `projects/<ProjectID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
+     *           OR
+     *           `organizations/<OrganizationID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
      *           Note: `deidentify_template` must be located in the same region as the
      *           `SecuritySettings`.
      *     @type int $retention_window_days
@@ -224,8 +224,8 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * [SecuritySettingsService.UpdateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]
      * method.
      * [SecuritySettingsService.CreateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.CreateSecuritySettings]
-     * populates the name automatically. Format: `projects/<Project
-     * ID>/locations/<Location ID>/securitySettings/<Security Settings ID>`.
+     * populates the name automatically. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -241,8 +241,8 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * [SecuritySettingsService.UpdateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.UpdateSecuritySettings]
      * method.
      * [SecuritySettingsService.CreateSecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettingsService.CreateSecuritySettings]
-     * populates the name automatically. Format: `projects/<Project
-     * ID>/locations/<Location ID>/securitySettings/<Security Settings ID>`.
+     * populates the name automatically. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -349,9 +349,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for your agent's project.
      * If empty, we use the default DLP inspect config.
      * The template name will have one of the following formats:
-     * `projects/<Project ID>/locations/<Location ID>/inspectTemplates/<Template
-     * ID>` OR `organizations/<Organization ID>/locations/<Location
-     * ID>/inspectTemplates/<Template ID>`
+     * `projects/<ProjectID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
+     * OR
+     * `organizations/<OrganizationID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
      * Note: `inspect_template` must be located in the same region as the
      * `SecuritySettings`.
      *
@@ -372,9 +372,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for your agent's project.
      * If empty, we use the default DLP inspect config.
      * The template name will have one of the following formats:
-     * `projects/<Project ID>/locations/<Location ID>/inspectTemplates/<Template
-     * ID>` OR `organizations/<Organization ID>/locations/<Location
-     * ID>/inspectTemplates/<Template ID>`
+     * `projects/<ProjectID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
+     * OR
+     * `organizations/<OrganizationID>/locations/<LocationID>/inspectTemplates/<TemplateID>`
      * Note: `inspect_template` must be located in the same region as the
      * `SecuritySettings`.
      *
@@ -399,9 +399,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for your agent's project.
      * If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      * The template name will have one of the following formats:
-     * `projects/<Project ID>/locations/<Location
-     * ID>/deidentifyTemplates/<Template ID>` OR `organizations/<Organization
-     * ID>/locations/<Location ID>/deidentifyTemplates/<Template ID>`
+     * `projects/<ProjectID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
+     * OR
+     * `organizations/<OrganizationID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
      * Note: `deidentify_template` must be located in the same region as the
      * `SecuritySettings`.
      *
@@ -422,9 +422,9 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * for your agent's project.
      * If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      * The template name will have one of the following formats:
-     * `projects/<Project ID>/locations/<Location
-     * ID>/deidentifyTemplates/<Template ID>` OR `organizations/<Organization
-     * ID>/locations/<Location ID>/deidentifyTemplates/<Template ID>`
+     * `projects/<ProjectID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
+     * OR
+     * `organizations/<OrganizationID>/locations/<LocationID>/deidentifyTemplates/<TemplateID>`
      * Note: `deidentify_template` must be located in the same region as the
      * `SecuritySettings`.
      *

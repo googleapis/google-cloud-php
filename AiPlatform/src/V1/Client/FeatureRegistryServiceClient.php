@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesRequest;
 use Google\Cloud\AIPlatform\V1\CreateFeatureGroupRequest;
 use Google\Cloud\AIPlatform\V1\CreateFeatureRequest;
 use Google\Cloud\AIPlatform\V1\DeleteFeatureGroupRequest;
@@ -70,21 +71,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeatureGroupAsync(CreateFeatureGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureGroupAsync(DeleteFeatureGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureGroupAsync(GetFeatureGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeatureGroupsAsync(ListFeatureGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureGroupAsync(UpdateFeatureGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateFeaturesAsync(BatchCreateFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureGroupAsync(CreateFeatureGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureGroupAsync(DeleteFeatureGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feature> getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeatureGroup> getFeatureGroupAsync(GetFeatureGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeatureGroupsAsync(ListFeatureGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeatureGroupAsync(UpdateFeatureGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class FeatureRegistryServiceClient
 {
@@ -425,6 +427,33 @@ final class FeatureRegistryServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a batch of Features in a given FeatureGroup.
+     *
+     * The async variant is
+     * {@see FeatureRegistryServiceClient::batchCreateFeaturesAsync()} .
+     *
+     * @example samples/V1/FeatureRegistryServiceClient/batch_create_features.php
+     *
+     * @param BatchCreateFeaturesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateFeatures(BatchCreateFeaturesRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BatchCreateFeatures', $request, $callOptions)->wait();
     }
 
     /**

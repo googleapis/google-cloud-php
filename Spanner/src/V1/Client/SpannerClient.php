@@ -75,19 +75,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateSessionsAsync(BatchCreateSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSessionAsync(CreateSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSessionAsync(DeleteSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface executeBatchDmlAsync(ExecuteBatchDmlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface executeSqlAsync(ExecuteSqlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSessionAsync(GetSessionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface partitionQueryAsync(PartitionQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface partitionReadAsync(PartitionReadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readAsync(ReadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateSessionsResponse> batchCreateSessionsAsync(BatchCreateSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Transaction> beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CommitResponse> commitAsync(CommitRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Session> createSessionAsync(CreateSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSessionAsync(DeleteSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteBatchDmlResponse> executeBatchDmlAsync(ExecuteBatchDmlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResultSet> executeSqlAsync(ExecuteSqlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Session> getSessionAsync(GetSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PartitionResponse> partitionQueryAsync(PartitionQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PartitionResponse> partitionReadAsync(PartitionReadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ResultSet> readAsync(ReadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
  */
 final class SpannerClient
 {

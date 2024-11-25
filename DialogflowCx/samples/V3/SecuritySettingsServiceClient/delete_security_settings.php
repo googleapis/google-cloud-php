@@ -33,8 +33,8 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteSecuritySettingsRequest;
  *
  * @param string $formattedName The name of the
  *                              [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings] to
- *                              delete. Format: `projects/<Project ID>/locations/<Location
- *                              ID>/securitySettings/<Security Settings ID>`. Please see
+ *                              delete. Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/securitySettings/<SecuritySettingsID>`. Please see
  *                              {@see SecuritySettingsServiceClient::securitySettingsName()} for help formatting this field.
  */
 function delete_security_settings_sample(string $formattedName): void

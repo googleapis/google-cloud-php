@@ -62,15 +62,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchDeleteIntentsAsync(BatchDeleteIntentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchUpdateIntentsAsync(BatchUpdateIntentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIntentAsync(CreateIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIntentAsync(DeleteIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIntentAsync(GetIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIntentsAsync(ListIntentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIntentAsync(UpdateIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchDeleteIntentsAsync(BatchDeleteIntentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchUpdateIntentsAsync(BatchUpdateIntentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Intent> createIntentAsync(CreateIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIntentAsync(DeleteIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Intent> getIntentAsync(GetIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIntentsAsync(ListIntentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Intent> updateIntentAsync(UpdateIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class IntentsClient
 {

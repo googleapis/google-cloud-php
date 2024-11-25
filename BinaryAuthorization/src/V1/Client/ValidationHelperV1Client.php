@@ -41,7 +41,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface validateAttestationOccurrenceAsync(ValidateAttestationOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ValidateAttestationOccurrenceResponse> validateAttestationOccurrenceAsync(ValidateAttestationOccurrenceRequest $request, array $optionalArgs = [])
  */
 final class ValidationHelperV1Client
 {

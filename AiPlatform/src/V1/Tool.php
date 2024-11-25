@@ -28,7 +28,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * User should provide a [FunctionResponse][content.part.function_response]
      * for each function call in the next turn. Based on the function responses,
      * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * Maximum 128 function declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,7 +64,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      *           User should provide a [FunctionResponse][content.part.function_response]
      *           for each function call in the next turn. Based on the function responses,
      *           Model will generate the final response back to the user.
-     *           Maximum 64 function declarations can be provided.
+     *           Maximum 128 function declarations can be provided.
      *     @type \Google\Cloud\AIPlatform\V1\Retrieval $retrieval
      *           Optional. Retrieval tool type.
      *           System will always execute the provided retrieval tool(s) to get external
@@ -88,7 +88,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * User should provide a [FunctionResponse][content.part.function_response]
      * for each function call in the next turn. Based on the function responses,
      * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * Maximum 128 function declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -106,7 +106,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * User should provide a [FunctionResponse][content.part.function_response]
      * for each function call in the next turn. Based on the function responses,
      * Model will generate the final response back to the user.
-     * Maximum 64 function declarations can be provided.
+     * Maximum 128 function declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\FunctionDeclaration>|\Google\Protobuf\Internal\RepeatedField $var

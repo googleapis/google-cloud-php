@@ -9,18 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * List Entries response.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.ListEntriesResponse</code>
  */
 class ListEntriesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of entries.
+     * The list of entries under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Entry entries = 1;</code>
      */
     private $entries;
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -33,9 +36,10 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dataplex\V1\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
-     *           The list of entries.
+     *           The list of entries under the given parent location.
      *     @type string $next_page_token
-     *           Pagination token.
+     *           Token to retrieve the next page of results, or empty if there are no more
+     *           results in the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +48,7 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of entries.
+     * The list of entries under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Entry entries = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -55,7 +59,7 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of entries.
+     * The list of entries under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Entry entries = 1;</code>
      * @param array<\Google\Cloud\Dataplex\V1\Entry>|\Google\Protobuf\Internal\RepeatedField $var
@@ -70,7 +74,8 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -81,7 +86,8 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

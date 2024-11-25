@@ -69,8 +69,8 @@ jobs:
         # OwlBot PRs which are not labelled feat should not add new files or methods
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
-            --from=${{ github.head_ref || github.ref_name }} \
-            --to=origin/main --format=github-actions
+            --from=origin/${{ github.head_ref || github.ref_name }} \
+            --to=origin/main
       - name: "Print the action item"
         run: |
           if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then

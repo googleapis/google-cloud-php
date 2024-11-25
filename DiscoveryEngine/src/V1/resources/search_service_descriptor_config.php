@@ -43,6 +43,26 @@ return [
                     ],
                 ],
             ],
+            'SearchLite' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResults',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DiscoveryEngine\V1\SearchResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'serving_config',
+                        'fieldAccessors' => [
+                            'getServingConfig',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'branch' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}',
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',

@@ -33,8 +33,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetAgentValidationResultRequest;
  * when ValidateAgent is called.
  *
  * @param string $formattedName The agent name.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/validationResult`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`. Please see
  *                              {@see AgentsClient::agentValidationResultName()} for help formatting this field.
  */
 function get_agent_validation_result_sample(string $formattedName): void

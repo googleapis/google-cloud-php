@@ -64,17 +64,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDeploymentResourcePoolAsync(CreateDeploymentResourcePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDeploymentResourcePoolAsync(DeleteDeploymentResourcePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeploymentResourcePoolAsync(GetDeploymentResourcePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentResourcePoolsAsync(ListDeploymentResourcePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryDeployedModelsAsync(QueryDeployedModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeploymentResourcePoolAsync(UpdateDeploymentResourcePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDeploymentResourcePoolAsync(CreateDeploymentResourcePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDeploymentResourcePoolAsync(DeleteDeploymentResourcePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeploymentResourcePool> getDeploymentResourcePoolAsync(GetDeploymentResourcePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentResourcePoolsAsync(ListDeploymentResourcePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryDeployedModelsAsync(QueryDeployedModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDeploymentResourcePoolAsync(UpdateDeploymentResourcePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DeploymentResourcePoolServiceClient
 {

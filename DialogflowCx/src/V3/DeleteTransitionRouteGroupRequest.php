@@ -19,10 +19,10 @@ class DeleteTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The name of the
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     * to delete. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
-     * Route Group ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`.
+     * to delete. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,10 +42,10 @@ class DeleteTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string $name Required. The name of the
      *                     [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     *                     to delete. Format: `projects/<Project ID>/locations/<Location
-     *                     ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
-     *                     Route Group ID>` or `projects/<Project ID>/locations/<Location
-     *                     ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`. Please see
+     *                     to delete. Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     *                     or
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`. Please see
      *                     {@see TransitionRouteGroupsClient::transitionRouteGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteTransitionRouteGroupRequest
@@ -67,10 +67,10 @@ class DeleteTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $name
      *           Required. The name of the
      *           [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     *           to delete. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
-     *           Route Group ID>` or `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`.
+     *           to delete. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     *           or
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`.
      *     @type bool $force
      *           This field has no effect for transition route group that no page is using.
      *           If the transition route group is referenced by any page:
@@ -88,10 +88,10 @@ class DeleteTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The name of the
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     * to delete. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
-     * Route Group ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`.
+     * to delete. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -104,10 +104,10 @@ class DeleteTransitionRouteGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The name of the
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
-     * to delete. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>/transitionRouteGroups/<Transition
-     * Route Group ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/transitionRouteGroups/<Transition Route Group ID>`.
+     * to delete. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

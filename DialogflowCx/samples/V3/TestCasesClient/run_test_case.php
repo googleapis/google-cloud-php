@@ -42,8 +42,8 @@ use Google\Rpc\Status;
  * - `response`:
  * [RunTestCaseResponse][google.cloud.dialogflow.cx.v3.RunTestCaseResponse]
  *
- * @param string $formattedName Format of test case name to run: `projects/<Project
- *                              ID>/locations/ <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`. Please see
+ * @param string $formattedName Format of test case name to run:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`. Please see
  *                              {@see TestCasesClient::testCaseName()} for help formatting this field.
  */
 function run_test_case_sample(string $formattedName): void

@@ -64,17 +64,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSuggestionResponse> generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSummaryResponse> generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchKnowledgeResponse> searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestConversationSummaryResponse> suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationsClient
 {
@@ -213,6 +213,27 @@ final class ConversationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName(string $project, string $location, string $collection, string $dataStore): string
+    {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a document
      * resource.
      *
@@ -300,6 +321,25 @@ final class ConversationsClient
             'project' => $project,
             'conversation' => $conversation,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -458,6 +498,27 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -536,6 +597,25 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_knowledge_base resource.
      *
      * @param string $project
@@ -583,11 +663,13 @@ final class ConversationsClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - dataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}
@@ -597,10 +679,12 @@ final class ConversationsClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
      * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *

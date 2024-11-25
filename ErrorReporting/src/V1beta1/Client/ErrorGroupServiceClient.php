@@ -52,8 +52,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ErrorGroup> getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ErrorGroup> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
  */
 final class ErrorGroupServiceClient
 {

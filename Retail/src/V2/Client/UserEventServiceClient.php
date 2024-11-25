@@ -56,11 +56,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeUserEventsAsync(PurgeUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rejoinUserEventsAsync(RejoinUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeUserEventAsync(WriteUserEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeUserEventsAsync(PurgeUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rejoinUserEventsAsync(RejoinUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserEvent> writeUserEventAsync(WriteUserEventRequest $request, array $optionalArgs = [])
  */
 final class UserEventServiceClient
 {

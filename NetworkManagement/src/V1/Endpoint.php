@@ -65,12 +65,21 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $load_balancer_type = null;
     /**
-     * A cluster URI for [Google Kubernetes Engine
-     * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * A cluster URI for [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
      * Generated from protobuf field <code>string gke_master_cluster = 7;</code>
      */
     protected $gke_master_cluster = '';
+    /**
+     * DNS endpoint of [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     * ip_address or network. Applicable only to destination endpoint.
+     *
+     * Generated from protobuf field <code>string fqdn = 19;</code>
+     */
+    protected $fqdn = '';
     /**
      * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      *
@@ -168,8 +177,13 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type int $load_balancer_type
      *           Output only. Type of the load balancer the forwarding rule points to.
      *     @type string $gke_master_cluster
-     *           A cluster URI for [Google Kubernetes Engine
-     *           master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     *           A cluster URI for [Google Kubernetes Engine cluster control
+     *           plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     *     @type string $fqdn
+     *           DNS endpoint of [Google Kubernetes Engine cluster control
+     *           plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     *           Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     *           ip_address or network. Applicable only to destination endpoint.
      *     @type string $cloud_sql_instance
      *           A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      *     @type string $redis_instance
@@ -436,8 +450,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A cluster URI for [Google Kubernetes Engine
-     * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * A cluster URI for [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
      * Generated from protobuf field <code>string gke_master_cluster = 7;</code>
      * @return string
@@ -448,8 +462,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A cluster URI for [Google Kubernetes Engine
-     * master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * A cluster URI for [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      *
      * Generated from protobuf field <code>string gke_master_cluster = 7;</code>
      * @param string $var
@@ -459,6 +473,38 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gke_master_cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * DNS endpoint of [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     * ip_address or network. Applicable only to destination endpoint.
+     *
+     * Generated from protobuf field <code>string fqdn = 19;</code>
+     * @return string
+     */
+    public function getFqdn()
+    {
+        return $this->fqdn;
+    }
+
+    /**
+     * DNS endpoint of [Google Kubernetes Engine cluster control
+     * plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * Requires gke_master_cluster to be set, can't be used simultaneoulsly with
+     * ip_address or network. Applicable only to destination endpoint.
+     *
+     * Generated from protobuf field <code>string fqdn = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFqdn($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fqdn = $var;
 
         return $this;
     }

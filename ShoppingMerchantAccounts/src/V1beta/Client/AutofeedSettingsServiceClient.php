@@ -53,8 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getAutofeedSettingsAsync(GetAutofeedSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAutofeedSettingsAsync(UpdateAutofeedSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutofeedSettings> getAutofeedSettingsAsync(GetAutofeedSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutofeedSettings> updateAutofeedSettingsAsync(UpdateAutofeedSettingsRequest $request, array $optionalArgs = [])
  */
 final class AutofeedSettingsServiceClient
 {
