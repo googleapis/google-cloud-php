@@ -89,7 +89,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      */
     private $metadata = null;
     /**
-     * This Analytics Property's quota state including this request.
+     * This Google Analytics property's quota state including this request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 7;</code>
      */
@@ -159,7 +159,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Analytics\Data\V1beta\ResponseMetaData $metadata
      *           Metadata for the report.
      *     @type \Google\Analytics\Data\V1beta\PropertyQuota $property_quota
-     *           This Analytics Property's quota state including this request.
+     *           This Google Analytics property's quota state including this request.
      *     @type string $kind
      *           Identifies what kind of resource this message is. This `kind` is always the
      *           fixed string "analyticsData#runPivotReport". Useful to distinguish between
@@ -412,7 +412,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This Analytics Property's quota state including this request.
+     * This Google Analytics property's quota state including this request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 7;</code>
      * @return \Google\Analytics\Data\V1beta\PropertyQuota|null
@@ -433,7 +433,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This Analytics Property's quota state including this request.
+     * This Google Analytics property's quota state including this request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 7;</code>
      * @param \Google\Analytics\Data\V1beta\PropertyQuota $var
