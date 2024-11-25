@@ -25,7 +25,7 @@ class EndpointService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-√%
+ñ)
 1google/cloud/aiplatform/v1/endpoint_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/endpoint.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
 CreateEndpointRequest9
 parent (	B)‡A˙A#
@@ -51,7 +51,11 @@ page_token (	B‡A2
 next_page_token (	"ä
 UpdateEndpointRequest;
 endpoint (2$.google.cloud.aiplatform.v1.EndpointB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"Q
+update_mask (2.google.protobuf.FieldMaskB‡A"_
+ UpdateEndpointLongRunningRequest;
+endpoint (2$.google.cloud.aiplatform.v1.EndpointB‡A"q
+UpdateEndpointOperationMetadataN
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"Q
 DeleteEndpointRequest8
 name (	B*‡A˙A$
 "aiplatform.googleapis.com/Endpoint"®
@@ -86,13 +90,15 @@ page_token (	B‡A2
 MutateDeployedModelResponseA
 deployed_model (2).google.cloud.aiplatform.v1.DeployedModel"v
 $MutateDeployedModelOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2Æ
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2≠
 EndpointServiceÇ
 CreateEndpoint1.google.cloud.aiplatform.v1.CreateEndpointRequest.google.longrunning.Operation"ù A+
 EndpointCreateEndpointOperationMetadata⁄Aparent,endpoint⁄Aparent,endpoint,endpoint_idÇ”‰ì9"-/v1/{parent=projects/*/locations/*}/endpoints:endpoint°
 GetEndpoint..google.cloud.aiplatform.v1.GetEndpointRequest$.google.cloud.aiplatform.v1.Endpoint"<⁄AnameÇ”‰ì/-/v1/{name=projects/*/locations/*/endpoints/*}¥
 ListEndpoints0.google.cloud.aiplatform.v1.ListEndpointsRequest1.google.cloud.aiplatform.v1.ListEndpointsResponse">⁄AparentÇ”‰ì/-/v1/{parent=projects/*/locations/*}/endpoints 
-UpdateEndpoint1.google.cloud.aiplatform.v1.UpdateEndpointRequest$.google.cloud.aiplatform.v1.Endpoint"_⁄Aendpoint,update_maskÇ”‰ìB26/v1/{endpoint.name=projects/*/locations/*/endpoints/*}:endpoint”
+UpdateEndpoint1.google.cloud.aiplatform.v1.UpdateEndpointRequest$.google.cloud.aiplatform.v1.Endpoint"_⁄Aendpoint,update_maskÇ”‰ìB26/v1/{endpoint.name=projects/*/locations/*/endpoints/*}:endpoint¸
+UpdateEndpointLongRunning<.google.cloud.aiplatform.v1.UpdateEndpointLongRunningRequest.google.longrunning.Operation"Å A+
+EndpointUpdateEndpointOperationMetadata⁄AendpointÇ”‰ìB"=/v1/{endpoint.name=projects/*/locations/*/endpoints/*}:update:*”
 DeleteEndpoint1.google.cloud.aiplatform.v1.DeleteEndpointRequest.google.longrunning.Operation"o A0
 google.protobuf.EmptyDeleteOperationMetadata⁄AnameÇ”‰ì/*-/v1/{name=projects/*/locations/*/endpoints/*}Ö
 DeployModel..google.cloud.aiplatform.v1.DeployModelRequest.google.longrunning.Operation"¶ A3
