@@ -78,7 +78,10 @@ class AdminTest extends SpannerTestCase
             'nodeCount' => 0,
             'processingUnits' => 0,
             'state' => Instance::STATE_READY,
-            'config' => ''
+            'config' => '',
+            'replicaComputeCapacity' => [],
+            'edition' => 0,
+            'defaultBackupScheduleType' => 0,
         ];
         $info = $instance->reload(['fieldMask' => $requestedFieldNames]);
         $this->assertEquals($expectedInfo, $info);
@@ -139,7 +142,8 @@ class AdminTest extends SpannerTestCase
         $op = $instance->createDatabase($dbName);
 
         $this->assertInstanceOf(OperationResponse::class, $op);
-        $db = $op->pollUntilComplete();
+        $op->pollUntilComplete();
+        $db = $op->getResult();
         $this->assertInstanceOf(Database::class, $db);
 
         $info = $db->reload();
