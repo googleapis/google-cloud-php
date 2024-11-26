@@ -60,6 +60,7 @@ use Google\Cloud\NetApp\V1\DeleteSnapshotRequest;
 use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
+use Google\Cloud\NetApp\V1\EstablishPeeringRequest;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
@@ -87,6 +88,7 @@ use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
 use Google\Cloud\NetApp\V1\SwitchActiveReplicaZoneRequest;
+use Google\Cloud\NetApp\V1\SyncReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
@@ -133,6 +135,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> deleteStoragePoolAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteVolumeAsync(DeleteVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> encryptVolumesAsync(EncryptVolumesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> establishPeeringAsync(EstablishPeeringRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ActiveDirectory> getActiveDirectoryAsync(GetActiveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPolicy> getBackupPolicyAsync(GetBackupPolicyRequest $request, array $optionalArgs = [])
@@ -156,6 +159,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> stopReplicationAsync(StopReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> switchActiveReplicaZoneAsync(SwitchActiveReplicaZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> syncReplicationAsync(SyncReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateActiveDirectoryAsync(UpdateActiveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
@@ -1092,6 +1096,32 @@ final class NetAppClient
     }
 
     /**
+     * Establish replication peering.
+     *
+     * The async variant is {@see NetAppClient::establishPeeringAsync()} .
+     *
+     * @example samples/V1/NetAppClient/establish_peering.php
+     *
+     * @param EstablishPeeringRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function establishPeering(EstablishPeeringRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('EstablishPeering', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specified active directory.
      *
      * The async variant is {@see NetAppClient::getActiveDirectoryAsync()} .
@@ -1697,6 +1727,33 @@ final class NetAppClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('SwitchActiveReplicaZone', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Syncs the replication. This will invoke one time volume data transfer from
+     * source to destination.
+     *
+     * The async variant is {@see NetAppClient::syncReplicationAsync()} .
+     *
+     * @example samples/V1/NetAppClient/sync_replication.php
+     *
+     * @param SyncReplicationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function syncReplication(SyncReplicationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SyncReplication', $request, $callOptions)->wait();
     }
 
     /**

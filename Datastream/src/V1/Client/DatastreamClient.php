@@ -59,6 +59,7 @@ use Google\Cloud\Datastream\V1\ListStreamsRequest;
 use Google\Cloud\Datastream\V1\LookupStreamObjectRequest;
 use Google\Cloud\Datastream\V1\PrivateConnection;
 use Google\Cloud\Datastream\V1\Route;
+use Google\Cloud\Datastream\V1\RunStreamRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobResponse;
 use Google\Cloud\Datastream\V1\StopBackfillJobRequest;
@@ -106,6 +107,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<PagedListResponse> listStreamObjectsAsync(ListStreamObjectsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listStreamsAsync(ListStreamsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StreamObject> lookupStreamObjectAsync(LookupStreamObjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runStreamAsync(RunStreamRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StartBackfillJobResponse> startBackfillJobAsync(StartBackfillJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StopBackfillJobResponse> stopBackfillJobAsync(StopBackfillJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateConnectionProfileAsync(UpdateConnectionProfileRequest $request, array $optionalArgs = [])
@@ -1020,6 +1022,33 @@ final class DatastreamClient
     public function lookupStreamObject(LookupStreamObjectRequest $request, array $callOptions = []): StreamObject
     {
         return $this->startApiCall('LookupStreamObject', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Use this method to start, resume or recover a stream with a non default CDC
+     * strategy.
+     *
+     * The async variant is {@see DatastreamClient::runStreamAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/run_stream.php
+     *
+     * @param RunStreamRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function runStream(RunStreamRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RunStream', $request, $callOptions)->wait();
     }
 
     /**

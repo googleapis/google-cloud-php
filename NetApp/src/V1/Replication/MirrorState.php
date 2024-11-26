@@ -45,6 +45,18 @@ class MirrorState
      * Generated from protobuf enum <code>TRANSFERRING = 4;</code>
      */
     const TRANSFERRING = 4;
+    /**
+     * Baseline replication is in progress.
+     *
+     * Generated from protobuf enum <code>BASELINE_TRANSFERRING = 5;</code>
+     */
+    const BASELINE_TRANSFERRING = 5;
+    /**
+     * Replication is aborted.
+     *
+     * Generated from protobuf enum <code>ABORTED = 6;</code>
+     */
+    const ABORTED = 6;
 
     private static $valueToName = [
         self::MIRROR_STATE_UNSPECIFIED => 'MIRROR_STATE_UNSPECIFIED',
@@ -52,6 +64,8 @@ class MirrorState
         self::MIRRORED => 'MIRRORED',
         self::STOPPED => 'STOPPED',
         self::TRANSFERRING => 'TRANSFERRING',
+        self::BASELINE_TRANSFERRING => 'BASELINE_TRANSFERRING',
+        self::ABORTED => 'ABORTED',
     ];
 
     public static function name($value)
