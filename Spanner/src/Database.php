@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
-use Closure;use Google\ApiCore\ApiException;
+use Closure;
+use Google\ApiCore\ApiException;
 
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
