@@ -23,6 +23,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * Provides common methods for signing storage URLs.
@@ -40,6 +41,17 @@ class SigningHelper
     const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
     const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
     const V4_DATESTAMP_FORMAT = 'Ymd';
+
+    /**
+     * The HTTP codes that will be retried by our custom retry function.
+     * @var array
+     */
+    private static $httpRetryCodes = [
+        500,
+        502,
+        503,
+        504
+    ];
 
     /**
      * Create or fetch a SigningHelper instance.
@@ -169,7 +181,7 @@ class SigningHelper
 
         $signedHeaders = [];
         foreach ($headers as $name => $value) {
-            $signedHeaders[] = $name .':'. $value;
+            $signedHeaders[] = $name . ':' . $value;
         }
 
         // Push the headers onto the end of the signing string.
@@ -181,9 +193,12 @@ class SigningHelper
 
         $stringToSign = $this->createV2CanonicalRequest($toSign);
 
-        $signature = $credentials->signBlob($stringToSign, [
-            'forceOpenssl' => $options['forceOpenssl']
-        ]);
+        // Use exponential backOff
+        $signature = $this->retrySignBlob(function () use ($credentials, $stringToSign, $options) {
+            return $credentials->signBlob($stringToSign, [
+                'forceOpenssl' => $options['forceOpenssl']
+            ]);
+        });
 
         // Start with user-provided query params and add required parameters.
         $params = $options['queryParams'];
@@ -337,9 +352,11 @@ class SigningHelper
             $requestHash
         ]);
 
-        $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
-            'forceOpenssl' => $options['forceOpenssl']
-        ])));
+        $signature = bin2hex(base64_decode($this->retrySignBlob(function () use ($credentials, $stringToSign, $options) {
+            return $credentials->signBlob($stringToSign, [
+                'forceOpenssl' => $options['forceOpenssl']
+            ]);
+        })));
 
         // Construct the modified resource name. If a custom hostname is provided,
         // this will remove the bucket name from the resource.
@@ -677,8 +694,8 @@ class SigningHelper
                 if (!$options['timestamp']) {
                     throw new \InvalidArgumentException(
                         'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
-                        \DateTime::RFC3339 .
-                        '`. Note that timestamps MUST be in UTC.'
+                            \DateTime::RFC3339 .
+                            '`. Note that timestamps MUST be in UTC.'
                     );
                 }
             }
@@ -881,5 +898,47 @@ class SigningHelper
         }
 
         return implode('&', $q);
+    }
+
+    /**
+     *   Retry logic for signBlob
+     *
+     * @param callable $signBlobFn  A callable that perform the actual signBlob operation.
+     * @param int $maxRetries Maximum number of retry attempts.
+     * @param int $initialDelay Initial delay between retries in milliseconds.
+     * @return string The signature genarated by signBlob.
+     * @throws ServiceException If non-retryable error occur.
+     * @throws \RuntimeException If retries are exhausted.
+     */
+    private function retrySignBlob(callable $signBlobFn, int $maxRetries = 5, int $initialDelay = 100)
+    {
+        $attempts = 0;
+        $delay = $initialDelay;
+
+        while ($attempts < $maxRetries) {
+            try {
+                return $signBlobFn();
+            } catch (ServiceException $exception) {
+                $attempts++;
+                $statusCode = $exception->getCode();
+
+                // Retry if the exception status code matches
+                // with one of the retriable status code
+                if (in_array($statusCode, self::$httpRetryCodes)) {
+                    usleep($delay * 1000);
+
+                    $delay *= 2;    // Exponential backoff
+                    continue;
+                }
+
+                // Non-retryable error
+                throw $exception;
+            }
+        }
+
+        throw new \RuntimeException(sprintf(
+            'Failed to sign message after `%s` attempts.',
+            $attempts
+        ));
     }
 }
