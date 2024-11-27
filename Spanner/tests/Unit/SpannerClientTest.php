@@ -418,6 +418,18 @@ class SpannerClientTest extends TestCase
         $this->assertEquals('bar', InstanceAdminClient::parseName($instances[1]->name())['instance']);
     }
 
+    /**
+     * @group spanner-admin
+     */
+    public function testResumeOperation()
+    {
+        $opName = 'operations/foo';
+
+        $op = $this->spannerClient->resumeOperation($opName);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertEquals($op->name(), $opName);
+    }
+
     public function testConnect()
     {
         $database = $this->spannerClient->connect(self::INSTANCE, self::DATABASE);

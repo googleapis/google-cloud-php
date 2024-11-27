@@ -28,6 +28,7 @@ use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\LongRunning\LongRunningGapicConnection;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
@@ -511,6 +512,70 @@ class SpannerClient
                     $this->handleResponse($operation)
                 );
             },
+        );
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return LongRunningOperation
+     */
+    public function resumeOperation($operationName, array $info = [])
+    {
+        return new LongRunningOperation(
+            new LongRunningGapicConnection($this->databaseAdminClient, $this->serializer),
+            $operationName,
+            [
+                [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
+                    'callable' => function ($instance) {
+                        $name = InstanceAdminClient::parseName($instance['name'])['instance'];
+                        return $this->instance($name, $instance);
+                    }
+                ], [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+                    'callable' => function ($database) {
+                        $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
+                        $instanceName = $databaseNameComponents['instance'];
+                        $databaseName = $databaseNameComponents['database'];
+
+                        $instance = $this->instance($instanceName);
+                        return $instance->database($databaseName);
+                    }
+                ], [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
+                    'callable' => function ($database) {
+                        $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
+                        $instanceName = $databaseNameComponents['instance'];
+                        $databaseName = $databaseNameComponents['database'];
+
+                        $instance = $this->instance($instanceName);
+                        return $instance->database($databaseName);
+                    }
+                ],[
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
+                    'callable' => function ($instance) {
+                        $name = InstanceAdminClient::parseName($instance['name'])['instance'];
+                        return $this->instance($name, $instance);
+                    }
+                ], [
+                    'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
+                    'callable' => function ($backup) {
+                        $backupNameComponents = DatabaseAdminClient::parseName($backup['name']);
+                        $instanceName = $backupNameComponents['instance'];
+
+                        $instance = $this->instance($instanceName);
+                        return $instance->backup($backup['name'], $backup);
+                    }
+                ]
+            ],
+            $info
         );
     }
 

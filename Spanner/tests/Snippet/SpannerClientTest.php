@@ -296,6 +296,19 @@ class SpannerClientTest extends SnippetTestCase
         ];
     }
 
+    public function testResumeOperation()
+    {
+        $opName = 'operations/foo';
+        $snippet = $this->snippetFromMagicMethod(SpannerClient::class, 'resumeOperation');
+        $snippet->addLocal('spanner', $this->client);
+        $snippet->addLocal('operationName', $opName);
+
+        $res = $snippet->invoke('operation');
+        $op = $res->returnVal();
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertEquals($op->name(), $opName);
+    }
+
     public function testEmulator()
     {
         $snippet = $this->snippetFromClass(SpannerClient::class, 1);
