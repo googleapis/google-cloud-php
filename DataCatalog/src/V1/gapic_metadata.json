@@ -130,9 +130,24 @@
                                 "renameTagTemplateFieldEnumValue"
                             ]
                         },
+                        "RetrieveConfig": {
+                            "methods": [
+                                "retrieveConfig"
+                            ]
+                        },
+                        "RetrieveEffectiveConfig": {
+                            "methods": [
+                                "retrieveEffectiveConfig"
+                            ]
+                        },
                         "SearchCatalog": {
                             "methods": [
                                 "searchCatalog"
+                            ]
+                        },
+                        "SetConfig": {
+                            "methods": [
+                                "setConfig"
                             ]
                         },
                         "SetIamPolicy": {

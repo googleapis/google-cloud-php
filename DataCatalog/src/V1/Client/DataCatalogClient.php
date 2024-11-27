@@ -58,14 +58,19 @@ use Google\Cloud\DataCatalog\V1\ListEntriesRequest;
 use Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest;
 use Google\Cloud\DataCatalog\V1\ListTagsRequest;
 use Google\Cloud\DataCatalog\V1\LookupEntryRequest;
+use Google\Cloud\DataCatalog\V1\MigrationConfig;
 use Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest;
 use Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest;
+use Google\Cloud\DataCatalog\V1\OrganizationConfig;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsMetadata;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsRequest;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsResponse;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest;
+use Google\Cloud\DataCatalog\V1\RetrieveConfigRequest;
+use Google\Cloud\DataCatalog\V1\RetrieveEffectiveConfigRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest;
+use Google\Cloud\DataCatalog\V1\SetConfigRequest;
 use Google\Cloud\DataCatalog\V1\StarEntryRequest;
 use Google\Cloud\DataCatalog\V1\StarEntryResponse;
 use Google\Cloud\DataCatalog\V1\Tag;
@@ -123,7 +128,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> reconcileTagsAsync(ReconcileTagsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TagTemplateField> renameTagTemplateFieldAsync(RenameTagTemplateFieldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TagTemplateField> renameTagTemplateFieldEnumValueAsync(RenameTagTemplateFieldEnumValueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OrganizationConfig> retrieveConfigAsync(RetrieveConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationConfig> retrieveEffectiveConfigAsync(RetrieveEffectiveConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchCatalogAsync(SearchCatalogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MigrationConfig> setConfigAsync(SetConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StarEntryResponse> starEntryAsync(StarEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
@@ -1263,6 +1271,66 @@ final class DataCatalogClient
     }
 
     /**
+     * Retrieves the configuration related to the migration from Data Catalog to
+     * Dataplex for a specific organization, including all the projects under it
+     * which have a separate configuration set.
+     *
+     * The async variant is {@see DataCatalogClient::retrieveConfigAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/retrieve_config.php
+     *
+     * @param RetrieveConfigRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OrganizationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function retrieveConfig(RetrieveConfigRequest $request, array $callOptions = []): OrganizationConfig
+    {
+        return $this->startApiCall('RetrieveConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves the effective configuration related to the migration from Data
+     * Catalog to Dataplex for a specific organization or project. If there is no
+     * specific configuration set for the resource, the setting is checked
+     * hierarchicahlly through the ancestors of the resource, starting from the
+     * resource itself.
+     *
+     * The async variant is {@see DataCatalogClient::retrieveEffectiveConfigAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/retrieve_effective_config.php
+     *
+     * @param RetrieveEffectiveConfigRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MigrationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function retrieveEffectiveConfig(
+        RetrieveEffectiveConfigRequest $request,
+        array $callOptions = []
+    ): MigrationConfig {
+        return $this->startApiCall('RetrieveEffectiveConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Searches Data Catalog for multiple resources like entries and tags that
      * match a query.
      *
@@ -1300,6 +1368,33 @@ final class DataCatalogClient
     public function searchCatalog(SearchCatalogRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('SearchCatalog', $request, $callOptions);
+    }
+
+    /**
+     * Sets the configuration related to the migration to Dataplex for an
+     * organization or project.
+     *
+     * The async variant is {@see DataCatalogClient::setConfigAsync()} .
+     *
+     * @example samples/V1/DataCatalogClient/set_config.php
+     *
+     * @param SetConfigRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MigrationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setConfig(SetConfigRequest $request, array $callOptions = []): MigrationConfig
+    {
+        return $this->startApiCall('SetConfig', $request, $callOptions)->wait();
     }
 
     /**

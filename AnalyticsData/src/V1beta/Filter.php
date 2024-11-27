@@ -47,6 +47,8 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           A filter for numeric or date values.
      *     @type \Google\Analytics\Data\V1beta\Filter\BetweenFilter $between_filter
      *           A filter for two values.
+     *     @type \Google\Analytics\Data\V1beta\Filter\EmptyFilter $empty_filter
+     *           A filter for empty values such as "(not set)" and "" values.
      * }
      */
     public function __construct($data = NULL) {
@@ -208,6 +210,37 @@ class Filter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\Filter\BetweenFilter::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * A filter for empty values such as "(not set)" and "" values.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.Filter.EmptyFilter empty_filter = 8;</code>
+     * @return \Google\Analytics\Data\V1beta\Filter\EmptyFilter|null
+     */
+    public function getEmptyFilter()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasEmptyFilter()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * A filter for empty values such as "(not set)" and "" values.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.Filter.EmptyFilter empty_filter = 8;</code>
+     * @param \Google\Analytics\Data\V1beta\Filter\EmptyFilter $var
+     * @return $this
+     */
+    public function setEmptyFilter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\Filter\EmptyFilter::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

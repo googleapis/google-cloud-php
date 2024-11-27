@@ -176,12 +176,32 @@ final class LlmUtilityServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a rag_corpus
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $ragCorpus
+     *
+     * @return string The formatted rag_corpus resource.
+     */
+    public static function ragCorpusName(string $project, string $location, string $ragCorpus): string
+    {
+        return self::getPathTemplate('ragCorpus')->render([
+            'project' => $project,
+            'location' => $location,
+            'rag_corpus' => $ragCorpus,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - ragCorpus: projects/{project}/locations/{location}/ragCorpora/{rag_corpus}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
