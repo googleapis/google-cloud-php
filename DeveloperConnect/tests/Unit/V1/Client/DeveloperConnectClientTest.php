@@ -267,12 +267,14 @@ class DeveloperConnectClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $reconciling = false;
         $uid = 'uid115792';
+        $webhookId = 'webhookId311874531';
         $expectedResponse = new GitRepositoryLink();
         $expectedResponse->setName($name);
         $expectedResponse->setCloneUri($cloneUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setWebhookId($webhookId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1117,12 +1119,14 @@ class DeveloperConnectClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $reconciling = false;
         $uid = 'uid115792';
+        $webhookId = 'webhookId311874531';
         $expectedResponse = new GitRepositoryLink();
         $expectedResponse->setName($name2);
         $expectedResponse->setCloneUri($cloneUri);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setWebhookId($webhookId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->gitRepositoryLinkName(

@@ -42,6 +42,7 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_concurrent_backfill_tasks = 4;</code>
      */
     protected $max_concurrent_backfill_tasks = 0;
+    protected $cdc_method;
 
     /**
      * Constructor.
@@ -60,6 +61,10 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      *           Maximum number of concurrent backfill tasks. The number should be non
      *           negative. If not set (or set to 0), the system's default value will be
      *           used.
+     *     @type \Google\Cloud\Datastream\V1\MysqlSourceConfig\BinaryLogPosition $binary_log_position
+     *           Use Binary log position based replication.
+     *     @type \Google\Cloud\Datastream\V1\MysqlSourceConfig\Gtid $gtid
+     *           Use GTID based replication.
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +200,76 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
         $this->max_concurrent_backfill_tasks = $var;
 
         return $this;
+    }
+
+    /**
+     * Use Binary log position based replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSourceConfig.BinaryLogPosition binary_log_position = 101;</code>
+     * @return \Google\Cloud\Datastream\V1\MysqlSourceConfig\BinaryLogPosition|null
+     */
+    public function getBinaryLogPosition()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasBinaryLogPosition()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Use Binary log position based replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSourceConfig.BinaryLogPosition binary_log_position = 101;</code>
+     * @param \Google\Cloud\Datastream\V1\MysqlSourceConfig\BinaryLogPosition $var
+     * @return $this
+     */
+    public function setBinaryLogPosition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlSourceConfig\BinaryLogPosition::class);
+        $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use GTID based replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSourceConfig.Gtid gtid = 102;</code>
+     * @return \Google\Cloud\Datastream\V1\MysqlSourceConfig\Gtid|null
+     */
+    public function getGtid()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasGtid()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * Use GTID based replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSourceConfig.Gtid gtid = 102;</code>
+     * @param \Google\Cloud\Datastream\V1\MysqlSourceConfig\Gtid $var
+     * @return $this
+     */
+    public function setGtid($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlSourceConfig\Gtid::class);
+        $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCdcMethod()
+    {
+        return $this->whichOneof("cdc_method");
     }
 
 }

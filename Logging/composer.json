@@ -20,7 +20,7 @@
         "google/cloud-bigquery": "^1.0",
         "google/cloud-pubsub": "^2.0",
         "opis/closure": "^3",
-        "monolog/monolog": "3.7.0"
+        "monolog/monolog": "3.8.0"
     },
     "provide": {
         "psr/log-implementation": "2.0||3.0"

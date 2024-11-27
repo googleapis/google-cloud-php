@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackfillJob extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Backfill job state.
+     * Output only. Backfill job state.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob.State state = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
@@ -53,7 +53,7 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Backfill job state.
+     *           Output only. Backfill job state.
      *     @type int $trigger
      *           Backfill job's triggering reason.
      *     @type \Google\Protobuf\Timestamp $last_start_time
@@ -70,9 +70,9 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Backfill job state.
+     * Output only. Backfill job state.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob.State state = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -81,9 +81,9 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Backfill job state.
+     * Output only. Backfill job state.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob.State state = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

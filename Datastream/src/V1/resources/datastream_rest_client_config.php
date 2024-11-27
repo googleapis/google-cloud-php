@@ -272,6 +272,18 @@ return [
                     ],
                 ],
             ],
+            'RunStream' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/streams/*}:run',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StartBackfillJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{object=projects/*/locations/*/streams/*/objects/*}:startBackfillJob',
