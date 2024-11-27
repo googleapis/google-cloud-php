@@ -19,12 +19,13 @@ namespace Google\Cloud\Core\LongRunning;
 
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\LongRunning\Operation;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\DeleteOperationRequest;
-use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Protobuf\Any;
 
 /**
  * Defines the calls required to manage Long Running Operations using a GAPIC
@@ -97,7 +98,12 @@ class LongRunningGapicConnection implements LongRunningConnectionInterface
         $metaType = $response['metadata']['typeUrl'];
 
         // unpack result Any type
-        $response['response'] = $this->handleResponse($operationResponse->getResult());
+        $result = $operationResponse->getResult();
+        if ($result instanceof Any) {
+            // For some reason we aren't doing this in GAX OperationResponse (but we should)
+            $result = $result->unpack();
+        }
+        $response['response'] = $this->handleResponse($result);
 
         // unpack error Any type
         $response['error'] = $this->handleResponse($operationResponse->getError());

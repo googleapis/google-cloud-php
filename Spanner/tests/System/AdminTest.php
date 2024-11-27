@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
@@ -62,7 +62,7 @@ class AdminTest extends SpannerTestCase
             'processingUnits' => $processingUnits,
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
         $op->pollUntilComplete();
 
         $instance = $client->instance(self::INSTANCE_NAME);
@@ -97,9 +97,9 @@ class AdminTest extends SpannerTestCase
         $dbName = uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
         $op->pollUntilComplete();
-        $db = $op->getResult();
+        $db = $op->result();
         $this->assertInstanceOf(Database::class, $db);
 
         self::$deletionQueue->add(function () use ($db) {
@@ -141,9 +141,9 @@ class AdminTest extends SpannerTestCase
         $dbName = uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
         $op->pollUntilComplete();
-        $db = $op->getResult();
+        $db = $op->result();
         $this->assertInstanceOf(Database::class, $db);
 
         $info = $db->reload();
@@ -207,7 +207,7 @@ class AdminTest extends SpannerTestCase
         $replicas[array_rand($replicas)]['defaultLeaderLocation'] = true;
         $op = $customConfiguration->create($baseConfig, $replicas);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
         $op->pollUntilComplete();
 
         $this->assertTrue($customConfiguration->exists());
@@ -293,7 +293,7 @@ class AdminTest extends SpannerTestCase
             'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 
-        $this->assertInstanceOf(OperationResponse::class, $op);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 
