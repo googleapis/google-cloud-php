@@ -35,12 +35,12 @@ class SigningHelper
     use ArrayTrait;
     use JsonTrait;
 
-    const DEFAULT_URL_SIGNING_VERSION = 'v2';
-    const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
+    public const DEFAULT_URL_SIGNING_VERSION = 'v2';
+    public const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
-    const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
-    const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
-    const V4_DATESTAMP_FORMAT = 'Ymd';
+    public const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
+    public const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
+    public const V4_DATESTAMP_FORMAT = 'Ymd';
 
     /**
      * The HTTP codes that will be retried by our custom retry function.
@@ -62,7 +62,7 @@ class SigningHelper
     {
         static $helper;
         if (!$helper) {
-            $helper = new static;
+            $helper = new static();
         }
 
         return $helper;
@@ -352,7 +352,11 @@ class SigningHelper
             $requestHash
         ]);
 
-        $signature = bin2hex(base64_decode($this->retrySignBlob(function () use ($credentials, $stringToSign, $options) {
+        $signature = bin2hex(base64_decode($this->retrySignBlob(function () use (
+            $credentials,
+            $stringToSign,
+            $options
+        ) {
             return $credentials->signBlob($stringToSign, [
                 'forceOpenssl' => $options['forceOpenssl']
             ]);
