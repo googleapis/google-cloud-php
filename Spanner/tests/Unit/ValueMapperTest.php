@@ -29,9 +29,9 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -253,7 +253,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => new ArrayType((new StructType)->add('hello', Database::TYPE_STRING))
+            'foo' => new ArrayType((new StructType())->add('hello', Database::TYPE_STRING))
         ];
 
         $res = $this->mapper->formatParamsForExecuteSql($params, $types);
@@ -314,7 +314,7 @@ class ValueMapperTest extends TestCase
         $this->expectExceptionMessage('Array data does not match given array parameter type.');
 
         $params = [
-            'foo' => [1,2,3]
+            'foo' => [1, 2, 3]
         ];
 
         $types = [
@@ -327,7 +327,7 @@ class ValueMapperTest extends TestCase
     public function testFormatParamsForExecuteSqlArrayForCustomTypes()
     {
         $params = [
-            'foo' => [1,2,3]
+            'foo' => [1, 2, 3]
         ];
 
         $types = [
@@ -396,7 +396,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => (new StructType)
+            'foo' => (new StructType())
                 ->add('name', Database::TYPE_STRING)
                 ->add('age', Database::TYPE_INT64)
                 ->add('jobs', new ArrayType(Database::TYPE_STRING))
@@ -484,7 +484,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => new StructType
+            'foo' => new StructType()
         ];
 
         $this->mapper->formatParamsForExecuteSql($params, $types);
@@ -493,14 +493,14 @@ class ValueMapperTest extends TestCase
     public function testFormatParamsForExecuteSqlStructDuplicateFieldNames()
     {
         $params = [
-            'foo' => (new StructValue)
+            'foo' => (new StructValue())
                 ->add('hello', 'world')
                 ->add('hello', 10)
                 ->add('hello', 'goodbye')
         ];
 
         $types = [
-            'foo' => (new StructType)
+            'foo' => (new StructType())
                 ->add('hello', Database::TYPE_STRING)
                 ->add('hello', Database::TYPE_INT64)
                 ->add('hello', Database::TYPE_STRING)
@@ -543,7 +543,7 @@ class ValueMapperTest extends TestCase
     public function testFormatParamsForExecuteSqlStructUnnamedFields()
     {
         $params = [
-            'foo' => (new StructValue)
+            'foo' => (new StructValue())
                 ->addUnnamed('hello')
                 ->addUnnamed(10)
                 ->add('key', 'val')
@@ -551,7 +551,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => (new StructType)
+            'foo' => (new StructType())
                 ->add(null, Database::TYPE_STRING)
                 ->addUnnamed(Database::TYPE_INT64)
                 ->add('key', Database::TYPE_STRING)
@@ -607,7 +607,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => (new StructType)
+            'foo' => (new StructType())
                 ->add('hello', Database::TYPE_STRING)
                 ->add('num', Database::TYPE_INT64)
         ];
@@ -643,14 +643,14 @@ class ValueMapperTest extends TestCase
     public function testFormatParamsForExecuteSqlInferredStructValueTypeWithUnnamed()
     {
         $params = [
-            'foo' => (new StructValue)
+            'foo' => (new StructValue())
                 ->add('hello', 'world')
                 ->addUnnamed('foo')
                 ->add('num', 10)
         ];
 
         $types = [
-            'foo' => (new StructType)
+            'foo' => (new StructType())
                 ->add('hello', Database::TYPE_STRING)
                 ->add('num', Database::TYPE_INT64)
         ];
@@ -683,7 +683,7 @@ class ValueMapperTest extends TestCase
         ];
 
         $types = [
-            'foo' => (new StructType)
+            'foo' => (new StructType())
                 ->add('hello', Database::TYPE_STRING)
         ];
 
@@ -921,7 +921,7 @@ class ValueMapperTest extends TestCase
 
     public function testDecodeValuesTimestamp()
     {
-        $dt = new \DateTime;
+        $dt = new \DateTime();
         $str = $dt->format(Timestamp::FORMAT);
 
         $res = $this->mapper->decodeValues(
@@ -936,7 +936,7 @@ class ValueMapperTest extends TestCase
 
     public function testDecodeValuesDate()
     {
-        $dt = new \DateTime;
+        $dt = new \DateTime();
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_DATE),
             $this->createRow($dt->format(Date::FORMAT)),

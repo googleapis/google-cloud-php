@@ -24,6 +24,7 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "swaggest/json-schema": "^0.12.0"
     },
+    "minimum-stability": "dev",
     "repositories": {
         "google-cloud": {
             "type": "path",

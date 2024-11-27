@@ -6,13 +6,13 @@ include __DIR__ . '/forked-process-test.php';
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Tests\System\SpannerTestCase;
 
-list ($dbName, $tableName, $id) = getInputArgs();
+list($dbName, $tableName, $id) = getInputArgs();
 
 $tmpFile = sys_get_temp_dir() . '/ConcurrentTransactionsIncremementValueWithRead.txt';
 setupIterationTracker($tmpFile);
 
 $keyset = new KeySet(['keys' => [$id]]);
-$columns = ['id','number'];
+$columns = ['id', 'number'];
 
 $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use ($tmpFile) {
     $iterations = 0;
@@ -21,7 +21,7 @@ $callable = function ($dbName, KeySet $keyset, array $columns, $tableName) use (
         $iterations++;
         $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
 
-        $row['number'] +=1;
+        $row['number'] += 1;
 
         $transaction->update($tableName, $row);
         $transaction->commit();

@@ -55,16 +55,16 @@ class PgBatchWriteTest extends SpannerPgTestCase
         $mutationGroups = [];
         $mutationGroups[] = self::$database->mutationGroup()
             ->insertOrUpdate(
-                "Singers",
+                'Singers',
                 ['SingerId' => 16, 'FirstName' => 'Scarlet', 'LastName' => 'Terry']
             );
 
         $mutationGroups[] = self::$database->mutationGroup()
             ->insertOrUpdate(
-                "Singers",
+                'Singers',
                 ['SingerId' => 17, 'FirstName' => 'Marc', 'LastName' => 'Kristen']
             )->insertOrUpdate(
-                "Albums",
+                'Albums',
                 ['AlbumId' => 1, 'SingerId' => 17, 'AlbumTitle' => 'Total Junk']
             );
 

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
@@ -81,7 +81,7 @@ trait TransactionConfigurationTrait
         if (isset($requestOptions['transaction']['singleUse']) || (
             isset($requestOptions['transactionContext']) &&
             $requestOptions['transactionContext'] == SessionPoolInterface::CONTEXT_READ
-            ) || isset($requestOptions['transactionOptions']['readOnly'])
+        ) || isset($requestOptions['transactionOptions']['readOnly'])
         ) {
             if (isset($clientOptions['includeReplicas'])) {
                 return ['includeReplicas' => $clientOptions['includeReplicas']];
@@ -203,11 +203,6 @@ trait TransactionConfigurationTrait
             'readTimestamp'
         ];
 
-        $durationFields = [
-            'exactStaleness',
-            'maxStaleness'
-        ];
-
         foreach ($timestampFields as $tsf) {
             if (isset($transactionOptions['readOnly'][$tsf]) && !isset($previousOptions[$tsf])) {
                 $field = $transactionOptions['readOnly'][$tsf];
@@ -220,21 +215,6 @@ trait TransactionConfigurationTrait
                 }
 
                 $transactionOptions['readOnly'][$tsf] = $field->formatAsString();
-            }
-        }
-
-        foreach ($durationFields as $df) {
-            if (isset($transactionOptions['readOnly'][$df]) && !isset($previousOptions[$df])) {
-                $field = $transactionOptions['readOnly'][$df];
-                if (!($field instanceof Duration)) {
-                    throw new \BadMethodCallException(sprintf(
-                        'Read Only Transaction Configuration Field %s must be an instance of `%s`.',
-                        $df,
-                        Duration::class
-                    ));
-                }
-
-                $transactionOptions['readOnly'][$df] = $field->get();
             }
         }
 

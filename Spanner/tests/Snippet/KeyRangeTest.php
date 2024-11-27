@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\KeyRange;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**
  * @group spanner
@@ -34,7 +34,7 @@ class KeyRangeTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->range = new KeyRange;
+        $this->range = new KeyRange();
     }
 
     public function testClass()

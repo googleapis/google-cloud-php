@@ -26,7 +26,7 @@ use Google\Cloud\Core\ValidateTrait;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $keySet = $spanner->keySet();
  * ```
@@ -101,7 +101,6 @@ class KeySet
     {
         return $this->ranges;
     }
-
 
     /**
      * Add a single KeyRange.

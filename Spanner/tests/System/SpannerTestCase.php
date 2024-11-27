@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
-use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Session\CacheSessionPool;
-use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Session\CacheSessionPool;
+use Google\Cloud\Spanner\SpannerClient;
 
 /**
  * @group spanner
@@ -125,7 +125,7 @@ abstract class SpannerTestCase extends SystemTestCase
             $clientConfig['gapicSpannerInstanceAdminClient'] =
                 new Spanner\Admin\Instance\V1\InstanceAdminClient($gapicConfig);
 
-            echo "Using Service Address: ". $serviceAddress . PHP_EOL;
+            echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
         }
 
         self::$client = new SpannerClient($clientConfig);
@@ -146,7 +146,7 @@ abstract class SpannerTestCase extends SystemTestCase
 
     public static function getDatabaseWithSessionPool($dbName, $options = [])
     {
-        $sessionCache = new MemoryCacheItemPool;
+        $sessionCache = new MemoryCacheItemPool();
         $sessionPool = new CacheSessionPool(
             $sessionCache,
             $options
@@ -163,7 +163,7 @@ abstract class SpannerTestCase extends SystemTestCase
 
     public static function skipEmulatorTests()
     {
-        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+        if ((bool) getenv('SPANNER_EMULATOR_HOST')) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
     }
