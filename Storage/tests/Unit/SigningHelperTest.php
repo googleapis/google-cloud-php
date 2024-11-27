@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2019 Google LLC
  *
@@ -19,6 +20,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -37,10 +39,10 @@ class SigningHelperTest extends TestCase
 {
     use ProphecyTrait;
 
-    const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
-    const BUCKET = 'test-bucket';
-    const OBJECT = 'test-object';
-    const GENERATION = 11111;
+    public const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
+    public const BUCKET = 'test-bucket';
+    public const OBJECT = 'test-object';
+    public const GENERATION = 11111;
 
     private $helper;
 
@@ -417,7 +419,7 @@ class SigningHelperTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $expires = (new \DateTime)->modify('+20 days');
+        $expires = (new \DateTime())->modify('+20 days');
         $this->helper->v4Sign(
             $this->mockConnection($this->createCredentialsMock()->reveal()),
             $expires,
@@ -453,7 +455,7 @@ class SigningHelperTest extends TestCase
 
     public function expirations()
     {
-        $tenMins = (new \DateTimeImmutable)->modify('+10 minutes');
+        $tenMins = (new \DateTimeImmutable())->modify('+10 minutes');
 
         return [
             [
@@ -789,6 +791,104 @@ class SigningHelperTest extends TestCase
 
         return $conn->reveal();
     }
+
+    public function testRetrySignBlobSuccessFirstAttempt()
+    {
+        $signBlobFn = function () {
+            return 'signature';
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn,
+            5,
+            10
+        ]);
+
+        $this->assertEquals('signature', $res);
+    }
+
+    public function testRetrySignBlobSuccessAfterRetries()
+    {
+        $attempts = 0;
+        $signBlobFn = function () use (&$attempts) {
+            $attempts++;
+            if ($attempts < 5) {
+                throw new ServiceException('Transient error', 503);
+            }
+            return 'signature';
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn,
+            5,
+            10
+        ]);
+
+        $this->assertEquals('signature', $res);
+        $this->assertEquals(5, $attempts);
+    }
+
+    public function testRetrySignBlobNonRetryableError()
+    {
+        $this->expectException(ServiceException::class);
+        $this->getExpectedExceptionMessage('Non-retryable error');
+
+        $signBlobFn = function () use (&$attempt) {
+            throw new ServiceException('Non-retryable error', 400);
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn,
+            5,
+            10
+        ]);
+    }
+
+    public function testRetrySignBlobRetriesExhausted()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->getExpectedExceptionMessage('Failed to sign message after maximum attempts.');
+
+        $signBlobFn = function () use (&$attempt) {
+            throw new ServiceException('Transient error', 503);
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn,
+            5,
+            10
+        ]);
+    }
+
+    public function testRetrySignBlobExponentialBackoff()
+    {
+        $attempts = 0;
+        $delays = [];
+
+        $signBlobFn = function () use (&$attempts, &$delays) {
+            $attempts++;
+            if ($attempts < 5) {
+                // Mock usleep to record delays
+                $delays[] = $attempts * 1000;
+                throw new ServiceException('Transient error', 503);
+            }
+            return 'signature';
+        };
+
+        $originalUsleep = \Closure::fromCallable('usleep');
+        $mockUsleep = function ($microseconds) use (&$delays, $originalUsleep) {
+            $delays[] = $microseconds;
+        };
+
+        $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn,
+            5,
+            10
+        ]);
+
+        $expectedDelays = [1000, 2000, 3000, 4000];
+        $this->assertEquals($expectedDelays, $delays);
+    }
 }
 
 //@codingStandardsIgnoreStart
@@ -803,7 +903,7 @@ class SigningHelperStub extends SigningHelper
         $callPrivate = $this->callPrivate('createV4CanonicalRequest', [$request]);
         return $this->createV4CanonicalRequest
             ? call_user_func($this->createV4CanonicalRequest, $request)
-            : \Closure::bind($callPrivate, null, new SigningHelper);
+            : \Closure::bind($callPrivate, null, new SigningHelper());
     }
 
     private function createV2CanonicalRequest(array $request)
@@ -811,12 +911,12 @@ class SigningHelperStub extends SigningHelper
         $callPrivate = $this->callPrivate('createV2CanonicalRequest', [$request]);
         return $this->createV2CanonicalRequest
             ? call_user_func($this->createV2CanonicalRequest, $request)
-            : \Closure::bind($callPrivate, null, new SigningHelper);
+            : \Closure::bind($callPrivate, null, new SigningHelper());
     }
 
     public function proxyPrivateMethodCall($method, array $args)
     {
-        $parent = new SigningHelper;
+        $parent = new SigningHelper();
         $cb = function () use ($method) {
             return call_user_func_array([$this, $method], func_get_args()[0]);
         };
