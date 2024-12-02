@@ -137,6 +137,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     protected $faster_deployment_config = null;
     /**
+     * Output only. Runtime status of the deployed model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel.Status status = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = null;
+    /**
      * System labels to apply to Model Garden deployments.
      * System labels are managed by Google for internal use only.
      *
@@ -234,6 +240,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           [network][google.cloud.aiplatform.v1.Endpoint.network] is configured.
      *     @type \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig $faster_deployment_config
      *           Configuration for faster model deployment.
+     *     @type \Google\Cloud\AIPlatform\V1\DeployedModel\Status $status
+     *           Output only. Runtime status of the deployed model.
      *     @type array|\Google\Protobuf\Internal\MapField $system_labels
      *           System labels to apply to Model Garden deployments.
      *           System labels are managed by Google for internal use only.
@@ -791,6 +799,42 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FasterDeploymentConfig::class);
         $this->faster_deployment_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Runtime status of the deployed model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel.Status status = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\DeployedModel\Status|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. Runtime status of the deployed model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DeployedModel.Status status = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\DeployedModel\Status $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\DeployedModel\Status::class);
+        $this->status = $var;
 
         return $this;
     }
