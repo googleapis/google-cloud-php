@@ -79,9 +79,6 @@ class Bootstrap
             case E_USER_NOTICE:
                 $prefix = 'PHP Notice';
                 break;
-            case E_STRICT:
-                $prefix = 'PHP Debug';
-                break;
             default:
                 $prefix = 'PHP Notice';
         }
@@ -113,8 +110,6 @@ class Bootstrap
             case E_NOTICE:
             case E_USER_NOTICE:
                 return 'NOTICE';
-            case E_STRICT:
-                return 'DEBUG';
             default:
                 return 'NOTICE';
         }
