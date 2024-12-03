@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2019 Google LLC
  *
@@ -419,7 +418,7 @@ class SigningHelperTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $expires = (new \DateTime())->modify('+20 days');
+        $expires = (new \DateTime)->modify('+20 days');
         $this->helper->v4Sign(
             $this->mockConnection($this->createCredentialsMock()->reveal()),
             $expires,
@@ -455,7 +454,7 @@ class SigningHelperTest extends TestCase
 
     public function expirations()
     {
-        $tenMins = (new \DateTimeImmutable())->modify('+10 minutes');
+        $tenMins = (new \DateTimeImmutable)->modify('+10 minutes');
 
         return [
             [
@@ -827,7 +826,7 @@ class SigningHelperTest extends TestCase
     public function testRetrySignBlobNonRetryableError()
     {
         $this->expectException(ServiceException::class);
-        $this->getExpectedExceptionMessage('Non-retryable error');
+        $this->expectExceptionMessage('Non-retryable error');
 
         $signBlobFn = function () {
             throw new ServiceException('Non-retryable error', 400);
@@ -843,7 +842,7 @@ class SigningHelperTest extends TestCase
     public function testRetrySignBlobRetriesExhausted()
     {
         $this->expectException(\RuntimeException::class);
-        $this->getExpectedExceptionMessage('Failed to sign message after maximum attempts.');
+        $this->expectExceptionMessage('Failed to sign message after maximum attempts.');
 
         $signBlobFn = function () {
             throw new ServiceException('Transient error', 503);
@@ -867,7 +866,7 @@ class SigningHelperStub extends SigningHelper
         $callPrivate = $this->callPrivate('createV4CanonicalRequest', [$request]);
         return $this->createV4CanonicalRequest
             ? call_user_func($this->createV4CanonicalRequest, $request)
-            : \Closure::bind($callPrivate, null, new SigningHelper());
+            : \Closure::bind($callPrivate, null, new SigningHelper);
     }
 
     private function createV2CanonicalRequest(array $request)
@@ -875,12 +874,12 @@ class SigningHelperStub extends SigningHelper
         $callPrivate = $this->callPrivate('createV2CanonicalRequest', [$request]);
         return $this->createV2CanonicalRequest
             ? call_user_func($this->createV2CanonicalRequest, $request)
-            : \Closure::bind($callPrivate, null, new SigningHelper());
+            : \Closure::bind($callPrivate, null, new SigningHelper);
     }
 
     public function proxyPrivateMethodCall($method, array $args)
     {
-        $parent = new SigningHelper();
+        $parent = new SigningHelper;
         $cb = function () use ($method) {
             return call_user_func_array([$this, $method], func_get_args()[0]);
         };
