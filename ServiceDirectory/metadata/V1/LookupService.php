@@ -21,7 +21,7 @@ class LookupService
         \GPBMetadata\Google\Cloud\Servicedirectory\V1\Service::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ä
+á
 5google/cloud/servicedirectory/v1/lookup_service.proto google.cloud.servicedirectory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto.google/cloud/servicedirectory/v1/service.proto"ê
 ResolveServiceRequest=
 name (	B/‡A˙A)
@@ -31,8 +31,8 @@ class LookupService
 ResolveServiceResponse:
 service (2).google.cloud.servicedirectory.v1.Service2∏
 LookupService—
-ResolveService7.google.cloud.servicedirectory.v1.ResolveServiceRequest8.google.cloud.servicedirectory.v1.ResolveServiceResponse"LÇ”‰ìF"A/v1/{name=projects/*/locations/*/namespaces/*/services/*}:resolve:*S Aservicedirectory.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB˝
-$com.google.cloud.servicedirectory.v1BLookupServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb¯™ Google.Cloud.ServiceDirectory.V1  Google\\Cloud\\ServiceDirectory\\V1Í#Google::Cloud::ServiceDirectory::V1bproto3'
+ResolveService7.google.cloud.servicedirectory.v1.ResolveServiceRequest8.google.cloud.servicedirectory.v1.ResolveServiceResponse"LÇ”‰ìF"A/v1/{name=projects/*/locations/*/namespaces/*/services/*}:resolve:*S Aservicedirectory.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB˙
+$com.google.cloud.servicedirectory.v1BLookupServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb™ Google.Cloud.ServiceDirectory.V1  Google\\Cloud\\ServiceDirectory\\V1Í#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;
