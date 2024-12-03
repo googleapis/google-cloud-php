@@ -61,10 +61,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      */
     private $disks;
     /**
-     * Optional. If specified, VMs will consume only the specified reservation.
-     * If not specified (default), VMs will consume any applicable reservation.
-     * Additionally, VMs will not consume any reservation if "NO_RESERVATION"
-     * is specified.
+     * Optional. If not specified (default), VMs will consume any applicable
+     * reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     * reservation. Otherwise, if specified, VMs will consume only the specified
+     * reservation.
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -97,10 +97,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *           file system or a raw storage drive that is not ready for data
      *           storage and accessing.
      *     @type string $reservation
-     *           Optional. If specified, VMs will consume only the specified reservation.
-     *           If not specified (default), VMs will consume any applicable reservation.
-     *           Additionally, VMs will not consume any reservation if "NO_RESERVATION"
-     *           is specified.
+     *           Optional. If not specified (default), VMs will consume any applicable
+     *           reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     *           reservation. Otherwise, if specified, VMs will consume only the specified
+     *           reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -291,10 +291,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, VMs will consume only the specified reservation.
-     * If not specified (default), VMs will consume any applicable reservation.
-     * Additionally, VMs will not consume any reservation if "NO_RESERVATION"
-     * is specified.
+     * Optional. If not specified (default), VMs will consume any applicable
+     * reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     * reservation. Otherwise, if specified, VMs will consume only the specified
+     * reservation.
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -305,10 +305,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, VMs will consume only the specified reservation.
-     * If not specified (default), VMs will consume any applicable reservation.
-     * Additionally, VMs will not consume any reservation if "NO_RESERVATION"
-     * is specified.
+     * Optional. If not specified (default), VMs will consume any applicable
+     * reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     * reservation. Otherwise, if specified, VMs will consume only the specified
+     * reservation.
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
