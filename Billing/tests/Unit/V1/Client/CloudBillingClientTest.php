@@ -91,12 +91,14 @@ class CloudBillingClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
         $parent2 = 'parent21175163357';
+        $currencyCode = 'currencyCode1108728155';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent2);
+        $expectedResponse->setCurrencyCode($currencyCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $billingAccount = new BillingAccount();
@@ -164,12 +166,14 @@ class CloudBillingClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
         $parent = 'parent-995424086';
+        $currencyCode = 'currencyCode1108728155';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name2);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setCurrencyCode($currencyCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
@@ -511,12 +515,14 @@ class CloudBillingClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
         $parent = 'parent-995424086';
+        $currencyCode = 'currencyCode1108728155';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name2);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setCurrencyCode($currencyCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
@@ -730,12 +736,14 @@ class CloudBillingClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
         $parent = 'parent-995424086';
+        $currencyCode = 'currencyCode1108728155';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name2);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setCurrencyCode($currencyCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
@@ -878,12 +886,14 @@ class CloudBillingClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $masterBillingAccount = 'masterBillingAccount1503143052';
         $parent2 = 'parent21175163357';
+        $currencyCode = 'currencyCode1108728155';
         $expectedResponse = new BillingAccount();
         $expectedResponse->setName($name);
         $expectedResponse->setOpen($open);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent2);
+        $expectedResponse->setCurrencyCode($currencyCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $billingAccount = new BillingAccount();
