@@ -934,9 +934,8 @@ class SigningHelper
             }
         }
 
-        throw new \RuntimeException(sprintf(
-            'Failed to sign message after `%s` attempts.',
-            $attempts
-        ));
+        throw new \RuntimeException(
+            'Failed to sign message after maximum attempts.'
+        );
     }
 }
