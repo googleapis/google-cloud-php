@@ -55,7 +55,7 @@ class SigningHelper
     {
         static $helper;
         if (!$helper) {
-            $helper = new static();
+            $helper = new static;
         }
 
         return $helper;
@@ -691,8 +691,8 @@ class SigningHelper
                 if (!$options['timestamp']) {
                     throw new \InvalidArgumentException(
                         'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
-                            \DateTime::RFC3339 .
-                            '`. Note that timestamps MUST be in UTC.'
+                        \DateTime::RFC3339 .
+                        '`. Note that timestamps MUST be in UTC.'
                     );
                 }
             }
@@ -898,7 +898,7 @@ class SigningHelper
     }
 
     /**
-     *   Retry logic for signBlob using RetryTrait.
+     * Retry logic for signBlob
      *
      * @param callable $signBlobFn  A callable that perform the actual signBlob operation.
      * @param string $resourceName The resource name for logging or retry strategy determination.
