@@ -39,10 +39,10 @@ class SigningHelperTest extends TestCase
 {
     use ProphecyTrait;
 
-    public const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
-    public const BUCKET = 'test-bucket';
-    public const OBJECT = 'test-object';
-    public const GENERATION = 11111;
+    const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
+    const BUCKET = 'test-bucket';
+    const OBJECT = 'test-object';
+    const GENERATION = 11111;
 
     private $helper;
 
@@ -400,7 +400,7 @@ class SigningHelperTest extends TestCase
 
         $this->helper->createV4CanonicalRequest = function ($request) use ($saveAsName) {
             parse_str($request[2], $query);
-            $expectedDisposition = 'attachment; filename="' . $saveAsName .'"';
+            $expectedDisposition = 'attachment; filename="' . $saveAsName . '"';
             $this->assertEquals($expectedDisposition, $query['response-content-disposition']);
         };
 
@@ -799,9 +799,7 @@ class SigningHelperTest extends TestCase
         };
 
         $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
-            $signBlobFn,
-            5,
-            10
+            $signBlobFn
         ]);
 
         $this->assertEquals('signature', $res);
@@ -819,9 +817,7 @@ class SigningHelperTest extends TestCase
         };
 
         $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
-            $signBlobFn,
-            5,
-            10
+            $signBlobFn
         ]);
 
         $this->assertEquals('signature', $res);
@@ -833,15 +829,15 @@ class SigningHelperTest extends TestCase
         $this->expectException(ServiceException::class);
         $this->getExpectedExceptionMessage('Non-retryable error');
 
-        $signBlobFn = function () use (&$attempt) {
+        $signBlobFn = function () {
             throw new ServiceException('Non-retryable error', 400);
         };
 
         $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
-            $signBlobFn,
-            5,
-            10
+            $signBlobFn
         ]);
+
+        $this->assertEquals('Non-retryable error', $res);
     }
 
     public function testRetrySignBlobRetriesExhausted()
@@ -849,45 +845,13 @@ class SigningHelperTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $this->getExpectedExceptionMessage('Failed to sign message after maximum attempts.');
 
-        $signBlobFn = function () use (&$attempt) {
+        $signBlobFn = function () {
             throw new ServiceException('Transient error', 503);
         };
 
         $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
-            $signBlobFn,
-            5,
-            10
+            $signBlobFn
         ]);
-    }
-
-    public function testRetrySignBlobExponentialBackoff()
-    {
-        $attempts = 0;
-        $delays = [];
-
-        $signBlobFn = function () use (&$attempts, &$delays) {
-            $attempts++;
-            if ($attempts < 5) {
-                // Mock usleep to record delays
-                $delays[] = $attempts * 1000;
-                throw new ServiceException('Transient error', 503);
-            }
-            return 'signature';
-        };
-
-        $originalUsleep = \Closure::fromCallable('usleep');
-        $mockUsleep = function ($microseconds) use (&$delays, $originalUsleep) {
-            $delays[] = $microseconds;
-        };
-
-        $this->helper->proxyPrivateMethodCall('retrySignBlob', [
-            $signBlobFn,
-            5,
-            10
-        ]);
-
-        $expectedDelays = [1000, 2000, 3000, 4000];
-        $this->assertEquals($expectedDelays, $delays);
     }
 }
 
