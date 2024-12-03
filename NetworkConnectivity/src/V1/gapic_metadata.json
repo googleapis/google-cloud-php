@@ -90,9 +90,19 @@
                                 "listSpokes"
                             ]
                         },
+                        "QueryHubStatus": {
+                            "methods": [
+                                "queryHubStatus"
+                            ]
+                        },
                         "RejectHubSpoke": {
                             "methods": [
                                 "rejectHubSpoke"
+                            ]
+                        },
+                        "UpdateGroup": {
+                            "methods": [
+                                "updateGroup"
                             ]
                         },
                         "UpdateHub": {

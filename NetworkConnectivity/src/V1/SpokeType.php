@@ -44,6 +44,12 @@ class SpokeType
      * Generated from protobuf enum <code>VPC_NETWORK = 4;</code>
      */
     const VPC_NETWORK = 4;
+    /**
+     * Spokes that are backed by a producer VPC network.
+     *
+     * Generated from protobuf enum <code>PRODUCER_VPC_NETWORK = 7;</code>
+     */
+    const PRODUCER_VPC_NETWORK = 7;
 
     private static $valueToName = [
         self::SPOKE_TYPE_UNSPECIFIED => 'SPOKE_TYPE_UNSPECIFIED',
@@ -51,6 +57,7 @@ class SpokeType
         self::INTERCONNECT_ATTACHMENT => 'INTERCONNECT_ATTACHMENT',
         self::ROUTER_APPLIANCE => 'ROUTER_APPLIANCE',
         self::VPC_NETWORK => 'VPC_NETWORK',
+        self::PRODUCER_VPC_NETWORK => 'PRODUCER_VPC_NETWORK',
     ];
 
     public static function name($value)

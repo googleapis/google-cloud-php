@@ -27,6 +27,20 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string exclude_export_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $exclude_export_ranges;
+    /**
+     * Optional. IP ranges allowed to be included from peering.
+     *
+     * Generated from protobuf field <code>repeated string include_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $include_export_ranges;
+    /**
+     * Output only. The list of Producer VPC spokes that this VPC spoke is a
+     * service consumer VPC spoke for. These producer VPCs are connected through
+     * VPC peering to this spoke's backing VPC network.
+     *
+     * Generated from protobuf field <code>repeated string producer_vpc_spokes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $producer_vpc_spokes;
 
     /**
      * Constructor.
@@ -38,6 +52,12 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      *           Required. The URI of the VPC network resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_export_ranges
      *           Optional. IP ranges encompassing the subnets to be excluded from peering.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_export_ranges
+     *           Optional. IP ranges allowed to be included from peering.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_vpc_spokes
+     *           Output only. The list of Producer VPC spokes that this VPC spoke is a
+     *           service consumer VPC spoke for. These producer VPCs are connected through
+     *           VPC peering to this spoke's backing VPC network.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +113,62 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->exclude_export_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IP ranges allowed to be included from peering.
+     *
+     * Generated from protobuf field <code>repeated string include_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIncludeExportRanges()
+    {
+        return $this->include_export_ranges;
+    }
+
+    /**
+     * Optional. IP ranges allowed to be included from peering.
+     *
+     * Generated from protobuf field <code>repeated string include_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIncludeExportRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->include_export_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of Producer VPC spokes that this VPC spoke is a
+     * service consumer VPC spoke for. These producer VPCs are connected through
+     * VPC peering to this spoke's backing VPC network.
+     *
+     * Generated from protobuf field <code>repeated string producer_vpc_spokes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProducerVpcSpokes()
+    {
+        return $this->producer_vpc_spokes;
+    }
+
+    /**
+     * Output only. The list of Producer VPC spokes that this VPC spoke is a
+     * service consumer VPC spoke for. These producer VPCs are connected through
+     * VPC peering to this spoke's backing VPC network.
+     *
+     * Generated from protobuf field <code>repeated string producer_vpc_spokes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProducerVpcSpokes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->producer_vpc_spokes = $arr;
 
         return $this;
     }
