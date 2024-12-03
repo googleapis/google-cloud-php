@@ -115,7 +115,9 @@ class ReflectionHandlerV5
      */
     protected function getAdditionalStrategies()
     {
-        return [new Factory\Argument(new PrettyPrinter())];
+        return [
+            new Factory\Argument(new PrettyPrinter()) // @phpstan-ignore-line
+        ];
     }
 
     /**
