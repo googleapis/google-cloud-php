@@ -37,7 +37,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      */
     private $extended_verdict_reasons;
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     * keys
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -59,7 +60,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *           Output only. Extended verdict reasons to be used for experimentation only.
      *           The set of possible reasons is subject to change.
      *     @type int $challenge
-     *           Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     *           Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     *           keys
      * }
      */
     public function __construct($data = NULL) {
@@ -152,7 +154,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     * keys
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -163,7 +166,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE keys
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE
+     * keys
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
