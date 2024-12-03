@@ -283,7 +283,7 @@ final class AccountLabelsServiceClient
     }
 
     /**
-     * Lists the labels assigned to an account.
+     * Lists the labels owned by an account.
      *
      * The async variant is {@see AccountLabelsServiceClient::listAccountLabelsAsync()}
      * .
