@@ -24,6 +24,9 @@ use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Storage\Connection\RetryTrait;
+use Google\Cloud\Storage\StorageClient;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Provides common methods for signing storage URLs.
@@ -34,24 +37,14 @@ class SigningHelper
 {
     use ArrayTrait;
     use JsonTrait;
+    use RetryTrait;
 
-    public const DEFAULT_URL_SIGNING_VERSION = 'v2';
-    public const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
+    const DEFAULT_URL_SIGNING_VERSION = 'v2';
+    const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
-    public const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
-    public const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
-    public const V4_DATESTAMP_FORMAT = 'Ymd';
-
-    /**
-     * The HTTP codes that will be retried by our custom retry function.
-     * @var array
-     */
-    private static $httpRetryCodes = [
-        500,
-        502,
-        503,
-        504
-    ];
+    const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
+    const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
+    const V4_DATESTAMP_FORMAT = 'Ymd';
 
     /**
      * Create or fetch a SigningHelper instance.
@@ -905,38 +898,39 @@ class SigningHelper
     }
 
     /**
-     *   Retry logic for signBlob
+     *   Retry logic for signBlob using RetryTrait.
      *
      * @param callable $signBlobFn  A callable that perform the actual signBlob operation.
-     * @param int $maxRetries Maximum number of retry attempts.
-     * @param int $initialDelay Initial delay between retries in milliseconds.
+     * @param string $resourceName The resource name for logging or retry strategy determination.
+     * @param array $args Arguments for the operations, include preconditions
      * @return string The signature genarated by signBlob.
      * @throws ServiceException If non-retryable error occur.
      * @throws \RuntimeException If retries are exhausted.
      */
-    private function retrySignBlob(callable $signBlobFn, int $maxRetries = 5, int $initialDelay = 100)
+    private function retrySignBlob(callable $signBlobFn, string $resourceName = 'signBlob', array $args = [])
     {
         $attempts = 0;
-        $delay = $initialDelay;
+        $maxRetries = 5;
+        $invocationId = Uuid::uuid4()->toString();
+        $args['retryStrategy'] = StorageClient::RETRY_ALWAYS;
+
+        // Generate a retry decider function using the RetryTrait logic.
+        $retryDecider = $this->getRestRetryFunction($resourceName, 'execute', $args);
 
         while ($attempts < $maxRetries) {
+            $attempts++;
             try {
+                // Attach retry headers
+                $headers = self::getRetryHeaders($invocationId, $attempts);
+                $args['headers'] = array_merge($args['headers'] ?? [], $headers);
+
+                // Attempt the operation
                 return $signBlobFn();
-            } catch (ServiceException $exception) {
-                $attempts++;
-                $statusCode = $exception->getCode();
-
-                // Retry if the exception status code matches
-                // with one of the retriable status code
-                if (in_array($statusCode, self::$httpRetryCodes)) {
-                    usleep($delay * 1000);
-
-                    $delay *= 2;    // Exponential backoff
-                    continue;
+            } catch (\Exception $exception) {
+                if (!$retryDecider($exception)) {
+                    // Non-retryable error
+                    throw $exception;
                 }
-
-                // Non-retryable error
-                throw $exception;
             }
         }
 
