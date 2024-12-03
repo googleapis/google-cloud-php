@@ -1,18 +1,18 @@
-# Debugging logs
+# Debugging
 
-We have support for simple debugging in our libraries. This debugging support logs the requests that
-the Client Libraries are performing internally and provides a quick glance of what the request and
-response contains.
+There are a few features built into the Google Cloud PHP client libraries which can help you debug
+your application. This guide will show you how to enable logging the requests and responses the
+client libraries are performing internally.
 
 > :warning:
 >
 > These logs are not intended to be used in production and is meant to be used for quickly
-> debugging a project. The logs consists on basic logging into the STDOUT of your system which may
+> debugging a project. The logs consists of basic logging into the STDOUT of your system which may
 > or may not include sensitive information. Make sure that once you are done debugging to disable
-> the debugging flag or configuration used to avoid leaking sensitive user data, This may also
+> the debugging flag or configuration used to avoid leaking sensitive user data. This may also
 > include authentication tokens.
 
-## Debugging usage
+## Configuration
 
 There are multiple ways to configure the debugging logs which we will go through in this document.
 
@@ -35,6 +35,100 @@ $request->setParent('projects/php-docs-samples-kokoro');
 // This will be logged to STDOUT
 $response = $client->translateText($request);
 ```
+
+Logs usually come with a request log and a response log the exception being streaming requests
+where depending on the type of streaming it logs each stream packet. This means that if the client performs a request to the auth server it will also log that request-response pair before the main request.
+
+<details>
+<summary>Log examples</summary>
+
+### Request example log
+```json
+{
+    "timestamp": "2024-12-03T15:21:47-05:00",
+    "severity": "DEBUG",
+    "clientId": 83,
+    "requestId": 2435,
+    "jsonPayload": {
+        "request.method": "POST",
+        "request.url": "https://translate.googleapis.com/v3/projects/<YOUR_PROJECT",
+        "request.headers": {
+            "Host": [
+                "translate.googleapis.com"
+            ],
+            "Content-Type": [
+                "application/json"
+            ],
+            "x-goog-api-client": [
+                "gl-php/8.2.24 gapic/1.20.0 gax/1.35.0 grpc/1.66.0 rest/1.35.0 pb/+n"
+            ],
+            "User-Agent": [
+                "gcloud-php-new/1.20.0"
+            ],
+            "X-Goog-User-Project": [
+                "<YOUR_PROJECT>"
+            ],
+            "x-goog-request-params": [
+                "parent=projects%2F<YOUR_PROJECT>"
+            ],
+            "authorization": [
+                "Bearer <YOUR_AUTHORIZATION_TOKEN>"
+            ]
+        },
+        "request.payload": "{\"contents\":[\"こんにちは\"],\"targetLanguageCode\":\"en-US\",\"parent\":\"projects\\/<YOUR_PROJECT>\"}"
+    }
+}
+```
+
+### Response example log
+```json
+{
+    "timestamp": "2024-12-03T15:21:47-05:00",
+    "severity": "DEBUG",
+    "clientId": 83,
+    "requestId": 2435,
+    "jsonPayload": {
+        "response.headers": {
+            "Content-Type": [
+                "application/json; charset=UTF-8"
+            ],
+            "Vary": [
+                "X-Origin",
+                "Referer",
+                "Origin,Accept-Encoding"
+            ],
+            "Date": [
+                "Tue, 03 Dec 2024 20:21:47 GMT"
+            ],
+            "Server": [
+                "ESF"
+            ],
+            "Cache-Control": [
+                "private"
+            ],
+            "X-XSS-Protection": [
+                "0"
+            ],
+            "X-Frame-Options": [
+                "SAMEORIGIN"
+            ],
+            "X-Content-Type-Options": [
+                "nosniff"
+            ],
+            "Accept-Ranges": [
+                "none"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ]
+        },
+        "response.payload": "{\n  \"translations\": [\n    {\n      \"translatedText\": \"Hello\",\n      \"detectedLanguageCode\": \"ja\"\n    }\n  ]\n}\n",
+        "latencyMillis": 152
+    }
+}
+```
+
+</details>
 
 ### Passing a PSR-3 compliant logger
 
