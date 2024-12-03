@@ -927,7 +927,7 @@ class CacheSessionPoolTest extends TestCase
         return $database->reveal();
     }
 
-    private function getCacheItemPool(array $cacheData = null)
+    private function getCacheItemPool(?array $cacheData = null)
     {
         $cacheItemPool = new MemoryCacheItemPool();
         $cacheItem = $cacheItemPool->getItem(

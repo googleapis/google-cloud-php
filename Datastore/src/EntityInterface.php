@@ -55,7 +55,7 @@ interface EntityInterface
      *           created as the result of a service request.
      * }
      */
-    public static function build(Key $key = null, array $entity = [], array $options = []);
+    public static function build(?Key $key = null, array $entity = [], array $options = []);
 
     /**
      * Defines embedded entity mappings.

@@ -91,7 +91,7 @@ class InstanceConfiguration
         $projectId,
         $name,
         array $info = [],
-        LongRunningConnectionInterface $lroConnection = null
+        ?LongRunningConnectionInterface $lroConnection = null
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;

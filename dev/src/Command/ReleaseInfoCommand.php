@@ -44,7 +44,7 @@ class ReleaseInfoCommand extends Command
     /**
      * @param Client $httpClient specify the HTTP client, useful for testing
      */
-    public function __construct(Client $httpClient = null)
+    public function __construct(?Client $httpClient = null)
     {
         $this->httpClient = $httpClient ?: new Client();
         parent::__construct();

@@ -379,7 +379,7 @@ class QueryTest extends SpannerTestCase
      * covers 55
      * @dataProvider arrayTypes
      */
-    public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
+    public function testBindArrayOfType($value, $result = null, $resultType = null, ?callable $filter = null)
     {
         if ($resultType == Numeric::class) {
             $this->skipEmulatorTests();

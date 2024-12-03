@@ -33,7 +33,7 @@ class Bootstrap
      * @return void
      * @codeCoverageIgnore
      */
-    public static function init(PsrLogger $psrLogger = null)
+    public static function init(?PsrLogger $psrLogger = null)
     {
         self::$psrLogger = $psrLogger ?: (new LoggingClient())
             ->psrLogger(self::DEFAULT_LOGNAME, [
@@ -259,7 +259,7 @@ class Bootstrap
      *
      * @param array $trace The stack trace returned from Exception::getTrace()
      */
-    private static function getFunctionNameForReport(array $trace = null)
+    private static function getFunctionNameForReport(?array $trace = null)
     {
         if (null === $trace) {
             return '<unknown function>';

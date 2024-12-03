@@ -681,7 +681,7 @@ class PgQueryTest extends SpannerPgTestCase
     /**
      * @dataProvider arrayTypesProvider
      */
-    public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
+    public function testBindArrayOfType($value, $result = null, $resultType = null, ?callable $filter = null)
     {
         if (!$filter) {
             $filter = function ($val) {

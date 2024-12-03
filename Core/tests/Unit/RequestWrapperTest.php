@@ -783,7 +783,7 @@ class RequestWrapperTest extends TestCase
     public function testCheckUniverseDomainFails(
         ?string $universeDomain,
         ?string $credentialsUniverse,
-        string $message = null
+        ?string $message = null
     ) {
         $this->expectException(GoogleException::class);
         $this->expectExceptionMessage($message ?: sprintf(

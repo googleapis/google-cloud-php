@@ -57,8 +57,8 @@ class BatchRunner
      *        to use. **Defaults to** null. This is only for testing purpose.
      */
     public function __construct(
-        ConfigStorageInterface $configStorage = null,
-        ProcessItemInterface $processor = null
+        ?ConfigStorageInterface $configStorage = null,
+        ?ProcessItemInterface $processor = null
     ) {
         if ($configStorage === null || $processor === null) {
             if ($this->isSysvIPCLoaded() && $this->isDaemonRunning()) {
