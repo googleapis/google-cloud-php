@@ -299,6 +299,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $scheduleResourceName = 'scheduleResourceName-627484556';
+        $kernelName = 'kernelName-497416883';
         $expectedResponse = new NotebookExecutionJob();
         $expectedResponse->setNotebookRuntimeTemplateResourceName($notebookRuntimeTemplateResourceName);
         $expectedResponse->setGcsOutputUri($gcsOutputUri);
@@ -306,6 +307,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setScheduleResourceName($scheduleResourceName);
+        $expectedResponse->setKernelName($kernelName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -955,6 +957,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $scheduleResourceName = 'scheduleResourceName-627484556';
+        $kernelName = 'kernelName-497416883';
         $expectedResponse = new NotebookExecutionJob();
         $expectedResponse->setNotebookRuntimeTemplateResourceName($notebookRuntimeTemplateResourceName);
         $expectedResponse->setGcsOutputUri($gcsOutputUri);
@@ -962,6 +965,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setScheduleResourceName($scheduleResourceName);
+        $expectedResponse->setKernelName($kernelName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notebookExecutionJobName('[PROJECT]', '[LOCATION]', '[NOTEBOOK_EXECUTION_JOB]');
