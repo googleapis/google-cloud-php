@@ -33,9 +33,11 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
     private $latest_message = '';
     /**
      * Number of messages prior to and including
-     * [last_conversation_message][] used to compile the suggestion. It may be
-     * smaller than the [SuggestSummaryRequest.context_size][] field in the
-     * request if there weren't that many messages in the conversation.
+     * [latest_message][google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.latest_message]
+     * used to compile the suggestion. It may be smaller than the
+     * [SuggestConversationSummaryRequest.context_size][google.cloud.dialogflow.v2.SuggestConversationSummaryRequest.context_size]
+     * field in the request if there weren't that many messages in the
+     * conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
@@ -56,9 +58,11 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $context_size
      *           Number of messages prior to and including
-     *           [last_conversation_message][] used to compile the suggestion. It may be
-     *           smaller than the [SuggestSummaryRequest.context_size][] field in the
-     *           request if there weren't that many messages in the conversation.
+     *           [latest_message][google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.latest_message]
+     *           used to compile the suggestion. It may be smaller than the
+     *           [SuggestConversationSummaryRequest.context_size][google.cloud.dialogflow.v2.SuggestConversationSummaryRequest.context_size]
+     *           field in the request if there weren't that many messages in the
+     *           conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,9 +140,11 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
 
     /**
      * Number of messages prior to and including
-     * [last_conversation_message][] used to compile the suggestion. It may be
-     * smaller than the [SuggestSummaryRequest.context_size][] field in the
-     * request if there weren't that many messages in the conversation.
+     * [latest_message][google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.latest_message]
+     * used to compile the suggestion. It may be smaller than the
+     * [SuggestConversationSummaryRequest.context_size][google.cloud.dialogflow.v2.SuggestConversationSummaryRequest.context_size]
+     * field in the request if there weren't that many messages in the
+     * conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      * @return int
@@ -150,9 +156,11 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
 
     /**
      * Number of messages prior to and including
-     * [last_conversation_message][] used to compile the suggestion. It may be
-     * smaller than the [SuggestSummaryRequest.context_size][] field in the
-     * request if there weren't that many messages in the conversation.
+     * [latest_message][google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.latest_message]
+     * used to compile the suggestion. It may be smaller than the
+     * [SuggestConversationSummaryRequest.context_size][google.cloud.dialogflow.v2.SuggestConversationSummaryRequest.context_size]
+     * field in the request if there weren't that many messages in the
+     * conversation.
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      * @param int $var
