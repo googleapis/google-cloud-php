@@ -31,38 +31,38 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * If provided, this field specifies the criteria that must be met by
-     * notification channels to be included in the response.
+     * Optional. If provided, this field specifies the criteria that must be met
+     * by notification channels to be included in the response.
      * For more details, see [sorting and
      * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string filter = 6;</code>
+     * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * A comma-separated list of fields by which to sort the result. Supports
-     * the same set of fields as in `filter`. Entries can be prefixed with
-     * a minus sign to sort in descending rather than ascending order.
+     * Optional. A comma-separated list of fields by which to sort the result.
+     * Supports the same set of fields as in `filter`. Entries can be prefixed
+     * with a minus sign to sort in descending rather than ascending order.
      * For more details, see [sorting and
      * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string order_by = 7;</code>
+     * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
     /**
-     * The maximum number of results to return in a single response. If
+     * Optional. The maximum number of results to return in a single response. If
      * not set to a positive number, a reasonable value will be chosen by the
      * service.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * If non-empty, `page_token` must contain a value returned as the
+     * Optional. If non-empty, `page_token` must contain a value returned as the
      * `next_page_token` in a previous response to request the next set
      * of results.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -108,22 +108,22 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *           [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
      *           operation.
      *     @type string $filter
-     *           If provided, this field specifies the criteria that must be met by
-     *           notification channels to be included in the response.
+     *           Optional. If provided, this field specifies the criteria that must be met
+     *           by notification channels to be included in the response.
      *           For more details, see [sorting and
      *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     @type string $order_by
-     *           A comma-separated list of fields by which to sort the result. Supports
-     *           the same set of fields as in `filter`. Entries can be prefixed with
-     *           a minus sign to sort in descending rather than ascending order.
+     *           Optional. A comma-separated list of fields by which to sort the result.
+     *           Supports the same set of fields as in `filter`. Entries can be prefixed
+     *           with a minus sign to sort in descending rather than ascending order.
      *           For more details, see [sorting and
      *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     @type int $page_size
-     *           The maximum number of results to return in a single response. If
+     *           Optional. The maximum number of results to return in a single response. If
      *           not set to a positive number, a reasonable value will be chosen by the
      *           service.
      *     @type string $page_token
-     *           If non-empty, `page_token` must contain a value returned as the
+     *           Optional. If non-empty, `page_token` must contain a value returned as the
      *           `next_page_token` in a previous response to request the next set
      *           of results.
      * }
@@ -178,12 +178,12 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, this field specifies the criteria that must be met by
-     * notification channels to be included in the response.
+     * Optional. If provided, this field specifies the criteria that must be met
+     * by notification channels to be included in the response.
      * For more details, see [sorting and
      * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string filter = 6;</code>
+     * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -192,12 +192,12 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, this field specifies the criteria that must be met by
-     * notification channels to be included in the response.
+     * Optional. If provided, this field specifies the criteria that must be met
+     * by notification channels to be included in the response.
      * For more details, see [sorting and
      * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string filter = 6;</code>
+     * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -210,13 +210,13 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A comma-separated list of fields by which to sort the result. Supports
-     * the same set of fields as in `filter`. Entries can be prefixed with
-     * a minus sign to sort in descending rather than ascending order.
+     * Optional. A comma-separated list of fields by which to sort the result.
+     * Supports the same set of fields as in `filter`. Entries can be prefixed
+     * with a minus sign to sort in descending rather than ascending order.
      * For more details, see [sorting and
      * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string order_by = 7;</code>
+     * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -225,13 +225,13 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A comma-separated list of fields by which to sort the result. Supports
-     * the same set of fields as in `filter`. Entries can be prefixed with
-     * a minus sign to sort in descending rather than ascending order.
+     * Optional. A comma-separated list of fields by which to sort the result.
+     * Supports the same set of fields as in `filter`. Entries can be prefixed
+     * with a minus sign to sort in descending rather than ascending order.
      * For more details, see [sorting and
      * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
-     * Generated from protobuf field <code>string order_by = 7;</code>
+     * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -244,11 +244,11 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of results to return in a single response. If
+     * Optional. The maximum number of results to return in a single response. If
      * not set to a positive number, a reasonable value will be chosen by the
      * service.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -257,11 +257,11 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of results to return in a single response. If
+     * Optional. The maximum number of results to return in a single response. If
      * not set to a positive number, a reasonable value will be chosen by the
      * service.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -274,11 +274,11 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If non-empty, `page_token` must contain a value returned as the
+     * Optional. If non-empty, `page_token` must contain a value returned as the
      * `next_page_token` in a previous response to request the next set
      * of results.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -287,11 +287,11 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If non-empty, `page_token` must contain a value returned as the
+     * Optional. If non-empty, `page_token` must contain a value returned as the
      * `next_page_token` in a previous response to request the next set
      * of results.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

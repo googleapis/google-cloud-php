@@ -35,7 +35,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *     `[CONDITION_ID]`. If the supplied condition omits the `name` field,
      *     then a new `[CONDITION_ID]` is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
     /**
@@ -143,7 +143,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *     `[CONDITION_ID]`. If the supplied condition omits the `name` field,
      *     then a new `[CONDITION_ID]` is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -181,7 +181,7 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *     `[CONDITION_ID]`. If the supplied condition omits the `name` field,
      *     then a new `[CONDITION_ID]` is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
