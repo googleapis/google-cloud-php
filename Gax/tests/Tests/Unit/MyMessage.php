@@ -4,10 +4,6 @@
 
 namespace Google\ApiCore\Tests\Unit;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
 /**
  * Generated from protobuf message <code>google.apicore.tests.unit.MyMessage</code>
  */
@@ -22,10 +18,10 @@ class MyMessage extends \Google\Protobuf\Internal\Message
      *
      * }
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         \GPBMetadata\Google\ApiCore\Tests\Unit\Example::initOnce();
         parent::__construct($data);
     }
 
 }
-

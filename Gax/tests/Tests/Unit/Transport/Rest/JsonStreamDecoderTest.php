@@ -43,7 +43,6 @@ use GuzzleHttp\Psr7\BufferStream;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-
 class JsonStreamDecoderTest extends TestCase
 {
     use TestTrait;
@@ -55,7 +54,7 @@ class JsonStreamDecoderTest extends TestCase
     {
         $decoder = new JsonStreamDecoder($stream, $decodeType, ['readChunkSizeBytes' => $readChunkSizeBytes]);
         $num = 0;
-        foreach($decoder->decode() as $op) {
+        foreach ($decoder->decode() as $op) {
             $this->assertEquals($responses[$num], $op);
             $num++;
         }
@@ -115,8 +114,8 @@ class JsonStreamDecoderTest extends TestCase
                 ]),
             ]),
         ];
-        
-        $stream = function($data) {return $this->messagesToStream($data);};
+
+        $stream = function ($data) {return $this->messagesToStream($data);};
         return [
             [$operations, Operation::class, $stream($operations), /*readChunkSizeBytes*/ 10],
             [$operations, Operation::class, $stream($operations), /*readChunkSizeBytes*/ 1024],
@@ -127,10 +126,10 @@ class JsonStreamDecoderTest extends TestCase
     private function messagesToStream(array $messages)
     {
         $data = [];
-        foreach($messages as $message) {
+        foreach ($messages as $message) {
             $data[] = $message->serializeToJsonString();
         }
-        return Psr7\Utils::streamFor('['.implode(',', $data).']');
+        return Psr7\Utils::streamFor('[' . implode(',', $data) . ']');
     }
 
     /**
@@ -140,7 +139,7 @@ class JsonStreamDecoderTest extends TestCase
     {
         $decoder = new JsonStreamDecoder($stream, $decodeType);
         $num = 0;
-        foreach($decoder->decode() as $op) {
+        foreach ($decoder->decode() as $op) {
             $this->assertEquals($responses[$num], $op);
             $num++;
         }
@@ -155,9 +154,9 @@ class JsonStreamDecoderTest extends TestCase
         $res2Str = $res2->serializeToJsonString();
         $responses = [$res1, $res2];
 
-        $newlines = "[\n\n\n".$res1Str."\n\n\n,\n\n\n".$res2Str."\n\n\n]";
-        $commas = "[".$res1Str.",\n,\n,\n,".$res2Str."]";
-        $blankspace = "[".$res1Str.",           ".$res2Str."]";
+        $newlines = "[\n\n\n" . $res1Str . "\n\n\n,\n\n\n" . $res2Str . "\n\n\n]";
+        $commas = '[' . $res1Str . ",\n,\n,\n," . $res2Str . ']';
+        $blankspace = '[' . $res1Str . ',           ' . $res2Str . ']';
 
         return [
             [$responses, MockResponse::class, $this->initBufferStream($newlines)],
@@ -178,7 +177,7 @@ class JsonStreamDecoderTest extends TestCase
 
         try {
             // Just iterating the stream will throw the exception
-            foreach($decoder->decode() as $op) {
+            foreach ($decoder->decode() as $op) {
 
             }
         } finally {
@@ -203,7 +202,7 @@ class JsonStreamDecoderTest extends TestCase
         $stream->write('[{"name": "foo"},{');
         $decoder = new JsonStreamDecoder($stream, Operation::class, ['readChunkSizeBytes' => 10]);
         $count = 0;
-        foreach($decoder->decode() as $op) {
+        foreach ($decoder->decode() as $op) {
             $this->assertEquals('foo', $op->getName());
             $count++;
             $decoder->close();

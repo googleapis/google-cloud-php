@@ -13,8 +13,7 @@ class TestInterceptor extends Interceptor
         $continuation,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
@@ -26,8 +25,7 @@ class TestInterceptor extends Interceptor
         $continuation,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
@@ -42,8 +40,7 @@ class TestUnaryInterceptor extends Interceptor
         $continuation = null,
         array $metadata = [],
         array $options = []
-    )
-    {
+    ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }

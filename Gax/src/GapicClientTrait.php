@@ -337,7 +337,7 @@ trait GapicClientTrait
         string $apiEndpoint,
         $transport,
         $transportConfig,
-        callable $clientCertSource = null,
+        ?callable $clientCertSource = null,
         bool $hasEmulator = false
     ) {
         if (!is_string($transport)) {
@@ -536,7 +536,7 @@ trait GapicClientTrait
      */
     private function startApiCall(
         string $methodName,
-        Message $request = null,
+        ?Message $request = null,
         array $optionalArgs = []
     ) {
         $methodDescriptors = $this->validateCallConfig($methodName);
@@ -598,9 +598,9 @@ trait GapicClientTrait
         string $methodName,
         string $decodeType,
         array $optionalArgs = [],
-        Message $request = null,
+        ?Message $request = null,
         int $callType = Call::UNARY_CALL,
-        string $interfaceName = null
+        ?string $interfaceName = null
     ) {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
@@ -752,8 +752,8 @@ trait GapicClientTrait
         array $optionalArgs,
         Message $request,
         $client,
-        string $interfaceName = null,
-        string $operationClass = null
+        ?string $interfaceName = null,
+        ?string $operationClass = null
     ) {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
@@ -808,7 +808,7 @@ trait GapicClientTrait
         array $optionalArgs,
         string $decodeType,
         Message $request,
-        string $interfaceName = null
+        ?string $interfaceName = null
     ) {
         return $this->getPagedListResponseAsync(
             $methodName,
@@ -833,7 +833,7 @@ trait GapicClientTrait
         array $optionalArgs,
         string $decodeType,
         Message $request,
-        string $interfaceName = null
+        ?string $interfaceName = null
     ) {
         $optionalArgs = $this->configureCallOptions($optionalArgs);
         $callStack = $this->createCallStack(
@@ -864,7 +864,7 @@ trait GapicClientTrait
      *
      * @return string
      */
-    private function buildMethod(string $interfaceName = null, string $methodName = null)
+    private function buildMethod(?string $interfaceName = null, ?string $methodName = null)
     {
         return sprintf(
             '%s/%s',
@@ -879,7 +879,7 @@ trait GapicClientTrait
      *
      * @return array
      */
-    private function buildRequestParamsHeader(array $headerParams, Message $request = null)
+    private function buildRequestParamsHeader(array $headerParams, ?Message $request = null)
     {
         $headers = [];
 

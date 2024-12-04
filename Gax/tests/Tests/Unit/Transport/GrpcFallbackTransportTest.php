@@ -46,8 +46,8 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use Psr\Http\Message\RequestInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 
 class GrpcFallbackTransportTest extends TestCase
 {
@@ -121,9 +121,9 @@ class GrpcFallbackTransportTest extends TestCase
     public function startUnaryCallDataProvider()
     {
         return [
-            ["www.example.com", new MockRequest()],
-            ["www.example.com:443", new MockRequest()],
-            ["www.example.com:447", new MockRequest()],
+            ['www.example.com', new MockRequest()],
+            ['www.example.com:443', new MockRequest()],
+            ['www.example.com:447', new MockRequest()],
         ];
     }
 
@@ -145,7 +145,7 @@ class GrpcFallbackTransportTest extends TestCase
         $httpHandler = function (RequestInterface $request, array $options = []) {
             $status = new Status();
             $status->setCode(Code::NOT_FOUND);
-            $status->setMessage("Ruh-roh");
+            $status->setMessage('Ruh-roh');
             return Create::rejectionFor(
                 RequestException::create(
                     new Request('POST', 'http://www.example.com'),
@@ -157,7 +157,6 @@ class GrpcFallbackTransportTest extends TestCase
                 )
             );
         };
-
 
         $this->expectException(Exception::class);
 
@@ -177,7 +176,7 @@ class GrpcFallbackTransportTest extends TestCase
 
     public function buildDataGrpcFallback()
     {
-        $uri = "address.com";
+        $uri = 'address.com';
         $apiEndpoint = "$uri:443";
         $httpHandler = [HttpHandlerFactory::build(), 'async'];
         return [
@@ -210,7 +209,7 @@ class GrpcFallbackTransportTest extends TestCase
     {
         return [
             [
-                "addresswithtoo:many:segments",
+                'addresswithtoo:many:segments',
                 [],
             ],
         ];
@@ -225,12 +224,11 @@ class GrpcFallbackTransportTest extends TestCase
                     new Response(
                         404,
                         [],
-                        "<html><body>This is an HTML response</body></html>"
+                        '<html><body>This is an HTML response</body></html>'
                     )
                 )
             );
         };
-
 
         $this->expectException(ApiException::class);
         $this->expectExceptionCode(5);

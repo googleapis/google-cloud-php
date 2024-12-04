@@ -155,8 +155,8 @@ class ApiExceptionTest extends TestCase
             ],
             [
                 '@type' => 'google.rpc.debuginfo-bin',
-                "stackEntries" => [],
-                "detail" => ""
+                'stackEntries' => [],
+                'detail' => ''
             ],
             [
                 '@type' => 'google.rpc.quotafailure-bin',
@@ -273,8 +273,8 @@ class ApiExceptionTest extends TestCase
             ],
             [
                 '@type' => 'google.rpc.debuginfo-bin',
-                "stackEntries" => [],
-                "detail" => ""
+                'stackEntries' => [],
+                'detail' => ''
             ],
             [
                 '@type' => 'google.rpc.quotafailure-bin',
@@ -380,8 +380,8 @@ class ApiExceptionTest extends TestCase
             ],
             [
                 '@type' => 'google.rpc.debuginfo-bin',
-                "stackEntries" => [],
-                "detail" => ""
+                'stackEntries' => [],
+                'detail' => ''
             ],
             [
                 '@type' => 'google.rpc.quotafailure-bin',
@@ -461,8 +461,8 @@ class ApiExceptionTest extends TestCase
             ],
             [
                 '@type' => 'google.rpc.debuginfo-bin',
-                "stackEntries" => [],
-                "detail" => ""
+                'stackEntries' => [],
+                'detail' => ''
             ],
             [
                 '@type' => 'google.rpc.quotafailure-bin',
@@ -522,12 +522,12 @@ class ApiExceptionTest extends TestCase
     public function getRpcStatusData()
     {
         $debugInfo = new DebugInfo();
-        $debugInfo->setDetail("debug detail");
+        $debugInfo->setDetail('debug detail');
         $any = new Any();
         $any->pack($debugInfo);
 
         $status = new Status();
-        $status->setMessage("status string");
+        $status->setMessage('status string');
         $status->setCode(Code::OK);
         $status->setDetails([$any]);
 
@@ -581,7 +581,7 @@ class ApiExceptionTest extends TestCase
         $any->pack($errorInfo);
 
         $status = new Status();
-        $status->setMessage("status string");
+        $status->setMessage('status string');
         $status->setCode(Code::OK);
         $status->setDetails([$any]);
 

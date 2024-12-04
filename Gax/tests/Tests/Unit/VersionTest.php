@@ -40,6 +40,6 @@ class VersionTest extends TestCase
     public function testGetApiCoreVersion()
     {
         $actualVersion = Version::getApiCoreVersion();
-        $this->assertStringMatchesFormat("%d.%d.%d", $actualVersion);
+        $this->assertStringMatchesFormat('%d.%d.%d', $actualVersion);
     }
 }

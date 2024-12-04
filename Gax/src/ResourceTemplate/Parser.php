@@ -48,7 +48,7 @@ class Parser
      * @return array
      * @throws ValidationException
      */
-    public static function parseSegments(string $path = null)
+    public static function parseSegments(?string $path = null)
     {
         if (empty($path)) {
             throw new ValidationException('Cannot parse empty path');

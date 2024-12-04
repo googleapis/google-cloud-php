@@ -53,11 +53,11 @@ use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use TypeError;
 use UnexpectedValueException;
-use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 
 class RestTransportTest extends TestCase
 {
@@ -75,7 +75,7 @@ class RestTransportTest extends TestCase
         );
     }
 
-    private function getTransport(callable $httpHandler = null, $apiEndpoint = 'http://www.example.com')
+    private function getTransport(?callable $httpHandler = null, $apiEndpoint = 'http://www.example.com')
     {
         $request = new Request('POST', $apiEndpoint);
         $requestBuilder = $this->getMockBuilder(RequestBuilder::class)
@@ -102,7 +102,7 @@ class RestTransportTest extends TestCase
             'POST',
             "$apiEndpoint",
             [],
-            ""
+            ''
         );
 
         $body = ['name' => 'hello', 'number' => 15];
@@ -129,9 +129,9 @@ class RestTransportTest extends TestCase
     public function startUnaryCallDataProvider()
     {
         return [
-            ["www.example.com"],
-            ["www.example.com:443"],
-            ["www.example.com:447"],
+            ['www.example.com'],
+            ['www.example.com:443'],
+            ['www.example.com:447'],
         ];
     }
 
@@ -290,7 +290,7 @@ class RestTransportTest extends TestCase
             'POST',
             $apiEndpoint,
             [],
-            ""
+            ''
         );
 
         $httpHandler = function (RequestInterface $request, array $options = []) use ($messages, $expectedRequest) {
@@ -325,7 +325,7 @@ class RestTransportTest extends TestCase
             'POST',
             $apiEndpoint,
             [],
-            ""
+            ''
         );
 
         $httpHandler = function (RequestInterface $request, array $options = []) use ($messages, $expectedRequest) {
@@ -361,12 +361,12 @@ class RestTransportTest extends TestCase
         foreach ($messages as $message) {
             $data[] = $message->serializeToJsonString();
         }
-        return '['.implode(',', $data).']';
+        return '[' . implode(',', $data) . ']';
     }
 
     public function buildServerStreamMessages()
     {
-        return[
+        return [
             [
                 [
                     new MockResponse([
@@ -429,7 +429,7 @@ class RestTransportTest extends TestCase
 
     public function buildDataRest()
     {
-        $uri = "address.com";
+        $uri = 'address.com';
         $apiEndpoint = "$uri:443";
         $restConfigPath = __DIR__ . '/../testdata/test_service_rest_client_config.php';
         $requestBuilder = new RequestBuilder($apiEndpoint, $restConfigPath);
@@ -500,13 +500,13 @@ class RestTransportTest extends TestCase
         $restConfigPath = __DIR__ . '/../testdata/test_service_rest_client_config.php';
         return [
             [
-                "addresswithtoo:many:segments",
+                'addresswithtoo:many:segments',
                 $restConfigPath,
                 [],
             ],
             [
-                "address.com",
-                "badpath",
+                'address.com',
+                'badpath',
                 [],
             ],
         ];
@@ -521,7 +521,7 @@ class RestTransportTest extends TestCase
                     new Response(
                         404,
                         [],
-                        "<html><body>This is an HTML response</body></html>"
+                        '<html><body>This is an HTML response</body></html>'
                     )
                 )
             );

@@ -65,9 +65,9 @@ class Segment
      */
     public function __construct(
         int $segmentType,
-        string $value = null,
-        string $key = null,
-        RelativeResourceTemplate $template = null,
+        ?string $value = null,
+        ?string $key = null,
+        ?RelativeResourceTemplate $template = null,
         string $separator = '/'
     ) {
         $this->segmentType = $segmentType;

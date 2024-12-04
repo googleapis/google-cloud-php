@@ -55,7 +55,7 @@ class RetryMiddlewareTest extends TestCase
                 'retryableCodes' => []
             ]);
         $callCount = 0;
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return new Promise(function () use (&$callCount) {
                 throw new ApiException('Call Count: ' . $callCount += 1, 0, '');
             });
@@ -79,7 +79,7 @@ class RetryMiddlewareTest extends TestCase
                 'retryableCodes' => [ApiStatus::CANCELLED],
             ]);
         $callCount = 0;
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             $callCount += 1;
             return $promise = new Promise(function () use (&$promise, $callCount) {
                 if ($callCount < 3) {
@@ -109,7 +109,7 @@ class RetryMiddlewareTest extends TestCase
                 'retryableCodes' => [ApiStatus::CANCELLED],
                 'totalTimeoutMillis' => 0,
             ]);
-        $handler = function(Call $call, $options) {
+        $handler = function (Call $call, $options) {
             return new Promise(function () {
                 throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
             });
@@ -134,7 +134,7 @@ class RetryMiddlewareTest extends TestCase
                 'initialRpcTimeoutMillis' => 500,
                 'totalTimeoutMillis' => 1000,
             ]);
-        $handler = function(Call $call, $options) {
+        $handler = function (Call $call, $options) {
             return new Promise(function () use ($options) {
                 // sleep for the duration of the timeout
                 if (isset($options['timeoutMillis'])) {
@@ -165,7 +165,7 @@ class RetryMiddlewareTest extends TestCase
             ]);
         $callCount = 0;
         $observedTimeouts = [];
-        $handler = function(Call $call, $options) use (&$callCount, &$observedTimeouts) {
+        $handler = function (Call $call, $options) use (&$callCount, &$observedTimeouts) {
             $observedTimeouts[] = $options['timeoutMillis'];
             $callCount += 1;
             return $promise = new Promise(function () use (&$promise, $callCount) {
@@ -223,7 +223,7 @@ class RetryMiddlewareTest extends TestCase
             ->with(RetrySettings::logicalTimeout($timeout));
         $callCount = 0;
         $observedTimeouts = [];
-        $handler = function(Call $call, $options) use (&$callCount, &$observedTimeouts) {
+        $handler = function (Call $call, $options) use (&$callCount, &$observedTimeouts) {
             $callCount += 1;
             $observedTimeouts[] = $options['timeoutMillis'];
             return $promise = new Promise(function () use (&$promise, $callCount) {
@@ -247,7 +247,7 @@ class RetryMiddlewareTest extends TestCase
         $this->assertCount(3, $observedTimeouts);
         $this->assertEquals($observedTimeouts[0], $timeout);
         for ($i = 1; $i < count($observedTimeouts); $i++) {
-            $this->assertTrue($observedTimeouts[$i-1] > $observedTimeouts[$i]);
+            $this->assertTrue($observedTimeouts[$i - 1] > $observedTimeouts[$i]);
         }
     }
 
@@ -260,7 +260,7 @@ class RetryMiddlewareTest extends TestCase
         $retrySettings = RetrySettings::constructDefault()
             ->with(RetrySettings::logicalTimeout($timeout));
         $observedTimeout = 0;
-        $handler = function(Call $call, $options) use (&$observedTimeout) {
+        $handler = function (Call $call, $options) use (&$observedTimeout) {
             $observedTimeout = $options['timeoutMillis'];
             return $promise = new Promise(function () use (&$promise) {
                 $promise->resolve('Ok!');
@@ -289,7 +289,7 @@ class RetryMiddlewareTest extends TestCase
                 'retriesEnabled' => true,
                 'retryFunction' => function ($ex, $options) use ($maxAttempts, &$currentAttempt) {
                     $currentAttempt++;
-                    if($currentAttempt < $maxAttempts) {
+                    if ($currentAttempt < $maxAttempts) {
                         return true;
                     }
 
@@ -297,7 +297,7 @@ class RetryMiddlewareTest extends TestCase
                 }
             ]);
         $callCount = 0;
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return new Promise(function () use (&$callCount) {
                 ++$callCount;
                 throw new ApiException('Call Count: ' . $callCount, 0, '');
@@ -357,17 +357,17 @@ class RetryMiddlewareTest extends TestCase
 
         $callCount = 0;
         $handler = function (Call $call, $options) use (&$callCount) {
-            return new Promise(function () use(&$callCount) {
+            return new Promise(function () use (&$callCount) {
                 ++$callCount;
                 throw new ApiException('Call count: ' . $callCount, 0, '');
             });
         };
         $middleware = new RetryMiddleware($handler, $retrySettings);
-        
+
         try {
             $middleware($call, [])->wait();
             $this->fail('Expected an exception, but didn\'t receive any');
-        } catch(ApiException $e) {
+        } catch (ApiException $e) {
             $this->assertEquals('Retry total timeout exceeded.', $e->getMessage());
             // we used a total timeout of 1 ms and every retry sleeps for .9 ms
             // This means that the call count should be 2(original call and 1 retry)
@@ -389,7 +389,7 @@ class RetryMiddlewareTest extends TestCase
                 'maxRetries' => $maxRetries
             ]);
         $callCount = 0;
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return new Promise(function () use (&$callCount) {
                 ++$callCount;
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
@@ -425,7 +425,7 @@ class RetryMiddlewareTest extends TestCase
                     return $callCount < 5 ? true : false;
                 }
             ]);
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return new Promise(function () use (&$callCount) {
                 ++$callCount;
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
@@ -463,7 +463,7 @@ class RetryMiddlewareTest extends TestCase
                     return $callCount < $customRetryMaxCalls ? true : false;
                 }
             ]);
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return new Promise(function () use (&$callCount) {
                 ++$callCount;
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
@@ -498,7 +498,7 @@ class RetryMiddlewareTest extends TestCase
                     return $callCount < $customRetryMaxCalls ? true : false;
                 }
             ]);
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return new Promise(function () use (&$callCount) {
                 ++$callCount;
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);

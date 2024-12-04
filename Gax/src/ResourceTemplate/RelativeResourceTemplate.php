@@ -287,7 +287,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
      * @param string|null $separator An optional string separator
      * @return array[] A list of [string, Segment] tuples
      */
-    private static function buildKeySegmentTuples(array $segments, string $separator = null)
+    private static function buildKeySegmentTuples(array $segments, ?string $separator = null)
     {
         $keySegmentTuples = [];
         $positionalArgumentCounter = 0;

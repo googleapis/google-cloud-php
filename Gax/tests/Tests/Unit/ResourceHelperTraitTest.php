@@ -80,7 +80,7 @@ class ResourceHelperTraitTest extends TestCase
 
         ResourceHelperTraitStub::parseName('no/matching/pattern');
     }
-    
+
 }
 
 class ResourceHelperTraitStub

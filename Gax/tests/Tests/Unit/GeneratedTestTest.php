@@ -63,9 +63,9 @@ class GeneratedTestTest extends GeneratedTest
     public function getSuccessCases()
     {
         $monitoringA = new MonitoringDestination();
-        $monitoringA->setMonitoredResource("type");
+        $monitoringA->setMonitoredResource('type');
         $monitoringB = new MonitoringDestination();
-        $monitoringB->setMonitoredResource("type");
+        $monitoringB->setMonitoredResource('type');
 
         $emptyRepeatedA = $monitoringA->getMetrics();
         $emptyRepeatedB = $monitoringB->getMetrics();
@@ -74,10 +74,10 @@ class GeneratedTestTest extends GeneratedTest
         $monitoringD = new MonitoringDestination();
 
         $repeatedC = $monitoringC->getMetrics();
-        $repeatedC[] = "metric";
+        $repeatedC[] = 'metric';
 
         $repeatedD = $monitoringD->getMetrics();
-        $repeatedD[] = "metric";
+        $repeatedD[] = 'metric';
 
         return [
             [[], []],
@@ -85,9 +85,9 @@ class GeneratedTestTest extends GeneratedTest
             [$emptyRepeatedA, []],
             [$emptyRepeatedA, $emptyRepeatedB],
             [[1, 2], [1, 2]],
-            [["abc", $monitoringA], ["abc", $monitoringB]],
-            [["metric"], $repeatedD],
-            [$repeatedC, ["metric"]],
+            [['abc', $monitoringA], ['abc', $monitoringB]],
+            [['metric'], $repeatedD],
+            [$repeatedC, ['metric']],
             [$repeatedC, $repeatedD],
         ];
     }
@@ -95,9 +95,9 @@ class GeneratedTestTest extends GeneratedTest
     public function getFailureCases()
     {
         $monitoringA = new MonitoringDestination();
-        $monitoringA->setMonitoredResource("typeA");
+        $monitoringA->setMonitoredResource('typeA');
         $monitoringB = new MonitoringDestination();
-        $monitoringB->setMonitoredResource("typeB");
+        $monitoringB->setMonitoredResource('typeB');
 
         $emptyRepeatedA = $monitoringA->getMetrics();
         $emptyRepeatedB = $monitoringB->getMetrics();
@@ -106,10 +106,10 @@ class GeneratedTestTest extends GeneratedTest
         $monitoringD = new MonitoringDestination();
 
         $repeatedC = $monitoringC->getMetrics();
-        $repeatedC[] = "metricA";
+        $repeatedC[] = 'metricA';
 
         $repeatedD = $monitoringD->getMetrics();
-        $repeatedD[] = "metricB";
+        $repeatedD[] = 'metricB';
 
         return [
             [[], [1]],

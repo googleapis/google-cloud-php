@@ -33,11 +33,11 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\LongRunning\Operation;
-use Google\LongRunning\Client\OperationsClient as LROOperationsClient;
 use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\Client\OperationsClient as LROOperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use LogicException;
@@ -122,9 +122,9 @@ class OperationResponseTest extends TestCase
             'totalPollTimeoutMillis' => 0.0,
         ], $op->getDescriptorOptions());
 
-        $response = $this->createAny($this->createStatus(0, "response"));
-        $error = $this->createStatus(2, "error");
-        $metadata = $this->createAny($this->createStatus(0, "metadata"));
+        $response = $this->createAny($this->createStatus(0, 'response'));
+        $error = $this->createStatus(2, 'error');
+        $metadata = $this->createAny($this->createStatus(0, 'metadata'));
 
         $protoResponse->setDone(true);
         $protoResponse->setResponse($response);
@@ -170,9 +170,9 @@ class OperationResponseTest extends TestCase
 
         ], $op->getDescriptorOptions());
 
-        $innerResponse = $this->createStatus(0, "response");
+        $innerResponse = $this->createStatus(0, 'response');
         $innerMetadata = new Any();
-        $innerMetadata->setValue("metadata");
+        $innerMetadata->setValue('metadata');
 
         $response = $this->createAny($innerResponse);
         $metadata = $this->createAny($innerMetadata);
@@ -274,7 +274,7 @@ class OperationResponseTest extends TestCase
                 $phpunit->assertEquals('test-123', $request->name);
                 $phpunit->assertEquals('arg2', $request->arg2);
                 $phpunit->assertEquals('arg3', $request->arg3);
-                return new \stdClass;
+                return new \stdClass();
             });
         $operationClient->cancelNewSurfaceOperation(Argument::type(Client\CancelOperationRequest::class))
             ->shouldBeCalledOnce()
@@ -505,7 +505,7 @@ class OperationResponseTest extends TestCase
     {
         $consecutiveCalls = [];
         for ($i = 0; $i < $reloadCount - 1; $i++) {
-            $consecutiveCalls[] = $this->returnValue(new Operation);
+            $consecutiveCalls[] = $this->returnValue(new Operation());
         }
         $consecutiveCalls[] = $this->returnValue(new Operation(['done' => true]));
 

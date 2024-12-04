@@ -32,7 +32,6 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\CallSettings;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\PageStreamingDescriptor;

@@ -112,7 +112,7 @@ class PathTemplateTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Cannot construct PathTemplate from empty string');
 
-        new PathTemplate("");
+        new PathTemplate('');
     }
 
     public function testMatchAtomicResourceName()

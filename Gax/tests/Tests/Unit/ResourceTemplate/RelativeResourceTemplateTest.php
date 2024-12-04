@@ -51,21 +51,21 @@ class RelativeResourceTemplateTest extends TestCase
     public function validPathProvider()
     {
         return [
-            ["foo"],
-            ["5"],
-            ["5five/4/four"],
-            ["*"],
-            ["**"],
-            ["{foo}", "{foo=*}"],
-            ["{foo=*}"],
-            ["{foo=**}"],
-            ["foo/*"],
-            ["*/foo"],
-            ["*/*/*/*"],
-            ["**/*/*"],
-            ["foo/**/bar/*"],
-            ["foo/*/bar/**"],
-            ["foo/helloazAZ09-.~_what"],
+            ['foo'],
+            ['5'],
+            ['5five/4/four'],
+            ['*'],
+            ['**'],
+            ['{foo}', '{foo=*}'],
+            ['{foo=*}'],
+            ['{foo=**}'],
+            ['foo/*'],
+            ['*/foo'],
+            ['*/*/*/*'],
+            ['**/*/*'],
+            ['foo/**/bar/*'],
+            ['foo/*/bar/**'],
+            ['foo/helloazAZ09-.~_what'],
         ];
     }
 
@@ -86,35 +86,35 @@ class RelativeResourceTemplateTest extends TestCase
     {
         return [
             [
-                "",                    // Empty path
-                "Cannot construct RelativeResourceTemplate from empty string"
+                '',                    // Empty path
+                'Cannot construct RelativeResourceTemplate from empty string'
             ],
             [
-                "foo:bar/baz",         // Action containing '/'
+                'foo:bar/baz',         // Action containing '/'
                 "Error parsing 'foo:bar/baz' at index 7: Unexpected characters in literal segment foo:bar",
             ],
             [
-                "foo/**/**",           // Multiple '**'
+                'foo/**/**',           // Multiple '**'
                 "Cannot parse 'foo/**/**': cannot contain more than one path wildcard"
             ],
             [
-                "foo//bar",            // Consecutive '/'
+                'foo//bar',            // Consecutive '/'
                 "Error parsing 'foo//bar' at index 4: Unexpected empty segment (consecutive '/'s are invalid)",
             ],
             [
-                "foo/",                // Trailing '/'
+                'foo/',                // Trailing '/'
                 "Error parsing 'foo/' at index 3: invalid trailing '/'"
             ],
-            ["foo:bar:baz"],           // Multiple ':'
-            ["foo/bar*baz"],           // Mixed literal and '*'
-            ["foo/**/{var=**}"],       // Multiple '**' nested
-            ["foo/{bizz=**}/{var=**}"],// Multiple '**' nested
-            ["foo/{bizz=**/**}"],      // Multiple '**' nested
-            ["foo/{bar={baz}}"],       // Nested {}
-            ["foo/{bar=fizz=buzz}"],   // Multiple '=' in variable
-            ["foo/{bar"],              // Unmatched '{'
-            ["foo/{bar}/{bar}"],       // Duplicate variable key
-            ["foo/{bar/baz}"],         // Variable containing '/'
+            ['foo:bar:baz'],           // Multiple ':'
+            ['foo/bar*baz'],           // Mixed literal and '*'
+            ['foo/**/{var=**}'],       // Multiple '**' nested
+            ['foo/{bizz=**}/{var=**}'], // Multiple '**' nested
+            ['foo/{bizz=**/**}'],      // Multiple '**' nested
+            ['foo/{bar={baz}}'],       // Nested {}
+            ['foo/{bar=fizz=buzz}'],   // Multiple '=' in variable
+            ['foo/{bar'],              // Unmatched '{'
+            ['foo/{bar}/{bar}'],       // Duplicate variable key
+            ['foo/{bar/baz}'],         // Variable containing '/'
         ];
     }
 

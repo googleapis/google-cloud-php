@@ -121,7 +121,9 @@ class GapicClientTraitTest extends TestCase
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
         $client = new StubGapicClient();
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', [
+        $client->set(
+            'retrySettings',
+            [
             'method' => $this->getMockBuilder(RetrySettings::class)
                 ->disableOriginalConstructor()
                 ->getMock()
@@ -186,7 +188,9 @@ class GapicClientTraitTest extends TestCase
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
         $client = new VersionedStubGapicClient();
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', [
+        $client->set(
+            'retrySettings',
+            [
             'method' => $this->getMockBuilder(RetrySettings::class)
                 ->disableOriginalConstructor()
                 ->getMock()
@@ -445,13 +449,13 @@ class GapicClientTraitTest extends TestCase
             ],
             [
                 [
-                    'method'=> ['callType' => Call::UNARY_CALL]
+                    'method' => ['callType' => Call::UNARY_CALL]
                 ],
                 'does not have a responseType'
             ],
             [
                 [
-                    'method'=> ['callType' => Call::PAGINATED_CALL, 'responseType' => 'foo']
+                    'method' => ['callType' => Call::PAGINATED_CALL, 'responseType' => 'foo']
                 ],
                 'does not have a pageStreaming'
             ],
@@ -660,7 +664,7 @@ class GapicClientTraitTest extends TestCase
             ],
             [
                 [
-                    'Method'=> [
+                    'Method' => [
                         'callType' => Call::BIDI_STREAMING_CALL,
                         'responseType' => 'Google\Longrunning\Operation'
                     ]
@@ -1200,7 +1204,9 @@ class GapicClientTraitTest extends TestCase
             ]
         );
         $client->setClientOptions($updatedOptions);
-        $client->set('retrySettings', [
+        $client->set(
+            'retrySettings',
+            [
             'method' => $this->getMockBuilder(RetrySettings::class)
                 ->disableOriginalConstructor()
                 ->getMock()
@@ -1673,7 +1679,7 @@ class GapicClientTraitTest extends TestCase
                 string $apiEndpoint,
                 $transport,
                 $transportConfig,
-                callable $clientCertSource = null,
+                ?callable $clientCertSource = null,
                 bool $hasEmulator = false
             ) {
                 $this->hasEmulator = $hasEmulator;

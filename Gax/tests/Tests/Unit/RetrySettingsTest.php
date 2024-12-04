@@ -51,7 +51,6 @@ class RetrySettingsTest extends TestCase
         return json_decode($contents, true);
     }
 
-
     public function testConstructSettings()
     {
         $inputConfig = RetrySettingsTest::buildInputConfig();
@@ -275,10 +274,10 @@ class RetrySettingsTest extends TestCase
             [
                 // Test with a custom retry function
                 [
-                    'retryFunction' => function($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {return true;}
                 ] + $defaultSettings,
                 [
-                    'retryFunction' => function($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {return true;}
                 ] + $defaultExpectedValues
             ],
             [
@@ -370,10 +369,10 @@ class RetrySettingsTest extends TestCase
                 // Test with a custom retry function
                 $defaultSettings,
                 [
-                    'retryFunction' => function($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {return true;}
                 ],
                 [
-                    'retryFunction' => function($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {return true;}
                 ] + $defaultExpectedValues
             ],
             [

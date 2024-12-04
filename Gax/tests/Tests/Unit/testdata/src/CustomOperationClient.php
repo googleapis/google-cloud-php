@@ -49,4 +49,3 @@ class CancelOperationRequest extends BaseOperationRequest
 class DeleteOperationRequest extends BaseOperationRequest
 {
 }
-
