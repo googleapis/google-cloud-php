@@ -72,10 +72,10 @@ class ArrayTraitTest extends TestCase
         ];
         $expectedArray = $array;
 
-       $actualValues = $this->implementation->pluckArray($keys, $array);
+        $actualValues = $this->implementation->pluckArray($keys, $array);
 
-       $this->assertEquals($expectedArray, $actualValues);
-       $this->assertEquals([], $array);
+        $this->assertEquals($expectedArray, $actualValues);
+        $this->assertEquals([], $array);
     }
 
     public function testIsAssocTrue()

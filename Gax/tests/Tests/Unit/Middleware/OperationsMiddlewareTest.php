@@ -54,7 +54,7 @@ class OperationsMiddlewareTest extends TestCase
         $descriptor = [
             'operationNameMethod' => 'getNumber'
         ];
-        $handler = function(Call $call, $options) use (&$callCount) {
+        $handler = function (Call $call, $options) use (&$callCount) {
             return $promise = new Promise(function () use (&$promise) {
                 $response = new MockResponse(['number' => 123]);
                 $promise->resolve($response);

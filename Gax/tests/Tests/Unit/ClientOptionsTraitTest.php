@@ -477,7 +477,7 @@ class ClientOptionsTraitTest extends TestCase
      * @dataProvider provideServiceAddressTemplate
      * @runInSeparateProcess
      */
-    public function testServiceAddressTemplate(array $options, string $expectedEndpoint, string $envVar = null)
+    public function testServiceAddressTemplate(array $options, string $expectedEndpoint, ?string $envVar = null)
     {
         if ($envVar) {
             putenv($envVar);

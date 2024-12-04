@@ -144,7 +144,6 @@ class RequestBuilderTest extends TestCase
         $emptyMessage = new MockRequestBody();
         $nestedMessage->setNestedMessage($emptyMessage);
 
-
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithNestedMessageAsBody', $message);
 
         $this->assertEquals(
@@ -270,30 +269,30 @@ class RequestBuilderTest extends TestCase
 
     public function testMethodWithSpecialJsonMapping()
     {
-        $bytesValue = (new BytesValue)
+        $bytesValue = (new BytesValue())
             ->setValue('\000');
-        $durationValue = (new Duration)
+        $durationValue = (new Duration())
             ->setSeconds(9001)
             ->setNanos(500000);
 
-        $fieldMask = (new FieldMask)
+        $fieldMask = (new FieldMask())
             ->setPaths(['path1', 'path2']);
-        $int64Value = (new Int64Value)
+        $int64Value = (new Int64Value())
             ->setValue(100);
-        $listValue = (new ListValue)
+        $listValue = (new ListValue())
             ->setValues([
-                (new Value)->setStringValue('val1'),
-                (new Value)->setStringValue('val2')
+                (new Value())->setStringValue('val1'),
+                (new Value())->setStringValue('val2')
             ]);
-        $stringValue = (new StringValue)
+        $stringValue = (new StringValue())
             ->setValue('some-value');
-        $structValue = (new Struct)
+        $structValue = (new Struct())
             ->setFields([
-                'test' => (new Value)->setStringValue('val5')
+                'test' => (new Value())->setStringValue('val5')
             ]);
-        $timestampValue = (new Timestamp)
+        $timestampValue = (new Timestamp())
             ->setSeconds(9001);
-        $valueValue = (new Value)
+        $valueValue = (new Value())
             ->setStringValue('some-value');
 
         $message = (new MockRequestBody())
@@ -314,7 +313,6 @@ class RequestBuilderTest extends TestCase
 
         $query = Query::parse($uri->getQuery());
 
-
         $this->assertSame('XDAwMA==', $query['bytesValue']);
         $this->assertSame('9001.000500s', $query['durationValue']);
         $this->assertSame('path1,path2', $query['fieldMask']);
@@ -328,10 +326,10 @@ class RequestBuilderTest extends TestCase
 
     public function testMethodWithoutPlaceholders()
     {
-        $stringValue = (new StringValue)
+        $stringValue = (new StringValue())
             ->setValue('some-value');
 
-        $fieldMask = (new FieldMask)
+        $fieldMask = (new FieldMask())
             ->setPaths(['path1', 'path2']);
 
         $message = (new MockRequestBody())
@@ -358,7 +356,6 @@ class RequestBuilderTest extends TestCase
         $this->assertSame('0', $query['number']);
     }
 
-
     public function testMethodWithRequiredNestedQueryParameters()
     {
         $nestedMessage = (new MockRequestBody())
@@ -374,7 +371,6 @@ class RequestBuilderTest extends TestCase
         $this->assertSame('123', $query['nestedMessage.number']);
     }
 
-
     public function testMethodWithRequiredTimestampQueryParameters()
     {
         $message = (new MockRequestBody())
@@ -383,7 +379,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithRequiredTimestampQueryParameters', $message);
         $query = Query::parse($request->getUri()->getQuery());
 
-        $dateTime = (new \DateTime)->setTimestamp(1234567);
+        $dateTime = (new \DateTime())->setTimestamp(1234567);
         $this->assertSame($dateTime->format('Y-m-d\TH:i:s\Z'), $query['timestampValue']);
     }
 
@@ -426,7 +422,7 @@ class RequestBuilderTest extends TestCase
     {
         $message = (new MockRequestBody())
             ->setNestedMessage(
-                (new MockRequestBody)
+                (new MockRequestBody())
                     ->setName('some-name')
                     ->setNumber(10)
             );

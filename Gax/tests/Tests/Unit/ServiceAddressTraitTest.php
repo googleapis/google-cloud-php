@@ -42,9 +42,9 @@ class ServiceAddressTraitTest extends TestCase
     public function normalizeServiceAddressData()
     {
         return [
-            ["simple.com:123", "simple.com", "123"],
-            ["really.long.and.dotted:456", "really.long.and.dotted", "456"],
-            ["noport.com", "noport.com", self::$defaultPort],
+            ['simple.com:123', 'simple.com', '123'],
+            ['really.long.and.dotted:456', 'really.long.and.dotted', '456'],
+            ['noport.com', 'noport.com', self::$defaultPort],
         ];
     }
 
@@ -62,8 +62,8 @@ class ServiceAddressTraitTest extends TestCase
     public function normalizeServiceAddressInvalidData()
     {
         return [
-            ["too.many:colons:123"],
-            ["too:many:colons"],
+            ['too.many:colons:123'],
+            ['too:many:colons'],
         ];
     }
 }

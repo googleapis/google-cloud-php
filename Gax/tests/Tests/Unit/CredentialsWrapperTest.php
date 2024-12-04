@@ -37,15 +37,15 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Cache\SysVCacheItemPool;
-use Google\Auth\GCECache;
-use Google\Auth\CredentialsLoader;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GCECache;
 use Google\Auth\GetUniverseDomainInterface;
-use Google\Auth\ProjectIdProviderInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Auth\ProjectIdProviderInterface;
 use Google\Auth\UpdateMetadataInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -193,7 +193,7 @@ class CredentialsWrapperTest extends TestCase
     /**
      * @dataProvider provideCheckUniverseDomainFails
      */
-    public function testCheckUniverseDomainFails(?string $universeDomain, ?string $credentialsUniverse, string $message = null)
+    public function testCheckUniverseDomainFails(?string $universeDomain, ?string $credentialsUniverse, ?string $message = null)
     {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage($message ?: sprintf(
@@ -226,7 +226,7 @@ class CredentialsWrapperTest extends TestCase
     public function testCheckUniverseDomainOnGetBearerStringFails(
         ?string $universeDomain,
         ?string $credentialsUniverse,
-        string $message = null
+        ?string $message = null
     ) {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage($message ?: sprintf(

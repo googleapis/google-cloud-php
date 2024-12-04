@@ -47,7 +47,7 @@ class ApiKeyHeaderCredentials implements HeaderCredentialsInterface, GetQuotaPro
      * @param string|null $quotaProject The quota project associated with the API key.
      * @throws ValidationException
      */
-    public function __construct(string $apiKey, string $quotaProject = null)
+    public function __construct(string $apiKey, ?string $quotaProject = null)
     {
         if (empty($apiKey)) {
             throw new ValidationException('API key cannot be empty');

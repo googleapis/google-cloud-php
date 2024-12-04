@@ -51,21 +51,21 @@ class AbsoluteResourceTemplateTest extends TestCase
     public function validPathProvider()
     {
         return [
-            ["/foo"],
-            ["/*"],
-            ["/**"],
-            ["/{foo}", "/{foo=*}"],
-            ["/{foo=*}"],
-            ["/{foo=**}"],
-            ["/foo/*"],
-            ["/*/foo"],
-            ["/foo/*:bar"],
-            ["/*/foo:bar"],
-            ["/*/*/*/*:foo"],
-            ["/**/*/*:foo"],
-            ["/foo/**/bar/*"],
-            ["/foo/*/bar/**"],
-            ["/foo/helloazAZ09-.~_what"],
+            ['/foo'],
+            ['/*'],
+            ['/**'],
+            ['/{foo}', '/{foo=*}'],
+            ['/{foo=*}'],
+            ['/{foo=**}'],
+            ['/foo/*'],
+            ['/*/foo'],
+            ['/foo/*:bar'],
+            ['/*/foo:bar'],
+            ['/*/*/*/*:foo'],
+            ['/**/*/*:foo'],
+            ['/foo/**/bar/*'],
+            ['/foo/*/bar/**'],
+            ['/foo/helloazAZ09-.~_what'],
         ];
     }
 
@@ -82,23 +82,23 @@ class AbsoluteResourceTemplateTest extends TestCase
     public function invalidPathProvider()
     {
         return [
-            [""],                       // Empty path
-            ["foo"],                    // No leading '/'
-            ["/foo:bar/baz"],           // Action containing '/'
-            ["/foo:bar:baz"],           // Multiple ':'
-            ["/foo/bar*baz"],           // Mixed literal and '*'
-            ["/foo/**/**"],             // Multiple '**'
-            ["/foo/**/{var=**}"],       // Multiple '**' nested
-            ["/foo/{bizz=**}/{var=**}"],// Multiple '**' nested
-            ["/foo/{bizz=**/**}"],      // Multiple '**' nested
-            ["/foo/{bar={baz}}"],       // Nested {}
-            ["/foo/{bar=fizz=buzz}"],   // Multiple '=' in variable
-            ["/foo/{bar"],              // Unmatched '{'
-            ["/foo/{bar}/{bar}"],       // Duplicate variable key
-            ["/foo/{bar/baz}"],         // Variable containing '/'
-            ["/foo//bar"],              // Consecutive '/'
-            ["//bar"],                  // Consecutive '/'
-            ["/foo/"],                  // Trailing '/'
+            [''],                       // Empty path
+            ['foo'],                    // No leading '/'
+            ['/foo:bar/baz'],           // Action containing '/'
+            ['/foo:bar:baz'],           // Multiple ':'
+            ['/foo/bar*baz'],           // Mixed literal and '*'
+            ['/foo/**/**'],             // Multiple '**'
+            ['/foo/**/{var=**}'],       // Multiple '**' nested
+            ['/foo/{bizz=**}/{var=**}'], // Multiple '**' nested
+            ['/foo/{bizz=**/**}'],      // Multiple '**' nested
+            ['/foo/{bar={baz}}'],       // Nested {}
+            ['/foo/{bar=fizz=buzz}'],   // Multiple '=' in variable
+            ['/foo/{bar'],              // Unmatched '{'
+            ['/foo/{bar}/{bar}'],       // Duplicate variable key
+            ['/foo/{bar/baz}'],         // Variable containing '/'
+            ['/foo//bar'],              // Consecutive '/'
+            ['//bar'],                  // Consecutive '/'
+            ['/foo/'],                  // Trailing '/'
         ];
     }
 

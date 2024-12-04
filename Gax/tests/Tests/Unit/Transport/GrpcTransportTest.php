@@ -51,10 +51,10 @@ use Grpc\ChannelCredentials;
 use Grpc\ClientStreamingCall;
 use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
-use stdClass;
-use TypeError;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use stdClass;
+use TypeError;
 
 class GrpcTransportTest extends TestCase
 {
@@ -82,7 +82,7 @@ class GrpcTransportTest extends TestCase
         $response->setCode(Code::OK);
         $response->setMessage('response');
 
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::OK;
 
         $clientStreamingCall = $this->getMockBuilder(ClientStreamingCall::class)
@@ -106,10 +106,10 @@ class GrpcTransportTest extends TestCase
 
     public function testClientStreamingFailure()
     {
-        $request = "request";
-        $response = "response";
+        $request = 'request';
+        $response = 'response';
 
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::INTERNAL;
         $status->details = 'client streaming failure';
 
@@ -134,9 +134,9 @@ class GrpcTransportTest extends TestCase
 
     public function testServerStreamingSuccess()
     {
-        $response = "response";
+        $response = 'response';
 
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::OK;
 
         $message = $this->createMockRequest();
@@ -175,7 +175,7 @@ class GrpcTransportTest extends TestCase
 
         $response = $this->createMockResponse('nextPageToken', $repeatedField);
 
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::OK;
 
         $message = $this->createMockRequest();
@@ -190,7 +190,8 @@ class GrpcTransportTest extends TestCase
 
         $transport = new MockGrpcTransport($call);
 
-        $call = new Call('takeAction',
+        $call = new Call(
+            'takeAction',
             null,
             $message,
             ['resourcesGetMethod' => 'getResourcesList']
@@ -212,7 +213,7 @@ class GrpcTransportTest extends TestCase
 
     public function testServerStreamingFailure()
     {
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::INTERNAL;
         $status->details = 'server streaming failure';
 
@@ -244,8 +245,8 @@ class GrpcTransportTest extends TestCase
 
     public function testBidiStreamingSuccessSimple()
     {
-        $response = "response";
-        $status = new stdClass;
+        $response = 'response';
+        $status = new stdClass();
         $status->code = Code::OK;
 
         $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
@@ -277,7 +278,7 @@ class GrpcTransportTest extends TestCase
         $response->setCode(Code::OK);
         $response->setMessage('response');
 
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::OK;
 
         $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
@@ -313,7 +314,7 @@ class GrpcTransportTest extends TestCase
 
         $response = $this->createMockResponse('nextPageToken', $repeatedField);
 
-        $status = new stdClass;
+        $status = new stdClass();
         $status->code = Code::OK;
 
         $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
@@ -348,8 +349,8 @@ class GrpcTransportTest extends TestCase
 
     public function testBidiStreamingFailure()
     {
-        $response = "response";
-        $status = new stdClass;
+        $response = 'response';
+        $status = new stdClass();
         $status->code = Code::INTERNAL;
         $status->details = 'bidi failure';
 
@@ -441,7 +442,7 @@ class GrpcTransportTest extends TestCase
 
     public function buildDataGrpc()
     {
-        $uri = "address.com";
+        $uri = 'address.com';
         $apiEndpoint = "$uri:447";
         $apiEndpointDefaultPort = "$uri:443";
         return [
@@ -488,7 +489,7 @@ class GrpcTransportTest extends TestCase
     {
         return [
             [
-                "addresswithtoo:many:segments",
+                'addresswithtoo:many:segments',
                 [],
             ],
             [
@@ -624,4 +625,3 @@ class MockCallInvoker implements CallInvoker
         return $this->called;
     }
 }
-

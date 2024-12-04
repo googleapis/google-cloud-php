@@ -62,7 +62,7 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
      * @param callable|array|null $deserialize An optional deserialize method for the response object.
      * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct($response, $deserialize = null, stdClass $status = null)
+    public function __construct($response, $deserialize = null, ?stdClass $status = null)
     {
         $this->mockUnaryCall = new MockUnaryCall($response, $deserialize, $status);
     }

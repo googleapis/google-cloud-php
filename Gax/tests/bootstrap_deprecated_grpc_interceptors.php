@@ -14,8 +14,7 @@ class TestUnaryInterceptor implements UnaryInterceptorInterface
         array $metadata,
         array $options,
         callable $continuation
-    )
-    {
+    ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
@@ -30,8 +29,7 @@ class TestInterceptor extends Interceptor
         array $metadata = [],
         array $options = [],
         $continuation
-    )
-    {
+    ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
@@ -43,8 +41,7 @@ class TestInterceptor extends Interceptor
         array $metadata = [],
         array $options = [],
         $continuation
-    )
-    {
+    ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }

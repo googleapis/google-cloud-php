@@ -37,7 +37,6 @@ use BadMethodCallException;
 use Google\ApiCore\Options\OptionsTrait;
 use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use TypeError;
 
@@ -61,7 +60,8 @@ class OptionsTraitTest extends TestCase
     public function testInvalidTypesThrowException()
     {
         $this->expectException(TypeError::class);
-        $this->expectExceptionMessage(PHP_MAJOR_VERSION < 8
+        $this->expectExceptionMessage(
+            PHP_MAJOR_VERSION < 8
             ? 'Google\ApiCore\Tests\Unit\Options\OptionsTraitStub::$option2 must be int or null, string used'
             : 'Cannot assign string to property Google\ApiCore\Tests\Unit\Options\OptionsTraitStub::$option2 of type ?int'
         );

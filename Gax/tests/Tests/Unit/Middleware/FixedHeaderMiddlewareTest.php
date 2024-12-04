@@ -47,7 +47,7 @@ class FixedHeaderMiddlewareTest extends TestCase
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1 pb/6.6.6']
         ];
         $handlerCalled = false;
-        $callable = function(Call $call, $options) use ($fixedHeader, &$handlerCalled) {
+        $callable = function (Call $call, $options) use ($fixedHeader, &$handlerCalled) {
             $this->assertEquals($fixedHeader, $options['headers']);
             $handlerCalled = true;
         };
@@ -75,7 +75,7 @@ class FixedHeaderMiddlewareTest extends TestCase
             'user-only' => ['user only header'],
         ];
         $handlerCalled = false;
-        $callable = function(Call $call, $options) use ($expectedHeader, &$handlerCalled) {
+        $callable = function (Call $call, $options) use ($expectedHeader, &$handlerCalled) {
             $this->assertEquals($expectedHeader, $options['headers']);
             $handlerCalled = true;
         };
@@ -103,7 +103,7 @@ class FixedHeaderMiddlewareTest extends TestCase
             'user-only' => ['user only header'],
         ];
         $handlerCalled = false;
-        $callable = function(Call $call, $options) use ($expectedHeader, &$handlerCalled) {
+        $callable = function (Call $call, $options) use ($expectedHeader, &$handlerCalled) {
             $this->assertEquals($expectedHeader, $options['headers']);
             $handlerCalled = true;
         };

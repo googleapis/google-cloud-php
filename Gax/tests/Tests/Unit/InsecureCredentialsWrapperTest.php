@@ -32,10 +32,10 @@
 
 namespace Google\ApiCore\Tests\Unit;
 
-use Google\ApiCore\InsecureCredentialsWrapper;
-use Google\ApiCore\Transport\HttpUnaryTransportTrait;
-use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Call;
+use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\Transport\GrpcTransport;
+use Google\ApiCore\Transport\HttpUnaryTransportTrait;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
@@ -48,7 +48,7 @@ class InsecureCredentialsWrapperTest extends TestCase
 
     public function testInsecureCredentialsWrapperWithHttpTransport()
     {
-        $httpImpl = new class () {
+        $httpImpl = new class() {
             use HttpUnaryTransportTrait {
                 buildCommonHeaders as public;
             }

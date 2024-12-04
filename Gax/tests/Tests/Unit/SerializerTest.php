@@ -77,7 +77,7 @@ class SerializerTest extends TestCase
     {
         $details = [new Any()];
         $message = new Status();
-        $message->setMessage("message");
+        $message->setMessage('message');
         $message->setCode(0);
         $message->setDetails($details);
 
@@ -317,7 +317,7 @@ class SerializerTest extends TestCase
             'blue' => 100.0
         ];
 
-        return  [
+        return [
             [
                 [
                     Color::class => function ($message) {

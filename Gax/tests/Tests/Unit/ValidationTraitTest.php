@@ -27,7 +27,7 @@ class ValidationTraitTest extends TestCase
 
     public function setUp(): void
     {
-        $this->stub = new ValidationTraitStub;
+        $this->stub = new ValidationTraitStub();
     }
 
     public function testValidateMissingRequiredKey()

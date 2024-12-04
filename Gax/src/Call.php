@@ -61,7 +61,7 @@ class Call
      */
     public function __construct(
         string $method,
-        string $decodeType = null,
+        ?string $decodeType = null,
         $message = null,
         $descriptor = [],
         int $callType = Call::UNARY_CALL
