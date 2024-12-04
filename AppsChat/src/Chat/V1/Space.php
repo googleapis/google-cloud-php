@@ -159,6 +159,16 @@ class Space extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string space_uri = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $space_uri = '';
+    /**
+     * Output only. The time when the space will be automatically deleted by the
+     * system if it remains in import mode.
+     * Each space created in import mode must exit this mode before this expire
+     * time using `spaces.completeImport`.
+     * This field is only populated for spaces that were created with import mode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_mode_expire_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $import_mode_expire_time = null;
     protected $space_permission_settings;
 
     /**
@@ -249,6 +259,12 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Optional. Space permission settings for existing spaces. Input for
      *           updating exact space permission settings, where existing permission
      *           settings are replaced. Output lists current permission settings.
+     *     @type \Google\Protobuf\Timestamp $import_mode_expire_time
+     *           Output only. The time when the space will be automatically deleted by the
+     *           system if it remains in import mode.
+     *           Each space created in import mode must exit this mode before this expire
+     *           time using `spaces.completeImport`.
+     *           This field is only populated for spaces that were created with import mode.
      * }
      */
     public function __construct($data = NULL) {
@@ -902,6 +918,50 @@ class Space extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\PermissionSettings::class);
         $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time when the space will be automatically deleted by the
+     * system if it remains in import mode.
+     * Each space created in import mode must exit this mode before this expire
+     * time using `spaces.completeImport`.
+     * This field is only populated for spaces that were created with import mode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_mode_expire_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getImportModeExpireTime()
+    {
+        return $this->import_mode_expire_time;
+    }
+
+    public function hasImportModeExpireTime()
+    {
+        return isset($this->import_mode_expire_time);
+    }
+
+    public function clearImportModeExpireTime()
+    {
+        unset($this->import_mode_expire_time);
+    }
+
+    /**
+     * Output only. The time when the space will be automatically deleted by the
+     * system if it remains in import mode.
+     * Each space created in import mode must exit this mode before this expire
+     * time using `spaces.completeImport`.
+     * This field is only populated for spaces that were created with import mode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_mode_expire_time = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setImportModeExpireTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->import_mode_expire_time = $var;
 
         return $this;
     }
