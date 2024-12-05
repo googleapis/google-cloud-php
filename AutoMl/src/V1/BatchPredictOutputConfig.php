@@ -257,8 +257,8 @@ class BatchPredictOutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1\GcsDestination $gcs_destination
-     *           Required. The Google Cloud Storage location of the directory where the output is to
-     *           be written to.
+     *           Required. The Google Cloud Storage location of the directory where the
+     *           output is to be written to.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,8 +267,8 @@ class BatchPredictOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location of the directory where the output is to
-     * be written to.
+     * Required. The Google Cloud Storage location of the directory where the
+     * output is to be written to.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\GcsDestination|null
@@ -284,8 +284,8 @@ class BatchPredictOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Google Cloud Storage location of the directory where the output is to
-     * be written to.
+     * Required. The Google Cloud Storage location of the directory where the
+     * output is to be written to.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\GcsDestination $var
