@@ -11,18 +11,18 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php: [ "8.0", "8.1", "8.2", "8.3", "8.4" ]
+                php: [ "8.1", "8.2", "8.3", "8.4" ]
                 extensions: [""]
                 tools: [""]
                 composerflags: [""]
                 include:
-                  - php: "8.0"
+                  - php: "8.1"
                     extensions: "protobuf,grpc"
                     tools: "pecl"
-                  - php: "8.3"
+                  - php: "8.4"
                     extensions: "protobuf,grpc"
                     tools: "pecl"
-                  - php: "8.0"
+                  - php: "8.1"
                     composerflags: "--prefer-lowest"
         name: "PHP ${{ matrix.php }} Unit Test ${{ matrix.extensions }}${{ matrix.composerflags }}"
         steps:
