@@ -21,7 +21,7 @@
         "phpunit/phpunit": "^9.6",
         "squizlabs/php_codesniffer": "3.*",
         "phpspec/prophecy-phpunit": "^2.1",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^2.0"
     },
     "conflict": {
         "ext-protobuf": "<3.7.0"
