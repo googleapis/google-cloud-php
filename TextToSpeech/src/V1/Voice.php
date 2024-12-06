@@ -28,19 +28,19 @@ class Voice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The gender of this voice.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SsmlVoiceGender ssml_gender = 3;</code>
      */
-    private $ssml_gender = 0;
+    protected $ssml_gender = 0;
     /**
      * The natural sample rate (in hertz) for this voice.
      *
      * Generated from protobuf field <code>int32 natural_sample_rate_hertz = 4;</code>
      */
-    private $natural_sample_rate_hertz = 0;
+    protected $natural_sample_rate_hertz = 0;
 
     /**
      * Constructor.

@@ -61,6 +61,4 @@ class PhoneticEncoding
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PhoneticEncoding::class, \Google\Cloud\TextToSpeech\V1\CustomPronunciationParams_PhoneticEncoding::class);
 

@@ -22,20 +22,20 @@ class CustomPronunciationParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string phrase = 1;</code>
      */
-    private $phrase = null;
+    protected $phrase = null;
     /**
      * The phonetic encoding of the phrase.
      *
      * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.CustomPronunciationParams.PhoneticEncoding phonetic_encoding = 2;</code>
      */
-    private $phonetic_encoding = null;
+    protected $phonetic_encoding = null;
     /**
      * The pronunciation of the phrase. This must be in the phonetic encoding
      * specified above.
      *
      * Generated from protobuf field <code>optional string pronunciation = 3;</code>
      */
-    private $pronunciation = null;
+    protected $pronunciation = null;
 
     /**
      * Constructor.

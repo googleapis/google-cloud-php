@@ -20,7 +20,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio_encoding = 0;
+    protected $audio_encoding = 0;
     /**
      * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is
      * the normal native speed supported by the specific voice. 2.0 is twice as
@@ -29,7 +29,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double speaking_rate = 2 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $speaking_rate = 0.0;
+    protected $speaking_rate = 0.0;
     /**
      * Optional. Input only. Speaking pitch, in the range [-20.0, 20.0]. 20 means
      * increase 20 semitones from the original pitch. -20 means decrease 20
@@ -37,7 +37,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double pitch = 3 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pitch = 0.0;
+    protected $pitch = 0.0;
     /**
      * Optional. Input only. Volume gain (in dB) of the normal native volume
      * supported by the specific voice, in the range [-96.0, 16.0]. If unset, or
@@ -50,7 +50,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double volume_gain_db = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $volume_gain_db = 0.0;
+    protected $volume_gain_db = 0.0;
     /**
      * Optional. The synthesis sample rate (in hertz) for this audio. When this is
      * specified in SynthesizeSpeechRequest, if this is different from the voice's
@@ -62,7 +62,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * Optional. Input only. An identifier which selects 'audio effects' profiles
      * that are applied on (post synthesized) text to speech. Effects are applied
