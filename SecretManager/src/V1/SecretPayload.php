@@ -22,7 +22,7 @@ class SecretPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 1;</code>
      */
-    private $data = '';
+    protected $data = '';
     /**
      * Optional. If specified,
      * [SecretManagerService][google.cloud.secretmanager.v1.SecretManagerService]
@@ -42,7 +42,7 @@ class SecretPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 data_crc32c = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_crc32c = null;
+    protected $data_crc32c = null;
 
     /**
      * Constructor.
