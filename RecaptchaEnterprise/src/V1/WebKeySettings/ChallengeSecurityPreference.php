@@ -67,6 +67,4 @@ class ChallengeSecurityPreference
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChallengeSecurityPreference::class, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings_ChallengeSecurityPreference::class);
 

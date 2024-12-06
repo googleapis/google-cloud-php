@@ -21,7 +21,7 @@ class RetrieveLegacySecretKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * @param string $key Required. The public key name linked to the requested secret key in the

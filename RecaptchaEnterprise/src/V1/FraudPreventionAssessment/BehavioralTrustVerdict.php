@@ -22,7 +22,7 @@ class BehavioralTrustVerdict extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float trust = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $trust = 0.0;
+    protected $trust = 0.0;
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class BehavioralTrustVerdict extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BehavioralTrustVerdict::class, \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment_BehavioralTrustVerdict::class);
 

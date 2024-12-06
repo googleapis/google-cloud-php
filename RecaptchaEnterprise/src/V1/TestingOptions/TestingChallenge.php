@@ -63,6 +63,4 @@ class TestingChallenge
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TestingChallenge::class, \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions_TestingChallenge::class);
 

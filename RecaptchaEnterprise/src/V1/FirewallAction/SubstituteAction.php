@@ -22,7 +22,7 @@ class SubstituteAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.
@@ -70,6 +70,4 @@ class SubstituteAction extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SubstituteAction::class, \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction_SubstituteAction::class);
 

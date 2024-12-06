@@ -22,13 +22,13 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Optional. The header value to set in the request to the backend server.
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.
@@ -101,6 +101,4 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SetHeaderAction::class, \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction_SetHeaderAction::class);
 

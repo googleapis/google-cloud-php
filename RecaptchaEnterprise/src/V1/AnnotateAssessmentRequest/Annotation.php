@@ -77,6 +77,4 @@ class Annotation
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Annotation::class, \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest_Annotation::class);
 

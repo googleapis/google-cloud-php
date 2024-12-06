@@ -22,7 +22,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_account_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $create_account_time = null;
+    protected $create_account_time = null;
     /**
      * Optional. For logged-in requests or login/registration requests, the unique
      * account identifier associated with this user. You can use the username if
@@ -32,7 +32,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $account_id = '';
+    protected $account_id = '';
     /**
      * Optional. Identifiers associated with this user or request.
      *

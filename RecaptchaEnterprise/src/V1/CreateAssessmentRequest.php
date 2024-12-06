@@ -21,13 +21,13 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The assessment details.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Assessment assessment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $assessment = null;
+    protected $assessment = null;
 
     /**
      * @param string                                          $parent     Required. The name of the project in which the assessment is created,

@@ -22,7 +22,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * Output only. Reasons contributing to the risk analysis verdict.
      *
@@ -42,7 +42,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $challenge = 0;
+    protected $challenge = 0;
 
     /**
      * Constructor.

@@ -160,6 +160,4 @@ class Reason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reason::class, \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest_Reason::class);
 

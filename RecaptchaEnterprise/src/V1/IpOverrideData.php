@@ -26,13 +26,13 @@ class IpOverrideData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_info) = {</code>
      */
-    private $ip = '';
+    protected $ip = '';
     /**
      * Required. Describes the type of IP override.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType override_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $override_type = 0;
+    protected $override_type = 0;
 
     /**
      * Constructor.

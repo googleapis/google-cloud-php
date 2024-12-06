@@ -73,6 +73,4 @@ class WafService
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WafService::class, \Google\Cloud\RecaptchaEnterprise\V1\WafSettings_WafService::class);
 

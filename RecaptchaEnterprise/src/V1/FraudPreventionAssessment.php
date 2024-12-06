@@ -22,27 +22,27 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float transaction_risk = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $transaction_risk = 0.0;
+    protected $transaction_risk = 0.0;
     /**
      * Output only. Assessment of this transaction for risk of a stolen
      * instrument.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.StolenInstrumentVerdict stolen_instrument_verdict = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $stolen_instrument_verdict = null;
+    protected $stolen_instrument_verdict = null;
     /**
      * Output only. Assessment of this transaction for risk of being part of a
      * card testing attack.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.CardTestingVerdict card_testing_verdict = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $card_testing_verdict = null;
+    protected $card_testing_verdict = null;
     /**
      * Output only. Assessment of this transaction for behavioral trust.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.BehavioralTrustVerdict behavioral_trust_verdict = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $behavioral_trust_verdict = null;
+    protected $behavioral_trust_verdict = null;
 
     /**
      * Constructor.

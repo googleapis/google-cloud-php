@@ -20,27 +20,27 @@ class Item extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The value per item that the user is paying, in the transaction
      * currency, after discounts.
      *
      * Generated from protobuf field <code>double value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $value = 0.0;
+    protected $value = 0.0;
     /**
      * Optional. The quantity of this item that is being purchased.
      *
      * Generated from protobuf field <code>int64 quantity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $quantity = 0;
+    protected $quantity = 0;
     /**
      * Optional. When a merchant is specified, its corresponding account_id.
      * Necessary to populate marketplace-style transactions.
      *
      * Generated from protobuf field <code>string merchant_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $merchant_account_id = '';
+    protected $merchant_account_id = '';
 
     /**
      * Constructor.
@@ -175,6 +175,4 @@ class Item extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Item::class, \Google\Cloud\RecaptchaEnterprise\V1\TransactionData_Item::class);
 

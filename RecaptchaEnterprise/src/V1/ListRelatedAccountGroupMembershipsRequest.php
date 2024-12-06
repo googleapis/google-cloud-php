@@ -21,7 +21,7 @@ class ListRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of accounts to return. The service might
      * return fewer than this value. If unspecified, at most 50 accounts are
@@ -29,7 +29,7 @@ class ListRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * `ListRelatedAccountGroupMemberships` call.
@@ -39,7 +39,7 @@ class ListRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The resource name for the related account group in the format

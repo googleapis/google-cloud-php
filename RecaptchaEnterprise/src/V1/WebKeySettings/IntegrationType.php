@@ -71,6 +71,4 @@ class IntegrationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IntegrationType::class, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings_IntegrationType::class);
 

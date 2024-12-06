@@ -21,13 +21,13 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Information to create a reCAPTCHA Enterprise key.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Key key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = null;
+    protected $key = null;
 
     /**
      * @param string                                   $parent Required. The name of the project in which the key is created, in the
