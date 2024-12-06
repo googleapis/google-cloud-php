@@ -22,7 +22,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A description of what this policy aims to achieve, for
      * convenience purposes. The description can at most include 256 UTF-8
@@ -30,7 +30,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. The path for which this policy applies, specified as a glob
      * pattern. For more information on glob, see the [manual
@@ -39,7 +39,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Optional. A CEL (Common Expression Language) conditional expression that
      * specifies if this policy applies to an incoming user request. If this
@@ -53,7 +53,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $condition = '';
+    protected $condition = '';
     /**
      * Optional. The actions that the caller should take regarding user access.
      * There should be at most one terminal action. A terminal action is any

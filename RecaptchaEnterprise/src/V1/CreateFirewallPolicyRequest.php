@@ -21,13 +21,13 @@ class CreateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Information to create the policy.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicy firewall_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = null;
+    protected $firewall_policy = null;
 
     /**
      * @param string                                              $parent         Required. The name of the project this policy applies to, in the format

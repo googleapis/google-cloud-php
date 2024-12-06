@@ -21,39 +21,39 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The event being assessed.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event = null;
+    protected $event = null;
     /**
      * Output only. The risk analysis result for the event being assessed.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis risk_analysis = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $risk_analysis = null;
+    protected $risk_analysis = null;
     /**
      * Output only. Properties of the provided event token.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TokenProperties token_properties = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $token_properties = null;
+    protected $token_properties = null;
     /**
      * Optional. Account verification information for identity verification. The
      * assessment event must include a token and site key to use this feature.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $account_verification = null;
+    protected $account_verification = null;
     /**
      * Output only. Assessment returned by account defender when an account
      * identifier is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $account_defender_assessment = null;
+    protected $account_defender_assessment = null;
     /**
      * Optional. The private password leak verification field contains the
      * parameters that are used to to check for leaks privately without sharing
@@ -61,28 +61,28 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $private_password_leak_verification = null;
+    protected $private_password_leak_verification = null;
     /**
      * Output only. Assessment returned when firewall policies belonging to the
      * project are evaluated using the field firewall_policy_evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicyAssessment firewall_policy_assessment = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $firewall_policy_assessment = null;
+    protected $firewall_policy_assessment = null;
     /**
      * Output only. Assessment returned by Fraud Prevention when TransactionData
      * is provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment fraud_prevention_assessment = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $fraud_prevention_assessment = null;
+    protected $fraud_prevention_assessment = null;
     /**
      * Output only. Fraud Signals specific to the users involved in a payment
      * transaction.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FraudSignals fraud_signals = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $fraud_signals = null;
+    protected $fraud_signals = null;
     /**
      * Output only. Assessment returned when a site key, a token, and a phone
      * number as `user_id` are provided. Account defender and SMS toll fraud
@@ -90,7 +90,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneFraudAssessment phone_fraud_assessment = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phone_fraud_assessment = null;
+    protected $phone_fraud_assessment = null;
     /**
      * Optional. The environment creating the assessment. This describes your
      * environment (the system invoking CreateAssessment), NOT the environment of
@@ -98,7 +98,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AssessmentEnvironment assessment_environment = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $assessment_environment = null;
+    protected $assessment_environment = null;
 
     /**
      * Constructor.

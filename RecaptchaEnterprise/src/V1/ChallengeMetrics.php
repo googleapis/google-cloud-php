@@ -21,20 +21,20 @@ class ChallengeMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 pageload_count = 1;</code>
      */
-    private $pageload_count = 0;
+    protected $pageload_count = 0;
     /**
      * Count of nocaptchas (successful verification without a challenge) issued.
      *
      * Generated from protobuf field <code>int64 nocaptcha_count = 2;</code>
      */
-    private $nocaptcha_count = 0;
+    protected $nocaptcha_count = 0;
     /**
      * Count of submitted challenge solutions that were incorrect or otherwise
      * deemed suspicious such that a subsequent challenge was triggered.
      *
      * Generated from protobuf field <code>int64 failed_count = 3;</code>
      */
-    private $failed_count = 0;
+    protected $failed_count = 0;
     /**
      * Count of nocaptchas (successful verification without a challenge) plus
      * submitted challenge solutions that were correct and resulted in
@@ -42,7 +42,7 @@ class ChallengeMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 passed_count = 4;</code>
      */
-    private $passed_count = 0;
+    protected $passed_count = 0;
 
     /**
      * Constructor.

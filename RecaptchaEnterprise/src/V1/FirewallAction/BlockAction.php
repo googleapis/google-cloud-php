@@ -32,6 +32,4 @@ class BlockAction extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BlockAction::class, \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction_BlockAction::class);
 

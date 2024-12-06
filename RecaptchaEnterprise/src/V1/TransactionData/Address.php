@@ -21,7 +21,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recipient = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $recipient = '';
+    protected $recipient = '';
     /**
      * Optional. The first lines of the address. The first line generally
      * contains the street name and number, and further lines may include
@@ -35,26 +35,26 @@ class Address extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string locality = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $locality = '';
+    protected $locality = '';
     /**
      * Optional. The state, province, or otherwise administrative area of the
      * address.
      *
      * Generated from protobuf field <code>string administrative_area = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $administrative_area = '';
+    protected $administrative_area = '';
     /**
      * Optional. The CLDR country/region of the address.
      *
      * Generated from protobuf field <code>string region_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $region_code = '';
+    protected $region_code = '';
     /**
      * Optional. The postal or ZIP code of the address.
      *
      * Generated from protobuf field <code>string postal_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postal_code = '';
+    protected $postal_code = '';
 
     /**
      * Constructor.
@@ -251,6 +251,4 @@ class Address extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Address::class, \Google\Cloud\RecaptchaEnterprise\V1\TransactionData_Address::class);
 
