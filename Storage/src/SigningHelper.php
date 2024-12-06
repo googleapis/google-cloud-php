@@ -23,6 +23,10 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Storage\Connection\RetryTrait;
+use Google\Cloud\Storage\StorageClient;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Provides common methods for signing storage URLs.
@@ -33,6 +37,7 @@ class SigningHelper
 {
     use ArrayTrait;
     use JsonTrait;
+    use RetryTrait;
 
     const DEFAULT_URL_SIGNING_VERSION = 'v2';
     const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
@@ -169,7 +174,7 @@ class SigningHelper
 
         $signedHeaders = [];
         foreach ($headers as $name => $value) {
-            $signedHeaders[] = $name .':'. $value;
+            $signedHeaders[] = $name . ':' . $value;
         }
 
         // Push the headers onto the end of the signing string.
@@ -181,9 +186,12 @@ class SigningHelper
 
         $stringToSign = $this->createV2CanonicalRequest($toSign);
 
-        $signature = $credentials->signBlob($stringToSign, [
-            'forceOpenssl' => $options['forceOpenssl']
-        ]);
+        // Use exponential backOff
+        $signature = $this->retrySignBlob(function () use ($credentials, $stringToSign, $options) {
+            return $credentials->signBlob($stringToSign, [
+                'forceOpenssl' => $options['forceOpenssl']
+            ]);
+        });
 
         // Start with user-provided query params and add required parameters.
         $params = $options['queryParams'];
@@ -337,9 +345,15 @@ class SigningHelper
             $requestHash
         ]);
 
-        $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
-            'forceOpenssl' => $options['forceOpenssl']
-        ])));
+        $signature = bin2hex(base64_decode($this->retrySignBlob(function () use (
+            $credentials,
+            $stringToSign,
+            $options
+        ) {
+            return $credentials->signBlob($stringToSign, [
+                'forceOpenssl' => $options['forceOpenssl']
+            ]);
+        })));
 
         // Construct the modified resource name. If a custom hostname is provided,
         // this will remove the bucket name from the resource.
@@ -881,5 +895,47 @@ class SigningHelper
         }
 
         return implode('&', $q);
+    }
+
+    /**
+     * Retry logic for signBlob
+     *
+     * @param callable $signBlobFn  A callable that perform the actual signBlob operation.
+     * @param string $resourceName The resource name for logging or retry strategy determination.
+     * @param array $args Arguments for the operations, include preconditions
+     * @return string The signature genarated by signBlob.
+     * @throws ServiceException If non-retryable error occur.
+     * @throws \RuntimeException If retries are exhausted.
+     */
+    private function retrySignBlob(callable $signBlobFn, string $resourceName = 'signBlob', array $args = [])
+    {
+        $attempts = 0;
+        $maxRetries = 5;
+        $invocationId = Uuid::uuid4()->toString();
+        $args['retryStrategy'] = StorageClient::RETRY_ALWAYS;
+
+        // Generate a retry decider function using the RetryTrait logic.
+        $retryDecider = $this->getRestRetryFunction($resourceName, 'execute', $args);
+
+        while ($attempts < $maxRetries) {
+            $attempts++;
+            try {
+                // Attach retry headers
+                $headers = self::getRetryHeaders($invocationId, $attempts);
+                $args['headers'] = array_merge($args['headers'] ?? [], $headers);
+
+                // Attempt the operation
+                return $signBlobFn();
+            } catch (\Exception $exception) {
+                if (!$retryDecider($exception)) {
+                    // Non-retryable error
+                    throw $exception;
+                }
+            }
+        }
+
+        throw new \RuntimeException(
+            'Failed to sign message after maximum attempts.'
+        );
     }
 }
