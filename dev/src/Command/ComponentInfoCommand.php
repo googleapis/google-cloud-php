@@ -49,6 +49,7 @@ class ComponentInfoCommand extends Command
         'service_address' => 'Service Address',
         'api_shortname' => 'API Shortname',
         'description' => 'Description',
+        'library_type' => 'Library Type',
         'created_at' => 'Created At',
         'available_api_versions' => 'Availble API Versions',
         'downloads' => 'Downloads',
@@ -60,6 +61,11 @@ class ComponentInfoCommand extends Command
         'api_version',
         'release_level',
         'api_shortname',
+    ];
+    private static $slowFields = [
+        'available_api_versions',
+        'created_at',
+        'downloads',
     ];
 
     private string $token;
@@ -96,7 +102,7 @@ class ComponentInfoCommand extends Command
             null => self::$defaultFields,
             'all' => array_keys(array_diff_key(
                 self::$allFields,
-                ['available_api_versions' => '', 'created_at' => '', 'downloads' => '']
+                array_flip(self::$slowFields)
             )),
             default => explode(',', $input->getOption('fields')),
         };
@@ -222,6 +228,7 @@ class ComponentInfoCommand extends Command
             'service_address' => $package ? $package->getServiceAddress() : implode(",", $component->getServiceAddresses()),
             'api_shortname' => $package ? $package->getApiShortname() : implode(",", array_filter($component->getApiShortnames())),
             'description' => $component->getDescription(),
+            'library_type' => $component->getLibraryType(),
             'available_api_versions' => null,
             'created_at' => null,
             'downloads' => null,
