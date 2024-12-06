@@ -21,7 +21,7 @@ class LatencyCriteria extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration threshold = 3;</code>
      */
-    private $threshold = null;
+    protected $threshold = null;
 
     /**
      * Constructor.
@@ -79,6 +79,4 @@ class LatencyCriteria extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LatencyCriteria::class, \Google\Cloud\Monitoring\V3\BasicSli_LatencyCriteria::class);
 

@@ -23,7 +23,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. If an `updateMask` has been specified, this field gives
      * the values for the set of fields mentioned in the `updateMask`. If an
@@ -38,7 +38,7 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uptime_check_config = null;
+    protected $uptime_check_config = null;
 
     /**
      * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptimeCheckConfig Required. If an `updateMask` has been specified, this field gives

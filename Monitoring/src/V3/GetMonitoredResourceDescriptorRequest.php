@@ -23,7 +23,7 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The monitored resource descriptor to get.  The format is:

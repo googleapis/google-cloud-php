@@ -23,13 +23,13 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group_id = 1;</code>
      */
-    private $group_id = '';
+    protected $group_id = '';
     /**
      * The resource type of the group members.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.GroupResourceType resource_type = 2;</code>
      */
-    private $resource_type = 0;
+    protected $resource_type = 0;
 
     /**
      * Constructor.
@@ -108,6 +108,4 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourceGroup::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ResourceGroup::class);
 

@@ -64,6 +64,4 @@ class CheckerType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CheckerType::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_CheckerType::class);
 

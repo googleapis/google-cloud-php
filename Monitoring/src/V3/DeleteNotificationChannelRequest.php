@@ -21,7 +21,7 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If true, the notification channel will be deleted regardless of its
      * use in alert policies (the policies will be updated to remove the
@@ -30,7 +30,7 @@ class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 5;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name  Required. The channel for which to execute the request. The format is:

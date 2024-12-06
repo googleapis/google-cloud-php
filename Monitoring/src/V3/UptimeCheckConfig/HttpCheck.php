@@ -21,13 +21,13 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.RequestMethod request_method = 8;</code>
      */
-    private $request_method = 0;
+    protected $request_method = 0;
     /**
      * If `true`, use HTTPS instead of HTTP to run the check.
      *
      * Generated from protobuf field <code>bool use_ssl = 1;</code>
      */
-    private $use_ssl = false;
+    protected $use_ssl = false;
     /**
      * Optional (defaults to "/"). The path to the page against which to run
      * the check. Will be combined with the `host` (specified within the
@@ -37,7 +37,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Optional (defaults to 80 when `use_ssl` is `false`, and 443 when
      * `use_ssl` is `true`). The TCP port on the HTTP server against which to
@@ -46,7 +46,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 port = 3;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * The authentication information. Optional when creating an HTTP check;
      * defaults to empty.
@@ -54,7 +54,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication auth_info = 4;</code>
      */
-    private $auth_info = null;
+    protected $auth_info = null;
     /**
      * Boolean specifying whether to encrypt the header information.
      * Encryption should be specified for any headers related to authentication
@@ -65,7 +65,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool mask_headers = 5;</code>
      */
-    private $mask_headers = false;
+    protected $mask_headers = false;
     /**
      * The list of headers to send as part of the Uptime check request.
      * If two headers have the same key and different values, they should
@@ -91,7 +91,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.ContentType content_type = 9;</code>
      */
-    private $content_type = 0;
+    protected $content_type = 0;
     /**
      * A user provided content type header to use for the check. The invalid
      * configurations outlined in the `content_type` field apply to
@@ -102,7 +102,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string custom_content_type = 13;</code>
      */
-    private $custom_content_type = '';
+    protected $custom_content_type = '';
     /**
      * Boolean specifying whether to include SSL certificate validation as a
      * part of the Uptime check. Only applies to checks where
@@ -111,7 +111,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool validate_ssl = 7;</code>
      */
-    private $validate_ssl = false;
+    protected $validate_ssl = false;
     /**
      * The request body associated with the HTTP POST request. If `content_type`
      * is `URL_ENCODED`, the body passed in must be URL-encoded. Users can
@@ -124,7 +124,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes body = 10;</code>
      */
-    private $body = '';
+    protected $body = '';
     /**
      * If present, the check will only pass if the HTTP response status code is
      * in this set of status codes. If empty, the HTTP status code will only
@@ -138,7 +138,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 12;</code>
      */
-    private $ping_config = null;
+    protected $ping_config = null;
     protected $auth_method;
 
     /**
@@ -725,6 +725,4 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HttpCheck::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck::class);
 

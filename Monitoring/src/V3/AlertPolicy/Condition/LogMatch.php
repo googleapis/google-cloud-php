@@ -25,7 +25,7 @@ class LogMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. A map from a label key to an extractor expression, which is
      * used to extract the value for this label key. Each entry in this map is
@@ -146,6 +146,4 @@ class LogMatch extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LogMatch::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_LogMatch::class);
 

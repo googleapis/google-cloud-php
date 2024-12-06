@@ -23,7 +23,7 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new data to be added to a list of time series.
      * Adds at most one data point to each of several time series.  The new data

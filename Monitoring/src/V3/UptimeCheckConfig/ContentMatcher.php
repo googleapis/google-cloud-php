@@ -25,14 +25,14 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 1;</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * The type of content matcher that will be applied to the server output,
      * compared to the `content` string when the check is run.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
      */
-    private $matcher = 0;
+    protected $matcher = 0;
     protected $additional_matcher_info;
 
     /**
@@ -153,6 +153,4 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ContentMatcher::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher::class);
 

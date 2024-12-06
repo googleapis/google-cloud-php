@@ -29,7 +29,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If provided, this field specifies the criteria that must be met
      * by notification channels to be included in the response.
@@ -38,7 +38,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. A comma-separated list of fields by which to sort the result.
      * Supports the same set of fields as in `filter`. Entries can be prefixed
@@ -48,7 +48,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Optional. The maximum number of results to return in a single response. If
      * not set to a positive number, a reasonable value will be chosen by the
@@ -56,7 +56,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. If non-empty, `page_token` must contain a value returned as the
      * `next_page_token` in a previous response to request the next set
@@ -64,7 +64,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $name Required. The

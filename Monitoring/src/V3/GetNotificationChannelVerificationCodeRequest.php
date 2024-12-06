@@ -22,7 +22,7 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The desired expiration time. If specified, the API will guarantee that
      * the returned code will not be valid after the specified timestamp;
@@ -36,7 +36,7 @@ class GetNotificationChannelVerificationCodeRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * @param string $name Required. The notification channel for which a verification code is to be

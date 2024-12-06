@@ -264,6 +264,4 @@ class Aligner
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Aligner::class, \Google\Cloud\Monitoring\V3\Aggregation_Aligner::class);
 

@@ -66,6 +66,4 @@ class View
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(View::class, \Google\Cloud\Monitoring\V3\ServiceLevelObjective_View::class);
 

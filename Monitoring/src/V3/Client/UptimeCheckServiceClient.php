@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -325,8 +325,10 @@ final class UptimeCheckServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createUptimeCheckConfig(CreateUptimeCheckConfigRequest $request, array $callOptions = []): UptimeCheckConfig
-    {
+    public function createUptimeCheckConfig(
+        CreateUptimeCheckConfigRequest $request,
+        array $callOptions = []
+    ): UptimeCheckConfig {
         return $this->startApiCall('CreateUptimeCheckConfig', $request, $callOptions)->wait();
     }
 
@@ -379,8 +381,10 @@ final class UptimeCheckServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getUptimeCheckConfig(GetUptimeCheckConfigRequest $request, array $callOptions = []): UptimeCheckConfig
-    {
+    public function getUptimeCheckConfig(
+        GetUptimeCheckConfigRequest $request,
+        array $callOptions = []
+    ): UptimeCheckConfig {
         return $this->startApiCall('GetUptimeCheckConfig', $request, $callOptions)->wait();
     }
 
@@ -407,8 +411,10 @@ final class UptimeCheckServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listUptimeCheckConfigs(ListUptimeCheckConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listUptimeCheckConfigs(
+        ListUptimeCheckConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListUptimeCheckConfigs', $request, $callOptions);
     }
 
@@ -464,8 +470,10 @@ final class UptimeCheckServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateUptimeCheckConfig(UpdateUptimeCheckConfigRequest $request, array $callOptions = []): UptimeCheckConfig
-    {
+    public function updateUptimeCheckConfig(
+        UpdateUptimeCheckConfigRequest $request,
+        array $callOptions = []
+    ): UptimeCheckConfig {
         return $this->startApiCall('UpdateUptimeCheckConfig', $request, $callOptions)->wait();
     }
 }
