@@ -23,7 +23,7 @@ class SuggestArticlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The name of the latest conversation message to compile suggestion
      * for. If empty, it will be the latest message of the conversation.
@@ -32,7 +32,7 @@ class SuggestArticlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Optional. Max number of messages prior to and including
      * [latest_message][google.cloud.dialogflow.v2.SuggestArticlesRequest.latest_message]
@@ -41,13 +41,13 @@ class SuggestArticlesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 context_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
     /**
      * Parameters for a human assist query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
      */
-    private $assist_query_params = null;
+    protected $assist_query_params = null;
 
     /**
      * @param string $parent Required. The name of the participant to fetch suggestion for.

@@ -23,13 +23,13 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The document to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Document document = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
 
     /**
      * @param string                               $parent   Required. The knowledge base to create a document for.

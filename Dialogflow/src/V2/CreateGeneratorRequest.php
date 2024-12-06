@@ -21,13 +21,13 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The generator to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Generator generator = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $generator = null;
+    protected $generator = null;
     /**
      * Optional. The ID to use for the generator, which will become the final
      * component of the generator's resource name.
@@ -41,7 +41,7 @@ class CreateGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string generator_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $generator_id = '';
+    protected $generator_id = '';
 
     /**
      * @param string                                $parent      Required. The project/location to create generator for. Format:

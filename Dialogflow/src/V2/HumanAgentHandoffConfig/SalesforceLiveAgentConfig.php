@@ -20,19 +20,19 @@ class SalesforceLiveAgentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $organization_id = '';
+    protected $organization_id = '';
     /**
      * Required. Live Agent deployment ID.
      *
      * Generated from protobuf field <code>string deployment_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $deployment_id = '';
+    protected $deployment_id = '';
     /**
      * Required. Live Agent chat button ID.
      *
      * Generated from protobuf field <code>string button_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $button_id = '';
+    protected $button_id = '';
     /**
      * Required. Domain of the Live Agent endpoint for this agent. You can find
      * the endpoint URL in the `Live Agent settings` page. For example if URL
@@ -41,7 +41,7 @@ class SalesforceLiveAgentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_domain = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $endpoint_domain = '';
+    protected $endpoint_domain = '';
 
     /**
      * Constructor.

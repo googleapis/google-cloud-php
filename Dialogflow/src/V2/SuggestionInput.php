@@ -25,7 +25,7 @@ class SuggestionInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
 
     /**
      * Constructor.

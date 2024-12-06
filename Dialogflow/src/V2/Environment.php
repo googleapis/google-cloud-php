@@ -38,14 +38,14 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The developer-provided description for this environment.
      * The maximum length is 500 characters. If exceeded, the request is rejected.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. The agent version loaded into this environment.
      * Supported formats:
@@ -55,33 +55,33 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $agent_version = '';
+    protected $agent_version = '';
     /**
      * Output only. The state of this environment. This field is read-only, i.e.,
      * it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The last update time of this environment. This field is
      * read-only, i.e., it cannot be set by create and update methods.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Text to speech settings for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextToSpeechSettings text_to_speech_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $text_to_speech_settings = null;
+    protected $text_to_speech_settings = null;
     /**
      * Optional. The fulfillment settings to use for this environment.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Fulfillment fulfillment = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $fulfillment = null;
+    protected $fulfillment = null;
 
     /**
      * Constructor.

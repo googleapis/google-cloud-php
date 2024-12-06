@@ -20,7 +20,7 @@ class ExportOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsDestination exported_gcs_destination = 1;</code>
      */
-    private $exported_gcs_destination = null;
+    protected $exported_gcs_destination = null;
 
     /**
      * Constructor.

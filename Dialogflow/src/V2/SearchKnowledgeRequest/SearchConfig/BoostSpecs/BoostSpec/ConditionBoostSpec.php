@@ -26,7 +26,7 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $condition = '';
+    protected $condition = '';
     /**
      * Optional. Strength of the condition boost, which should be in [-1,
      * 1]. Negative boost means demotion. Default is 0.0.
@@ -46,14 +46,14 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float boost = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boost = 0.0;
+    protected $boost = 0.0;
     /**
      * Optional. Complex specification for custom ranking based on
      * customer defined attribute value.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boost_control_spec = null;
+    protected $boost_control_spec = null;
 
     /**
      * Constructor.

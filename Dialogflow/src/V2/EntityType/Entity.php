@@ -27,7 +27,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Required. A collection of value synonyms. For example, if the entity type
      * is *vegetable*, and `value` is *scallions*, a synonym could be *green

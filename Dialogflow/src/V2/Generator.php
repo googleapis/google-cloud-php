@@ -21,38 +21,38 @@ class Generator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Human readable description of the generator.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Inference parameters for this generator.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.InferenceParameter inference_parameter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $inference_parameter = null;
+    protected $inference_parameter = null;
     /**
      * Optional. The trigger event of the generator. It defines when the generator
      * is triggered in a conversation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TriggerEvent trigger_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $trigger_event = 0;
+    protected $trigger_event = 0;
     /**
      * Output only. Creation time of this generator.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Update time of this generator.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $context;
 
     /**

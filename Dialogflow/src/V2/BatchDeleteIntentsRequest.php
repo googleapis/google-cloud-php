@@ -22,7 +22,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The collection of intents to delete. Only intent `name` must be
      * filled in.

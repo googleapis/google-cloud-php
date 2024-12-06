@@ -23,7 +23,7 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Version of current baseline model. It will be ignored if
      * [model][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig.model]
@@ -36,7 +36,7 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string baseline_model_version = 8;</code>
      */
-    private $baseline_model_version = '';
+    protected $baseline_model_version = '';
 
     /**
      * Constructor.

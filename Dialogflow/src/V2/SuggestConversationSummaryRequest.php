@@ -23,7 +23,7 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string conversation = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversation = '';
+    protected $conversation = '';
     /**
      * Optional. The name of the latest conversation message used as context for
      * compiling suggestion. If empty, the latest message of the conversation will
@@ -33,7 +33,7 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
@@ -41,14 +41,14 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>int32 context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
     /**
      * Optional. Parameters for a human assist query. Only used for POC/demo
      * purpose.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $assist_query_params = null;
+    protected $assist_query_params = null;
 
     /**
      * @param string $conversation Required. The conversation to fetch suggestion for.

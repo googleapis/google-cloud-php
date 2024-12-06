@@ -27,7 +27,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_text = 1;</code>
      */
-    private $query_text = '';
+    protected $query_text = '';
     /**
      * The language that was triggered during intent detection.
      * See [Language
@@ -36,7 +36,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The Speech recognition confidence between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
@@ -49,13 +49,13 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>
      */
-    private $speech_recognition_confidence = 0.0;
+    protected $speech_recognition_confidence = 0.0;
     /**
      * The action name from the matched intent.
      *
      * Generated from protobuf field <code>string action = 3;</code>
      */
-    private $action = '';
+    protected $action = '';
     /**
      * The collection of extracted parameters.
      * Depending on your protocol or client library language, this is a
@@ -72,7 +72,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * This field is set to:
      * - `false` if the matched intent has required parameters and not all of
@@ -82,7 +82,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all_required_params_present = 5;</code>
      */
-    private $all_required_params_present = false;
+    protected $all_required_params_present = false;
     /**
      * Indicates whether the conversational query triggers a cancellation for slot
      * filling. For more information, see the [cancel slot filling
@@ -90,14 +90,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
      */
-    private $cancels_slot_filling = false;
+    protected $cancels_slot_filling = false;
     /**
      * The text to be pronounced to the user or shown on the screen.
      * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
      * Generated from protobuf field <code>string fulfillment_text = 6;</code>
      */
-    private $fulfillment_text = '';
+    protected $fulfillment_text = '';
     /**
      * The collection of rich messages to present to the user.
      *
@@ -110,14 +110,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string webhook_source = 8;</code>
      */
-    private $webhook_source = '';
+    protected $webhook_source = '';
     /**
      * If the query was fulfilled by a webhook call, this field is set to the
      * value of the `payload` field returned in the webhook response.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct webhook_payload = 9;</code>
      */
-    private $webhook_payload = null;
+    protected $webhook_payload = null;
     /**
      * The collection of output contexts. If applicable,
      * `output_contexts.parameters` contains entries with name
@@ -134,7 +134,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 11;</code>
      */
-    private $intent = null;
+    protected $intent = null;
     /**
      * The intent detection confidence. Values range from 0.0
      * (completely uncertain) to 1.0 (completely certain).
@@ -147,7 +147,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float intent_detection_confidence = 12;</code>
      */
-    private $intent_detection_confidence = 0.0;
+    protected $intent_detection_confidence = 0.0;
     /**
      * Free-form diagnostic information for the associated detect intent request.
      * The fields of this data can change without notice, so you should not write
@@ -158,14 +158,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      */
-    private $diagnostic_info = null;
+    protected $diagnostic_info = null;
     /**
      * The sentiment analysis result, which depends on the
      * `sentiment_analysis_request_config` specified in the request.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisResult sentiment_analysis_result = 17;</code>
      */
-    private $sentiment_analysis_result = null;
+    protected $sentiment_analysis_result = null;
 
     /**
      * Constructor.

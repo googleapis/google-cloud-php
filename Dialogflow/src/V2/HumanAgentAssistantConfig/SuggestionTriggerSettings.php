@@ -20,14 +20,14 @@ class SuggestionTriggerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_smalltalk = 1;</code>
      */
-    private $no_smalltalk = false;
+    protected $no_smalltalk = false;
     /**
      * Only trigger suggestion if participant role of last utterance is
      * END_USER.
      *
      * Generated from protobuf field <code>bool only_end_user = 2;</code>
      */
-    private $only_end_user = false;
+    protected $only_end_user = false;
 
     /**
      * Constructor.

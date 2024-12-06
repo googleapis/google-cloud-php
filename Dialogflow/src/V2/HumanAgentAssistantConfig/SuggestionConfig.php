@@ -35,7 +35,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool group_suggestion_responses = 3;</code>
      */
-    private $group_suggestion_responses = false;
+    protected $group_suggestion_responses = false;
     /**
      * Optional. List of various generator resource names used in the
      * conversation profile.
@@ -54,7 +54,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_high_latency_features_sync_delivery = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_high_latency_features_sync_delivery = false;
+    protected $disable_high_latency_features_sync_delivery = false;
 
     /**
      * Constructor.

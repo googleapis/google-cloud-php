@@ -22,13 +22,13 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The entity type to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_type = null;
+    protected $entity_type = null;
     /**
      * Optional. The language used to access language-specific data.
      * If not specified, the agent's default language is used.
@@ -38,7 +38,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * @param string                                 $parent     Required. The agent to create a entity type for.

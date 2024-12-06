@@ -22,7 +22,7 @@ class SuggestionFeature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionFeature.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
