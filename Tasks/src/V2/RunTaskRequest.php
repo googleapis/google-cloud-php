@@ -22,7 +22,7 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The response_view specifies which subset of the
      * [Task][google.cloud.tasks.v2.Task] will be returned.
@@ -37,7 +37,7 @@ class RunTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Task.View response_view = 2;</code>
      */
-    private $response_view = 0;
+    protected $response_view = 0;
 
     /**
      * @param string $name Required. The task name. For example:

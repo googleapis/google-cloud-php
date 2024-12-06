@@ -25,7 +25,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The queue to create.
      * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an
@@ -33,7 +33,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $queue = null;
+    protected $queue = null;
 
     /**
      * @param string                       $parent Required. The location name in which the queue will be created.
