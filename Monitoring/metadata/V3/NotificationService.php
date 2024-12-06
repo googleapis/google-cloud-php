@@ -24,7 +24,7 @@ class NotificationService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º%
+’%
 /google/monitoring/v3/notification_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/monitoring/v3/notification.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"°
 )ListNotificationChannelDescriptorsRequestM
 name (	B?‡A˙A97monitoring.googleapis.com/NotificationChannelDescriptor
@@ -39,14 +39,14 @@ page_token (	"ó
 7monitoring.googleapis.com/NotificationChannelDescriptor"µ
  CreateNotificationChannelRequestC
 name (	B5‡A˙A/-monitoring.googleapis.com/NotificationChannelL
-notification_channel (2).google.monitoring.v3.NotificationChannelB‡A"Ø
+notification_channel (2).google.monitoring.v3.NotificationChannelB‡A"√
 ListNotificationChannelsRequestC
-name (	B5‡A˙A/-monitoring.googleapis.com/NotificationChannel
-filter (	
-order_by (	
-	page_size (
+name (	B5‡A˙A/-monitoring.googleapis.com/NotificationChannel
+filter (	B‡A
+order_by (	B‡A
+	page_size (B‡A
 
-page_token (	"ô
+page_token (	B‡A"ô
  ListNotificationChannelsResponseH
 notification_channels (2).google.monitoring.v3.NotificationChannel
 next_page_token (	
@@ -54,9 +54,9 @@ page_token (	"ô
 total_size ("d
 GetNotificationChannelRequestC
 name (	B5‡A˙A/
--monitoring.googleapis.com/NotificationChannel"°
- UpdateNotificationChannelRequest/
-update_mask (2.google.protobuf.FieldMaskL
+-monitoring.googleapis.com/NotificationChannel"¶
+ UpdateNotificationChannelRequest4
+update_mask (2.google.protobuf.FieldMaskB‡AL
 notification_channel (2).google.monitoring.v3.NotificationChannelB‡A"v
  DeleteNotificationChannelRequestC
 name (	B5‡A˙A/

@@ -563,8 +563,8 @@ class NotificationChannelServiceGapicClient
      *     @type bool $force
      *           If true, the notification channel will be deleted regardless of its
      *           use in alert policies (the policies will be updated to remove the
-     *           channel). If false, channels that are still referenced by an existing
-     *           alerting policy will fail to be deleted in a delete operation.
+     *           channel). If false, this operation will fail if the notification channel
+     *           is referenced by existing alerting policies.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -873,15 +873,15 @@ class NotificationChannelServiceGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           If provided, this field specifies the criteria that must be met by
-     *           notification channels to be included in the response.
+     *           Optional. If provided, this field specifies the criteria that must be met
+     *           by notification channels to be included in the response.
      *
      *           For more details, see [sorting and
      *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     @type string $orderBy
-     *           A comma-separated list of fields by which to sort the result. Supports
-     *           the same set of fields as in `filter`. Entries can be prefixed with
-     *           a minus sign to sort in descending rather than ascending order.
+     *           Optional. A comma-separated list of fields by which to sort the result.
+     *           Supports the same set of fields as in `filter`. Entries can be prefixed
+     *           with a minus sign to sort in descending rather than ascending order.
      *
      *           For more details, see [sorting and
      *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
@@ -997,7 +997,7 @@ class NotificationChannelServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           The fields to update.
+     *           Optional. The fields to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

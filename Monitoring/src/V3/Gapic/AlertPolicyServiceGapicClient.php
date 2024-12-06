@@ -671,15 +671,15 @@ class AlertPolicyServiceGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           If provided, this field specifies the criteria that must be met by
-     *           alert policies to be included in the response.
+     *           Optional. If provided, this field specifies the criteria that must be met
+     *           by alert policies to be included in the response.
      *
      *           For more details, see [sorting and
      *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     @type string $orderBy
-     *           A comma-separated list of fields by which to sort the result. Supports
-     *           the same set of field references as the `filter` field. Entries can be
-     *           prefixed with a minus sign to sort by the field in descending order.
+     *           Optional. A comma-separated list of fields by which to sort the result.
+     *           Supports the same set of field references as the `filter` field. Entries
+     *           can be prefixed with a minus sign to sort by the field in descending order.
      *
      *           For more details, see [sorting and
      *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
