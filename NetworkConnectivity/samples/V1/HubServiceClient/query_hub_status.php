@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,34 +22,35 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START networkconnectivity_v1_generated_HubService_ListRouteTables_sync]
+// [START networkconnectivity_v1_generated_HubService_QueryHubStatus_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
-use Google\Cloud\NetworkConnectivity\V1\ListRouteTablesRequest;
-use Google\Cloud\NetworkConnectivity\V1\RouteTable;
+use Google\Cloud\NetworkConnectivity\V1\HubStatusEntry;
+use Google\Cloud\NetworkConnectivity\V1\QueryHubStatusRequest;
 
 /**
- * Lists route tables in a given hub.
+ * Query the Private Service Connect propagation status of a Network
+ * Connectivity Center hub.
  *
- * @param string $formattedParent The parent resource's name. Please see
- *                                {@see HubServiceClient::hubName()} for help formatting this field.
+ * @param string $formattedName The name of the hub. Please see
+ *                              {@see HubServiceClient::hubName()} for help formatting this field.
  */
-function list_route_tables_sample(string $formattedParent): void
+function query_hub_status_sample(string $formattedName): void
 {
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
     // Prepare the request message.
-    $request = (new ListRouteTablesRequest())
-        ->setParent($formattedParent);
+    $request = (new QueryHubStatusRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $hubServiceClient->listRouteTables($request);
+        $response = $hubServiceClient->queryHubStatus($request);
 
-        /** @var RouteTable $element */
+        /** @var HubStatusEntry $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -69,8 +70,8 @@ function list_route_tables_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = HubServiceClient::hubName('[PROJECT]', '[HUB]');
+    $formattedName = HubServiceClient::hubName('[PROJECT]', '[HUB]');
 
-    list_route_tables_sample($formattedParent);
+    query_hub_status_sample($formattedName);
 }
-// [END networkconnectivity_v1_generated_HubService_ListRouteTables_sync]
+// [END networkconnectivity_v1_generated_HubService_QueryHubStatus_sync]
