@@ -22,7 +22,7 @@ class MonitoringQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The amount of time that a time series must violate the
      * threshold to be considered failing. Currently, only values
@@ -37,7 +37,7 @@ class MonitoringQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * The number/percent of time series for which the comparison must hold
      * in order for the condition to trigger. If unspecified, then the
@@ -48,14 +48,14 @@ class MonitoringQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 3;</code>
      */
-    private $trigger = null;
+    protected $trigger = null;
     /**
      * A condition control that determines how metric-threshold conditions
      * are evaluated when data stops arriving.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 4;</code>
      */
-    private $evaluation_missing_data = 0;
+    protected $evaluation_missing_data = 0;
 
     /**
      * Constructor.
@@ -252,6 +252,4 @@ class MonitoringQueryLanguageCondition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MonitoringQueryLanguageCondition::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MonitoringQueryLanguageCondition::class);
 

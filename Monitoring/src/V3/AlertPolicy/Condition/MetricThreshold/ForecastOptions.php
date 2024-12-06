@@ -26,7 +26,7 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration forecast_horizon = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $forecast_horizon = null;
+    protected $forecast_horizon = null;
 
     /**
      * Constructor.
@@ -96,6 +96,4 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ForecastOptions::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold_ForecastOptions::class);
 

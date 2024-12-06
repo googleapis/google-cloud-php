@@ -21,13 +21,13 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A positive number that is the maximum number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If this field is not empty then it must contain the `next_page_token` value
      * returned by a previous call to this method.  Using this field causes the
@@ -35,7 +35,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * An optional [list
      * filter](https://cloud.google.com/monitoring/api/learn_more#filtering)
@@ -47,7 +47,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * An optional time interval for which results should be returned. Only
      * members that were part of the group during the specified interval are
@@ -56,7 +56,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
      */
-    private $interval = null;
+    protected $interval = null;
 
     /**
      * @param string $name Required. The group whose members are listed. The format is:

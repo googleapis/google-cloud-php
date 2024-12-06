@@ -22,7 +22,7 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * View of the `ServiceLevelObjective` to return. If `DEFAULT`, return the
      * `ServiceLevelObjective` as originally defined. If `EXPLICIT` and the
@@ -31,7 +31,7 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelObjective.View view = 2;</code>
      */
-    private $view = 0;
+    protected $view = 0;
 
     /**
      * @param string $name Required. Resource name of the `ServiceLevelObjective` to get. The format

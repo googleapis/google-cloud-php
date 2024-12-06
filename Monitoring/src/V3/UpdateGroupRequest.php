@@ -22,13 +22,13 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $group = null;
+    protected $group = null;
     /**
      * If true, validate this request but do not update the existing group.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Monitoring\V3\Group $group Required. The new definition of the group.  All fields of the existing

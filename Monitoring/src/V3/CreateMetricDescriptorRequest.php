@@ -24,14 +24,14 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The new [custom
      * metric](https://cloud.google.com/monitoring/custom-metrics) descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric_descriptor = null;
+    protected $metric_descriptor = null;
 
     /**
      * @param string                       $name             Required. The

@@ -23,7 +23,7 @@ class GetNotificationChannelVerificationCodeResponse extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>string code = 1;</code>
      */
-    private $code = '';
+    protected $code = '';
     /**
      * The expiration time associated with the code that was returned. If
      * an expiration was provided in the request, this is the minimum of the
@@ -31,7 +31,7 @@ class GetNotificationChannelVerificationCodeResponse extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

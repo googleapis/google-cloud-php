@@ -21,13 +21,13 @@ class UpdateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelObjective service_level_objective = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service_level_objective = null;
+    protected $service_level_objective = null;
     /**
      * A set of field paths defining which fields to use for the update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Monitoring\V3\ServiceLevelObjective $serviceLevelObjective Required. The `ServiceLevelObjective` to draw updates from.

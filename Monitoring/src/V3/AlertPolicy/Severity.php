@@ -70,6 +70,4 @@ class Severity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Severity::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Severity::class);
 

@@ -23,7 +23,7 @@ class IstioCanonicalService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mesh_uid = 1;</code>
      */
-    private $mesh_uid = '';
+    protected $mesh_uid = '';
     /**
      * The namespace of the canonical service underlying this service.
      * Corresponds to the `destination_canonical_service_namespace` metric
@@ -32,7 +32,7 @@ class IstioCanonicalService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_service_namespace = 3;</code>
      */
-    private $canonical_service_namespace = '';
+    protected $canonical_service_namespace = '';
     /**
      * The name of the canonical service underlying this service.
      * Corresponds to the `destination_canonical_service_name` metric label in
@@ -41,7 +41,7 @@ class IstioCanonicalService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_service = 4;</code>
      */
-    private $canonical_service = '';
+    protected $canonical_service = '';
 
     /**
      * Constructor.
@@ -166,6 +166,4 @@ class IstioCanonicalService extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IstioCanonicalService::class, \Google\Cloud\Monitoring\V3\Service_IstioCanonicalService::class);
 

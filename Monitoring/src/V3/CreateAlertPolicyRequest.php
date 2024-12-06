@@ -30,7 +30,7 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The requested alerting policy. You should omit the `name` field
      * in this policy. The name will be returned in the new policy, including a
@@ -38,7 +38,7 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $alert_policy = null;
+    protected $alert_policy = null;
 
     /**
      * @param string                                  $name        Required. The

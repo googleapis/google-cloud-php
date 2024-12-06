@@ -22,7 +22,7 @@ class AppEngine extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string module_id = 1;</code>
      */
-    private $module_id = '';
+    protected $module_id = '';
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class AppEngine extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AppEngine::class, \Google\Cloud\Monitoring\V3\Service_AppEngine::class);
 

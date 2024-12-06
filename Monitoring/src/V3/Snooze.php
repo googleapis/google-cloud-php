@@ -25,14 +25,14 @@ class Snooze extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. This defines the criteria for applying the `Snooze`. See
      * `Criteria` for more information.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Snooze.Criteria criteria = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $criteria = null;
+    protected $criteria = null;
     /**
      * Required. The `Snooze` will be active from `interval.start_time` through
      * `interval.end_time`.
@@ -42,14 +42,14 @@ class Snooze extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $interval = null;
+    protected $interval = null;
     /**
      * Required. A display name for the `Snooze`. This can be, at most, 512
      * unicode characters.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Contains information needed to add pings to a TCP check.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 2;</code>
      */
-    private $ping_config = null;
+    protected $ping_config = null;
 
     /**
      * Constructor.
@@ -117,6 +117,4 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TcpCheck::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck::class);
 

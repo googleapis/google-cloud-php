@@ -24,37 +24,37 @@ class GkeWorkload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The location of the parent cluster. This may be a zone or region.
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The name of the parent cluster.
      *
      * Generated from protobuf field <code>string cluster_name = 3;</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
      * The name of the parent namespace.
      *
      * Generated from protobuf field <code>string namespace_name = 4;</code>
      */
-    private $namespace_name = '';
+    protected $namespace_name = '';
     /**
      * The type of this workload (for example, "Deployment" or "DaemonSet")
      *
      * Generated from protobuf field <code>string top_level_controller_type = 5;</code>
      */
-    private $top_level_controller_type = '';
+    protected $top_level_controller_type = '';
     /**
      * The name of this workload.
      *
      * Generated from protobuf field <code>string top_level_controller_name = 6;</code>
      */
-    private $top_level_controller_name = '';
+    protected $top_level_controller_name = '';
 
     /**
      * Constructor.
@@ -245,6 +245,4 @@ class GkeWorkload extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GkeWorkload::class, \Google\Cloud\Monitoring\V3\Service_GkeWorkload::class);
 

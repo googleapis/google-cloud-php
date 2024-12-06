@@ -20,13 +20,13 @@ class CreateTimeSeriesSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_point_count = 1;</code>
      */
-    private $total_point_count = 0;
+    protected $total_point_count = 0;
     /**
      * The number of points that were successfully written.
      *
      * Generated from protobuf field <code>int32 success_point_count = 2;</code>
      */
-    private $success_point_count = 0;
+    protected $success_point_count = 0;
     /**
      * The number of points that failed to be written. Order is not guaranteed.
      *

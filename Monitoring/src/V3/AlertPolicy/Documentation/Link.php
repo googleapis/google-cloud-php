@@ -21,7 +21,7 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The url of a webpage.
      * A url can be templatized by using variables
@@ -31,7 +31,7 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 2;</code>
      */
-    private $url = '';
+    protected $url = '';
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class Link extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Link::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Documentation_Link::class);
 

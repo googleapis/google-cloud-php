@@ -30,7 +30,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Specifies the alignment of data points in individual time series as
      * well as how to combine the retrieved time series together (such as
@@ -58,7 +58,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string denominator_filter = 9;</code>
      */
-    private $denominator_filter = '';
+    protected $denominator_filter = '';
     /**
      * Specifies the alignment of data points in individual time series
      * selected by `denominatorFilter` as
@@ -82,7 +82,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MetricThreshold.ForecastOptions forecast_options = 12;</code>
      */
-    private $forecast_options = null;
+    protected $forecast_options = null;
     /**
      * The comparison to apply between the time series (indicated by `filter`
      * and `aggregation`) and the threshold (indicated by `threshold_value`).
@@ -92,13 +92,13 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ComparisonType comparison = 4;</code>
      */
-    private $comparison = 0;
+    protected $comparison = 0;
     /**
      * A value against which to compare the time series.
      *
      * Generated from protobuf field <code>double threshold_value = 5;</code>
      */
-    private $threshold_value = 0.0;
+    protected $threshold_value = 0.0;
     /**
      * The amount of time that a time series must violate the
      * threshold to be considered failing. Currently, only values
@@ -113,7 +113,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 6;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * The number/percent of time series for which the comparison must hold
      * in order for the condition to trigger. If unspecified, then the
@@ -124,7 +124,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 7;</code>
      */
-    private $trigger = null;
+    protected $trigger = null;
     /**
      * A condition control that determines how metric-threshold conditions
      * are evaluated when data stops arriving. To use this control, the value
@@ -132,7 +132,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
      */
-    private $evaluation_missing_data = 0;
+    protected $evaluation_missing_data = 0;
 
     /**
      * Constructor.
@@ -630,6 +630,4 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricThreshold::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold::class);
 

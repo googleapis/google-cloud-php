@@ -25,7 +25,7 @@ class BasicService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_type = 1;</code>
      */
-    private $service_type = '';
+    protected $service_type = '';
     /**
      * Labels that specify the resource that emits the monitoring data which
      * is used for SLO reporting of this `Service`.
@@ -125,6 +125,4 @@ class BasicService extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BasicService::class, \Google\Cloud\Monitoring\V3\Service_BasicService::class);
 

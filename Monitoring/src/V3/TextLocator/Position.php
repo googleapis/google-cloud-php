@@ -20,14 +20,14 @@ class Position extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 line = 1;</code>
      */
-    private $line = 0;
+    protected $line = 0;
     /**
      * The column within the line, starting with 1, where the byte is
      * positioned. This is a byte index even though the text is UTF-8.
      *
      * Generated from protobuf field <code>int32 column = 2;</code>
      */
-    private $column = 0;
+    protected $column = 0;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class Position extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Position::class, \Google\Cloud\Monitoring\V3\TextLocator_Position::class);
 

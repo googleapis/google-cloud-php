@@ -23,7 +23,7 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
@@ -35,7 +35,7 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * A positive number that is the maximum number of results to return. The
      * default and maximum value is 10,000. If a page_size <= 0 or > 10,000 is
@@ -43,7 +43,7 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
@@ -51,7 +51,7 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $name Required. The

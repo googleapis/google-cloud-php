@@ -30,7 +30,7 @@ class UpdateSnoozeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Snooze snooze = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $snooze = null;
+    protected $snooze = null;
     /**
      * Required. The fields to update.
      * For each field listed in `update_mask`:
@@ -51,7 +51,7 @@ class UpdateSnoozeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Monitoring\V3\Snooze $snooze     Required. The `Snooze` to update. Must have the name field present.

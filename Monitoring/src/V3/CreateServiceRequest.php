@@ -23,20 +23,20 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The Service id to use for this Service. If omitted, an id will be
      * generated instead. Must match the pattern `[a-z0-9\-]+`
      *
      * Generated from protobuf field <code>string service_id = 3;</code>
      */
-    private $service_id = '';
+    protected $service_id = '';
     /**
      * Required. The `Service` to create.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * @param string                              $parent  Required. Resource

@@ -20,19 +20,19 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The value type.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor.ValueType value_type = 2;</code>
      */
-    private $value_type = 0;
+    protected $value_type = 0;
     /**
      * The value stream kind.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
-    private $metric_kind = 0;
+    protected $metric_kind = 0;
     /**
      * The unit in which `time_series` point values are reported. `unit`
      * follows the UCUM format for units as seen in
@@ -41,7 +41,7 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unit = 4;</code>
      */
-    private $unit = '';
+    protected $unit = '';
 
     /**
      * Constructor.
@@ -179,6 +179,4 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ValueDescriptor::class, \Google\Cloud\Monitoring\V3\TimeSeriesDescriptor_ValueDescriptor::class);
 

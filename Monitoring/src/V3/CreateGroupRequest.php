@@ -23,20 +23,20 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. A group definition. It is an error to define the `name` field
      * because the system assigns the name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $group = null;
+    protected $group = null;
     /**
      * If true, validate this request but do not create the group.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                            $name  Required. The

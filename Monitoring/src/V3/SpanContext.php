@@ -29,7 +29,7 @@ class SpanContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string span_name = 1;</code>
      */
-    private $span_name = '';
+    protected $span_name = '';
 
     /**
      * Constructor.

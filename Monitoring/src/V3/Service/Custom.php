@@ -33,6 +33,4 @@ class Custom extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Custom::class, \Google\Cloud\Monitoring\V3\Service_Custom::class);
 

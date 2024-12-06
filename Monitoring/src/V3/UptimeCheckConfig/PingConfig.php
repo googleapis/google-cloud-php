@@ -22,7 +22,7 @@ class PingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 pings_count = 1;</code>
      */
-    private $pings_count = 0;
+    protected $pings_count = 0;
 
     /**
      * Constructor.
@@ -67,6 +67,4 @@ class PingConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PingConfig::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_PingConfig::class);
 

@@ -28,7 +28,7 @@ class TimeSeriesRatio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string good_service_filter = 4;</code>
      */
-    private $good_service_filter = '';
+    protected $good_service_filter = '';
     /**
      * A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifying a `TimeSeries` quantifying bad service, either demanded service
@@ -38,7 +38,7 @@ class TimeSeriesRatio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bad_service_filter = 5;</code>
      */
-    private $bad_service_filter = '';
+    protected $bad_service_filter = '';
     /**
      * A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifying a `TimeSeries` quantifying total demanded service. Must have
@@ -47,7 +47,7 @@ class TimeSeriesRatio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string total_service_filter = 6;</code>
      */
-    private $total_service_filter = '';
+    protected $total_service_filter = '';
 
     /**
      * Constructor.
