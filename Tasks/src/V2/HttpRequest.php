@@ -50,13 +50,13 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * The HTTP method to use for the request. The default is POST.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpMethod http_method = 2;</code>
      */
-    private $http_method = 0;
+    protected $http_method = 0;
     /**
      * HTTP request headers.
      * This map contains the header field names and values.
@@ -92,7 +92,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      */
-    private $body = '';
+    protected $body = '';
     protected $authorization_header;
 
     /**

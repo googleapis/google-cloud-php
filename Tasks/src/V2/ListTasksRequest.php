@@ -22,7 +22,7 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The response_view specifies which subset of the
      * [Task][google.cloud.tasks.v2.Task] will be returned.
@@ -37,7 +37,7 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Task.View response_view = 2;</code>
      */
-    private $response_view = 0;
+    protected $response_view = 0;
     /**
      * Maximum page size.
      * Fewer tasks than requested might be returned, even if more tasks exist; use
@@ -48,7 +48,7 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying the page of results to return.
      * To request the first page results, page_token must be empty. To
@@ -60,7 +60,7 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The queue name. For example:

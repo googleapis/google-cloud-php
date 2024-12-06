@@ -22,7 +22,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * `filter` can be used to specify a subset of queues. Any
      * [Queue][google.cloud.tasks.v2.Queue] field can be used as a filter and
@@ -35,7 +35,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Requested page size.
      * The maximum page size is 9800. If unspecified, the page size will
@@ -46,7 +46,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A token identifying the page of results to return.
      * To request the first page results, page_token must be empty. To
@@ -60,7 +60,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The location name.
