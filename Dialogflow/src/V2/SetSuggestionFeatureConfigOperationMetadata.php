@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for a [ConversationProfile.SetSuggestionFeatureConfig][]
+ * Metadata for a
+ * [ConversationProfiles.SetSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig]
  * operation.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata</code>
