@@ -20,25 +20,25 @@ class BasicCard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. The subtitle of the card.
      *
      * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subtitle = '';
+    protected $subtitle = '';
     /**
      * Required, unless image is present. The body text of the card.
      *
      * Generated from protobuf field <code>string formatted_text = 3;</code>
      */
-    private $formatted_text = '';
+    protected $formatted_text = '';
     /**
      * Optional. The image for the card.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image = null;
+    protected $image = null;
     /**
      * Optional. The collection of card buttons.
      *

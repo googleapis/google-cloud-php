@@ -22,7 +22,7 @@ class HumanAgentAssistantEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation = 1;</code>
      */
-    private $conversation = '';
+    protected $conversation = '';
     /**
      * The participant that the suggestion is compiled for.
      * Format: `projects/<Project ID>/conversations/<Conversation
@@ -30,7 +30,7 @@ class HumanAgentAssistantEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string participant = 3;</code>
      */
-    private $participant = '';
+    protected $participant = '';
     /**
      * The suggestion results payload that this notification refers to.
      *

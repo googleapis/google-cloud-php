@@ -23,20 +23,20 @@ class CreateConversationModelOperationMetadata extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string conversation_model = 1;</code>
      */
-    private $conversation_model = '';
+    protected $conversation_model = '';
     /**
      * State of CreateConversationModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Timestamp when the request to create conversation model is submitted. The
      * time is measured on server side.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

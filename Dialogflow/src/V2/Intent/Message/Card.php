@@ -20,19 +20,19 @@ class Card extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. The subtitle of the card.
      *
      * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subtitle = '';
+    protected $subtitle = '';
     /**
      * Optional. The public URI to an image file for the card.
      *
      * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Optional. The collection of card buttons.
      *

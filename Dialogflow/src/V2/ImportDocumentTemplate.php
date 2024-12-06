@@ -20,7 +20,7 @@ class ImportDocumentTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Required. The knowledge type of document content.
      *

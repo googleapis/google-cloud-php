@@ -22,7 +22,7 @@ class SmartReplyMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float allowlist_coverage = 1;</code>
      */
-    private $allowlist_coverage = 0.0;
+    protected $allowlist_coverage = 0.0;
     /**
      * Metrics of top n smart replies, sorted by [TopNMetric.n][].
      *
@@ -34,7 +34,7 @@ class SmartReplyMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 conversation_count = 3;</code>
      */
-    private $conversation_count = 0;
+    protected $conversation_count = 0;
 
     /**
      * Constructor.

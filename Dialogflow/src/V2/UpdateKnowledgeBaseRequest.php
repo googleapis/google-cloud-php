@@ -21,7 +21,7 @@ class UpdateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeBase knowledge_base = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $knowledge_base = null;
+    protected $knowledge_base = null;
     /**
      * Optional. Not specified means `update all`.
      * Currently, only `display_name` can be updated, an InvalidArgument will be
@@ -29,7 +29,7 @@ class UpdateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\KnowledgeBase $knowledgeBase Required. The knowledge base to update.

@@ -24,7 +24,7 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_entity_extraction = 2;</code>
      */
-    private $enable_entity_extraction = false;
+    protected $enable_entity_extraction = false;
     /**
      * Enable sentiment analysis in conversation messages on [agent assist
      * stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages).
@@ -49,7 +49,7 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_sentiment_analysis = 3;</code>
      */
-    private $enable_sentiment_analysis = false;
+    protected $enable_sentiment_analysis = false;
 
     /**
      * Constructor.

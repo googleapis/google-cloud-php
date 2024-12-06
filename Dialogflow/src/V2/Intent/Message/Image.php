@@ -20,14 +20,14 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Optional. A text description of the image to be used for accessibility,
      * e.g., screen readers.
      *
      * Generated from protobuf field <code>string accessibility_text = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $accessibility_text = '';
+    protected $accessibility_text = '';
 
     /**
      * Constructor.

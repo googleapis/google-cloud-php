@@ -54,7 +54,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string participant = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $participant = '';
+    protected $participant = '';
     /**
      * Speech synthesis configuration.
      * The speech synthesis settings for a virtual agent that may be configured
@@ -64,19 +64,19 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig reply_audio_config = 4;</code>
      */
-    private $reply_audio_config = null;
+    protected $reply_audio_config = null;
     /**
      * Parameters for a Dialogflow virtual-agent query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 7;</code>
      */
-    private $query_params = null;
+    protected $query_params = null;
     /**
      * Parameters for a human assist query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 8;</code>
      */
-    private $assist_query_params = null;
+    protected $assist_query_params = null;
     /**
      * Additional parameters to be put into Dialogflow CX session parameters. To
      * remove a parameter from the session, clients should explicitly set the
@@ -86,7 +86,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct cx_parameters = 13;</code>
      */
-    private $cx_parameters = null;
+    protected $cx_parameters = null;
     /**
      * Optional. Enable full bidirectional streaming. You can keep streaming the
      * audio until timeout, and there's no need to half close the stream to get
@@ -107,7 +107,7 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_extended_streaming = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_extended_streaming = false;
+    protected $enable_extended_streaming = false;
     /**
      * Enable partial virtual agent responses. If this flag is not enabled,
      * response stream still contains only one final response even if some
@@ -116,14 +116,14 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_partial_automated_agent_reply = 12;</code>
      */
-    private $enable_partial_automated_agent_reply = false;
+    protected $enable_partial_automated_agent_reply = false;
     /**
      * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
      * populated.
      *
      * Generated from protobuf field <code>bool enable_debugging_info = 19;</code>
      */
-    private $enable_debugging_info = false;
+    protected $enable_debugging_info = false;
     protected $config;
     protected $input;
 

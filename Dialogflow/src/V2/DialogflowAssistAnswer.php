@@ -22,7 +22,7 @@ class DialogflowAssistAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 2;</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
     protected $result;
 
     /**

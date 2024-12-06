@@ -23,13 +23,13 @@ class CreateConversationModelEvaluationRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The conversation model evaluation to be created.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationModelEvaluation conversation_model_evaluation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation_model_evaluation = null;
+    protected $conversation_model_evaluation = null;
 
     /**
      * @param string                                                  $parent                      Required. The conversation model resource name. Format:

@@ -20,7 +20,7 @@ class SuggestedQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_text = 1;</code>
      */
-    private $query_text = '';
+    protected $query_text = '';
 
     /**
      * Constructor.

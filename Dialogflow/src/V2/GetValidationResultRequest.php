@@ -22,7 +22,7 @@ class GetValidationResultRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The language for which you want a validation result. If not
      * specified, the agent's default language is used. [Many
@@ -32,7 +32,7 @@ class GetValidationResultRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

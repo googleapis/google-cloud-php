@@ -28,20 +28,20 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the document. The name must be 1024 bytes or
      * less; otherwise, the creation request fails.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The MIME type of this document.
      *
      * Generated from protobuf field <code>string mime_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Required. The knowledge type of document content.
      *
@@ -65,7 +65,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_auto_reload = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_auto_reload = false;
+    protected $enable_auto_reload = false;
     /**
      * Output only. The time and status of the latest reload.
      * This reload may have been triggered automatically or manually
@@ -73,7 +73,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Document.ReloadStatus latest_reload_status = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_reload_status = null;
+    protected $latest_reload_status = null;
     /**
      * Optional. Metadata for the document. The metadata supports arbitrary
      * key-value pairs. Suggested use cases include storing a document's title,
@@ -88,7 +88,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Document.State state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     protected $source;
 
     /**

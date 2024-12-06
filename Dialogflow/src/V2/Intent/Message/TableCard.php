@@ -20,19 +20,19 @@ class TableCard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. Subtitle to the title.
      *
      * Generated from protobuf field <code>string subtitle = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subtitle = '';
+    protected $subtitle = '';
     /**
      * Optional. Image which should be displayed on the card.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image = null;
+    protected $image = null;
     /**
      * Optional. Display properties for the columns in this table.
      *

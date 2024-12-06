@@ -21,13 +21,13 @@ class ColumnProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string header = 1;</code>
      */
-    private $header = '';
+    protected $header = '';
     /**
      * Optional. Defines text alignment for all cells in this column.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.ColumnProperties.HorizontalAlignment horizontal_alignment = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $horizontal_alignment = 0;
+    protected $horizontal_alignment = 0;
 
     /**
      * Constructor.

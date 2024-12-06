@@ -22,7 +22,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The names entity types to delete. All names must point to the
      * same agent as `parent`.

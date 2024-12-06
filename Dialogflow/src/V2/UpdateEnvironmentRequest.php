@@ -21,13 +21,13 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * Required. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. This field is used to prevent accidental overwrite of the default
      * environment, which is an operation that cannot be undone. To confirm that
@@ -36,7 +36,7 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_load_to_draft_and_discard_changes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_load_to_draft_and_discard_changes = false;
+    protected $allow_load_to_draft_and_discard_changes = false;
 
     /**
      * Constructor.

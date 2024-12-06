@@ -23,20 +23,20 @@ class ClearSuggestionFeatureConfigRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string conversation_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation_profile = '';
+    protected $conversation_profile = '';
     /**
      * Required. The participant role to remove the suggestion feature
      * config. Only HUMAN_AGENT or END_USER can be used.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role participant_role = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $participant_role = 0;
+    protected $participant_role = 0;
     /**
      * Required. The type of the suggestion feature to remove.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionFeature.Type suggestion_feature_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $suggestion_feature_type = 0;
+    protected $suggestion_feature_type = 0;
 
     /**
      * @param string $conversationProfile Required. The Conversation Profile to add or update the suggestion feature

@@ -23,7 +23,7 @@ class SuggestSmartRepliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The current natural language text segment to compile suggestion
      * for. This provides a way for user to get follow up smart reply suggestion
@@ -31,7 +31,7 @@ class SuggestSmartRepliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextInput current_text_input = 4;</code>
      */
-    private $current_text_input = null;
+    protected $current_text_input = null;
     /**
      * The name of the latest conversation message to compile suggestion
      * for. If empty, it will be the latest message of the conversation.
@@ -40,7 +40,7 @@ class SuggestSmartRepliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
@@ -48,7 +48,7 @@ class SuggestSmartRepliesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
 
     /**
      * @param string $parent Required. The name of the participant to fetch suggestion for.

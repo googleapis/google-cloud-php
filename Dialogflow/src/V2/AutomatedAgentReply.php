@@ -22,13 +22,13 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DetectIntentResponse detect_intent_response = 1;</code>
      */
-    private $detect_intent_response = null;
+    protected $detect_intent_response = null;
     /**
      * AutomatedAgentReply type.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply.AutomatedAgentReplyType automated_agent_reply_type = 7;</code>
      */
-    private $automated_agent_reply_type = 0;
+    protected $automated_agent_reply_type = 0;
     /**
      * Indicates whether the partial automated agent reply is interruptible when a
      * later reply message arrives. e.g. if the agent specified some music as
@@ -36,7 +36,7 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_cancellation = 8;</code>
      */
-    private $allow_cancellation = false;
+    protected $allow_cancellation = false;
     /**
      * The unique identifier of the current Dialogflow CX conversation page.
      * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
@@ -44,7 +44,7 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cx_current_page = 11;</code>
      */
-    private $cx_current_page = '';
+    protected $cx_current_page = '';
 
     /**
      * Constructor.

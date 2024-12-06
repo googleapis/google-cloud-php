@@ -22,13 +22,13 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The intent to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $intent = null;
+    protected $intent = null;
     /**
      * Optional. The language used to access language-specific data.
      * If not specified, the agent's default language is used.
@@ -38,13 +38,13 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. The resource view to apply to the returned intent.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $intent_view = 0;
+    protected $intent_view = 0;
 
     /**
      * @param string                             $parent Required. The agent to create a intent for.

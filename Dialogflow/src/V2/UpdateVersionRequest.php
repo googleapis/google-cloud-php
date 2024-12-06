@@ -25,13 +25,13 @@ class UpdateVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Version version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * Required. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\Version $version    Required. The version to update.

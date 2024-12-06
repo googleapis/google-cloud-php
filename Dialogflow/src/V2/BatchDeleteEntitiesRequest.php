@@ -22,7 +22,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The reference `values` of the entities to delete. Note that
      * these are not fully-qualified names, i.e. they don't start with
@@ -40,7 +40,7 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * @param string   $parent       Required. The name of the entity type to delete entries for. Format:

@@ -20,14 +20,14 @@ class Button extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Optional. The text to send back to the Dialogflow API or a URI to
      * open.
      *
      * Generated from protobuf field <code>string postback = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $postback = '';
+    protected $postback = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class SmartReplyModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationModel.ModelType training_model_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $training_model_type = 0;
+    protected $training_model_type = 0;
 
     /**
      * Constructor.

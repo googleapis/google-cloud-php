@@ -32,13 +32,13 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * Format of message.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig.MessageFormat message_format = 2;</code>
      */
-    private $message_format = 0;
+    protected $message_format = 0;
 
     /**
      * Constructor.

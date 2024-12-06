@@ -33,25 +33,25 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string response_id = 1;</code>
      */
-    private $response_id = '';
+    protected $response_id = '';
     /**
      * The result of speech recognition.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingRecognitionResult recognition_result = 2;</code>
      */
-    private $recognition_result = null;
+    protected $recognition_result = null;
     /**
      * The result of the conversational query or event processing.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 3;</code>
      */
-    private $query_result = null;
+    protected $query_result = null;
     /**
      * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 4;</code>
      */
-    private $webhook_status = null;
+    protected $webhook_status = null;
     /**
      * The audio data bytes encoded as specified in the request.
      * Note: The output audio is generated based on the values of default platform
@@ -65,13 +65,13 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes output_audio = 5;</code>
      */
-    private $output_audio = '';
+    protected $output_audio = '';
     /**
      * The config used by the speech synthesizer to generate the output audio.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
      */
-    private $output_audio_config = null;
+    protected $output_audio_config = null;
     /**
      * Debugging info that would get populated when
      * [StreamingDetectIntentRequest.enable_debugging_info][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.enable_debugging_info]
@@ -79,7 +79,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.CloudConversationDebuggingInfo debugging_info = 8;</code>
      */
-    private $debugging_info = null;
+    protected $debugging_info = null;
 
     /**
      * Constructor.

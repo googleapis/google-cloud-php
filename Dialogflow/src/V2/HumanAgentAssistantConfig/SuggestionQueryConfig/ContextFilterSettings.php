@@ -22,19 +22,19 @@ class ContextFilterSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool drop_handoff_messages = 1;</code>
      */
-    private $drop_handoff_messages = false;
+    protected $drop_handoff_messages = false;
     /**
      * If set to true, all messages from virtual agent are dropped.
      *
      * Generated from protobuf field <code>bool drop_virtual_agent_messages = 2;</code>
      */
-    private $drop_virtual_agent_messages = false;
+    protected $drop_virtual_agent_messages = false;
     /**
      * If set to true, all messages from ivr stage are dropped.
      *
      * Generated from protobuf field <code>bool drop_ivr_messages = 3;</code>
      */
-    private $drop_ivr_messages = false;
+    protected $drop_ivr_messages = false;
 
     /**
      * Constructor.

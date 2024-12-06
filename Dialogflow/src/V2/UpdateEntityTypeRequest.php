@@ -21,7 +21,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_type = null;
+    protected $entity_type = null;
     /**
      * Optional. The language used to access language-specific data.
      * If not specified, the agent's default language is used.
@@ -31,13 +31,13 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\EntityType $entityType Required. The entity type to update.

@@ -21,14 +21,14 @@ class UpdateFulfillmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Fulfillment fulfillment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $fulfillment = null;
+    protected $fulfillment = null;
     /**
      * Required. The mask to control which fields get updated. If the mask is not
      * present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment Required. The fulfillment to update.

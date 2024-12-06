@@ -26,19 +26,19 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional. The user name for HTTP Basic authentication.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Optional. The password for HTTP Basic authentication.
      *
      * Generated from protobuf field <code>string password = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Optional. The HTTP request headers to send together with fulfillment
      * requests.

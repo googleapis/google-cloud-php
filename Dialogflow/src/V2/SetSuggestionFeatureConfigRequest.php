@@ -23,20 +23,20 @@ class SetSuggestionFeatureConfigRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string conversation_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation_profile = '';
+    protected $conversation_profile = '';
     /**
      * Required. The participant role to add or update the suggestion feature
      * config. Only HUMAN_AGENT or END_USER can be used.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role participant_role = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $participant_role = 0;
+    protected $participant_role = 0;
     /**
      * Required. The suggestion feature config to add or update.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionFeatureConfig suggestion_feature_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $suggestion_feature_config = null;
+    protected $suggestion_feature_config = null;
 
     /**
      * @param string $conversationProfile Required. The Conversation Profile to add or update the suggestion feature
