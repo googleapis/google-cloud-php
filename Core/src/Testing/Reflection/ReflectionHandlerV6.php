@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,21 +17,30 @@
 
 namespace Google\Cloud\Core\Testing\Reflection;
 
-use phpDocumentor\Reflection\Php\Factory\Argument;
+use PhpParser\ParserFactory;
+use PhpParser\PhpVersion;
 
 /**
- * Class for determining which verison of phpdocumentor/reflection is being used.
+ * Class for running snippets using phpdocumentor/reflection:v6.
+ *
  * @internal
  */
-class ReflectionHandlerFactory
+class ReflectionHandlerV6 extends ReflectionHandlerV5
 {
     /**
-     * @return ReflectionHandlerV5
+     * @see ReflectionHandlerV5
      */
-    public static function create()
+    protected function createParser()
     {
-        return class_exists(Argument::class)
-            ? new ReflectionHandlerV5()
-            : new ReflectionHandlerV6();
+        $phpVersion = PhpVersion::fromString('8.1');  // PHP 8.1.0
+        return (new ParserFactory())->createForVersion($phpVersion);
+    }
+
+    /**
+     * @see ReflectionHandlerV5
+     */
+    protected function getAdditionalStrategies()
+    {
+        return [];
     }
 }

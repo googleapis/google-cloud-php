@@ -129,8 +129,8 @@ class Logger
         ConnectionInterface $connection,
         $name,
         $projectId,
-        array $resource = null,
-        array $labels = null
+        ?array $resource = null,
+        ?array $labels = null
     ) {
         $this->connection = $connection;
         $this->name = $name;
@@ -491,7 +491,7 @@ class Logger
      * @param \DateTimeInterface $dt [optional]
      * @return string
      */
-    private function createTimestamp(\DateTimeInterface $dt = null)
+    private function createTimestamp(?\DateTimeInterface $dt = null)
     {
         if (!$dt) {
             $dt = \DateTime::createFromFormat(

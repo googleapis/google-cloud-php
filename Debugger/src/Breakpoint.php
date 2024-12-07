@@ -649,7 +649,7 @@ class Breakpoint
      *     resolver that uses the current include path.
      * @return bool
      */
-    public function resolveLocation(SourceLocationResolver $resolver = null)
+    public function resolveLocation(?SourceLocationResolver $resolver = null)
     {
         $resolver = $resolver ?: new SourceLocationResolver();
         $this->resolvedLocation = $resolver->resolve($this->location);
