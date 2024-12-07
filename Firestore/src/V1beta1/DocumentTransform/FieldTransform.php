@@ -377,7 +377,3 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldTransform::class, \Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform::class);
-

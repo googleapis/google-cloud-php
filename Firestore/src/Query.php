@@ -17,17 +17,20 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\QueryTrait;
 use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 
 /**
  * A Cloud Firestore Query.
@@ -117,10 +120,14 @@ class Query
     ];
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    private $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var ValueMapper
@@ -143,9 +150,9 @@ class Query
     private $limitToLast;
 
     /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -153,13 +160,15 @@ class Query
      * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         $parent,
         array $query,
         $limitToLast = false
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->parentName = $parent;
         $this->query = $query;
@@ -180,11 +189,11 @@ class Query
      * $count = $query->count();
      * ```
      *
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param array $options [optional] Configuration options is an array.
      * @return int
      */
     public function count(array $options = [])
@@ -208,12 +217,12 @@ class Query
      * Sum of data which contains `NaN` returns `NaN`.
      * Non numeric values are ignored.
      *
-     * @param string $field The relative path of the field to aggregate upon.
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] Configuration options is an array.
      * @return int|float
      */
     public function sum(string $field, array $options = [])
@@ -237,12 +246,12 @@ class Query
      * Average of data which contains `NaN` returns `NaN`.
      * Non numeric values are ignored.
      *
-     * @param string $field The relative path of the field to aggregate upon.
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] Configuration options is an array.
      * @return float|null
      */
     public function avg(string $field, array $options = [])
@@ -272,7 +281,8 @@ class Query
     public function addAggregation($aggregate)
     {
         $aggregateQuery = new AggregateQuery(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->parentName,
             [
                 'query' => $this->query,
@@ -293,7 +303,7 @@ class Query
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.RunQuery RunQuery
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.RunQuery RunQuery
      * @codingStandardsIgnoreEnd
      * @param array $options {
      *     Configuration options.
@@ -302,31 +312,33 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
-     *     specified.
      * @throws \RuntimeException If limit-to-last is enabled but no order-by has
      *     been specified.
      */
     public function documents(array $options = [])
     {
-        $options = $this->formatReadTimeOption($options);
-
         $maxRetries = $this->pluck('maxRetries', $options, false);
-        $maxRetries = $maxRetries === null
-            ? FirestoreClient::MAX_RETRIES
-            : $maxRetries;
+        $maxRetries = $maxRetries ?? FirestoreClient::MAX_RETRIES;
 
         $query = $this->structuredQueryPrepare([
             'query' => $this->query,
             'limitToLast' => $this->limitToLast
         ]);
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
-
-            $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
+            list($data, $optionalArgs) = $this->splitOptionalArgs(
+                ['retrySettings' => ['maxRetries' => 0]] + $options
+            );
+            $data += $this->arrayFilterRemoveNull([
                 'parent' => $this->parentName,
                 'structuredQuery' => $query,
-                'retries' => 0
-            ]) + $options);
+            ]);
+            $request = $this->serializer->decodeMessage(new RunQueryRequest(), $data);
+            $generator = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'runQuery',
+                $request,
+                $optionalArgs
+            );
 
             // cache collection references
             $collections = [];
@@ -339,14 +351,16 @@ class Query
                     $collectionName = $this->parentPath($result['document']['name']);
                     if (!isset($collections[$collectionName])) {
                         $collections[$collectionName] = new CollectionReference(
-                            $this->connection,
+                            $this->requestHandler,
+                            $this->serializer,
                             $this->valueMapper,
                             $collectionName
                         );
                     }
 
                     $ref = new DocumentReference(
-                        $this->connection,
+                        $this->requestHandler,
+                        $this->serializer,
                         $this->valueMapper,
                         $collections[$collectionName],
                         $result['document']['name']
@@ -549,7 +563,7 @@ class Query
     public function limit($number)
     {
         return $this->newQuery([
-            'limit' => $number
+            'limit' => ['value' => $number]
         ], false, false); // create a new query, explicitly setting `limitToLast` to false.
     }
 
@@ -573,7 +587,7 @@ class Query
     public function limitToLast($number)
     {
         return $this->newQuery([
-            'limit' => $number
+            'limit' => ['value' => $number]
         ], false, true); // create a new query, explicitly setting `limitToLast` to true.
     }
 
@@ -972,7 +986,8 @@ class Query
         $query = $this->arrayMergeRecursive($query, $additionalConfig);
 
         return new self(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->parentName,
             $query,
@@ -1009,13 +1024,15 @@ class Query
         }
 
         $parent = new CollectionReference(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->parentPath($childPath)
         );
 
         return new DocumentReference(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $parent,
             $childPath

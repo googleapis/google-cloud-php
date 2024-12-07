@@ -58,7 +58,3 @@ class DeleteProtectionState
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeleteProtectionState::class, \Google\Cloud\Firestore\Admin\V1\Database_DeleteProtectionState::class);
-

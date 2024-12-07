@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldValue;
 
 /**
@@ -47,7 +46,9 @@ class FieldValueTest extends FirestoreTestCase
             ['path' => 'foo', 'value' => FieldValue::serverTimestamp()]
         ]);
 
-        $this->assertInstanceOf(Timestamp::class, $this->document->snapshot()['foo']);
+        $timestamp = $this->document->snapshot()['foo'];
+        $this->assertArrayHasKey('seconds', $timestamp);
+        $this->assertArrayHasKey('nanos', $timestamp);
     }
 
     public function testDelete()

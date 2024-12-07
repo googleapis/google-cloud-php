@@ -123,7 +123,3 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Filter::class, \Google\Cloud\Firestore\V1beta1\StructuredQuery_Filter::class);
-
