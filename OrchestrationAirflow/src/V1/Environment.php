@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class Environment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the environment, in the form:
+     * Identifier. The resource name of the environment, in the form:
      * "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      * EnvironmentId must start with a lowercase letter followed by up to 63
      * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Configuration parameters for this environment.
+     * Optional. Configuration parameters for this environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $config = null;
     /**
@@ -64,7 +64,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * * Both keys and values are additionally constrained to be <= 128 bytes in
      * size.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 7;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -93,12 +93,12 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the environment, in the form:
+     *           Identifier. The resource name of the environment, in the form:
      *           "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      *           EnvironmentId must start with a lowercase letter followed by up to 63
      *           lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig $config
-     *           Configuration parameters for this environment.
+     *           Optional. Configuration parameters for this environment.
      *     @type string $uuid
      *           Output only. The UUID (Universally Unique IDentifier) associated with this
      *           environment. This value is generated when the environment is created.
@@ -130,12 +130,12 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the environment, in the form:
+     * Identifier. The resource name of the environment, in the form:
      * "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      * EnvironmentId must start with a lowercase letter followed by up to 63
      * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -144,12 +144,12 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the environment, in the form:
+     * Identifier. The resource name of the environment, in the form:
      * "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
      * EnvironmentId must start with a lowercase letter followed by up to 63
      * lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -162,9 +162,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration parameters for this environment.
+     * Optional. Configuration parameters for this environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig|null
      */
     public function getConfig()
@@ -183,9 +183,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration parameters for this environment.
+     * Optional. Configuration parameters for this environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig $var
      * @return $this
      */
@@ -332,7 +332,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * * Both keys and values are additionally constrained to be <= 128 bytes in
      * size.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 7;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -349,7 +349,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * * Both keys and values are additionally constrained to be <= 128 bytes in
      * size.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 7;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

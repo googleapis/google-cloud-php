@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SoftwareConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The version of the software running in the environment.
+     * Optional. The version of the software running in the environment.
      * This encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
      * `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
@@ -37,7 +37,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * list](/composer/docs/concepts/versioning/composer-versions) and [versioning
      * overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $image_version = '';
     /**
@@ -138,7 +138,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image_version
-     *           The version of the software running in the environment.
+     *           Optional. The version of the software running in the environment.
      *           This encapsulates both the version of Cloud Composer functionality and the
      *           version of Apache Airflow. It must match the regular expression
      *           `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
@@ -228,7 +228,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the software running in the environment.
+     * Optional. The version of the software running in the environment.
      * This encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
      * `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
@@ -249,7 +249,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * list](/composer/docs/concepts/versioning/composer-versions) and [versioning
      * overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImageVersion()
@@ -258,7 +258,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The version of the software running in the environment.
+     * Optional. The version of the software running in the environment.
      * This encapsulates both the version of Cloud Composer functionality and the
      * version of Apache Airflow. It must match the regular expression
      * `composer-([0-9]+(\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?)?|latest)-airflow-([0-9]+(\.[0-9]+(\.[0-9]+)?)?)`.
@@ -279,7 +279,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * list](/composer/docs/concepts/versioning/composer-versions) and [versioning
      * overview](/composer/docs/concepts/versioning/composer-versioning-overview).
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
