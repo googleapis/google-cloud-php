@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,9 @@ class SecretManagerServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SecretManagerServiceClient */
@@ -98,8 +100,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new AccessSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new AccessSecretVersionRequest())->setName($formattedName);
         $response = $gapicClient->accessSecretVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -123,17 +124,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new AccessSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new AccessSecretVersionRequest())->setName($formattedName);
         try {
             $gapicClient->accessSecretVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,9 +170,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         $payload = new SecretPayload();
-        $request = (new AddSecretVersionRequest())
-            ->setParent($formattedParent)
-            ->setPayload($payload);
+        $request = (new AddSecretVersionRequest())->setParent($formattedParent)->setPayload($payload);
         $response = $gapicClient->addSecretVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -195,19 +196,20 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         $payload = new SecretPayload();
-        $request = (new AddSecretVersionRequest())
-            ->setParent($formattedParent)
-            ->setPayload($payload);
+        $request = (new AddSecretVersionRequest())->setParent($formattedParent)->setPayload($payload);
         try {
             $gapicClient->addSecretVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -271,12 +273,15 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -312,8 +317,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $request = (new DeleteSecretRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSecretRequest())->setName($formattedName);
         $gapicClient->deleteSecret($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -336,17 +340,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $request = (new DeleteSecretRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSecretRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSecret($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -379,8 +385,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new DestroySecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new DestroySecretVersionRequest())->setName($formattedName);
         $response = $gapicClient->destroySecretVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -404,17 +409,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new DestroySecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new DestroySecretVersionRequest())->setName($formattedName);
         try {
             $gapicClient->destroySecretVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -447,8 +454,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new DisableSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new DisableSecretVersionRequest())->setName($formattedName);
         $response = $gapicClient->disableSecretVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -472,17 +478,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new DisableSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new DisableSecretVersionRequest())->setName($formattedName);
         try {
             $gapicClient->disableSecretVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -515,8 +523,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new EnableSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new EnableSecretVersionRequest())->setName($formattedName);
         $response = $gapicClient->enableSecretVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -540,17 +547,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new EnableSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new EnableSecretVersionRequest())->setName($formattedName);
         try {
             $gapicClient->enableSecretVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -581,8 +590,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -606,17 +614,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -647,8 +657,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $request = (new GetSecretRequest())
-            ->setName($formattedName);
+        $request = (new GetSecretRequest())->setName($formattedName);
         $response = $gapicClient->getSecret($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -672,17 +681,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $request = (new GetSecretRequest())
-            ->setName($formattedName);
+        $request = (new GetSecretRequest())->setName($formattedName);
         try {
             $gapicClient->getSecret($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -715,8 +726,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new GetSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetSecretVersionRequest())->setName($formattedName);
         $response = $gapicClient->getSecretVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -740,17 +750,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new GetSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetSecretVersionRequest())->setName($formattedName);
         try {
             $gapicClient->getSecretVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -776,9 +788,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $versionsElement = new SecretVersion();
-        $versions = [
-            $versionsElement,
-        ];
+        $versions = [$versionsElement];
         $expectedResponse = new ListSecretVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -786,8 +796,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $request = (new ListSecretVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSecretVersionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSecretVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -814,17 +823,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
-        $request = (new ListSecretVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSecretVersionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSecretVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -850,9 +861,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $secretsElement = new Secret();
-        $secrets = [
-            $secretsElement,
-        ];
+        $secrets = [$secretsElement];
         $expectedResponse = new ListSecretsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -860,8 +869,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSecretsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSecretsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSecrets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -888,17 +896,19 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSecretsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSecretsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSecrets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -930,9 +940,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -958,19 +966,20 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -998,9 +1007,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1026,19 +1033,20 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1070,9 +1078,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $secret = new Secret();
         $updateMask = new FieldMask();
-        $request = (new UpdateSecretRequest())
-            ->setSecret($secret)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSecretRequest())->setSecret($secret)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSecret($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1098,19 +1104,20 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $secret = new Secret();
         $updateMask = new FieldMask();
-        $request = (new UpdateSecretRequest())
-            ->setSecret($secret)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSecretRequest())->setSecret($secret)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSecret($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1139,8 +1146,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $request = (new AccessSecretVersionRequest())
-            ->setName($formattedName);
+        $request = (new AccessSecretVersionRequest())->setName($formattedName);
         $response = $gapicClient->accessSecretVersionAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

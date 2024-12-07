@@ -75,6 +75,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\SecretManager\V1\SecretVersion_State::class);
 

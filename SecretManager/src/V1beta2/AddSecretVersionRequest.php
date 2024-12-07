@@ -24,14 +24,14 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The secret payload of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1beta2.SecretPayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $payload = null;
+    protected $payload = null;
 
     /**
      * @param string                                            $parent  Required. The resource name of the

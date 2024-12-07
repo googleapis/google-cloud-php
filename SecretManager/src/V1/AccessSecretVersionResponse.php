@@ -24,13 +24,13 @@ class AccessSecretVersionResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Secret payload
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.SecretPayload payload = 2;</code>
      */
-    private $payload = null;
+    protected $payload = null;
 
     /**
      * Constructor.
