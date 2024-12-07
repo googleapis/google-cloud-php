@@ -29,7 +29,6 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -318,7 +317,7 @@ class Instance
         ];
 
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
         if (empty($options['nodeCount']) && empty($options['processingUnits'])) {
             $options['nodeCount'] = self::DEFAULT_NODE_COUNT;
@@ -397,7 +396,7 @@ class Instance
     public function update(array $options = [])
     {
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException('Must only set either `nodeCount` or `processingUnits`');
         }
 
         $operation = $this->connection->updateInstance([
@@ -770,10 +769,10 @@ class Instance
     private function fullyQualifiedInstanceName($name, $project)
     {
         // try {
-            return InstanceAdminClient::instanceName(
-                $project,
-                $name
-            );
+        return InstanceAdminClient::instanceName(
+            $project,
+            $name
+        );
         // } catch (ValidationException $e) {
         //     return $name;
         // }

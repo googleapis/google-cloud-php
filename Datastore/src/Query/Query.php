@@ -507,7 +507,7 @@ class Query implements QueryInterface
      */
     public function queryKey()
     {
-        return "query";
+        return 'query';
     }
 
     public function aggregation(Aggregation $aggregation)

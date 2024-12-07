@@ -127,7 +127,7 @@ class CacheSessionPool implements SessionPoolInterface
     use SysvTrait;
 
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
-    const DURATION_SESSION_LIFETIME = 28*24*3600; // 28 days
+    const DURATION_SESSION_LIFETIME = 28 * 24 * 3600; // 28 days
     const DURATION_TWENTY_MINUTES = 1200;
     const DURATION_ONE_MINUTE = 60;
     const WINDOW_SIZE = 600;
@@ -471,7 +471,7 @@ class CacheSessionPool implements SessionPoolInterface
         }
 
         $exception = null;
-        list ($createdSessions, $exception) = $this->createSessions(count($toCreate));
+        list($createdSessions, $exception) = $this->createSessions(count($toCreate));
 
         $this->config['lock']->synchronize(function () use ($toCreate, $createdSessions) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -1035,7 +1035,7 @@ class CacheSessionPool implements SessionPoolInterface
                 $maintainInterval = $now - $prevMaintainTime;
                 $maxLifetime = self::SESSION_EXPIRATION_SECONDS - 600;
                 $totalSessionsCount = min($totalSessionsCount, $maintainedSessionsCount);
-                $meanRefreshCount = (int)($totalSessionsCount * $maintainInterval / $maxLifetime);
+                $meanRefreshCount = (int) ($totalSessionsCount * $maintainInterval / $maxLifetime);
                 $meanRefreshCount = min($meanRefreshCount, $maintainedSessionsCount);
                 // There may be sessions already refreshed since previous maintenance,
                 // so we can save some refresh requests.

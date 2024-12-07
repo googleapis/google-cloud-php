@@ -22,8 +22,8 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Debugger\DebuggerClient;
 use Google\Cloud\Debugger\V2\Breakpoint;
-use Google\Cloud\Debugger\V2\Debuggee;
 use Google\Cloud\Debugger\V2\Controller2Client;
+use Google\Cloud\Debugger\V2\Debuggee;
 use Google\Cloud\Debugger\V2\Debugger2Client;
 
 /**

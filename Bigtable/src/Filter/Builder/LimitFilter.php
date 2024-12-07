@@ -49,7 +49,7 @@ class LimitFilter
     public function cellsPerRow($count)
     {
         return new SimpleFilter(
-            (new RowFilter)->setCellsPerRowLimitFilter($count)
+            (new RowFilter())->setCellsPerRowLimitFilter($count)
         );
     }
 
@@ -73,7 +73,7 @@ class LimitFilter
     public function cellsPerColumn($count)
     {
         return new SimpleFilter(
-            (new RowFilter)->setCellsPerColumnLimitFilter($count)
+            (new RowFilter())->setCellsPerColumnLimitFilter($count)
         );
     }
 }
