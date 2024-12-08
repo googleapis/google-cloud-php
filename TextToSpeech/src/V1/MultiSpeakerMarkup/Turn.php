@@ -21,13 +21,13 @@ class Turn extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string speaker = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $speaker = '';
+    protected $speaker = '';
     /**
      * Required. The text to speak.
      *
      * Generated from protobuf field <code>string text = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $text = '';
+    protected $text = '';
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class Turn extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Turn::class, \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup_Turn::class);
 

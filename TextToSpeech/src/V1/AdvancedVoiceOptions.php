@@ -21,7 +21,7 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool low_latency_journey_synthesis = 1;</code>
      */
-    private $low_latency_journey_synthesis = null;
+    protected $low_latency_journey_synthesis = null;
 
     /**
      * Constructor.

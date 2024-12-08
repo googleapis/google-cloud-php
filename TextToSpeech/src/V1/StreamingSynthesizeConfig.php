@@ -20,7 +20,7 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $voice = null;
+    protected $voice = null;
 
     /**
      * Constructor.
