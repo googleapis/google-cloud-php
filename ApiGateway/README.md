@@ -29,6 +29,11 @@ Please see our [Authentication guide](https://github.com/googleapis/google-cloud
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
