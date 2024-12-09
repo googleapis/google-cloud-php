@@ -21,19 +21,19 @@ class BatchRecognizeTranscriptionMetadata extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Error if one was encountered.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 2;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * The Cloud Storage URI to which recognition results will be written.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      */
-    private $uri = '';
+    protected $uri = '';
 
     /**
      * Constructor.

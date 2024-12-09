@@ -22,7 +22,7 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Number of results per requests. A valid page_size ranges from 0 to 100
      * inclusive. If the page_size is zero or unspecified, a page size of 5 will
@@ -31,7 +31,7 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous
      * [ListCustomClasses][google.cloud.speech.v2.Speech.ListCustomClasses] call.
@@ -42,13 +42,13 @@ class ListCustomClassesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Whether, or not, to show resources that have been deleted.
      *
      * Generated from protobuf field <code>bool show_deleted = 4;</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * @param string $parent Required. The project and location of CustomClass resources to list. The

@@ -25,7 +25,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_offset = 1;</code>
      */
-    private $start_offset = null;
+    protected $start_offset = null;
     /**
      * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
@@ -36,13 +36,13 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_offset = 2;</code>
      */
-    private $end_offset = null;
+    protected $end_offset = null;
     /**
      * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      */
-    private $word = '';
+    protected $word = '';
     /**
      * The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
@@ -55,7 +55,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * A distinct label is assigned for every speaker within the audio. This field
      * specifies which one of those speakers was detected to have spoken this
@@ -65,7 +65,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string speaker_label = 6;</code>
      */
-    private $speaker_label = '';
+    protected $speaker_label = '';
 
     /**
      * Constructor.

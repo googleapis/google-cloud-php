@@ -20,25 +20,25 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time the operation was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The resource path for the target of the operation.
      *
      * Generated from protobuf field <code>string resource = 3;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The method that triggered the operation.
      *
      * Generated from protobuf field <code>string method = 4;</code>
      */
-    private $method = '';
+    protected $method = '';
     /**
      * The [KMS key
      * name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which
@@ -47,7 +47,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 6 [(.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * The [KMS key version
      * name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions)
@@ -56,14 +56,14 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_version_name = 7 [(.google.api.resource_reference) = {</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
     /**
      * The percent progress of the Operation. Values can range from 0-100. If the
      * value is 100, then the operation is finished.
      *
      * Generated from protobuf field <code>int32 progress_percent = 22;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     protected $request;
     protected $metadata;
 

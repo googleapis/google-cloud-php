@@ -66,19 +66,19 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.StreamingRecognizeResponse.SpeechEventType speech_event_type = 3;</code>
      */
-    private $speech_event_type = 0;
+    protected $speech_event_type = 0;
     /**
      * Time offset between the beginning of the audio and event emission.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration speech_event_offset = 7;</code>
      */
-    private $speech_event_offset = null;
+    protected $speech_event_offset = null;
     /**
      * Metadata about the recognition.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionResponseMetadata metadata = 5;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class RecognitionOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.OutputFormatConfig output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_format_config = null;
+    protected $output_format_config = null;
     protected $output;
 
     /**

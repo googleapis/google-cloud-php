@@ -21,7 +21,7 @@ class AccessMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.AccessMetadata.ConstraintType constraint_type = 1;</code>
      */
-    private $constraint_type = 0;
+    protected $constraint_type = 0;
 
     /**
      * Constructor.

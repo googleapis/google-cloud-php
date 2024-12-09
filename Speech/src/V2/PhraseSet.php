@@ -23,13 +23,13 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System-assigned unique identifier for the PhraseSet.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * A list of word and phrases.
      *
@@ -46,44 +46,44 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float boost = 4;</code>
      */
-    private $boost = 0.0;
+    protected $boost = 0.0;
     /**
      * User-settable, human-readable name for the PhraseSet. Must be 63
      * characters or less.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The PhraseSet lifecycle state.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.PhraseSet.State state = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The most recent time this resource was modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The time at which this resource was requested for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. The time at which this resource will be purged.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Allows users to store small amounts of arbitrary data.
      * Both the key and the value must be 63 characters or less each.
@@ -99,14 +99,14 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. Whether or not this PhraseSet is in the process of being
      * updated.
      *
      * Generated from protobuf field <code>bool reconciling = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The [KMS key
      * name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which
@@ -115,7 +115,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Output only. The [KMS key version
      * name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions)
@@ -124,7 +124,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_version_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
 
     /**
      * Constructor.
