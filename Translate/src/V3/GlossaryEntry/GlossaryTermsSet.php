@@ -71,6 +71,4 @@ class GlossaryTermsSet extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GlossaryTermsSet::class, \Google\Cloud\Translate\V3\GlossaryEntry_GlossaryTermsSet::class);
 

@@ -21,14 +21,14 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The resource name for the dataset to use for adaptive MT.
      * `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`
      *
      * Generated from protobuf field <code>string dataset = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. The content of the input in string format.
      *
@@ -40,7 +40,7 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig reference_sentence_config = 6;</code>
      */
-    private $reference_sentence_config = null;
+    protected $reference_sentence_config = null;
     /**
      * Optional. Glossary to be applied. The glossary must be
      * within the same region (have the same location-id) as the model, otherwise
@@ -48,7 +48,7 @@ class AdaptiveMtTranslateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig glossary_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $glossary_config = null;
+    protected $glossary_config = null;
 
     /**
      * @param string   $parent  Required. Location to make a regional call.
