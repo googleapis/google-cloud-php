@@ -153,13 +153,14 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     protected $google_product_category = null;
     /**
-     * Global Trade Item Number
+     * Global Trade Item Numbers
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
+     * You can provide up to 10 GTINs.
      *
-     * Generated from protobuf field <code>optional string gtin = 26;</code>
+     * Generated from protobuf field <code>repeated string gtin = 26;</code>
      */
-    protected $gtin = null;
+    private $gtin;
     /**
      * Shared identifier for all variants of the same product.
      *
@@ -367,8 +368,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      */
     private $taxes;
     /**
-     * The tax category of the product, used to configure detailed tax nexus
-     * in account-level tax settings.
+     * The tax category of the product.
      *
      * Generated from protobuf field <code>optional string tax_category = 52;</code>
      */
@@ -698,10 +698,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           querying products, this field will contain the user provided value. There
      *           is currently no way to get back the auto assigned google product
      *           categories through the API.
-     *     @type string $gtin
-     *           Global Trade Item Number
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtin
+     *           Global Trade Item Numbers
      *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      *           item.
+     *           You can provide up to 10 GTINs.
      *     @type string $item_group_id
      *           Shared identifier for all variants of the same product.
      *     @type string $material
@@ -785,8 +786,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Shopping\Merchant\Products\V1beta\Tax>|\Google\Protobuf\Internal\RepeatedField $taxes
      *           Tax information.
      *     @type string $tax_category
-     *           The tax category of the product, used to configure detailed tax nexus
-     *           in account-level tax settings.
+     *           The tax category of the product.
      *     @type string $energy_efficiency_class
      *           The energy efficiency class as defined in EU directive 2010/30/EU.
      *     @type string $min_energy_efficiency_class
@@ -1644,41 +1644,33 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Global Trade Item Number
+     * Global Trade Item Numbers
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
+     * You can provide up to 10 GTINs.
      *
-     * Generated from protobuf field <code>optional string gtin = 26;</code>
-     * @return string
+     * Generated from protobuf field <code>repeated string gtin = 26;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGtin()
     {
-        return isset($this->gtin) ? $this->gtin : '';
-    }
-
-    public function hasGtin()
-    {
-        return isset($this->gtin);
-    }
-
-    public function clearGtin()
-    {
-        unset($this->gtin);
+        return $this->gtin;
     }
 
     /**
-     * Global Trade Item Number
+     * Global Trade Item Numbers
      * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      * item.
+     * You can provide up to 10 GTINs.
      *
-     * Generated from protobuf field <code>optional string gtin = 26;</code>
-     * @param string $var
+     * Generated from protobuf field <code>repeated string gtin = 26;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGtin($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->gtin = $var;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->gtin = $arr;
 
         return $this;
     }
@@ -2780,8 +2772,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The tax category of the product, used to configure detailed tax nexus
-     * in account-level tax settings.
+     * The tax category of the product.
      *
      * Generated from protobuf field <code>optional string tax_category = 52;</code>
      * @return string
@@ -2802,8 +2793,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The tax category of the product, used to configure detailed tax nexus
-     * in account-level tax settings.
+     * The tax category of the product.
      *
      * Generated from protobuf field <code>optional string tax_category = 52;</code>
      * @param string $var
