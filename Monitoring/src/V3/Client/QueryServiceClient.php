@@ -43,7 +43,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface queryTimeSeriesAsync(QueryTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryTimeSeriesAsync(QueryTimeSeriesRequest $request, array $optionalArgs = [])
  */
 final class QueryServiceClient
 {

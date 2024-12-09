@@ -31,8 +31,9 @@ use Google\Cloud\Dataplex\V1\UpdateEntryRequest;
 /**
  * Updates an Entry.
  *
- * @param string $entryEntryType Immutable. The resource name of the EntryType used to create this
- *                               Entry.
+ * @param string $entryEntryType Immutable. The relative resource name of the entry type that was
+ *                               used to create this entry, in the format
+ *                               `projects/{project_id_or_number}/locations/{location_id}/entryTypes/{entry_type_id}`.
  */
 function update_entry_sample(string $entryEntryType): void
 {

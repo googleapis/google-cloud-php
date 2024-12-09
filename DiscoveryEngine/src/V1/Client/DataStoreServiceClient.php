@@ -56,11 +56,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDataStoreAsync(CreateDataStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataStoreAsync(DeleteDataStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataStoreAsync(GetDataStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataStoresAsync(ListDataStoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataStoreAsync(UpdateDataStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDataStoreAsync(CreateDataStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDataStoreAsync(DeleteDataStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStore> getDataStoreAsync(GetDataStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataStoresAsync(ListDataStoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStore> updateDataStoreAsync(UpdateDataStoreRequest $request, array $optionalArgs = [])
  */
 final class DataStoreServiceClient
 {

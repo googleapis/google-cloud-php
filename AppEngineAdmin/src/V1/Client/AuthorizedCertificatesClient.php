@@ -47,11 +47,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAuthorizedCertificatesAsync(ListAuthorizedCertificatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAuthorizedCertificateAsync(UpdateAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthorizedCertificatesAsync(ListAuthorizedCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> updateAuthorizedCertificateAsync(UpdateAuthorizedCertificateRequest $request, array $optionalArgs = [])
  */
 final class AuthorizedCertificatesClient
 {

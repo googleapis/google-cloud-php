@@ -63,15 +63,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface clearSuggestionFeatureConfigAsync(ClearSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationProfileAsync(CreateConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationProfileAsync(DeleteConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationProfileAsync(GetConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationProfilesAsync(ListConversationProfilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSuggestionFeatureConfigAsync(SetSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversationProfileAsync(UpdateConversationProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> clearSuggestionFeatureConfigAsync(ClearSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationProfile> createConversationProfileAsync(CreateConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversationProfileAsync(DeleteConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationProfile> getConversationProfileAsync(GetConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationProfilesAsync(ListConversationProfilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSuggestionFeatureConfigAsync(SetSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationProfile> updateConversationProfileAsync(UpdateConversationProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationProfilesClient
 {
@@ -296,6 +296,25 @@ final class ConversationProfilesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -502,6 +521,7 @@ final class ConversationProfilesClient
      * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
@@ -644,7 +664,9 @@ final class ConversationProfilesClient
     /**
      * Creates a conversation profile in the specified project.
      *
-     * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
+     * [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+     * and
+     * [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
      * aren't populated in the response. You can retrieve them via
      * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
      * API.
@@ -799,7 +821,9 @@ final class ConversationProfilesClient
     /**
      * Updates the specified conversation profile.
      *
-     * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
+     * [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+     * and
+     * [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
      * aren't populated in the response. You can retrieve them via
      * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
      * API.

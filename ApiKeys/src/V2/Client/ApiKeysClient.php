@@ -60,14 +60,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyStringAsync(GetKeyStringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupKeyAsync(LookupKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteKeyAsync(UndeleteKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Key> getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetKeyStringResponse> getKeyStringAsync(GetKeyStringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupKeyResponse> lookupKeyAsync(LookupKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteKeyAsync(UndeleteKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
  */
 final class ApiKeysClient
 {

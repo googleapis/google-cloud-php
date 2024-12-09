@@ -48,11 +48,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface cancelAsync(CancelInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstanceGroupManagerResizeRequestsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelAsync(CancelInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceGroupManagerResizeRequest> getAsync(GetInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstanceGroupManagerResizeRequestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstanceGroupManagerResizeRequestsRequest $request, array $optionalArgs = [])
  */
 final class InstanceGroupManagerResizeRequestsClient
 {

@@ -60,14 +60,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
  */
 final class ServicesClient
 {
@@ -225,6 +225,70 @@ final class ServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * location_policy resource.
+     *
+     * @param string $location
+     *
+     * @return string The formatted location_policy resource.
+     */
+    public static function locationPolicyName(string $location): string
+    {
+        return self::getPathTemplate('locationPolicy')->render([
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a mesh
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $mesh
+     *
+     * @return string The formatted mesh resource.
+     */
+    public static function meshName(string $project, string $location, string $mesh): string
+    {
+        return self::getPathTemplate('mesh')->render([
+            'project' => $project,
+            'location' => $location,
+            'mesh' => $mesh,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName(string $project): string
+    {
+        return self::getPathTemplate('policy')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_policy resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_policy resource.
+     */
+    public static function projectPolicyName(string $project): string
+    {
+        return self::getPathTemplate('projectPolicy')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a revision
      * resource.
      *
@@ -307,6 +371,10 @@ final class ServicesClient
      * - connector: projects/{project}/locations/{location}/connectors/{connector}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
+     * - locationPolicy: locations/{location}/policy
+     * - mesh: projects/{project}/locations/{location}/meshes/{mesh}
+     * - policy: projects/{project}/policy
+     * - projectPolicy: projects/{project}/policy
      * - revision: projects/{project}/locations/{location}/services/{service}/revisions/{revision}
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}

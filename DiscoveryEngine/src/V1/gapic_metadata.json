@@ -82,6 +82,11 @@
                             "methods": [
                                 "search"
                             ]
+                        },
+                        "SearchLite": {
+                            "methods": [
+                                "searchLite"
+                            ]
                         }
                     }
                 }
@@ -286,6 +291,16 @@
                         "CheckGrounding": {
                             "methods": [
                                 "checkGrounding"
+                            ]
+                        },
+                        "GenerateGroundedContent": {
+                            "methods": [
+                                "generateGroundedContent"
+                            ]
+                        },
+                        "StreamGenerateGroundedContent": {
+                            "methods": [
+                                "streamGenerateGroundedContent"
                             ]
                         }
                     }

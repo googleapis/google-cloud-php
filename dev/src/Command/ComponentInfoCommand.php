@@ -44,6 +44,8 @@ class ComponentInfoCommand extends Command
         'php_namespaces' => 'Php Namespace',
         'github_repo' => 'Github Repo',
         'proto_path' => 'Proto Path',
+        'proto_packages' => 'Proto Packages',
+        'proto_namespaces' => 'Proto Namespaces',
         'service_address' => 'Service Address',
         'api_shortname' => 'API Shortname',
         'description' => 'Description',
@@ -216,7 +218,7 @@ class ComponentInfoCommand extends Command
             'migration_mode' => $package ? $package->getMigrationStatus() : implode(",", $component->getMigrationStatuses()),
             'php_namespaces' => implode(",", array_keys($component->getNamespaces())),
             'github_repo' => $component->getRepoName(),
-            'proto_path' => $package ? $package->getProtoPackage() : implode(",", $component->getProtoPackages()),
+            'proto_path' => $package ? $package->getProtoPath() : implode(",", $component->getProtoPaths()),
             'service_address' => $package ? $package->getServiceAddress() : implode(",", $component->getServiceAddresses()),
             'api_shortname' => $package ? $package->getApiShortname() : implode(",", array_filter($component->getApiShortnames())),
             'description' => $component->getDescription(),
@@ -239,6 +241,22 @@ class ComponentInfoCommand extends Command
         if (array_key_exists('downloads', $requestedFields)) {
             $row['downloads'] = number_format($this->packagist->getDownloads($component->getPackageName()));
         }
+        if (
+            array_key_exists('proto_namespaces', $requestedFields)
+            || array_key_exists('proto_packages', $requestedFields)
+        ) {
+            $protoNamespaces = $component->getProtoNamespaces();
+            if (array_key_exists('proto_packages', $requestedFields)) {
+                $row['proto_packages'] = implode(",", array_keys($protoNamespaces));
+            }
+            if (array_key_exists('proto_namespaces', $requestedFields)) {
+                $row['proto_namespaces'] = implode("\n", array_map(
+                    fn ($key, $value) => $key . ' => ' . $value,
+                    array_keys($protoNamespaces),
+                    array_values($protoNamespaces)
+                ));
+            }
+        }
         // call again in case the filters were on the slow fields
         if ($this->filterRow($row, $filters)) {
             return null;
@@ -248,7 +266,7 @@ class ComponentInfoCommand extends Command
 
     private function getAvailableApiVersions(Component $component): string
     {
-        $protos = $component->getProtoPackages();
+        $protos = $component->getProtoPaths();
         $proto = array_shift($protos);
         // Proto packages should be in a version directory
         $versionPath = dirname($proto);
@@ -276,7 +294,7 @@ class ComponentInfoCommand extends Command
     {
         $filters = [];
         foreach (array_filter(explode(',', $filterString)) as $filter) {
-            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>)(.+)$/', $filter, $matches)) {
+            if (!preg_match('/^(\w+?)(!~=|~=|!=|>=|<=|=|<|>|\^=)(.+)$/', $filter, $matches)) {
                 throw new \InvalidArgumentException(sprintf('Invalid filter: %s', $filter));
             }
             $filters[] = [$matches[1], $matches[3], $matches[2]];
@@ -303,6 +321,7 @@ class ComponentInfoCommand extends Command
                 '!=' => ($row[$field] !== $value),
                 '~=' => strpos($row[$field], $value) !== false,
                 '!~=' => strpos($row[$field], $value) === false,
+                '^=' => str_starts_with($row[$field], $value) !== false,
                 '>','<','>=','<=' => match($field) {
                     'downloads' => version_compare(
                         str_replace(',' , '', $row[$field]),

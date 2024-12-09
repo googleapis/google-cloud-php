@@ -63,15 +63,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createPolicyBasedRouteAsync(CreatePolicyBasedRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePolicyBasedRouteAsync(DeletePolicyBasedRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyBasedRouteAsync(GetPolicyBasedRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPolicyBasedRoutesAsync(ListPolicyBasedRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPolicyBasedRouteAsync(CreatePolicyBasedRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePolicyBasedRouteAsync(DeletePolicyBasedRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyBasedRoute> getPolicyBasedRouteAsync(GetPolicyBasedRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPolicyBasedRoutesAsync(ListPolicyBasedRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class PolicyBasedRoutingServiceClient
 {

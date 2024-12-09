@@ -18,8 +18,8 @@ class CreateVersionOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Name of the created version.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -33,8 +33,8 @@ class CreateVersionOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type string $version
      *           Name of the created version.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/versions/<Version ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,8 +44,8 @@ class CreateVersionOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of the created version.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -57,8 +57,8 @@ class CreateVersionOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of the created version.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Version ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

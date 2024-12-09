@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\BackendServicesClient;
 
 /**
- * Retrieves an aggregated list of all usable backend services in the specified project.
+ * Retrieves a list of all usable backend services in the specified project.
  *
  * @param string $project Project ID for this request.
  */

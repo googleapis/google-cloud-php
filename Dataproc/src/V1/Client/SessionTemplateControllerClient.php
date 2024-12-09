@@ -57,14 +57,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSessionTemplateAsync(CreateSessionTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSessionTemplateAsync(DeleteSessionTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSessionTemplateAsync(GetSessionTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSessionTemplatesAsync(ListSessionTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSessionTemplateAsync(UpdateSessionTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SessionTemplate> createSessionTemplateAsync(CreateSessionTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSessionTemplateAsync(DeleteSessionTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SessionTemplate> getSessionTemplateAsync(GetSessionTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSessionTemplatesAsync(ListSessionTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SessionTemplate> updateSessionTemplateAsync(UpdateSessionTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class SessionTemplateControllerClient
 {

@@ -11,9 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Structured representation of a function declaration as defined by the
  * [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included
- * in this declaration are the function name and parameters. This
- * FunctionDeclaration is a representation of a block of code that can be used
- * as a `Tool` by the model and executed by the client.
+ * in this declaration are the function name, description, parameters and
+ * response type. This FunctionDeclaration is a representation of a block of
+ * code that can be used as a `Tool` by the model and executed by the client.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.FunctionDeclaration</code>
  */
@@ -54,6 +54,14 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $parameters = null;
+    /**
+     * Optional. Describes the output from this function in JSON Schema format.
+     * Reflects the Open API 3.03 Response Object. The Schema defines the type
+     * used for the response value of the function.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema response = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response = null;
 
     /**
      * Constructor.
@@ -84,6 +92,10 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
      *              type: INTEGER
      *           required:
      *            - param1
+     *     @type \Google\Cloud\AIPlatform\V1\Schema $response
+     *           Optional. Describes the output from this function in JSON Schema format.
+     *           Reflects the Open API 3.03 Response Object. The Schema defines the type
+     *           used for the response value of the function.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,6 +221,46 @@ class FunctionDeclaration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Describes the output from this function in JSON Schema format.
+     * Reflects the Open API 3.03 Response Object. The Schema defines the type
+     * used for the response value of the function.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema response = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Schema|null
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    public function hasResponse()
+    {
+        return isset($this->response);
+    }
+
+    public function clearResponse()
+    {
+        unset($this->response);
+    }
+
+    /**
+     * Optional. Describes the output from this function in JSON Schema format.
+     * Reflects the Open API 3.03 Response Object. The Schema defines the type
+     * used for the response value of the function.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema response = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Schema $var
+     * @return $this
+     */
+    public function setResponse($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->response = $var;
 
         return $this;
     }

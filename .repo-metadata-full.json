@@ -15,11 +15,19 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "accesscontextmanager"
     },
+    "AdsAdManager": {
+        "language": "php",
+        "distribution_name": "googleads/ad-manager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/ad-manager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "admanager"
+    },
     "AdsMarketingPlatformAdmin": {
         "language": "php",
-        "distribution_name": "google/ads-marketingplatform-admin",
+        "distribution_name": "googleads/marketingplatform-admin",
         "release_level": "preview",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/ads-marketingplatform-admin/latest",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/marketingplatform-admin/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "marketingplatformadmin"
     },

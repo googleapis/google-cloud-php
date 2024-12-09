@@ -36,6 +36,7 @@ use Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest;
+use Google\Cloud\BigQuery\Reservation\V1\FailoverReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest;
@@ -171,10 +172,12 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCount = 191518834;
         $multiRegionAuxiliary = false;
+        $isFlatRate = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setIsFlatRate($isFlatRate);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -245,12 +248,18 @@ class ReservationServiceClientTest extends GeneratedTest
         $ignoreIdleSlots = false;
         $concurrency = 1476186003;
         $multiRegionAuxiliary = false;
+        $primaryLocation = 'primaryLocation182084946';
+        $secondaryLocation = 'secondaryLocation-1339637216';
+        $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
         $expectedResponse->setConcurrency($concurrency);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setPrimaryLocation($primaryLocation);
+        $expectedResponse->setSecondaryLocation($secondaryLocation);
+        $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -500,6 +509,88 @@ class ReservationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function failoverReservationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $slotCapacity = 1516717605;
+        $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
+        $primaryLocation = 'primaryLocation182084946';
+        $secondaryLocation = 'secondaryLocation-1339637216';
+        $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
+        $expectedResponse = new Reservation();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSlotCapacity($slotCapacity);
+        $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setPrimaryLocation($primaryLocation);
+        $expectedResponse->setSecondaryLocation($secondaryLocation);
+        $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $request = (new FailoverReservationRequest())->setName($formattedName);
+        $response = $gapicClient->failoverReservation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.reservation.v1.ReservationService/FailoverReservation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function failoverReservationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $request = (new FailoverReservationRequest())->setName($formattedName);
+        try {
+            $gapicClient->failoverReservation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getBiReservationTest()
     {
         $transport = $this->createTransport();
@@ -578,10 +669,12 @@ class ReservationServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $slotCount = 191518834;
         $multiRegionAuxiliary = false;
+        $isFlatRate = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCount($slotCount);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setIsFlatRate($isFlatRate);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
@@ -652,12 +745,18 @@ class ReservationServiceClientTest extends GeneratedTest
         $ignoreIdleSlots = false;
         $concurrency = 1476186003;
         $multiRegionAuxiliary = false;
+        $primaryLocation = 'primaryLocation182084946';
+        $secondaryLocation = 'secondaryLocation-1339637216';
+        $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
         $expectedResponse->setConcurrency($concurrency);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setPrimaryLocation($primaryLocation);
+        $expectedResponse->setSecondaryLocation($secondaryLocation);
+        $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
@@ -939,10 +1038,12 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCount = 191518834;
         $multiRegionAuxiliary = false;
+        $isFlatRate = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setIsFlatRate($isFlatRate);
         $transport->addResponse($expectedResponse);
         $request = new MergeCapacityCommitmentsRequest();
         $response = $gapicClient->mergeCapacityCommitments($request);
@@ -1411,10 +1512,12 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCount = 191518834;
         $multiRegionAuxiliary = false;
+        $isFlatRate = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setIsFlatRate($isFlatRate);
         $transport->addResponse($expectedResponse);
         $request = new UpdateCapacityCommitmentRequest();
         $response = $gapicClient->updateCapacityCommitment($request);
@@ -1479,12 +1582,18 @@ class ReservationServiceClientTest extends GeneratedTest
         $ignoreIdleSlots = false;
         $concurrency = 1476186003;
         $multiRegionAuxiliary = false;
+        $primaryLocation = 'primaryLocation182084946';
+        $secondaryLocation = 'secondaryLocation-1339637216';
+        $originalPrimaryLocation = 'originalPrimaryLocation-1626473984';
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
         $expectedResponse->setConcurrency($concurrency);
         $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
+        $expectedResponse->setPrimaryLocation($primaryLocation);
+        $expectedResponse->setSecondaryLocation($secondaryLocation);
+        $expectedResponse->setOriginalPrimaryLocation($originalPrimaryLocation);
         $transport->addResponse($expectedResponse);
         $request = new UpdateReservationRequest();
         $response = $gapicClient->updateReservation($request);

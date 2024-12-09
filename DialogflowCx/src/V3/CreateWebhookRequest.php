@@ -18,7 +18,7 @@ class CreateWebhookRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to create a webhook for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class CreateWebhookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                 $parent  Required. The agent to create a webhook for.
-     *                                                        Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                                                        Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                                                        {@see WebhooksClient::agentName()} for help formatting this field.
      * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook $webhook Required. The webhook to create.
      *
@@ -55,7 +55,7 @@ class CreateWebhookRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to create a webhook for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook $webhook
      *           Required. The webhook to create.
      * }
@@ -67,7 +67,7 @@ class CreateWebhookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to create a webhook for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +79,7 @@ class CreateWebhookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to create a webhook for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

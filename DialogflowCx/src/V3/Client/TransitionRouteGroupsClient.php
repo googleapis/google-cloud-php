@@ -56,13 +56,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTransitionRouteGroupAsync(CreateTransitionRouteGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTransitionRouteGroupAsync(DeleteTransitionRouteGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTransitionRouteGroupAsync(GetTransitionRouteGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTransitionRouteGroupsAsync(ListTransitionRouteGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTransitionRouteGroupAsync(UpdateTransitionRouteGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransitionRouteGroup> createTransitionRouteGroupAsync(CreateTransitionRouteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTransitionRouteGroupAsync(DeleteTransitionRouteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransitionRouteGroup> getTransitionRouteGroupAsync(GetTransitionRouteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTransitionRouteGroupsAsync(ListTransitionRouteGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TransitionRouteGroup> updateTransitionRouteGroupAsync(UpdateTransitionRouteGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class TransitionRouteGroupsClient
 {

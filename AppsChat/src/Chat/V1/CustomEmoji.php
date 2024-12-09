@@ -18,7 +18,7 @@ class CustomEmoji extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique key for the custom emoji resource.
      *
-     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $uid = '';
 
@@ -40,7 +40,7 @@ class CustomEmoji extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique key for the custom emoji resource.
      *
-     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUid()
@@ -51,7 +51,7 @@ class CustomEmoji extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique key for the custom emoji resource.
      *
-     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

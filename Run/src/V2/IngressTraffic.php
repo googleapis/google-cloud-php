@@ -37,12 +37,19 @@ class IngressTraffic
      * Generated from protobuf enum <code>INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER = 3;</code>
      */
     const INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER = 3;
+    /**
+     * No ingress traffic is allowed.
+     *
+     * Generated from protobuf enum <code>INGRESS_TRAFFIC_NONE = 4;</code>
+     */
+    const INGRESS_TRAFFIC_NONE = 4;
 
     private static $valueToName = [
         self::INGRESS_TRAFFIC_UNSPECIFIED => 'INGRESS_TRAFFIC_UNSPECIFIED',
         self::INGRESS_TRAFFIC_ALL => 'INGRESS_TRAFFIC_ALL',
         self::INGRESS_TRAFFIC_INTERNAL_ONLY => 'INGRESS_TRAFFIC_INTERNAL_ONLY',
         self::INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER => 'INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER',
+        self::INGRESS_TRAFFIC_NONE => 'INGRESS_TRAFFIC_NONE',
     ];
 
     public static function name($value)

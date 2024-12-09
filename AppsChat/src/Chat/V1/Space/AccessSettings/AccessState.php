@@ -20,15 +20,21 @@ class AccessState
      */
     const ACCESS_STATE_UNSPECIFIED = 0;
     /**
-     * Space is discoverable by added or invited members or groups.
+     * Only users or Google Groups that have been individually added or
+     * invited by other users or Google Workspace administrators can discover
+     * and access the space.
      *
      * Generated from protobuf enum <code>PRIVATE = 1;</code>
      */
     const PBPRIVATE = 1;
     /**
-     * Space is discoverable by the selected [target
-     * audience](https://support.google.com/a/answer/9934697), as well as
-     * added or invited members or groups.
+     * A space manager has granted a target audience access to
+     * the space. Users or Google Groups that have been individually added or
+     * invited to the space can also discover and access the space. To learn
+     * more, see [Make a space discoverable to specific
+     * users](https://developers.google.com/workspace/chat/space-target-audience).
+     * Creating discoverable spaces requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf enum <code>DISCOVERABLE = 2;</code>
      */

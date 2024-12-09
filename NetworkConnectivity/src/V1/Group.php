@@ -64,6 +64,20 @@ class Group extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Optional. The auto-accept setting for this group.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.AutoAccept auto_accept = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_accept = null;
+    /**
+     * Output only. The name of the route table that corresponds to this group.
+     * They use the following form:
+     * `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     *
+     * Generated from protobuf field <code>string route_table = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $route_table = '';
 
     /**
      * Constructor.
@@ -92,6 +106,12 @@ class Group extends \Google\Protobuf\Internal\Message
      *           a different unique_id.
      *     @type int $state
      *           Output only. The current lifecycle state of this group.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\AutoAccept $auto_accept
+     *           Optional. The auto-accept setting for this group.
+     *     @type string $route_table
+     *           Output only. The name of the route table that corresponds to this group.
+     *           They use the following form:
+     *           `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -311,6 +331,72 @@ class Group extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetworkConnectivity\V1\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The auto-accept setting for this group.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.AutoAccept auto_accept = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\AutoAccept|null
+     */
+    public function getAutoAccept()
+    {
+        return $this->auto_accept;
+    }
+
+    public function hasAutoAccept()
+    {
+        return isset($this->auto_accept);
+    }
+
+    public function clearAutoAccept()
+    {
+        unset($this->auto_accept);
+    }
+
+    /**
+     * Optional. The auto-accept setting for this group.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.AutoAccept auto_accept = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\AutoAccept $var
+     * @return $this
+     */
+    public function setAutoAccept($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\AutoAccept::class);
+        $this->auto_accept = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the route table that corresponds to this group.
+     * They use the following form:
+     * `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     *
+     * Generated from protobuf field <code>string route_table = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRouteTable()
+    {
+        return $this->route_table;
+    }
+
+    /**
+     * Output only. The name of the route table that corresponds to this group.
+     * They use the following form:
+     * `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
+     *
+     * Generated from protobuf field <code>string route_table = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRouteTable($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->route_table = $var;
 
         return $this;
     }

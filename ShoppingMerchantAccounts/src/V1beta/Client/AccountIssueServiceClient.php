@@ -51,7 +51,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface listAccountIssuesAsync(ListAccountIssuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountIssuesAsync(ListAccountIssuesRequest $request, array $optionalArgs = [])
  */
 final class AccountIssueServiceClient
 {

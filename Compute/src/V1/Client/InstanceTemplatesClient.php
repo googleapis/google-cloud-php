@@ -53,14 +53,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListInstanceTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstanceTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyInstanceTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstanceTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstanceTemplate> getAsync(GetInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstanceTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyInstanceTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInstanceTemplateRequest $request, array $optionalArgs = [])
  */
 final class InstanceTemplatesClient
 {

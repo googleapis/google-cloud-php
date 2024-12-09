@@ -55,9 +55,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface deleteRegionalInventoryAsync(DeleteRegionalInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertRegionalInventoryAsync(InsertRegionalInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRegionalInventoriesAsync(ListRegionalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRegionalInventoryAsync(DeleteRegionalInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RegionalInventory> insertRegionalInventoryAsync(InsertRegionalInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRegionalInventoriesAsync(ListRegionalInventoriesRequest $request, array $optionalArgs = [])
  */
 final class RegionalInventoryServiceClient
 {

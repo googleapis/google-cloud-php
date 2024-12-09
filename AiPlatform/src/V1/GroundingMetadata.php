@@ -39,6 +39,12 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingSupport grounding_supports = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $grounding_supports;
+    /**
+     * Optional. Output only. Retrieval metadata.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $retrieval_metadata = null;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           List of supporting references retrieved from specified grounding source.
      *     @type array<\Google\Cloud\AIPlatform\V1\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $grounding_supports
      *           Optional. List of grounding support.
+     *     @type \Google\Cloud\AIPlatform\V1\RetrievalMetadata $retrieval_metadata
+     *           Optional. Output only. Retrieval metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +179,42 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingSupport::class);
         $this->grounding_supports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Retrieval metadata.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RetrievalMetadata|null
+     */
+    public function getRetrievalMetadata()
+    {
+        return $this->retrieval_metadata;
+    }
+
+    public function hasRetrievalMetadata()
+    {
+        return isset($this->retrieval_metadata);
+    }
+
+    public function clearRetrievalMetadata()
+    {
+        unset($this->retrieval_metadata);
+    }
+
+    /**
+     * Optional. Output only. Retrieval metadata.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.RetrievalMetadata retrieval_metadata = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RetrievalMetadata $var
+     * @return $this
+     */
+    public function setRetrievalMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RetrievalMetadata::class);
+        $this->retrieval_metadata = $var;
 
         return $this;
     }

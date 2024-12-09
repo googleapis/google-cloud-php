@@ -32,7 +32,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      */
     protected $update_mask = null;
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -40,7 +40,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Requires the `chat.admin.memberships` [OAuth 2.0
      * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_admin_access = false;
 
@@ -80,7 +80,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      *           Currently supported field paths:
      *           - `role`
      *     @type bool $use_admin_access
-     *           When `true`, the method runs using the user's Google Workspace
+     *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
      *           The calling user must be a Google Workspace administrator with the
      *           [manage chat and spaces conversations
@@ -175,7 +175,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -183,7 +183,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Requires the `chat.admin.memberships` [OAuth 2.0
      * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseAdminAccess()
@@ -192,7 +192,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -200,7 +200,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Requires the `chat.admin.memberships` [OAuth 2.0
      * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface announceAsync(AnnouncePublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeletePublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListPublicAdvertisedPrefixesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface withdrawAsync(WithdrawPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> announceAsync(AnnouncePublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeletePublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublicAdvertisedPrefix> getAsync(GetPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListPublicAdvertisedPrefixesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> withdrawAsync(WithdrawPublicAdvertisedPrefixeRequest $request, array $optionalArgs = [])
  */
 final class PublicAdvertisedPrefixesClient
 {

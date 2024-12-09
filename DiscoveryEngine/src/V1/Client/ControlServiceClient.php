@@ -55,11 +55,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createControlAsync(CreateControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteControlAsync(DeleteControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getControlAsync(GetControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listControlsAsync(ListControlsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateControlAsync(UpdateControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Control> createControlAsync(CreateControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteControlAsync(DeleteControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Control> getControlAsync(GetControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listControlsAsync(ListControlsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Control> updateControlAsync(UpdateControlRequest $request, array $optionalArgs = [])
  */
 final class ControlServiceClient
 {

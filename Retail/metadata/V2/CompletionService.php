@@ -23,7 +23,7 @@ class CompletionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+´
 /google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"É
 CompleteQueryRequest6
 catalog (	B%‡A˙A
@@ -37,11 +37,12 @@ visitor_id (	
 max_suggestions ($
 enable_attribute_suggestions	 (
 entity
- (	"ç
+ (	"ç
 CompleteQueryResponseZ
 completion_results (2>.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 attribution_token (	c
-recent_search_results (2@.google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResultBÊ
+recent_search_results (2@.google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResultB^
+attribute_results (2C.google.cloud.retail.v2.CompleteQueryResponse.AttributeResultsEntryÊ
 CompletionResult
 
 suggestion (	b
@@ -51,7 +52,12 @@ attributes (2N.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 key (	6
 value (2\'.google.cloud.retail.v2.CustomAttribute:8/
 RecentSearchResult
-recent_search (	:2≤
+recent_search (	:&
+AttributeResult
+suggestions (	v
+AttributeResultsEntry
+key (	L
+value (2=.google.cloud.retail.v2.CompleteQueryResponse.AttributeResult:82≤
 CompletionService≥
 CompleteQuery,.google.cloud.retail.v2.CompleteQueryRequest-.google.cloud.retail.v2.CompleteQueryResponse"EÇ”‰ì?=/v2/{catalog=projects/*/locations/*/catalogs/*}:completeQueryõ
 ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"Æ A\\

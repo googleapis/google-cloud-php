@@ -17,14 +17,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class AlertStrategy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required for alert policies with a `LogMatch` condition.
-     * This limit is not implemented for alert policies that are not log-based.
+     * Required for log-based alerting policies, i.e. policies with a `LogMatch`
+     * condition.
+     * This limit is not implemented for alerting policies that do not have
+     * a LogMatch condition.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationRateLimit notification_rate_limit = 1;</code>
      */
     private $notification_rate_limit = null;
     /**
-     * If an alert policy that was active has no data for this long, any open
+     * For log-based alert policies, the notification prompts is always
+     * [OPENED]. For non log-based alert policies, the notification prompts can
+     * be [OPENED] or [OPENED, CLOSED].
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationPrompt notification_prompts = 2;</code>
+     */
+    private $notification_prompts;
+    /**
+     * If an alerting policy that was active has no data for this long, any open
      * incidents will close
      *
      * Generated from protobuf field <code>.google.protobuf.Duration auto_close = 3;</code>
@@ -44,10 +54,16 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationRateLimit $notification_rate_limit
-     *           Required for alert policies with a `LogMatch` condition.
-     *           This limit is not implemented for alert policies that are not log-based.
+     *           Required for log-based alerting policies, i.e. policies with a `LogMatch`
+     *           condition.
+     *           This limit is not implemented for alerting policies that do not have
+     *           a LogMatch condition.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $notification_prompts
+     *           For log-based alert policies, the notification prompts is always
+     *           [OPENED]. For non log-based alert policies, the notification prompts can
+     *           be [OPENED] or [OPENED, CLOSED].
      *     @type \Google\Protobuf\Duration $auto_close
-     *           If an alert policy that was active has no data for this long, any open
+     *           If an alerting policy that was active has no data for this long, any open
      *           incidents will close
      *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationChannelStrategy>|\Google\Protobuf\Internal\RepeatedField $notification_channel_strategy
      *           Control how notifications will be sent out, on a per-channel basis.
@@ -59,8 +75,10 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for alert policies with a `LogMatch` condition.
-     * This limit is not implemented for alert policies that are not log-based.
+     * Required for log-based alerting policies, i.e. policies with a `LogMatch`
+     * condition.
+     * This limit is not implemented for alerting policies that do not have
+     * a LogMatch condition.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationRateLimit notification_rate_limit = 1;</code>
      * @return \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationRateLimit|null
@@ -81,8 +99,10 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for alert policies with a `LogMatch` condition.
-     * This limit is not implemented for alert policies that are not log-based.
+     * Required for log-based alerting policies, i.e. policies with a `LogMatch`
+     * condition.
+     * This limit is not implemented for alerting policies that do not have
+     * a LogMatch condition.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationRateLimit notification_rate_limit = 1;</code>
      * @param \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationRateLimit $var
@@ -97,7 +117,37 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If an alert policy that was active has no data for this long, any open
+     * For log-based alert policies, the notification prompts is always
+     * [OPENED]. For non log-based alert policies, the notification prompts can
+     * be [OPENED] or [OPENED, CLOSED].
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationPrompt notification_prompts = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNotificationPrompts()
+    {
+        return $this->notification_prompts;
+    }
+
+    /**
+     * For log-based alert policies, the notification prompts is always
+     * [OPENED]. For non log-based alert policies, the notification prompts can
+     * be [OPENED] or [OPENED, CLOSED].
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationPrompt notification_prompts = 2;</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNotificationPrompts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationPrompt::class);
+        $this->notification_prompts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If an alerting policy that was active has no data for this long, any open
      * incidents will close
      *
      * Generated from protobuf field <code>.google.protobuf.Duration auto_close = 3;</code>
@@ -119,7 +169,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If an alert policy that was active has no data for this long, any open
+     * If an alerting policy that was active has no data for this long, any open
      * incidents will close
      *
      * Generated from protobuf field <code>.google.protobuf.Duration auto_close = 3;</code>

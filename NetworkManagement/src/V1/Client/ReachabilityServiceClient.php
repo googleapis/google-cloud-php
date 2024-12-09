@@ -71,17 +71,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConnectivityTestAsync(CreateConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConnectivityTestAsync(DeleteConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectivityTestAsync(GetConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConnectivityTestsAsync(ListConnectivityTestsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rerunConnectivityTestAsync(RerunConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConnectivityTestAsync(UpdateConnectivityTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConnectivityTestAsync(CreateConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConnectivityTestAsync(DeleteConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectivityTest> getConnectivityTestAsync(GetConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConnectivityTestsAsync(ListConnectivityTestsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rerunConnectivityTestAsync(RerunConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateConnectivityTestAsync(UpdateConnectivityTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ReachabilityServiceClient
 {
@@ -199,10 +199,26 @@ final class ReachabilityServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - connectivityTest: projects/{project}/locations/global/connectivityTests/{test}
+     * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -474,7 +490,7 @@ final class ReachabilityServiceClient
      *
      * If the endpoint specifications in `ConnectivityTest` are incomplete, the
      * reachability result returns a value of `AMBIGUOUS`. See the documentation
-     * in `ConnectivityTest` for for more details.
+     * in `ConnectivityTest` for more details.
      *
      * The async variant is
      * {@see ReachabilityServiceClient::updateConnectivityTestAsync()} .

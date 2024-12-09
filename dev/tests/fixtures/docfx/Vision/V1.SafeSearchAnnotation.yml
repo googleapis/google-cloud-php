@@ -69,7 +69,7 @@ items:
         -
           id: '↳ violence'
           var_type: int
-          description: 'Likelihood that this image contains violent content.'
+          description: 'Likelihood that this image contains violent content. Violent content may include death, serious harm, or injury to individuals or groups of individuals.'
         -
           id: '↳ racy'
           var_type: int
@@ -183,7 +183,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getViolence()'
     name: getViolence
     id: getViolence
-    summary: 'Likelihood that this image contains violent content.'
+    summary: |-
+      Likelihood that this image contains violent content. Violent content may
+      include death, serious harm, or injury to individuals or groups of
+      individuals.
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:
@@ -196,7 +199,10 @@ items:
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setViolence()'
     name: setViolence
     id: setViolence
-    summary: 'Likelihood that this image contains violent content.'
+    summary: |-
+      Likelihood that this image contains violent content. Violent content may
+      include death, serious harm, or injury to individuals or groups of
+      individuals.
     parent: \Google\Cloud\Vision\V1\SafeSearchAnnotation
     type: method
     langs:

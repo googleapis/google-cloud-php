@@ -23,9 +23,9 @@ class CreateVolumeRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Required. Id of the requesting volume. Must be unique within the parent
-     * resource. Must contain only letters, numbers, underscore and hyphen, with
-     * the first character a letter or underscore, the last a letter or underscore
-     * or a number, and a 63 character maximum.
+     * resource. Must contain only letters, numbers and hyphen, with the first
+     * character a letter, the last a letter or a number,
+     * and a 63 character maximum.
      *
      * Generated from protobuf field <code>string volume_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,9 +42,9 @@ class CreateVolumeRequest extends \Google\Protobuf\Internal\Message
      *                                                 {@see NetAppClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetApp\V1\Volume $volume   Required. The volume being created.
      * @param string                         $volumeId Required. Id of the requesting volume. Must be unique within the parent
-     *                                                 resource. Must contain only letters, numbers, underscore and hyphen, with
-     *                                                 the first character a letter or underscore, the last a letter or underscore
-     *                                                 or a number, and a 63 character maximum.
+     *                                                 resource. Must contain only letters, numbers and hyphen, with the first
+     *                                                 character a letter, the last a letter or a number,
+     *                                                 and a 63 character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateVolumeRequest
      *
@@ -68,9 +68,9 @@ class CreateVolumeRequest extends \Google\Protobuf\Internal\Message
      *           Required. Value for parent.
      *     @type string $volume_id
      *           Required. Id of the requesting volume. Must be unique within the parent
-     *           resource. Must contain only letters, numbers, underscore and hyphen, with
-     *           the first character a letter or underscore, the last a letter or underscore
-     *           or a number, and a 63 character maximum.
+     *           resource. Must contain only letters, numbers and hyphen, with the first
+     *           character a letter, the last a letter or a number,
+     *           and a 63 character maximum.
      *     @type \Google\Cloud\NetApp\V1\Volume $volume
      *           Required. The volume being created.
      * }
@@ -108,9 +108,9 @@ class CreateVolumeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Id of the requesting volume. Must be unique within the parent
-     * resource. Must contain only letters, numbers, underscore and hyphen, with
-     * the first character a letter or underscore, the last a letter or underscore
-     * or a number, and a 63 character maximum.
+     * resource. Must contain only letters, numbers and hyphen, with the first
+     * character a letter, the last a letter or a number,
+     * and a 63 character maximum.
      *
      * Generated from protobuf field <code>string volume_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -122,9 +122,9 @@ class CreateVolumeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Id of the requesting volume. Must be unique within the parent
-     * resource. Must contain only letters, numbers, underscore and hyphen, with
-     * the first character a letter or underscore, the last a letter or underscore
-     * or a number, and a 63 character maximum.
+     * resource. Must contain only letters, numbers and hyphen, with the first
+     * character a letter, the last a letter or a number,
+     * and a 63 character maximum.
      *
      * Generated from protobuf field <code>string volume_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

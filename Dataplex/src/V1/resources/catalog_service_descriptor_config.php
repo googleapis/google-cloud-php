@@ -80,6 +80,25 @@ return [
                     ],
                 ],
             ],
+            'CreateMetadataJob' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dataplex\V1\MetadataJob',
+                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAspectType' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -197,6 +216,18 @@ return [
                     ],
                 ],
             ],
+            'CancelMetadataJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateEntry' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\Entry',
@@ -260,6 +291,18 @@ return [
             'GetEntryType' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\EntryType',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMetadataJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\MetadataJob',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -340,6 +383,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\ListEntryTypesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMetadataJobs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMetadataJobs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\ListMetadataJobsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -473,6 +536,7 @@ return [
                 'entryGroup' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}',
                 'entryType' => 'projects/{project}/locations/{location}/entryTypes/{entry_type}',
                 'location' => 'projects/{project}/locations/{location}',
+                'metadataJob' => 'projects/{project}/locations/{location}/metadataJobs/{metadataJob}',
             ],
         ],
     ],

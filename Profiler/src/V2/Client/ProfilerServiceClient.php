@@ -53,9 +53,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createOfflineProfileAsync(CreateOfflineProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProfileAsync(CreateProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProfileAsync(UpdateProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Profile> createOfflineProfileAsync(CreateOfflineProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Profile> createProfileAsync(CreateProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Profile> updateProfileAsync(UpdateProfileRequest $request, array $optionalArgs = [])
  */
 final class ProfilerServiceClient
 {

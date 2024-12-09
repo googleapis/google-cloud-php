@@ -72,6 +72,18 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
      */
     protected $client_side_metrics_enabled = false;
+    /**
+     * Notify the server that the client using Traffic Director endpoint.
+     *
+     * Generated from protobuf field <code>bool traffic_director_enabled = 9;</code>
+     */
+    protected $traffic_director_enabled = false;
+    /**
+     * Notify the server that the client explicitly opted in for Direct Access.
+     *
+     * Generated from protobuf field <code>bool direct_access_requested = 10;</code>
+     */
+    protected $direct_access_requested = false;
 
     /**
      * Constructor.
@@ -101,6 +113,10 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *           durations to retry requests with.
      *     @type bool $client_side_metrics_enabled
      *           Notify the server that the client has client side metrics enabled.
+     *     @type bool $traffic_director_enabled
+     *           Notify the server that the client using Traffic Director endpoint.
+     *     @type bool $direct_access_requested
+     *           Notify the server that the client explicitly opted in for Direct Access.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +318,58 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->client_side_metrics_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client using Traffic Director endpoint.
+     *
+     * Generated from protobuf field <code>bool traffic_director_enabled = 9;</code>
+     * @return bool
+     */
+    public function getTrafficDirectorEnabled()
+    {
+        return $this->traffic_director_enabled;
+    }
+
+    /**
+     * Notify the server that the client using Traffic Director endpoint.
+     *
+     * Generated from protobuf field <code>bool traffic_director_enabled = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTrafficDirectorEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->traffic_director_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client explicitly opted in for Direct Access.
+     *
+     * Generated from protobuf field <code>bool direct_access_requested = 10;</code>
+     * @return bool
+     */
+    public function getDirectAccessRequested()
+    {
+        return $this->direct_access_requested;
+    }
+
+    /**
+     * Notify the server that the client explicitly opted in for Direct Access.
+     *
+     * Generated from protobuf field <code>bool direct_access_requested = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDirectAccessRequested($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->direct_access_requested = $var;
 
         return $this;
     }

@@ -60,21 +60,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addNodesAsync(AddNodesNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListNodeGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodesAsync(DeleteNodesNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNodeGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodesAsync(ListNodesNodeGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface performMaintenanceAsync(PerformMaintenanceNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodeTemplateAsync(SetNodeTemplateNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface simulateMaintenanceEventAsync(SimulateMaintenanceEventNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addNodesAsync(AddNodesNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNodeGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNodesAsync(DeleteNodesNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodeGroup> getAsync(GetNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNodeGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesNodeGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setNodeTemplateAsync(SetNodeTemplateNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> simulateMaintenanceEventAsync(SimulateMaintenanceEventNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNodeGroupRequest $request, array $optionalArgs = [])
  */
 final class NodeGroupsClient
 {

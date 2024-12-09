@@ -95,6 +95,18 @@ return [
                     ],
                 ],
             ],
+            'FailoverReservation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\Reservation\V1\Reservation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBiReservation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\BigQuery\Reservation\V1\BiReservation',

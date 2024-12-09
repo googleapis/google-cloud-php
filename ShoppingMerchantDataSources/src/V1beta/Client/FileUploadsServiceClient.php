@@ -51,7 +51,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getFileUploadAsync(GetFileUploadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FileUpload> getFileUploadAsync(GetFileUploadRequest $request, array $optionalArgs = [])
  */
 final class FileUploadsServiceClient
 {

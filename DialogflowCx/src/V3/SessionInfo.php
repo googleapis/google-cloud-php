@@ -22,9 +22,10 @@ class SessionInfo extends \Google\Protobuf\Internal\Message
      * unique identifier of the
      * [session][google.cloud.dialogflow.cx.v3.DetectIntentRequest.session]. This
      * field can be used by the webhook to identify a session.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`
      * if environment is specified.
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.resource_reference) = {</code>
@@ -57,9 +58,10 @@ class SessionInfo extends \Google\Protobuf\Internal\Message
      *           unique identifier of the
      *           [session][google.cloud.dialogflow.cx.v3.DetectIntentRequest.session]. This
      *           field can be used by the webhook to identify a session.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>`
+     *           or
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`
      *           if environment is specified.
      *     @type array|\Google\Protobuf\Internal\MapField $parameters
      *           Optional for
@@ -84,9 +86,10 @@ class SessionInfo extends \Google\Protobuf\Internal\Message
      * unique identifier of the
      * [session][google.cloud.dialogflow.cx.v3.DetectIntentRequest.session]. This
      * field can be used by the webhook to identify a session.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`
      * if environment is specified.
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.resource_reference) = {</code>
@@ -104,9 +107,10 @@ class SessionInfo extends \Google\Protobuf\Internal\Message
      * unique identifier of the
      * [session][google.cloud.dialogflow.cx.v3.DetectIntentRequest.session]. This
      * field can be used by the webhook to identify a session.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/sessions/<Session ID>` or `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/environments/<Environment ID>/sessions/<Session ID>`
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/sessions/<SessionID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/sessions/<SessionID>`
      * if environment is specified.
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.resource_reference) = {</code>

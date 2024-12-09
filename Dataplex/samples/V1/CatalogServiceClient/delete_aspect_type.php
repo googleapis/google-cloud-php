@@ -30,7 +30,7 @@ use Google\Cloud\Dataplex\V1\DeleteAspectTypeRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a AspectType resource.
+ * Deletes an AspectType.
  *
  * @param string $formattedName The resource name of the AspectType:
  *                              `projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}`. Please see

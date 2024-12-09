@@ -39,14 +39,11 @@ use Google\Rpc\Status;
  *                                location on the project and must be in
  *                                `projects/{project}/locations/{location}/channels/{channel_id}` format.
  * @param string $channelId       The user-provided ID to be assigned to the channel.
- * @param bool   $validateOnly    If set, validate the request and preview the review, but do not
- *                                post it.
  */
 function create_channel_sample(
     string $formattedParent,
     string $channelName,
-    string $channelId,
-    bool $validateOnly
+    string $channelId
 ): void {
     // Create a client.
     $eventarcClient = new EventarcClient();
@@ -57,8 +54,7 @@ function create_channel_sample(
     $request = (new CreateChannelRequest())
         ->setParent($formattedParent)
         ->setChannel($channel)
-        ->setChannelId($channelId)
-        ->setValidateOnly($validateOnly);
+        ->setChannelId($channelId);
 
     // Call the API and handle any network failures.
     try {
@@ -94,8 +90,7 @@ function callSample(): void
     $formattedParent = EventarcClient::locationName('[PROJECT]', '[LOCATION]');
     $channelName = '[NAME]';
     $channelId = '[CHANNEL_ID]';
-    $validateOnly = false;
 
-    create_channel_sample($formattedParent, $channelName, $channelId, $validateOnly);
+    create_channel_sample($formattedParent, $channelName, $channelId);
 }
 // [END eventarc_v1_generated_Eventarc_CreateChannel_sync]

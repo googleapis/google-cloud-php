@@ -52,11 +52,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createLogMetricAsync(CreateLogMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLogMetricAsync(DeleteLogMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLogMetricAsync(GetLogMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLogMetricsAsync(ListLogMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateLogMetricAsync(UpdateLogMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LogMetric> createLogMetricAsync(CreateLogMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLogMetricAsync(DeleteLogMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LogMetric> getLogMetricAsync(GetLogMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLogMetricsAsync(ListLogMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LogMetric> updateLogMetricAsync(UpdateLogMetricRequest $request, array $optionalArgs = [])
  */
 final class MetricsServiceV2Client
 {

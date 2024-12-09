@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Apps\Chat\V1\Client\ChatServiceClient;
 use Google\Apps\Chat\V1\CreateReactionRequest;
+use Google\Apps\Chat\V1\Emoji;
 use Google\Apps\Chat\V1\Reaction;
 
 /**
@@ -33,6 +34,7 @@ use Google\Apps\Chat\V1\Reaction;
  * supported. For an example, see
  * [Add a reaction to a
  * message](https://developers.google.com/workspace/chat/create-reactions).
+ *
  * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
@@ -47,7 +49,9 @@ function create_reaction_sample(string $formattedParent): void
     $chatServiceClient = new ChatServiceClient();
 
     // Prepare the request message.
-    $reaction = new Reaction();
+    $reactionEmoji = new Emoji();
+    $reaction = (new Reaction())
+        ->setEmoji($reactionEmoji);
     $request = (new CreateReactionRequest())
         ->setParent($formattedParent)
         ->setReaction($reaction);

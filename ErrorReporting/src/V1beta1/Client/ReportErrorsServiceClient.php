@@ -51,7 +51,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface reportErrorEventAsync(ReportErrorEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportErrorEventResponse> reportErrorEventAsync(ReportErrorEventRequest $request, array $optionalArgs = [])
  */
 final class ReportErrorsServiceClient
 {

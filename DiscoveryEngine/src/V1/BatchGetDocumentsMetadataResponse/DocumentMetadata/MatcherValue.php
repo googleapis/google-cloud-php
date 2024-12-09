@@ -27,6 +27,9 @@ class MatcherValue extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           If match by URI, the URI of the
      *           [Document][google.cloud.discoveryengine.v1.Document].
+     *     @type string $fhir_resource
+     *           Format:
+     *           projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +66,39 @@ class MatcherValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Format:
+     * projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
+     *
+     * Generated from protobuf field <code>string fhir_resource = 2 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getFhirResource()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasFhirResource()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Format:
+     * projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
+     *
+     * Generated from protobuf field <code>string fhir_resource = 2 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFhirResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

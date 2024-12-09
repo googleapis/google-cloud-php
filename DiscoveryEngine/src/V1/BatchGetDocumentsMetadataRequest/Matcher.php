@@ -26,6 +26,8 @@ class Matcher extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\UrisMatcher $uris_matcher
      *           Matcher by exact URIs.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\FhirMatcher $fhir_matcher
+     *           Matcher by FHIR resource names.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +62,37 @@ class Matcher extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\UrisMatcher::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Matcher by FHIR resource names.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.FhirMatcher fhir_matcher = 2;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\FhirMatcher|null
+     */
+    public function getFhirMatcher()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasFhirMatcher()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Matcher by FHIR resource names.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.FhirMatcher fhir_matcher = 2;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\FhirMatcher $var
+     * @return $this
+     */
+    public function setFhirMatcher($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest\FhirMatcher::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

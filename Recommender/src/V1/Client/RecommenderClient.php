@@ -66,19 +66,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getInsightAsync(GetInsightRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInsightTypeConfigAsync(GetInsightTypeConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecommendationAsync(GetRecommendationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecommenderConfigAsync(GetRecommenderConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInsightsAsync(ListInsightsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRecommenderConfigAsync(UpdateRecommenderConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Insight> getInsightAsync(GetInsightRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InsightTypeConfig> getInsightTypeConfigAsync(GetInsightTypeConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> getRecommendationAsync(GetRecommendationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecommenderConfig> getRecommenderConfigAsync(GetRecommenderConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInsightsAsync(ListInsightsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Insight> markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InsightTypeConfig> updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecommenderConfig> updateRecommenderConfigAsync(UpdateRecommenderConfigRequest $request, array $optionalArgs = [])
  */
 final class RecommenderClient
 {

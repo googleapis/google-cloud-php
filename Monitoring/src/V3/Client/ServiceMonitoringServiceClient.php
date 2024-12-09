@@ -61,16 +61,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceLevelObjectiveAsync(CreateServiceLevelObjectiveRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceLevelObjectiveAsync(DeleteServiceLevelObjectiveRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceLevelObjectiveAsync(GetServiceLevelObjectiveRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServiceLevelObjectivesAsync(ListServiceLevelObjectivesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServiceLevelObjectiveAsync(UpdateServiceLevelObjectiveRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServiceLevelObjective> createServiceLevelObjectiveAsync(CreateServiceLevelObjectiveRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServiceLevelObjectiveAsync(DeleteServiceLevelObjectiveRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServiceLevelObjective> getServiceLevelObjectiveAsync(GetServiceLevelObjectiveRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServiceLevelObjectivesAsync(ListServiceLevelObjectivesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServiceLevelObjective> updateServiceLevelObjectiveAsync(UpdateServiceLevelObjectiveRequest $request, array $optionalArgs = [])
  */
 final class ServiceMonitoringServiceClient
 {

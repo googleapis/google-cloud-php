@@ -18,7 +18,7 @@ class CalculateCoverageResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The agent to calculate coverage for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string agent = 5 [(.google.api.resource_reference) = {</code>
      */
@@ -33,7 +33,7 @@ class CalculateCoverageResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $agent
      *           The agent to calculate coverage for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\IntentCoverage $intent_coverage
      *           Intent coverage.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionCoverage $transition_coverage
@@ -49,7 +49,7 @@ class CalculateCoverageResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The agent to calculate coverage for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string agent = 5 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -61,7 +61,7 @@ class CalculateCoverageResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The agent to calculate coverage for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string agent = 5 [(.google.api.resource_reference) = {</code>
      * @param string $var

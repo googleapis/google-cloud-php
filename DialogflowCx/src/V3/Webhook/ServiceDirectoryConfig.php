@@ -19,8 +19,8 @@ class ServiceDirectoryConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of [Service
      * Directory](https://cloud.google.com/service-directory) service.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/namespaces/<Namespace ID>/services/<Service ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/namespaces/<NamespaceID>/services/<ServiceID>`.
      * `Location ID` of the service directory must be the same as the location
      * of the agent.
      *
@@ -43,8 +43,8 @@ class ServiceDirectoryConfig extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           Required. The name of [Service
      *           Directory](https://cloud.google.com/service-directory) service.
-     *           Format: `projects/<Project ID>/locations/<Location
-     *           ID>/namespaces/<Namespace ID>/services/<Service ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/namespaces/<NamespaceID>/services/<ServiceID>`.
      *           `Location ID` of the service directory must be the same as the location
      *           of the agent.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService $generic_web_service
@@ -59,8 +59,8 @@ class ServiceDirectoryConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of [Service
      * Directory](https://cloud.google.com/service-directory) service.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/namespaces/<Namespace ID>/services/<Service ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/namespaces/<NamespaceID>/services/<ServiceID>`.
      * `Location ID` of the service directory must be the same as the location
      * of the agent.
      *
@@ -75,8 +75,8 @@ class ServiceDirectoryConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of [Service
      * Directory](https://cloud.google.com/service-directory) service.
-     * Format: `projects/<Project ID>/locations/<Location
-     * ID>/namespaces/<Namespace ID>/services/<Service ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/namespaces/<NamespaceID>/services/<ServiceID>`.
      * `Location ID` of the service directory must be the same as the location
      * of the agent.
      *

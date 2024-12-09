@@ -22,9 +22,9 @@ class Validation extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Validation execution status.
+     * Output only. Validation execution status.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
@@ -49,7 +49,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           A short description of the validation.
      *     @type int $state
-     *           Validation execution status.
+     *           Output only. Validation execution status.
      *     @type array<\Google\Cloud\Datastream\V1\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $message
      *           Messages reflecting the validation results.
      *     @type string $code
@@ -88,9 +88,9 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Validation execution status.
+     * Output only. Validation execution status.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -99,9 +99,9 @@ class Validation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Validation execution status.
+     * Output only. Validation execution status.
      *
-     * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.Validation.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

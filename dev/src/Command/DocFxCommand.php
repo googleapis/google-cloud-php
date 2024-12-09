@@ -25,6 +25,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
+use Google\Auth\Cache\FileSystemCacheItemPool;
 use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
@@ -55,16 +56,12 @@ class DocFxCommand extends Command
         $this->setName('docfx')
             ->setDescription('Generate DocFX yaml from a phpdoc strucutre.xml')
             ->addOption('xml', '', InputOption::VALUE_REQUIRED, 'Path to phpdoc structure.xml')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs only for a single component.', '')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs for a specific component.', '')
             ->addOption('out', '', InputOption::VALUE_REQUIRED, 'Path where to store the generated output.', 'out')
             ->addOption('metadata-version', '', InputOption::VALUE_REQUIRED, 'version to write to docs.metadata using docuploader')
             ->addOption('staging-bucket', '', InputOption::VALUE_REQUIRED, 'Upload to the specified staging bucket using docuploader.')
-            ->addOption(
-                'component-path',
-                '',
-                InputOption::VALUE_OPTIONAL,
-                'Specify the path of the desired component. Please note, this option is only intended for testing purposes.'
-            )
+            ->addOption('path', '', InputOption::VALUE_OPTIONAL, 'Specify the path to the composer package to generate.')
+            ->addOption('--with-cache', '', InputOption::VALUE_NONE, 'Cache expensive proto namespace lookups to a file')
         ;
     }
 
@@ -74,9 +71,11 @@ class DocFxCommand extends Command
             throw new RuntimeException('This command must be run on PHP 8.0 or above');
         }
 
+        $componentPath = $input->getOption('path');
         $this->componentName = rtrim($input->getOption('component'), '/') ?: basename(getcwd());
-        $component = new Component($this->componentName, $input->getOption('component-path'));
+        $component = new Component($this->componentName, $componentPath);
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $this->componentName));
+
         $xml = $input->getOption('xml');
         $outDir = $input->getOption('out');
         if (empty($xml)) {
@@ -109,12 +108,14 @@ class DocFxCommand extends Command
         $tocItems = [];
         $packageDescription = $component->getDescription();
         $isBeta = 'stable' !== $component->getReleaseLevel();
+        $packageNamespaces = $this->getProtoPackageToNamespaceMap($input->getOption('with-cache'));
         foreach ($component->getNamespaces() as $namespace => $dir) {
             $pageTree = new PageTree(
                 $xml,
                 $namespace,
                 $packageDescription,
-                $component->getPath()
+                $component->getPath(),
+                $packageNamespaces
             );
 
             foreach ($pageTree->getPages() as $page) {
@@ -175,15 +176,20 @@ class DocFxCommand extends Command
 
         if ($metadataVersion = $input->getOption('metadata-version')) {
             $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
+            $xrefs = array_merge(...array_map(
+                fn ($c) => ['--xrefs', sprintf('devsite://php/%s', $c->getId())],
+                $component->getComponentDependencies(),
+            ));
             $process = new Process([
                 'docuploader', 'create-metadata',
-                '--name', str_replace('google/', '', $component->getPackageName()),
+                '--name', $component->getId(),
                 '--version', $metadataVersion,
                 '--language', 'php',
                 '--distribution-name', $component->getPackageName(),
                 '--product-page', $component->getProductDocumentation(),
                 '--github-repository', $component->getRepoName(),
                 '--issue-tracker', $component->getIssueTracker(),
+                ...$xrefs,
                 $outDir . '/docs.metadata'
             ]);
             $process->mustRun();
@@ -269,5 +275,22 @@ class DocFxCommand extends Command
             $output->writeln($warning, $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL);
         }
         return $valid;
+    }
+
+    private function getProtoPackageToNamespaceMap(bool $useFileCache): array
+    {
+        if (!$useFileCache) {
+            return Component::getProtoPackageToNamespaceMap();
+        }
+
+        $cache = new FileSystemCacheItemPool('.cache');
+        $item = $cache->getItem('phpdoc_proto_package_to_namespace_map');
+
+        if (!$item->isHit()) {
+            $item->set(Component::getProtoPackageToNamespaceMap());
+            $cache->save($item);
+        }
+
+        return $item->get();
     }
 }

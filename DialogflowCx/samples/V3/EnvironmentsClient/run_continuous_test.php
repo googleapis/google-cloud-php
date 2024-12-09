@@ -43,8 +43,8 @@ use Google\Rpc\Status;
  * - `response`:
  * [RunContinuousTestResponse][google.cloud.dialogflow.cx.v3.RunContinuousTestResponse]
  *
- * @param string $formattedEnvironment Format: `projects/<Project ID>/locations/<Location
- *                                     ID>/agents/<Agent ID>/environments/<Environment ID>`. Please see
+ * @param string $formattedEnvironment Format:
+ *                                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                                     {@see EnvironmentsClient::environmentName()} for help formatting this field.
  */
 function run_continuous_test_sample(string $formattedEnvironment): void

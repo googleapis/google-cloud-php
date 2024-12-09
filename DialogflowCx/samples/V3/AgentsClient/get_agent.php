@@ -32,7 +32,7 @@ use Google\Cloud\Dialogflow\Cx\V3\GetAgentRequest;
  * Retrieves the specified agent.
  *
  * @param string $formattedName The name of the agent.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                              Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                              {@see AgentsClient::agentName()} for help formatting this field.
  */
 function get_agent_sample(string $formattedName): void

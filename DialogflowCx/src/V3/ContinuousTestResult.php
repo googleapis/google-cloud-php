@@ -17,9 +17,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name for the continuous test result. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment
-     * ID>/continuousTestResults/<ContinuousTestResult ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/continuousTestResults/<ContinuousTestResultID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -52,9 +50,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name for the continuous test result. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment
-     *           ID>/continuousTestResults/<ContinuousTestResult ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/continuousTestResults/<ContinuousTestResultID>`.
      *     @type int $result
      *           The result of this continuous test run, i.e. whether all the tests in this
      *           continuous test run pass or not.
@@ -71,9 +67,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the continuous test result. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment
-     * ID>/continuousTestResults/<ContinuousTestResult ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/continuousTestResults/<ContinuousTestResultID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -85,9 +79,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the continuous test result. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment
-     * ID>/continuousTestResults/<ContinuousTestResult ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/continuousTestResults/<ContinuousTestResultID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

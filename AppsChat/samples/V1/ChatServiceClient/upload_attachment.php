@@ -32,6 +32,7 @@ use Google\Apps\Chat\V1\UploadAttachmentResponse;
  * Uploads an attachment. For an example, see
  * [Upload media as a file
  * attachment](https://developers.google.com/workspace/chat/upload-media-attachments).
+ *
  * Requires user
  * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *

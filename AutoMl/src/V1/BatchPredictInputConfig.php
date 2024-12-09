@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * The formats are represented in EBNF with commas being literal and with
  * non-terminal symbols defined near the end of this comment. The formats
  * are:
- * <h4>AutoML Vision</h4>
- * <div class="ds-selector-tabs"><section><h5>Classification</h5>
+ * #### AutoML Vision
+ * ##### Classification
  * One or more CSV files where each line is a single column:
  *     GCS_FILE_PATH
  * The Google Cloud Storage location of an image of up to
@@ -28,7 +28,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/image1.jpeg
  *     gs://folder/image2.gif
  *     gs://folder/image3.png
- * </section><section><h5>Object Detection</h5>
+ * ##### Object Detection
  * One or more CSV files where each line is a single column:
  *     GCS_FILE_PATH
  * The Google Cloud Storage location of an image of up to
@@ -38,10 +38,8 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/image1.jpeg
  *     gs://folder/image2.gif
  *     gs://folder/image3.png
- *   </section>
- * </div>
- * <h4>AutoML Video Intelligence</h4>
- * <div class="ds-selector-tabs"><section><h5>Classification</h5>
+ * #### AutoML Video Intelligence
+ * ##### Classification
  * One or more CSV files where each line is a single column:
  *     GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END
  * `GCS_FILE_PATH` is the Google Cloud Storage location of video up to 50GB in
@@ -53,7 +51,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/video1.mp4,10,40
  *     gs://folder/video1.mp4,20,60
  *     gs://folder/vid2.mov,0,inf
- * </section><section><h5>Object Tracking</h5>
+ * ##### Object Tracking
  * One or more CSV files where each line is a single column:
  *     GCS_FILE_PATH,TIME_SEGMENT_START,TIME_SEGMENT_END
  * `GCS_FILE_PATH` is the Google Cloud Storage location of video up to 50GB in
@@ -65,10 +63,8 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/video1.mp4,10,40
  *     gs://folder/video1.mp4,20,60
  *     gs://folder/vid2.mov,0,inf
- *   </section>
- * </div>
- * <h4>AutoML Natural Language</h4>
- * <div class="ds-selector-tabs"><section><h5>Classification</h5>
+ * #### AutoML Natural Language
+ * ##### Classification
  * One or more CSV files where each line is a single column:
  *     GCS_FILE_PATH
  * `GCS_FILE_PATH` is the Google Cloud Storage location of a text file.
@@ -78,7 +74,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/text1.txt
  *     gs://folder/text2.pdf
  *     gs://folder/text3.tif
- * </section><section><h5>Sentiment Analysis</h5>
+ * ##### Sentiment Analysis
  * One or more CSV files where each line is a single column:
  *     GCS_FILE_PATH
  * `GCS_FILE_PATH` is the Google Cloud Storage location of a text file.
@@ -88,7 +84,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     gs://folder/text1.txt
  *     gs://folder/text2.pdf
  *     gs://folder/text3.tif
- * </section><section><h5>Entity Extraction</h5>
+ * ##### Entity Extraction
  * One or more JSONL (JSON Lines) files that either provide inline text or
  * documents. You can only use one format, either inline text or documents,
  * for a single call to [AutoMl.BatchPredict].
@@ -149,10 +145,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *          }
  *        }
  *      }
- *   </section>
- * </div>
- * <h4>AutoML Tables</h4><div class="ui-datasection-main"><section
- * class="selected">
+ * #### AutoML Tables
  * See [Preparing your training
  * data](https://cloud.google.com/automl-tables/docs/predict-batch) for more
  * information.
@@ -189,8 +182,6 @@ use Google\Protobuf\Internal\GPBUtil;
  * input feature column specs must contain values compatible with the
  * column spec's data types. Prediction on all the rows of the table
  * will be attempted.
- *   </section>
- * </div>
  * **Input field definitions:**
  * `GCS_FILE_PATH`
  * : The path to a file on Google Cloud Storage. For example,

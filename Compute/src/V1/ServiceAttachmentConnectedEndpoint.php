@@ -28,6 +28,12 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     private $endpoint = null;
     /**
+     * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     *
+     * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
+     */
+    private $propagated_connection_count = null;
+    /**
      * The PSC connection id of the connected endpoint.
      *
      * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
@@ -51,6 +57,8 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           The url of the consumer network.
      *     @type string $endpoint
      *           The url of a connected endpoint.
+     *     @type int $propagated_connection_count
+     *           The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
      *     @type int|string $psc_connection_id
      *           The PSC connection id of the connected endpoint.
      *     @type string $status
@@ -131,6 +139,42 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     *
+     * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
+     * @return int
+     */
+    public function getPropagatedConnectionCount()
+    {
+        return isset($this->propagated_connection_count) ? $this->propagated_connection_count : 0;
+    }
+
+    public function hasPropagatedConnectionCount()
+    {
+        return isset($this->propagated_connection_count);
+    }
+
+    public function clearPropagatedConnectionCount()
+    {
+        unset($this->propagated_connection_count);
+    }
+
+    /**
+     * The number of consumer Network Connectivity Center spokes that the connected Private Service Connect endpoint has propagated to.
+     *
+     * Generated from protobuf field <code>optional uint32 propagated_connection_count = 324594130;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPropagatedConnectionCount($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->propagated_connection_count = $var;
 
         return $this;
     }

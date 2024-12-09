@@ -55,10 +55,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTagBindingAsync(CreateTagBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTagBindingAsync(DeleteTagBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEffectiveTagsAsync(ListEffectiveTagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTagBindingsAsync(ListTagBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTagBindingAsync(CreateTagBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTagBindingAsync(DeleteTagBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEffectiveTagsAsync(ListEffectiveTagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTagBindingsAsync(ListTagBindingsRequest $request, array $optionalArgs = [])
  */
 final class TagBindingsClient
 {

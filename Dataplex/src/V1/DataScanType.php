@@ -7,35 +7,42 @@ namespace Google\Cloud\Dataplex\V1;
 use UnexpectedValueException;
 
 /**
- * The type of DataScan.
+ * The type of data scan.
  *
  * Protobuf type <code>google.cloud.dataplex.v1.DataScanType</code>
  */
 class DataScanType
 {
     /**
-     * The DataScan type is unspecified.
+     * The data scan type is unspecified.
      *
      * Generated from protobuf enum <code>DATA_SCAN_TYPE_UNSPECIFIED = 0;</code>
      */
     const DATA_SCAN_TYPE_UNSPECIFIED = 0;
     /**
-     * Data Quality scan.
+     * Data quality scan.
      *
      * Generated from protobuf enum <code>DATA_QUALITY = 1;</code>
      */
     const DATA_QUALITY = 1;
     /**
-     * Data Profile scan.
+     * Data profile scan.
      *
      * Generated from protobuf enum <code>DATA_PROFILE = 2;</code>
      */
     const DATA_PROFILE = 2;
+    /**
+     * Data discovery scan.
+     *
+     * Generated from protobuf enum <code>DATA_DISCOVERY = 3;</code>
+     */
+    const DATA_DISCOVERY = 3;
 
     private static $valueToName = [
         self::DATA_SCAN_TYPE_UNSPECIFIED => 'DATA_SCAN_TYPE_UNSPECIFIED',
         self::DATA_QUALITY => 'DATA_QUALITY',
         self::DATA_PROFILE => 'DATA_PROFILE',
+        self::DATA_DISCOVERY => 'DATA_DISCOVERY',
     ];
 
     public static function name($value)

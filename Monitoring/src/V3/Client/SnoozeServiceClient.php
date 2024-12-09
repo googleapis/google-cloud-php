@@ -53,10 +53,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSnoozeAsync(CreateSnoozeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSnoozeAsync(GetSnoozeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSnoozesAsync(ListSnoozesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSnoozeAsync(UpdateSnoozeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snooze> createSnoozeAsync(CreateSnoozeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snooze> getSnoozeAsync(GetSnoozeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSnoozesAsync(ListSnoozesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snooze> updateSnoozeAsync(UpdateSnoozeRequest $request, array $optionalArgs = [])
  */
 final class SnoozeServiceClient
 {

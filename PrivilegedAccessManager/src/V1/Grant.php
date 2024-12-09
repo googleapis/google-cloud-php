@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This is to ensure that the `Grants` and `ProducerGrants` proto are byte
- * compatible.
  * A grant represents a request from a user for obtaining the access specified
  * in an entitlement they are eligible for.
  *

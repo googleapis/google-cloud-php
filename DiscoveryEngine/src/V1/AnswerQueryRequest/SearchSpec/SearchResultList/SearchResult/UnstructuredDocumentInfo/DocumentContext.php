@@ -22,7 +22,7 @@ class DocumentContext extends \Google\Protobuf\Internal\Message
      */
     protected $page_identifier = '';
     /**
-     * Document content.
+     * Document content to be used for answer generation.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      */
@@ -37,7 +37,7 @@ class DocumentContext extends \Google\Protobuf\Internal\Message
      *     @type string $page_identifier
      *           Page identifier.
      *     @type string $content
-     *           Document content.
+     *           Document content to be used for answer generation.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class DocumentContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Document content.
+     * Document content to be used for answer generation.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class DocumentContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Document content.
+     * Document content to be used for answer generation.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var

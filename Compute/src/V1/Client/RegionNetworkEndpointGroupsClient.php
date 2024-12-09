@@ -50,13 +50,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkEndpointGroup> getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
  */
 final class RegionNetworkEndpointGroupsClient
 {

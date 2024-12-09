@@ -63,18 +63,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateTargetSitesAsync(BatchCreateTargetSitesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchVerifyTargetSitesAsync(BatchVerifyTargetSitesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTargetSiteAsync(CreateTargetSiteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTargetSiteAsync(DeleteTargetSiteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface disableAdvancedSiteSearchAsync(DisableAdvancedSiteSearchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface enableAdvancedSiteSearchAsync(EnableAdvancedSiteSearchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchDomainVerificationStatusAsync(FetchDomainVerificationStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSiteSearchEngineAsync(GetSiteSearchEngineRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTargetSiteAsync(GetTargetSiteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTargetSitesAsync(ListTargetSitesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface recrawlUrisAsync(RecrawlUrisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTargetSiteAsync(UpdateTargetSiteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateTargetSitesAsync(BatchCreateTargetSitesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchVerifyTargetSitesAsync(BatchVerifyTargetSitesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTargetSiteAsync(CreateTargetSiteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTargetSiteAsync(DeleteTargetSiteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableAdvancedSiteSearchAsync(DisableAdvancedSiteSearchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> enableAdvancedSiteSearchAsync(EnableAdvancedSiteSearchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchDomainVerificationStatusAsync(FetchDomainVerificationStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SiteSearchEngine> getSiteSearchEngineAsync(GetSiteSearchEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetSite> getTargetSiteAsync(GetTargetSiteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTargetSitesAsync(ListTargetSitesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> recrawlUrisAsync(RecrawlUrisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTargetSiteAsync(UpdateTargetSiteRequest $request, array $optionalArgs = [])
  */
 final class SiteSearchEngineServiceClient
 {

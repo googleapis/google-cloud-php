@@ -63,16 +63,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelTuningJobAsync(CancelTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTuningJobAsync(CreateTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTuningJobAsync(GetTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTuningJobsAsync(ListTuningJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rebaseTunedModelAsync(RebaseTunedModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelTuningJobAsync(CancelTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TuningJob> createTuningJobAsync(CreateTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TuningJob> getTuningJobAsync(GetTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTuningJobsAsync(ListTuningJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rebaseTunedModelAsync(RebaseTunedModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class GenAiTuningServiceClient
 {
@@ -553,8 +553,6 @@ final class GenAiTuningServiceClient
 
     /**
      * Rebase a TunedModel.
-     * Creates a LongRunningOperation that takes a legacy Tuned GenAI model
-     * Reference and creates a TuningJob based on newly available model.
      *
      * The async variant is {@see GenAiTuningServiceClient::rebaseTunedModelAsync()} .
      *

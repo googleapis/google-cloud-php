@@ -57,12 +57,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchUpdateIngressRulesAsync(BatchUpdateIngressRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIngressRuleAsync(CreateIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIngressRuleAsync(DeleteIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIngressRuleAsync(GetIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIngressRulesAsync(ListIngressRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIngressRuleAsync(UpdateIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateIngressRulesResponse> batchUpdateIngressRulesAsync(BatchUpdateIngressRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> createIngressRuleAsync(CreateIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIngressRuleAsync(DeleteIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> getIngressRuleAsync(GetIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIngressRulesAsync(ListIngressRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> updateIngressRuleAsync(UpdateIngressRuleRequest $request, array $optionalArgs = [])
  */
 final class FirewallClient
 {

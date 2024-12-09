@@ -15,10 +15,11 @@ class EnvVar
           return;
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-À
-(google/cloud/aiplatform/v1/env_var.protogoogle.cloud.aiplatform.v1"/
+Ê
+(google/cloud/aiplatform/v1/env_var.protogoogle.cloud.aiplatform.v1google/api/resource.proto"/
 EnvVar
 name (	B‡A
 value (	B‡AB…

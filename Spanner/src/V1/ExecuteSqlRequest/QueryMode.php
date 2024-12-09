@@ -27,17 +27,35 @@ class QueryMode
      */
     const PLAN = 1;
     /**
-     * This mode returns both the query plan and the execution statistics along
-     * with the results.
+     * This mode returns the query plan, overall execution statistics,
+     * operator level execution statistics along with the results. This has a
+     * performance overhead compared to the other modes. It is not recommended
+     * to use this mode for production traffic.
      *
      * Generated from protobuf enum <code>PROFILE = 2;</code>
      */
     const PROFILE = 2;
+    /**
+     * This mode returns the overall (but not operator-level) execution
+     * statistics along with the results.
+     *
+     * Generated from protobuf enum <code>WITH_STATS = 3;</code>
+     */
+    const WITH_STATS = 3;
+    /**
+     * This mode returns the query plan, overall (but not operator-level)
+     * execution statistics along with the results.
+     *
+     * Generated from protobuf enum <code>WITH_PLAN_AND_STATS = 4;</code>
+     */
+    const WITH_PLAN_AND_STATS = 4;
 
     private static $valueToName = [
         self::NORMAL => 'NORMAL',
         self::PLAN => 'PLAN',
         self::PROFILE => 'PROFILE',
+        self::WITH_STATS => 'WITH_STATS',
+        self::WITH_PLAN_AND_STATS => 'WITH_PLAN_AND_STATS',
     ];
 
     public static function name($value)

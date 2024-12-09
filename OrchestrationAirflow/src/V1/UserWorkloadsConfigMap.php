@@ -27,6 +27,11 @@ class UserWorkloadsConfigMap extends \Google\Protobuf\Internal\Message
      * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value
      * pairs. For details see:
      * https://kubernetes.io/docs/concepts/configuration/configmap/
+     * Example:
+     * {
+     *   "example_key": "example_value",
+     *   "another_key": "another_value"
+     * }
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,6 +50,11 @@ class UserWorkloadsConfigMap extends \Google\Protobuf\Internal\Message
      *           Optional. The "data" field of Kubernetes ConfigMap, organized in key-value
      *           pairs. For details see:
      *           https://kubernetes.io/docs/concepts/configuration/configmap/
+     *           Example:
+     *           {
+     *             "example_key": "example_value",
+     *             "another_key": "another_value"
+     *           }
      * }
      */
     public function __construct($data = NULL) {
@@ -84,6 +94,11 @@ class UserWorkloadsConfigMap extends \Google\Protobuf\Internal\Message
      * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value
      * pairs. For details see:
      * https://kubernetes.io/docs/concepts/configuration/configmap/
+     * Example:
+     * {
+     *   "example_key": "example_value",
+     *   "another_key": "another_value"
+     * }
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -97,6 +112,11 @@ class UserWorkloadsConfigMap extends \Google\Protobuf\Internal\Message
      * Optional. The "data" field of Kubernetes ConfigMap, organized in key-value
      * pairs. For details see:
      * https://kubernetes.io/docs/concepts/configuration/configmap/
+     * Example:
+     * {
+     *   "example_key": "example_value",
+     *   "another_key": "another_value"
+     * }
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

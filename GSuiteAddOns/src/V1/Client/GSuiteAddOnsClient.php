@@ -85,15 +85,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizationAsync(GetAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstallStatusAsync(GetInstallStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface installDeploymentAsync(InstallDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceDeploymentAsync(ReplaceDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uninstallDeploymentAsync(UninstallDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Authorization> getAuthorizationAsync(GetAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstallStatus> getInstallStatusAsync(GetInstallStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> installDeploymentAsync(InstallDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> replaceDeploymentAsync(ReplaceDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> uninstallDeploymentAsync(UninstallDeploymentRequest $request, array $optionalArgs = [])
  */
 final class GSuiteAddOnsClient
 {

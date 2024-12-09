@@ -62,15 +62,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface acknowledgeViolationAsync(AcknowledgeViolationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWorkloadAsync(CreateWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkloadAsync(DeleteWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getViolationAsync(GetViolationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listViolationsAsync(ListViolationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restrictAllowedResourcesAsync(RestrictAllowedResourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWorkloadAsync(UpdateWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcknowledgeViolationResponse> acknowledgeViolationAsync(AcknowledgeViolationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createWorkloadAsync(CreateWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWorkloadAsync(DeleteWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Violation> getViolationAsync(GetViolationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listViolationsAsync(ListViolationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestrictAllowedResourcesResponse> restrictAllowedResourcesAsync(RestrictAllowedResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> updateWorkloadAsync(UpdateWorkloadRequest $request, array $optionalArgs = [])
  */
 final class AssuredWorkloadsServiceClient
 {

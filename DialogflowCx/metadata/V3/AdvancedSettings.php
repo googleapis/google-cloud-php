@@ -19,7 +19,7 @@ class AdvancedSettings
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ä
+Á
 
 5google/cloud/dialogflow/cx/v3/advanced_settings.protogoogle.cloud.dialogflow.cx.v3\'google/cloud/dialogflow/cx/v3/gcs.protogoogle/protobuf/duration.proto"Ü
 AdvancedSettingsS
@@ -45,8 +45,8 @@ max_digits (
 LoggingSettings"
 enable_stackdriver_logging ("
 enable_interaction_logging (&
-enable_consent_based_redaction (B»
-!com.google.cloud.dialogflow.cx.v3BAdvancedSettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpbø¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
+enable_consent_based_redaction (B¸
+!com.google.cloud.dialogflow.cx.v3BAdvancedSettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 
         static::$is_initialized = true;

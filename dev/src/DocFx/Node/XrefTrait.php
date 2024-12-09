@@ -22,6 +22,8 @@ namespace Google\Cloud\Dev\DocFx\Node;
  */
 trait XrefTrait
 {
+    private string $namespace;
+
     /**
      * @param string $type The parameter type to replace
      */
@@ -156,28 +158,33 @@ trait XrefTrait
 
     private function replaceUidWithLink(string $uid, string $name = null): string
     {
-        // Remove preceeding "\" from namespace
-        $name = $name ?: ltrim($uid, '\\');
+        if (is_null($name)) {
+            $name = ltrim($uid, '\\');
+            // Remove the namespace from the name if it matches the current namespace
+            if (!empty($this->namespace) && str_starts_with($uid, $this->namespace)) {
+                $name = substr($uid, strlen($this->namespace) + 1);
+            }
+        }
+
+        // Case for generic types
+        if (preg_match('/(.*)<(.*)>/', $uid, $matches)) {
+            return sprintf(
+                '%s&lt;%s&gt;',
+                $this->replaceUidWithLink($matches[1]),
+                $this->replaceUidWithLink($matches[2])
+            );
+        }
 
         // Check for external package namespaces
         switch (true) {
-            case 0 === strpos($uid, '\Google\ApiCore\\'):
-                $extLinkRoot = 'https://googleapis.github.io/gax-php#';
-                break;
-            case 0 === strpos($uid, '\Google\Auth\\'):
+            case str_starts_with($uid, '\Google\Auth\\'):
                 $extLinkRoot = 'https://googleapis.github.io/google-auth-library-php/main/';
                 break;
-            case 0 === strpos($uid, '\Google\Protobuf\\'):
+            case str_starts_with($uid, '\Google\Protobuf\\'):
                 $extLinkRoot = 'https://protobuf.dev/reference/php/api-docs/';
                 break;
-            case 0 === strpos($uid, '\Google\Api\\'):
-            case 0 === strpos($uid, '\Google\Cloud\Iam\V1\\'):
-            case 0 === strpos($uid, '\Google\Cloud\Location\\'):
-            case 0 === strpos($uid, '\Google\Cloud\Logging\Type\\'):
-            case 0 === strpos($uid, '\Google\Iam\\'):
-            case 0 === strpos($uid, '\Google\Rpc\\'):
-            case 0 === strpos($uid, '\Google\Type\\'):
-                $extLinkRoot = 'https://googleapis.github.io/common-protos-php#';
+            case 0 === strpos($uid, '\GuzzleHttp\Promise\PromiseInterface'):
+                $extLinkRoot = 'https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html';
                 break;
             default:
                 $extLinkRoot = '';
@@ -185,8 +192,10 @@ trait XrefTrait
 
         // Create external link
         if ($extLinkRoot) {
-            $path = str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
-            return sprintf('<a href="%s">%s</a>', $extLinkRoot . $path, $name);
+            if (str_starts_with($uid, '\Google')) {
+                $extLinkRoot .= str_replace(['::', '\\', '()'], ['#method_', '/'], $name);
+            }
+            return sprintf('<a href="%s">%s</a>', $extLinkRoot, $name);
         }
 
         return sprintf('<xref uid="%s">%s</xref>', $uid, $name);

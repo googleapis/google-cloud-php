@@ -71,17 +71,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface directPredictAsync(DirectPredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface directRawPredictAsync(DirectRawPredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface explainAsync(ExplainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateContentAsync(GenerateContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface predictAsync(PredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rawPredictAsync(RawPredictRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DirectPredictResponse> directPredictAsync(DirectPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DirectRawPredictResponse> directRawPredictAsync(DirectRawPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExplainResponse> explainAsync(ExplainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateContentResponse> generateContentAsync(GenerateContentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PredictResponse> predictAsync(PredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> rawPredictAsync(RawPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class PredictionServiceClient
 {
@@ -196,12 +196,32 @@ final class PredictionServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a rag_corpus
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $ragCorpus
+     *
+     * @return string The formatted rag_corpus resource.
+     */
+    public static function ragCorpusName(string $project, string $location, string $ragCorpus): string
+    {
+        return self::getPathTemplate('ragCorpus')->render([
+            'project' => $project,
+            'location' => $location,
+            'rag_corpus' => $ragCorpus,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - ragCorpus: projects/{project}/locations/{location}/ragCorpora/{rag_corpus}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

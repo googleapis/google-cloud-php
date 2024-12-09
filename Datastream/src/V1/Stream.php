@@ -78,6 +78,13 @@ class Stream extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string customer_managed_encryption_key = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $customer_managed_encryption_key = null;
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery.
+     * Note: This field is currently experimental.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_recovery_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_recovery_time = null;
     protected $backfill_strategy;
 
     /**
@@ -114,6 +121,9 @@ class Stream extends \Google\Protobuf\Internal\Message
      *           If provided, it will be used to encrypt the data.
      *           If left blank, data will be encrypted using an internal Stream-specific
      *           encryption key provisioned through KMS.
+     *     @type \Google\Protobuf\Timestamp $last_recovery_time
+     *           Output only. If the stream was recovered, the time of the last recovery.
+     *           Note: This field is currently experimental.
      * }
      */
     public function __construct($data = NULL) {
@@ -497,6 +507,44 @@ class Stream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->customer_managed_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery.
+     * Note: This field is currently experimental.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_recovery_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastRecoveryTime()
+    {
+        return $this->last_recovery_time;
+    }
+
+    public function hasLastRecoveryTime()
+    {
+        return isset($this->last_recovery_time);
+    }
+
+    public function clearLastRecoveryTime()
+    {
+        unset($this->last_recovery_time);
+    }
+
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery.
+     * Note: This field is currently experimental.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_recovery_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastRecoveryTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_recovery_time = $var;
 
         return $this;
     }

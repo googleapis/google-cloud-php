@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class MembershipCount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Count of human users that have directly joined the space, not counting
-     * users joined by having membership in a joined group.
+     * Output only. Count of human users that have directly joined the space,
+     * not counting users joined by having membership in a joined group.
      *
-     * Generated from protobuf field <code>int32 joined_direct_human_user_count = 4;</code>
+     * Generated from protobuf field <code>int32 joined_direct_human_user_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $joined_direct_human_user_count = 0;
     /**
-     * Count of all groups that have directly joined the space.
+     * Output only. Count of all groups that have directly joined the space.
      *
-     * Generated from protobuf field <code>int32 joined_group_count = 5;</code>
+     * Generated from protobuf field <code>int32 joined_group_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $joined_group_count = 0;
 
@@ -36,10 +36,10 @@ class MembershipCount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $joined_direct_human_user_count
-     *           Count of human users that have directly joined the space, not counting
-     *           users joined by having membership in a joined group.
+     *           Output only. Count of human users that have directly joined the space,
+     *           not counting users joined by having membership in a joined group.
      *     @type int $joined_group_count
-     *           Count of all groups that have directly joined the space.
+     *           Output only. Count of all groups that have directly joined the space.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,10 +48,10 @@ class MembershipCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of human users that have directly joined the space, not counting
-     * users joined by having membership in a joined group.
+     * Output only. Count of human users that have directly joined the space,
+     * not counting users joined by having membership in a joined group.
      *
-     * Generated from protobuf field <code>int32 joined_direct_human_user_count = 4;</code>
+     * Generated from protobuf field <code>int32 joined_direct_human_user_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getJoinedDirectHumanUserCount()
@@ -60,10 +60,10 @@ class MembershipCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of human users that have directly joined the space, not counting
-     * users joined by having membership in a joined group.
+     * Output only. Count of human users that have directly joined the space,
+     * not counting users joined by having membership in a joined group.
      *
-     * Generated from protobuf field <code>int32 joined_direct_human_user_count = 4;</code>
+     * Generated from protobuf field <code>int32 joined_direct_human_user_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class MembershipCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of all groups that have directly joined the space.
+     * Output only. Count of all groups that have directly joined the space.
      *
-     * Generated from protobuf field <code>int32 joined_group_count = 5;</code>
+     * Generated from protobuf field <code>int32 joined_group_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getJoinedGroupCount()
@@ -87,9 +87,9 @@ class MembershipCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of all groups that have directly joined the space.
+     * Output only. Count of all groups that have directly joined the space.
      *
-     * Generated from protobuf field <code>int32 joined_group_count = 5;</code>
+     * Generated from protobuf field <code>int32 joined_group_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

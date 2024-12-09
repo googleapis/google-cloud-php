@@ -24,9 +24,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
-     * request ID so that if you must retry your request, the server will know to
-     * ignore the request if it has already been completed. The server will
-     * guarantee that for at least 60 minutes after the first request.
+     * request ID so that if you must retry your request, the server ignores the
+     * request if it has already been completed. The server guarantees that for at
+     * least 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and
      * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
@@ -47,8 +47,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and
-     * any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission
+     * checks and any other type of validation, but does not actually execute the
+     * create request.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -80,9 +81,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
      *           comment on the Cluster.name field
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
-     *           request ID so that if you must retry your request, the server will know to
-     *           ignore the request if it has already been completed. The server will
-     *           guarantee that for at least 60 minutes after the first request.
+     *           request ID so that if you must retry your request, the server ignores the
+     *           request if it has already been completed. The server guarantees that for at
+     *           least 60 minutes since the first request.
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
@@ -95,8 +96,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
      *           If an etag is provided and does not match the current etag of the Cluster,
      *           deletion will be blocked and an ABORTED error will be returned.
      *     @type bool $validate_only
-     *           Optional. If set, performs request validation (e.g. permission checks and
-     *           any other type of validation), but do not actually execute the delete.
+     *           Optional. If set, performs request validation, for example, permission
+     *           checks and any other type of validation, but does not actually execute the
+     *           create request.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,9 +136,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
-     * request ID so that if you must retry your request, the server will know to
-     * ignore the request if it has already been completed. The server will
-     * guarantee that for at least 60 minutes after the first request.
+     * request ID so that if you must retry your request, the server ignores the
+     * request if it has already been completed. The server guarantees that for at
+     * least 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and
      * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
@@ -155,9 +157,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
-     * request ID so that if you must retry your request, the server will know to
-     * ignore the request if it has already been completed. The server will
-     * guarantee that for at least 60 minutes after the first request.
+     * request ID so that if you must retry your request, the server ignores the
+     * request if it has already been completed. The server guarantees that for at
+     * least 60 minutes since the first request.
      * For example, consider a situation where you make an initial request and
      * the request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
@@ -209,8 +211,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and
-     * any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission
+     * checks and any other type of validation, but does not actually execute the
+     * create request.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -221,8 +224,9 @@ class PromoteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and
-     * any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission
+     * checks and any other type of validation, but does not actually execute the
+     * create request.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -17,8 +17,8 @@ class Experiment extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the experiment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/experiments/<Experiment ID>..
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -127,8 +127,8 @@ class Experiment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the experiment.
-     *           Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>/experiments/<Experiment ID>..
+     *           Format:
+     *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *     @type string $display_name
      *           Required. The human-readable name of the experiment (unique in an
      *           environment). Limit of 64 characters.
@@ -177,8 +177,8 @@ class Experiment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the experiment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/experiments/<Experiment ID>..
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -190,8 +190,8 @@ class Experiment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the experiment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/experiments/<Experiment ID>..
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/experiments/<ExperimentID>.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

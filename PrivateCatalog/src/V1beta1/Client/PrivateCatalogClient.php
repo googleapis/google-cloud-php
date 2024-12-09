@@ -67,9 +67,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface searchCatalogsAsync(SearchCatalogsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchProductsAsync(SearchProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchVersionsAsync(SearchVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchCatalogsAsync(SearchCatalogsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchProductsAsync(SearchProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchVersionsAsync(SearchVersionsRequest $request, array $optionalArgs = [])
  */
 final class PrivateCatalogClient
 {

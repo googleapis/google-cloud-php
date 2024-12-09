@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
  * Returns the list of all security settings in the specified location.
  *
  * @param string $formattedParent The location to list all security settings for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>`. Please see
  *                                {@see SecuritySettingsServiceClient::locationName()} for help formatting this field.
  */
 function list_security_settings_sample(string $formattedParent): void

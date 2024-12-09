@@ -47,4 +47,6 @@ class SessionAffinity
     const HTTP_COOKIE = 'HTTP_COOKIE';
 
     const NONE = 'NONE';
+
+    const STRONG_COOKIE_AFFINITY = 'STRONG_COOKIE_AFFINITY';
 }

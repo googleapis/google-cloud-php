@@ -48,11 +48,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteTargetGrpcProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetGrpcProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetGrpcProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetGrpcProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetGrpcProxy> getAsync(GetTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetGrpcProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchTargetGrpcProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetGrpcProxiesClient
 {

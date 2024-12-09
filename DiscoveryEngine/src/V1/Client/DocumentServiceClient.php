@@ -60,14 +60,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchGetDocumentsMetadataAsync(BatchGetDocumentsMetadataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDocumentsAsync(ImportDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDocumentsAsync(ListDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeDocumentsAsync(PurgeDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDocumentAsync(UpdateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchGetDocumentsMetadataResponse> batchGetDocumentsMetadataAsync(BatchGetDocumentsMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDocumentsAsync(ImportDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDocumentsAsync(ListDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeDocumentsAsync(PurgeDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> updateDocumentAsync(UpdateDocumentRequest $request, array $optionalArgs = [])
  */
 final class DocumentServiceClient
 {
@@ -217,6 +217,37 @@ final class DocumentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * fhir_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $fhirStore
+     * @param string $resourceType
+     * @param string $fhirResourceId
+     *
+     * @return string The formatted fhir_resource resource.
+     */
+    public static function fhirResourceName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $fhirStore,
+        string $resourceType,
+        string $fhirResourceId
+    ): string {
+        return self::getPathTemplate('fhirResource')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'fhir_store' => $fhirStore,
+            'resource_type' => $resourceType,
+            'fhir_resource_id' => $fhirResourceId,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a fhir_store
      * resource.
      *
@@ -355,6 +386,7 @@ final class DocumentServiceClient
      * Template: Pattern
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - fhirResource: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      * - fhirStore: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}

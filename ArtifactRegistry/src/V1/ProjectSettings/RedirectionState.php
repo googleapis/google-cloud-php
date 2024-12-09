@@ -37,12 +37,26 @@ class RedirectionState
      * Generated from protobuf enum <code>REDIRECTION_FROM_GCR_IO_FINALIZED = 3 [deprecated = true];</code>
      */
     const REDIRECTION_FROM_GCR_IO_FINALIZED = 3;
+    /**
+     * Redirection is enabled and missing images are copied from GCR
+     *
+     * Generated from protobuf enum <code>REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING = 5;</code>
+     */
+    const REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING = 5;
+    /**
+     * Redirection is partially enabled and missing images are copied from GCR
+     *
+     * Generated from protobuf enum <code>REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING = 6;</code>
+     */
+    const REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING = 6;
 
     private static $valueToName = [
         self::REDIRECTION_STATE_UNSPECIFIED => 'REDIRECTION_STATE_UNSPECIFIED',
         self::REDIRECTION_FROM_GCR_IO_DISABLED => 'REDIRECTION_FROM_GCR_IO_DISABLED',
         self::REDIRECTION_FROM_GCR_IO_ENABLED => 'REDIRECTION_FROM_GCR_IO_ENABLED',
         self::REDIRECTION_FROM_GCR_IO_FINALIZED => 'REDIRECTION_FROM_GCR_IO_FINALIZED',
+        self::REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING => 'REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING',
+        self::REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING => 'REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING',
     ];
 
     public static function name($value)

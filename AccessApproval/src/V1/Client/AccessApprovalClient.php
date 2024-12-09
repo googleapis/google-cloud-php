@@ -90,15 +90,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface approveApprovalRequestAsync(ApproveApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccessApprovalSettingsAsync(DeleteAccessApprovalSettingsMessage $request, array $optionalArgs = [])
- * @method PromiseInterface dismissApprovalRequestAsync(DismissApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessApprovalServiceAccountAsync(GetAccessApprovalServiceAccountMessage $request, array $optionalArgs = [])
- * @method PromiseInterface getAccessApprovalSettingsAsync(GetAccessApprovalSettingsMessage $request, array $optionalArgs = [])
- * @method PromiseInterface getApprovalRequestAsync(GetApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface invalidateApprovalRequestAsync(InvalidateApprovalRequestMessage $request, array $optionalArgs = [])
- * @method PromiseInterface listApprovalRequestsAsync(ListApprovalRequestsMessage $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccessApprovalSettingsAsync(UpdateAccessApprovalSettingsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> approveApprovalRequestAsync(ApproveApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccessApprovalSettingsAsync(DeleteAccessApprovalSettingsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> dismissApprovalRequestAsync(DismissApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessApprovalServiceAccount> getAccessApprovalServiceAccountAsync(GetAccessApprovalServiceAccountMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessApprovalSettings> getAccessApprovalSettingsAsync(GetAccessApprovalSettingsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> getApprovalRequestAsync(GetApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApprovalRequest> invalidateApprovalRequestAsync(InvalidateApprovalRequestMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApprovalRequestsAsync(ListApprovalRequestsMessage $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccessApprovalSettings> updateAccessApprovalSettingsAsync(UpdateAccessApprovalSettingsMessage $request, array $optionalArgs = [])
  */
 final class AccessApprovalClient
 {

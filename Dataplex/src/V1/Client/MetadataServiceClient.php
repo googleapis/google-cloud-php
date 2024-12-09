@@ -66,20 +66,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEntityAsync(CreateEntityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPartitionAsync(CreatePartitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntityAsync(DeleteEntityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePartitionAsync(DeletePartitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntityAsync(GetEntityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartitionAsync(GetPartitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitiesAsync(ListEntitiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPartitionsAsync(ListPartitionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntityAsync(UpdateEntityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entity> createEntityAsync(CreateEntityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Partition> createPartitionAsync(CreatePartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEntityAsync(DeleteEntityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePartitionAsync(DeletePartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entity> getEntityAsync(GetEntityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Partition> getPartitionAsync(GetPartitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitiesAsync(ListEntitiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPartitionsAsync(ListPartitionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entity> updateEntityAsync(UpdateEntityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class MetadataServiceClient
 {

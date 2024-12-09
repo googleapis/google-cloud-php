@@ -25,10 +25,11 @@ class Reachability
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-›
-4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"|
-ListConnectivityTestsRequest
-parent (	B‡A
+‡
+4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¨
+ListConnectivityTestsRequestC
+parent (	B3‡A˙A-
++cloudresourcemanager.googleapis.com/Project
 	page_size (
 
 page_token (	
@@ -37,20 +38,24 @@ page_token (	
 ListConnectivityTestsResponseF
 	resources (23.google.cloud.networkmanagement.v1.ConnectivityTest
 next_page_token (	
-unreachable (	"/
-GetConnectivityTestRequest
-name (	B‡A"ñ
-CreateConnectivityTestRequest
-parent (	B‡A
+unreachable (	"e
+GetConnectivityTestRequestG
+name (	B9‡A˙A3
+1networkmanagement.googleapis.com/ConnectivityTest"∆
+CreateConnectivityTestRequestC
+parent (	B3‡A˙A-
++cloudresourcemanager.googleapis.com/Project
 test_id (	B‡AJ
 resource (23.google.cloud.networkmanagement.v1.ConnectivityTestB‡A"°
 UpdateConnectivityTestRequest4
 update_mask (2.google.protobuf.FieldMaskB‡AJ
-resource (23.google.cloud.networkmanagement.v1.ConnectivityTestB‡A"2
-DeleteConnectivityTestRequest
-name (	B‡A"1
-RerunConnectivityTestRequest
-name (	B‡A"÷
+resource (23.google.cloud.networkmanagement.v1.ConnectivityTestB‡A"h
+DeleteConnectivityTestRequestG
+name (	B9‡A˙A3
+1networkmanagement.googleapis.com/ConnectivityTest"g
+RerunConnectivityTestRequestG
+name (	B9‡A˙A3
+1networkmanagement.googleapis.com/ConnectivityTest"÷
 OperationMetadata/
 create_time (2.google.protobuf.Timestamp,
 end_time (2.google.protobuf.Timestamp

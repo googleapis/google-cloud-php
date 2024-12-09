@@ -67,21 +67,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiConfigAsync(CreateApiConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGatewayAsync(CreateGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiConfigAsync(DeleteApiConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGatewayAsync(DeleteGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiAsync(GetApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiConfigAsync(GetApiConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiConfigsAsync(ListApiConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApisAsync(ListApisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiConfigAsync(UpdateApiConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGatewayAsync(UpdateGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createApiConfigAsync(CreateApiConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGatewayAsync(CreateGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteApiConfigAsync(DeleteApiConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGatewayAsync(DeleteGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> getApiAsync(GetApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiConfig> getApiConfigAsync(GetApiConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Gateway> getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiConfigsAsync(ListApiConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApisAsync(ListApisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateApiConfigAsync(UpdateApiConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGatewayAsync(UpdateGatewayRequest $request, array $optionalArgs = [])
  */
 final class ApiGatewayServiceClient
 {

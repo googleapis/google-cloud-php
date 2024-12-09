@@ -57,10 +57,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface deleteLfpStoreAsync(DeleteLfpStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLfpStoreAsync(GetLfpStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertLfpStoreAsync(InsertLfpStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLfpStoresAsync(ListLfpStoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLfpStoreAsync(DeleteLfpStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LfpStore> getLfpStoreAsync(GetLfpStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LfpStore> insertLfpStoreAsync(InsertLfpStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLfpStoresAsync(ListLfpStoresRequest $request, array $optionalArgs = [])
  */
 final class LfpStoreServiceClient
 {

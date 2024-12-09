@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request to create a named space.
+ * A request to create a named space with no members.
  *
  * Generated from protobuf message <code>google.chat.v1.CreateSpaceRequest</code>
  */
@@ -17,8 +17,9 @@ class CreateSpaceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The `displayName` and `spaceType` fields must be populated.  Only
-     * `SpaceType.SPACE` is supported.
-     * If you receive the error message `ALREADY_EXISTS` when creating a space,
+     * `SpaceType.SPACE`  and `SpaceType.GROUP_CHAT` are supported.
+     * `SpaceType.GROUP_CHAT` can only be used if `importMode` is set to true.
+     * If you receive the error message `ALREADY_EXISTS`,
      * try a different `displayName`. An existing space within the Google
      * Workspace organization might already use this display name.
      * The space `name` is assigned on the server so anything specified in this
@@ -41,11 +42,13 @@ class CreateSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param \Google\Apps\Chat\V1\Space $space Required. The `displayName` and `spaceType` fields must be populated.  Only
-     *                                          `SpaceType.SPACE` is supported.
+     *                                          `SpaceType.SPACE`  and `SpaceType.GROUP_CHAT` are supported.
+     *                                          `SpaceType.GROUP_CHAT` can only be used if `importMode` is set to true.
      *
-     *                                          If you receive the error message `ALREADY_EXISTS` when creating a space,
+     *                                          If you receive the error message `ALREADY_EXISTS`,
      *                                          try a different `displayName`. An existing space within the Google
      *                                          Workspace organization might already use this display name.
+     *
      *
      *                                          The space `name` is assigned on the server so anything specified in this
      *                                          field will be ignored.
@@ -68,8 +71,9 @@ class CreateSpaceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Apps\Chat\V1\Space $space
      *           Required. The `displayName` and `spaceType` fields must be populated.  Only
-     *           `SpaceType.SPACE` is supported.
-     *           If you receive the error message `ALREADY_EXISTS` when creating a space,
+     *           `SpaceType.SPACE`  and `SpaceType.GROUP_CHAT` are supported.
+     *           `SpaceType.GROUP_CHAT` can only be used if `importMode` is set to true.
+     *           If you receive the error message `ALREADY_EXISTS`,
      *           try a different `displayName`. An existing space within the Google
      *           Workspace organization might already use this display name.
      *           The space `name` is assigned on the server so anything specified in this
@@ -90,8 +94,9 @@ class CreateSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The `displayName` and `spaceType` fields must be populated.  Only
-     * `SpaceType.SPACE` is supported.
-     * If you receive the error message `ALREADY_EXISTS` when creating a space,
+     * `SpaceType.SPACE`  and `SpaceType.GROUP_CHAT` are supported.
+     * `SpaceType.GROUP_CHAT` can only be used if `importMode` is set to true.
+     * If you receive the error message `ALREADY_EXISTS`,
      * try a different `displayName`. An existing space within the Google
      * Workspace organization might already use this display name.
      * The space `name` is assigned on the server so anything specified in this
@@ -117,8 +122,9 @@ class CreateSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The `displayName` and `spaceType` fields must be populated.  Only
-     * `SpaceType.SPACE` is supported.
-     * If you receive the error message `ALREADY_EXISTS` when creating a space,
+     * `SpaceType.SPACE`  and `SpaceType.GROUP_CHAT` are supported.
+     * `SpaceType.GROUP_CHAT` can only be used if `importMode` is set to true.
+     * If you receive the error message `ALREADY_EXISTS`,
      * try a different `displayName`. An existing space within the Google
      * Workspace organization might already use this display name.
      * The space `name` is assigned on the server so anything specified in this

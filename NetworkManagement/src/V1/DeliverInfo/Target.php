@@ -57,7 +57,7 @@ class Target
      */
     const PSC_PUBLISHED_SERVICE = 6;
     /**
-     * Target is all Google APIs that use [Private Service
+     * Target is Google APIs that use [Private Service
      * Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).
      *
      * Generated from protobuf enum <code>PSC_GOOGLE_API = 7;</code>
@@ -106,6 +106,24 @@ class Target
      * Generated from protobuf enum <code>CLOUD_RUN_REVISION = 14;</code>
      */
     const CLOUD_RUN_REVISION = 14;
+    /**
+     * Target is a Google-managed service. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>GOOGLE_MANAGED_SERVICE = 15;</code>
+     */
+    const GOOGLE_MANAGED_SERVICE = 15;
+    /**
+     * Target is a Redis Instance.
+     *
+     * Generated from protobuf enum <code>REDIS_INSTANCE = 16;</code>
+     */
+    const REDIS_INSTANCE = 16;
+    /**
+     * Target is a Redis Cluster.
+     *
+     * Generated from protobuf enum <code>REDIS_CLUSTER = 17;</code>
+     */
+    const REDIS_CLUSTER = 17;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -123,6 +141,9 @@ class Target
         self::CLOUD_FUNCTION => 'CLOUD_FUNCTION',
         self::APP_ENGINE_VERSION => 'APP_ENGINE_VERSION',
         self::CLOUD_RUN_REVISION => 'CLOUD_RUN_REVISION',
+        self::GOOGLE_MANAGED_SERVICE => 'GOOGLE_MANAGED_SERVICE',
+        self::REDIS_INSTANCE => 'REDIS_INSTANCE',
+        self::REDIS_CLUSTER => 'REDIS_CLUSTER',
     ];
 
     public static function name($value)

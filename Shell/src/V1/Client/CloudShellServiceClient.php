@@ -62,11 +62,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addPublicKeyAsync(AddPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface authorizeEnvironmentAsync(AuthorizeEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removePublicKeyAsync(RemovePublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startEnvironmentAsync(StartEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addPublicKeyAsync(AddPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> authorizeEnvironmentAsync(AuthorizeEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Environment> getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removePublicKeyAsync(RemovePublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startEnvironmentAsync(StartEnvironmentRequest $request, array $optionalArgs = [])
  */
 final class CloudShellServiceClient
 {

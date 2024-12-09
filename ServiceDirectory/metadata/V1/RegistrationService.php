@@ -27,7 +27,7 @@ class RegistrationService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê7
+ç7
 ;google/cloud/servicedirectory/v1/registration_service.proto google.cloud.servicedirectory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto0google/cloud/servicedirectory/v1/namespace.proto.google/cloud/servicedirectory/v1/service.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"≥
 CreateNamespaceRequest9
 parent (	B)‡A˙A#
@@ -125,8 +125,8 @@ GetService3.google.cloud.servicedirectory.v1.GetServiceRequest).google.cloud.s
 DeleteEndpoint7.google.cloud.servicedirectory.v1.DeleteEndpointRequest.google.protobuf.Empty"T⁄AnameÇ”‰ìG*E/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}Ë
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"úÇ”‰ìï"?/v1/{resource=projects/*/locations/*/namespaces/*}:getIamPolicy:*ZO"J/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy:*Ë
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"úÇ”‰ìï"?/v1/{resource=projects/*/locations/*/namespaces/*}:setIamPolicy:*ZO"J/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy:*î
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"®Ç”‰ì°"E/v1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:*ZU"P/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:*S Aservicedirectory.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÉ
-$com.google.cloud.servicedirectory.v1BRegistrationServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb¯™ Google.Cloud.ServiceDirectory.V1  Google\\Cloud\\ServiceDirectory\\V1Í#Google::Cloud::ServiceDirectory::V1bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"®Ç”‰ì°"E/v1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:*ZU"P/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:*S Aservicedirectory.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÄ
+$com.google.cloud.servicedirectory.v1BRegistrationServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb™ Google.Cloud.ServiceDirectory.V1  Google\\Cloud\\ServiceDirectory\\V1Í#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;

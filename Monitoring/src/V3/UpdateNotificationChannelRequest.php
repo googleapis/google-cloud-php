@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The fields to update.
+     * Optional. The fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
     /**
@@ -32,7 +32,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     private $notification_channel = null;
 
     /**
-     * @param \Google\Protobuf\FieldMask                      $updateMask          The fields to update.
+     * @param \Google\Protobuf\FieldMask                      $updateMask          Optional. The fields to update.
      * @param \Google\Cloud\Monitoring\V3\NotificationChannel $notificationChannel Required. A description of the changes to be applied to the specified
      *                                                                             notification channel. The description must provide a definition for
      *                                                                             fields to be updated; the names of these fields should also be
@@ -56,7 +56,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The fields to update.
+     *           Optional. The fields to update.
      *     @type \Google\Cloud\Monitoring\V3\NotificationChannel $notification_channel
      *           Required. A description of the changes to be applied to the specified
      *           notification channel. The description must provide a definition for
@@ -70,9 +70,9 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update.
+     * Optional. The fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -91,9 +91,9 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update.
+     * Optional. The fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

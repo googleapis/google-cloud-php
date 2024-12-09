@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Get Entry request.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.GetEntryRequest</code>
  */
 class GetEntryRequest extends \Google\Protobuf\Internal\Message
@@ -21,21 +23,22 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. View for controlling which parts of an entry are to be returned.
+     * Optional. View to control which parts of an entry the service should
+     * return.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $view = 0;
     /**
      * Optional. Limits the aspects returned to the provided aspect types.
-     * Only works if the CUSTOM view is selected.
+     * It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $aspect_types;
     /**
      * Optional. Limits the aspects returned to those associated with the provided
-     * paths within the Entry. Only works if the CUSTOM view is selected.
+     * paths within the Entry. It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string paths = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -66,13 +69,14 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Entry:
      *           `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`.
      *     @type int $view
-     *           Optional. View for controlling which parts of an entry are to be returned.
+     *           Optional. View to control which parts of an entry the service should
+     *           return.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_types
      *           Optional. Limits the aspects returned to the provided aspect types.
-     *           Only works if the CUSTOM view is selected.
+     *           It only works for CUSTOM view.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
      *           Optional. Limits the aspects returned to those associated with the provided
-     *           paths within the Entry. Only works if the CUSTOM view is selected.
+     *           paths within the Entry. It only works for CUSTOM view.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,7 +113,8 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. View for controlling which parts of an entry are to be returned.
+     * Optional. View to control which parts of an entry the service should
+     * return.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -120,7 +125,8 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. View for controlling which parts of an entry are to be returned.
+     * Optional. View to control which parts of an entry the service should
+     * return.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -136,7 +142,7 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limits the aspects returned to the provided aspect types.
-     * Only works if the CUSTOM view is selected.
+     * It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -148,7 +154,7 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limits the aspects returned to the provided aspect types.
-     * Only works if the CUSTOM view is selected.
+     * It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -164,7 +170,7 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limits the aspects returned to those associated with the provided
-     * paths within the Entry. Only works if the CUSTOM view is selected.
+     * paths within the Entry. It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string paths = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -176,7 +182,7 @@ class GetEntryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Limits the aspects returned to those associated with the provided
-     * paths within the Entry. Only works if the CUSTOM view is selected.
+     * paths within the Entry. It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string paths = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

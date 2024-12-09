@@ -38,7 +38,7 @@ class NodeTest extends TestCase
     public function testNestedParameters()
     {
         $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
-        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml));
+        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', []);
 
         $params = $method->getParameters();
 
@@ -81,7 +81,7 @@ class NodeTest extends TestCase
     public function testProtoRefInParameters()
     {
         $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
-        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml));
+        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', []);
 
         $params = $method->getParameters();
 
@@ -126,7 +126,7 @@ class NodeTest extends TestCase
 </docblock>
 </method>
 EOF;
-        $method = new MethodNode(new SimpleXMLElement($serviceXml));
+        $method = new MethodNode(new SimpleXMLElement($serviceXml), '', []);
 
         $content = $method->getContent();
         $this->assertStringContainsString(
@@ -136,6 +136,42 @@ EOF;
             ' - <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()">Resume Operation method</xref>',
             $content
         );
+    }
+
+    public function testReplaceGuzzleExternalLink()
+    {
+        $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
+        $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
+        $xref = new class {
+            use XrefTrait;
+
+            public function replace(string $uid) {
+                return $this->replaceUidWithLink($uid);
+            }
+        };
+
+        $result = $xref->replace($guzzlePromiseClassName);
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testReplaceGenericPromiseClass()
+    {
+        $guzzlePromiseClassName = '\GuzzleHttp\Promise\PromiseInterface';
+        $googleReference = '\Google\Cloud\AdvisoryNotifications\V1\Notification';
+        $uid = $guzzlePromiseClassName . '<' . $googleReference . '>';
+
+        $expected = '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>';
+        $expected .= '&lt;<xref uid="' . $googleReference . '">Google\Cloud\AdvisoryNotifications\V1\Notification</xref>&gt;';
+        $xref = new class {
+            use XrefTrait;
+
+            public function replace(string $uid) {
+                return $this->replaceUidWithLink($uid);
+            }
+        };
+
+        $result = $xref->replace($uid);
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -248,15 +284,14 @@ EOF;
         $description = '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]';
         $protoPackages = ['google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2'];
 
-        $xref = new class {
+        $xref = new class($protoPackages) {
             use XrefTrait;
-            public $protoPackages;
+            public function __construct(private array $protoPackages) {
+            }
             public function replace(string $description) {
                 return $this->replaceProtoRef($description);
             }
         };
-
-        $xref->protoPackages = $protoPackages;
 
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
@@ -266,9 +301,7 @@ EOF;
         $classNode = new ClassNode(new SimpleXMLElement(sprintf(
             '<class><docblock><description>%s</description></docblock></class>',
             $description
-        )));
-
-        $classNode->setProtoPackages($protoPackages);
+        )), $protoPackages);
 
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient::listBackups()">ListBackups</xref>',

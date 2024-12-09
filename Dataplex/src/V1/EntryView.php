@@ -34,13 +34,13 @@ class EntryView
     const FULL = 2;
     /**
      * Returns aspects matching custom fields in GetEntryRequest. If the number of
-     * aspects would exceed 100, the first 100 will be returned.
+     * aspects exceeds 100, the first 100 will be returned.
      *
      * Generated from protobuf enum <code>CUSTOM = 3;</code>
      */
     const CUSTOM = 3;
     /**
-     * Returns all aspects. If the number of aspects would exceed 100, the first
+     * Returns all aspects. If the number of aspects exceeds 100, the first
      * 100 will be returned.
      *
      * Generated from protobuf enum <code>ALL = 4;</code>

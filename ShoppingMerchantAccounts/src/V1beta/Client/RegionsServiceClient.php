@@ -60,11 +60,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createRegionAsync(CreateRegionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRegionAsync(DeleteRegionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRegionAsync(GetRegionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRegionsAsync(ListRegionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRegionAsync(UpdateRegionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Region> createRegionAsync(CreateRegionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRegionAsync(DeleteRegionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Region> getRegionAsync(GetRegionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRegionsAsync(ListRegionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Region> updateRegionAsync(UpdateRegionRequest $request, array $optionalArgs = [])
  */
 final class RegionsServiceClient
 {

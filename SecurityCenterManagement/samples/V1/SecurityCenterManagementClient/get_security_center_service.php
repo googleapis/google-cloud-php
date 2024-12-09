@@ -31,21 +31,20 @@ use Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService;
 /**
  * Gets service settings for the specified Security Command Center service.
  *
- * @param string $formattedName The Security Command Center service to retrieve.
- *
- *                              Formats:
+ * @param string $formattedName The Security Command Center service to retrieve, in one of the
+ *                              following formats:
  *
  *                              * organizations/{organization}/locations/{location}/securityCenterServices/{service}
  *                              * folders/{folder}/locations/{location}/securityCenterServices/{service}
  *                              * projects/{project}/locations/{location}/securityCenterServices/{service}
  *
- *                              The possible values for id {service} are:
+ *                              The following values are valid for `{service}`:
  *
- *                              * container-threat-detection
- *                              * event-threat-detection
- *                              * security-health-analytics
- *                              * vm-threat-detection
- *                              * web-security-scanner
+ *                              * `container-threat-detection`
+ *                              * `event-threat-detection`
+ *                              * `security-health-analytics`
+ *                              * `vm-threat-detection`
+ *                              * `web-security-scanner`
  *                              Please see {@see SecurityCenterManagementClient::securityCenterServiceName()} for help formatting this field.
  */
 function get_security_center_service_sample(string $formattedName): void

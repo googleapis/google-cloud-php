@@ -48,11 +48,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublicDelegatedPrefix> getAsync(GetGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalPublicDelegatedPrefixesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchGlobalPublicDelegatedPrefixeRequest $request, array $optionalArgs = [])
  */
 final class GlobalPublicDelegatedPrefixesClient
 {

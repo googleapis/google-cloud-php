@@ -10,19 +10,19 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Entry group metadata.
- * An `EntryGroup` resource represents a logical grouping of zero or more
- * Data Catalog [Entry][google.cloud.datacatalog.v1.Entry] resources.
+ *  An `EntryGroup` resource represents a logical grouping of zero or more
+ *  Data Catalog [Entry][google.cloud.datacatalog.v1.Entry] resources.
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.EntryGroup</code>
  */
 class EntryGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the entry group in URL format.
+     * Identifier. The resource name of the entry group in URL format.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -46,6 +46,16 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $data_catalog_timestamps = null;
+    /**
+     * Optional. When set to [true], it means DataCatalog EntryGroup was
+     * transferred to Dataplex Catalog Service. It makes EntryGroup and its
+     * Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and
+     * its Entries can be created. After setting the flag to [true] it cannot be
+     * unset.
+     *
+     * Generated from protobuf field <code>bool transferred_to_dataplex = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $transferred_to_dataplex = false;
 
     /**
      * Constructor.
@@ -54,7 +64,7 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the entry group in URL format.
+     *           Identifier. The resource name of the entry group in URL format.
      *           Note: The entry group itself and its child resources might not be
      *           stored in the location specified in its name.
      *     @type string $display_name
@@ -66,6 +76,12 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *           Default value is an empty string.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $data_catalog_timestamps
      *           Output only. Timestamps of the entry group. Default value is empty.
+     *     @type bool $transferred_to_dataplex
+     *           Optional. When set to [true], it means DataCatalog EntryGroup was
+     *           transferred to Dataplex Catalog Service. It makes EntryGroup and its
+     *           Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and
+     *           its Entries can be created. After setting the flag to [true] it cannot be
+     *           unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,11 +90,11 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the entry group in URL format.
+     * Identifier. The resource name of the entry group in URL format.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -87,11 +103,11 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the entry group in URL format.
+     * Identifier. The resource name of the entry group in URL format.
      * Note: The entry group itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -193,6 +209,40 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\SystemTimestamps::class);
         $this->data_catalog_timestamps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When set to [true], it means DataCatalog EntryGroup was
+     * transferred to Dataplex Catalog Service. It makes EntryGroup and its
+     * Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and
+     * its Entries can be created. After setting the flag to [true] it cannot be
+     * unset.
+     *
+     * Generated from protobuf field <code>bool transferred_to_dataplex = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getTransferredToDataplex()
+    {
+        return $this->transferred_to_dataplex;
+    }
+
+    /**
+     * Optional. When set to [true], it means DataCatalog EntryGroup was
+     * transferred to Dataplex Catalog Service. It makes EntryGroup and its
+     * Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and
+     * its Entries can be created. After setting the flag to [true] it cannot be
+     * unset.
+     *
+     * Generated from protobuf field <code>bool transferred_to_dataplex = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTransferredToDataplex($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->transferred_to_dataplex = $var;
 
         return $this;
     }

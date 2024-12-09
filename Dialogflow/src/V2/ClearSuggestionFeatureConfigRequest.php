@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [ConversationProfiles.ClearFeature][].
+ * The request message for
+ * [ConversationProfiles.ClearSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.ClearSuggestionFeatureConfig].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigRequest</code>
  */

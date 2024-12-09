@@ -171,6 +171,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $dedicated_endpoint_dns = '';
     /**
+     * Configurations that are applied to the endpoint for online prediction.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ClientConnectionConfig client_connection_config = 23;</code>
+     */
+    protected $client_connection_config = null;
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -274,6 +280,8 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           dedicated_endpoint_enabled is true.
      *           Format:
      *           `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     *     @type \Google\Cloud\AIPlatform\V1\ClientConnectionConfig $client_connection_config
+     *           Configurations that are applied to the endpoint for online prediction.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
@@ -879,6 +887,42 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dedicated_endpoint_dns = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configurations that are applied to the endpoint for online prediction.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ClientConnectionConfig client_connection_config = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ClientConnectionConfig|null
+     */
+    public function getClientConnectionConfig()
+    {
+        return $this->client_connection_config;
+    }
+
+    public function hasClientConnectionConfig()
+    {
+        return isset($this->client_connection_config);
+    }
+
+    public function clearClientConnectionConfig()
+    {
+        unset($this->client_connection_config);
+    }
+
+    /**
+     * Configurations that are applied to the endpoint for online prediction.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ClientConnectionConfig client_connection_config = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ClientConnectionConfig $var
+     * @return $this
+     */
+    public function setClientConnectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ClientConnectionConfig::class);
+        $this->client_connection_config = $var;
 
         return $this;
     }

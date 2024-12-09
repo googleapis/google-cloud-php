@@ -31,8 +31,8 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      * [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
      * including the
      * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
-     * in a subsequent request.  If unspecified, at most
-     * 100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     * in a subsequent request.  If unspecified, at most 100
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -86,8 +86,8 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      *           [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
      *           including the
      *           [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
-     *           in a subsequent request.  If unspecified, at most
-     *           100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     *           in a subsequent request.  If unspecified, at most 100
+     *           [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
      *     @type string $page_token
      *           Optional. Optional pagination token, returned earlier via
      *           [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token].
@@ -139,8 +139,8 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      * [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
      * including the
      * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
-     * in a subsequent request.  If unspecified, at most
-     * 100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     * in a subsequent request.  If unspecified, at most 100
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -157,8 +157,8 @@ class ListKeyHandlesRequest extends \Google\Protobuf\Internal\Message
      * [KeyHandles][google.cloud.kms.v1.KeyHandle] can subsequently be obtained by
      * including the
      * [ListKeyHandlesResponse.next_page_token][google.cloud.kms.v1.ListKeyHandlesResponse.next_page_token]
-     * in a subsequent request.  If unspecified, at most
-     * 100 [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
+     * in a subsequent request.  If unspecified, at most 100
+     * [KeyHandles][google.cloud.kms.v1.KeyHandle] will be returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

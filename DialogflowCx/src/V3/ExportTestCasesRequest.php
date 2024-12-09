@@ -18,7 +18,7 @@ class ExportTestCasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent where to export test cases from.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -52,7 +52,7 @@ class ExportTestCasesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent where to export test cases from.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $gcs_uri
      *           The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to
      *           export the test cases to. The format of this URI must be
@@ -83,7 +83,7 @@ class ExportTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent where to export test cases from.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +95,7 @@ class ExportTestCasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent where to export test cases from.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

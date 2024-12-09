@@ -7,7 +7,7 @@ namespace Google\Cloud\Monitoring\V3\AlertPolicy;
 use UnexpectedValueException;
 
 /**
- * An enumeration of possible severity level for an Alert Policy.
+ * An enumeration of possible severity level for an alerting policy.
  *
  * Protobuf type <code>google.monitoring.v3.AlertPolicy.Severity</code>
  */

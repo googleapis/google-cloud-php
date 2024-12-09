@@ -62,15 +62,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJobAsync(GetJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runJobAsync(RunJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runJobAsync(RunJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateJobAsync(UpdateJobRequest $request, array $optionalArgs = [])
  */
 final class JobsClient
 {
@@ -268,6 +268,51 @@ final class JobsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * location_policy resource.
+     *
+     * @param string $location
+     *
+     * @return string The formatted location_policy resource.
+     */
+    public static function locationPolicyName(string $location): string
+    {
+        return self::getPathTemplate('locationPolicy')->render([
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName(string $project): string
+    {
+        return self::getPathTemplate('policy')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_policy resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_policy resource.
+     */
+    public static function projectPolicyName(string $project): string
+    {
+        return self::getPathTemplate('projectPolicy')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a secret
      * resource.
      *
@@ -312,6 +357,9 @@ final class JobsClient
      * - execution: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
+     * - locationPolicy: locations/{location}/policy
+     * - policy: projects/{project}/policy
+     * - projectPolicy: projects/{project}/policy
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      *
