@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * processed product that you see in Merchant Center, in Shopping ads, or across
  * Google surfaces. Product inputs, rules and supplemental data source data are
  * combined to create the processed
- * [product][google.shopping.content.bundles.Products.Product].
+ * [Product][google.shopping.merchant.products.v1beta.Product].
  * Required product input attributes to pass data validation checks are
  * primarily defined in the [Products Data
  * Specification](https://support.google.com/merchants/answer/188494).
  * The following attributes are required:
- * [feedLabel][google.shopping.content.bundles.Products.feed_label],
- * [contentLanguage][google.shopping.content.bundles.Products.content_language]
- * and [offerId][google.shopping.content.bundles.Products.offer_id].
+ * [feedLabel][google.shopping.merchant.products.v1beta.Product.feed_label],
+ * [contentLanguage][google.shopping.merchant.products.v1beta.Product.content_language]
+ * and [offerId][google.shopping.merchant.products.v1beta.Product.offer_id].
  * After inserting, updating, or deleting a product input, it may take several
  * minutes before the processed product can be retrieved.
  * All fields in the product input and its sub-messages match the English name
@@ -35,6 +35,10 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * Identifier. The name of the product input.
      * Format:
      * `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     * where the last section `productinput` consists of 4 parts:
+     * channel~content_language~feed_label~offer_id
+     * example for product input name is
+     * "accounts/123/productInputs/online~en~US~sku123"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -130,6 +134,10 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *           Identifier. The name of the product input.
      *           Format:
      *           `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     *           where the last section `productinput` consists of 4 parts:
+     *           channel~content_language~feed_label~offer_id
+     *           example for product input name is
+     *           "accounts/123/productInputs/online~en~US~sku123"
      *     @type string $product
      *           Output only. The name of the processed product.
      *           Format:
@@ -189,6 +197,10 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * Identifier. The name of the product input.
      * Format:
      * `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     * where the last section `productinput` consists of 4 parts:
+     * channel~content_language~feed_label~offer_id
+     * example for product input name is
+     * "accounts/123/productInputs/online~en~US~sku123"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -202,6 +214,10 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * Identifier. The name of the product input.
      * Format:
      * `"{productinput.name=accounts/{account}/productInputs/{productinput}}"`
+     * where the last section `productinput` consists of 4 parts:
+     * channel~content_language~feed_label~offer_id
+     * example for product input name is
+     * "accounts/123/productInputs/online~en~US~sku123"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
