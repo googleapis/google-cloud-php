@@ -20,13 +20,13 @@ class KnowledgeOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeOperationMetadata.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The name of the knowledge base interacted with during the operation.
      *
      * Generated from protobuf field <code>string knowledge_base = 3;</code>
      */
-    private $knowledge_base = '';
+    protected $knowledge_base = '';
     protected $operation_metadata;
 
     /**

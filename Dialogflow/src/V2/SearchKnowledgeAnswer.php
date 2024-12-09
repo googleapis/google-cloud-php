@@ -21,13 +21,13 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer = 1;</code>
      */
-    private $answer = '';
+    protected $answer = '';
     /**
      * The type of the answer.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeAnswer.AnswerType answer_type = 2;</code>
      */
-    private $answer_type = 0;
+    protected $answer_type = 0;
     /**
      * All sources used to generate the answer.
      *
@@ -41,7 +41,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 5;</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
 
     /**
      * Constructor.

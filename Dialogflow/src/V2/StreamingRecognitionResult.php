@@ -50,14 +50,14 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingRecognitionResult.MessageType message_type = 1;</code>
      */
-    private $message_type = 0;
+    protected $message_type = 0;
     /**
      * Transcript text representing the words that the user spoke.
      * Populated if and only if `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>string transcript = 2;</code>
      */
-    private $transcript = '';
+    protected $transcript = '';
     /**
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
@@ -66,7 +66,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_final = 3;</code>
      */
-    private $is_final = false;
+    protected $is_final = false;
     /**
      * The Speech confidence between 0.0 and 1.0 for the current portion of audio.
      * A higher number indicates an estimated greater likelihood that the
@@ -77,7 +77,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * Word-specific information for the words recognized by Speech in
      * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript].
@@ -93,13 +93,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration speech_end_offset = 8;</code>
      */
-    private $speech_end_offset = null;
+    protected $speech_end_offset = null;
     /**
      * Detected language code for the transcript.
      *
      * Generated from protobuf field <code>string language_code = 10;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class HumanAgentSideConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $agent = '';
+    protected $agent = '';
 
     /**
      * Constructor.

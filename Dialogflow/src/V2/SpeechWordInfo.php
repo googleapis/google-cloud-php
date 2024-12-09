@@ -20,7 +20,7 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string word = 3;</code>
      */
-    private $word = '';
+    protected $word = '';
     /**
      * Time offset relative to the beginning of the audio that corresponds to the
      * start of the spoken word. This is an experimental feature and the accuracy
@@ -28,7 +28,7 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_offset = 1;</code>
      */
-    private $start_offset = null;
+    protected $start_offset = null;
     /**
      * Time offset relative to the beginning of the audio that corresponds to the
      * end of the spoken word. This is an experimental feature and the accuracy of
@@ -36,7 +36,7 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_offset = 2;</code>
      */
-    private $end_offset = null;
+    protected $end_offset = null;
     /**
      * The Speech confidence between 0.0 and 1.0 for this word. A higher number
      * indicates an estimated greater likelihood that the recognized word is
@@ -47,7 +47,7 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

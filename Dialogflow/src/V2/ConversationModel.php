@@ -21,19 +21,19 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the model. At most 64 bytes long.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Creation time of this model.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Required. Datasets used to create model.
      *
@@ -46,7 +46,7 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationModel.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Language code for the conversation model. If not specified, the language
      * is en-US. Language at ConversationModel should be set for all non en-us
@@ -56,21 +56,21 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 19;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Output only. A read only boolean field reflecting Zone Separation
      * status of the model.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
     /**
      * Output only. A read only boolean field reflecting Zone Isolation status
      * of the model.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = null;
+    protected $satisfies_pzi = null;
     protected $model_metadata;
 
     /**

@@ -30,14 +30,14 @@ class KnowledgeBase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the knowledge base. The name must be 1024
      * bytes or less; otherwise, the creation request fails.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Language which represents the KnowledgeBase. When the KnowledgeBase is
      * created/updated, expect this to be present for non en-us languages. When
@@ -45,7 +45,7 @@ class KnowledgeBase extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 4;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

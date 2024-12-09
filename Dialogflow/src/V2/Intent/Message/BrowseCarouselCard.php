@@ -29,7 +29,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.ImageDisplayOptions image_display_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_display_options = 0;
+    protected $image_display_options = 0;
 
     /**
      * Constructor.

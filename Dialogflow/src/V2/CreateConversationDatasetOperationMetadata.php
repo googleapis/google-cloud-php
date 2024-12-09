@@ -22,7 +22,7 @@ class CreateConversationDatasetOperationMetadata extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>string conversation_dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $conversation_dataset = '';
+    protected $conversation_dataset = '';
 
     /**
      * Constructor.

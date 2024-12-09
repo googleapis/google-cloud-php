@@ -21,7 +21,7 @@ class ConversationPhoneNumber extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string phone_number = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phone_number = '';
+    protected $phone_number = '';
 
     /**
      * Constructor.

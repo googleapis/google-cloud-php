@@ -20,7 +20,7 @@ class InferenceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 max_output_tokens = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_output_tokens = null;
+    protected $max_output_tokens = null;
     /**
      * Optional. Controls the randomness of LLM predictions.
      * Low temperature = less random. High temperature = more random.
@@ -28,7 +28,7 @@ class InferenceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double temperature = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $temperature = null;
+    protected $temperature = null;
     /**
      * Optional. Top-k changes how the model selects tokens for output. A top-k of
      * 1 means the selected token is the most probable among all tokens in the
@@ -42,7 +42,7 @@ class InferenceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 top_k = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $top_k = null;
+    protected $top_k = null;
     /**
      * Optional. Top-p changes how the model selects tokens for output. Tokens are
      * selected from most K (see topK parameter) probable to least until the sum
@@ -55,7 +55,7 @@ class InferenceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double top_p = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $top_p = null;
+    protected $top_p = null;
 
     /**
      * Constructor.

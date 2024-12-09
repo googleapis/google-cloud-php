@@ -26,7 +26,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Output only. The list of agent environments. There will be a maximum number
      * of items returned based on the page_size field in the request.
@@ -40,7 +40,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

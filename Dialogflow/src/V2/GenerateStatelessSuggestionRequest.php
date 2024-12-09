@@ -22,13 +22,13 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Context of the conversation, including transcripts.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationContext conversation_context = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $conversation_context = null;
+    protected $conversation_context = null;
     /**
      * Optional. A list of trigger events. Generator will be triggered only if
      * it's trigger event is included here.

@@ -22,14 +22,14 @@ class Participant extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The role this participant plays in the conversation. This field
      * must be set during participant creation and is then immutable.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role role = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $role = 0;
+    protected $role = 0;
     /**
      * Optional. Label applied to streams representing this participant in SIPREC
      * XML metadata and SDP. This is used to assign transcriptions from that
@@ -37,7 +37,7 @@ class Participant extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sip_recording_media_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sip_recording_media_label = '';
+    protected $sip_recording_media_label = '';
     /**
      * Optional. Obfuscated user id that should be associated with the created
      * participant.
@@ -68,7 +68,7 @@ class Participant extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string obfuscated_external_user_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $obfuscated_external_user_id = '';
+    protected $obfuscated_external_user_id = '';
     /**
      * Optional. Key-value filters on the metadata of documents returned by
      * article suggestion. If specified, article suggestion only returns suggested

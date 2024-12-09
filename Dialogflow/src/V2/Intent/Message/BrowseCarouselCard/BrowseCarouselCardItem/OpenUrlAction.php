@@ -20,14 +20,14 @@ class OpenUrlAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * Optional. Specifies the type of viewer that is used when opening
      * the URL. Defaults to opening via web browser.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction.UrlTypeHint url_type_hint = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $url_type_hint = 0;
+    protected $url_type_hint = 0;
 
     /**
      * Constructor.

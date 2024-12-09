@@ -20,13 +20,13 @@ class MessageEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.MessageEntry.Role role = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $role = 0;
+    protected $role = 0;
     /**
      * Optional. Transcript content of the message.
      *
      * Generated from protobuf field <code>string text = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Optional. The language of the text. See [Language
      * Support](https://cloud.google.com/dialogflow/docs/reference/language) for a
@@ -34,13 +34,13 @@ class MessageEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. Create time of the message entry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

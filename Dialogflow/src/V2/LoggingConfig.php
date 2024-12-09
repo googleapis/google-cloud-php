@@ -23,7 +23,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 3;</code>
      */
-    private $enable_stackdriver_logging = false;
+    protected $enable_stackdriver_logging = false;
 
     /**
      * Constructor.

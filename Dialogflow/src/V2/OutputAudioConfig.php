@@ -22,7 +22,7 @@ class OutputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio_encoding = 0;
+    protected $audio_encoding = 0;
     /**
      * The synthesis sample rate (in hertz) for this audio. If not
      * provided, then the synthesizer will use the default sample rate based on
@@ -32,13 +32,13 @@ class OutputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * Configuration of how speech should be synthesized.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SynthesizeSpeechConfig synthesize_speech_config = 3;</code>
      */
-    private $synthesize_speech_config = null;
+    protected $synthesize_speech_config = null;
 
     /**
      * Constructor.

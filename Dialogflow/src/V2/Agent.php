@@ -28,13 +28,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The name of this agent.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. The default language of the agent as a language tag. See
      * [Language
@@ -44,7 +44,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $default_language_code = '';
+    protected $default_language_code = '';
     /**
      * Optional. The list of all languages supported by this agent (except for the
      * `default_language_code`).
@@ -59,14 +59,14 @@ class Agent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Optional. The description of this agent.
      * The maximum length is 500 characters. If exceeded, the request is rejected.
      *
      * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. The URI of the agent's avatar.
      * Avatars are used throughout the Dialogflow console and in the self-hosted
@@ -76,13 +76,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string avatar_uri = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $avatar_uri = '';
+    protected $avatar_uri = '';
     /**
      * Optional. Determines whether this agent should log conversation queries.
      *
      * Generated from protobuf field <code>bool enable_logging = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_logging = false;
+    protected $enable_logging = false;
     /**
      * Optional. Determines how intents are detected from user queries.
      *
@@ -101,7 +101,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float classification_threshold = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $classification_threshold = 0.0;
+    protected $classification_threshold = 0.0;
     /**
      * Optional. API version displayed in Dialogflow console. If not specified,
      * V2 API is assumed. Clients are free to query different service endpoints
@@ -110,13 +110,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $api_version = 0;
+    protected $api_version = 0;
     /**
      * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tier = 0;
+    protected $tier = 0;
 
     /**
      * Constructor.

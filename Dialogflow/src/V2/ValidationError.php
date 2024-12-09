@@ -20,7 +20,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ValidationError.Severity severity = 1;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * The names of the entries that the error is associated with.
      * Format:
@@ -44,7 +44,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_message = 4;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
 
     /**
      * Constructor.

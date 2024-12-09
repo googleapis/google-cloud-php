@@ -34,7 +34,7 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. The target language of the generated summary. The language code
      * for conversation will be used if this field is empty. Supported 2.0 and
@@ -42,7 +42,7 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_language_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_language_code = '';
+    protected $output_language_code = '';
 
     /**
      * Constructor.

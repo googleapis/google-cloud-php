@@ -21,14 +21,14 @@ class KnowledgeAssistAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer.SuggestedQuery suggested_query = 1;</code>
      */
-    private $suggested_query = null;
+    protected $suggested_query = null;
     /**
      * The answer generated for the suggested query. Whether or not an answer is
      * generated depends on how confident we are about the generated query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer suggested_query_answer = 2;</code>
      */
-    private $suggested_query_answer = null;
+    protected $suggested_query_answer = null;
     /**
      * The name of the answer record.
      * Format: `projects/<Project ID>/locations/<location ID>/answer
@@ -36,7 +36,7 @@ class KnowledgeAssistAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 3;</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio_encoding = 0;
+    protected $audio_encoding = 0;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
      * Refer to [Cloud Speech API
@@ -29,7 +29,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
@@ -39,7 +39,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * If `true`, Dialogflow returns
      * [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
@@ -50,7 +50,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_word_info = 13;</code>
      */
-    private $enable_word_info = false;
+    protected $enable_word_info = false;
     /**
      * A list of strings containing words and phrases that the speech
      * recognizer should recognize with higher likelihood.
@@ -81,14 +81,14 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 7;</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Which variant of the [Speech
      * model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant model_variant = 10;</code>
      */
-    private $model_variant = 0;
+    protected $model_variant = 0;
     /**
      * If `false` (default), recognition does not cease until the
      * client closes the stream.
@@ -103,7 +103,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool single_utterance = 8;</code>
      */
-    private $single_utterance = false;
+    protected $single_utterance = false;
     /**
      * Only used in
      * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
@@ -114,13 +114,13 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
      */
-    private $disable_no_speech_recognized_event = false;
+    protected $disable_no_speech_recognized_event = false;
     /**
      * Enable automatic punctuation option at the speech backend.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
      */
-    private $enable_automatic_punctuation = false;
+    protected $enable_automatic_punctuation = false;
     /**
      * A collection of phrase set resources to use for speech adaptation.
      *
@@ -135,7 +135,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
      */
-    private $opt_out_conformer_model_migration = false;
+    protected $opt_out_conformer_model_migration = false;
 
     /**
      * Constructor.

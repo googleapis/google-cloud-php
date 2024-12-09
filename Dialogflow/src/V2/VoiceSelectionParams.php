@@ -22,7 +22,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
@@ -33,7 +33,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SsmlVoiceGender ssml_gender = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ssml_gender = 0;
+    protected $ssml_gender = 0;
 
     /**
      * Constructor.

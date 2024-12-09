@@ -20,14 +20,14 @@ class IntentSuggestion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Human readable description for better understanding an intent like its
      * scope, content, result etc. Maximum character limit: 140 characters.
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     protected $intent;
 
     /**

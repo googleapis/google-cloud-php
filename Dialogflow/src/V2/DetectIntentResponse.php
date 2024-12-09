@@ -21,20 +21,20 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string response_id = 1;</code>
      */
-    private $response_id = '';
+    protected $response_id = '';
     /**
      * The selected results of the conversational query or event processing.
      * See `alternative_query_results` for additional potential results.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 2;</code>
      */
-    private $query_result = null;
+    protected $query_result = null;
     /**
      * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 3;</code>
      */
-    private $webhook_status = null;
+    protected $webhook_status = null;
     /**
      * The audio data bytes encoded as specified in the request.
      * Note: The output audio is generated based on the values of default platform
@@ -48,13 +48,13 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes output_audio = 4;</code>
      */
-    private $output_audio = '';
+    protected $output_audio = '';
     /**
      * The config used by the speech synthesizer to generate the output audio.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
      */
-    private $output_audio_config = null;
+    protected $output_audio_config = null;
 
     /**
      * Constructor.
