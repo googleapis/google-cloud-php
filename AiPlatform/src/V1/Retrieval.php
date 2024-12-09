@@ -16,11 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Retrieval extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
+     * Optional. Deprecated. This option is no longer supported.
      *
-     * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool disable_attribution = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $disable_attribution = false;
     protected $source;
@@ -33,10 +32,11 @@ class Retrieval extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\VertexAISearch $vertex_ai_search
      *           Set to use data source powered by Vertex AI Search.
+     *     @type \Google\Cloud\AIPlatform\V1\VertexRagStore $vertex_rag_store
+     *           Set to use data source powered by Vertex RAG store.
+     *           User data is uploaded via the VertexRagDataService.
      *     @type bool $disable_attribution
-     *           Optional. Disable using the result from this tool in detecting grounding
-     *           attribution. This does not affect how the result is given to the model for
-     *           generation.
+     *           Optional. Deprecated. This option is no longer supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,29 +76,62 @@ class Retrieval extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
+     * Set to use data source powered by Vertex RAG store.
+     * User data is uploaded via the VertexRagDataService.
      *
-     * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexRagStore vertex_rag_store = 4;</code>
+     * @return \Google\Cloud\AIPlatform\V1\VertexRagStore|null
+     */
+    public function getVertexRagStore()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasVertexRagStore()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Set to use data source powered by Vertex RAG store.
+     * User data is uploaded via the VertexRagDataService.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexRagStore vertex_rag_store = 4;</code>
+     * @param \Google\Cloud\AIPlatform\V1\VertexRagStore $var
+     * @return $this
+     */
+    public function setVertexRagStore($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VertexRagStore::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Deprecated. This option is no longer supported.
+     *
+     * Generated from protobuf field <code>bool disable_attribution = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getDisableAttribution()
     {
+        @trigger_error('disable_attribution is deprecated.', E_USER_DEPRECATED);
         return $this->disable_attribution;
     }
 
     /**
-     * Optional. Disable using the result from this tool in detecting grounding
-     * attribution. This does not affect how the result is given to the model for
-     * generation.
+     * Optional. Deprecated. This option is no longer supported.
      *
-     * Generated from protobuf field <code>bool disable_attribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool disable_attribution = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDisableAttribution($var)
     {
+        @trigger_error('disable_attribution is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->disable_attribution = $var;
 

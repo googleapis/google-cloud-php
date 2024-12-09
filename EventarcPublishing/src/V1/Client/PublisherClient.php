@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
+use Google\Cloud\Eventarc\Publishing\V1\PublishRequest;
+use Google\Cloud\Eventarc\Publishing\V1\PublishResponse;
 use Google\Protobuf\Any;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -67,8 +69,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface publishChannelConnectionEventsAsync(PublishChannelConnectionEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface publishEventsAsync(PublishEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishResponse> publishAsync(PublishRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishChannelConnectionEventsResponse> publishChannelConnectionEventsAsync(PublishChannelConnectionEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublishEventsResponse> publishEventsAsync(PublishEventsRequest $request, array $optionalArgs = [])
  */
 final class PublisherClient
 {
@@ -94,9 +97,7 @@ final class PublisherClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -189,6 +190,32 @@ final class PublisherClient
     }
 
     /**
+     * Publish events to a message bus.
+     *
+     * The async variant is {@see PublisherClient::publishAsync()} .
+     *
+     * @example samples/V1/PublisherClient/publish.php
+     *
+     * @param PublishRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PublishResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function publish(PublishRequest $request, array $callOptions = []): PublishResponse
+    {
+        return $this->startApiCall('Publish', $request, $callOptions)->wait();
+    }
+
+    /**
      * Publish events to a ChannelConnection in a partner's project.
      *
      * The async variant is
@@ -210,8 +237,10 @@ final class PublisherClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function publishChannelConnectionEvents(PublishChannelConnectionEventsRequest $request, array $callOptions = []): PublishChannelConnectionEventsResponse
-    {
+    public function publishChannelConnectionEvents(
+        PublishChannelConnectionEventsRequest $request,
+        array $callOptions = []
+    ): PublishChannelConnectionEventsResponse {
         return $this->startApiCall('PublishChannelConnectionEvents', $request, $callOptions)->wait();
     }
 

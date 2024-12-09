@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService' => [
+            'CancelOrder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOrder' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*}',
@@ -41,6 +53,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ModifyOrder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=billingAccounts/*/orders/*}:modify',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

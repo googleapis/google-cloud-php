@@ -20,14 +20,14 @@ class FontSize extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float size = 1;</code>
      */
-    private $size = 0.0;
+    protected $size = 0.0;
     /**
      * Unit for the font size. Follows CSS naming (such as `in`, `px`, and
      * `pt`).
      *
      * Generated from protobuf field <code>string unit = 2;</code>
      */
-    private $unit = '';
+    protected $unit = '';
 
     /**
      * Constructor.

@@ -58,13 +58,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface computeTokensAsync(ComputeTokensRequest $request, array $optionalArgs = [])
- * @method PromiseInterface countTokensAsync(CountTokensRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ComputeTokensResponse> computeTokensAsync(ComputeTokensRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CountTokensResponse> countTokensAsync(CountTokensRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class LlmUtilityServiceClient
 {
@@ -176,12 +176,32 @@ final class LlmUtilityServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a rag_corpus
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $ragCorpus
+     *
+     * @return string The formatted rag_corpus resource.
+     */
+    public static function ragCorpusName(string $project, string $location, string $ragCorpus): string
+    {
+        return self::getPathTemplate('ragCorpus')->render([
+            'project' => $project,
+            'location' => $location,
+            'rag_corpus' => $ragCorpus,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - ragCorpus: projects/{project}/locations/{location}/ragCorpora/{rag_corpus}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

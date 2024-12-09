@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,12 +57,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchUpdateIngressRulesAsync(BatchUpdateIngressRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIngressRuleAsync(CreateIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIngressRuleAsync(DeleteIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIngressRuleAsync(GetIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIngressRulesAsync(ListIngressRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIngressRuleAsync(UpdateIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateIngressRulesResponse> batchUpdateIngressRulesAsync(BatchUpdateIngressRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> createIngressRuleAsync(CreateIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIngressRuleAsync(DeleteIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> getIngressRuleAsync(GetIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIngressRulesAsync(ListIngressRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> updateIngressRuleAsync(UpdateIngressRuleRequest $request, array $optionalArgs = [])
  */
 final class FirewallClient
 {
@@ -209,8 +209,10 @@ final class FirewallClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateIngressRules(BatchUpdateIngressRulesRequest $request, array $callOptions = []): BatchUpdateIngressRulesResponse
-    {
+    public function batchUpdateIngressRules(
+        BatchUpdateIngressRulesRequest $request,
+        array $callOptions = []
+    ): BatchUpdateIngressRulesResponse {
         return $this->startApiCall('BatchUpdateIngressRules', $request, $callOptions)->wait();
     }
 

@@ -18,13 +18,13 @@ class InstanceMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance.InstanceMessage.Code code = 1;</code>
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Message on memcached instance which will be exposed to users.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

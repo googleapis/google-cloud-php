@@ -321,7 +321,7 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * Stats of data used for training or evaluating the Model.
      * Only populated when the Model is trained by a TrainingPipeline with
-     * [data_input_config][TrainingPipeline.data_input_config].
+     * [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      */
@@ -364,6 +364,18 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.BaseModelSource base_model_source = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $base_model_source = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -577,7 +589,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Model\DataStats $data_stats
      *           Stats of data used for training or evaluating the Model.
      *           Only populated when the Model is trained by a TrainingPipeline with
-     *           [data_input_config][TrainingPipeline.data_input_config].
+     *           [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Model. If set, this
      *           Model and all sub-resources of this Model will be secured by this key.
@@ -596,6 +608,10 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Model\BaseModelSource $base_model_source
      *           Optional. User input field to specify the base model source. Currently it
      *           only supports specifing the Model Garden models and Genie models.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -1642,7 +1658,7 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * Stats of data used for training or evaluating the Model.
      * Only populated when the Model is trained by a TrainingPipeline with
-     * [data_input_config][TrainingPipeline.data_input_config].
+     * [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      * @return \Google\Cloud\AIPlatform\V1\Model\DataStats|null
@@ -1665,7 +1681,7 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * Stats of data used for training or evaluating the Model.
      * Only populated when the Model is trained by a TrainingPipeline with
-     * [data_input_config][TrainingPipeline.data_input_config].
+     * [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      * @param \Google\Cloud\AIPlatform\V1\Model\DataStats $var
@@ -1861,6 +1877,58 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model\BaseModelSource::class);
         $this->base_model_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

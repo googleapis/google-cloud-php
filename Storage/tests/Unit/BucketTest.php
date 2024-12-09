@@ -291,6 +291,22 @@ class BucketTest extends TestCase
         $this->assertEquals('abc', $restoredObject->info()['generation']);
     }
 
+    public function testRestoreWithRestoreToken()
+    {
+        $this->connection->restoreObject(Argument::any())
+            ->willReturn([
+                'name' => 'file.txt',
+                'generation' => 'abc'
+            ]);
+
+        $bucket = $this->getBucket();
+        $restoredObject = $bucket->restore('file.txt', 'abc', ['restoreToken' => 'def']);
+
+        $this->assertInstanceOf(StorageObject::class, $restoredObject);
+        $this->assertEquals('file.txt', $restoredObject->name());
+        $this->assertEquals('abc', $restoredObject->info()['generation']);
+    }
+
     public function testComposeThrowsExceptionWithLessThanTwoSources()
     {
         $this->expectException(InvalidArgumentException::class);

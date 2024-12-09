@@ -60,9 +60,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      */
     protected $automation_snapshot = null;
     /**
-     * Output only. The ID of the target that represents the promotion stage that
-     * initiates the `AutomationRun`. The value of this field is the last segment
-     * of a target name.
+     * Output only. The ID of the source target that initiates the
+     * `AutomationRun`. The value of this field is the last segment of a target
+     * name.
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -80,6 +80,13 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string state_description = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state_description = '';
+    /**
+     * Output only. Contains information about what policies prevented the
+     * `AutomationRun` from proceeding.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PolicyViolation policy_violation = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $policy_violation = null;
     /**
      * Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
      * after 14 days from its creation date.
@@ -133,14 +140,17 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *           Output only. Snapshot of the Automation taken at AutomationRun creation
      *           time.
      *     @type string $target_id
-     *           Output only. The ID of the target that represents the promotion stage that
-     *           initiates the `AutomationRun`. The value of this field is the last segment
-     *           of a target name.
+     *           Output only. The ID of the source target that initiates the
+     *           `AutomationRun`. The value of this field is the last segment of a target
+     *           name.
      *     @type int $state
      *           Output only. Current state of the `AutomationRun`.
      *     @type string $state_description
      *           Output only. Explains the current state of the `AutomationRun`. Present
      *           only when an explanation is needed.
+     *     @type \Google\Cloud\Deploy\V1\PolicyViolation $policy_violation
+     *           Output only. Contains information about what policies prevented the
+     *           `AutomationRun` from proceeding.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
      *           after 14 days from its creation date.
@@ -154,6 +164,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *           Output only. Advances a rollout to the next phase.
      *     @type \Google\Cloud\Deploy\V1\RepairRolloutOperation $repair_rollout_operation
      *           Output only. Repairs a failed 'Rollout'.
+     *     @type \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation $timed_promote_release_operation
+     *           Output only. Promotes a release to a specified 'Target' as defined in a
+     *           Timed Promote Release rule.
      *     @type \Google\Protobuf\Timestamp $wait_until_time
      *           Output only. Earliest time the `AutomationRun` will attempt to resume.
      *           Wait-time is configured by `wait` in automation rule.
@@ -363,9 +376,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the target that represents the promotion stage that
-     * initiates the `AutomationRun`. The value of this field is the last segment
-     * of a target name.
+     * Output only. The ID of the source target that initiates the
+     * `AutomationRun`. The value of this field is the last segment of a target
+     * name.
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -376,9 +389,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the target that represents the promotion stage that
-     * initiates the `AutomationRun`. The value of this field is the last segment
-     * of a target name.
+     * Output only. The ID of the source target that initiates the
+     * `AutomationRun`. The value of this field is the last segment of a target
+     * name.
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -442,6 +455,44 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->state_description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains information about what policies prevented the
+     * `AutomationRun` from proceeding.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PolicyViolation policy_violation = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\PolicyViolation|null
+     */
+    public function getPolicyViolation()
+    {
+        return $this->policy_violation;
+    }
+
+    public function hasPolicyViolation()
+    {
+        return isset($this->policy_violation);
+    }
+
+    public function clearPolicyViolation()
+    {
+        unset($this->policy_violation);
+    }
+
+    /**
+     * Output only. Contains information about what policies prevented the
+     * `AutomationRun` from proceeding.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.PolicyViolation policy_violation = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\PolicyViolation $var
+     * @return $this
+     */
+    public function setPolicyViolation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\PolicyViolation::class);
+        $this->policy_violation = $var;
 
         return $this;
     }
@@ -625,6 +676,39 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\RepairRolloutOperation::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Promotes a release to a specified 'Target' as defined in a
+     * Timed Promote Release rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseOperation timed_promote_release_operation = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation|null
+     */
+    public function getTimedPromoteReleaseOperation()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasTimedPromoteReleaseOperation()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Output only. Promotes a release to a specified 'Target' as defined in a
+     * Timed Promote Release rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseOperation timed_promote_release_operation = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation $var
+     * @return $this
+     */
+    public function setTimedPromoteReleaseOperation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

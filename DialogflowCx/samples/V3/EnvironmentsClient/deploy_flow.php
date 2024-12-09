@@ -44,12 +44,12 @@ use Google\Rpc\Status;
  * [DeployFlowResponse][google.cloud.dialogflow.cx.v3.DeployFlowResponse]
  *
  * @param string $formattedEnvironment The environment to deploy the flow to.
- *                                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
- *                                     environments/<Environment ID>`. Please see
+ *                                     Format:
+ *                                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                                     {@see EnvironmentsClient::environmentName()} for help formatting this field.
  * @param string $formattedFlowVersion The flow version to deploy.
- *                                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/
- *                                     flows/<Flow ID>/versions/<Version ID>`. Please see
+ *                                     Format:
+ *                                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
  *                                     {@see EnvironmentsClient::versionName()} for help formatting this field.
  */
 function deploy_flow_sample(string $formattedEnvironment, string $formattedFlowVersion): void

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\ResourceManager\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -47,6 +46,7 @@ use Google\Cloud\ResourceManager\V3\GetTagKeyRequest;
 use Google\Cloud\ResourceManager\V3\ListTagKeysRequest;
 use Google\Cloud\ResourceManager\V3\TagKey;
 use Google\Cloud\ResourceManager\V3\UpdateTagKeyRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -61,15 +61,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTagKeyAsync(CreateTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTagKeyAsync(DeleteTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNamespacedTagKeyAsync(GetNamespacedTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTagKeyAsync(GetTagKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTagKeysAsync(ListTagKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTagKeyAsync(UpdateTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTagKeyAsync(CreateTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTagKeyAsync(DeleteTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagKey> getNamespacedTagKeyAsync(GetNamespacedTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TagKey> getTagKeyAsync(GetTagKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTagKeysAsync(ListTagKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTagKeyAsync(UpdateTagKeyRequest $request, array $optionalArgs = [])
  */
 final class TagKeysClient
 {
@@ -145,10 +145,31 @@ final class TagKeysClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -485,8 +506,10 @@ final class TagKeysClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

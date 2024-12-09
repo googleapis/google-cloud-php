@@ -23,7 +23,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_volume_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_volume_data = false;
+    protected $include_volume_data = false;
     /**
      * Optional. This flag specifies whether Kubernetes Secret resources should
      * be included when they fall into the scope of Backups.
@@ -31,7 +31,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_secrets = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_secrets = false;
+    protected $include_secrets = false;
     /**
      * Optional. This defines a customer managed encryption key that will be
      * used to encrypt the "config" portion (the Kubernetes resources) of
@@ -40,7 +40,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $encryption_key = null;
+    protected $encryption_key = null;
     /**
      * Optional. If false, Backups will fail when Backup for GKE detects
      * Kubernetes configuration that is non-standard or
@@ -49,7 +49,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool permissive_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $permissive_mode = false;
+    protected $permissive_mode = false;
     protected $backup_scope;
 
     /**

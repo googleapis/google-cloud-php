@@ -21,7 +21,7 @@ class QueryEligibleBillingAccountsRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $customer = '';
+    protected $customer = '';
     /**
      * Required. List of SKUs to list eligible billing accounts for. At least one
      * SKU is required. Format: products/{product_id}/skus/{sku_id}.

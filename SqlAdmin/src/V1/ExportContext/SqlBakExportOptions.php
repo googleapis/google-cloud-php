@@ -20,7 +20,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue striped = 1;</code>
      */
-    private $striped = null;
+    protected $striped = null;
     /**
      * Option for specifying how many stripes to use for the export.
      * If blank, and the value of the striped field is true,
@@ -28,13 +28,13 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value stripe_count = 2;</code>
      */
-    private $stripe_count = null;
+    protected $stripe_count = null;
     /**
      * Type of this bak file will be export, FULL or DIFF, SQL Server only
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.BakType bak_type = 4;</code>
      */
-    private $bak_type = 0;
+    protected $bak_type = 0;
     /**
      * Deprecated: copy_only is deprecated. Use differential_base instead
      *
@@ -48,7 +48,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue differential_base = 6;</code>
      */
-    private $differential_base = null;
+    protected $differential_base = null;
 
     /**
      * Constructor.
@@ -105,7 +105,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue striped = 1;</code>
      * @return bool|null
      */
-    public function getStripedValue()
+    public function getStripedUnwrapped()
     {
         return $this->readWrapperValue("striped");
     }
@@ -134,7 +134,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setStripedValue($var)
+    public function setStripedUnwrapped($var)
     {
         $this->writeWrapperValue("striped", $var);
         return $this;}
@@ -172,7 +172,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value stripe_count = 2;</code>
      * @return int|null
      */
-    public function getStripeCountValue()
+    public function getStripeCountUnwrapped()
     {
         return $this->readWrapperValue("stripe_count");
     }
@@ -205,7 +205,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setStripeCountValue($var)
+    public function setStripeCountUnwrapped($var)
     {
         $this->writeWrapperValue("stripe_count", $var);
         return $this;}
@@ -269,7 +269,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue copy_only = 5 [deprecated = true];</code>
      * @return bool|null
      */
-    public function getCopyOnlyValue()
+    public function getCopyOnlyUnwrapped()
     {
         @trigger_error('copy_only is deprecated.', E_USER_DEPRECATED);
         return $this->readWrapperValue("copy_only");
@@ -301,7 +301,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setCopyOnlyValue($var)
+    public function setCopyOnlyUnwrapped($var)
     {
         $this->writeWrapperValue("copy_only", $var);
         return $this;}
@@ -337,7 +337,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue differential_base = 6;</code>
      * @return bool|null
      */
-    public function getDifferentialBaseValue()
+    public function getDifferentialBaseUnwrapped()
     {
         return $this->readWrapperValue("differential_base");
     }
@@ -368,7 +368,7 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setDifferentialBaseValue($var)
+    public function setDifferentialBaseUnwrapped($var)
     {
         $this->writeWrapperValue("differential_base", $var);
         return $this;}

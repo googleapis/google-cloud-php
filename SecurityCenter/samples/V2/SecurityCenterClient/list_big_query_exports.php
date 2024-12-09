@@ -37,9 +37,9 @@ use Google\Cloud\SecurityCenter\V2\ListBigQueryExportsRequest;
  * within the folder are returned.
  *
  * @param string $formattedParent The parent, which owns the collection of BigQuery exports. Its
- *                                format is "organizations/[organization_id]/locations/[location_id]",
- *                                "folders/[folder_id]/locations/[location_id]", or
- *                                "projects/[project_id]/locations/[location_id]". Please see
+ *                                format is `organizations/[organization_id]/locations/[location_id]`,
+ *                                `folders/[folder_id]/locations/[location_id]`, or
+ *                                `projects/[project_id]/locations/[location_id]`. Please see
  *                                {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  */
 function list_big_query_exports_sample(string $formattedParent): void

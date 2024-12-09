@@ -34,7 +34,7 @@ class Edition
      */
     const ENTERPRISE = 2;
     /**
-     * Enterprise plus edition.
+     * Enterprise Plus edition.
      *
      * Generated from protobuf enum <code>ENTERPRISE_PLUS = 3;</code>
      */

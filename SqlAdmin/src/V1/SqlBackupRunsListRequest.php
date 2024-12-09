@@ -21,26 +21,26 @@ class SqlBackupRunsListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Maximum number of backup runs per response.
      *
      * Generated from protobuf field <code>int32 max_results = 2;</code>
      */
-    private $max_results = 0;
+    protected $max_results = 0;
     /**
      * A previously-returned page token representing part of the larger set of
      * results to view.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 4;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

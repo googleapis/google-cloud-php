@@ -20,7 +20,7 @@ class ConfigSyncError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_message = 1;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
 
     /**
      * Constructor.

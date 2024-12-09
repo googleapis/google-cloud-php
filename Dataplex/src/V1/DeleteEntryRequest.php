@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Delete Entry request.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DeleteEntryRequest</code>
  */
 class DeleteEntryRequest extends \Google\Protobuf\Internal\Message

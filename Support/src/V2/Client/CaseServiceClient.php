@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,14 +55,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface closeCaseAsync(CloseCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCaseAsync(CreateCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface escalateCaseAsync(EscalateCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCaseAsync(GetCaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCasesAsync(ListCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchCaseClassificationsAsync(SearchCaseClassificationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchCasesAsync(SearchCasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCaseAsync(UpdateCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> closeCaseAsync(CloseCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> createCaseAsync(CreateCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> escalateCaseAsync(EscalateCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> getCaseAsync(GetCaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCasesAsync(ListCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchCaseClassificationsAsync(SearchCaseClassificationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchCasesAsync(SearchCasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBCase> updateCaseAsync(UpdateCaseRequest $request, array $optionalArgs = [])
  */
 final class CaseServiceClient
 {
@@ -89,9 +89,7 @@ final class CaseServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -460,8 +458,10 @@ final class CaseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchCaseClassifications(SearchCaseClassificationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchCaseClassifications(
+        SearchCaseClassificationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchCaseClassifications', $request, $callOptions);
     }
 

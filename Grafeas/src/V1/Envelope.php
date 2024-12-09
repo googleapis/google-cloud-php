@@ -20,11 +20,11 @@ class Envelope extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bytes payload = 1;</code>
      */
-    private $payload = '';
+    protected $payload = '';
     /**
      * Generated from protobuf field <code>string payload_type = 2;</code>
      */
-    private $payload_type = '';
+    protected $payload_type = '';
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.EnvelopeSignature signatures = 3;</code>
      */

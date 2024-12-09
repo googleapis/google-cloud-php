@@ -10,6 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Speech-to-Text configuration.
+ * Speech-to-Text settings are applied to conversations ingested from the
+ * `UploadConversation` and `IngestConversations` endpoints, including
+ * conversation coming from CCAI Platform. They are not applied to conversations
+ * ingested from the `CreateConversation` endpoint.
  *
  * Generated from protobuf message <code>google.cloud.contactcenterinsights.v1.SpeechConfig</code>
  */
@@ -22,7 +26,7 @@ class SpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string speech_recognizer = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $speech_recognizer = '';
+    protected $speech_recognizer = '';
 
     /**
      * Constructor.

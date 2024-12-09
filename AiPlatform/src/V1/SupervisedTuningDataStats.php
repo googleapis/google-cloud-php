@@ -30,9 +30,16 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
-     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $total_billable_character_count = 0;
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     *
+     * Generated from protobuf field <code>int64 total_billable_token_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_billable_token_count = 0;
     /**
      * Output only. Number of tuning steps for this Tuning Job.
      *
@@ -63,6 +70,20 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content user_dataset_examples = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $user_dataset_examples;
+    /**
+     * The number of examples in the dataset that have been truncated by any
+     * amount.
+     *
+     * Generated from protobuf field <code>int64 total_truncated_example_count = 10;</code>
+     */
+    protected $total_truncated_example_count = 0;
+    /**
+     * A partial sample of the indices (starting from 1) of the truncated
+     * examples.
+     *
+     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11;</code>
+     */
+    private $truncated_example_indices;
 
     /**
      * Constructor.
@@ -76,6 +97,8 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      *           Output only. Number of tuning characters in the tuning dataset.
      *     @type int|string $total_billable_character_count
      *           Output only. Number of billable characters in the tuning dataset.
+     *     @type int|string $total_billable_token_count
+     *           Output only. Number of billable tokens in the tuning dataset.
      *     @type int|string $tuning_step_count
      *           Output only. Number of tuning steps for this Tuning Job.
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution $user_input_token_distribution
@@ -86,6 +109,12 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      *           Output only. Dataset distributions for the messages per example.
      *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $user_dataset_examples
      *           Output only. Sample user messages in the training dataset uri.
+     *     @type int|string $total_truncated_example_count
+     *           The number of examples in the dataset that have been truncated by any
+     *           amount.
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $truncated_example_indices
+     *           A partial sample of the indices (starting from 1) of the truncated
+     *           examples.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,25 +177,55 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
-     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getTotalBillableCharacterCount()
     {
+        @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
         return $this->total_billable_character_count;
     }
 
     /**
      * Output only. Number of billable characters in the tuning dataset.
      *
-     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 total_billable_character_count = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setTotalBillableCharacterCount($var)
     {
+        @trigger_error('total_billable_character_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->total_billable_character_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     *
+     * Generated from protobuf field <code>int64 total_billable_token_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalBillableTokenCount()
+    {
+        return $this->total_billable_token_count;
+    }
+
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     *
+     * Generated from protobuf field <code>int64 total_billable_token_count = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalBillableTokenCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_billable_token_count = $var;
 
         return $this;
     }
@@ -327,6 +386,62 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Content::class);
         $this->user_dataset_examples = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The number of examples in the dataset that have been truncated by any
+     * amount.
+     *
+     * Generated from protobuf field <code>int64 total_truncated_example_count = 10;</code>
+     * @return int|string
+     */
+    public function getTotalTruncatedExampleCount()
+    {
+        return $this->total_truncated_example_count;
+    }
+
+    /**
+     * The number of examples in the dataset that have been truncated by any
+     * amount.
+     *
+     * Generated from protobuf field <code>int64 total_truncated_example_count = 10;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalTruncatedExampleCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_truncated_example_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * A partial sample of the indices (starting from 1) of the truncated
+     * examples.
+     *
+     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTruncatedExampleIndices()
+    {
+        return $this->truncated_example_indices;
+    }
+
+    /**
+     * A partial sample of the indices (starting from 1) of the truncated
+     * examples.
+     *
+     * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11;</code>
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTruncatedExampleIndices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->truncated_example_indices = $arr;
 
         return $this;
     }

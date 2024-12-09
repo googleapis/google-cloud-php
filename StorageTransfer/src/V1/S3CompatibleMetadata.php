@@ -23,7 +23,7 @@ class S3CompatibleMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.S3CompatibleMetadata.AuthMethod auth_method = 1;</code>
      */
-    private $auth_method = 0;
+    protected $auth_method = 0;
     /**
      * Specifies the API request model used to call the storage service. When not
      * specified, the default value of RequestModel
@@ -31,21 +31,21 @@ class S3CompatibleMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.S3CompatibleMetadata.RequestModel request_model = 2;</code>
      */
-    private $request_model = 0;
+    protected $request_model = 0;
     /**
      * Specifies the network protocol of the agent. When not specified, the
      * default value of NetworkProtocol NETWORK_PROTOCOL_HTTPS is used.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.S3CompatibleMetadata.NetworkProtocol protocol = 3;</code>
      */
-    private $protocol = 0;
+    protected $protocol = 0;
     /**
      * The Listing API to use for discovering objects. When not specified,
      * Transfer Service will attempt to determine the right API to use.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.S3CompatibleMetadata.ListApi list_api = 4;</code>
      */
-    private $list_api = 0;
+    protected $list_api = 0;
 
     /**
      * Constructor.

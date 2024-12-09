@@ -32,8 +32,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
-     * The name of the voice. If not set, the service will choose a
-     * voice based on the other parameters such as language_code and gender.
+     * The name of the voice. If both the name and the gender are not set,
+     * the service will choose a voice based on the other parameters such as
+     * language_code.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
@@ -56,6 +57,14 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams custom_voice = 4;</code>
      */
     private $custom_voice = null;
+    /**
+     * Optional. The configuration for a voice clone. If
+     * [VoiceCloneParams.voice_clone_key] is set, the service will choose the
+     * voice clone matching the specified configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $voice_clone = null;
 
     /**
      * Constructor.
@@ -76,8 +85,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *           available), or even a different language, e.g. using "nb" (Norwegian
      *           Bokmal) instead of "no" (Norwegian)".
      *     @type string $name
-     *           The name of the voice. If not set, the service will choose a
-     *           voice based on the other parameters such as language_code and gender.
+     *           The name of the voice. If both the name and the gender are not set,
+     *           the service will choose a voice based on the other parameters such as
+     *           language_code.
      *     @type int $ssml_gender
      *           The preferred gender of the voice. If not set, the service will
      *           choose a voice based on the other parameters such as language_code and
@@ -88,6 +98,10 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *           The configuration for a custom voice. If [CustomVoiceParams.model] is set,
      *           the service will choose the custom voice matching the specified
      *           configuration.
+     *     @type \Google\Cloud\TextToSpeech\V1\VoiceCloneParams $voice_clone
+     *           Optional. The configuration for a voice clone. If
+     *           [VoiceCloneParams.voice_clone_key] is set, the service will choose the
+     *           voice clone matching the specified configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,8 +156,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the voice. If not set, the service will choose a
-     * voice based on the other parameters such as language_code and gender.
+     * The name of the voice. If both the name and the gender are not set,
+     * the service will choose a voice based on the other parameters such as
+     * language_code.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      * @return string
@@ -154,8 +169,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the voice. If not set, the service will choose a
-     * voice based on the other parameters such as language_code and gender.
+     * The name of the voice. If both the name and the gender are not set,
+     * the service will choose a voice based on the other parameters such as
+     * language_code.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      * @param string $var
@@ -239,6 +255,46 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\CustomVoiceParams::class);
         $this->custom_voice = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for a voice clone. If
+     * [VoiceCloneParams.voice_clone_key] is set, the service will choose the
+     * voice clone matching the specified configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\TextToSpeech\V1\VoiceCloneParams|null
+     */
+    public function getVoiceClone()
+    {
+        return $this->voice_clone;
+    }
+
+    public function hasVoiceClone()
+    {
+        return isset($this->voice_clone);
+    }
+
+    public function clearVoiceClone()
+    {
+        unset($this->voice_clone);
+    }
+
+    /**
+     * Optional. The configuration for a voice clone. If
+     * [VoiceCloneParams.voice_clone_key] is set, the service will choose the
+     * voice clone matching the specified configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceCloneParams voice_clone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\TextToSpeech\V1\VoiceCloneParams $var
+     * @return $this
+     */
+    public function setVoiceClone($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\VoiceCloneParams::class);
+        $this->voice_clone = $var;
 
         return $this;
     }

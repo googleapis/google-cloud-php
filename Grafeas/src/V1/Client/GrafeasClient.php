@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,20 +77,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateNotesAsync(BatchCreateNotesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchCreateOccurrencesAsync(BatchCreateOccurrencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNoteAsync(CreateNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createOccurrenceAsync(CreateOccurrenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNoteAsync(DeleteNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteOccurrenceAsync(DeleteOccurrenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNoteAsync(GetNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOccurrenceAsync(GetOccurrenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOccurrenceNoteAsync(GetOccurrenceNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNoteOccurrencesAsync(ListNoteOccurrencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotesAsync(ListNotesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOccurrencesAsync(ListOccurrencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNoteAsync(UpdateNoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateOccurrenceAsync(UpdateOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateNotesResponse> batchCreateNotesAsync(BatchCreateNotesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateOccurrencesResponse> batchCreateOccurrencesAsync(BatchCreateOccurrencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> createNoteAsync(CreateNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Occurrence> createOccurrenceAsync(CreateOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNoteAsync(DeleteNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteOccurrenceAsync(DeleteOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> getNoteAsync(GetNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Occurrence> getOccurrenceAsync(GetOccurrenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> getOccurrenceNoteAsync(GetOccurrenceNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNoteOccurrencesAsync(ListNoteOccurrencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotesAsync(ListNotesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOccurrencesAsync(ListOccurrencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Note> updateNoteAsync(UpdateNoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Occurrence> updateOccurrenceAsync(UpdateOccurrenceRequest $request, array $optionalArgs = [])
  */
 final class GrafeasClient
 {
@@ -305,8 +305,10 @@ final class GrafeasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateNotes(BatchCreateNotesRequest $request, array $callOptions = []): BatchCreateNotesResponse
-    {
+    public function batchCreateNotes(
+        BatchCreateNotesRequest $request,
+        array $callOptions = []
+    ): BatchCreateNotesResponse {
         return $this->startApiCall('BatchCreateNotes', $request, $callOptions)->wait();
     }
 
@@ -331,8 +333,10 @@ final class GrafeasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateOccurrences(BatchCreateOccurrencesRequest $request, array $callOptions = []): BatchCreateOccurrencesResponse
-    {
+    public function batchCreateOccurrences(
+        BatchCreateOccurrencesRequest $request,
+        array $callOptions = []
+    ): BatchCreateOccurrencesResponse {
         return $this->startApiCall('BatchCreateOccurrences', $request, $callOptions)->wait();
     }
 

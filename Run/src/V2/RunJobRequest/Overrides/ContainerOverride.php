@@ -20,7 +20,7 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Arguments to the entrypoint. Will replace existing args for
      * override.
@@ -40,7 +40,7 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool clear_args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $clear_args = false;
+    protected $clear_args = false;
 
     /**
      * Constructor.

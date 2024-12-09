@@ -24,7 +24,7 @@ class ExportEntitiesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_url = 1;</code>
      */
-    private $output_url = '';
+    protected $output_url = '';
 
     /**
      * Constructor.

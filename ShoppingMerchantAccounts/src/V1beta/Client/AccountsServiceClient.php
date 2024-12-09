@@ -57,12 +57,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubAccountsAsync(ListSubAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubAccountsAsync(ListSubAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
  */
 final class AccountsServiceClient
 {
@@ -300,6 +300,9 @@ final class AccountsServiceClient
      * Deletes the specified account regardless of its type: standalone, MCA or
      * sub-account. Deleting an MCA leads to the deletion of all of its
      * sub-accounts. Executing this method requires admin access.
+     * The deletion succeeds only if the account does not provide services
+     * to any other account and has no processed offers. You can use the `force`
+     * parameter to override this.
      *
      * The async variant is {@see AccountsServiceClient::deleteAccountAsync()} .
      *
@@ -359,7 +362,8 @@ final class AccountsServiceClient
      * constraints of the request such as page size or filters.
      * This is not just listing the sub-accounts of an MCA, but all accounts the
      * calling user has access to including other MCAs, linked accounts,
-     * standalone accounts and so on.
+     * standalone accounts and so on. If no filter is provided, then it returns
+     * accounts the user is directly added to.
      *
      * The async variant is {@see AccountsServiceClient::listAccountsAsync()} .
      *

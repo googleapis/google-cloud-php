@@ -21,19 +21,22 @@ class FeatureViewSync
         \GPBMetadata\Google\Type\Interval::initOnce();
         $pool->internalAddGeneratedFile(
             '
-³
-2google/cloud/aiplatform/v1/feature_view_sync.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/rpc/status.protogoogle/type/interval.proto"’
+¦
+2google/cloud/aiplatform/v1/feature_view_sync.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/rpc/status.protogoogle/type/interval.proto"…
 FeatureViewSync
 name (	BàA4
 create_time (2.google.protobuf.TimestampBàA,
 run_time (2.google.type.IntervalBàA-
 final_status (2.google.rpc.StatusBàAR
-sync_summary (27.google.cloud.aiplatform.v1.FeatureViewSync.SyncSummaryBàA?
+sync_summary (27.google.cloud.aiplatform.v1.FeatureViewSync.SyncSummaryBàA
+satisfies_pzs (BàA
+satisfies_pzi (BàAz
 SyncSummary
 
 row_synced (BàA
 
-total_slot (BàA:ÃêA¿
+total_slot (BàA9
+system_watermark_time (2.google.protobuf.Timestamp:ÃêA¿
 )aiplatform.googleapis.com/FeatureViewSync‘projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/feature_view_syncBÒ
 com.google.cloud.aiplatform.v1BFeatureViewSyncProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::Aiplatform::V1bproto3'
         , true);

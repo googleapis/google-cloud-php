@@ -20,13 +20,13 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string domain_name = 1;</code>
      */
-    private $domain_name = '';
+    protected $domain_name = '';
     /**
      * The registrar that currently manages the domain.
      *
      * Generated from protobuf field <code>string current_registrar = 2;</code>
      */
-    private $current_registrar = '';
+    protected $current_registrar = '';
     /**
      * The name servers that currently store the configuration of the domain.
      *
@@ -40,7 +40,7 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.TransferLockState transfer_lock_state = 4;</code>
      */
-    private $transfer_lock_state = 0;
+    protected $transfer_lock_state = 0;
     /**
      * Contact privacy options that the domain supports.
      *
@@ -52,7 +52,7 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Money yearly_price = 6;</code>
      */
-    private $yearly_price = null;
+    protected $yearly_price = null;
 
     /**
      * Constructor.

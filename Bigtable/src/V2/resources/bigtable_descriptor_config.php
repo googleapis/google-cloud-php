@@ -53,6 +53,30 @@ return [
                     ],
                 ],
             ],
+            'ExecuteQuery' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\ExecuteQueryResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getInstanceName',
+                        ],
+                        'matchers' => [
+                            '/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'app_profile_id',
+                        'fieldAccessors' => [
+                            'getAppProfileId',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateInitialChangeStreamPartitions' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',

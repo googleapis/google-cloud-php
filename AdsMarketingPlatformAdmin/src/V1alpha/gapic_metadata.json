@@ -1,0 +1,43 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.marketingplatform.admin.v1alpha",
+    "libraryPackage": "Google\\Ads\\MarketingPlatform\\Admin\\V1alpha",
+    "services": {
+        "MarketingplatformAdminService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MarketingplatformAdminServiceGapicClient",
+                    "rpcs": {
+                        "CreateAnalyticsAccountLink": {
+                            "methods": [
+                                "createAnalyticsAccountLink"
+                            ]
+                        },
+                        "DeleteAnalyticsAccountLink": {
+                            "methods": [
+                                "deleteAnalyticsAccountLink"
+                            ]
+                        },
+                        "GetOrganization": {
+                            "methods": [
+                                "getOrganization"
+                            ]
+                        },
+                        "ListAnalyticsAccountLinks": {
+                            "methods": [
+                                "listAnalyticsAccountLinks"
+                            ]
+                        },
+                        "SetPropertyServiceLevel": {
+                            "methods": [
+                                "setPropertyServiceLevel"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

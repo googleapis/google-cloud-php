@@ -27,19 +27,19 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A possibly-hierarchical name used to refer to the spec from other specs.
      *
      * Generated from protobuf field <code>string filename = 2;</code>
      */
-    private $filename = '';
+    protected $filename = '';
     /**
      * A detailed description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Immutable. The revision ID of the spec.
      * A new revision is committed whenever the spec contents are changed.
@@ -47,25 +47,25 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 4 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * Output only. Creation timestamp; when the spec resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Revision creation timestamp; when the represented revision was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_create_time = null;
+    protected $revision_create_time = null;
     /**
      * Output only. Last update timestamp: when the represented revision was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_update_time = null;
+    protected $revision_update_time = null;
     /**
      * A style (format) descriptor for this spec that is specified as a Media Type
      * (https://en.wikipedia.org/wiki/Media_type). Possible values include
@@ -78,21 +78,21 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 8;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Output only. The size of the spec file in bytes. If the spec is gzipped, this is the
      * size of the uncompressed spec.
      *
      * Generated from protobuf field <code>int32 size_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
     /**
      * Output only. A SHA-256 hash of the spec's contents. If the spec is gzipped, this is
      * the hash of the uncompressed spec.
      *
      * Generated from protobuf field <code>string hash = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $hash = '';
+    protected $hash = '';
     /**
      * The original source URI of the spec (if one exists).
      * This is an external location that can be used for reference purposes
@@ -101,7 +101,7 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_uri = 11;</code>
      */
-    private $source_uri = '';
+    protected $source_uri = '';
     /**
      * Input only. The contents of the spec.
      * Provided by API callers when specs are created or updated.
@@ -109,7 +109,7 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes contents = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $contents = '';
+    protected $contents = '';
     /**
      * Labels attach identifying metadata to resources. Identifying metadata can
      * be used to filter list operations.

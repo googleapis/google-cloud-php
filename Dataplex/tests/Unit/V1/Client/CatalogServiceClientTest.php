@@ -28,11 +28,13 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataplex\V1\AspectType;
 use Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate;
+use Google\Cloud\Dataplex\V1\CancelMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\Client\CatalogServiceClient;
 use Google\Cloud\Dataplex\V1\CreateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryGroupRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\CreateMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\DeleteAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryGroupRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryRequest;
@@ -44,6 +46,7 @@ use Google\Cloud\Dataplex\V1\GetAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\GetEntryGroupRequest;
 use Google\Cloud\Dataplex\V1\GetEntryRequest;
 use Google\Cloud\Dataplex\V1\GetEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\GetMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\ListAspectTypesRequest;
 use Google\Cloud\Dataplex\V1\ListAspectTypesResponse;
 use Google\Cloud\Dataplex\V1\ListEntriesRequest;
@@ -52,7 +55,11 @@ use Google\Cloud\Dataplex\V1\ListEntryGroupsRequest;
 use Google\Cloud\Dataplex\V1\ListEntryGroupsResponse;
 use Google\Cloud\Dataplex\V1\ListEntryTypesRequest;
 use Google\Cloud\Dataplex\V1\ListEntryTypesResponse;
+use Google\Cloud\Dataplex\V1\ListMetadataJobsRequest;
+use Google\Cloud\Dataplex\V1\ListMetadataJobsResponse;
 use Google\Cloud\Dataplex\V1\LookupEntryRequest;
+use Google\Cloud\Dataplex\V1\MetadataJob;
+use Google\Cloud\Dataplex\V1\MetadataJob\Type;
 use Google\Cloud\Dataplex\V1\SearchEntriesRequest;
 use Google\Cloud\Dataplex\V1\SearchEntriesResponse;
 use Google\Cloud\Dataplex\V1\SearchEntriesResult;
@@ -106,6 +113,68 @@ class CatalogServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new CatalogServiceClient($options);
+    }
+
+    /** @test */
+    public function cancelMetadataJobTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->metadataJobName('[PROJECT]', '[LOCATION]', '[METADATAJOB]');
+        $request = (new CancelMetadataJobRequest())->setName($formattedName);
+        $gapicClient->cancelMetadataJob($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/CancelMetadataJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelMetadataJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->metadataJobName('[PROJECT]', '[LOCATION]', '[METADATAJOB]');
+        $request = (new CancelMetadataJobRequest())->setName($formattedName);
+        try {
+            $gapicClient->cancelMetadataJob($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -634,6 +703,140 @@ class CatalogServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createEntryTypeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createMetadataJobTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createMetadataJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $uid = 'uid115792';
+        $expectedResponse = new MetadataJob();
+        $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createMetadataJobTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $metadataJob = new MetadataJob();
+        $metadataJobType = Type::TYPE_UNSPECIFIED;
+        $metadataJob->setType($metadataJobType);
+        $request = (new CreateMetadataJobRequest())->setParent($formattedParent)->setMetadataJob($metadataJob);
+        $response = $gapicClient->createMetadataJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/CreateMetadataJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getMetadataJob();
+        $this->assertProtobufEquals($metadataJob, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createMetadataJobTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createMetadataJobExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createMetadataJobTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $metadataJob = new MetadataJob();
+        $metadataJobType = Type::TYPE_UNSPECIFIED;
+        $metadataJob->setType($metadataJobType);
+        $request = (new CreateMetadataJobRequest())->setParent($formattedParent)->setMetadataJob($metadataJob);
+        $response = $gapicClient->createMetadataJob($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createMetadataJobTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1383,6 +1586,73 @@ class CatalogServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getMetadataJobTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $expectedResponse = new MetadataJob();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->metadataJobName('[PROJECT]', '[LOCATION]', '[METADATAJOB]');
+        $request = (new GetMetadataJobRequest())->setName($formattedName);
+        $response = $gapicClient->getMetadataJob($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/GetMetadataJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMetadataJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->metadataJobName('[PROJECT]', '[LOCATION]', '[METADATAJOB]');
+        $request = (new GetMetadataJobRequest())->setName($formattedName);
+        try {
+            $gapicClient->getMetadataJob($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listAspectTypesTest()
     {
         $transport = $this->createTransport();
@@ -1667,6 +1937,77 @@ class CatalogServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listMetadataJobsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $metadataJobsElement = new MetadataJob();
+        $metadataJobs = [$metadataJobsElement];
+        $expectedResponse = new ListMetadataJobsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setMetadataJobs($metadataJobs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListMetadataJobsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listMetadataJobs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getMetadataJobs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/ListMetadataJobs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listMetadataJobsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListMetadataJobsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listMetadataJobs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function lookupEntryTest()
     {
         $transport = $this->createTransport();
@@ -1760,9 +2101,9 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $query = 'query107944136';
-        $request = (new SearchEntriesRequest())->setName($name)->setQuery($query);
+        $request = (new SearchEntriesRequest())->setName($formattedName)->setQuery($query);
         $response = $gapicClient->searchEntries($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1774,7 +2115,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dataplex.v1.CatalogService/SearchEntries', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
         $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1802,9 +2143,9 @@ class CatalogServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $query = 'query107944136';
-        $request = (new SearchEntriesRequest())->setName($name)->setQuery($query);
+        $request = (new SearchEntriesRequest())->setName($formattedName)->setQuery($query);
         try {
             $gapicClient->searchEntries($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2651,90 +2992,27 @@ class CatalogServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createAspectTypeAsyncTest()
+    public function cancelMetadataJobAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createAspectTypeTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $uid = 'uid115792';
-        $description = 'description-1724546052';
-        $displayName = 'displayName1615086568';
-        $etag = 'etag3123477';
-        $expectedResponse = new AspectType();
-        $expectedResponse->setName($name);
-        $expectedResponse->setUid($uid);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setEtag($etag);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createAspectTypeTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $aspectTypeId = 'aspectTypeId-688405671';
-        $aspectType = new AspectType();
-        $aspectTypeMetadataTemplate = new MetadataTemplate();
-        $metadataTemplateName = 'metadataTemplateName393703156';
-        $aspectTypeMetadataTemplate->setName($metadataTemplateName);
-        $metadataTemplateType = 'metadataTemplateType393905059';
-        $aspectTypeMetadataTemplate->setType($metadataTemplateType);
-        $aspectType->setMetadataTemplate($aspectTypeMetadataTemplate);
-        $request = (new CreateAspectTypeRequest())
-            ->setParent($formattedParent)
-            ->setAspectTypeId($aspectTypeId)
-            ->setAspectType($aspectType);
-        $response = $gapicClient->createAspectTypeAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/CreateAspectType', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAspectTypeId();
-        $this->assertProtobufEquals($aspectTypeId, $actualValue);
-        $actualValue = $actualApiRequestObject->getAspectType();
-        $this->assertProtobufEquals($aspectType, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createAspectTypeTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $formattedName = $gapicClient->metadataJobName('[PROJECT]', '[LOCATION]', '[METADATAJOB]');
+        $request = (new CancelMetadataJobRequest())->setName($formattedName);
+        $gapicClient->cancelMetadataJobAsync($request)->wait();
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/CancelMetadataJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

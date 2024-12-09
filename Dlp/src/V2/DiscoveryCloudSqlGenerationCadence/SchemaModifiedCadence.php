@@ -28,7 +28,7 @@ class SchemaModifiedCadence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency frequency = 2;</code>
      */
-    private $frequency = 0;
+    protected $frequency = 0;
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class SchemaModifiedCadence extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SchemaModifiedCadence::class, \Google\Cloud\Dlp\V2\DiscoveryCloudSqlGenerationCadence_SchemaModifiedCadence::class);
 

@@ -64,6 +64,13 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      */
     private $max_bytes = 0;
     /**
+     * Optional. The maximum number of messages that can be written to a Cloud
+     * Storage file before a new file is created. Min 1000 messages.
+     *
+     * Generated from protobuf field <code>int64 max_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $max_messages = 0;
+    /**
      * Output only. An output-only field that indicates whether or not the
      * subscription can receive messages.
      *
@@ -119,6 +126,9 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum bytes that can be written to a Cloud Storage file
      *           before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
      *           be exceeded in cases where messages are larger than the limit.
+     *     @type int|string $max_messages
+     *           Optional. The maximum number of messages that can be written to a Cloud
+     *           Storage file before a new file is created. Min 1000 messages.
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
@@ -388,6 +398,34 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->max_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maximum number of messages that can be written to a Cloud
+     * Storage file before a new file is created. Min 1000 messages.
+     *
+     * Generated from protobuf field <code>int64 max_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxMessages()
+    {
+        return $this->max_messages;
+    }
+
+    /**
+     * Optional. The maximum number of messages that can be written to a Cloud
+     * Storage file before a new file is created. Min 1000 messages.
+     *
+     * Generated from protobuf field <code>int64 max_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxMessages($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_messages = $var;
 
         return $this;
     }

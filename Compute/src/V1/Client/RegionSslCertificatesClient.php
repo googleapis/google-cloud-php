@@ -47,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionSslCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionSslCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionSslCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionSslCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionSslCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCertificate> getAsync(GetRegionSslCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionSslCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionSslCertificatesRequest $request, array $optionalArgs = [])
  */
 final class RegionSslCertificatesClient
 {

@@ -21,7 +21,7 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Immutable. A URI that represents the resource for which the
      * occurrence applies. For example,
@@ -29,7 +29,7 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
-    private $resource_uri = '';
+    protected $resource_uri = '';
     /**
      * Required. Immutable. The analysis note associated with this occurrence, in
      * the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. This field can be
@@ -37,38 +37,38 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string note_name = 3;</code>
      */
-    private $note_name = '';
+    protected $note_name = '';
     /**
      * Output only. This explicitly denotes which of the occurrence details are
      * specified. This field can be used as a filter in list requests.
      *
      * Generated from protobuf field <code>.grafeas.v1.NoteKind kind = 4;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * A description of actions that can be taken to remedy the note.
      *
      * Generated from protobuf field <code>string remediation = 5;</code>
      */
-    private $remediation = '';
+    protected $remediation = '';
     /**
      * Output only. The time this occurrence was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time this occurrence was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * https://github.com/secure-systems-lab/dsse
      *
      * Generated from protobuf field <code>.grafeas.v1.Envelope envelope = 18;</code>
      */
-    private $envelope = null;
+    protected $envelope = null;
     protected $details;
 
     /**

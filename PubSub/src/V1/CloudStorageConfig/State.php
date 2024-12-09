@@ -45,6 +45,13 @@ class State
      * Generated from protobuf enum <code>IN_TRANSIT_LOCATION_RESTRICTION = 4;</code>
      */
     const IN_TRANSIT_LOCATION_RESTRICTION = 4;
+    /**
+     * Cannot write to the Cloud Storage bucket due to an incompatibility
+     * between the topic schema and subscription settings.
+     *
+     * Generated from protobuf enum <code>SCHEMA_MISMATCH = 5;</code>
+     */
+    const SCHEMA_MISMATCH = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -52,6 +59,7 @@ class State
         self::PERMISSION_DENIED => 'PERMISSION_DENIED',
         self::NOT_FOUND => 'NOT_FOUND',
         self::IN_TRANSIT_LOCATION_RESTRICTION => 'IN_TRANSIT_LOCATION_RESTRICTION',
+        self::SCHEMA_MISMATCH => 'SCHEMA_MISMATCH',
     ];
 
     public static function name($value)

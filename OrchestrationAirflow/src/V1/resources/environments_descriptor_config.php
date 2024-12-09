@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.orchestration.airflow.service.v1.Environments' => [
+            'CheckUpgrade' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeResponse',
+                    'metadataReturnType' => '\Google\Cloud\Orchestration\Airflow\Service\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'environment',
+                        'fieldAccessors' => [
+                            'getEnvironment',
+                        ],
+                    ],
+                ],
+            ],
             'CreateEnvironment' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Orchestration\Airflow\Service\V1\Environment',

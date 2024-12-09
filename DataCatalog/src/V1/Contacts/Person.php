@@ -20,14 +20,14 @@ class Person extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string designation = 1;</code>
      */
-    private $designation = '';
+    protected $designation = '';
     /**
      * Email of the person in the format of `john.doe&#64;xyz`,
      * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      */
-    private $email = '';
+    protected $email = '';
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class Person extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Person::class, \Google\Cloud\DataCatalog\V1\Contacts_Person::class);
 

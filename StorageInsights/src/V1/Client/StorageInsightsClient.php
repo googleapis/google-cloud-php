@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,15 +58,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportDetailAsync(GetReportDetailRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportDetailsAsync(ListReportDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReportConfigAsync(UpdateReportConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> createReportConfigAsync(CreateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReportConfigAsync(DeleteReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> getReportConfigAsync(GetReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportDetail> getReportDetailAsync(GetReportDetailRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportConfigsAsync(ListReportConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportDetailsAsync(ListReportDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportConfig> updateReportConfigAsync(UpdateReportConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class StorageInsightsClient
 {
@@ -93,9 +93,7 @@ final class StorageInsightsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -163,8 +161,12 @@ final class StorageInsightsClient
      *
      * @return string The formatted report_detail resource.
      */
-    public static function reportDetailName(string $project, string $location, string $reportConfig, string $reportDetail): string
-    {
+    public static function reportDetailName(
+        string $project,
+        string $location,
+        string $reportConfig,
+        string $reportDetail
+    ): string {
         return self::getPathTemplate('reportDetail')->render([
             'project' => $project,
             'location' => $location,

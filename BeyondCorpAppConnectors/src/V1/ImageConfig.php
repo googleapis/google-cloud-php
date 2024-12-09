@@ -21,14 +21,14 @@ class ImageConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_image = 1;</code>
      */
-    private $target_image = '';
+    protected $target_image = '';
     /**
      * The stable image that the remote agent will fallback to if the target image
      * fails.
      *
      * Generated from protobuf field <code>string stable_image = 2;</code>
      */
-    private $stable_image = '';
+    protected $stable_image = '';
 
     /**
      * Constructor.

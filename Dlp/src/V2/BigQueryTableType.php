@@ -7,8 +7,8 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * Over time new types may be added. Currently VIEW, MATERIALIZED_VIEW,
- * SNAPSHOT, and non-BigLake external tables are not supported.
+ * Over time new types may be added. Currently VIEW, MATERIALIZED_VIEW, and
+ * non-BigLake external tables are not supported.
  *
  * Protobuf type <code>google.privacy.dlp.v2.BigQueryTableType</code>
  */
@@ -32,11 +32,18 @@ class BigQueryTableType
      * Generated from protobuf enum <code>BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE = 2;</code>
      */
     const BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE = 2;
+    /**
+     * A snapshot of a BigQuery table.
+     *
+     * Generated from protobuf enum <code>BIG_QUERY_TABLE_TYPE_SNAPSHOT = 3;</code>
+     */
+    const BIG_QUERY_TABLE_TYPE_SNAPSHOT = 3;
 
     private static $valueToName = [
         self::BIG_QUERY_TABLE_TYPE_UNSPECIFIED => 'BIG_QUERY_TABLE_TYPE_UNSPECIFIED',
         self::BIG_QUERY_TABLE_TYPE_TABLE => 'BIG_QUERY_TABLE_TYPE_TABLE',
         self::BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE => 'BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE',
+        self::BIG_QUERY_TABLE_TYPE_SNAPSHOT => 'BIG_QUERY_TABLE_TYPE_SNAPSHOT',
     ];
 
     public static function name($value)

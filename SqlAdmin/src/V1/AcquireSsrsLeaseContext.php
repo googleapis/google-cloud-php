@@ -21,26 +21,26 @@ class AcquireSsrsLeaseContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string setup_login = 1;</code>
      */
-    private $setup_login = null;
+    protected $setup_login = null;
     /**
      * The username to be used as the service login to connect to the report
      * database for SSRS setup.
      *
      * Generated from protobuf field <code>optional string service_login = 2;</code>
      */
-    private $service_login = null;
+    protected $service_login = null;
     /**
      * The report database to be used for SSRS setup.
      *
      * Generated from protobuf field <code>optional string report_database = 3;</code>
      */
-    private $report_database = null;
+    protected $report_database = null;
     /**
      * Lease duration needed for SSRS setup.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration duration = 4;</code>
      */
-    private $duration = null;
+    protected $duration = null;
 
     /**
      * Constructor.

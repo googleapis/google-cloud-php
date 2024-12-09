@@ -18,7 +18,7 @@ class SlsaProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenance.SlsaBuilder builder = 1;</code>
      */
-    private $builder = null;
+    protected $builder = null;
     /**
      * Identifies the configuration used for the build.
      * When combined with materials, this SHOULD fully describe the build,
@@ -27,11 +27,11 @@ class SlsaProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenance.SlsaRecipe recipe = 2;</code>
      */
-    private $recipe = null;
+    protected $recipe = null;
     /**
      * Generated from protobuf field <code>.grafeas.v1.SlsaProvenance.SlsaMetadata metadata = 3;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * The collection of artifacts that influenced the build including sources,
      * dependencies, build tools, base images, and so on. This is considered to be

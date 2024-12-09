@@ -27,19 +27,19 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time the hub was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the hub was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional labels in key-value pair format. For more information about
      * labels, see [Requirements for
@@ -53,7 +53,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The Google-generated UUID for the hub. This value is unique
      * across all hub resources. If a hub is deleted and another with the same
@@ -61,13 +61,13 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unique_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $unique_id = '';
+    protected $unique_id = '';
     /**
      * Output only. The current lifecycle state of this hub.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The VPC networks associated with this hub's spokes.
      * This field is read-only. Network Connectivity Center automatically
@@ -95,7 +95,34 @@ class Hub extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.SpokeSummary spoke_summary = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $spoke_summary = null;
+    protected $spoke_summary = null;
+    /**
+     * Optional. The policy mode of this hub. This field can be either
+     * PRESET or CUSTOM. If unspecified, the
+     * policy_mode defaults to PRESET.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyMode policy_mode = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $policy_mode = 0;
+    /**
+     * Optional. The topology implemented in this hub. Currently, this field is
+     * only used when policy_mode = PRESET. The available preset topologies are
+     * MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET,
+     * the preset_topology defaults to MESH. When policy_mode = CUSTOM,
+     * the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PresetTopology preset_topology = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $preset_topology = 0;
+    /**
+     * Optional. Whether Private Service Connect transitivity is enabled for the
+     * hub. If true, Private Service Connect endpoints in VPC spokes attached to
+     * the hub are made accessible to other VPC spokes attached to the hub.
+     * The default value is false.
+     *
+     * Generated from protobuf field <code>optional bool export_psc = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $export_psc = null;
 
     /**
      * Constructor.
@@ -139,6 +166,21 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           and according to state. If any spokes are inactive,
      *           the summary also lists the reasons they are inactive,
      *           including a count for each reason.
+     *     @type int $policy_mode
+     *           Optional. The policy mode of this hub. This field can be either
+     *           PRESET or CUSTOM. If unspecified, the
+     *           policy_mode defaults to PRESET.
+     *     @type int $preset_topology
+     *           Optional. The topology implemented in this hub. Currently, this field is
+     *           only used when policy_mode = PRESET. The available preset topologies are
+     *           MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET,
+     *           the preset_topology defaults to MESH. When policy_mode = CUSTOM,
+     *           the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.
+     *     @type bool $export_psc
+     *           Optional. Whether Private Service Connect transitivity is enabled for the
+     *           hub. If true, Private Service Connect endpoints in VPC spokes attached to
+     *           the hub are made accessible to other VPC spokes attached to the hub.
+     *           The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -464,6 +506,112 @@ class Hub extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\SpokeSummary::class);
         $this->spoke_summary = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The policy mode of this hub. This field can be either
+     * PRESET or CUSTOM. If unspecified, the
+     * policy_mode defaults to PRESET.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyMode policy_mode = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPolicyMode()
+    {
+        return $this->policy_mode;
+    }
+
+    /**
+     * Optional. The policy mode of this hub. This field can be either
+     * PRESET or CUSTOM. If unspecified, the
+     * policy_mode defaults to PRESET.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyMode policy_mode = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPolicyMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkConnectivity\V1\PolicyMode::class);
+        $this->policy_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The topology implemented in this hub. Currently, this field is
+     * only used when policy_mode = PRESET. The available preset topologies are
+     * MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET,
+     * the preset_topology defaults to MESH. When policy_mode = CUSTOM,
+     * the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PresetTopology preset_topology = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPresetTopology()
+    {
+        return $this->preset_topology;
+    }
+
+    /**
+     * Optional. The topology implemented in this hub. Currently, this field is
+     * only used when policy_mode = PRESET. The available preset topologies are
+     * MESH and STAR. If preset_topology is unspecified and policy_mode = PRESET,
+     * the preset_topology defaults to MESH. When policy_mode = CUSTOM,
+     * the preset_topology is set to PRESET_TOPOLOGY_UNSPECIFIED.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PresetTopology preset_topology = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPresetTopology($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkConnectivity\V1\PresetTopology::class);
+        $this->preset_topology = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether Private Service Connect transitivity is enabled for the
+     * hub. If true, Private Service Connect endpoints in VPC spokes attached to
+     * the hub are made accessible to other VPC spokes attached to the hub.
+     * The default value is false.
+     *
+     * Generated from protobuf field <code>optional bool export_psc = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getExportPsc()
+    {
+        return isset($this->export_psc) ? $this->export_psc : false;
+    }
+
+    public function hasExportPsc()
+    {
+        return isset($this->export_psc);
+    }
+
+    public function clearExportPsc()
+    {
+        unset($this->export_psc);
+    }
+
+    /**
+     * Optional. Whether Private Service Connect transitivity is enabled for the
+     * hub. If true, Private Service Connect endpoints in VPC spokes attached to
+     * the hub are made accessible to other VPC spokes attached to the hub.
+     * The default value is false.
+     *
+     * Generated from protobuf field <code>optional bool export_psc = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExportPsc($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->export_psc = $var;
 
         return $this;
     }

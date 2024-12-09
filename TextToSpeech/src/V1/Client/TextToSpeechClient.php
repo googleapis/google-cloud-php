@@ -25,6 +25,7 @@
 namespace Google\Cloud\TextToSpeech\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\ResourceHelperTrait;
@@ -49,8 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface listVoicesAsync(ListVoicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface synthesizeSpeechAsync(SynthesizeSpeechRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListVoicesResponse> listVoicesAsync(ListVoicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SynthesizeSpeechResponse> synthesizeSpeechAsync(SynthesizeSpeechRequest $request, array $optionalArgs = [])
  */
 final class TextToSpeechClient
 {
@@ -238,6 +239,28 @@ final class TextToSpeechClient
     public function listVoices(ListVoicesRequest $request, array $callOptions = []): ListVoicesResponse
     {
         return $this->startApiCall('ListVoices', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Performs bidirectional streaming speech synthesis: receive audio while
+     * sending text.
+     *
+     * @example samples/V1/TextToSpeechClient/streaming_synthesize.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamingSynthesize(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamingSynthesize', null, $callOptions);
     }
 
     /**

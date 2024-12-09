@@ -24,7 +24,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The Resource Instance type on which this policy applies to. Format will
      * be of the form : "<canonical service name>/<type>" Example:
@@ -46,25 +46,25 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string condition = 4;</code>
      */
-    private $condition = '';
+    protected $condition = '';
     /**
      * Allow or deny type.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint.ActionType action_type = 5;</code>
      */
-    private $action_type = 0;
+    protected $action_type = 0;
     /**
      * One line display name for the UI.
      *
      * Generated from protobuf field <code>string display_name = 6;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Detailed information about this custom policy constraint.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.
@@ -301,6 +301,4 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CustomConstraint::class, \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint_CustomConstraint::class);
 

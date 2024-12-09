@@ -28,7 +28,7 @@ class AttachedOidcConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer_url = 1;</code>
      */
-    private $issuer_url = '';
+    protected $issuer_url = '';
     /**
      * Optional. OIDC verification keys in JWKS format (RFC 7517).
      * It contains a list of OIDC verification keys that can be used to verify
@@ -39,7 +39,7 @@ class AttachedOidcConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes jwks = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $jwks = '';
+    protected $jwks = '';
 
     /**
      * Constructor.

@@ -285,6 +285,43 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>INSUFFICIENT_MACHINE_TIER = 44;</code>
      */
     const INSUFFICIENT_MACHINE_TIER = 44;
+    /**
+     * The warning message indicates the unsupported extensions will not be
+     * migrated to the destination.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_EXTENSIONS_NOT_MIGRATED = 45;</code>
+     */
+    const UNSUPPORTED_EXTENSIONS_NOT_MIGRATED = 45;
+    /**
+     * The warning message indicates the pg_cron extension and settings will not
+     * be migrated to the destination.
+     *
+     * Generated from protobuf enum <code>EXTENSIONS_NOT_MIGRATED = 46;</code>
+     */
+    const EXTENSIONS_NOT_MIGRATED = 46;
+    /**
+     * The error message indicates that pg_cron flags are enabled on the
+     * destination which is not supported during the migration.
+     *
+     * Generated from protobuf enum <code>PG_CRON_FLAG_ENABLED_IN_REPLICA = 47;</code>
+     */
+    const PG_CRON_FLAG_ENABLED_IN_REPLICA = 47;
+    /**
+     * This error message indicates that the specified extensions are not
+     * enabled on destination instance. For example, before you can migrate
+     * data to the destination instance, you must enable the PGAudit extension
+     * on the instance.
+     *
+     * Generated from protobuf enum <code>EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;</code>
+     */
+    const EXTENSIONS_NOT_ENABLED_IN_REPLICA = 48;
+    /**
+     * The source database has generated columns that can't be migrated. Please
+     * change them to regular columns before migration.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_COLUMNS = 49;</code>
+     */
+    const UNSUPPORTED_COLUMNS = 49;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -332,6 +369,11 @@ class SqlExternalSyncSettingErrorType
         self::PG_SYNC_PARALLEL_LEVEL => 'PG_SYNC_PARALLEL_LEVEL',
         self::INSUFFICIENT_DISK_SIZE => 'INSUFFICIENT_DISK_SIZE',
         self::INSUFFICIENT_MACHINE_TIER => 'INSUFFICIENT_MACHINE_TIER',
+        self::UNSUPPORTED_EXTENSIONS_NOT_MIGRATED => 'UNSUPPORTED_EXTENSIONS_NOT_MIGRATED',
+        self::EXTENSIONS_NOT_MIGRATED => 'EXTENSIONS_NOT_MIGRATED',
+        self::PG_CRON_FLAG_ENABLED_IN_REPLICA => 'PG_CRON_FLAG_ENABLED_IN_REPLICA',
+        self::EXTENSIONS_NOT_ENABLED_IN_REPLICA => 'EXTENSIONS_NOT_ENABLED_IN_REPLICA',
+        self::UNSUPPORTED_COLUMNS => 'UNSUPPORTED_COLUMNS',
     ];
 
     public static function name($value)

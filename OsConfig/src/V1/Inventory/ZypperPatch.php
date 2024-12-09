@@ -20,25 +20,25 @@ class ZypperPatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string patch_name = 5;</code>
      */
-    private $patch_name = '';
+    protected $patch_name = '';
     /**
      * The category of the patch.
      *
      * Generated from protobuf field <code>string category = 2;</code>
      */
-    private $category = '';
+    protected $category = '';
     /**
      * The severity specified for this patch
      *
      * Generated from protobuf field <code>string severity = 3;</code>
      */
-    private $severity = '';
+    protected $severity = '';
     /**
      * Any summary information provided about this patch.
      *
      * Generated from protobuf field <code>string summary = 4;</code>
      */
-    private $summary = '';
+    protected $summary = '';
 
     /**
      * Constructor.

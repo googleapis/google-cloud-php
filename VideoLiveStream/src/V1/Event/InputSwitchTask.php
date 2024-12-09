@@ -22,7 +22,7 @@ class InputSwitchTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_key = 1;</code>
      */
-    private $input_key = '';
+    protected $input_key = '';
 
     /**
      * Constructor.

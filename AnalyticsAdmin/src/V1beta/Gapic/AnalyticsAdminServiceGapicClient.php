@@ -43,6 +43,7 @@ use Google\Analytics\Admin\V1beta\CreateCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\CreateDataStreamRequest;
 use Google\Analytics\Admin\V1beta\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1beta\CreateGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1beta\CreateKeyEventRequest;
 use Google\Analytics\Admin\V1beta\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\CreatePropertyRequest;
 use Google\Analytics\Admin\V1beta\CustomDimension;
@@ -55,6 +56,7 @@ use Google\Analytics\Admin\V1beta\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1beta\DeleteDataStreamRequest;
 use Google\Analytics\Admin\V1beta\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1beta\DeleteGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1beta\DeleteKeyEventRequest;
 use Google\Analytics\Admin\V1beta\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\DeletePropertyRequest;
 use Google\Analytics\Admin\V1beta\FirebaseLink;
@@ -65,9 +67,11 @@ use Google\Analytics\Admin\V1beta\GetCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\GetDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1beta\GetDataSharingSettingsRequest;
 use Google\Analytics\Admin\V1beta\GetDataStreamRequest;
+use Google\Analytics\Admin\V1beta\GetKeyEventRequest;
 use Google\Analytics\Admin\V1beta\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\GetPropertyRequest;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
+use Google\Analytics\Admin\V1beta\KeyEvent;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesResponse;
 use Google\Analytics\Admin\V1beta\ListAccountsRequest;
@@ -84,6 +88,8 @@ use Google\Analytics\Admin\V1beta\ListFirebaseLinksRequest;
 use Google\Analytics\Admin\V1beta\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1beta\ListGoogleAdsLinksRequest;
 use Google\Analytics\Admin\V1beta\ListGoogleAdsLinksResponse;
+use Google\Analytics\Admin\V1beta\ListKeyEventsRequest;
+use Google\Analytics\Admin\V1beta\ListKeyEventsResponse;
 use Google\Analytics\Admin\V1beta\ListMeasurementProtocolSecretsRequest;
 use Google\Analytics\Admin\V1beta\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1beta\ListPropertiesRequest;
@@ -103,6 +109,7 @@ use Google\Analytics\Admin\V1beta\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\UpdateDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1beta\UpdateDataStreamRequest;
 use Google\Analytics\Admin\V1beta\UpdateGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1beta\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1beta\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\UpdatePropertyRequest;
 use Google\ApiCore\ApiException;
@@ -191,7 +198,11 @@ class AnalyticsAdminServiceGapicClient
 
     private static $googleAdsLinkNameTemplate;
 
+    private static $keyEventNameTemplate;
+
     private static $measurementProtocolSecretNameTemplate;
+
+    private static $organizationNameTemplate;
 
     private static $propertyNameTemplate;
 
@@ -297,6 +308,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$googleAdsLinkNameTemplate;
     }
 
+    private static function getKeyEventNameTemplate()
+    {
+        if (self::$keyEventNameTemplate == null) {
+            self::$keyEventNameTemplate = new PathTemplate('properties/{property}/keyEvents/{key_event}');
+        }
+
+        return self::$keyEventNameTemplate;
+    }
+
     private static function getMeasurementProtocolSecretNameTemplate()
     {
         if (self::$measurementProtocolSecretNameTemplate == null) {
@@ -304,6 +324,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$measurementProtocolSecretNameTemplate;
+    }
+
+    private static function getOrganizationNameTemplate()
+    {
+        if (self::$organizationNameTemplate == null) {
+            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        }
+
+        return self::$organizationNameTemplate;
     }
 
     private static function getPropertyNameTemplate()
@@ -328,7 +357,9 @@ class AnalyticsAdminServiceGapicClient
                 'dataStream' => self::getDataStreamNameTemplate(),
                 'firebaseLink' => self::getFirebaseLinkNameTemplate(),
                 'googleAdsLink' => self::getGoogleAdsLinkNameTemplate(),
+                'keyEvent' => self::getKeyEventNameTemplate(),
                 'measurementProtocolSecret' => self::getMeasurementProtocolSecretNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
             ];
         }
@@ -502,6 +533,25 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a key_event
+     * resource.
+     *
+     * @param string $property
+     * @param string $keyEvent
+     *
+     * @return string The formatted key_event resource.
+     *
+     * @experimental
+     */
+    public static function keyEventName($property, $keyEvent)
+    {
+        return self::getKeyEventNameTemplate()->render([
+            'property' => $property,
+            'key_event' => $keyEvent,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * measurement_protocol_secret resource.
      *
@@ -519,6 +569,23 @@ class AnalyticsAdminServiceGapicClient
             'property' => $property,
             'data_stream' => $dataStream,
             'measurement_protocol_secret' => $measurementProtocolSecret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a organization
+     * resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     *
+     * @experimental
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -552,7 +619,9 @@ class AnalyticsAdminServiceGapicClient
      * - dataStream: properties/{property}/dataStreams/{data_stream}
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - googleAdsLink: properties/{property}/googleAdsLinks/{google_ads_link}
+     * - keyEvent: properties/{property}/keyEvents/{key_event}
      * - measurementProtocolSecret: properties/{property}/dataStreams/{data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}
+     * - organization: organizations/{organization}
      * - property: properties/{property}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -790,6 +859,7 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deprecated: Use `CreateKeyEvent` instead.
      * Creates a conversion event with the specified attributes.
      *
      * Sample code:
@@ -821,6 +891,8 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createConversionEvent($conversionEvent, $parent, array $optionalArgs = [])
     {
@@ -984,7 +1056,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string       $parent       Required. Format: properties/{property_id}
-     *                                   Example: properties/1234
+     *
+     *                                   Example: `properties/1234`
      * @param FirebaseLink $firebaseLink Required. The Firebase link to create.
      * @param array        $optionalArgs {
      *     Optional.
@@ -1055,6 +1128,51 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateGoogleAdsLink', GoogleAdsLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a Key Event.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $keyEvent = new KeyEvent();
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->createKeyEvent($keyEvent, $formattedParent);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param KeyEvent $keyEvent     Required. The Key Event to create.
+     * @param string   $parent       Required. The resource name of the parent property where this Key Event
+     *                               will be created. Format: properties/123
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1beta\KeyEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createKeyEvent($keyEvent, $parent, array $optionalArgs = [])
+    {
+        $request = new CreateKeyEventRequest();
+        $requestParamHeaders = [];
+        $request->setKeyEvent($keyEvent);
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateKeyEvent', KeyEvent::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1148,7 +1266,7 @@ class AnalyticsAdminServiceGapicClient
      *
      * If the accounts are not restored before the expiration time, the account
      * and all child resources (eg: Properties, GoogleAdsLinks, Streams,
-     * UserLinks) will be permanently purged.
+     * AccessBindings) will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
      * Returns an error if the target is not found.
@@ -1192,6 +1310,7 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deprecated: Use `DeleteKeyEvent` instead.
      * Deletes a conversion event in a property.
      *
      * Sample code:
@@ -1220,6 +1339,8 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteConversionEvent($name, array $optionalArgs = [])
     {
@@ -1287,7 +1408,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $name         Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id}
-     *                             Example: properties/1234/firebaseLinks/5678
+     *
+     *                             Example: `properties/1234/firebaseLinks/5678`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1352,6 +1474,47 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a Key Event.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->keyEventName('[PROPERTY]', '[KEY_EVENT]');
+     *     $analyticsAdminServiceClient->deleteKeyEvent($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Key Event to delete.
+     *                             Format: properties/{property}/keyEvents/{key_event}
+     *                             Example: "properties/123/keyEvents/456"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteKeyEvent($name, array $optionalArgs = [])
+    {
+        $request = new DeleteKeyEventRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteKeyEvent', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes target MeasurementProtocolSecret.
      *
      * Sample code:
@@ -1399,7 +1562,7 @@ class AnalyticsAdminServiceGapicClient
      * However, they can be restored using the Trash Can UI.
      *
      * If the properties are not restored before the expiration time, the Property
-     * and all child resources (eg: GoogleAdsLinks, Streams, UserLinks)
+     * and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings)
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
@@ -1489,6 +1652,7 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deprecated: Use `GetKeyEvent` instead.
      * Retrieve a single conversion event.
      *
      * Sample code:
@@ -1519,6 +1683,8 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getConversionEvent($name, array $optionalArgs = [])
     {
@@ -1676,7 +1842,8 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param string $name         Required. The name of the settings to lookup.
      *                             Format: accounts/{account}/dataSharingSettings
-     *                             Example: "accounts/1000/dataSharingSettings"
+     *
+     *                             Example: `accounts/1000/dataSharingSettings`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1743,6 +1910,49 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataStream', DataStream::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieve a single Key Event.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->keyEventName('[PROPERTY]', '[KEY_EVENT]');
+     *     $response = $analyticsAdminServiceClient->getKeyEvent($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Key Event to retrieve.
+     *                             Format: properties/{property}/keyEvents/{key_event}
+     *                             Example: "properties/123/keyEvents/456"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1beta\KeyEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getKeyEvent($name, array $optionalArgs = [])
+    {
+        $request = new GetKeyEventRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetKeyEvent', KeyEvent::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1970,6 +2180,7 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deprecated: Use `ListKeyEvents` instead.
      * Returns a list of conversion events in the specified parent property.
      *
      * Returns an empty list if no conversion events are found.
@@ -2022,6 +2233,8 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listConversionEvents($parent, array $optionalArgs = [])
     {
@@ -2280,7 +2493,8 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $parent       Required. Format: properties/{property_id}
-     *                             Example: properties/1234
+     *
+     *                             Example: `properties/1234`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2392,6 +2606,78 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListGoogleAdsLinks', $optionalArgs, ListGoogleAdsLinksResponse::class, $request);
+    }
+
+    /**
+     * Returns a list of Key Events in the specified parent property.
+     * Returns an empty list if no Key Events are found.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listKeyEvents($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listKeyEvents($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the parent property.
+     *                             Example: 'properties/123'
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listKeyEvents($parent, array $optionalArgs = [])
+    {
+        $request = new ListKeyEventsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListKeyEvents', $optionalArgs, ListKeyEventsResponse::class, $request);
     }
 
     /**
@@ -2613,8 +2899,10 @@ class AnalyticsAdminServiceGapicClient
      * records of each time a user reads Google Analytics reporting data. Access
      * records are retained for up to 2 years.
      *
-     * Data Access Reports can be requested for a property. The property must be
-     * in Google Analytics 360. This method is only available to Administrators.
+     * Data Access Reports can be requested for a property. Reports may be
+     * requested for any property, but dimensions that aren't related to quota can
+     * only be requested on Google Analytics 360 properties. This method is only
+     * available to Administrators.
      *
      * These data access records include GA4 UI Reporting, GA4 UI Explorations,
      * GA4 Data API, and other products like Firebase & Admob that can retrieve
@@ -2702,6 +2990,17 @@ class AnalyticsAdminServiceGapicClient
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
      *           requests, this field must be false.
+     *     @type bool $includeAllUsers
+     *           Optional. Determines whether to include users who have never made an API
+     *           call in the response. If true, all users with access to the specified
+     *           property or account are included in the response, regardless of whether
+     *           they have made an API call or not. If false, only the users who have made
+     *           an API call will be included.
+     *     @type bool $expandGroups
+     *           Optional. Decides whether to return the users within user groups. This
+     *           field works only when include_all_users is set to true. If true, it will
+     *           return all users with access to the specified property or account.
+     *           If false, only the users with direct access will be returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2763,6 +3062,14 @@ class AnalyticsAdminServiceGapicClient
             $request->setReturnEntityQuota($optionalArgs['returnEntityQuota']);
         }
 
+        if (isset($optionalArgs['includeAllUsers'])) {
+            $request->setIncludeAllUsers($optionalArgs['includeAllUsers']);
+        }
+
+        if (isset($optionalArgs['expandGroups'])) {
+            $request->setExpandGroups($optionalArgs['expandGroups']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RunAccessReport', RunAccessReportResponse::class, $optionalArgs, $request)->wait();
@@ -2796,13 +3103,18 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param string $account      Required. The account resource for which to return change history
-     *                             resources.
+     *                             resources. Format: accounts/{account}
+     *
+     *                             Example: `accounts/100`
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $property
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
+     *           Format: properties/{propertyId}
+     *
+     *           Example: `properties/100`
      *     @type int[] $resourceType
      *           Optional. If set, only return changes if they are for a resource that
      *           matches at least one of these types.
@@ -2931,6 +3243,7 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deprecated: Use `UpdateKeyEvent` instead.
      * Updates a conversion event with the specified attributes.
      *
      * Sample code:
@@ -2965,6 +3278,8 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateConversionEvent($conversionEvent, $updateMask, array $optionalArgs = [])
     {
@@ -3217,6 +3532,54 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateGoogleAdsLink', GoogleAdsLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a Key Event.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $keyEvent = new KeyEvent();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateKeyEvent($keyEvent, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param KeyEvent  $keyEvent     Required. The Key Event to update.
+     *                                The `name` field is used to identify the settings to be updated.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                replace the entire entity, use one path with the string "*" to match all
+     *                                fields.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1beta\KeyEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateKeyEvent($keyEvent, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateKeyEventRequest();
+        $requestParamHeaders = [];
+        $request->setKeyEvent($keyEvent);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['key_event.name'] = $keyEvent->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateKeyEvent', KeyEvent::class, $optionalArgs, $request)->wait();
     }
 
     /**

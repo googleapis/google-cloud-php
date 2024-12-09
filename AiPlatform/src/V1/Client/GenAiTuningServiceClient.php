@@ -27,6 +27,7 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -37,6 +38,7 @@ use Google\Cloud\AIPlatform\V1\CancelTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\GetTuningJobRequest;
 use Google\Cloud\AIPlatform\V1\ListTuningJobsRequest;
+use Google\Cloud\AIPlatform\V1\RebaseTunedModelRequest;
 use Google\Cloud\AIPlatform\V1\TuningJob;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -46,6 +48,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -59,15 +63,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelTuningJobAsync(CancelTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTuningJobAsync(CreateTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTuningJobAsync(GetTuningJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTuningJobsAsync(ListTuningJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelTuningJobAsync(CancelTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TuningJob> createTuningJobAsync(CreateTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TuningJob> getTuningJobAsync(GetTuningJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTuningJobsAsync(ListTuningJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rebaseTunedModelAsync(RebaseTunedModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class GenAiTuningServiceClient
 {
@@ -96,6 +101,8 @@ final class GenAiTuningServiceClient
     /** The default scopes required by the service. */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -113,6 +120,56 @@ final class GenAiTuningServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -196,6 +253,25 @@ final class GenAiTuningServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a pipeline_job
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $pipelineJob
+     *
+     * @return string The formatted pipeline_job resource.
+     */
+    public static function pipelineJobName(string $project, string $location, string $pipelineJob): string
+    {
+        return self::getPathTemplate('pipelineJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'pipeline_job' => $pipelineJob,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
@@ -266,6 +342,7 @@ final class GenAiTuningServiceClient
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
+     * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - tuningJob: projects/{project}/locations/{location}/tuningJobs/{tuning_job}
@@ -346,6 +423,7 @@ final class GenAiTuningServiceClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -471,6 +549,32 @@ final class GenAiTuningServiceClient
     public function listTuningJobs(ListTuningJobsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListTuningJobs', $request, $callOptions);
+    }
+
+    /**
+     * Rebase a TunedModel.
+     *
+     * The async variant is {@see GenAiTuningServiceClient::rebaseTunedModelAsync()} .
+     *
+     * @example samples/V1/GenAiTuningServiceClient/rebase_tuned_model.php
+     *
+     * @param RebaseTunedModelRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rebaseTunedModel(RebaseTunedModelRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RebaseTunedModel', $request, $callOptions)->wait();
     }
 
     /**

@@ -54,13 +54,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface analyzeEntitiesAsync(AnalyzeEntitiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeEntitySentimentAsync(AnalyzeEntitySentimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeSentimentAsync(AnalyzeSentimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface analyzeSyntaxAsync(AnalyzeSyntaxRequest $request, array $optionalArgs = [])
- * @method PromiseInterface annotateTextAsync(AnnotateTextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface classifyTextAsync(ClassifyTextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moderateTextAsync(ModerateTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeEntitiesResponse> analyzeEntitiesAsync(AnalyzeEntitiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeEntitySentimentResponse> analyzeEntitySentimentAsync(AnalyzeEntitySentimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeSentimentResponse> analyzeSentimentAsync(AnalyzeSentimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnalyzeSyntaxResponse> analyzeSyntaxAsync(AnalyzeSyntaxRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotateTextResponse> annotateTextAsync(AnnotateTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClassifyTextResponse> classifyTextAsync(ClassifyTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModerateTextResponse> moderateTextAsync(ModerateTextRequest $request, array $optionalArgs = [])
  */
 final class LanguageServiceClient
 {

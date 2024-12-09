@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\ApiKeys\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -46,6 +45,7 @@ use Google\Cloud\ApiKeys\V2\LookupKeyRequest;
 use Google\Cloud\ApiKeys\V2\LookupKeyResponse;
 use Google\Cloud\ApiKeys\V2\UndeleteKeyRequest;
 use Google\Cloud\ApiKeys\V2\UpdateKeyRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -60,14 +60,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyStringAsync(GetKeyStringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupKeyAsync(LookupKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteKeyAsync(UndeleteKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createKeyAsync(CreateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteKeyAsync(DeleteKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Key> getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetKeyStringResponse> getKeyStringAsync(GetKeyStringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupKeyResponse> lookupKeyAsync(LookupKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteKeyAsync(UndeleteKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
  */
 final class ApiKeysClient
 {
@@ -143,10 +143,31 @@ final class ApiKeysClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**

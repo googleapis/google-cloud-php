@@ -21,7 +21,7 @@ class ListIdentityAwareProxyClientsRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of clients to return. The service may return fewer than
      * this value.
@@ -30,7 +30,7 @@ class ListIdentityAwareProxyClientsRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListIdentityAwareProxyClients`
      * call. Provide this to retrieve the subsequent page.
@@ -40,7 +40,7 @@ class ListIdentityAwareProxyClientsRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

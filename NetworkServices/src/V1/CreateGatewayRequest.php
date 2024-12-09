@@ -36,6 +36,25 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
     protected $gateway = null;
 
     /**
+     * @param string                                   $parent    Required. The parent resource of the Gateway. Must be in the
+     *                                                            format `projects/&#42;/locations/*`. Please see
+     *                                                            {@see NetworkServicesClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\NetworkServices\V1\Gateway $gateway   Required. Gateway resource to be created.
+     * @param string                                   $gatewayId Required. Short name of the Gateway resource to be created.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\CreateGatewayRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\NetworkServices\V1\Gateway $gateway, string $gatewayId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setGateway($gateway)
+            ->setGatewayId($gatewayId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

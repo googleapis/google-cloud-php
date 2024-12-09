@@ -48,6 +48,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * Optional. Private settings for private instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.PrivateConfig private_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $private_config = null;
+    /**
      * Output only. Current state of the instance.
      *
      * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -96,6 +102,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. Update timestamp.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels as key value pairs.
+     *     @type \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig $private_config
+     *           Optional. Private settings for private instance.
      *     @type int $state
      *           Output only. Current state of the instance.
      *     @type int $state_note
@@ -249,6 +257,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Private settings for private instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.PrivateConfig private_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig|null
+     */
+    public function getPrivateConfig()
+    {
+        return $this->private_config;
+    }
+
+    public function hasPrivateConfig()
+    {
+        return isset($this->private_config);
+    }
+
+    public function clearPrivateConfig()
+    {
+        unset($this->private_config);
+    }
+
+    /**
+     * Optional. Private settings for private instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.PrivateConfig private_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig $var
+     * @return $this
+     */
+    public function setPrivateConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig::class);
+        $this->private_config = $var;
 
         return $this;
     }

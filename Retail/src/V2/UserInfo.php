@@ -27,7 +27,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_id = 1;</code>
      */
-    private $user_id = '';
+    protected $user_id = '';
     /**
      * The end user's IP address. This field is used to extract location
      * information for personalization.
@@ -45,7 +45,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 2;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * User agent as included in the HTTP header. Required for getting
      * [SearchResponse.sponsored_results][google.cloud.retail.v2.SearchResponse.sponsored_results].
@@ -60,7 +60,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_agent = 3;</code>
      */
-    private $user_agent = '';
+    protected $user_agent = '';
     /**
      * True if the request is made directly from the end user, in which case the
      * [ip_address][google.cloud.retail.v2.UserInfo.ip_address] and
@@ -73,7 +73,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool direct_user_request = 4;</code>
      */
-    private $direct_user_request = false;
+    protected $direct_user_request = false;
 
     /**
      * Constructor.

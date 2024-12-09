@@ -43,8 +43,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetLicenseCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsLicenseCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LicenseCode> getAsync(GetLicenseCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsLicenseCodeRequest $request, array $optionalArgs = [])
  */
 final class LicenseCodesClient
 {

@@ -21,25 +21,25 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * One or more paragraphs of text description of a certificate.
      *
      * Generated from protobuf field <code>string description = 8;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The creation timestamp of a Certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of a Certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Set of labels associated with a Certificate.
      *
@@ -60,19 +60,19 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem_certificate = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pem_certificate = '';
+    protected $pem_certificate = '';
     /**
      * Output only. The expiry timestamp of a Certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Immutable. The scope of the certificate.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.Scope scope = 12 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     protected $type;
 
     /**

@@ -23,7 +23,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Resource labels associated with this namespace.
      * No more than 64 user labels can be associated with a given resource. Label
@@ -38,7 +38,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

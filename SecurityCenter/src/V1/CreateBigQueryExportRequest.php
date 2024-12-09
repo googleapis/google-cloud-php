@@ -17,18 +17,18 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the parent resource of the new BigQuery export. Its
-     * format is "organizations/[organization_id]", "folders/[folder_id]", or
-     * "projects/[project_id]".
+     * format is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The BigQuery export being created.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BigQueryExport big_query_export = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $big_query_export = null;
+    protected $big_query_export = null;
     /**
      * Required. Unique identifier provided by the client within the parent scope.
      * It must consist of only lowercase letters, numbers, and hyphens, must start
@@ -37,12 +37,12 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string big_query_export_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $big_query_export_id = '';
+    protected $big_query_export_id = '';
 
     /**
      * @param string                                         $parent           Required. The name of the parent resource of the new BigQuery export. Its
-     *                                                                         format is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                                                                         "projects/[project_id]". Please see
+     *                                                                         format is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *                                                                         `projects/[project_id]`. Please see
      *                                                                         {@see SecurityCenterClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenter\V1\BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
      * @param string                                         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
@@ -70,8 +70,8 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the parent resource of the new BigQuery export. Its
-     *           format is "organizations/[organization_id]", "folders/[folder_id]", or
-     *           "projects/[project_id]".
+     *           format is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     *           `projects/[project_id]`.
      *     @type \Google\Cloud\SecurityCenter\V1\BigQueryExport $big_query_export
      *           Required. The BigQuery export being created.
      *     @type string $big_query_export_id
@@ -88,8 +88,8 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the parent resource of the new BigQuery export. Its
-     * format is "organizations/[organization_id]", "folders/[folder_id]", or
-     * "projects/[project_id]".
+     * format is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -101,8 +101,8 @@ class CreateBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the parent resource of the new BigQuery export. Its
-     * format is "organizations/[organization_id]", "folders/[folder_id]", or
-     * "projects/[project_id]".
+     * format is `organizations/[organization_id]`, `folders/[folder_id]`, or
+     * `projects/[project_id]`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

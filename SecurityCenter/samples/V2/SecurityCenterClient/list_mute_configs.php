@@ -34,11 +34,11 @@ use Google\Cloud\SecurityCenter\V2\MuteConfig;
  * global.
  *
  * @param string $formattedParent The parent, which owns the collection of mute configs. Its format
- *                                is "organizations/[organization_id]", "folders/[folder_id]",
- *                                "projects/[project_id]",
- *                                "organizations/[organization_id]/locations/[location_id]",
- *                                "folders/[folder_id]/locations/[location_id]",
- *                                "projects/[project_id]/locations/[location_id]". Please see
+ *                                is `organizations/[organization_id]", "folders/[folder_id]`,
+ *                                `projects/[project_id]`,
+ *                                `organizations/[organization_id]/locations/[location_id]`,
+ *                                `folders/[folder_id]/locations/[location_id]`,
+ *                                `projects/[project_id]/locations/[location_id]`. Please see
  *                                {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
  */
 function list_mute_configs_sample(string $formattedParent): void

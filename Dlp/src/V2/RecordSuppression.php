@@ -22,7 +22,7 @@ class RecordSuppression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition condition = 1;</code>
      */
-    private $condition = null;
+    protected $condition = null;
 
     /**
      * Constructor.

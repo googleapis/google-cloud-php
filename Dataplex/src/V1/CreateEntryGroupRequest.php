@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Create EntryGroup Request
+ * Create EntryGroup Request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.CreateEntryGroupRequest</code>
  */
@@ -30,14 +30,14 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      */
     protected $entry_group_id = '';
     /**
-     * Required. EntryGroup Resource
+     * Required. EntryGroup Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryGroup entry_group = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $entry_group = null;
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,7 +48,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *                                                           projects/{project_number}/locations/{location_id}
      *                                                           where `location_id` refers to a GCP region. Please see
      *                                                           {@see CatalogServiceClient::locationName()} for help formatting this field.
-     * @param \Google\Cloud\Dataplex\V1\EntryGroup $entryGroup   Required. EntryGroup Resource
+     * @param \Google\Cloud\Dataplex\V1\EntryGroup $entryGroup   Required. EntryGroup Resource.
      * @param string                               $entryGroupId Required. EntryGroup identifier.
      *
      * @return \Google\Cloud\Dataplex\V1\CreateEntryGroupRequest
@@ -76,10 +76,10 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $entry_group_id
      *           Required. EntryGroup identifier.
      *     @type \Google\Cloud\Dataplex\V1\EntryGroup $entry_group
-     *           Required. EntryGroup Resource
+     *           Required. EntryGroup Resource.
      *     @type bool $validate_only
-     *           Optional. Only validate the request, but do not perform mutations.
-     *           The default is false.
+     *           Optional. The service validates the request without performing any
+     *           mutations. The default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,7 +144,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. EntryGroup Resource
+     * Required. EntryGroup Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryGroup entry_group = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataplex\V1\EntryGroup|null
@@ -165,7 +165,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. EntryGroup Resource
+     * Required. EntryGroup Resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.EntryGroup entry_group = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataplex\V1\EntryGroup $var
@@ -180,8 +180,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -192,8 +192,8 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only validate the request, but do not perform mutations.
-     * The default is false.
+     * Optional. The service validates the request without performing any
+     * mutations. The default is false.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -24,46 +24,46 @@ class SecurityPosture extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The version of the posture, for example, `c7cfa2a8`.
      *
      * Generated from protobuf field <code>string revision_id = 2;</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * The project, folder, or organization on which the posture is deployed,
      * for example, `projects/{project_number}`.
      *
      * Generated from protobuf field <code>string posture_deployment_resource = 3;</code>
      */
-    private $posture_deployment_resource = '';
+    protected $posture_deployment_resource = '';
     /**
      * The name of the posture deployment, for example,
      * `organizations/{org_id}/posturedeployments/{posture_deployment_id}`.
      *
      * Generated from protobuf field <code>string posture_deployment = 4;</code>
      */
-    private $posture_deployment = '';
+    protected $posture_deployment = '';
     /**
      * The name of the updated policy, for example,
      * `projects/{project_id}/policies/{constraint_name}`.
      *
      * Generated from protobuf field <code>string changed_policy = 5;</code>
      */
-    private $changed_policy = '';
+    protected $changed_policy = '';
     /**
      * The name of the updated policy set, for example, `cis-policyset`.
      *
      * Generated from protobuf field <code>string policy_set = 6;</code>
      */
-    private $policy_set = '';
+    protected $policy_set = '';
     /**
      * The ID of the updated policy, for example, `compute-policy-1`.
      *
      * Generated from protobuf field <code>string policy = 7;</code>
      */
-    private $policy = '';
+    protected $policy = '';
     /**
      * The details about a change in an updated policy that violates the deployed
      * posture.

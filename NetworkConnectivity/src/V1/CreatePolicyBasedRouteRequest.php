@@ -20,19 +20,19 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Unique id for the Policy Based Route to create.
      *
      * Generated from protobuf field <code>string policy_based_route_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy_based_route_id = '';
+    protected $policy_based_route_id = '';
     /**
      * Required. Initial values for a new Policy Based Route.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute policy_based_route = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $policy_based_route = null;
+    protected $policy_based_route = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -48,7 +48,7 @@ class CreatePolicyBasedRouteRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                                $parent             Required. The parent resource's name of the PolicyBasedRoute. Please see

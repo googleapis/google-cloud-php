@@ -39,7 +39,7 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 class SmokeTest extends SystemTestCase
 {
     const ZONE = 'us-central1-a';
-    const IMAGE = 'projects/debian-cloud/global/images/family/debian-10';
+    const IMAGE = 'projects/debian-cloud/global/images/family/debian-11';
 
     protected static $instancesClient;
     protected static $projectId;
@@ -47,7 +47,10 @@ class SmokeTest extends SystemTestCase
     protected static $name;
     protected static $zoneOperationsClient;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::$projectId = getenv('PROJECT_ID');
         if (self::$projectId === false) {
@@ -62,8 +65,10 @@ class SmokeTest extends SystemTestCase
         );
         self::$name = 'gapicphp' . strval(rand(100000, 999999));
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::$instancesClient->close();
     }

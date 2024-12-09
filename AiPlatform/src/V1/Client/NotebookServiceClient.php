@@ -35,16 +35,22 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\AssignNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\CreateNotebookExecutionJobRequest;
 use Google\Cloud\AIPlatform\V1\CreateNotebookRuntimeTemplateRequest;
+use Google\Cloud\AIPlatform\V1\DeleteNotebookExecutionJobRequest;
 use Google\Cloud\AIPlatform\V1\DeleteNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\DeleteNotebookRuntimeTemplateRequest;
+use Google\Cloud\AIPlatform\V1\GetNotebookExecutionJobRequest;
 use Google\Cloud\AIPlatform\V1\GetNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\GetNotebookRuntimeTemplateRequest;
+use Google\Cloud\AIPlatform\V1\ListNotebookExecutionJobsRequest;
 use Google\Cloud\AIPlatform\V1\ListNotebookRuntimeTemplatesRequest;
 use Google\Cloud\AIPlatform\V1\ListNotebookRuntimesRequest;
+use Google\Cloud\AIPlatform\V1\NotebookExecutionJob;
 use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\StopNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\UpdateNotebookRuntimeTemplateRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -70,22 +76,27 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface assignNotebookRuntimeAsync(AssignNotebookRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNotebookRuntimeTemplateAsync(CreateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotebookRuntimeAsync(DeleteNotebookRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNotebookRuntimeTemplateAsync(DeleteNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotebookRuntimeAsync(GetNotebookRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNotebookRuntimeTemplateAsync(GetNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotebookRuntimeTemplatesAsync(ListNotebookRuntimeTemplatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotebookRuntimesAsync(ListNotebookRuntimesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startNotebookRuntimeAsync(StartNotebookRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNotebookRuntimeTemplateAsync(UpdateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface upgradeNotebookRuntimeAsync(UpgradeNotebookRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> assignNotebookRuntimeAsync(AssignNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNotebookExecutionJobAsync(CreateNotebookExecutionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNotebookRuntimeTemplateAsync(CreateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNotebookExecutionJobAsync(DeleteNotebookExecutionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNotebookRuntimeAsync(DeleteNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNotebookRuntimeTemplateAsync(DeleteNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotebookExecutionJob> getNotebookExecutionJobAsync(GetNotebookExecutionJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotebookRuntime> getNotebookRuntimeAsync(GetNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotebookRuntimeTemplate> getNotebookRuntimeTemplateAsync(GetNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotebookExecutionJobsAsync(ListNotebookExecutionJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotebookRuntimeTemplatesAsync(ListNotebookRuntimeTemplatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotebookRuntimesAsync(ListNotebookRuntimesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startNotebookRuntimeAsync(StartNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopNotebookRuntimeAsync(StopNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NotebookRuntimeTemplate> updateNotebookRuntimeTemplateAsync(UpdateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> upgradeNotebookRuntimeAsync(UpgradeNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class NotebookServiceClient
 {
@@ -221,6 +232,28 @@ final class NotebookServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * notebook_execution_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookExecutionJob
+     *
+     * @return string The formatted notebook_execution_job resource.
+     */
+    public static function notebookExecutionJobName(
+        string $project,
+        string $location,
+        string $notebookExecutionJob
+    ): string {
+        return self::getPathTemplate('notebookExecutionJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_execution_job' => $notebookExecutionJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * notebook_runtime resource.
      *
      * @param string $project
@@ -261,6 +294,44 @@ final class NotebookServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a schedule
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $schedule
+     *
+     * @return string The formatted schedule resource.
+     */
+    public static function scheduleName(string $project, string $location, string $schedule): string
+    {
+        return self::getPathTemplate('schedule')->render([
+            'project' => $project,
+            'location' => $location,
+            'schedule' => $schedule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a subnetwork
      * resource.
      *
@@ -285,8 +356,11 @@ final class NotebookServiceClient
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - notebookExecutionJob: projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}
      * - notebookRuntime: projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
+     * - schedule: projects/{project}/locations/{location}/schedules/{schedule}
      * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -410,6 +484,35 @@ final class NotebookServiceClient
     }
 
     /**
+     * Creates a NotebookExecutionJob.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::createNotebookExecutionJobAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/create_notebook_execution_job.php
+     *
+     * @param CreateNotebookExecutionJobRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createNotebookExecutionJob(
+        CreateNotebookExecutionJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateNotebookExecutionJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a NotebookRuntimeTemplate.
      *
      * The async variant is
@@ -436,6 +539,35 @@ final class NotebookServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateNotebookRuntimeTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a NotebookExecutionJob.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::deleteNotebookExecutionJobAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/delete_notebook_execution_job.php
+     *
+     * @param DeleteNotebookExecutionJobRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteNotebookExecutionJob(
+        DeleteNotebookExecutionJobRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteNotebookExecutionJob', $request, $callOptions)->wait();
     }
 
     /**
@@ -497,6 +629,35 @@ final class NotebookServiceClient
     }
 
     /**
+     * Gets a NotebookExecutionJob.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::getNotebookExecutionJobAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/get_notebook_execution_job.php
+     *
+     * @param GetNotebookExecutionJobRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NotebookExecutionJob
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getNotebookExecutionJob(
+        GetNotebookExecutionJobRequest $request,
+        array $callOptions = []
+    ): NotebookExecutionJob {
+        return $this->startApiCall('GetNotebookExecutionJob', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a NotebookRuntime.
      *
      * The async variant is {@see NotebookServiceClient::getNotebookRuntimeAsync()} .
@@ -549,6 +710,35 @@ final class NotebookServiceClient
         array $callOptions = []
     ): NotebookRuntimeTemplate {
         return $this->startApiCall('GetNotebookRuntimeTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists NotebookExecutionJobs in a Location.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::listNotebookExecutionJobsAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/list_notebook_execution_jobs.php
+     *
+     * @param ListNotebookExecutionJobsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listNotebookExecutionJobs(
+        ListNotebookExecutionJobsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListNotebookExecutionJobs', $request, $callOptions);
     }
 
     /**
@@ -634,6 +824,32 @@ final class NotebookServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('StartNotebookRuntime', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Stops a NotebookRuntime.
+     *
+     * The async variant is {@see NotebookServiceClient::stopNotebookRuntimeAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/stop_notebook_runtime.php
+     *
+     * @param StopNotebookRuntimeRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopNotebookRuntime(StopNotebookRuntimeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopNotebookRuntime', $request, $callOptions)->wait();
     }
 
     /**

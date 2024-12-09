@@ -18,8 +18,8 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the imported entity types.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entity_types/<EntityType ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -41,8 +41,8 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_types
      *           The unique identifier of the imported entity types.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/entity_types/<EntityType ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\ImportEntityTypesResponse\ConflictingResources $conflicting_resources
      *           Info which resources have conflicts when
      *           [REPORT_CONFLICT][ImportEntityTypesResponse.REPORT_CONFLICT] merge_option
@@ -56,8 +56,8 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the imported entity types.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entity_types/<EntityType ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,8 +69,8 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the imported entity types.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entity_types/<EntityType ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 1 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

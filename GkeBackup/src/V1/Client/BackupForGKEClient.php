@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\GkeBackup\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -75,6 +74,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -90,36 +90,36 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRestoreAsync(CreateRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRestorePlanAsync(CreateRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRestoreAsync(DeleteRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRestorePlanAsync(DeleteRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupIndexDownloadUrlAsync(GetBackupIndexDownloadUrlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRestoreAsync(GetRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRestorePlanAsync(GetRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeBackupAsync(GetVolumeBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeRestoreAsync(GetVolumeRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRestorePlansAsync(ListRestorePlansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRestoresAsync(ListRestoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumeBackupsAsync(ListVolumeBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumeRestoresAsync(ListVolumeRestoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRestoreAsync(UpdateRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRestorePlanAsync(UpdateRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestoreAsync(CreateRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestorePlanAsync(CreateRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestoreAsync(DeleteRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestorePlanAsync(DeleteRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetBackupIndexDownloadUrlResponse> getBackupIndexDownloadUrlAsync(GetBackupIndexDownloadUrlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPlan> getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Restore> getRestoreAsync(GetRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestorePlan> getRestorePlanAsync(GetRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VolumeBackup> getVolumeBackupAsync(GetVolumeBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VolumeRestore> getVolumeRestoreAsync(GetVolumeRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestorePlansAsync(ListRestorePlansRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoresAsync(ListRestoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumeBackupsAsync(ListVolumeBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumeRestoresAsync(ListVolumeRestoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRestoreAsync(UpdateRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRestorePlanAsync(UpdateRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class BackupForGKEClient
 {
@@ -146,9 +146,7 @@ final class BackupForGKEClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -194,10 +192,31 @@ final class BackupForGKEClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -349,8 +368,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_backup resource.
      */
-    public static function volumeBackupName(string $project, string $location, string $backupPlan, string $backup, string $volumeBackup): string
-    {
+    public static function volumeBackupName(
+        string $project,
+        string $location,
+        string $backupPlan,
+        string $backup,
+        string $volumeBackup
+    ): string {
         return self::getPathTemplate('volumeBackup')->render([
             'project' => $project,
             'location' => $location,
@@ -372,8 +396,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_restore resource.
      */
-    public static function volumeRestoreName(string $project, string $location, string $restorePlan, string $restore, string $volumeRestore): string
-    {
+    public static function volumeRestoreName(
+        string $project,
+        string $location,
+        string $restorePlan,
+        string $restore,
+        string $volumeRestore
+    ): string {
         return self::getPathTemplate('volumeRestore')->render([
             'project' => $project,
             'location' => $location,
@@ -743,8 +772,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupIndexDownloadUrl(GetBackupIndexDownloadUrlRequest $request, array $callOptions = []): GetBackupIndexDownloadUrlResponse
-    {
+    public function getBackupIndexDownloadUrl(
+        GetBackupIndexDownloadUrlRequest $request,
+        array $callOptions = []
+    ): GetBackupIndexDownloadUrlResponse {
         return $this->startApiCall('GetBackupIndexDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -1274,8 +1305,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

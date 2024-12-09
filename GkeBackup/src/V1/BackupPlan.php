@@ -21,33 +21,33 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server generated global unique identifier of
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. The timestamp when this BackupPlan resource was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The timestamp when this BackupPlan resource was last
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. User specified descriptive string for this BackupPlan.
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Immutable. The source cluster from which Backups will be created
      * via this BackupPlan. Valid formats:
@@ -56,14 +56,14 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $cluster = '';
+    protected $cluster = '';
     /**
      * Optional. RetentionPolicy governs lifecycle of Backups created under this
      * plan.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.RetentionPolicy retention_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $retention_policy = null;
+    protected $retention_policy = null;
     /**
      * Optional. A set of custom labels supplied by user.
      *
@@ -76,7 +76,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.Schedule backup_schedule = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $backup_schedule = null;
+    protected $backup_schedule = null;
     /**
      * Output only. `etag` is used for optimistic concurrency control as a way to
      * help prevent simultaneous updates of a backup plan from overwriting each
@@ -89,7 +89,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. This flag indicates whether this BackupPlan has been deactivated.
      * Setting this field to True locks the BackupPlan such that no further
@@ -100,20 +100,20 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool deactivated = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $deactivated = false;
+    protected $deactivated = false;
     /**
      * Optional. Defines the configuration of Backups created via this BackupPlan.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.BackupConfig backup_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $backup_config = null;
+    protected $backup_config = null;
     /**
      * Output only. The number of Kubernetes Pods backed up in the
      * last successful Backup created via this BackupPlan.
      *
      * Generated from protobuf field <code>int32 protected_pod_count = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $protected_pod_count = 0;
+    protected $protected_pod_count = 0;
     /**
      * Output only. State of the BackupPlan. This State field reflects the
      * various stages a BackupPlan can be in
@@ -122,14 +122,14 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.BackupPlan.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Human-readable description of why BackupPlan is in the current
      * `state`
      *
      * Generated from protobuf field <code>string state_reason = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_reason = '';
+    protected $state_reason = '';
     /**
      * Output only. A number that represents the current risk level of this
      * BackupPlan from RPO perspective with 1 being no risk and 5 being highest
@@ -137,14 +137,14 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 rpo_risk_level = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rpo_risk_level = 0;
+    protected $rpo_risk_level = 0;
     /**
      * Output only. Human-readable description of why the BackupPlan is in the
      * current rpo_risk_level and action items if any.
      *
      * Generated from protobuf field <code>string rpo_risk_reason = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $rpo_risk_reason = '';
+    protected $rpo_risk_reason = '';
 
     /**
      * Constructor.

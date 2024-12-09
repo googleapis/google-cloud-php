@@ -23,7 +23,7 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string main_r_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $main_r_file_uri = '';
+    protected $main_r_file_uri = '';
     /**
      * Optional. The arguments to pass to the Spark driver. Do not include
      * arguments that can be set as batch properties, such as `--conf`, since a

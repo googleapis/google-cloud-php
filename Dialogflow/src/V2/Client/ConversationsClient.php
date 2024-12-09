@@ -36,6 +36,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
@@ -62,16 +64,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSuggestionResponse> generateStatelessSuggestionAsync(GenerateStatelessSuggestionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateStatelessSummaryResponse> generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchKnowledgeResponse> searchKnowledgeAsync(SearchKnowledgeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SuggestConversationSummaryResponse> suggestConversationSummaryAsync(SuggestConversationSummaryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationsClient
 {
@@ -210,6 +213,27 @@ final class ConversationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName(string $project, string $location, string $collection, string $dataStore): string
+    {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a document
      * resource.
      *
@@ -225,6 +249,25 @@ final class ConversationsClient
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName(string $project, string $location, string $generator): string
+    {
+        return self::getPathTemplate('generator')->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
         ]);
     }
 
@@ -278,6 +321,25 @@ final class ConversationsClient
             'project' => $project,
             'conversation' => $conversation,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName(string $project, string $location, string $phraseSet): string
+    {
+        return self::getPathTemplate('phraseSet')->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -436,6 +498,27 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -514,6 +597,25 @@ final class ConversationsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_knowledge_base resource.
      *
      * @param string $project
@@ -561,10 +663,13 @@ final class ConversationsClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - dataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}
@@ -574,10 +679,12 @@ final class ConversationsClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
      * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
@@ -741,6 +848,34 @@ final class ConversationsClient
     public function createConversation(CreateConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('CreateConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates and returns a suggestion for a conversation that does not have a
+     * resource created for it.
+     *
+     * The async variant is
+     * {@see ConversationsClient::generateStatelessSuggestionAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/generate_stateless_suggestion.php
+     *
+     * @param GenerateStatelessSuggestionRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateStatelessSuggestionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateStatelessSuggestion(GenerateStatelessSuggestionRequest $request, array $callOptions = []): GenerateStatelessSuggestionResponse
+    {
+        return $this->startApiCall('GenerateStatelessSuggestion', $request, $callOptions)->wait();
     }
 
     /**

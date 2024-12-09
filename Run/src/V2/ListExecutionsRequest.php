@@ -23,26 +23,26 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Maximum number of Executions to return in this call.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token received from a previous call to ListExecutions.
      * All other parameters must match.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * If true, returns deleted (but unexpired) resources along with active ones.
      *
      * Generated from protobuf field <code>bool show_deleted = 4;</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * @param string $parent Required. The Execution from which the Executions should be listed.

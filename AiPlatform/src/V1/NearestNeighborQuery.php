@@ -29,6 +29,12 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      */
     private $string_filters;
     /**
+     * Optional. The list of numeric filters.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $numeric_filters;
+    /**
      * Optional. Crowding is a constraint on a neighbor list produced by nearest
      * neighbor search requiring that no more than
      * sper_crowding_attribute_neighbor_count of the k neighbors returned have the
@@ -62,6 +68,8 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *           for each query.
      *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter>|\Google\Protobuf\Internal\RepeatedField $string_filters
      *           Optional. The list of string filters.
+     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>|\Google\Protobuf\Internal\RepeatedField $numeric_filters
+     *           Optional. The list of numeric filters.
      *     @type int $per_crowding_attribute_neighbor_count
      *           Optional. Crowding is a constraint on a neighbor list produced by nearest
      *           neighbor search requiring that no more than
@@ -192,6 +200,32 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter::class);
         $this->string_filters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of numeric filters.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNumericFilters()
+    {
+        return $this->numeric_filters;
+    }
+
+    /**
+     * Optional. The list of numeric filters.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNumericFilters($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter::class);
+        $this->numeric_filters = $arr;
 
         return $this;
     }

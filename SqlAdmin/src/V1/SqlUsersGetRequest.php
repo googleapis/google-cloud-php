@@ -20,25 +20,25 @@ class SqlUsersGetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * User of the instance.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 3;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Host of a user of the instance.
      *
      * Generated from protobuf field <code>string host = 4;</code>
      */
-    private $host = '';
+    protected $host = '';
 
     /**
      * Constructor.

@@ -21,14 +21,14 @@ class SpokeStateCount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The total number of spokes that are in this state
      * and associated with a given hub.
      *
      * Generated from protobuf field <code>int64 count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

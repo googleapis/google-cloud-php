@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A condition type that allows alert policies to be defined using
+ * A condition type that allows alerting policies to be defined using
  * [Monitoring Query Language](https://cloud.google.com/monitoring/mql).
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Condition.MonitoringQueryLanguageCondition</code>

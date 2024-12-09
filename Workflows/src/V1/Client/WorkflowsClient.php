@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,13 +60,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createWorkflowAsync(CreateWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkflowAsync(DeleteWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkflowAsync(GetWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkflowsAsync(ListWorkflowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWorkflowAsync(UpdateWorkflowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createWorkflowAsync(CreateWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteWorkflowAsync(DeleteWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workflow> getWorkflowAsync(GetWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkflowsAsync(ListWorkflowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateWorkflowAsync(UpdateWorkflowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class WorkflowsClient
 {

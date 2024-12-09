@@ -57,7 +57,7 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 parallelism = 3;</code>
      */
-    private $parallelism = 0;
+    protected $parallelism = 0;
     /**
      * Specifies the desired number of tasks the execution should run.
      * Setting to 1 means that parallelism is limited to 1 and the success of
@@ -65,14 +65,14 @@ class ExecutionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 task_count = 4;</code>
      */
-    private $task_count = 0;
+    protected $task_count = 0;
     /**
      * Required. Describes the task(s) that will be created when executing an
      * execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = null;
+    protected $template = null;
 
     /**
      * Constructor.

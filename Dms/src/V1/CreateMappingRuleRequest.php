@@ -20,13 +20,13 @@ class CreateMappingRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the rule to create.
      *
      * Generated from protobuf field <code>string mapping_rule_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mapping_rule_id = '';
+    protected $mapping_rule_id = '';
     /**
      * Required. Represents a [mapping rule]
      * (https://cloud.google.com/database-migration/reference/rest/v1/projects.locations.mappingRules)
@@ -34,7 +34,7 @@ class CreateMappingRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MappingRule mapping_rule = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mapping_rule = null;
+    protected $mapping_rule = null;
     /**
      * A unique ID used to identify the request. If the server receives two
      * requests with the same ID, then the second request is ignored.
@@ -44,7 +44,7 @@ class CreateMappingRuleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                $parent        Required. The parent which owns this collection of mapping rules. Please see

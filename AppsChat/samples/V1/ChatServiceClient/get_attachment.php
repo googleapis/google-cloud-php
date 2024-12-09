@@ -39,7 +39,7 @@ use Google\Apps\Chat\V1\GetAttachmentRequest;
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
  *
  * @param string $formattedName Resource name of the attachment, in the form
- *                              `spaces/&#42;/messages/&#42;/attachments/*`. Please see
+ *                              `spaces/{space}/messages/{message}/attachments/{attachment}`. Please see
  *                              {@see ChatServiceClient::attachmentName()} for help formatting this field.
  */
 function get_attachment_sample(string $formattedName): void

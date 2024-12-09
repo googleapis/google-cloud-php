@@ -21,14 +21,14 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. If true, deletes all tags that use this template.
      * Currently, `true` is the only supported value.
      *
      * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name  Required. The name of the tag template to delete. Please see

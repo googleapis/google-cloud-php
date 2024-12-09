@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * `DeliveryPipeline` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it's in the mask. If the
-     * user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the `DeliveryPipeline` resource. The fields specified in the
+     * update_mask are relative to the resource, not the full request. A field
+     * will be overwritten if it's in the mask. If the user doesn't provide a mask
+     * then all fields are overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,11 +64,11 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param \Google\Cloud\Deploy\V1\DeliveryPipeline $deliveryPipeline Required. The `DeliveryPipeline` to update.
-     * @param \Google\Protobuf\FieldMask               $updateMask       Required. Field mask is used to specify the fields to be overwritten in the
-     *                                                                   `DeliveryPipeline` resource by the update.
-     *                                                                   The fields specified in the update_mask are relative to the resource, not
-     *                                                                   the full request. A field will be overwritten if it's in the mask. If the
-     *                                                                   user doesn't provide a mask then all fields are overwritten.
+     * @param \Google\Protobuf\FieldMask               $updateMask       Required. Field mask is used to specify the fields to be overwritten by the
+     *                                                                   update in the `DeliveryPipeline` resource. The fields specified in the
+     *                                                                   update_mask are relative to the resource, not the full request. A field
+     *                                                                   will be overwritten if it's in the mask. If the user doesn't provide a mask
+     *                                                                   then all fields are overwritten.
      *
      * @return \Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest
      *
@@ -88,11 +88,11 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           `DeliveryPipeline` resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request. A field will be overwritten if it's in the mask. If the
-     *           user doesn't provide a mask then all fields are overwritten.
+     *           Required. Field mask is used to specify the fields to be overwritten by the
+     *           update in the `DeliveryPipeline` resource. The fields specified in the
+     *           update_mask are relative to the resource, not the full request. A field
+     *           will be overwritten if it's in the mask. If the user doesn't provide a mask
+     *           then all fields are overwritten.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline
      *           Required. The `DeliveryPipeline` to update.
      *     @type string $request_id
@@ -121,11 +121,11 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * `DeliveryPipeline` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it's in the mask. If the
-     * user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the `DeliveryPipeline` resource. The fields specified in the
+     * update_mask are relative to the resource, not the full request. A field
+     * will be overwritten if it's in the mask. If the user doesn't provide a mask
+     * then all fields are overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -146,11 +146,11 @@ class UpdateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * `DeliveryPipeline` resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request. A field will be overwritten if it's in the mask. If the
-     * user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the
+     * update in the `DeliveryPipeline` resource. The fields specified in the
+     * update_mask are relative to the resource, not the full request. A field
+     * will be overwritten if it's in the mask. If the user doesn't provide a mask
+     * then all fields are overwritten.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

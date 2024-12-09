@@ -20,7 +20,7 @@ class Track extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 1;</code>
      */
-    private $segment = null;
+    protected $segment = null;
     /**
      * The object with timestamp and attributes per frame in the track.
      *
@@ -38,7 +38,7 @@ class Track extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

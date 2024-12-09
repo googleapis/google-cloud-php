@@ -24,14 +24,14 @@ class AuthorizedDomain extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Fully qualified domain name of the domain authorized for use. Example:
      * `example.com`.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
 
     /**
      * Constructor.

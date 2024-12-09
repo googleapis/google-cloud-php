@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Get EntryType request
+ * Get EntryType request.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.GetEntryTypeRequest</code>
  */

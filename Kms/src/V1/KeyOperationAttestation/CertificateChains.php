@@ -135,6 +135,4 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CertificateChains::class, \Google\Cloud\Kms\V1\KeyOperationAttestation_CertificateChains::class);
 

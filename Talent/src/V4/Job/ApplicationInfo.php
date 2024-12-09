@@ -32,7 +32,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instruction = 2;</code>
      */
-    private $instruction = '';
+    protected $instruction = '';
     /**
      * Use this URI field to direct an applicant to a website, for example to
      * link to an online application form.

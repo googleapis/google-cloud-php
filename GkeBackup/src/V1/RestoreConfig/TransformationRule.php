@@ -34,14 +34,14 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_filter = null;
+    protected $resource_filter = null;
     /**
      * Optional. The description is a user specified string description of the
      * transformation rule.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

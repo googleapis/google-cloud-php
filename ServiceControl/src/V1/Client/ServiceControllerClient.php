@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ use Google\Cloud\ServiceControl\V1\ReportResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: [Google Service Control API](https://cloud.google.com/service-control/overview)
+ * Service Description: [Google Service Control API](/service-control/overview)
  *
  * Lets clients check and report operations against a [managed
  * service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
@@ -47,8 +47,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface checkAsync(CheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reportAsync(ReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckResponse> checkAsync(CheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportResponse> reportAsync(ReportRequest $request, array $optionalArgs = [])
  */
 final class ServiceControllerClient
 {

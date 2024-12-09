@@ -28,7 +28,7 @@ use Google\Auth\Cache\MemoryCacheItemPool;
  * @group spanner
  * @group spanner-postgres
  */
-class SpannerPgTestCase extends SystemTestCase
+abstract class SpannerPgTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const INSTANCE_NAME = 'google-cloud-php-system-tests';
@@ -47,7 +47,10 @@ class SpannerPgTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

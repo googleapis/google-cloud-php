@@ -10,37 +10,38 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * An error encountered while validating the uploaded configuration of an
- * Event Threat Detection Custom Module.
+ * Event Threat Detection custom module.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError</code>
  */
 class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A description of the error, suitable for human consumption. Required.
+     * A human-readable description of the error.
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
     protected $description = '';
     /**
-     * The path, in RFC 8901 JSON Pointer format, to the field that failed
-     * validation. This may be left empty if no specific field is affected.
+     * The path, in [RFC 6901: JSON
+     * Pointer](https://datatracker.ietf.org/doc/html/rfc6901) format, to the
+     * field that failed validation. Omitted if no specific field is affected.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      */
     protected $field_path = '';
     /**
      * The initial position of the error in the uploaded text version of the
-     * module. This field may be omitted if no specific position applies, or if
-     * one could not be computed.
+     * module. Omitted if no specific position applies, or if the position could
+     * not be computed.
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position start = 3;</code>
      */
     protected $start = null;
     /**
-     * The end position of the error in the uploaded text version of the
-     * module. This field may be omitted if no specific position applies, or if
-     * one could not be computed..
+     * The end position of the error in the uploaded text version of the module.
+     * Omitted if no specific position applies, or if the position could not be
+     * computed.
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position end = 4;</code>
      */
@@ -53,18 +54,19 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $description
-     *           A description of the error, suitable for human consumption. Required.
+     *           A human-readable description of the error.
      *     @type string $field_path
-     *           The path, in RFC 8901 JSON Pointer format, to the field that failed
-     *           validation. This may be left empty if no specific field is affected.
+     *           The path, in [RFC 6901: JSON
+     *           Pointer](https://datatracker.ietf.org/doc/html/rfc6901) format, to the
+     *           field that failed validation. Omitted if no specific field is affected.
      *     @type \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\Position $start
      *           The initial position of the error in the uploaded text version of the
-     *           module. This field may be omitted if no specific position applies, or if
-     *           one could not be computed.
+     *           module. Omitted if no specific position applies, or if the position could
+     *           not be computed.
      *     @type \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\Position $end
-     *           The end position of the error in the uploaded text version of the
-     *           module. This field may be omitted if no specific position applies, or if
-     *           one could not be computed..
+     *           The end position of the error in the uploaded text version of the module.
+     *           Omitted if no specific position applies, or if the position could not be
+     *           computed.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +75,7 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the error, suitable for human consumption. Required.
+     * A human-readable description of the error.
      *
      * Generated from protobuf field <code>string description = 1;</code>
      * @return string
@@ -84,7 +86,7 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the error, suitable for human consumption. Required.
+     * A human-readable description of the error.
      *
      * Generated from protobuf field <code>string description = 1;</code>
      * @param string $var
@@ -99,8 +101,9 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path, in RFC 8901 JSON Pointer format, to the field that failed
-     * validation. This may be left empty if no specific field is affected.
+     * The path, in [RFC 6901: JSON
+     * Pointer](https://datatracker.ietf.org/doc/html/rfc6901) format, to the
+     * field that failed validation. Omitted if no specific field is affected.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      * @return string
@@ -111,8 +114,9 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path, in RFC 8901 JSON Pointer format, to the field that failed
-     * validation. This may be left empty if no specific field is affected.
+     * The path, in [RFC 6901: JSON
+     * Pointer](https://datatracker.ietf.org/doc/html/rfc6901) format, to the
+     * field that failed validation. Omitted if no specific field is affected.
      *
      * Generated from protobuf field <code>string field_path = 2;</code>
      * @param string $var
@@ -128,8 +132,8 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial position of the error in the uploaded text version of the
-     * module. This field may be omitted if no specific position applies, or if
-     * one could not be computed.
+     * module. Omitted if no specific position applies, or if the position could
+     * not be computed.
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position start = 3;</code>
      * @return \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\Position|null
@@ -151,8 +155,8 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
 
     /**
      * The initial position of the error in the uploaded text version of the
-     * module. This field may be omitted if no specific position applies, or if
-     * one could not be computed.
+     * module. Omitted if no specific position applies, or if the position could
+     * not be computed.
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position start = 3;</code>
      * @param \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\Position $var
@@ -167,9 +171,9 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The end position of the error in the uploaded text version of the
-     * module. This field may be omitted if no specific position applies, or if
-     * one could not be computed..
+     * The end position of the error in the uploaded text version of the module.
+     * Omitted if no specific position applies, or if the position could not be
+     * computed.
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position end = 4;</code>
      * @return \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\Position|null
@@ -190,9 +194,9 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The end position of the error in the uploaded text version of the
-     * module. This field may be omitted if no specific position applies, or if
-     * one could not be computed..
+     * The end position of the error in the uploaded text version of the module.
+     * Omitted if no specific position applies, or if the position could not be
+     * computed.
      *
      * Generated from protobuf field <code>optional .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.Position end = 4;</code>
      * @param \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\Position $var

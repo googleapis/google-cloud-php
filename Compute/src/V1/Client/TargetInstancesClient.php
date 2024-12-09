@@ -49,12 +49,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyTargetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetInstance> getAsync(GetTargetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSecurityPolicyAsync(SetSecurityPolicyTargetInstanceRequest $request, array $optionalArgs = [])
  */
 final class TargetInstancesClient
 {

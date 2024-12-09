@@ -21,7 +21,7 @@ class SqlFlagsListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_version = 1;</code>
      */
-    private $database_version = '';
+    protected $database_version = '';
 
     /**
      * Constructor.

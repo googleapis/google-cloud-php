@@ -20,19 +20,19 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The SSH public key and expiration time.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ssh_public_key = null;
+    protected $ssh_public_key = null;
     /**
      * The project ID of the Google Cloud Platform project.
      *
      * Generated from protobuf field <code>string project_id = 3;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Optional. The regions to which to assert that the key was written.
      * If unspecified, defaults to all regions.

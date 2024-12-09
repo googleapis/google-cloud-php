@@ -39,6 +39,7 @@ use UnexpectedValueException;
  * [MAC][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.MAC].
  * The suffix following `HMAC_` corresponds to the hash algorithm being used
  * (eg. SHA256).
+ * Algorithms beginning with `PQ_` are post-quantum.
  * For more information, see [Key purposes and algorithms]
  * (https://cloud.google.com/kms/docs/algorithms).
  *
@@ -330,6 +331,4 @@ class CryptoKeyVersionAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CryptoKeyVersionAlgorithm::class, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionAlgorithm::class);
 

@@ -7,14 +7,14 @@ namespace Google\Cloud\SecurityCenterManagement\V1\SimulatedFinding;
 use UnexpectedValueException;
 
 /**
- * Represents what kind of Finding it is.
+ * Represents what kind of finding it is.
  *
  * Protobuf type <code>google.cloud.securitycentermanagement.v1.SimulatedFinding.FindingClass</code>
  */
 class FindingClass
 {
     /**
-     * Unspecified finding class.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>FINDING_CLASS_UNSPECIFIED = 0;</code>
      */
@@ -27,14 +27,14 @@ class FindingClass
     const THREAT = 1;
     /**
      * Describes a potential weakness in software that increases risk to
-     * Confidentiality & Integrity & Availability.
+     * confidentiality, integrity, and availability.
      *
      * Generated from protobuf enum <code>VULNERABILITY = 2;</code>
      */
     const VULNERABILITY = 2;
     /**
-     * Describes a potential weakness in cloud resource/asset configuration that
-     * increases risk.
+     * Describes a potential weakness in cloud resource or asset configuration
+     * that increases risk.
      *
      * Generated from protobuf enum <code>MISCONFIGURATION = 3;</code>
      */
@@ -46,7 +46,8 @@ class FindingClass
      */
     const OBSERVATION = 4;
     /**
-     * Describes an error that prevents some SCC functionality.
+     * Describes an error that prevents Security Command Center from working
+     * correctly.
      *
      * Generated from protobuf enum <code>SCC_ERROR = 5;</code>
      */
@@ -58,6 +59,13 @@ class FindingClass
      * Generated from protobuf enum <code>POSTURE_VIOLATION = 6;</code>
      */
     const POSTURE_VIOLATION = 6;
+    /**
+     * Describes a combination of security issues that represent a more severe
+     * security problem when taken together.
+     *
+     * Generated from protobuf enum <code>TOXIC_COMBINATION = 7;</code>
+     */
+    const TOXIC_COMBINATION = 7;
 
     private static $valueToName = [
         self::FINDING_CLASS_UNSPECIFIED => 'FINDING_CLASS_UNSPECIFIED',
@@ -67,6 +75,7 @@ class FindingClass
         self::OBSERVATION => 'OBSERVATION',
         self::SCC_ERROR => 'SCC_ERROR',
         self::POSTURE_VIOLATION => 'POSTURE_VIOLATION',
+        self::TOXIC_COMBINATION => 'TOXIC_COMBINATION',
     ];
 
     public static function name($value)

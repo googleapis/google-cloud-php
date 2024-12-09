@@ -20,20 +20,20 @@ class UpdateRecommenderConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommenderConfig recommender_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $recommender_config = null;
+    protected $recommender_config = null;
     /**
      * The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If true, validate the request and preview the change, but do not actually
      * update it.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Recommender\V1\RecommenderConfig $recommenderConfig Required. The RecommenderConfig to update.

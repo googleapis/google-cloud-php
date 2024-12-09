@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Datastream\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -60,6 +59,7 @@ use Google\Cloud\Datastream\V1\ListStreamsRequest;
 use Google\Cloud\Datastream\V1\LookupStreamObjectRequest;
 use Google\Cloud\Datastream\V1\PrivateConnection;
 use Google\Cloud\Datastream\V1\Route;
+use Google\Cloud\Datastream\V1\RunStreamRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobResponse;
 use Google\Cloud\Datastream\V1\StopBackfillJobRequest;
@@ -71,6 +71,7 @@ use Google\Cloud\Datastream\V1\UpdateStreamRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -85,33 +86,34 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConnectionProfileAsync(CreateConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRouteAsync(CreateRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createStreamAsync(CreateStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConnectionProfileAsync(DeleteConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRouteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteStreamAsync(DeleteStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface discoverConnectionProfileAsync(DiscoverConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchStaticIpsAsync(FetchStaticIpsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectionProfileAsync(GetConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStreamAsync(GetStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStreamObjectAsync(GetStreamObjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConnectionProfilesAsync(ListConnectionProfilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listStreamObjectsAsync(ListStreamObjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listStreamsAsync(ListStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupStreamObjectAsync(LookupStreamObjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startBackfillJobAsync(StartBackfillJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopBackfillJobAsync(StopBackfillJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConnectionProfileAsync(UpdateConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateStreamAsync(UpdateStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConnectionProfileAsync(CreateConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRouteAsync(CreateRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createStreamAsync(CreateStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConnectionProfileAsync(DeleteConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRouteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteStreamAsync(DeleteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiscoverConnectionProfileResponse> discoverConnectionProfileAsync(DiscoverConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchStaticIpsAsync(FetchStaticIpsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectionProfile> getConnectionProfileAsync(GetConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PrivateConnection> getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Route> getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Stream> getStreamAsync(GetStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StreamObject> getStreamObjectAsync(GetStreamObjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConnectionProfilesAsync(ListConnectionProfilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listStreamObjectsAsync(ListStreamObjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listStreamsAsync(ListStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StreamObject> lookupStreamObjectAsync(LookupStreamObjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runStreamAsync(RunStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StartBackfillJobResponse> startBackfillJobAsync(StartBackfillJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StopBackfillJobResponse> stopBackfillJobAsync(StopBackfillJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateConnectionProfileAsync(UpdateConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateStreamAsync(UpdateStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DatastreamClient
 {
@@ -138,9 +140,7 @@ final class DatastreamClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -186,10 +186,31 @@ final class DatastreamClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -275,8 +296,12 @@ final class DatastreamClient
      *
      * @return string The formatted route resource.
      */
-    public static function routeName(string $project, string $location, string $privateConnection, string $route): string
-    {
+    public static function routeName(
+        string $project,
+        string $location,
+        string $privateConnection,
+        string $route
+    ): string {
         return self::getPathTemplate('route')->render([
             'project' => $project,
             'location' => $location,
@@ -448,8 +473,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConnectionProfile(CreateConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConnectionProfile(
+        CreateConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -474,8 +501,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPrivateConnection(CreatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPrivateConnection(
+        CreatePrivateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -553,8 +582,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConnectionProfile(DeleteConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConnectionProfile(
+        DeleteConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -579,8 +610,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePrivateConnection(DeletePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePrivateConnection(
+        DeletePrivateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -660,8 +693,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function discoverConnectionProfile(DiscoverConnectionProfileRequest $request, array $callOptions = []): DiscoverConnectionProfileResponse
-    {
+    public function discoverConnectionProfile(
+        DiscoverConnectionProfileRequest $request,
+        array $callOptions = []
+    ): DiscoverConnectionProfileResponse {
         return $this->startApiCall('DiscoverConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -713,8 +748,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConnectionProfile(GetConnectionProfileRequest $request, array $callOptions = []): ConnectionProfile
-    {
+    public function getConnectionProfile(
+        GetConnectionProfileRequest $request,
+        array $callOptions = []
+    ): ConnectionProfile {
         return $this->startApiCall('GetConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -739,8 +776,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPrivateConnection(GetPrivateConnectionRequest $request, array $callOptions = []): PrivateConnection
-    {
+    public function getPrivateConnection(
+        GetPrivateConnectionRequest $request,
+        array $callOptions = []
+    ): PrivateConnection {
         return $this->startApiCall('GetPrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -844,8 +883,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConnectionProfiles(ListConnectionProfilesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConnectionProfiles(
+        ListConnectionProfilesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConnectionProfiles', $request, $callOptions);
     }
 
@@ -871,8 +912,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateConnections(ListPrivateConnectionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPrivateConnections(
+        ListPrivateConnectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPrivateConnections', $request, $callOptions);
     }
 
@@ -982,6 +1025,33 @@ final class DatastreamClient
     }
 
     /**
+     * Use this method to start, resume or recover a stream with a non default CDC
+     * strategy.
+     *
+     * The async variant is {@see DatastreamClient::runStreamAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/run_stream.php
+     *
+     * @param RunStreamRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function runStream(RunStreamRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RunStream', $request, $callOptions)->wait();
+    }
+
+    /**
      * Use this method to start a backfill job for the specified stream object.
      *
      * The async variant is {@see DatastreamClient::startBackfillJobAsync()} .
@@ -1002,8 +1072,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function startBackfillJob(StartBackfillJobRequest $request, array $callOptions = []): StartBackfillJobResponse
-    {
+    public function startBackfillJob(
+        StartBackfillJobRequest $request,
+        array $callOptions = []
+    ): StartBackfillJobResponse {
         return $this->startApiCall('StartBackfillJob', $request, $callOptions)->wait();
     }
 
@@ -1054,8 +1126,10 @@ final class DatastreamClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConnectionProfile(UpdateConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateConnectionProfile(
+        UpdateConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateConnectionProfile', $request, $callOptions)->wait();
     }
 

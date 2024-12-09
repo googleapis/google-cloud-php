@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,9 @@ class NetworkSecurityClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NetworkSecurityClient */
@@ -148,7 +150,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.NetworkSecurity/CreateAuthorizationPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.NetworkSecurity/CreateAuthorizationPolicy',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAuthorizationPolicyId();
@@ -198,12 +203,15 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -343,12 +351,15 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -486,12 +497,15 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -556,8 +570,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $request = (new DeleteAuthorizationPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAuthorizationPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteAuthorizationPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -567,7 +580,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.NetworkSecurity/DeleteAuthorizationPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.NetworkSecurity/DeleteAuthorizationPolicy',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -613,17 +629,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $request = (new DeleteAuthorizationPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAuthorizationPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteAuthorizationPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -677,8 +695,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $request = (new DeleteClientTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteClientTlsPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteClientTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -734,17 +751,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $request = (new DeleteClientTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteClientTlsPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteClientTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -798,8 +817,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $request = (new DeleteServerTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServerTlsPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteServerTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -855,17 +873,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $request = (new DeleteServerTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServerTlsPolicyRequest())->setName($formattedName);
         $response = $gapicClient->deleteServerTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -905,8 +925,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $request = (new GetAuthorizationPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetAuthorizationPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getAuthorizationPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -930,17 +949,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $request = (new GetAuthorizationPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetAuthorizationPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getAuthorizationPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -973,8 +994,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $request = (new GetClientTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetClientTlsPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getClientTlsPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -998,17 +1018,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $request = (new GetClientTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetClientTlsPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getClientTlsPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1041,8 +1063,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $request = (new GetServerTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetServerTlsPolicyRequest())->setName($formattedName);
         $response = $gapicClient->getServerTlsPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1066,17 +1087,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $request = (new GetServerTlsPolicyRequest())
-            ->setName($formattedName);
+        $request = (new GetServerTlsPolicyRequest())->setName($formattedName);
         try {
             $gapicClient->getServerTlsPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1101,17 +1124,14 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $authorizationPoliciesElement = new AuthorizationPolicy();
-        $authorizationPolicies = [
-            $authorizationPoliciesElement,
-        ];
+        $authorizationPolicies = [$authorizationPoliciesElement];
         $expectedResponse = new ListAuthorizationPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAuthorizationPolicies($authorizationPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAuthorizationPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAuthorizationPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listAuthorizationPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1121,7 +1141,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.NetworkSecurity/ListAuthorizationPolicies', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.NetworkSecurity/ListAuthorizationPolicies',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1138,17 +1161,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAuthorizationPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAuthorizationPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAuthorizationPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1173,17 +1198,14 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $clientTlsPoliciesElement = new ClientTlsPolicy();
-        $clientTlsPolicies = [
-            $clientTlsPoliciesElement,
-        ];
+        $clientTlsPolicies = [$clientTlsPoliciesElement];
         $expectedResponse = new ListClientTlsPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setClientTlsPolicies($clientTlsPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClientTlsPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListClientTlsPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listClientTlsPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1210,17 +1232,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListClientTlsPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListClientTlsPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listClientTlsPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1245,17 +1269,14 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $serverTlsPoliciesElement = new ServerTlsPolicy();
-        $serverTlsPolicies = [
-            $serverTlsPoliciesElement,
-        ];
+        $serverTlsPolicies = [$serverTlsPoliciesElement];
         $expectedResponse = new ListServerTlsPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServerTlsPolicies($serverTlsPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListServerTlsPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListServerTlsPoliciesRequest())->setParent($formattedParent);
         $response = $gapicClient->listServerTlsPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1282,17 +1303,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListServerTlsPoliciesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListServerTlsPoliciesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listServerTlsPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1345,8 +1368,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $authorizationPolicy->setName($authorizationPolicyName);
         $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
         $authorizationPolicy->setAction($authorizationPolicyAction);
-        $request = (new UpdateAuthorizationPolicyRequest())
-            ->setAuthorizationPolicy($authorizationPolicy);
+        $request = (new UpdateAuthorizationPolicyRequest())->setAuthorizationPolicy($authorizationPolicy);
         $response = $gapicClient->updateAuthorizationPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1356,7 +1378,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.NetworkSecurity/UpdateAuthorizationPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.NetworkSecurity/UpdateAuthorizationPolicy',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getAuthorizationPolicy();
         $this->assertProtobufEquals($authorizationPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1402,12 +1427,15 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $authorizationPolicy = new AuthorizationPolicy();
@@ -1415,8 +1443,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $authorizationPolicy->setName($authorizationPolicyName);
         $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
         $authorizationPolicy->setAction($authorizationPolicyAction);
-        $request = (new UpdateAuthorizationPolicyRequest())
-            ->setAuthorizationPolicy($authorizationPolicy);
+        $request = (new UpdateAuthorizationPolicyRequest())->setAuthorizationPolicy($authorizationPolicy);
         $response = $gapicClient->updateAuthorizationPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1478,8 +1505,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $clientTlsPolicy = new ClientTlsPolicy();
         $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
         $clientTlsPolicy->setName($clientTlsPolicyName);
-        $request = (new UpdateClientTlsPolicyRequest())
-            ->setClientTlsPolicy($clientTlsPolicy);
+        $request = (new UpdateClientTlsPolicyRequest())->setClientTlsPolicy($clientTlsPolicy);
         $response = $gapicClient->updateClientTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1535,19 +1561,21 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $clientTlsPolicy = new ClientTlsPolicy();
         $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
         $clientTlsPolicy->setName($clientTlsPolicyName);
-        $request = (new UpdateClientTlsPolicyRequest())
-            ->setClientTlsPolicy($clientTlsPolicy);
+        $request = (new UpdateClientTlsPolicyRequest())->setClientTlsPolicy($clientTlsPolicy);
         $response = $gapicClient->updateClientTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1609,8 +1637,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $serverTlsPolicy = new ServerTlsPolicy();
         $serverTlsPolicyName = 'serverTlsPolicyName415543221';
         $serverTlsPolicy->setName($serverTlsPolicyName);
-        $request = (new UpdateServerTlsPolicyRequest())
-            ->setServerTlsPolicy($serverTlsPolicy);
+        $request = (new UpdateServerTlsPolicyRequest())->setServerTlsPolicy($serverTlsPolicy);
         $response = $gapicClient->updateServerTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1666,19 +1693,21 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $serverTlsPolicy = new ServerTlsPolicy();
         $serverTlsPolicyName = 'serverTlsPolicyName415543221';
         $serverTlsPolicy->setName($serverTlsPolicyName);
-        $request = (new UpdateServerTlsPolicyRequest())
-            ->setServerTlsPolicy($serverTlsPolicy);
+        $request = (new UpdateServerTlsPolicyRequest())->setServerTlsPolicy($serverTlsPolicy);
         $response = $gapicClient->updateServerTlsPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1740,12 +1769,15 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1772,9 +1804,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1804,12 +1834,15 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1842,8 +1875,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1867,17 +1899,19 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1909,9 +1943,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1937,19 +1969,20 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1977,9 +2010,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2005,19 +2036,20 @@ class NetworkSecurityClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2085,7 +2117,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.NetworkSecurity/CreateAuthorizationPolicy', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.networksecurity.v1.NetworkSecurity/CreateAuthorizationPolicy',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getAuthorizationPolicyId();

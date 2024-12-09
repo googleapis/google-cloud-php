@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\ResourceManager\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -49,6 +48,7 @@ use Google\Cloud\ResourceManager\V3\MoveFolderRequest;
 use Google\Cloud\ResourceManager\V3\SearchFoldersRequest;
 use Google\Cloud\ResourceManager\V3\UndeleteFolderRequest;
 use Google\Cloud\ResourceManager\V3\UpdateFolderRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -65,17 +65,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveFolderAsync(MoveFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchFoldersAsync(SearchFoldersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteFolderAsync(UndeleteFolderRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFolderAsync(UpdateFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveFolderAsync(MoveFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchFoldersAsync(SearchFoldersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteFolderAsync(UndeleteFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFolderAsync(UpdateFolderRequest $request, array $optionalArgs = [])
  */
 final class FoldersClient
 {
@@ -151,10 +151,31 @@ final class FoldersClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -576,8 +597,10 @@ final class FoldersClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

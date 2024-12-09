@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,42 +27,24 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/AccessContextManager").resolve()
 dest = Path().resolve()
 
-# Added so that we can pass copy_excludes in the owlbot_main() call
-_tracked_paths.add(src)
+# copy "type" protos
+php.owlbot_copy_version(
+    src=src / "type-protos",
+    dest=dest,
+    version_string="type",
+)
 
+# copy V1 protos and GAPIC files
 php.owlbot_main(src=src, dest=dest)
 
-# Change the wording for the deprecation warning.
+# remove class_alias code
 s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
-
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
-### [END] protoc backwards compatibility fixes
-
-# fix relative cloud.google.com links
-s.replace(
-    "src/**/V*/**/*.php",
-    r"(.{0,})\]\((/.{0,})\)",
-    r"\1](https://cloud.google.com\2)"
-)
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # format generated clients
 subprocess.run([
@@ -72,8 +54,8 @@ subprocess.run([
     '--package=@prettier/plugin-php@^0.16',
     '--',
     'prettier',
-    '**/Gapic/*',
+    '**/Client/*',
     '--write',
     '--parser=php',
     '--single-quote',
-    '--print-width=80'])
+    '--print-width=120'])

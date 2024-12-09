@@ -21,14 +21,14 @@ class RenditionFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 1;</code>
      */
-    private $bitrate_bps = 0;
+    protected $bitrate_bps = 0;
     /**
      * Codecs for the rendition. If set, only renditions with the exact value
      * will match.
      *
      * Generated from protobuf field <code>string codecs = 2;</code>
      */
-    private $codecs = '';
+    protected $codecs = '';
 
     /**
      * Constructor.

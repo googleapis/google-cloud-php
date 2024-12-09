@@ -20,49 +20,49 @@ class EntityIssue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The type of the issue.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.EntityIssue.IssueType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Severity of the issue
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.EntityIssue.IssueSeverity severity = 3;</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Issue detailed message
      *
      * Generated from protobuf field <code>string message = 4;</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Error/Warning code
      *
      * Generated from protobuf field <code>string code = 5;</code>
      */
-    private $code = '';
+    protected $code = '';
     /**
      * The ddl which caused the issue, if relevant.
      *
      * Generated from protobuf field <code>optional string ddl = 6;</code>
      */
-    private $ddl = null;
+    protected $ddl = null;
     /**
      * The position of the issue found, if relevant.
      *
      * Generated from protobuf field <code>optional .google.cloud.clouddms.v1.EntityIssue.Position position = 7;</code>
      */
-    private $position = null;
+    protected $position = null;
     /**
      * The entity type (if the DDL is for a sub entity).
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.DatabaseEntityType entity_type = 8;</code>
      */
-    private $entity_type = 0;
+    protected $entity_type = 0;
 
     /**
      * Constructor.

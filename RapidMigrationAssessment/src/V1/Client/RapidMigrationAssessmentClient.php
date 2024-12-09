@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,18 +64,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAnnotationAsync(CreateAnnotationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCollectorAsync(CreateCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCollectorAsync(DeleteCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnnotationAsync(GetAnnotationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCollectorAsync(GetCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCollectorsAsync(ListCollectorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseCollectorAsync(PauseCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface registerCollectorAsync(RegisterCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeCollectorAsync(ResumeCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCollectorAsync(UpdateCollectorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAnnotationAsync(CreateAnnotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCollectorAsync(CreateCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCollectorAsync(DeleteCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Annotation> getAnnotationAsync(GetAnnotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Collector> getCollectorAsync(GetCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCollectorsAsync(ListCollectorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> pauseCollectorAsync(PauseCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> registerCollectorAsync(RegisterCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resumeCollectorAsync(ResumeCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCollectorAsync(UpdateCollectorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class RapidMigrationAssessmentClient
 {

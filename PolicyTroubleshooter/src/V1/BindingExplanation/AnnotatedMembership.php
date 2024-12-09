@@ -20,14 +20,14 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.BindingExplanation.Membership membership = 1;</code>
      */
-    private $membership = 0;
+    protected $membership = 0;
     /**
      * The relevance of the principal's status to the overall determination for
      * the binding.
      *
      * Generated from protobuf field <code>.google.cloud.policytroubleshooter.v1.HeuristicRelevance relevance = 2;</code>
      */
-    private $relevance = 0;
+    protected $relevance = 0;
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The input documents for the
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
@@ -34,7 +34,7 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig input_documents = 5;</code>
      */
-    private $input_documents = null;
+    protected $input_documents = null;
     /**
      * The output configuration for the
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]
@@ -42,20 +42,20 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentOutputConfig document_output_config = 6;</code>
      */
-    private $document_output_config = null;
+    protected $document_output_config = null;
     /**
      * Whether human review should be skipped for this request. Default to
      * `false`.
      *
      * Generated from protobuf field <code>bool skip_human_review = 4;</code>
      */
-    private $skip_human_review = false;
+    protected $skip_human_review = false;
     /**
      * Inference-time options for the process API
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
      */
-    private $process_options = null;
+    protected $process_options = null;
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters

@@ -17,31 +17,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class MaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
     /**
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      */
-    private $hour = null;
+    protected $hour = null;
     /**
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+     * `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+     * Returned in output as an integer, 1 to 7, where `1` equals Monday.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      */
-    private $day = null;
+    protected $day = null;
     /**
-     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
-     * [Learn
-     * more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     * Maintenance timing settings: `canary`, `stable`, or `week5`.
+     * For more information, see [About maintenance on Cloud SQL
+     * instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlUpdateTrack update_track = 3;</code>
      */
-    private $update_track = 0;
+    protected $update_track = 0;
     /**
      * This is always `sql#maintenanceWindow`.
      *
      * Generated from protobuf field <code>string kind = 4;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.
@@ -50,13 +52,15 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Int32Value $hour
-     *           hour of day - 0 to 23.
+     *           Hour of day - 0 to 23. Specify in the UTC time zone.
      *     @type \Google\Protobuf\Int32Value $day
-     *           day of week (1-7), starting on Monday.
+     *           Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+     *           `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+     *           Returned in output as an integer, 1 to 7, where `1` equals Monday.
      *     @type int $update_track
-     *           Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
-     *           [Learn
-     *           more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     *           Maintenance timing settings: `canary`, `stable`, or `week5`.
+     *           For more information, see [About maintenance on Cloud SQL
+     *           instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      *     @type string $kind
      *           This is always `sql#maintenanceWindow`.
      * }
@@ -67,7 +71,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      * @return \Google\Protobuf\Int32Value|null
@@ -90,18 +94,18 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getHour()</code>
 
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      * @return int|null
      */
-    public function getHourValue()
+    public function getHourUnwrapped()
     {
         return $this->readWrapperValue("hour");
     }
 
     /**
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      * @param \Google\Protobuf\Int32Value $var
@@ -118,19 +122,21 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
 
-     * hour of day - 0 to 23.
+     * Hour of day - 0 to 23. Specify in the UTC time zone.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value hour = 1;</code>
      * @param int|null $var
      * @return $this
      */
-    public function setHourValue($var)
+    public function setHourUnwrapped($var)
     {
         $this->writeWrapperValue("hour", $var);
         return $this;}
 
     /**
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+     * `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+     * Returned in output as an integer, 1 to 7, where `1` equals Monday.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      * @return \Google\Protobuf\Int32Value|null
@@ -153,18 +159,22 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getDay()</code>
 
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+     * `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+     * Returned in output as an integer, 1 to 7, where `1` equals Monday.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      * @return int|null
      */
-    public function getDayValue()
+    public function getDayUnwrapped()
     {
         return $this->readWrapperValue("day");
     }
 
     /**
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+     * `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+     * Returned in output as an integer, 1 to 7, where `1` equals Monday.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      * @param \Google\Protobuf\Int32Value $var
@@ -181,21 +191,23 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
 
-     * day of week (1-7), starting on Monday.
+     * Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
+     * `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
+     * Returned in output as an integer, 1 to 7, where `1` equals Monday.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value day = 2;</code>
      * @param int|null $var
      * @return $this
      */
-    public function setDayValue($var)
+    public function setDayUnwrapped($var)
     {
         $this->writeWrapperValue("day", $var);
         return $this;}
 
     /**
-     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
-     * [Learn
-     * more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     * Maintenance timing settings: `canary`, `stable`, or `week5`.
+     * For more information, see [About maintenance on Cloud SQL
+     * instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlUpdateTrack update_track = 3;</code>
      * @return int
@@ -206,9 +218,9 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
-     * [Learn
-     * more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
+     * Maintenance timing settings: `canary`, `stable`, or `week5`.
+     * For more information, see [About maintenance on Cloud SQL
+     * instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlUpdateTrack update_track = 3;</code>
      * @param int $var

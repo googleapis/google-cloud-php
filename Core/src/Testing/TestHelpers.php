@@ -23,6 +23,7 @@ use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
@@ -106,7 +107,7 @@ class TestHelpers
      */
     public static function snippetBootstrap()
     {
-        putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='. Fixtures::KEYFILE_STUB_FIXTURE());
 
         $parser = new Parser;
         $scanner = new Scanner($parser, self::projectRoot(), [
@@ -190,6 +191,7 @@ class TestHelpers
         // also set up the generated system tests
         self::generatedSystemTestBootstrap();
         $bootstraps = glob(self::projectRoot() .'/*tests/System/bootstrap.php');
+
         foreach ($bootstraps as $bootstrap) {
             require_once $bootstrap;
         }
@@ -212,6 +214,9 @@ class TestHelpers
         // For generated system tests, we need to set GOOGLE_APPLICATION_CREDENTIALS
         // and PROJECT_ID to appropriate values
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        if (empty($keyFilePath)) {
+            exit('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH must be set to run system tests.');
+        }
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
         putenv('PROJECT_ID=' . $keyFileData['project_id']);

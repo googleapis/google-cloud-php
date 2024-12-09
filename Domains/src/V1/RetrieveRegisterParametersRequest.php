@@ -20,13 +20,13 @@ class RetrieveRegisterParametersRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string domain_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $domain_name = '';
+    protected $domain_name = '';
     /**
      * Required. The location. Must be in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * @param string $location   Required. The location. Must be in the format `projects/&#42;/locations/*`. Please see

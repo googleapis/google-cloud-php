@@ -27,7 +27,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Catalog catalog = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $catalog = null;
+    protected $catalog = null;
     /**
      * Indicates which fields in the provided
      * [Catalog][google.cloud.retail.v2.Catalog] to update.
@@ -36,7 +36,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Retail\V2\Catalog $catalog    Required. The [Catalog][google.cloud.retail.v2.Catalog] to update.

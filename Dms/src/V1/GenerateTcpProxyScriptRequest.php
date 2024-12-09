@@ -20,19 +20,19 @@ class GenerateTcpProxyScriptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string migration_job = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $migration_job = '';
+    protected $migration_job = '';
     /**
      * Required. The name of the Compute instance that will host the proxy.
      *
      * Generated from protobuf field <code>string vm_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_name = '';
+    protected $vm_name = '';
     /**
      * Required. The type of the Compute instance that will host the proxy.
      *
      * Generated from protobuf field <code>string vm_machine_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_machine_type = '';
+    protected $vm_machine_type = '';
     /**
      * Optional. The Google Cloud Platform zone to create the VM in. The fully
      * qualified name of the zone must be specified, including the region name,
@@ -41,7 +41,7 @@ class GenerateTcpProxyScriptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_zone = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $vm_zone = '';
+    protected $vm_zone = '';
     /**
      * Required. The name of the subnet the Compute instance will use for private
      * connectivity. Must be supplied in the form of
@@ -50,7 +50,7 @@ class GenerateTcpProxyScriptRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_subnet = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vm_subnet = '';
+    protected $vm_subnet = '';
 
     /**
      * Constructor.

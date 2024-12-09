@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\AutoMl\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -57,6 +56,7 @@ use Google\Cloud\AutoMl\V1\ModelEvaluation;
 use Google\Cloud\AutoMl\V1\UndeployModelRequest;
 use Google\Cloud\AutoMl\V1\UpdateDatasetRequest;
 use Google\Cloud\AutoMl\V1\UpdateModelRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -84,24 +84,24 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployModelAsync(DeployModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportModelAsync(ExportModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelAsync(GetModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getModelEvaluationAsync(GetModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelEvaluationsAsync(ListModelEvaluationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployModelAsync(UndeployModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createModelAsync(CreateModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteModelAsync(DeleteModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployModelAsync(DeployModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportModelAsync(ExportModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotationSpec> getAnnotationSpecAsync(GetAnnotationSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> getModelAsync(GetModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ModelEvaluation> getModelEvaluationAsync(GetModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelEvaluationsAsync(ListModelEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listModelsAsync(ListModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployModelAsync(UndeployModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Model> updateModelAsync(UpdateModelRequest $request, array $optionalArgs = [])
  */
 final class AutoMlClient
 {
@@ -128,9 +128,7 @@ final class AutoMlClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -176,10 +174,31 @@ final class AutoMlClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -193,8 +212,12 @@ final class AutoMlClient
      *
      * @return string The formatted annotation_spec resource.
      */
-    public static function annotationSpecName(string $project, string $location, string $dataset, string $annotationSpec): string
-    {
+    public static function annotationSpecName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $annotationSpec
+    ): string {
         return self::getPathTemplate('annotationSpec')->render([
             'project' => $project,
             'location' => $location,
@@ -269,8 +292,12 @@ final class AutoMlClient
      *
      * @return string The formatted model_evaluation resource.
      */
-    public static function modelEvaluationName(string $project, string $location, string $model, string $modelEvaluation): string
-    {
+    public static function modelEvaluationName(
+        string $project,
+        string $location,
+        string $model,
+        string $modelEvaluation
+    ): string {
         return self::getPathTemplate('modelEvaluation')->render([
             'project' => $project,
             'location' => $location,
@@ -776,8 +803,10 @@ final class AutoMlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelEvaluations(ListModelEvaluationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listModelEvaluations(
+        ListModelEvaluationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListModelEvaluations', $request, $callOptions);
     }
 

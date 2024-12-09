@@ -73,6 +73,4 @@ class ImportState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ImportState::class, \Google\Cloud\DataCatalog\V1\ImportEntriesMetadata_ImportState::class);
 

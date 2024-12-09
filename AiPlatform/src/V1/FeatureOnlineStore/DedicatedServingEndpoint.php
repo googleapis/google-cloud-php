@@ -24,6 +24,24 @@ class DedicatedServingEndpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string public_endpoint_domain_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $public_endpoint_domain_name = '';
+    /**
+     * Optional. Private service connect config. The private service connection
+     * is available only for Optimized storage type, not for embedding
+     * management now. If
+     * [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     * set to true, customers will use private service connection to send
+     * request. Otherwise, the connection will set to public endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $private_service_connect_config = null;
+    /**
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled and after FeatureViewSync is created.
+     *
+     * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $service_attachment = '';
 
     /**
      * Constructor.
@@ -34,6 +52,16 @@ class DedicatedServingEndpoint extends \Google\Protobuf\Internal\Message
      *     @type string $public_endpoint_domain_name
      *           Output only. This field will be populated with the domain name to use for
      *           this FeatureOnlineStore
+     *     @type \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig $private_service_connect_config
+     *           Optional. Private service connect config. The private service connection
+     *           is available only for Optimized storage type, not for embedding
+     *           management now. If
+     *           [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     *           set to true, customers will use private service connection to send
+     *           request. Otherwise, the connection will set to public endpoint.
+     *     @type string $service_attachment
+     *           Output only. The name of the service attachment resource. Populated if
+     *           private service connect is enabled and after FeatureViewSync is created.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,6 +93,80 @@ class DedicatedServingEndpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->public_endpoint_domain_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Private service connect config. The private service connection
+     * is available only for Optimized storage type, not for embedding
+     * management now. If
+     * [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     * set to true, customers will use private service connection to send
+     * request. Otherwise, the connection will set to public endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig|null
+     */
+    public function getPrivateServiceConnectConfig()
+    {
+        return $this->private_service_connect_config;
+    }
+
+    public function hasPrivateServiceConnectConfig()
+    {
+        return isset($this->private_service_connect_config);
+    }
+
+    public function clearPrivateServiceConnectConfig()
+    {
+        unset($this->private_service_connect_config);
+    }
+
+    /**
+     * Optional. Private service connect config. The private service connection
+     * is available only for Optimized storage type, not for embedding
+     * management now. If
+     * [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     * set to true, customers will use private service connection to send
+     * request. Otherwise, the connection will set to public endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig $var
+     * @return $this
+     */
+    public function setPrivateServiceConnectConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig::class);
+        $this->private_service_connect_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled and after FeatureViewSync is created.
+     *
+     * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getServiceAttachment()
+    {
+        return $this->service_attachment;
+    }
+
+    /**
+     * Output only. The name of the service attachment resource. Populated if
+     * private service connect is enabled and after FeatureViewSync is created.
+     *
+     * Generated from protobuf field <code>string service_attachment = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_attachment = $var;
 
         return $this;
     }

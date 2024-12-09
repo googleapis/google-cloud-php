@@ -15,6 +15,14 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class Destination extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. Network config is used to configure how Eventarc resolves and
+     * connect to a destination.
+     * This should only be used with HttpEndpoint destination type.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.NetworkConfig network_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_config = null;
     protected $descriptor;
 
     /**
@@ -27,8 +35,12 @@ class Destination extends \Google\Protobuf\Internal\Message
      *           Cloud Run fully-managed resource that receives the events. The resource
      *           should be in the same project as the trigger.
      *     @type string $cloud_function
-     *           The Cloud Function resource name. Only Cloud Functions V2 is supported.
+     *           The Cloud Function resource name. Cloud Functions V1 and V2 are
+     *           supported.
      *           Format: `projects/{project}/locations/{location}/functions/{function}`
+     *           This is a read-only field. Creating Cloud Functions V1/V2 triggers is
+     *           only supported via the Cloud Functions product. An error will be returned
+     *           if the user sets this value.
      *     @type \Google\Cloud\Eventarc\V1\GKE $gke
      *           A GKE service capable of receiving events. The service should be running
      *           in the same project as the trigger.
@@ -37,6 +49,12 @@ class Destination extends \Google\Protobuf\Internal\Message
      *           the events. The Workflow resource should be deployed in the same project
      *           as the trigger.
      *           Format: `projects/{project}/locations/{location}/workflows/{workflow}`
+     *     @type \Google\Cloud\Eventarc\V1\HttpEndpoint $http_endpoint
+     *           An HTTP endpoint destination described by an URI.
+     *     @type \Google\Cloud\Eventarc\V1\NetworkConfig $network_config
+     *           Optional. Network config is used to configure how Eventarc resolves and
+     *           connect to a destination.
+     *           This should only be used with HttpEndpoint destination type.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +96,12 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Function resource name. Only Cloud Functions V2 is supported.
+     * The Cloud Function resource name. Cloud Functions V1 and V2 are
+     * supported.
      * Format: `projects/{project}/locations/{location}/functions/{function}`
+     * This is a read-only field. Creating Cloud Functions V1/V2 triggers is
+     * only supported via the Cloud Functions product. An error will be returned
+     * if the user sets this value.
      *
      * Generated from protobuf field <code>string cloud_function = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -95,8 +117,12 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Function resource name. Only Cloud Functions V2 is supported.
+     * The Cloud Function resource name. Cloud Functions V1 and V2 are
+     * supported.
      * Format: `projects/{project}/locations/{location}/functions/{function}`
+     * This is a read-only field. Creating Cloud Functions V1/V2 triggers is
+     * only supported via the Cloud Functions product. An error will be returned
+     * if the user sets this value.
      *
      * Generated from protobuf field <code>string cloud_function = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -176,6 +202,77 @@ class Destination extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * An HTTP endpoint destination described by an URI.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.HttpEndpoint http_endpoint = 5;</code>
+     * @return \Google\Cloud\Eventarc\V1\HttpEndpoint|null
+     */
+    public function getHttpEndpoint()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasHttpEndpoint()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * An HTTP endpoint destination described by an URI.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.HttpEndpoint http_endpoint = 5;</code>
+     * @param \Google\Cloud\Eventarc\V1\HttpEndpoint $var
+     * @return $this
+     */
+    public function setHttpEndpoint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\HttpEndpoint::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Network config is used to configure how Eventarc resolves and
+     * connect to a destination.
+     * This should only be used with HttpEndpoint destination type.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.NetworkConfig network_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Eventarc\V1\NetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Optional. Network config is used to configure how Eventarc resolves and
+     * connect to a destination.
+     * This should only be used with HttpEndpoint destination type.
+     *
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.NetworkConfig network_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Eventarc\V1\NetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\NetworkConfig::class);
+        $this->network_config = $var;
 
         return $this;
     }

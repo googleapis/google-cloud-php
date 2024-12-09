@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,19 +68,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTaxonomyAsync(DeleteTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyTagAsync(GetPolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaxonomyAsync(GetTaxonomyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPolicyTagsAsync(ListPolicyTagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTaxonomiesAsync(ListTaxonomiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePolicyTagAsync(UpdatePolicyTagRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaxonomyAsync(UpdateTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTaxonomyAsync(DeleteTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> getPolicyTagAsync(GetPolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> getTaxonomyAsync(GetTaxonomyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPolicyTagsAsync(ListPolicyTagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTaxonomiesAsync(ListTaxonomiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PolicyTag> updatePolicyTagAsync(UpdatePolicyTagRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Taxonomy> updateTaxonomyAsync(UpdateTaxonomyRequest $request, array $optionalArgs = [])
  */
 final class PolicyTagManagerClient
 {
@@ -107,9 +107,7 @@ final class PolicyTagManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -572,8 +570,10 @@ final class PolicyTagManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

@@ -20,7 +20,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string os_policy_resource_id = 1;</code>
      */
-    private $os_policy_resource_id = '';
+    protected $os_policy_resource_id = '';
     /**
      * Ordered list of configuration completed by the agent for the OS policy
      * resource.
@@ -33,7 +33,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ComplianceState compliance_state = 3;</code>
      */
-    private $compliance_state = 0;
+    protected $compliance_state = 0;
     /**
      * A reason for the resource to be in the given compliance state.
      * This field is always populated when `compliance_state` is `UNKNOWN`.
@@ -50,7 +50,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string compliance_state_reason = 4;</code>
      */
-    private $compliance_state_reason = '';
+    protected $compliance_state_reason = '';
     protected $output;
 
     /**

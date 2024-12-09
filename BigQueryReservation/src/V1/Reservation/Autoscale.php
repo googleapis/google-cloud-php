@@ -17,17 +17,20 @@ class Autoscale extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The slot capacity added to this reservation when autoscale
-     * happens. Will be between [0, max_slots].
+     * happens. Will be between [0, max_slots]. Note: after users reduce
+     * max_slots, it may take a while before it can be propagated, so
+     * current_slots may stay in the original value and could be larger than
+     * max_slots for that brief period (less than one minute)
      *
      * Generated from protobuf field <code>int64 current_slots = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $current_slots = 0;
+    protected $current_slots = 0;
     /**
      * Number of slots to be scaled when needed.
      *
      * Generated from protobuf field <code>int64 max_slots = 2;</code>
      */
-    private $max_slots = 0;
+    protected $max_slots = 0;
 
     /**
      * Constructor.
@@ -37,7 +40,10 @@ class Autoscale extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $current_slots
      *           Output only. The slot capacity added to this reservation when autoscale
-     *           happens. Will be between [0, max_slots].
+     *           happens. Will be between [0, max_slots]. Note: after users reduce
+     *           max_slots, it may take a while before it can be propagated, so
+     *           current_slots may stay in the original value and could be larger than
+     *           max_slots for that brief period (less than one minute)
      *     @type int|string $max_slots
      *           Number of slots to be scaled when needed.
      * }
@@ -49,7 +55,10 @@ class Autoscale extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The slot capacity added to this reservation when autoscale
-     * happens. Will be between [0, max_slots].
+     * happens. Will be between [0, max_slots]. Note: after users reduce
+     * max_slots, it may take a while before it can be propagated, so
+     * current_slots may stay in the original value and could be larger than
+     * max_slots for that brief period (less than one minute)
      *
      * Generated from protobuf field <code>int64 current_slots = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -61,7 +70,10 @@ class Autoscale extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The slot capacity added to this reservation when autoscale
-     * happens. Will be between [0, max_slots].
+     * happens. Will be between [0, max_slots]. Note: after users reduce
+     * max_slots, it may take a while before it can be propagated, so
+     * current_slots may stay in the original value and could be larger than
+     * max_slots for that brief period (less than one minute)
      *
      * Generated from protobuf field <code>int64 current_slots = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

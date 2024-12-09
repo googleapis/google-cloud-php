@@ -22,7 +22,7 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connect_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $connect_version = '';
+    protected $connect_version = '';
     /**
      * Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for
      * CustomResourceDefinition resources.
@@ -31,7 +31,7 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool v1beta1_crd = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $v1beta1_crd = false;
+    protected $v1beta1_crd = false;
     /**
      * Optional. Major version of the Kubernetes cluster. This is only used to
      * determine which version to use for the CustomResourceDefinition resources,
@@ -39,7 +39,7 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $k8s_version = '';
+    protected $k8s_version = '';
 
     /**
      * Constructor.

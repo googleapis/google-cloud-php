@@ -60,10 +60,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface asyncBatchAnnotateFilesAsync(AsyncBatchAnnotateFilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface asyncBatchAnnotateImagesAsync(AsyncBatchAnnotateImagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchAnnotateFilesAsync(BatchAnnotateFilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchAnnotateImagesAsync(BatchAnnotateImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> asyncBatchAnnotateFilesAsync(AsyncBatchAnnotateFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> asyncBatchAnnotateImagesAsync(AsyncBatchAnnotateImagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchAnnotateFilesResponse> batchAnnotateFilesAsync(BatchAnnotateFilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchAnnotateImagesResponse> batchAnnotateImagesAsync(BatchAnnotateImagesRequest $request, array $optionalArgs = [])
  */
 final class ImageAnnotatorClient
 {

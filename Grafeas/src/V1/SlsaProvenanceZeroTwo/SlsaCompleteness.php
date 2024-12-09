@@ -19,15 +19,15 @@ class SlsaCompleteness extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bool parameters = 1;</code>
      */
-    private $parameters = false;
+    protected $parameters = false;
     /**
      * Generated from protobuf field <code>bool environment = 2;</code>
      */
-    private $environment = false;
+    protected $environment = false;
     /**
      * Generated from protobuf field <code>bool materials = 3;</code>
      */
-    private $materials = false;
+    protected $materials = false;
 
     /**
      * Constructor.

@@ -33,34 +33,34 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float auprc = 2;</code>
      */
-    private $auprc = 0.0;
+    protected $auprc = 0.0;
     /**
      * The Estimated Calibration Error (ECE) of the confidence of the predicted
      * entities.
      *
      * Generated from protobuf field <code>float estimated_calibration_error = 3;</code>
      */
-    private $estimated_calibration_error = 0.0;
+    protected $estimated_calibration_error = 0.0;
     /**
      * The AUPRC for metrics with fuzzy matching disabled, i.e., exact matching
      * only.
      *
      * Generated from protobuf field <code>float auprc_exact = 5;</code>
      */
-    private $auprc_exact = 0.0;
+    protected $auprc_exact = 0.0;
     /**
      * The ECE for the predicted entities with fuzzy matching disabled, i.e.,
      * exact matching only.
      *
      * Generated from protobuf field <code>float estimated_calibration_error_exact = 6;</code>
      */
-    private $estimated_calibration_error_exact = 0.0;
+    protected $estimated_calibration_error_exact = 0.0;
     /**
      * The metrics type for the label.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Evaluation.MultiConfidenceMetrics.MetricsType metrics_type = 7;</code>
      */
-    private $metrics_type = 0;
+    protected $metrics_type = 0;
 
     /**
      * Constructor.

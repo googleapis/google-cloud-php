@@ -24,7 +24,7 @@ class EventStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Specifies the date and time that Storage Transfer Service starts
      * listening for events from this stream. If no start time is specified or
@@ -33,7 +33,7 @@ class EventStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_stream_start_time = 2;</code>
      */
-    private $event_stream_start_time = null;
+    protected $event_stream_start_time = null;
     /**
      * Specifies the data and time at which Storage Transfer Service stops
      * listening for events from this stream. After this time, any transfers in
@@ -41,7 +41,7 @@ class EventStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_stream_expiration_time = 3;</code>
      */
-    private $event_stream_expiration_time = null;
+    protected $event_stream_expiration_time = null;
 
     /**
      * Constructor.

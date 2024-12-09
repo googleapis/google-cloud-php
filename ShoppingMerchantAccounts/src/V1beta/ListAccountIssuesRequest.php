@@ -53,9 +53,9 @@ class ListAccountIssuesRequest extends \Google\Protobuf\Internal\Message
      * localize times in human-readable fields. For example 'America/Los_Angeles'.
      * If not set, 'America/Los_Angeles' will be used.
      *
-     * Generated from protobuf field <code>.google.type.TimeZone time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $time_zone = null;
+    protected $time_zone = '';
 
     /**
      * @param string $parent Required. The parent, which owns this collection of issues.
@@ -95,7 +95,7 @@ class ListAccountIssuesRequest extends \Google\Protobuf\Internal\Message
      *           given language. The format is [BCP-47](https://tools.ietf.org/html/bcp47),
      *           such as `en-US` or `sr-Latn`. If not value is provided, `en-US` will be
      *           used.
-     *     @type \Google\Type\TimeZone $time_zone
+     *     @type string $time_zone
      *           Optional. The [IANA](https://www.iana.org/time-zones) timezone used to
      *           localize times in human-readable fields. For example 'America/Los_Angeles'.
      *           If not set, 'America/Los_Angeles' will be used.
@@ -233,22 +233,12 @@ class ListAccountIssuesRequest extends \Google\Protobuf\Internal\Message
      * localize times in human-readable fields. For example 'America/Los_Angeles'.
      * If not set, 'America/Los_Angeles' will be used.
      *
-     * Generated from protobuf field <code>.google.type.TimeZone time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Type\TimeZone|null
+     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
      */
     public function getTimeZone()
     {
         return $this->time_zone;
-    }
-
-    public function hasTimeZone()
-    {
-        return isset($this->time_zone);
-    }
-
-    public function clearTimeZone()
-    {
-        unset($this->time_zone);
     }
 
     /**
@@ -256,13 +246,13 @@ class ListAccountIssuesRequest extends \Google\Protobuf\Internal\Message
      * localize times in human-readable fields. For example 'America/Los_Angeles'.
      * If not set, 'America/Los_Angeles' will be used.
      *
-     * Generated from protobuf field <code>.google.type.TimeZone time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Type\TimeZone $var
+     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
      * @return $this
      */
     public function setTimeZone($var)
     {
-        GPBUtil::checkMessage($var, \Google\Type\TimeZone::class);
+        GPBUtil::checkString($var, True);
         $this->time_zone = $var;
 
         return $this;

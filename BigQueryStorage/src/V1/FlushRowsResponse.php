@@ -20,7 +20,7 @@ class FlushRowsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 1;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
 
     /**
      * Constructor.

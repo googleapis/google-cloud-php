@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DiscoveryEngine\V1\CollectUserEventRequest;
 use Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest;
+use Google\Cloud\DiscoveryEngine\V1\PurgeUserEventsRequest;
 use Google\Cloud\DiscoveryEngine\V1\UserEvent;
 use Google\Cloud\DiscoveryEngine\V1\WriteUserEventRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -53,9 +54,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeUserEventAsync(WriteUserEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> collectUserEventAsync(CollectUserEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importUserEventsAsync(ImportUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeUserEventsAsync(PurgeUserEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserEvent> writeUserEventAsync(WriteUserEventRequest $request, array $optionalArgs = [])
  */
 final class UserEventServiceClient
 {
@@ -488,6 +490,35 @@ final class UserEventServiceClient
     public function importUserEvents(ImportUserEventsRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ImportUserEvents', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes permanently all user events specified by the filter provided.
+     * Depending on the number of events specified by the filter, this operation
+     * could take hours or days to complete. To test a filter, use the list
+     * command first.
+     *
+     * The async variant is {@see UserEventServiceClient::purgeUserEventsAsync()} .
+     *
+     * @example samples/V1/UserEventServiceClient/purge_user_events.php
+     *
+     * @param PurgeUserEventsRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function purgeUserEvents(PurgeUserEventsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PurgeUserEvents', $request, $callOptions)->wait();
     }
 
     /**

@@ -16,24 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class InputAttachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A unique key for this input attachment.
+     * A unique key for this input attachment. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The resource name of an existing input, in the form of:
      * `projects/{project}/locations/{location}/inputs/{inputId}`.
      *
      * Generated from protobuf field <code>string input = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $input = '';
+    protected $input = '';
     /**
      * Automatic failover configurations.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover automatic_failover = 3;</code>
      */
-    private $automatic_failover = null;
+    protected $automatic_failover = null;
 
     /**
      * Constructor.
@@ -42,7 +44,9 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           A unique key for this input attachment.
+     *           A unique key for this input attachment. The key must be 1-63
+     *           characters in length. The key must begin and end with a letter (regardless
+     *           of case) or a number, but can contain dashes or underscores in between.
      *     @type string $input
      *           The resource name of an existing input, in the form of:
      *           `projects/{project}/locations/{location}/inputs/{inputId}`.
@@ -56,7 +60,9 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this input attachment.
+     * A unique key for this input attachment. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
@@ -67,7 +73,9 @@ class InputAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique key for this input attachment.
+     * A unique key for this input attachment. The key must be 1-63
+     * characters in length. The key must begin and end with a letter (regardless
+     * of case) or a number, but can contain dashes or underscores in between.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var

@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\ListAgentsRequest;
  * Returns the list of all agents in the specified location.
  *
  * @param string $formattedParent The location to list all agents for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>`. Please see
  *                                {@see AgentsClient::locationName()} for help formatting this field.
  */
 function list_agents_sample(string $formattedParent): void

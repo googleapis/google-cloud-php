@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,11 +47,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAuthorizedCertificatesAsync(ListAuthorizedCertificatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAuthorizedCertificateAsync(UpdateAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthorizedCertificatesAsync(ListAuthorizedCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> updateAuthorizedCertificateAsync(UpdateAuthorizedCertificateRequest $request, array $optionalArgs = [])
  */
 final class AuthorizedCertificatesClient
 {
@@ -195,8 +195,10 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthorizedCertificate(CreateAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
-    {
+    public function createAuthorizedCertificate(
+        CreateAuthorizedCertificateRequest $request,
+        array $callOptions = []
+    ): AuthorizedCertificate {
         return $this->startApiCall('CreateAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -220,8 +222,10 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAuthorizedCertificate(DeleteAuthorizedCertificateRequest $request, array $callOptions = []): void
-    {
+    public function deleteAuthorizedCertificate(
+        DeleteAuthorizedCertificateRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -247,8 +251,10 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAuthorizedCertificate(GetAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
-    {
+    public function getAuthorizedCertificate(
+        GetAuthorizedCertificateRequest $request,
+        array $callOptions = []
+    ): AuthorizedCertificate {
         return $this->startApiCall('GetAuthorizedCertificate', $request, $callOptions)->wait();
     }
 
@@ -274,8 +280,10 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAuthorizedCertificates(ListAuthorizedCertificatesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAuthorizedCertificates(
+        ListAuthorizedCertificatesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAuthorizedCertificates', $request, $callOptions);
     }
 
@@ -305,8 +313,10 @@ final class AuthorizedCertificatesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthorizedCertificate(UpdateAuthorizedCertificateRequest $request, array $callOptions = []): AuthorizedCertificate
-    {
+    public function updateAuthorizedCertificate(
+        UpdateAuthorizedCertificateRequest $request,
+        array $callOptions = []
+    ): AuthorizedCertificate {
         return $this->startApiCall('UpdateAuthorizedCertificate', $request, $callOptions)->wait();
     }
 }

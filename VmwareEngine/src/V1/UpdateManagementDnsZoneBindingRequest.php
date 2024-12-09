@@ -25,13 +25,13 @@ class UpdateManagementDnsZoneBindingRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. New values to update the management DNS zone binding with.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.ManagementDnsZoneBinding management_dns_zone_binding = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $management_dns_zone_binding = null;
+    protected $management_dns_zone_binding = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48,7 +48,7 @@ class UpdateManagementDnsZoneBindingRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding $managementDnsZoneBinding Required. New values to update the management DNS zone binding with.

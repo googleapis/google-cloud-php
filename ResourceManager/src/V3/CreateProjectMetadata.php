@@ -22,7 +22,7 @@ class CreateProjectMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * True if the project can be retrieved using `GetProject`. No other
      * operations on the project are guaranteed to work until the project creation
@@ -30,13 +30,13 @@ class CreateProjectMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool gettable = 2;</code>
      */
-    private $gettable = false;
+    protected $gettable = false;
     /**
      * True if the project creation process is complete.
      *
      * Generated from protobuf field <code>bool ready = 3;</code>
      */
-    private $ready = false;
+    protected $ready = false;
 
     /**
      * Constructor.

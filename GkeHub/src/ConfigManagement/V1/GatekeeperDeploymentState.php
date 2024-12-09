@@ -20,13 +20,13 @@ class GatekeeperDeploymentState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState gatekeeper_controller_manager_state = 1;</code>
      */
-    private $gatekeeper_controller_manager_state = 0;
+    protected $gatekeeper_controller_manager_state = 0;
     /**
      * Status of gatekeeper-audit deployment.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.configmanagement.v1.DeploymentState gatekeeper_audit = 2;</code>
      */
-    private $gatekeeper_audit = 0;
+    protected $gatekeeper_audit = 0;
 
     /**
      * Constructor.

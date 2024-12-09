@@ -73,6 +73,18 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.IndexConfig index_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $index_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
     protected $source;
 
     /**
@@ -87,6 +99,8 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource $feature_registry_source
      *           Optional. Configures the features from a Feature Registry source that
      *           need to be loaded onto the FeatureOnlineStore.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureView\VertexRagSource $vertex_rag_source
+     *           Optional. The Vertex RAG Source that the FeatureView is linked to.
      *     @type string $name
      *           Identifier. Name of the FeatureView. Format:
      *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
@@ -116,6 +130,10 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *           contains the required configurations to create an index from source data,
      *           so that approximate nearest neighbor (a.k.a ANN) algorithms search can be
      *           performed during online serving.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,6 +203,37 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Vertex RAG Source that the FeatureView is linked to.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.VertexRagSource vertex_rag_source = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureView\VertexRagSource|null
+     */
+    public function getVertexRagSource()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasVertexRagSource()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Optional. The Vertex RAG Source that the FeatureView is linked to.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.VertexRagSource vertex_rag_source = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureView\VertexRagSource $var
+     * @return $this
+     */
+    public function setVertexRagSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\VertexRagSource::class);
+        $this->writeOneof(18, $var);
 
         return $this;
     }
@@ -437,6 +486,58 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\IndexConfig::class);
         $this->index_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

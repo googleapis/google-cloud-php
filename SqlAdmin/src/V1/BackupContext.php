@@ -20,13 +20,13 @@ class BackupContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 backup_id = 1;</code>
      */
-    private $backup_id = 0;
+    protected $backup_id = 0;
     /**
      * This is always `sql#backupContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

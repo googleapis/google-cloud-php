@@ -16,19 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class Scheduling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The maximum job running time. The default is 7 days.
+     * Optional. The maximum job running time. The default is 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 1;</code>
      */
     protected $timeout = null;
     /**
-     * Restarts the entire CustomJob if a worker gets restarted.
+     * Optional. Restarts the entire CustomJob if a worker gets restarted.
      * This feature can be used by distributed training jobs that are not
      * resilient to workers leaving and joining a job.
      *
      * Generated from protobuf field <code>bool restart_job_on_worker_restart = 3;</code>
      */
     protected $restart_job_on_worker_restart = false;
+    /**
+     * Optional. This determines which type of scheduling strategy to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling.Strategy strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $strategy = 0;
     /**
      * Optional. Indicates if the job should retry for internal errors after the
      * job starts running. If true, overrides
@@ -37,6 +43,15 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_retries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $disable_retries = false;
+    /**
+     * Optional. This is the maximum duration that a job will wait for the
+     * requested resources to be provisioned if the scheduling strategy is set to
+     * [Strategy.DWS_FLEX_START].
+     * If set to 0, the job will wait indefinitely. The default is 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_wait_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_wait_duration = null;
 
     /**
      * Constructor.
@@ -45,15 +60,22 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $timeout
-     *           The maximum job running time. The default is 7 days.
+     *           Optional. The maximum job running time. The default is 7 days.
      *     @type bool $restart_job_on_worker_restart
-     *           Restarts the entire CustomJob if a worker gets restarted.
+     *           Optional. Restarts the entire CustomJob if a worker gets restarted.
      *           This feature can be used by distributed training jobs that are not
      *           resilient to workers leaving and joining a job.
+     *     @type int $strategy
+     *           Optional. This determines which type of scheduling strategy to use.
      *     @type bool $disable_retries
      *           Optional. Indicates if the job should retry for internal errors after the
      *           job starts running. If true, overrides
      *           `Scheduling.restart_job_on_worker_restart` to false.
+     *     @type \Google\Protobuf\Duration $max_wait_duration
+     *           Optional. This is the maximum duration that a job will wait for the
+     *           requested resources to be provisioned if the scheduling strategy is set to
+     *           [Strategy.DWS_FLEX_START].
+     *           If set to 0, the job will wait indefinitely. The default is 24 hours.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +84,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum job running time. The default is 7 days.
+     * Optional. The maximum job running time. The default is 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 1;</code>
      * @return \Google\Protobuf\Duration|null
@@ -83,7 +105,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum job running time. The default is 7 days.
+     * Optional. The maximum job running time. The default is 7 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 1;</code>
      * @param \Google\Protobuf\Duration $var
@@ -98,7 +120,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Restarts the entire CustomJob if a worker gets restarted.
+     * Optional. Restarts the entire CustomJob if a worker gets restarted.
      * This feature can be used by distributed training jobs that are not
      * resilient to workers leaving and joining a job.
      *
@@ -111,7 +133,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Restarts the entire CustomJob if a worker gets restarted.
+     * Optional. Restarts the entire CustomJob if a worker gets restarted.
      * This feature can be used by distributed training jobs that are not
      * resilient to workers leaving and joining a job.
      *
@@ -123,6 +145,32 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->restart_job_on_worker_restart = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This determines which type of scheduling strategy to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling.Strategy strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
+    }
+
+    /**
+     * Optional. This determines which type of scheduling strategy to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Scheduling.Strategy strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Scheduling\Strategy::class);
+        $this->strategy = $var;
 
         return $this;
     }
@@ -153,6 +201,48 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_retries = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This is the maximum duration that a job will wait for the
+     * requested resources to be provisioned if the scheduling strategy is set to
+     * [Strategy.DWS_FLEX_START].
+     * If set to 0, the job will wait indefinitely. The default is 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_wait_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxWaitDuration()
+    {
+        return $this->max_wait_duration;
+    }
+
+    public function hasMaxWaitDuration()
+    {
+        return isset($this->max_wait_duration);
+    }
+
+    public function clearMaxWaitDuration()
+    {
+        unset($this->max_wait_duration);
+    }
+
+    /**
+     * Optional. This is the maximum duration that a job will wait for the
+     * requested resources to be provisioned if the scheduling strategy is set to
+     * [Strategy.DWS_FLEX_START].
+     * If set to 0, the job will wait indefinitely. The default is 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_wait_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxWaitDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_wait_duration = $var;
 
         return $this;
     }

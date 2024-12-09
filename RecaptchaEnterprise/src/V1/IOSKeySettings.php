@@ -30,10 +30,10 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     private $allowed_bundle_ids;
     /**
      * Optional. Apple Developer account details for the app that is protected by
-     * the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
-     * like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
-     * Providing these fields allows reCAPTCHA Enterprise to get a better
-     * assessment of the integrity of your app.
+     * the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple
+     * App Attest and Apple DeviceCheck to protect your app from abuse. Providing
+     * these fields allows reCAPTCHA to get a better assessment of the integrity
+     * of your app.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,10 +52,10 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *           Example: 'com.companyname.productname.appname'
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $apple_developer_id
      *           Optional. Apple Developer account details for the app that is protected by
-     *           the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
-     *           like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
-     *           Providing these fields allows reCAPTCHA Enterprise to get a better
-     *           assessment of the integrity of your app.
+     *           the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple
+     *           App Attest and Apple DeviceCheck to protect your app from abuse. Providing
+     *           these fields allows reCAPTCHA to get a better assessment of the integrity
+     *           of your app.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,10 +119,10 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Apple Developer account details for the app that is protected by
-     * the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
-     * like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
-     * Providing these fields allows reCAPTCHA Enterprise to get a better
-     * assessment of the integrity of your app.
+     * the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple
+     * App Attest and Apple DeviceCheck to protect your app from abuse. Providing
+     * these fields allows reCAPTCHA to get a better assessment of the integrity
+     * of your app.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId|null
@@ -144,10 +144,10 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Apple Developer account details for the app that is protected by
-     * the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks
-     * like Apple App Attest and Apple DeviceCheck to protect your app from abuse.
-     * Providing these fields allows reCAPTCHA Enterprise to get a better
-     * assessment of the integrity of your app.
+     * the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple
+     * App Attest and Apple DeviceCheck to protect your app from abuse. Providing
+     * these fields allows reCAPTCHA to get a better assessment of the integrity
+     * of your app.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $var

@@ -9,18 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing Security Command Center services.
+ * Request message for
+ * [SecurityCenterManagement.ListSecurityCenterServices][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityCenterServices].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListSecurityCenterServicesRequest</code>
  */
 class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the parent to list Security Command Center services.
-     * Formats:
-     *   * organizations/{organization}/locations/{location}
-     *   * folders/{folder}/locations/{location}
-     *   * projects/{project}/locations/{location}
+     * Required. The name of the parent to list Security Command Center services,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,20 +34,29 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $page_size = 0;
     /**
-     * Optional. The value returned by the last call indicating a continuation.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Flag that, when set, is used to filter the module settings that are shown.
+     * The default setting is that all modules are shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 4;</code>
+     */
+    protected $show_eligible_modules_only = false;
 
     /**
-     * @param string $parent Required. The name of the parent to list Security Command Center services.
+     * @param string $parent Required. The name of the parent to list Security Command Center services,
+     *                       in one of the following formats:
      *
-     *                       Formats:
-     *
-     *                       * organizations/{organization}/locations/{location}
-     *                       * folders/{folder}/locations/{location}
-     *                       * projects/{project}/locations/{location}
+     *                       * `organizations/{organization}/locations/{location}`
+     *                       * `folders/{folder}/locations/{location}`
+     *                       * `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListSecurityCenterServicesRequest
@@ -66,16 +76,22 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the parent to list Security Command Center services.
-     *           Formats:
-     *             * organizations/{organization}/locations/{location}
-     *             * folders/{folder}/locations/{location}
-     *             * projects/{project}/locations/{location}
+     *           Required. The name of the parent to list Security Command Center services,
+     *           in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
-     *           Optional. The value returned by the last call indicating a continuation.
+     *           Optional. A pagination token returned from a previous request. Provide this
+     *           token to retrieve the next page of results.
+     *           When paginating, the rest of the request must match the request that
+     *           generated the page token.
+     *     @type bool $show_eligible_modules_only
+     *           Flag that, when set, is used to filter the module settings that are shown.
+     *           The default setting is that all modules are shown.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,11 +100,11 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The name of the parent to list Security Command Center services.
-     * Formats:
-     *   * organizations/{organization}/locations/{location}
-     *   * folders/{folder}/locations/{location}
-     *   * projects/{project}/locations/{location}
+     * Required. The name of the parent to list Security Command Center services,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,11 +115,11 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The name of the parent to list Security Command Center services.
-     * Formats:
-     *   * organizations/{organization}/locations/{location}
-     *   * folders/{folder}/locations/{location}
-     *   * projects/{project}/locations/{location}
+     * Required. The name of the parent to list Security Command Center services,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -146,7 +162,10 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -157,7 +176,10 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -167,6 +189,34 @@ class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flag that, when set, is used to filter the module settings that are shown.
+     * The default setting is that all modules are shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 4;</code>
+     * @return bool
+     */
+    public function getShowEligibleModulesOnly()
+    {
+        return $this->show_eligible_modules_only;
+    }
+
+    /**
+     * Flag that, when set, is used to filter the module settings that are shown.
+     * The default setting is that all modules are shown.
+     *
+     * Generated from protobuf field <code>bool show_eligible_modules_only = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShowEligibleModulesOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->show_eligible_modules_only = $var;
 
         return $this;
     }

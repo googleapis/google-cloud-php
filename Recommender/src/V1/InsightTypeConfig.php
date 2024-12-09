@@ -22,27 +22,27 @@ class InsightTypeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * InsightTypeGenerationConfig which configures the generation of
      * insights for this insight type.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.InsightTypeGenerationConfig insight_type_generation_config = 2;</code>
      */
-    private $insight_type_generation_config = null;
+    protected $insight_type_generation_config = null;
     /**
      * Fingerprint of the InsightTypeConfig. Provides optimistic locking when
      * updating.
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Last time when the config was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Immutable. The revision ID of the config.
      * A new revision is committed whenever the config is changed in any way.
@@ -50,7 +50,7 @@ class InsightTypeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string revision_id = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
     /**
      * Allows clients to store small amounts of arbitrary data. Annotations must
      * follow the Kubernetes syntax.
@@ -70,7 +70,7 @@ class InsightTypeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 7;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

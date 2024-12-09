@@ -31,31 +31,31 @@ class HcxActivationKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Creation time of HCX activation key.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. State of HCX activation key.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.HcxActivationKey.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. HCX activation key.
      *
      * Generated from protobuf field <code>string activation_key = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $activation_key = '';
+    protected $activation_key = '';
     /**
      * Output only. System-generated unique identifier for the resource.
      *
      * Generated from protobuf field <code>string uid = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
 
     /**
      * Constructor.

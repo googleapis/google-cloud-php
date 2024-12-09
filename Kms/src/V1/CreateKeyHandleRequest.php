@@ -23,7 +23,7 @@ class CreateKeyHandleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Id of the [KeyHandle][google.cloud.kms.v1.KeyHandle]. Must be
      * unique to the resource project and location. If not provided by the caller,
@@ -31,13 +31,13 @@ class CreateKeyHandleRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_handle_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key_handle_id = '';
+    protected $key_handle_id = '';
     /**
      * Required. [KeyHandle][google.cloud.kms.v1.KeyHandle] to create.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyHandle key_handle = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_handle = null;
+    protected $key_handle = null;
 
     /**
      * @param string                         $parent      Required. Name of the resource project and location to create the

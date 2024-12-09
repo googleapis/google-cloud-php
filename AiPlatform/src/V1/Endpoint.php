@@ -149,6 +149,45 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PredictRequestResponseLoggingConfig predict_request_response_logging_config = 18;</code>
      */
     protected $predict_request_response_logging_config = null;
+    /**
+     * If true, the endpoint will be exposed through a dedicated
+     * DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
+     * will be isolated from other users' traffic and will have better performance
+     * and reliability.
+     * Note: Once you enabled dedicated endpoint, you won't be able to send
+     * request to the shared DNS {region}-aiplatform.googleapis.com. The
+     * limitation will be removed soon.
+     *
+     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 24;</code>
+     */
+    protected $dedicated_endpoint_enabled = false;
+    /**
+     * Output only. DNS of the dedicated endpoint. Will only be populated if
+     * dedicated_endpoint_enabled is true.
+     * Format:
+     * `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     *
+     * Generated from protobuf field <code>string dedicated_endpoint_dns = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $dedicated_endpoint_dns = '';
+    /**
+     * Configurations that are applied to the endpoint for online prediction.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ClientConnectionConfig client_connection_config = 23;</code>
+     */
+    protected $client_connection_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -228,6 +267,25 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/modelDeploymentMonitoringJobs/{model_deployment_monitoring_job}`
      *     @type \Google\Cloud\AIPlatform\V1\PredictRequestResponseLoggingConfig $predict_request_response_logging_config
      *           Configures the request-response logging for online prediction.
+     *     @type bool $dedicated_endpoint_enabled
+     *           If true, the endpoint will be exposed through a dedicated
+     *           DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
+     *           will be isolated from other users' traffic and will have better performance
+     *           and reliability.
+     *           Note: Once you enabled dedicated endpoint, you won't be able to send
+     *           request to the shared DNS {region}-aiplatform.googleapis.com. The
+     *           limitation will be removed soon.
+     *     @type string $dedicated_endpoint_dns
+     *           Output only. DNS of the dedicated endpoint. Will only be populated if
+     *           dedicated_endpoint_enabled is true.
+     *           Format:
+     *           `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     *     @type \Google\Cloud\AIPlatform\V1\ClientConnectionConfig $client_connection_config
+     *           Configurations that are applied to the endpoint for online prediction.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -759,6 +817,164 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PredictRequestResponseLoggingConfig::class);
         $this->predict_request_response_logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, the endpoint will be exposed through a dedicated
+     * DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
+     * will be isolated from other users' traffic and will have better performance
+     * and reliability.
+     * Note: Once you enabled dedicated endpoint, you won't be able to send
+     * request to the shared DNS {region}-aiplatform.googleapis.com. The
+     * limitation will be removed soon.
+     *
+     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 24;</code>
+     * @return bool
+     */
+    public function getDedicatedEndpointEnabled()
+    {
+        return $this->dedicated_endpoint_enabled;
+    }
+
+    /**
+     * If true, the endpoint will be exposed through a dedicated
+     * DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS
+     * will be isolated from other users' traffic and will have better performance
+     * and reliability.
+     * Note: Once you enabled dedicated endpoint, you won't be able to send
+     * request to the shared DNS {region}-aiplatform.googleapis.com. The
+     * limitation will be removed soon.
+     *
+     * Generated from protobuf field <code>bool dedicated_endpoint_enabled = 24;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDedicatedEndpointEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dedicated_endpoint_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. DNS of the dedicated endpoint. Will only be populated if
+     * dedicated_endpoint_enabled is true.
+     * Format:
+     * `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     *
+     * Generated from protobuf field <code>string dedicated_endpoint_dns = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDedicatedEndpointDns()
+    {
+        return $this->dedicated_endpoint_dns;
+    }
+
+    /**
+     * Output only. DNS of the dedicated endpoint. Will only be populated if
+     * dedicated_endpoint_enabled is true.
+     * Format:
+     * `https://{endpoint_id}.{region}-{project_number}.prediction.vertexai.goog`.
+     *
+     * Generated from protobuf field <code>string dedicated_endpoint_dns = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDedicatedEndpointDns($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dedicated_endpoint_dns = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configurations that are applied to the endpoint for online prediction.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ClientConnectionConfig client_connection_config = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ClientConnectionConfig|null
+     */
+    public function getClientConnectionConfig()
+    {
+        return $this->client_connection_config;
+    }
+
+    public function hasClientConnectionConfig()
+    {
+        return isset($this->client_connection_config);
+    }
+
+    public function clearClientConnectionConfig()
+    {
+        unset($this->client_connection_config);
+    }
+
+    /**
+     * Configurations that are applied to the endpoint for online prediction.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ClientConnectionConfig client_connection_config = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ClientConnectionConfig $var
+     * @return $this
+     */
+    public function setClientConnectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ClientConnectionConfig::class);
+        $this->client_connection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

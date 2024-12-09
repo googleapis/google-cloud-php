@@ -24,7 +24,7 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of rows to return in the results. Responses
      * are limited to 10 MB and 1000 rows.
@@ -34,14 +34,14 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token received from previous `QueryAssets`.
      * The field will be ignored when [output_config] is specified.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. Specifies the maximum amount of time that the client is willing
      * to wait for the query to complete. By default, this limit is 5 min for the
@@ -57,7 +57,7 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * Optional. Destination where the query results will be saved.
      * When this field is specified, the query results won't be saved in the
@@ -69,7 +69,7 @@ class QueryAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig output_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     protected $query;
     protected $time;
 

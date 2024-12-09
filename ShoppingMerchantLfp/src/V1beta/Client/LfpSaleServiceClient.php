@@ -53,7 +53,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface insertLfpSaleAsync(InsertLfpSaleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LfpSale> insertLfpSaleAsync(InsertLfpSaleRequest $request, array $optionalArgs = [])
  */
 final class LfpSaleServiceClient
 {

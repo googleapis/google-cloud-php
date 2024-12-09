@@ -25,12 +25,13 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_DepService_UpdateLbTrafficExtension_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkServices\V1\DepServiceClient;
+use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
 use Google\Cloud\NetworkServices\V1\ExtensionChain;
 use Google\Cloud\NetworkServices\V1\ExtensionChain\Extension;
 use Google\Cloud\NetworkServices\V1\ExtensionChain\MatchCondition;
 use Google\Cloud\NetworkServices\V1\LbTrafficExtension;
 use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
+use Google\Cloud\NetworkServices\V1\UpdateLbTrafficExtensionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -89,7 +90,7 @@ function update_lb_traffic_extension_sample(
     // Create a client.
     $depServiceClient = new DepServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $lbTrafficExtensionForwardingRules = [$lbTrafficExtensionForwardingRulesElement,];
     $lbTrafficExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbTrafficExtensionExtensionChainsMatchConditionCelExpression);
@@ -107,11 +108,13 @@ function update_lb_traffic_extension_sample(
         ->setForwardingRules($lbTrafficExtensionForwardingRules)
         ->setExtensionChains($lbTrafficExtensionExtensionChains)
         ->setLoadBalancingScheme($lbTrafficExtensionLoadBalancingScheme);
+    $request = (new UpdateLbTrafficExtensionRequest())
+        ->setLbTrafficExtension($lbTrafficExtension);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $depServiceClient->updateLbTrafficExtension($lbTrafficExtension);
+        $response = $depServiceClient->updateLbTrafficExtension($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

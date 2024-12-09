@@ -18,13 +18,13 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * A description about this compliance check.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The OS and config versions the benchmark applies to.
      *
@@ -36,19 +36,19 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string rationale = 4;</code>
      */
-    private $rationale = '';
+    protected $rationale = '';
     /**
      * A description of remediation steps if the compliance check fails.
      *
      * Generated from protobuf field <code>string remediation = 5;</code>
      */
-    private $remediation = '';
+    protected $remediation = '';
     /**
      * Serialized scan instructions with a predefined format.
      *
      * Generated from protobuf field <code>bytes scan_instructions = 7;</code>
      */
-    private $scan_instructions = '';
+    protected $scan_instructions = '';
     protected $compliance_type;
     protected $potential_impact;
 

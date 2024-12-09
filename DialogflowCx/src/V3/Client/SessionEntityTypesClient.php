@@ -56,13 +56,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSessionEntityTypeAsync(CreateSessionEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSessionEntityTypeAsync(DeleteSessionEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSessionEntityTypeAsync(GetSessionEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSessionEntityTypesAsync(ListSessionEntityTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSessionEntityTypeAsync(UpdateSessionEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SessionEntityType> createSessionEntityTypeAsync(CreateSessionEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSessionEntityTypeAsync(DeleteSessionEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SessionEntityType> getSessionEntityTypeAsync(GetSessionEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSessionEntityTypesAsync(ListSessionEntityTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SessionEntityType> updateSessionEntityTypeAsync(UpdateSessionEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SessionEntityTypesClient
 {

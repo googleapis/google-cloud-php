@@ -20,13 +20,13 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * Workload policy configuration for Autopilot.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadPolicyConfig workload_policy_config = 2;</code>
      */
-    private $workload_policy_config = null;
+    protected $workload_policy_config = null;
 
     /**
      * Constructor.

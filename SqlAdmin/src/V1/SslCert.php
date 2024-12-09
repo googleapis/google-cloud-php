@@ -20,19 +20,19 @@ class SslCert extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Serial number, as extracted from the certificate.
      *
      * Generated from protobuf field <code>string cert_serial_number = 2;</code>
      */
-    private $cert_serial_number = '';
+    protected $cert_serial_number = '';
     /**
      * PEM representation.
      *
      * Generated from protobuf field <code>string cert = 3;</code>
      */
-    private $cert = '';
+    protected $cert = '';
     /**
      * The time when the certificate was created in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -40,13 +40,13 @@ class SslCert extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * User supplied name.  Constrained to [a-zA-Z.-_ ]+.
      *
      * Generated from protobuf field <code>string common_name = 5;</code>
      */
-    private $common_name = '';
+    protected $common_name = '';
     /**
      * The time when the certificate expires in [RFC
      * 3339](https://tools.ietf.org/html/rfc3339) format, for example
@@ -54,25 +54,25 @@ class SslCert extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 6;</code>
      */
-    private $expiration_time = null;
+    protected $expiration_time = null;
     /**
      * Sha1 Fingerprint.
      *
      * Generated from protobuf field <code>string sha1_fingerprint = 7;</code>
      */
-    private $sha1_fingerprint = '';
+    protected $sha1_fingerprint = '';
     /**
      * Name of the database instance.
      *
      * Generated from protobuf field <code>string instance = 8;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The URI of this resource.
      *
      * Generated from protobuf field <code>string self_link = 9;</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
 
     /**
      * Constructor.

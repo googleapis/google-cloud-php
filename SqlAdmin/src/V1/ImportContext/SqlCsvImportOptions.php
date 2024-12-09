@@ -18,7 +18,7 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    private $table = '';
+    protected $table = '';
     /**
      * The columns to which CSV data is imported. If not specified, all columns
      * of the database table are loaded with CSV data.
@@ -32,27 +32,27 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string escape_character = 4;</code>
      */
-    private $escape_character = '';
+    protected $escape_character = '';
     /**
      * Specifies the quoting character to be used when a data value is quoted.
      *
      * Generated from protobuf field <code>string quote_character = 5;</code>
      */
-    private $quote_character = '';
+    protected $quote_character = '';
     /**
      * Specifies the character that separates columns within each row (line) of
      * the file.
      *
      * Generated from protobuf field <code>string fields_terminated_by = 6;</code>
      */
-    private $fields_terminated_by = '';
+    protected $fields_terminated_by = '';
     /**
      * This is used to separate lines. If a line does not contain all fields,
      * the rest of the columns are set to their default values.
      *
      * Generated from protobuf field <code>string lines_terminated_by = 8;</code>
      */
-    private $lines_terminated_by = '';
+    protected $lines_terminated_by = '';
 
     /**
      * Constructor.

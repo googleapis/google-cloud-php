@@ -20,7 +20,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.PhraseMatchRuleGroup.PhraseMatchRuleGroupType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * A list of phrase match rules that are included in this group.
      *

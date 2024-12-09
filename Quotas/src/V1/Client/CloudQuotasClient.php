@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,12 +60,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createQuotaPreferenceAsync(CreateQuotaPreferenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getQuotaInfoAsync(GetQuotaInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getQuotaPreferenceAsync(GetQuotaPreferenceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listQuotaInfosAsync(ListQuotaInfosRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listQuotaPreferencesAsync(ListQuotaPreferencesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateQuotaPreferenceAsync(UpdateQuotaPreferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaPreference> createQuotaPreferenceAsync(CreateQuotaPreferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaInfo> getQuotaInfoAsync(GetQuotaInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaPreference> getQuotaPreferenceAsync(GetQuotaPreferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQuotaInfosAsync(ListQuotaInfosRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQuotaPreferencesAsync(ListQuotaPreferencesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QuotaPreference> updateQuotaPreferenceAsync(UpdateQuotaPreferenceRequest $request, array $optionalArgs = [])
  */
 final class CloudQuotasClient
 {

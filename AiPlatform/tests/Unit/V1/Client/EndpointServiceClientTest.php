@@ -40,6 +40,7 @@ use Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest;
 use Google\Cloud\AIPlatform\V1\MutateDeployedModelResponse;
 use Google\Cloud\AIPlatform\V1\UndeployModelRequest;
 use Google\Cloud\AIPlatform\V1\UndeployModelResponse;
+use Google\Cloud\AIPlatform\V1\UpdateEndpointLongRunningRequest;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -117,6 +118,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -125,6 +130,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -501,6 +510,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -509,6 +522,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
@@ -915,6 +932,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -923,6 +944,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $endpoint = new Endpoint();
@@ -982,6 +1007,154 @@ class EndpointServiceClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateEndpointLongRunningTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateEndpointLongRunningTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $etag = 'etag3123477';
+        $network = 'network1843485230';
+        $enablePrivateServiceConnect = true;
+        $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $expectedResponse = new Endpoint();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
+        $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateEndpointLongRunningTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $request = (new UpdateEndpointLongRunningRequest())->setEndpoint($endpoint);
+        $response = $gapicClient->updateEndpointLongRunning($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.EndpointService/UpdateEndpointLongRunning', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getEndpoint();
+        $this->assertProtobufEquals($endpoint, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateEndpointLongRunningTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateEndpointLongRunningExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateEndpointLongRunningTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $endpoint = new Endpoint();
+        $endpointDisplayName = 'endpointDisplayName697270680';
+        $endpoint->setDisplayName($endpointDisplayName);
+        $request = (new UpdateEndpointLongRunningRequest())->setEndpoint($endpoint);
+        $response = $gapicClient->updateEndpointLongRunning($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateEndpointLongRunningTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1345,6 +1518,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $enablePrivateServiceConnect = true;
         $modelDeploymentMonitoringJob = 'modelDeploymentMonitoringJob1797127786';
+        $dedicatedEndpointEnabled = false;
+        $dedicatedEndpointDns = 'dedicatedEndpointDns598984655';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1353,6 +1530,10 @@ class EndpointServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEnablePrivateServiceConnect($enablePrivateServiceConnect);
         $expectedResponse->setModelDeploymentMonitoringJob($modelDeploymentMonitoringJob);
+        $expectedResponse->setDedicatedEndpointEnabled($dedicatedEndpointEnabled);
+        $expectedResponse->setDedicatedEndpointDns($dedicatedEndpointDns);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

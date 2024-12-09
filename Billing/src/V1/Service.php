@@ -17,31 +17,31 @@ class Service extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name for the service.
-     * Example: "services/DA34-426B-A397"
+     * Example: "services/6F81-5844-456A"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The identifier for the service.
-     * Example: "DA34-426B-A397"
+     * Example: "6F81-5844-456A"
      *
      * Generated from protobuf field <code>string service_id = 2;</code>
      */
-    private $service_id = '';
+    protected $service_id = '';
     /**
      * A human readable display name for this service.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The business under which the service is offered.
      * Ex. "businessEntities/GCP", "businessEntities/Maps"
      *
      * Generated from protobuf field <code>string business_entity_name = 4;</code>
      */
-    private $business_entity_name = '';
+    protected $business_entity_name = '';
 
     /**
      * Constructor.
@@ -51,10 +51,10 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name for the service.
-     *           Example: "services/DA34-426B-A397"
+     *           Example: "services/6F81-5844-456A"
      *     @type string $service_id
      *           The identifier for the service.
-     *           Example: "DA34-426B-A397"
+     *           Example: "6F81-5844-456A"
      *     @type string $display_name
      *           A human readable display name for this service.
      *     @type string $business_entity_name
@@ -69,7 +69,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the service.
-     * Example: "services/DA34-426B-A397"
+     * Example: "services/6F81-5844-456A"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -81,7 +81,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name for the service.
-     * Example: "services/DA34-426B-A397"
+     * Example: "services/6F81-5844-456A"
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -97,7 +97,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier for the service.
-     * Example: "DA34-426B-A397"
+     * Example: "6F81-5844-456A"
      *
      * Generated from protobuf field <code>string service_id = 2;</code>
      * @return string
@@ -109,7 +109,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier for the service.
-     * Example: "DA34-426B-A397"
+     * Example: "6F81-5844-456A"
      *
      * Generated from protobuf field <code>string service_id = 2;</code>
      * @param string $var

@@ -28,19 +28,19 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>double min_probability = 1;</code>
      */
-    private $min_probability = 0.0;
+    protected $min_probability = 0.0;
     /**
      * Always greater than or equal to min_probability.
      *
      * Generated from protobuf field <code>double max_probability = 2;</code>
      */
-    private $max_probability = 0.0;
+    protected $max_probability = 0.0;
     /**
      * Number of records within these probability bounds.
      *
      * Generated from protobuf field <code>int64 bucket_size = 5;</code>
      */
-    private $bucket_size = 0;
+    protected $bucket_size = 0;
     /**
      * Sample of quasi-identifier tuple values in this bucket. The total
      * number of classes returned per bucket is capped at 20.
@@ -53,7 +53,7 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>int64 bucket_value_count = 7;</code>
      */
-    private $bucket_value_count = 0;
+    protected $bucket_value_count = 0;
 
     /**
      * Constructor.
@@ -213,6 +213,4 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeltaPresenceEstimationHistogramBucket::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult_DeltaPresenceEstimationHistogramBucket::class);
 

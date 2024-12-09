@@ -61,13 +61,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAttestorAsync(CreateAttestorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAttestorAsync(DeleteAttestorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttestorAsync(GetAttestorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAttestorsAsync(ListAttestorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttestorAsync(UpdateAttestorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attestor> createAttestorAsync(CreateAttestorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAttestorAsync(DeleteAttestorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attestor> getAttestorAsync(GetAttestorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAttestorsAsync(ListAttestorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attestor> updateAttestorAsync(UpdateAttestorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
  */
 final class BinauthzManagementServiceV1Client
 {

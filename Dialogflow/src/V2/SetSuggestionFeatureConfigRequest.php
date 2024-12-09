@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The request message for
- * [ConversationProfiles.SetSuggestionFeature][].
+ * [ConversationProfiles.SetSuggestionFeatureConfig][google.cloud.dialogflow.v2.ConversationProfiles.SetSuggestionFeatureConfig].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SetSuggestionFeatureConfigRequest</code>
  */

@@ -24,7 +24,7 @@ class DenyMaintenancePeriod extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_date = 1;</code>
      */
-    private $start_date = '';
+    protected $start_date = '';
     /**
      * "deny maintenance period" end date. If the year of the end date is empty,
      * the year of the start date also must be empty. In this case, it means the
@@ -33,14 +33,14 @@ class DenyMaintenancePeriod extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string end_date = 2;</code>
      */
-    private $end_date = '';
+    protected $end_date = '';
     /**
      * Time in UTC when the "deny maintenance period" starts on start_date and
      * ends on end_date. The time is in format: HH:mm:SS, i.e., 00:00:00
      *
      * Generated from protobuf field <code>string time = 3;</code>
      */
-    private $time = '';
+    protected $time = '';
 
     /**
      * Constructor.

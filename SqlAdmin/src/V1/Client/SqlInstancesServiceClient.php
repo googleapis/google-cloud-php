@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,40 +83,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface acquireSsrsLeaseAsync(SqlInstancesAcquireSsrsLeaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addServerCaAsync(SqlInstancesAddServerCaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(SqlInstancesDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDiskShrinkConfigAsync(SqlInstancesGetDiskShrinkConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLatestRecoveryTimeAsync(SqlInstancesGetLatestRecoveryTimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServerCasAsync(SqlInstancesListServerCasRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(SqlInstancesPatchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetReplicaSizeAsync(SqlInstancesResetReplicaSizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restartAsync(SqlInstancesRestartRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreBackupAsync(SqlInstancesRestoreBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rotateServerCaAsync(SqlInstancesRotateServerCaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface switchoverAsync(SqlInstancesSwitchoverRequest $request, array $optionalArgs = [])
- * @method PromiseInterface truncateLogAsync(SqlInstancesTruncateLogRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(SqlInstancesUpdateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface verifyExternalSyncSettingsAsync(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesAcquireSsrsLeaseResponse> acquireSsrsLeaseAsync(SqlInstancesAcquireSsrsLeaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> addServerCaAsync(SqlInstancesAddServerCaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCert> createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlInstancesDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DatabaseInstance> getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesGetDiskShrinkConfigResponse> getDiskShrinkConfigAsync(SqlInstancesGetDiskShrinkConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesGetLatestRecoveryTimeResponse> getLatestRecoveryTimeAsync(SqlInstancesGetLatestRecoveryTimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesListResponse> listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesListServerCasResponse> listServerCasAsync(SqlInstancesListServerCasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> patchAsync(SqlInstancesPatchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesReleaseSsrsLeaseResponse> releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> resetReplicaSizeAsync(SqlInstancesResetReplicaSizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> restartAsync(SqlInstancesRestartRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> restoreBackupAsync(SqlInstancesRestoreBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rotateServerCaAsync(SqlInstancesRotateServerCaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> switchoverAsync(SqlInstancesSwitchoverRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> truncateLogAsync(SqlInstancesTruncateLogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateAsync(SqlInstancesUpdateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesVerifyExternalSyncSettingsResponse> verifyExternalSyncSettingsAsync(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $optionalArgs = [])
  */
 final class SqlInstancesServiceClient
 {
@@ -258,8 +258,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function acquireSsrsLease(SqlInstancesAcquireSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesAcquireSsrsLeaseResponse
-    {
+    public function acquireSsrsLease(
+        SqlInstancesAcquireSsrsLeaseRequest $request,
+        array $callOptions = []
+    ): SqlInstancesAcquireSsrsLeaseResponse {
         return $this->startApiCall('AcquireSsrsLease', $request, $callOptions)->wait();
     }
 
@@ -268,7 +270,9 @@ final class SqlInstancesServiceClient
      * instance. Required to prepare for a certificate rotation. If a CA version
      * was previously added but never used in a certificate rotation, this
      * operation replaces that version. There cannot be more than one CA version
-     * waiting to be rotated in.
+     * waiting to be rotated in. For instances that have enabled Certificate
+     * Authority Service (CAS) based server CA, please use AddServerCertificate to
+     * add a new server certificate.
      *
      * The async variant is {@see SqlInstancesServiceClient::addServerCaAsync()} .
      *
@@ -537,8 +541,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiskShrinkConfig(SqlInstancesGetDiskShrinkConfigRequest $request, array $callOptions = []): SqlInstancesGetDiskShrinkConfigResponse
-    {
+    public function getDiskShrinkConfig(
+        SqlInstancesGetDiskShrinkConfigRequest $request,
+        array $callOptions = []
+    ): SqlInstancesGetDiskShrinkConfigResponse {
         return $this->startApiCall('GetDiskShrinkConfig', $request, $callOptions)->wait();
     }
 
@@ -564,8 +570,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getLatestRecoveryTime(SqlInstancesGetLatestRecoveryTimeRequest $request, array $callOptions = []): SqlInstancesGetLatestRecoveryTimeResponse
-    {
+    public function getLatestRecoveryTime(
+        SqlInstancesGetLatestRecoveryTimeRequest $request,
+        array $callOptions = []
+    ): SqlInstancesGetLatestRecoveryTimeResponse {
         return $this->startApiCall('GetLatestRecoveryTime', $request, $callOptions)->wait();
     }
 
@@ -673,8 +681,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServerCas(SqlInstancesListServerCasRequest $request, array $callOptions = []): InstancesListServerCasResponse
-    {
+    public function listServerCas(
+        SqlInstancesListServerCasRequest $request,
+        array $callOptions = []
+    ): InstancesListServerCasResponse {
         return $this->startApiCall('ListServerCas', $request, $callOptions)->wait();
     }
 
@@ -807,8 +817,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function releaseSsrsLease(SqlInstancesReleaseSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesReleaseSsrsLeaseResponse
-    {
+    public function releaseSsrsLease(
+        SqlInstancesReleaseSsrsLeaseRequest $request,
+        array $callOptions = []
+    ): SqlInstancesReleaseSsrsLeaseResponse {
         return $this->startApiCall('ReleaseSsrsLease', $request, $callOptions)->wait();
     }
 
@@ -834,8 +846,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rescheduleMaintenance(SqlInstancesRescheduleMaintenanceRequest $request, array $callOptions = []): Operation
-    {
+    public function rescheduleMaintenance(
+        SqlInstancesRescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): Operation {
         return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
     }
 
@@ -947,7 +961,9 @@ final class SqlInstancesServiceClient
 
     /**
      * Rotates the server certificate to one signed by the Certificate Authority
-     * (CA) version previously added with the addServerCA method.
+     * (CA) version previously added with the addServerCA method. For instances
+     * that have enabled Certificate Authority Service (CAS) based server CA,
+     * please use RotateServerCertificate to rotate the server certificate.
      *
      * The async variant is {@see SqlInstancesServiceClient::rotateServerCaAsync()} .
      *
@@ -1154,8 +1170,10 @@ final class SqlInstancesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function verifyExternalSyncSettings(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $callOptions = []): SqlInstancesVerifyExternalSyncSettingsResponse
-    {
+    public function verifyExternalSyncSettings(
+        SqlInstancesVerifyExternalSyncSettingsRequest $request,
+        array $callOptions = []
+    ): SqlInstancesVerifyExternalSyncSettingsResponse {
         return $this->startApiCall('VerifyExternalSyncSettings', $request, $callOptions)->wait();
     }
 }

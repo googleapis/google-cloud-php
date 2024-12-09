@@ -20,13 +20,13 @@ class AudioFormat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
-    private $codec = '';
+    protected $codec = '';
     /**
      * The number of audio channels.
      *
      * Generated from protobuf field <code>int32 channel_count = 2;</code>
      */
-    private $channel_count = 0;
+    protected $channel_count = 0;
     /**
      * A list of channel names specifying the layout of the audio channels.
      *

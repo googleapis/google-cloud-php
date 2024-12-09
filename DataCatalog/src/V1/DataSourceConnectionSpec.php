@@ -23,7 +23,7 @@ class DataSourceConnectionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryConnectionSpec bigquery_connection_spec = 1;</code>
      */
-    private $bigquery_connection_spec = null;
+    protected $bigquery_connection_spec = null;
 
     /**
      * Constructor.

@@ -25,6 +25,22 @@ class GetLbTrafficExtensionRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. A name of the `LbTrafficExtension` resource to get. Must be in
+     *                     the format
+     *                     `projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}`. Please see
+     *                     {@see DepServiceClient::lbTrafficExtensionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\NetworkServices\V1\GetLbTrafficExtensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

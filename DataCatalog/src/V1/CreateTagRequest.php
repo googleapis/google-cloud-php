@@ -25,13 +25,13 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The tag to create.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Tag tag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag = null;
+    protected $tag = null;
 
     /**
      * @param string                           $parent Required. The name of the resource to attach this tag to.

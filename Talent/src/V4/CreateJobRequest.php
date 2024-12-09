@@ -22,13 +22,13 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Job to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
 
     /**
      * @param string                      $parent Required. The resource name of the tenant under which the job is created.

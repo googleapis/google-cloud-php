@@ -25,7 +25,7 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The user-provided identifier of the private cloud to be created.
      * This identifier must be unique among each `PrivateCloud` within the parent
@@ -40,27 +40,27 @@ class CreatePrivateCloudRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_cloud_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_cloud_id = '';
+    protected $private_cloud_id = '';
     /**
      * Required. The initial description of the new private cloud.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.PrivateCloud private_cloud = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $private_cloud = null;
+    protected $private_cloud = null;
     /**
      * Optional. The request ID must be a valid UUID with the exception that zero
      * UUID is not supported (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. True if you want the request to be validated and not executed;
      * false otherwise.
      *
      * Generated from protobuf field <code>bool validate_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param string                                     $parent         Required. The resource name of the location to create the new

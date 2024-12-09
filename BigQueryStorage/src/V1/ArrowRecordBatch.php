@@ -20,7 +20,7 @@ class ArrowRecordBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes serialized_record_batch = 1;</code>
      */
-    private $serialized_record_batch = '';
+    protected $serialized_record_batch = '';
     /**
      * [Deprecated] The count of rows in `serialized_record_batch`.
      * Please use the format-independent ReadRowsResponse.row_count instead.

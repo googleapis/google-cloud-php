@@ -19,20 +19,20 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ComputeThreatListDiffResponse.ResponseType response_type = 4;</code>
      */
-    private $response_type = 0;
+    protected $response_type = 0;
     /**
      * A set of entries to add to a local threat type's list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatEntryAdditions additions = 5;</code>
      */
-    private $additions = null;
+    protected $additions = null;
     /**
      * A set of entries to remove from a local threat type's list.
      * This field may be empty.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatEntryRemovals removals = 6;</code>
      */
-    private $removals = null;
+    protected $removals = null;
     /**
      * The new opaque client version token. This should be retained by the client
      * and passed into the next call of ComputeThreatListDiff as 'version_token'.
@@ -40,7 +40,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes new_version_token = 7;</code>
      */
-    private $new_version_token = '';
+    protected $new_version_token = '';
     /**
      * The expected SHA256 hash of the client state; that is, of the sorted list
      * of all hashes present in the database after applying the provided diff.
@@ -49,7 +49,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum checksum = 8;</code>
      */
-    private $checksum = null;
+    protected $checksum = null;
     /**
      * The soonest the client should wait before issuing any diff
      * request. Querying sooner is unlikely to produce a meaningful diff.
@@ -58,7 +58,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp recommended_next_diff = 2;</code>
      */
-    private $recommended_next_diff = null;
+    protected $recommended_next_diff = null;
 
     /**
      * Constructor.

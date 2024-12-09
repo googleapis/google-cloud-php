@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,46 +95,46 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiDeploymentAsync(CreateApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiSpecAsync(CreateApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createApiVersionAsync(CreateApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createArtifactAsync(CreateArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiDeploymentAsync(DeleteApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiDeploymentRevisionAsync(DeleteApiDeploymentRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiSpecAsync(DeleteApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiSpecRevisionAsync(DeleteApiSpecRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiVersionAsync(DeleteApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteArtifactAsync(DeleteArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiAsync(GetApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiDeploymentAsync(GetApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiSpecAsync(GetApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiSpecContentsAsync(GetApiSpecContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiVersionAsync(GetApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getArtifactAsync(GetArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getArtifactContentsAsync(GetArtifactContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiDeploymentRevisionsAsync(ListApiDeploymentRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiDeploymentsAsync(ListApiDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiSpecRevisionsAsync(ListApiSpecRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiSpecsAsync(ListApiSpecsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiVersionsAsync(ListApiVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApisAsync(ListApisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listArtifactsAsync(ListArtifactsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceArtifactAsync(ReplaceArtifactRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackApiDeploymentAsync(RollbackApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackApiSpecAsync(RollbackApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface tagApiDeploymentRevisionAsync(TagApiDeploymentRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface tagApiSpecRevisionAsync(TagApiSpecRevisionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiDeploymentAsync(UpdateApiDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiSpecAsync(UpdateApiSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiVersionAsync(UpdateApiVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> createApiDeploymentAsync(CreateApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> createApiSpecAsync(CreateApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiVersion> createApiVersionAsync(CreateApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Artifact> createArtifactAsync(CreateArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiDeploymentAsync(DeleteApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> deleteApiDeploymentRevisionAsync(DeleteApiDeploymentRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiSpecAsync(DeleteApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> deleteApiSpecRevisionAsync(DeleteApiSpecRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiVersionAsync(DeleteApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteArtifactAsync(DeleteArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> getApiAsync(GetApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> getApiDeploymentAsync(GetApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> getApiSpecAsync(GetApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> getApiSpecContentsAsync(GetApiSpecContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiVersion> getApiVersionAsync(GetApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Artifact> getArtifactAsync(GetArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpBody> getArtifactContentsAsync(GetArtifactContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiDeploymentRevisionsAsync(ListApiDeploymentRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiDeploymentsAsync(ListApiDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiSpecRevisionsAsync(ListApiSpecRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiSpecsAsync(ListApiSpecsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiVersionsAsync(ListApiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApisAsync(ListApisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listArtifactsAsync(ListArtifactsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Artifact> replaceArtifactAsync(ReplaceArtifactRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> rollbackApiDeploymentAsync(RollbackApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> rollbackApiSpecAsync(RollbackApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> tagApiDeploymentRevisionAsync(TagApiDeploymentRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> tagApiSpecRevisionAsync(TagApiSpecRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiDeployment> updateApiDeploymentAsync(UpdateApiDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiSpec> updateApiSpecAsync(UpdateApiSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiVersion> updateApiVersionAsync(UpdateApiVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class RegistryClient
 {
@@ -161,9 +161,7 @@ final class RegistryClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -236,8 +234,13 @@ final class RegistryClient
      *
      * @return string The formatted api_spec resource.
      */
-    public static function apiSpecName(string $project, string $location, string $api, string $version, string $spec): string
-    {
+    public static function apiSpecName(
+        string $project,
+        string $location,
+        string $api,
+        string $version,
+        string $spec
+    ): string {
         return self::getPathTemplate('apiSpec')->render([
             'project' => $project,
             'location' => $location,
@@ -315,8 +318,12 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_artifact resource.
      */
-    public static function projectLocationApiArtifactName(string $project, string $location, string $api, string $artifact): string
-    {
+    public static function projectLocationApiArtifactName(
+        string $project,
+        string $location,
+        string $api,
+        string $artifact
+    ): string {
         return self::getPathTemplate('projectLocationApiArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -337,8 +344,13 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_deployment_artifact resource.
      */
-    public static function projectLocationApiDeploymentArtifactName(string $project, string $location, string $api, string $deployment, string $artifact): string
-    {
+    public static function projectLocationApiDeploymentArtifactName(
+        string $project,
+        string $location,
+        string $api,
+        string $deployment,
+        string $artifact
+    ): string {
         return self::getPathTemplate('projectLocationApiDeploymentArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -360,8 +372,13 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_version_artifact resource.
      */
-    public static function projectLocationApiVersionArtifactName(string $project, string $location, string $api, string $version, string $artifact): string
-    {
+    public static function projectLocationApiVersionArtifactName(
+        string $project,
+        string $location,
+        string $api,
+        string $version,
+        string $artifact
+    ): string {
         return self::getPathTemplate('projectLocationApiVersionArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -384,8 +401,14 @@ final class RegistryClient
      *
      * @return string The formatted project_location_api_version_spec_artifact resource.
      */
-    public static function projectLocationApiVersionSpecArtifactName(string $project, string $location, string $api, string $version, string $spec, string $artifact): string
-    {
+    public static function projectLocationApiVersionSpecArtifactName(
+        string $project,
+        string $location,
+        string $api,
+        string $version,
+        string $spec,
+        string $artifact
+    ): string {
         return self::getPathTemplate('projectLocationApiVersionSpecArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -721,8 +744,10 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteApiDeploymentRevision(DeleteApiDeploymentRevisionRequest $request, array $callOptions = []): ApiDeployment
-    {
+    public function deleteApiDeploymentRevision(
+        DeleteApiDeploymentRevisionRequest $request,
+        array $callOptions = []
+    ): ApiDeployment {
         return $this->startApiCall('DeleteApiDeploymentRevision', $request, $callOptions)->wait();
     }
 
@@ -1036,8 +1061,10 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listApiDeploymentRevisions(ListApiDeploymentRevisionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listApiDeploymentRevisions(
+        ListApiDeploymentRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListApiDeploymentRevisions', $request, $callOptions);
     }
 
@@ -1089,8 +1116,10 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listApiSpecRevisions(ListApiSpecRevisionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listApiSpecRevisions(
+        ListApiSpecRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListApiSpecRevisions', $request, $callOptions);
     }
 
@@ -1300,8 +1329,10 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function tagApiDeploymentRevision(TagApiDeploymentRevisionRequest $request, array $callOptions = []): ApiDeployment
-    {
+    public function tagApiDeploymentRevision(
+        TagApiDeploymentRevisionRequest $request,
+        array $callOptions = []
+    ): ApiDeployment {
         return $this->startApiCall('TagApiDeploymentRevision', $request, $callOptions)->wait();
     }
 
@@ -1571,8 +1602,10 @@ final class RegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

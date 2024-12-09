@@ -25,19 +25,19 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Time when the PolicyBasedRoute was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time when the PolicyBasedRoute was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined labels.
      *
@@ -50,20 +50,20 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Fully-qualified URL of the network that this route applies to.
      * e.g. projects/my-project/global/networks/my-network.
      *
      * Generated from protobuf field <code>string network = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Required. The filter to match L4 traffic.
      *
      * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.PolicyBasedRoute.Filter filter = 10 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * Optional. The priority of this policy based route. Priority is used to
      * break ties in cases where there are more than one matching policy based
@@ -73,7 +73,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 priority = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $priority = 0;
+    protected $priority = 0;
     /**
      * Output only. If potential misconfigurations are detected for this route,
      * this field will be populated with warning messages.
@@ -86,14 +86,14 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * Output only. Type of this resource. Always
      * networkconnectivity#policyBasedRoute for Policy Based Route resources.
      *
      * Generated from protobuf field <code>string kind = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kind = '';
+    protected $kind = '';
     protected $target;
     protected $next_hop;
 

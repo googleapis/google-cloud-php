@@ -22,7 +22,7 @@ class ListFeedsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string $parent Required. The parent project/folder/organization whose feeds are to be

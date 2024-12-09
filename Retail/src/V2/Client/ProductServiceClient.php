@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Retail\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -48,6 +47,7 @@ use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest;
 use Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
 use Google\Cloud\Retail\V2\UpdateProductRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -63,18 +63,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProductAsync(GetProductRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addFulfillmentPlacesAsync(AddFulfillmentPlacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addLocalInventoriesAsync(AddLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteProductAsync(DeleteProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> getProductAsync(GetProductRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importProductsAsync(ImportProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProductsAsync(ListProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> purgeProductsAsync(PurgeProductsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeFulfillmentPlacesAsync(RemoveFulfillmentPlacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeLocalInventoriesAsync(RemoveLocalInventoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setInventoryAsync(SetInventoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Product> updateProductAsync(UpdateProductRequest $request, array $optionalArgs = [])
  */
 final class ProductServiceClient
 {
@@ -101,9 +101,7 @@ final class ProductServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -149,10 +147,31 @@ final class ProductServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -188,8 +207,13 @@ final class ProductServiceClient
      *
      * @return string The formatted product resource.
      */
-    public static function productName(string $project, string $location, string $catalog, string $branch, string $product): string
-    {
+    public static function productName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $branch,
+        string $product
+    ): string {
         return self::getPathTemplate('product')->render([
             'project' => $project,
             'location' => $location,
@@ -346,8 +370,10 @@ final class ProductServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addFulfillmentPlaces(AddFulfillmentPlacesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addFulfillmentPlaces(
+        AddFulfillmentPlacesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddFulfillmentPlaces', $request, $callOptions)->wait();
     }
 
@@ -631,8 +657,10 @@ final class ProductServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeFulfillmentPlaces(RemoveFulfillmentPlacesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeFulfillmentPlaces(
+        RemoveFulfillmentPlacesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveFulfillmentPlaces', $request, $callOptions)->wait();
     }
 
@@ -683,8 +711,10 @@ final class ProductServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeLocalInventories(RemoveLocalInventoriesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeLocalInventories(
+        RemoveLocalInventoriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveLocalInventories', $request, $callOptions)->wait();
     }
 

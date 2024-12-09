@@ -142,6 +142,4 @@ class SimulatedResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SimulatedResult::class, \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse_SimulatedResult::class);
 

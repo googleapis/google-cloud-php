@@ -27,7 +27,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string certificate_id = 1;</code>
      */
-    private $certificate_id = '';
+    protected $certificate_id = '';
     /**
      * SSL management type for this domain. If `AUTOMATIC`, a managed certificate
      * is automatically provisioned. If `MANUAL`, `certificate_id` must be
@@ -35,7 +35,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.appengine.v1.SslSettings.SslManagementType ssl_management_type = 3;</code>
      */
-    private $ssl_management_type = 0;
+    protected $ssl_management_type = 0;
     /**
      * ID of the managed `AuthorizedCertificate` resource currently being
      * provisioned, if applicable. Until the new managed certificate has been
@@ -48,7 +48,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pending_managed_certificate_id = 4;</code>
      */
-    private $pending_managed_certificate_id = '';
+    protected $pending_managed_certificate_id = '';
 
     /**
      * Constructor.

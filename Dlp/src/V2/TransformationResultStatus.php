@@ -21,13 +21,13 @@ class TransformationResultStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationResultStatusType result_status_type = 1;</code>
      */
-    private $result_status_type = 0;
+    protected $result_status_type = 0;
     /**
      * Detailed error codes and messages
      *
      * Generated from protobuf field <code>.google.rpc.Status details = 2;</code>
      */
-    private $details = null;
+    protected $details = null;
 
     /**
      * Constructor.

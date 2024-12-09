@@ -21,20 +21,20 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The region of the Cloud SQL instance being referenced.
      *
      * Generated from protobuf field <code>string region = 2;</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * The project ID of the Cloud SQL instance being referenced.
      * The default is the same project ID as the instance references it.
      *
      * Generated from protobuf field <code>string project = 3;</code>
      */
-    private $project = '';
+    protected $project = '';
 
     /**
      * Constructor.

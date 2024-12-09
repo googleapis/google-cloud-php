@@ -21,7 +21,7 @@ class UpdateBudgetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1.Budget budget = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $budget = null;
+    protected $budget = null;
     /**
      * Optional. Indicates which fields in the provided budget to update.
      * Read-only fields (such as `name`) cannot be changed. If this is not
@@ -32,7 +32,7 @@ class UpdateBudgetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Billing\Budgets\V1\Budget $budget     Required. The updated budget object.

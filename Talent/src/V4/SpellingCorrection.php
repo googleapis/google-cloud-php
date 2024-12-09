@@ -20,13 +20,13 @@ class SpellingCorrection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool corrected = 1;</code>
      */
-    private $corrected = false;
+    protected $corrected = false;
     /**
      * Correction output consisting of the corrected keyword string.
      *
      * Generated from protobuf field <code>string corrected_text = 2;</code>
      */
-    private $corrected_text = '';
+    protected $corrected_text = '';
     /**
      * Corrected output with html tags to highlight the corrected words.
      * Corrected words are called out with the "<b><i>...</i></b>" html tags.
@@ -37,7 +37,7 @@ class SpellingCorrection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string corrected_html = 3;</code>
      */
-    private $corrected_html = '';
+    protected $corrected_html = '';
 
     /**
      * Constructor.

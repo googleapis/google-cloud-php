@@ -54,17 +54,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setCertificateMapAsync(SetCertificateMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setQuicOverrideAsync(SetQuicOverrideTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslCertificatesAsync(SetSslCertificatesTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setSslPolicyAsync(SetSslPolicyTargetHttpsProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUrlMapAsync(SetUrlMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetHttpsProxy> getAsync(GetTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetHttpsProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setCertificateMapAsync(SetCertificateMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setQuicOverrideAsync(SetQuicOverrideTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslCertificatesAsync(SetSslCertificatesTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setSslPolicyAsync(SetSslPolicyTargetHttpsProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUrlMapAsync(SetUrlMapTargetHttpsProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetHttpsProxiesClient
 {

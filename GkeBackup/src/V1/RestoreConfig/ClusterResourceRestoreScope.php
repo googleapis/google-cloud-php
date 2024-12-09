@@ -53,7 +53,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool all_group_kinds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $all_group_kinds = false;
+    protected $all_group_kinds = false;
     /**
      * Optional. If True, no cluster-scoped resources will be restored.
      * This has the same restore scope as if the message is not defined.
@@ -61,7 +61,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool no_group_kinds = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $no_group_kinds = false;
+    protected $no_group_kinds = false;
 
     /**
      * Constructor.

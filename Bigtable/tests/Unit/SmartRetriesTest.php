@@ -136,6 +136,38 @@ class SmartRetriesTest extends TestCase
         $iterator->getIterator()->current();
     }
 
+    public function testReadRowsContainsAttemptHeader()
+    {
+        $attempt = 0;
+        $expectedArgs = $this->options;
+        $retryingApiException = $this->retryingApiException;
+        $this->serverStream->readAll()
+            ->shouldBeCalledTimes(2)
+            ->will(function () use (&$attempt, $retryingApiException) {
+                // throw a retriable exception on the first call
+                return 0 === $attempt++ ? throw $retryingApiException : [];
+            });
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::that(function ($callOptions) use (&$attempt) {
+                $attemptHeader = $callOptions['headers']['bigtable-attempt'][0] ?? null;
+                if ($attempt === 0) {
+                    $this->assertNull($attemptHeader);
+                } else {
+                    $this->assertSame((string) $attempt, $attemptHeader);
+                }
+
+                return true;
+            })
+        )->shouldBeCalledTimes(2)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $iterator = $this->table->readRows();
+        $iterator->getIterator()->current();
+    }
+
     public function testReadRowsPartialSuccess()
     {
         $expectedArgs = $this->options;
@@ -186,7 +218,7 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(3, 4)
                 )
             );
-        
+
         $allowedRowsLimit = ['5' => 1, '3' => 1];
         $this->bigtableClient->readRows(
             Argument::that(function ($request) use (&$allowedRowsLimit) {
@@ -213,6 +245,34 @@ class SmartRetriesTest extends TestCase
         }
         $expectedRows = $this->generateExpectedRows(1, 4);
         $this->assertEquals($expectedRows, $rows);
+    }
+
+    public function testReadRowsWithRowsLimitAndExceptionThrownAfterSuccess()
+    {
+        $args = ['rowsLimit' => 1];
+        $expectedArgs = $args + $this->options;
+        $this->serverStream->readAll()
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                $this->arrayAsGeneratorWithException(
+                    $this->generateRowsResponse(1, 1),
+                    $this->retryingApiException
+                )
+            );
+        $this->bigtableClient->readRows(
+            Argument::that(function ($request) use (&$allowedRowsLimit) {
+                return $request->getRowsLimit() === 1;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+
+        $rows = $this->table->readRows($args);
+        $expectedRows = $this->generateExpectedRows(1, 1);
+        $this->assertEquals($expectedRows, iterator_to_array($rows));
     }
 
     public function testReadRowsWithRowKeys()
@@ -616,20 +676,22 @@ class SmartRetriesTest extends TestCase
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
-        )->shouldBeCalledTimes(1)
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->serverStream->reveal());
+
         $entries = $this->generateEntries(2, 3);
+
+        // ensure the bigtable-attempt header is sent in for the next retry.
         $this->bigtableClient->mutateRows(
             Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
-            Argument::type('array')
-        )->shouldBeCalled()
-        ->willReturn(
-            $this->serverStream->reveal()
-        );
+            Argument::withEntry('headers', ['bigtable-attempt' => ['1']] + $this->options['headers'])
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->serverStream->reveal());
+
         $mutations = $this->generateMutations(0, 5);
         $this->table->mutateRows($mutations);
     }

@@ -115,6 +115,25 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.TuningDataStats tuning_data_stats = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $tuning_data_stats = null;
+    /**
+     * Customer-managed encryption key options for a TuningJob. If this is set,
+     * then all resources created by the TuningJob will be encrypted with the
+     * provided encryption key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 16;</code>
+     */
+    protected $encryption_spec = null;
+    /**
+     * The service account that the tuningJob workload runs as.
+     * If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the
+     * project will be used. See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent
+     * Users starting the pipeline must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 22;</code>
+     */
+    protected $service_account = '';
     protected $source_model;
     protected $tuning_spec;
 
@@ -176,6 +195,17 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\TuningDataStats $tuning_data_stats
      *           Output only. The tuning data statistics associated with this
      *           [TuningJob][google.cloud.aiplatform.v1.TuningJob].
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Customer-managed encryption key options for a TuningJob. If this is set,
+     *           then all resources created by the TuningJob will be encrypted with the
+     *           provided encryption key.
+     *     @type string $service_account
+     *           The service account that the tuningJob workload runs as.
+     *           If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the
+     *           project will be used. See
+     *           https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent
+     *           Users starting the pipeline must have the `iam.serviceAccounts.actAs`
+     *           permission on this service account.
      * }
      */
     public function __construct($data = NULL) {
@@ -693,6 +723,82 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\TuningDataStats::class);
         $this->tuning_data_stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Customer-managed encryption key options for a TuningJob. If this is set,
+     * then all resources created by the TuningJob will be encrypted with the
+     * provided encryption key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 16;</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Customer-managed encryption key options for a TuningJob. If this is set,
+     * then all resources created by the TuningJob will be encrypted with the
+     * provided encryption key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 16;</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The service account that the tuningJob workload runs as.
+     * If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the
+     * project will be used. See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent
+     * Users starting the pipeline must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 22;</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * The service account that the tuningJob workload runs as.
+     * If not specified, the Vertex AI Secure Fine-Tuned Service Agent in the
+     * project will be used. See
+     * https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent
+     * Users starting the pipeline must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 22;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }

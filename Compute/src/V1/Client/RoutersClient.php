@@ -57,17 +57,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRoutersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface previewAsync(PreviewRouterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Router> getAsync(GetRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NatIpInfoResponse> getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RouterStatusResponse> getRouterStatusAsync(GetRouterStatusRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RoutersPreviewResponse> previewAsync(PreviewRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRouterRequest $request, array $optionalArgs = [])
  */
 final class RoutersClient
 {

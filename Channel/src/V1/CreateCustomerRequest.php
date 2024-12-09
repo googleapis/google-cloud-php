@@ -22,13 +22,13 @@ class CreateCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The customer to create.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer customer = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $customer = null;
+    protected $customer = null;
 
     /**
      * Constructor.

@@ -60,12 +60,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createUptimeCheckConfigAsync(CreateUptimeCheckConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteUptimeCheckConfigAsync(DeleteUptimeCheckConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getUptimeCheckConfigAsync(GetUptimeCheckConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUptimeCheckConfigsAsync(ListUptimeCheckConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUptimeCheckIpsAsync(ListUptimeCheckIpsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateUptimeCheckConfigAsync(UpdateUptimeCheckConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UptimeCheckConfig> createUptimeCheckConfigAsync(CreateUptimeCheckConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUptimeCheckConfigAsync(DeleteUptimeCheckConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UptimeCheckConfig> getUptimeCheckConfigAsync(GetUptimeCheckConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUptimeCheckConfigsAsync(ListUptimeCheckConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUptimeCheckIpsAsync(ListUptimeCheckIpsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UptimeCheckConfig> updateUptimeCheckConfigAsync(UpdateUptimeCheckConfigRequest $request, array $optionalArgs = [])
  */
 final class UptimeCheckServiceClient
 {

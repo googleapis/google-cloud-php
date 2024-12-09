@@ -21,7 +21,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Entry entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entry = null;
+    protected $entry = null;
     /**
      * Names of fields whose values to overwrite on an entry.
      * If this parameter is absent or empty, all modifiable fields
@@ -47,7 +47,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataCatalog\V1\Entry $entry Required. Updates for the entry. The `name` field must be set.

@@ -42,20 +42,25 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\BackupSchedule;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupSchedulesRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest;
@@ -63,6 +68,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseMetadata;
@@ -88,26 +94,31 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface dropDatabaseAsync(DropDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatabaseDdlAsync(GetDatabaseDdlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupOperationsAsync(ListBackupOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabaseOperationsAsync(ListDatabaseOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabaseRolesAsync(ListDatabaseRolesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreDatabaseAsync(RestoreDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatabaseAsync(UpdateDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatabaseDdlAsync(UpdateDatabaseDdlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupSchedule> createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBackupScheduleAsync(DeleteBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> dropDatabaseAsync(DropDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupSchedule> getBackupScheduleAsync(GetBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetDatabaseDdlResponse> getDatabaseDdlAsync(GetDatabaseDdlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupOperationsAsync(ListBackupOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupSchedulesAsync(ListBackupSchedulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabaseOperationsAsync(ListDatabaseOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabaseRolesAsync(ListDatabaseRolesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreDatabaseAsync(RestoreDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupSchedule> updateBackupScheduleAsync(UpdateBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDatabaseAsync(UpdateDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDatabaseDdlAsync(UpdateDatabaseDdlRequest $request, array $optionalArgs = [])
  */
 final class DatabaseAdminClient
 {
@@ -209,6 +220,27 @@ final class DatabaseAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_schedule resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $database
+     * @param string $schedule
+     *
+     * @return string The formatted backup_schedule resource.
+     */
+    public static function backupScheduleName(string $project, string $instance, string $database, string $schedule): string
+    {
+        return self::getPathTemplate('backupSchedule')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'database' => $database,
+            'schedule' => $schedule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a crypto_key
      * resource.
      *
@@ -293,6 +325,7 @@ final class DatabaseAdminClient
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/instances/{instance}/backups/{backup}
+     * - backupSchedule: projects/{project}/instances/{instance}/databases/{database}/backupSchedules/{schedule}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - database: projects/{project}/instances/{instance}/databases/{database}
@@ -376,7 +409,7 @@ final class DatabaseAdminClient
      */
     public function __construct(array $options = [])
     {
-        $options = $options + $this->getDefaultEmulatorConfig();
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -469,6 +502,32 @@ final class DatabaseAdminClient
     }
 
     /**
+     * Creates a new backup schedule.
+     *
+     * The async variant is {@see DatabaseAdminClient::createBackupScheduleAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/create_backup_schedule.php
+     *
+     * @param CreateBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackupSchedule(CreateBackupScheduleRequest $request, array $callOptions = []): BackupSchedule
+    {
+        return $this->startApiCall('CreateBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Cloud Spanner database and starts to prepare it for serving.
      * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format `<database_name>/operations/<operation_id>` and
@@ -527,6 +586,30 @@ final class DatabaseAdminClient
     }
 
     /**
+     * Deletes a backup schedule.
+     *
+     * The async variant is {@see DatabaseAdminClient::deleteBackupScheduleAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/delete_backup_schedule.php
+     *
+     * @param DeleteBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackupSchedule(DeleteBackupScheduleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Drops (aka deletes) a Cloud Spanner database.
      * Completed backups for the database will be retained according to their
      * `expire_time`.
@@ -579,6 +662,32 @@ final class DatabaseAdminClient
     public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
     {
         return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets backup schedule for the input schedule name.
+     *
+     * The async variant is {@see DatabaseAdminClient::getBackupScheduleAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_backup_schedule.php
+     *
+     * @param GetBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupSchedule(GetBackupScheduleRequest $request, array $callOptions = []): BackupSchedule
+    {
+        return $this->startApiCall('GetBackupSchedule', $request, $callOptions)->wait();
     }
 
     /**
@@ -701,6 +810,32 @@ final class DatabaseAdminClient
     public function listBackupOperations(ListBackupOperationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListBackupOperations', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the backup schedules for the database.
+     *
+     * The async variant is {@see DatabaseAdminClient::listBackupSchedulesAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/list_backup_schedules.php
+     *
+     * @param ListBackupSchedulesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupSchedules(ListBackupSchedulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackupSchedules', $request, $callOptions);
     }
 
     /**
@@ -953,6 +1088,32 @@ final class DatabaseAdminClient
     }
 
     /**
+     * Updates a backup schedule.
+     *
+     * The async variant is {@see DatabaseAdminClient::updateBackupScheduleAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/update_backup_schedule.php
+     *
+     * @param UpdateBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupSchedule(UpdateBackupScheduleRequest $request, array $callOptions = []): BackupSchedule
+    {
+        return $this->startApiCall('UpdateBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a Cloud Spanner database. The returned
      * [long-running operation][google.longrunning.Operation] can be used to track
      * the progress of updating the database. If the named database does not
@@ -1047,11 +1208,11 @@ final class DatabaseAdminClient
     }
 
     /** Configure the gapic configuration to use a service emulator. */
-    private function getDefaultEmulatorConfig(): array
+    private function setDefaultEmulatorConfig(array $options): array
     {
         $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
         if (empty($emulatorHost)) {
-            return [];
+            return $options;
         }
 
         if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
@@ -1059,16 +1220,9 @@ final class DatabaseAdminClient
             $emulatorHost = str_replace($search, '', $emulatorHost);
         }
 
-        return [
-            'apiEndpoint' => $emulatorHost,
-            'transportConfig' => [
-                'grpc' => [
-                    'stubOpts' => [
-                        'credentials' => ChannelCredentials::createInsecure(),
-                    ],
-                ],
-            ],
-            'credentials' => new InsecureCredentialsWrapper(),
-        ];
+        $options['apiEndpoint'] ??= $emulatorHost;
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }

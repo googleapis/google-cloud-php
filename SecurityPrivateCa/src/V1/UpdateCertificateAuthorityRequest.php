@@ -23,13 +23,13 @@ class UpdateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateAuthority certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_authority = null;
+    protected $certificate_authority = null;
     /**
      * Required. A list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional. An ID to identify requests. Specify a unique request ID so that
      * if you must retry your request, the server will know to ignore the request
@@ -45,7 +45,7 @@ class UpdateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority $certificateAuthority Required.

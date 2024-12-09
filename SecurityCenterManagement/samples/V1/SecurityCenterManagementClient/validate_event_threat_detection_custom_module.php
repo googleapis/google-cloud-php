@@ -31,15 +31,14 @@ use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomM
 /**
  * Validates the given Event Threat Detection custom module.
  *
- * @param string $formattedParent Resource name of the parent to validate the Custom Module under.
+ * @param string $formattedParent Resource name of the parent to validate the custom modules under,
+ *                                in one of the following formats:
  *
- *                                Its format is:
- *
- *                                * `organizations/{organization}/locations/{location}`. Please see
- *                                {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  * @param string $rawText         The raw text of the module's contents. Used to generate error
  *                                messages.
- * @param string $type            The type of the module (e.g. CONFIGURABLE_BAD_IP).
+ * @param string $type            The type of the module. For example, `CONFIGURABLE_BAD_IP`.
  */
 function validate_event_threat_detection_custom_module_sample(
     string $formattedParent,

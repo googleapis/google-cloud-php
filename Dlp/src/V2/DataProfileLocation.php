@@ -26,7 +26,7 @@ class DataProfileLocation extends \Google\Protobuf\Internal\Message
      *     @type int|string $organization_id
      *           The ID of an organization to scan.
      *     @type int|string $folder_id
-     *           The ID of the Folder within an organization to scan.
+     *           The ID of the folder within an organization to scan.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,7 +66,7 @@ class DataProfileLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Folder within an organization to scan.
+     * The ID of the folder within an organization to scan.
      *
      * Generated from protobuf field <code>int64 folder_id = 2;</code>
      * @return int|string
@@ -82,7 +82,7 @@ class DataProfileLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Folder within an organization to scan.
+     * The ID of the folder within an organization to scan.
      *
      * Generated from protobuf field <code>int64 folder_id = 2;</code>
      * @param int|string $var

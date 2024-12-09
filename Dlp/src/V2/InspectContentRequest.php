@@ -20,10 +20,10 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -31,20 +31,20 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Configuration for the inspector. What specified here will override
      * the template referenced by the inspect_template_name argument.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
      */
-    private $inspect_config = null;
+    protected $inspect_config = null;
     /**
      * The item to inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 3;</code>
      */
-    private $item = null;
+    protected $item = null;
     /**
      * Template to use. Any configuration directly specified in
      * inspect_config will override those set in the template. Singular fields
@@ -54,13 +54,13 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string inspect_template_name = 4;</code>
      */
-    private $inspect_template_name = '';
+    protected $inspect_template_name = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * Constructor.
@@ -73,10 +73,10 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on whether you have [specified a
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     *           + Projects scope, location specified:<br/>
-     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
-     *             `projects/`<var>PROJECT_ID</var>
+     *           + Projects scope, location specified:
+     *             `projects/{project_id}/locations/{location_id}`
+     *           + Projects scope, no location specified (defaults to global):
+     *             `projects/{project_id}`
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -106,10 +106,10 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -128,10 +128,10 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:

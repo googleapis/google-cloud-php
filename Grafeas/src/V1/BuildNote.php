@@ -21,7 +21,7 @@ class BuildNote extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string builder_version = 1;</code>
      */
-    private $builder_version = '';
+    protected $builder_version = '';
 
     /**
      * Constructor.

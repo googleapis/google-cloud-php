@@ -1,0 +1,61 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Spanner/**'
+      - '.github/workflows/system-tests-spanner-emulator.yaml'
+  pull_request:
+    paths:
+      - 'Spanner/**'
+      - '.github/workflows/system-tests-spanner-emulator.yaml'
+name: Run Spanner System Tests With Emulator
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    services:
+      emulator:
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.27
+        ports:
+          - 9010:9010
+          - 9020:9020
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Spanner instance
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: '290.0.1'
+      - run: gcloud info
+      - run: gcloud config configurations create emulator
+      - run: gcloud config set auth/disable_credentials true
+      - run: gcloud config set project emulator-project
+      - run: gcloud config set api_endpoint_overrides/spanner http://localhost:9020/
+      - run: gcloud spanner instances create google-cloud-php-system-tests --config=emulator-config --description="Test Instance" --nodes=1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          ini-values: grpc.enable_fork_support=1
+          tools: pecl
+          extensions: bcmath, grpc
+
+      - name: Install dependencies
+        run: |
+          # ensure composer uses local Core instead of pulling from packagist
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.100"}}}' -d Spanner
+          composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
+
+      - name: Run system tests
+        run: |
+          Spanner/vendor/bin/phpunit -c Spanner/phpunit-system.xml.dist
+        env:
+          SPANNER_EMULATOR_HOST: localhost:9010
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'

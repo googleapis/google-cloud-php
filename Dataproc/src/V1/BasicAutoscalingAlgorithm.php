@@ -22,7 +22,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cooldown_period = null;
+    protected $cooldown_period = null;
     protected $config;
 
     /**

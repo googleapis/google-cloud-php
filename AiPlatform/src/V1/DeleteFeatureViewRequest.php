@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [FeatureOnlineStoreAdminService.DeleteFeatureViews][].
+ * Request message for
+ * [FeatureOnlineStoreAdminService.DeleteFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.DeleteFeatureView].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteFeatureViewRequest</code>
  */

@@ -20,9 +20,8 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of the transition route group.
      * [TransitionRouteGroups.CreateTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.CreateTransitionRouteGroup]
-     * populates the name automatically. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow
-     * ID>/transitionRouteGroups/<Transition Route Group ID>`
+     * populates the name automatically. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
      * .
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -52,9 +51,8 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The unique identifier of the transition route group.
      *           [TransitionRouteGroups.CreateTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.CreateTransitionRouteGroup]
-     *           populates the name automatically. Format: `projects/<Project
-     *           ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow
-     *           ID>/transitionRouteGroups/<Transition Route Group ID>`
+     *           populates the name automatically. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
      *           .
      *     @type string $display_name
      *           Required. The human-readable name of the transition route group, unique
@@ -72,9 +70,8 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of the transition route group.
      * [TransitionRouteGroups.CreateTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.CreateTransitionRouteGroup]
-     * populates the name automatically. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow
-     * ID>/transitionRouteGroups/<Transition Route Group ID>`
+     * populates the name automatically. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
      * .
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -88,9 +85,8 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of the transition route group.
      * [TransitionRouteGroups.CreateTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.CreateTransitionRouteGroup]
-     * populates the name automatically. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow
-     * ID>/transitionRouteGroups/<Transition Route Group ID>`
+     * populates the name automatically. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
      * .
      *
      * Generated from protobuf field <code>string name = 1;</code>

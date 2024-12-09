@@ -49,7 +49,8 @@ use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Provides interfaces for managing Cloud KMS Autokey folder-level
+ * Service Description: Provides interfaces for managing [Cloud KMS
+ * Autokey](https://cloud.google.com/kms/help/autokey) folder-level
  * configurations. A configuration is inherited by all descendent projects. A
  * configuration at one folder overrides any other configurations in its
  * ancestry. Setting a configuration on a folder is a prerequisite for Cloud KMS
@@ -65,14 +66,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getAutokeyConfigAsync(GetAutokeyConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface showEffectiveAutokeyConfigAsync(ShowEffectiveAutokeyConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAutokeyConfigAsync(UpdateAutokeyConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutokeyConfig> getAutokeyConfigAsync(GetAutokeyConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ShowEffectiveAutokeyConfigResponse> showEffectiveAutokeyConfigAsync(ShowEffectiveAutokeyConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutokeyConfig> updateAutokeyConfigAsync(UpdateAutokeyConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class AutokeyAdminClient
 {
@@ -298,8 +299,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function showEffectiveAutokeyConfig(ShowEffectiveAutokeyConfigRequest $request, array $callOptions = []): ShowEffectiveAutokeyConfigResponse
-    {
+    public function showEffectiveAutokeyConfig(
+        ShowEffectiveAutokeyConfigRequest $request,
+        array $callOptions = []
+    ): ShowEffectiveAutokeyConfigResponse {
         return $this->startApiCall('ShowEffectiveAutokeyConfig', $request, $callOptions)->wait();
     }
 
@@ -471,8 +474,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

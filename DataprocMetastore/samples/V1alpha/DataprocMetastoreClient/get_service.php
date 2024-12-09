@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START metastore_v1alpha_generated_DataprocMetastore_GetService_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Metastore\V1alpha\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\Client\DataprocMetastoreClient;
+use Google\Cloud\Metastore\V1alpha\GetServiceRequest;
 use Google\Cloud\Metastore\V1alpha\Service;
 
 /**
@@ -41,10 +42,14 @@ function get_service_sample(string $formattedName): void
     // Create a client.
     $dataprocMetastoreClient = new DataprocMetastoreClient();
 
+    // Prepare the request message.
+    $request = (new GetServiceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Service $response */
-        $response = $dataprocMetastoreClient->getService($formattedName);
+        $response = $dataprocMetastoreClient->getService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

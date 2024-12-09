@@ -35,9 +35,9 @@ use Google\Cloud\SecurityCenter\V2\ValuedResource;
  * @param string $formattedParent Name of parent to list exposed resources.
  *
  *                                Valid formats:
- *                                "organizations/{organization}",
- *                                "organizations/{organization}/simulations/{simulation}"
- *                                "organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}"
+ *                                `organizations/{organization}`,
+ *                                `organizations/{organization}/simulations/{simulation}`
+ *                                `organizations/{organization}/simulations/{simulation}/attackExposureResults/{attack_exposure_result_v2}`
  *                                Please see {@see SecurityCenterClient::simulationName()} for help formatting this field.
  */
 function list_valued_resources_sample(string $formattedParent): void

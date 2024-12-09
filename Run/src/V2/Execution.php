@@ -22,7 +22,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned unique identifier for the Execution. The value
      * is a UUID4 string and guaranteed to remain unchanged until the resource is
@@ -30,14 +30,14 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
      *
      * Generated from protobuf field <code>int64 generation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * Output only. Unstructured key value map that can be used to organize and
      * categorize objects. User-provided labels are shared with Google's billing
@@ -65,7 +65,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Represents time when the execution started to run.
      * It is not guaranteed to be set in happens-before order across separate
@@ -73,27 +73,27 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. Represents time when the execution was completed. It is not
      * guaranteed to be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $completion_time = null;
+    protected $completion_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. For a deleted resource, the deletion time. It is only
      * populated as a response to a Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
      * permamently deleted. It is only populated as a response to a Delete
@@ -101,7 +101,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * The least stable launch stage needed to create this resource, as defined by
      * [Google Cloud Platform Launch
@@ -114,13 +114,13 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 11;</code>
      */
-    private $launch_stage = 0;
+    protected $launch_stage = 0;
     /**
      * Output only. The name of the parent Job.
      *
      * Generated from protobuf field <code>string job = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $job = '';
+    protected $job = '';
     /**
      * Output only. Specifies the maximum desired number of tasks the execution
      * should run at any given time. Must be <= task_count. The actual number of
@@ -130,7 +130,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 parallelism = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parallelism = 0;
+    protected $parallelism = 0;
     /**
      * Output only. Specifies the desired number of tasks the execution should
      * run. Setting to 1 means that parallelism is limited to 1 and the success of
@@ -138,13 +138,13 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 task_count = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $task_count = 0;
+    protected $task_count = 0;
     /**
      * Output only. The template used to create tasks for this execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TaskTemplate template = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $template = null;
+    protected $template = null;
     /**
      * Output only. Indicates whether the resource's reconciliation is still in
      * progress. See comments in `Job.reconciling` for additional information on
@@ -152,7 +152,7 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The Condition of this Execution, containing its readiness
      * status, and detailed error information in case it did not reach the desired
@@ -168,57 +168,57 @@ class Execution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $observed_generation = 0;
+    protected $observed_generation = 0;
     /**
      * Output only. The number of actively running tasks.
      *
      * Generated from protobuf field <code>int32 running_count = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $running_count = 0;
+    protected $running_count = 0;
     /**
      * Output only. The number of tasks which reached phase Succeeded.
      *
      * Generated from protobuf field <code>int32 succeeded_count = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $succeeded_count = 0;
+    protected $succeeded_count = 0;
     /**
      * Output only. The number of tasks which reached phase Failed.
      *
      * Generated from protobuf field <code>int32 failed_count = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failed_count = 0;
+    protected $failed_count = 0;
     /**
      * Output only. The number of tasks which reached phase Cancelled.
      *
      * Generated from protobuf field <code>int32 cancelled_count = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cancelled_count = 0;
+    protected $cancelled_count = 0;
     /**
      * Output only. The number of tasks which have retried at least once.
      *
      * Generated from protobuf field <code>int32 retried_count = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $retried_count = 0;
+    protected $retried_count = 0;
     /**
      * Output only. URI where logs for this execution can be found in Cloud
      * Console.
      *
      * Generated from protobuf field <code>string log_uri = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $log_uri = '';
+    protected $log_uri = '';
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

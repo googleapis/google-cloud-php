@@ -23,7 +23,7 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
@@ -32,44 +32,44 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database = 2;</code>
      */
-    private $database = '';
+    protected $database = '';
     /**
      * This is always `sql#importContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * The file type for the specified uri.\`SQL`: The file
      * contains SQL statements. \`CSV`: The file contains CSV data.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFileType file_type = 4;</code>
      */
-    private $file_type = 0;
+    protected $file_type = 0;
     /**
      * Options for importing data as CSV.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlCsvImportOptions csv_import_options = 5;</code>
      */
-    private $csv_import_options = null;
+    protected $csv_import_options = null;
     /**
      * The PostgreSQL user for this import operation. PostgreSQL instances only.
      *
      * Generated from protobuf field <code>string import_user = 6;</code>
      */
-    private $import_user = '';
+    protected $import_user = '';
     /**
      * Import parameters specific to SQL Server .BAK files
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlBakImportOptions bak_import_options = 7;</code>
      */
-    private $bak_import_options = null;
+    protected $bak_import_options = null;
     /**
      * Optional. Options for importing data from SQL statements.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions sql_import_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sql_import_options = null;
+    protected $sql_import_options = null;
 
     /**
      * Constructor.

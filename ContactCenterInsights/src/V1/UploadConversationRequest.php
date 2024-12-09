@@ -20,13 +20,13 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The conversation resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.Conversation conversation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation = null;
+    protected $conversation = null;
     /**
      * Optional. A unique ID for the new conversation. This ID will become the
      * final component of the conversation's resource name. If no ID is specified,
@@ -36,21 +36,21 @@ class UploadConversationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $conversation_id = '';
+    protected $conversation_id = '';
     /**
      * Optional. DLP settings for transcript redaction. Will default to the config
      * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $redaction_config = null;
+    protected $redaction_config = null;
     /**
      * Optional. Speech-to-Text configuration. Will default to the config
      * specified in Settings.
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $speech_config = null;
+    protected $speech_config = null;
 
     /**
      * Constructor.

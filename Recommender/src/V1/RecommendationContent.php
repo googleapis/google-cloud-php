@@ -28,7 +28,7 @@ class RecommendationContent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct overview = 3;</code>
      */
-    private $overview = null;
+    protected $overview = null;
 
     /**
      * Constructor.

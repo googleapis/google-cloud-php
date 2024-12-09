@@ -11,6 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A request to update a transfer configuration. To update the user id of the
  * transfer configuration, authorization info needs to be provided.
+ * When using a cross project service account for updating a transfer config,
+ * you must enable cross project service account usage. For more information,
+ * see [Disable attachment of service accounts to resources in other
+ * projects](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_cross_project_service_accounts).
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest</code>
  */
@@ -21,8 +25,11 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_config = null;
+    protected $transfer_config = null;
     /**
+     * Deprecated: Authorization code was required when
+     * `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used
+     * in any data sources. Use `version_info` instead.
      * Optional OAuth2 authorization code to use with this transfer configuration.
      * This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
      * and new credentials are needed, as indicated by `CheckValidCreds`. In order
@@ -30,31 +37,33 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * <pre class="prettyprint" suppresswarning="true">
      * https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      * </pre>
-     * * The <var>client_id</var> is the OAuth client_id of the a data source as
+     * * The <var>client_id</var> is the OAuth client_id of the data source as
      * returned by ListDataSources method.
      * * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      * method.
      * Note that this should not be set when `service_account_name` is used to
      * update the transfer config.
      *
-     * Generated from protobuf field <code>string authorization_code = 3;</code>
+     * Generated from protobuf field <code>string authorization_code = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $authorization_code = '';
+    protected $authorization_code = '';
     /**
      * Required. Required list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
-     * Optional version info. This is required only if
-     * `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
+     * Optional version info. This parameter replaces `authorization_code` which
+     * is no longer used in any data sources. This is required only if
+     * `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials
      * are needed, as indicated by `CheckValidCreds`. In order to obtain version
      * info, make a request to the following URL:
      * <pre class="prettyprint" suppresswarning="true">
      * https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      * </pre>
-     * * The <var>client_id</var> is the OAuth client_id of the a data source as
+     * * The <var>client_id</var> is the OAuth client_id of the data source as
      * returned by ListDataSources method.
      * * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      * method.
@@ -63,7 +72,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_info = 5;</code>
      */
-    private $version_info = '';
+    protected $version_info = '';
     /**
      * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
@@ -76,7 +85,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_name = 6;</code>
      */
-    private $service_account_name = '';
+    protected $service_account_name = '';
 
     /**
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig Required. Data transfer configuration to create.
@@ -102,6 +111,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transfer_config
      *           Required. Data transfer configuration to create.
      *     @type string $authorization_code
+     *           Deprecated: Authorization code was required when
+     *           `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used
+     *           in any data sources. Use `version_info` instead.
      *           Optional OAuth2 authorization code to use with this transfer configuration.
      *           This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
      *           and new credentials are needed, as indicated by `CheckValidCreds`. In order
@@ -109,7 +121,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *           <pre class="prettyprint" suppresswarning="true">
      *           https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      *           </pre>
-     *           * The <var>client_id</var> is the OAuth client_id of the a data source as
+     *           * The <var>client_id</var> is the OAuth client_id of the data source as
      *           returned by ListDataSources method.
      *           * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      *           method.
@@ -118,14 +130,15 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Required list of fields to be updated in this request.
      *     @type string $version_info
-     *           Optional version info. This is required only if
-     *           `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
+     *           Optional version info. This parameter replaces `authorization_code` which
+     *           is no longer used in any data sources. This is required only if
+     *           `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials
      *           are needed, as indicated by `CheckValidCreds`. In order to obtain version
      *           info, make a request to the following URL:
      *           <pre class="prettyprint" suppresswarning="true">
      *           https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      *           </pre>
-     *           * The <var>client_id</var> is the OAuth client_id of the a data source as
+     *           * The <var>client_id</var> is the OAuth client_id of the data source as
      *           returned by ListDataSources method.
      *           * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      *           method.
@@ -184,6 +197,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: Authorization code was required when
+     * `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used
+     * in any data sources. Use `version_info` instead.
      * Optional OAuth2 authorization code to use with this transfer configuration.
      * This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
      * and new credentials are needed, as indicated by `CheckValidCreds`. In order
@@ -191,22 +207,27 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * <pre class="prettyprint" suppresswarning="true">
      * https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      * </pre>
-     * * The <var>client_id</var> is the OAuth client_id of the a data source as
+     * * The <var>client_id</var> is the OAuth client_id of the data source as
      * returned by ListDataSources method.
      * * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      * method.
      * Note that this should not be set when `service_account_name` is used to
      * update the transfer config.
      *
-     * Generated from protobuf field <code>string authorization_code = 3;</code>
+     * Generated from protobuf field <code>string authorization_code = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getAuthorizationCode()
     {
+        @trigger_error('authorization_code is deprecated.', E_USER_DEPRECATED);
         return $this->authorization_code;
     }
 
     /**
+     * Deprecated: Authorization code was required when
+     * `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used
+     * in any data sources. Use `version_info` instead.
      * Optional OAuth2 authorization code to use with this transfer configuration.
      * This is required only if `transferConfig.dataSourceId` is 'youtube_channel'
      * and new credentials are needed, as indicated by `CheckValidCreds`. In order
@@ -214,19 +235,21 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * <pre class="prettyprint" suppresswarning="true">
      * https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=authorization_code&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      * </pre>
-     * * The <var>client_id</var> is the OAuth client_id of the a data source as
+     * * The <var>client_id</var> is the OAuth client_id of the data source as
      * returned by ListDataSources method.
      * * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      * method.
      * Note that this should not be set when `service_account_name` is used to
      * update the transfer config.
      *
-     * Generated from protobuf field <code>string authorization_code = 3;</code>
+     * Generated from protobuf field <code>string authorization_code = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setAuthorizationCode($var)
     {
+        @trigger_error('authorization_code is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->authorization_code = $var;
 
@@ -270,14 +293,15 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional version info. This is required only if
-     * `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
+     * Optional version info. This parameter replaces `authorization_code` which
+     * is no longer used in any data sources. This is required only if
+     * `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials
      * are needed, as indicated by `CheckValidCreds`. In order to obtain version
      * info, make a request to the following URL:
      * <pre class="prettyprint" suppresswarning="true">
      * https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      * </pre>
-     * * The <var>client_id</var> is the OAuth client_id of the a data source as
+     * * The <var>client_id</var> is the OAuth client_id of the data source as
      * returned by ListDataSources method.
      * * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      * method.
@@ -293,14 +317,15 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional version info. This is required only if
-     * `transferConfig.dataSourceId` is not 'youtube_channel' and new credentials
+     * Optional version info. This parameter replaces `authorization_code` which
+     * is no longer used in any data sources. This is required only if
+     * `transferConfig.dataSourceId` is 'youtube_channel' *or* new credentials
      * are needed, as indicated by `CheckValidCreds`. In order to obtain version
      * info, make a request to the following URL:
      * <pre class="prettyprint" suppresswarning="true">
      * https://bigquery.cloud.google.com/datatransfer/oauthz/auth?redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=version_info&client_id=<var>client_id</var>&scope=<var>data_source_scopes</var>
      * </pre>
-     * * The <var>client_id</var> is the OAuth client_id of the a data source as
+     * * The <var>client_id</var> is the OAuth client_id of the data source as
      * returned by ListDataSources method.
      * * <var>data_source_scopes</var> are the scopes returned by ListDataSources
      * method.

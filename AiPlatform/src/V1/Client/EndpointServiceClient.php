@@ -42,6 +42,7 @@ use Google\Cloud\AIPlatform\V1\GetEndpointRequest;
 use Google\Cloud\AIPlatform\V1\ListEndpointsRequest;
 use Google\Cloud\AIPlatform\V1\MutateDeployedModelRequest;
 use Google\Cloud\AIPlatform\V1\UndeployModelRequest;
+use Google\Cloud\AIPlatform\V1\UpdateEndpointLongRunningRequest;
 use Google\Cloud\AIPlatform\V1\UpdateEndpointRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -66,19 +67,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEndpointAsync(CreateEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEndpointAsync(DeleteEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployModelAsync(DeployModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEndpointAsync(GetEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEndpointsAsync(ListEndpointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface mutateDeployedModelAsync(MutateDeployedModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployModelAsync(UndeployModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEndpointAsync(UpdateEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEndpointAsync(CreateEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEndpointAsync(DeleteEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployModelAsync(DeployModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Endpoint> getEndpointAsync(GetEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEndpointsAsync(ListEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> mutateDeployedModelAsync(MutateDeployedModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployModelAsync(UndeployModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Endpoint> updateEndpointAsync(UpdateEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEndpointLongRunningAsync(UpdateEndpointLongRunningRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class EndpointServiceClient
 {
@@ -339,6 +341,25 @@ final class EndpointServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -350,6 +371,7 @@ final class EndpointServiceClient
      * - network: projects/{project}/global/networks/{network}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -651,6 +673,35 @@ final class EndpointServiceClient
     public function updateEndpoint(UpdateEndpointRequest $request, array $callOptions = []): Endpoint
     {
         return $this->startApiCall('UpdateEndpoint', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an Endpoint with a long running operation.
+     *
+     * The async variant is
+     * {@see EndpointServiceClient::updateEndpointLongRunningAsync()} .
+     *
+     * @example samples/V1/EndpointServiceClient/update_endpoint_long_running.php
+     *
+     * @param UpdateEndpointLongRunningRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateEndpointLongRunning(
+        UpdateEndpointLongRunningRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateEndpointLongRunning', $request, $callOptions)->wait();
     }
 
     /**

@@ -20,7 +20,7 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * List of tiers.
      *

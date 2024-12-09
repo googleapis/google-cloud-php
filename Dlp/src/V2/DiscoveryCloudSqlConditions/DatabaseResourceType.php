@@ -59,6 +59,4 @@ class DatabaseResourceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DatabaseResourceType::class, \Google\Cloud\Dlp\V2\DiscoveryCloudSqlConditions_DatabaseResourceType::class);
 

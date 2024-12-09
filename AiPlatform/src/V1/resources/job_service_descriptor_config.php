@@ -648,6 +648,7 @@ return [
                 'persistentResource' => 'projects/{project}/locations/{location}/persistentResources/{persistent_resource}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
+                'reservation' => 'projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}',
                 'tensorboard' => 'projects/{project}/locations/{location}/tensorboards/{tensorboard}',
                 'trial' => 'projects/{project}/locations/{location}/studies/{study}/trials/{trial}',
             ],

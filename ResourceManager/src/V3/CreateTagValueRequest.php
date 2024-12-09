@@ -21,14 +21,14 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.TagValue tag_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_value = null;
+    protected $tag_value = null;
     /**
      * Optional. Set as true to perform the validations necessary for creating the
      * resource, but not actually perform the action.
      *
      * Generated from protobuf field <code>bool validate_only = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\ResourceManager\V3\TagValue $tagValue Required. The TagValue to be created. Only fields `short_name`,

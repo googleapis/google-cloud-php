@@ -54,7 +54,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ lat_long_rect'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">LatLongRect</xref>'
           description: 'Not used.'
         -
           id: '↳ language_hints'
@@ -62,19 +62,19 @@ items:
           description: 'List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](https://cloud.google.com/vision/docs/languages).'
         -
           id: '↳ crop_hints_params'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">CropHintsParams</xref>'
           description: 'Parameters for crop hints annotation request.'
         -
           id: '↳ product_search_params'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">ProductSearchParams</xref>'
           description: 'Parameters for product search.'
         -
           id: '↳ web_detection_params'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">WebDetectionParams</xref>'
           description: 'Parameters for web detection.'
         -
           id: '↳ text_detection_params'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">TextDetectionParams</xref>'
           description: 'Parameters for text detection and document text detection.'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::getLatLongRect()'
@@ -88,7 +88,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">LatLongRect</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasLatLongRect()'
     name: hasLatLongRect
@@ -118,7 +118,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">LatLongRect</xref>'
           description: ''
       returns:
         -
@@ -182,7 +182,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">CropHintsParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasCropHintsParams()'
     name: hasCropHintsParams
@@ -212,7 +212,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">CropHintsParams</xref>'
           description: ''
       returns:
         -
@@ -229,7 +229,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">ProductSearchParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasProductSearchParams()'
     name: hasProductSearchParams
@@ -259,7 +259,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">ProductSearchParams</xref>'
           description: ''
       returns:
         -
@@ -276,7 +276,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">WebDetectionParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasWebDetectionParams()'
     name: hasWebDetectionParams
@@ -306,7 +306,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">WebDetectionParams</xref>'
           description: ''
       returns:
         -
@@ -323,7 +323,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">TextDetectionParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasTextDetectionParams()'
     name: hasTextDetectionParams
@@ -353,7 +353,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">TextDetectionParams</xref>'
           description: ''
       returns:
         -

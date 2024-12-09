@@ -23,7 +23,7 @@ class RevertInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The snapshot resource ID, in the format 'my-snapshot', where the
      * specified ID is the {snapshot_id} of the fully qualified name like
@@ -31,7 +31,7 @@ class RevertInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target_snapshot_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_snapshot_id = '';
+    protected $target_snapshot_id = '';
 
     /**
      * Constructor.

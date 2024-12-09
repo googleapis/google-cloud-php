@@ -50,12 +50,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionSslPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionSslPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionSslPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionSslPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAvailableFeaturesAsync(ListAvailableFeaturesRegionSslPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslPolicy> getAsync(GetRegionSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionSslPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionSslPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslPoliciesListAvailableFeaturesResponse> listAvailableFeaturesAsync(ListAvailableFeaturesRegionSslPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionSslPolicyRequest $request, array $optionalArgs = [])
  */
 final class RegionSslPoliciesClient
 {

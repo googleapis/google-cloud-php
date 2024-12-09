@@ -20,13 +20,13 @@ class PriceByResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ResourceType resource_type = 1;</code>
      */
-    private $resource_type = 0;
+    protected $resource_type = 0;
     /**
      * Price of the Offer. Present if there are no price phases.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Price price = 2;</code>
      */
-    private $price = null;
+    protected $price = null;
     /**
      * Specifies the price by time range.
      *

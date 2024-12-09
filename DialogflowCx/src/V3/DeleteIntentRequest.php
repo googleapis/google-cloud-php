@@ -18,8 +18,8 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the intent to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,8 +27,8 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the intent to delete.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/intents/<Intent ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`. Please see
      *                     {@see IntentsClient::intentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteIntentRequest
@@ -49,8 +49,8 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the intent to delete.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,8 +60,8 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the intent to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,8 +73,8 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the intent to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

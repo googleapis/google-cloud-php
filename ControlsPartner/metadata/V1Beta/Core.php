@@ -27,7 +27,7 @@ class Core
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ
+¸
 3google/cloud/cloudcontrolspartner/v1beta/core.proto(google.cloud.cloudcontrolspartner.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protoGgoogle/cloud/cloudcontrolspartner/v1beta/access_approval_requests.protoAgoogle/cloud/cloudcontrolspartner/v1beta/customer_workloads.proto8google/cloud/cloudcontrolspartner/v1beta/customers.proto>google/cloud/cloudcontrolspartner/v1beta/ekm_connections.protoBgoogle/cloud/cloudcontrolspartner/v1beta/partner_permissions.proto7google/cloud/cloudcontrolspartner/v1beta/partners.protogoogle/protobuf/timestamp.proto"€
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
@@ -36,15 +36,15 @@ class Core
 verb (	BàA
 status_message (	BàA#
 requested_cancellation (BàA
-api_version (	BàA2»
+api_version (	BàA2¾
 CloudControlsPartnerCoreÒ
 GetWorkload<.google.cloud.cloudcontrolspartner.v1beta.GetWorkloadRequest2.google.cloud.cloudcontrolspartner.v1beta.Workload"QÚAname‚Óä“DB/v1beta/{name=organizations/*/locations/*/customers/*/workloads/*}å
 ListWorkloads>.google.cloud.cloudcontrolspartner.v1beta.ListWorkloadsRequest?.google.cloud.cloudcontrolspartner.v1beta.ListWorkloadsResponse"SÚAparent‚Óä“DB/v1beta/{parent=organizations/*/locations/*/customers/*}/workloadsÆ
 GetCustomer<.google.cloud.cloudcontrolspartner.v1beta.GetCustomerRequest2.google.cloud.cloudcontrolspartner.v1beta.Customer"EÚAname‚Óä“86/v1beta/{name=organizations/*/locations/*/customers/*}Ù
 ListCustomers>.google.cloud.cloudcontrolspartner.v1beta.ListCustomersRequest?.google.cloud.cloudcontrolspartner.v1beta.ListCustomersResponse"GÚAparent‚Óä“86/v1beta/{parent=organizations/*/locations/*}/customersó
 GetEkmConnectionsB.google.cloud.cloudcontrolspartner.v1beta.GetEkmConnectionsRequest8.google.cloud.cloudcontrolspartner.v1beta.EkmConnections"`ÚAname‚Óä“SQ/v1beta/{name=organizations/*/locations/*/customers/*/workloads/*/ekmConnections}ƒ
-GetPartnerPermissionsF.google.cloud.cloudcontrolspartner.v1beta.GetPartnerPermissionsRequest<.google.cloud.cloudcontrolspartner.v1beta.PartnerPermissions"dÚAname‚Óä“WU/v1beta/{name=organizations/*/locations/*/customers/*/workloads/*/partnerPermissions}¥
-ListAccessApprovalRequestsK.google.cloud.cloudcontrolspartner.v1beta.ListAccessApprovalRequestsRequestL.google.cloud.cloudcontrolspartner.v1beta.ListAccessApprovalRequestsResponse"lÚAparent‚Óä“][/v1beta/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequests¿
+GetPartnerPermissionsF.google.cloud.cloudcontrolspartner.v1beta.GetPartnerPermissionsRequest<.google.cloud.cloudcontrolspartner.v1beta.PartnerPermissions"dÚAname‚Óä“WU/v1beta/{name=organizations/*/locations/*/customers/*/workloads/*/partnerPermissions}¨
+ListAccessApprovalRequestsK.google.cloud.cloudcontrolspartner.v1beta.ListAccessApprovalRequestsRequestL.google.cloud.cloudcontrolspartner.v1beta.ListAccessApprovalRequestsResponse"oˆÚAparent‚Óä“][/v1beta/{parent=organizations/*/locations/*/customers/*/workloads/*}/accessApprovalRequests¿
 
 GetPartner;.google.cloud.cloudcontrolspartner.v1beta.GetPartnerRequest1.google.cloud.cloudcontrolspartner.v1beta.Partner"AÚAname‚Óä“42/v1beta/{name=organizations/*/locations/*/partner}WÊA#cloudcontrolspartner.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‘
 ,com.google.cloud.cloudcontrolspartner.v1betaB	CoreProtoPZ`cloud.google.com/go/cloudcontrolspartner/apiv1beta/cloudcontrolspartnerpb;cloudcontrolspartnerpbª(Google.Cloud.CloudControlsPartner.V1BetaÊ(Google\\Cloud\\CloudControlsPartner\\V1betaê+Google::Cloud::CloudControlsPartner::V1betaêAm

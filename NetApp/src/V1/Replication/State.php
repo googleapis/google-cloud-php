@@ -50,6 +50,18 @@ class State
      * Generated from protobuf enum <code>ERROR = 6;</code>
      */
     const ERROR = 6;
+    /**
+     * Replication is waiting for cluster peering to be established.
+     *
+     * Generated from protobuf enum <code>PENDING_CLUSTER_PEERING = 8;</code>
+     */
+    const PENDING_CLUSTER_PEERING = 8;
+    /**
+     * Replication is waiting for SVM peering to be established.
+     *
+     * Generated from protobuf enum <code>PENDING_SVM_PEERING = 9;</code>
+     */
+    const PENDING_SVM_PEERING = 9;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -58,6 +70,8 @@ class State
         self::UPDATING => 'UPDATING',
         self::DELETING => 'DELETING',
         self::ERROR => 'ERROR',
+        self::PENDING_CLUSTER_PEERING => 'PENDING_CLUSTER_PEERING',
+        self::PENDING_SVM_PEERING => 'PENDING_SVM_PEERING',
     ];
 
     public static function name($value)

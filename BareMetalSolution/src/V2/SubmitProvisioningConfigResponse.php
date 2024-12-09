@@ -20,7 +20,7 @@ class SubmitProvisioningConfigResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.baremetalsolution.v2.ProvisioningConfig provisioning_config = 1;</code>
      */
-    private $provisioning_config = null;
+    protected $provisioning_config = null;
 
     /**
      * Constructor.

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/apihub/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/ApiHub/$1/$2
+api-name: ApiHub

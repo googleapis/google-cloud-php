@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,13 +54,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addControlAsync(AddControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeControlAsync(RemoveControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> addControlAsync(AddControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> removeControlAsync(RemoveControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
  */
 final class ServingConfigServiceClient
 {
@@ -87,9 +87,7 @@ final class ServingConfigServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -140,8 +138,12 @@ final class ServingConfigServiceClient
      *
      * @return string The formatted serving_config resource.
      */
-    public static function servingConfigName(string $project, string $location, string $catalog, string $servingConfig): string
-    {
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('servingConfig')->render([
             'project' => $project,
             'location' => $location,

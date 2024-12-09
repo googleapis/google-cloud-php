@@ -33,6 +33,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
@@ -46,9 +48,12 @@ use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
 use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesResponse;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
@@ -57,6 +62,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
@@ -78,9 +85,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
  * try {
- *     $formattedName = $recaptchaEnterpriseServiceClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
- *     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
- *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+ *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+ *     $ipOverrideData = new IpOverrideData();
+ *     $response = $recaptchaEnterpriseServiceClient->addIpOverride($formattedName, $ipOverrideData);
  * } finally {
  *     $recaptchaEnterpriseServiceClient->close();
  * }
@@ -456,6 +463,64 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Adds an IP override to a key. The following restrictions hold:
+     * * The maximum number of IP overrides per key is 100.
+     * * For any conflict (such as IP already exists or IP part of an existing
+     * IP range), an error is returned.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     $ipOverrideData = new IpOverrideData();
+     *     $response = $recaptchaEnterpriseServiceClient->addIpOverride($formattedName, $ipOverrideData);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string         $name           Required. The name of the key to which the IP override is added, in the
+     *                                       format `projects/{project}/keys/{key}`.
+     * @param IpOverrideData $ipOverrideData Required. IP override added to the key.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AddIpOverrideResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addIpOverride(
+        $name,
+        $ipOverrideData,
+        array $optionalArgs = []
+    ) {
+        $request = new AddIpOverrideRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setIpOverrideData($ipOverrideData);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AddIpOverride',
+            AddIpOverrideResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Annotates a previously created Assessment to provide additional information
      * on whether the event turned out to be authentic or fraudulent.
      *
@@ -473,8 +538,8 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
      *                             `projects/{project}/assessments/{assessment}`.
-     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
-     *                             be left empty to provide reasons that apply to an event without concluding
+     * @param int    $annotation   Optional. The annotation that is assigned to the Event. This field can be
+     *                             left empty to provide reasons that apply to an event without concluding
      *                             whether the event is legitimate or fraudulent.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
      * @param array  $optionalArgs {
@@ -560,7 +625,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The name of the project in which the assessment will be created,
+     * @param string     $parent       Required. The name of the project in which the assessment is created,
      *                                 in the format `projects/{project}`.
      * @param Assessment $assessment   Required. The assessment details.
      * @param array      $optionalArgs {
@@ -617,7 +682,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         Required. The name of the project this policy will apply to, in the format
+     * @param string         $parent         Required. The name of the project this policy applies to, in the format
      *                                       `projects/{project}`.
      * @param FirewallPolicy $firewallPolicy Required. Information to create the policy.
      * @param array          $optionalArgs   {
@@ -672,7 +737,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project in which the key will be created, in the
+     * @param string $parent       Required. The name of the project in which the key is created, in the
      *                             format `projects/{project}`.
      * @param Key    $key          Required. Information to create a reCAPTCHA Enterprise key.
      * @param array  $optionalArgs {
@@ -1030,6 +1095,84 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Lists all IP overrides for a key.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedParent = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listIpOverrides($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->listIpOverrides($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent key for which the IP overrides are listed, in the
+     *                             format `projects/{project}/keys/{key}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listIpOverrides($parent, array $optionalArgs = [])
+    {
+        $request = new ListIpOverridesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListIpOverrides',
+            $optionalArgs,
+            ListIpOverridesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Returns the list of all keys that belong to a project.
      *
      * Sample code:
@@ -1055,7 +1198,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project that contains the keys that will be
+     * @param string $parent       Required. The name of the project that contains the keys that is
      *                             listed, in the format `projects/{project}`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1293,11 +1436,11 @@ class RecaptchaEnterpriseServiceGapicClient
      *           Optional. If true, skips the billing check.
      *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
      *           reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
-     *           https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     *           https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid
      *           any disruption of your usage, we check that a billing account is present.
      *           If your usage of reCAPTCHA is under the free quota, you can safely skip the
      *           billing check and proceed with the migration. See
-     *           https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     *           https://cloud.google.com/recaptcha/docs/billing-information.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1327,6 +1470,65 @@ class RecaptchaEnterpriseServiceGapicClient
         return $this->startCall(
             'MigrateKey',
             Key::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Removes an IP override from a key. The following restrictions hold:
+     * * If the IP isn't found in an existing IP override, a `NOT_FOUND` error
+     * is returned.
+     * * If the IP is found in an existing IP override, but the
+     * override type does not match, a `NOT_FOUND` error is returned.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     $ipOverrideData = new IpOverrideData();
+     *     $response = $recaptchaEnterpriseServiceClient->removeIpOverride($formattedName, $ipOverrideData);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string         $name           Required. The name of the key from which the IP override is removed, in the
+     *                                       format `projects/{project}/keys/{key}`.
+     * @param IpOverrideData $ipOverrideData Required. IP override to be removed from the key.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removeIpOverride(
+        $name,
+        $ipOverrideData,
+        array $optionalArgs = []
+    ) {
+        $request = new RemoveIpOverrideRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setIpOverrideData($ipOverrideData);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RemoveIpOverride',
+            RemoveIpOverrideResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1561,7 +1763,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields of the policy get updated. If
-     *           the mask is not present, all fields will be updated.
+     *           the mask is not present, all fields are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1620,7 +1822,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           Optional. The mask to control which fields of the key get updated. If the
-     *           mask is not present, all fields will be updated.
+     *           mask is not present, all fields are updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

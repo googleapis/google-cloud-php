@@ -20,43 +20,43 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string param_id = 1;</code>
      */
-    private $param_id = '';
+    protected $param_id = '';
     /**
      * Parameter display name in the user interface.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Parameter description.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Parameter type.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.DataSourceParameter.Type type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Is parameter required.
      *
      * Generated from protobuf field <code>bool required = 5;</code>
      */
-    private $required = false;
+    protected $required = false;
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool repeated = 6;</code>
      */
-    private $repeated = false;
+    protected $repeated = false;
     /**
      * Regular expression which can be used for parameter validation.
      *
      * Generated from protobuf field <code>string validation_regex = 7;</code>
      */
-    private $validation_regex = '';
+    protected $validation_regex = '';
     /**
      * All possible values for the parameter.
      *
@@ -68,13 +68,13 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
      */
-    private $min_value = null;
+    protected $min_value = null;
     /**
      * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      */
-    private $max_value = null;
+    protected $max_value = null;
     /**
      * Deprecated. This field has no effect.
      *
@@ -87,32 +87,32 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string validation_description = 12;</code>
      */
-    private $validation_description = '';
+    protected $validation_description = '';
     /**
      * URL to a help document to further explain the naming requirements.
      *
      * Generated from protobuf field <code>string validation_help_url = 13;</code>
      */
-    private $validation_help_url = '';
+    protected $validation_help_url = '';
     /**
      * Cannot be changed after initial creation.
      *
      * Generated from protobuf field <code>bool immutable = 14;</code>
      */
-    private $immutable = false;
+    protected $immutable = false;
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool recurse = 15;</code>
      */
-    private $recurse = false;
+    protected $recurse = false;
     /**
      * If true, it should not be used in new transfers, and it should not be
      * visible to users.
      *
      * Generated from protobuf field <code>bool deprecated = 20;</code>
      */
-    private $deprecated = false;
+    protected $deprecated = false;
 
     /**
      * Constructor.
@@ -398,7 +398,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
      * @return float|null
      */
-    public function getMinValueValue()
+    public function getMinValueUnwrapped()
     {
         return $this->readWrapperValue("min_value");
     }
@@ -427,7 +427,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setMinValueValue($var)
+    public function setMinValueUnwrapped($var)
     {
         $this->writeWrapperValue("min_value", $var);
         return $this;}
@@ -461,7 +461,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @return float|null
      */
-    public function getMaxValueValue()
+    public function getMaxValueUnwrapped()
     {
         return $this->readWrapperValue("max_value");
     }
@@ -490,7 +490,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setMaxValueValue($var)
+    public function setMaxValueUnwrapped($var)
     {
         $this->writeWrapperValue("max_value", $var);
         return $this;}

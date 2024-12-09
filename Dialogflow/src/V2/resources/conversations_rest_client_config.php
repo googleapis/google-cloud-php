@@ -61,6 +61,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateStatelessSuggestion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/statelessSuggestion:generate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateStatelessSummary' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{stateless_conversation.parent=projects/*}/suggestions:generateStatelessSummary',

@@ -34,7 +34,7 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cpu_idle = 2;</code>
      */
-    private $cpu_idle = false;
+    protected $cpu_idle = false;
     /**
      * Determines whether CPU should be boosted on startup of a new container
      * instance above the requested CPU threshold, this can help reduce cold-start
@@ -42,7 +42,7 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool startup_cpu_boost = 3;</code>
      */
-    private $startup_cpu_boost = false;
+    protected $startup_cpu_boost = false;
 
     /**
      * Constructor.

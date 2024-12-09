@@ -22,7 +22,7 @@ class Regex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pattern = 1;</code>
      */
-    private $pattern = '';
+    protected $pattern = '';
     /**
      * The index of the submatch to extract as findings. When not
      * specified, the entire match is returned. No more than 3 may be included.
@@ -111,6 +111,4 @@ class Regex extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Regex::class, \Google\Cloud\Dlp\V2\CustomInfoType_Regex::class);
 

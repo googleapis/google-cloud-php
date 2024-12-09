@@ -66,19 +66,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createIndexEndpointAsync(CreateIndexEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIndexEndpointAsync(DeleteIndexEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployIndexAsync(DeployIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIndexEndpointAsync(GetIndexEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIndexEndpointsAsync(ListIndexEndpointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface mutateDeployedIndexAsync(MutateDeployedIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployIndexAsync(UndeployIndexRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIndexEndpointAsync(UpdateIndexEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createIndexEndpointAsync(CreateIndexEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteIndexEndpointAsync(DeleteIndexEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployIndexAsync(DeployIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IndexEndpoint> getIndexEndpointAsync(GetIndexEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIndexEndpointsAsync(ListIndexEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> mutateDeployedIndexAsync(MutateDeployedIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployIndexAsync(UndeployIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IndexEndpoint> updateIndexEndpointAsync(UpdateIndexEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class IndexEndpointServiceClient
 {
@@ -234,12 +234,32 @@ final class IndexEndpointServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - index: projects/{project}/locations/{location}/indexes/{index}
      * - indexEndpoint: projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}
      * - location: projects/{project}/locations/{location}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

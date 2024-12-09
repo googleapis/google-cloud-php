@@ -20,20 +20,20 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The desired input location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEventInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * The desired location of errors incurred during the Import. Cannot be set
      * for inline user event imports.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ImportErrorsConfig errors_config = 3;</code>
      */
-    private $errors_config = null;
+    protected $errors_config = null;
 
     /**
      * Constructor.

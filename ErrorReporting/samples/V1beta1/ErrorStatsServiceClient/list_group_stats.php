@@ -33,11 +33,21 @@ use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsRequest;
  * Lists the specified groups.
  *
  * @param string $formattedProjectName The resource name of the Google Cloud Platform project. Written
- *                                     as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
- *                                     and `{projectNumber}` can be found in the
- *                                     [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+ *                                     as `projects/{projectID}` or `projects/{projectNumber}`, where
+ *                                     `{projectID}` and `{projectNumber}` can be found in the
+ *                                     [Google Cloud console](https://support.google.com/cloud/answer/6158840).
+ *                                     It may also include a location, such as
+ *                                     `projects/{projectID}/locations/{location}` where `{location}` is a cloud
+ *                                     region.
  *
- *                                     Examples: `projects/my-project-123`, `projects/5551234`. Please see
+ *                                     Examples: `projects/my-project-123`, `projects/5551234`,
+ *                                     `projects/my-project-123/locations/us-central1`,
+ *                                     `projects/5551234/locations/us-central1`.
+ *
+ *                                     For a list of supported locations, see [Supported
+ *                                     Regions](https://cloud.google.com/logging/docs/region-support). `global` is
+ *                                     the default when unspecified. Use `-` as a wildcard to request group stats
+ *                                     from all regions. Please see
  *                                     {@see ErrorStatsServiceClient::projectName()} for help formatting this field.
  */
 function list_group_stats_sample(string $formattedProjectName): void

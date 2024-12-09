@@ -22,7 +22,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * Google Cloud Storage object containing the source.
      * This object must be a gzipped archive file (`.tar.gz`) containing source to
@@ -30,14 +30,22 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string object = 2;</code>
      */
-    private $object = '';
+    protected $object = '';
     /**
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
+    /**
+     * When the specified storage bucket is a 1st gen function uploard url bucket,
+     * this field should be set as the generated upload url for 1st gen
+     * deployment.
+     *
+     * Generated from protobuf field <code>string source_upload_url = 4;</code>
+     */
+    protected $source_upload_url = '';
 
     /**
      * Constructor.
@@ -56,6 +64,10 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *     @type int|string $generation
      *           Google Cloud Storage generation for the object. If the generation is
      *           omitted, the latest generation will be used.
+     *     @type string $source_upload_url
+     *           When the specified storage bucket is a 1st gen function uploard url bucket,
+     *           this field should be set as the generated upload url for 1st gen
+     *           deployment.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +159,36 @@ class StorageSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->generation = $var;
+
+        return $this;
+    }
+
+    /**
+     * When the specified storage bucket is a 1st gen function uploard url bucket,
+     * this field should be set as the generated upload url for 1st gen
+     * deployment.
+     *
+     * Generated from protobuf field <code>string source_upload_url = 4;</code>
+     * @return string
+     */
+    public function getSourceUploadUrl()
+    {
+        return $this->source_upload_url;
+    }
+
+    /**
+     * When the specified storage bucket is a 1st gen function uploard url bucket,
+     * this field should be set as the generated upload url for 1st gen
+     * deployment.
+     *
+     * Generated from protobuf field <code>string source_upload_url = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceUploadUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_upload_url = $var;
 
         return $this;
     }

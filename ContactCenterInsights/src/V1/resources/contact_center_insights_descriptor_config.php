@@ -61,6 +61,44 @@ return [
                     ],
                 ],
             ],
+            'BulkDownloadFeedbackLabels' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BulkUploadFeedbackLabels' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkUploadFeedbackLabelsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\BulkUploadFeedbackLabelsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAnalysis' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\Analysis',
@@ -156,10 +194,106 @@ return [
                     ],
                 ],
             ],
+            'ExportIssueModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ExportIssueModelResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ExportIssueModelMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportIssueModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ImportIssueModelResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\ImportIssueModelMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'IngestConversations' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\IngestConversationsResponse',
                     'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'InitializeEncryptionSpec' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'encryption_spec.name',
+                        'fieldAccessors' => [
+                            'getEncryptionSpec',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetrics' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\QueryMetricsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'location',
+                        'fieldAccessors' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
+            'TuneQaScorecardRevision' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionResponse',
+                    'metadataReturnType' => '\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -237,6 +371,18 @@ return [
                     ],
                 ],
             ],
+            'CreateAnalysisRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\AnalysisRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\Conversation',
@@ -249,9 +395,57 @@ return [
                     ],
                 ],
             ],
+            'CreateFeedbackLabel' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\FeedbackLabel',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreatePhraseMatcher' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\PhraseMatcher',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateQaQuestion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaQuestion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateQaScorecard' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecard',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateQaScorecardRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecardRevision',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -285,7 +479,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteAnalysisRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteConversation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFeedbackLabel' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -321,9 +539,57 @@ return [
                     ],
                 ],
             ],
+            'DeleteQaQuestion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQaScorecard' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQaScorecardRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteView' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeployQaScorecardRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecardRevision',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -345,9 +611,45 @@ return [
                     ],
                 ],
             ],
+            'GetAnalysisRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\AnalysisRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\Conversation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEncryptionSpec' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\EncryptionSpec',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFeedbackLabel' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\FeedbackLabel',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -393,6 +695,42 @@ return [
                     ],
                 ],
             ],
+            'GetQaQuestion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaQuestion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetQaScorecard' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecard',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetQaScorecardRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecardRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSettings' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\Settings',
@@ -417,6 +755,26 @@ return [
                     ],
                 ],
             ],
+            'ListAllFeedbackLabels' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFeedbackLabels',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListAllFeedbackLabelsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListAnalyses' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -437,6 +795,26 @@ return [
                     ],
                 ],
             ],
+            'ListAnalysisRules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAnalysisRules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListAnalysisRulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListConversations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -448,6 +826,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListConversationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFeedbackLabels' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFeedbackLabels',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListFeedbackLabelsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -501,6 +899,66 @@ return [
                     ],
                 ],
             ],
+            'ListQaQuestions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getQaQuestions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListQaQuestionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQaScorecardRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getQaScorecardRevisions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListQaScorecardRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQaScorecards' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getQaScorecards',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\ListQaScorecardsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListViews' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -521,6 +979,31 @@ return [
                     ],
                 ],
             ],
+            'UndeployQaScorecardRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecardRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAnalysisRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\AnalysisRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'analysis_rule.name',
+                        'fieldAccessors' => [
+                            'getAnalysisRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConversation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\Conversation',
@@ -529,6 +1012,19 @@ return [
                         'keyName' => 'conversation.name',
                         'fieldAccessors' => [
                             'getConversation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateFeedbackLabel' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\FeedbackLabel',
+                'headerParams' => [
+                    [
+                        'keyName' => 'feedback_label.name',
+                        'fieldAccessors' => [
+                            'getFeedbackLabel',
                             'getName',
                         ],
                     ],
@@ -573,6 +1069,32 @@ return [
                     ],
                 ],
             ],
+            'UpdateQaQuestion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaQuestion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'qa_question.name',
+                        'fieldAccessors' => [
+                            'getQaQuestion',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateQaScorecard' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ContactCenterInsights\V1\QaScorecard',
+                'headerParams' => [
+                    [
+                        'keyName' => 'qa_scorecard.name',
+                        'fieldAccessors' => [
+                            'getQaScorecard',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSettings' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ContactCenterInsights\V1\Settings',
@@ -601,8 +1123,11 @@ return [
             ],
             'templateMap' => [
                 'analysis' => 'projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}',
+                'analysisRule' => 'projects/{project}/locations/{location}/analysisRules/{analysis_rule}',
                 'conversation' => 'projects/{project}/locations/{location}/conversations/{conversation}',
                 'conversationProfile' => 'projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}',
+                'encryptionSpec' => 'projects/{project}/locations/{location}/encryptionSpec',
+                'feedbackLabel' => 'projects/{project}/locations/{location}/conversations/{conversation}/feedbackLabels/{feedback_label}',
                 'issue' => 'projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}',
                 'issueModel' => 'projects/{project}/locations/{location}/issueModels/{issue_model}',
                 'location' => 'projects/{project}/locations/{location}',
@@ -610,6 +1135,10 @@ return [
                 'phraseMatcher' => 'projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}',
                 'projectConversationParticipant' => 'projects/{project}/conversations/{conversation}/participants/{participant}',
                 'projectLocationConversationParticipant' => 'projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}',
+                'qaQuestion' => 'projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}/revisions/{revision}/qaQuestions/{qa_question}',
+                'qaScorecard' => 'projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}',
+                'qaScorecardResult' => 'projects/{project}/locations/{location}/qaScorecardResults/{qa_scorecard_result}',
+                'qaScorecardRevision' => 'projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}/revisions/{revision}',
                 'recognizer' => 'projects/{project}/locations/{location}/recognizers/{recognizer}',
                 'settings' => 'projects/{project}/locations/{location}/settings',
                 'view' => 'projects/{project}/locations/{location}/views/{view}',

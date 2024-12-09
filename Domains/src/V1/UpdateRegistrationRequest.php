@@ -20,7 +20,7 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1.Registration registration = 1;</code>
      */
-    private $registration = null;
+    protected $registration = null;
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the labels are being updated, the `update_mask` is
@@ -28,7 +28,7 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Domains\V1\Registration $registration Fields of the `Registration` to update.

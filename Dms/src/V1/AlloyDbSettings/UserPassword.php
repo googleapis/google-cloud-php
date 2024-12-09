@@ -21,19 +21,19 @@ class UserPassword extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user = 1;</code>
      */
-    private $user = '';
+    protected $user = '';
     /**
      * The initial password for the user.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Output only. Indicates if the initial_user.password field has been set.
      *
      * Generated from protobuf field <code>bool password_set = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $password_set = false;
+    protected $password_set = false;
 
     /**
      * Constructor.

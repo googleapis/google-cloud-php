@@ -22,7 +22,7 @@ class Folder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The folder's parent's resource name.
      * Updates to the folder's parent must be performed using
@@ -30,7 +30,7 @@ class Folder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The folder's display name.
      * A folder's display name must be unique amongst its siblings. For example,
@@ -42,7 +42,7 @@ class Folder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The lifecycle state of the folder.
      * Updates to the state must be performed using
@@ -51,25 +51,25 @@ class Folder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.resourcemanager.v3.Folder.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Timestamp when the folder was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Timestamp when the folder was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. Timestamp when the folder was requested to be deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. A checksum computed by the server based on the current value
      * of the folder resource. This may be sent on update and delete requests to
@@ -77,7 +77,7 @@ class Folder extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.

@@ -74,6 +74,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query_understanding_spec = null;
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -83,7 +85,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
+     * @deprecated
      */
     protected $asynchronous_mode = false;
     /**
@@ -98,6 +101,26 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string user_pseudo_id = 12;</code>
      */
     protected $user_pseudo_id = '';
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 13;</code>
+     */
+    private $user_labels;
 
     /**
      * Constructor.
@@ -130,6 +153,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec $query_understanding_spec
      *           Query understanding specification.
      *     @type bool $asynchronous_mode
+     *           Deprecated: This field is deprecated. Streaming Answer API will be
+     *           supported.
      *           Asynchronous mode control.
      *           If enabled, the response will be returned with answer/session resource
      *           name without final answer. The API users need to do the polling to get
@@ -146,6 +171,22 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *           This field should NOT have a fixed value such as `unknown_visitor`.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an  `INVALID_ARGUMENT`  error is returned.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           The user labels applied to a resource must meet the following requirements:
+     *           * Each resource can have multiple labels, up to a maximum of 64.
+     *           * Each label must be a key-value pair.
+     *           * Keys have a minimum length of 1 character and a maximum length of 63
+     *             characters and cannot be empty. Values can be empty and have a maximum
+     *             length of 63 characters.
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *             underscores, and dashes. All characters must use UTF-8 encoding, and
+     *             international characters are allowed.
+     *           * The key portion of a label must be unique. However, you can use the same
+     *             key with multiple resources.
+     *           * Keys must start with a lowercase letter or international character.
+     *           See [Google Cloud
+     *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -438,6 +479,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -447,15 +490,19 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getAsynchronousMode()
     {
+        @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
         return $this->asynchronous_mode;
     }
 
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -465,12 +512,14 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setAsynchronousMode($var)
     {
+        @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->asynchronous_mode = $var;
 
@@ -511,6 +560,60 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_pseudo_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 13;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * The user labels applied to a resource must meet the following requirements:
+     * * Each resource can have multiple labels, up to a maximum of 64.
+     * * Each label must be a key-value pair.
+     * * Keys have a minimum length of 1 character and a maximum length of 63
+     *   characters and cannot be empty. Values can be empty and have a maximum
+     *   length of 63 characters.
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     *   underscores, and dashes. All characters must use UTF-8 encoding, and
+     *   international characters are allowed.
+     * * The key portion of a label must be unique. However, you can use the same
+     *   key with multiple resources.
+     * * Keys must start with a lowercase letter or international character.
+     * See [Google Cloud
+     * Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 13;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
 
         return $this;
     }

@@ -21,7 +21,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * ID used to uniquely identify the Job within its parent scope.
      * This field should contain at most 63 characters and must start with
@@ -34,13 +34,13 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Required. The Job to create.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.Job job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique
      * request ID so that if you must retry your request, the server will know to
@@ -56,7 +56,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                     $parent Required. The parent resource name where the Job will be created.

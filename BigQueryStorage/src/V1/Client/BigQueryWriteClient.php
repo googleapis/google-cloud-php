@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,11 +60,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCommitWriteStreamsAsync(BatchCommitWriteStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWriteStreamAsync(CreateWriteStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface finalizeWriteStreamAsync(FinalizeWriteStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface flushRowsAsync(FlushRowsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWriteStreamAsync(GetWriteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCommitWriteStreamsResponse> batchCommitWriteStreamsAsync(BatchCommitWriteStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteStream> createWriteStreamAsync(CreateWriteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FinalizeWriteStreamResponse> finalizeWriteStreamAsync(FinalizeWriteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FlushRowsResponse> flushRowsAsync(FlushRowsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteStream> getWriteStreamAsync(GetWriteStreamRequest $request, array $optionalArgs = [])
  */
 final class BigQueryWriteClient
 {
@@ -330,8 +330,10 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCommitWriteStreams(BatchCommitWriteStreamsRequest $request, array $callOptions = []): BatchCommitWriteStreamsResponse
-    {
+    public function batchCommitWriteStreams(
+        BatchCommitWriteStreamsRequest $request,
+        array $callOptions = []
+    ): BatchCommitWriteStreamsResponse {
         return $this->startApiCall('BatchCommitWriteStreams', $request, $callOptions)->wait();
     }
 
@@ -388,8 +390,10 @@ final class BigQueryWriteClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function finalizeWriteStream(FinalizeWriteStreamRequest $request, array $callOptions = []): FinalizeWriteStreamResponse
-    {
+    public function finalizeWriteStream(
+        FinalizeWriteStreamRequest $request,
+        array $callOptions = []
+    ): FinalizeWriteStreamResponse {
         return $this->startApiCall('FinalizeWriteStream', $request, $callOptions)->wait();
     }
 

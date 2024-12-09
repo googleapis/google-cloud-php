@@ -23,7 +23,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_node_autoprovisioning = 1;</code>
      */
-    private $enable_node_autoprovisioning = false;
+    protected $enable_node_autoprovisioning = false;
     /**
      * Contains global constraints regarding minimum and maximum
      * amount of resources in the cluster.
@@ -36,14 +36,14 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutoscalingProfile autoscaling_profile = 3;</code>
      */
-    private $autoscaling_profile = 0;
+    protected $autoscaling_profile = 0;
     /**
      * AutoprovisioningNodePoolDefaults contains defaults for a node pool
      * created by NAP.
      *
      * Generated from protobuf field <code>.google.container.v1.AutoprovisioningNodePoolDefaults autoprovisioning_node_pool_defaults = 4;</code>
      */
-    private $autoprovisioning_node_pool_defaults = null;
+    protected $autoprovisioning_node_pool_defaults = null;
     /**
      * The list of Google Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) in which the

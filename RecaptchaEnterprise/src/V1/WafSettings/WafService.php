@@ -7,7 +7,7 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\WafSettings;
 use UnexpectedValueException;
 
 /**
- * Web Application Firewalls supported by reCAPTCHA Enterprise.
+ * Web Application Firewalls supported by reCAPTCHA.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.WafSettings.WafService</code>
  */
@@ -37,12 +37,19 @@ class WafService
      * Generated from protobuf enum <code>CLOUDFLARE = 4;</code>
      */
     const CLOUDFLARE = 4;
+    /**
+     * Akamai
+     *
+     * Generated from protobuf enum <code>AKAMAI = 5;</code>
+     */
+    const AKAMAI = 5;
 
     private static $valueToName = [
         self::WAF_SERVICE_UNSPECIFIED => 'WAF_SERVICE_UNSPECIFIED',
         self::CA => 'CA',
         self::FASTLY => 'FASTLY',
         self::CLOUDFLARE => 'CLOUDFLARE',
+        self::AKAMAI => 'AKAMAI',
     ];
 
     public static function name($value)

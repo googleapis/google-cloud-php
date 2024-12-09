@@ -375,7 +375,6 @@ class TextToSpeechLongAudioSynthesizeGapicClient
      * ```
      *
      * @param SynthesisInput $input        Required. The Synthesizer requires either plain text or SSML as input.
-     *                                     While Long Audio is in preview, SSML is temporarily unsupported.
      * @param AudioConfig    $audioConfig  Required. The configuration of the synthesized audio.
      * @param array          $optionalArgs {
      *     Optional.

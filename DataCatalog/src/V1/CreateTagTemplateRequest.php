@@ -22,7 +22,7 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID of the tag template to create.
      * The ID must contain only lowercase letters (a-z), numbers (0-9),
@@ -31,13 +31,13 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag_template_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_template_id = '';
+    protected $tag_template_id = '';
     /**
      * Required. The tag template to create.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate tag_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tag_template = null;
+    protected $tag_template = null;
 
     /**
      * @param string                                   $parent        Required. The name of the project and the template location

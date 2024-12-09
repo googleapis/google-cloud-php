@@ -120,6 +120,25 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool return_entity_quota = 11;</code>
      */
     private $return_entity_quota = false;
+    /**
+     * Optional. Determines whether to include users who have never made an API
+     * call in the response. If true, all users with access to the specified
+     * property or account are included in the response, regardless of whether
+     * they have made an API call or not. If false, only the users who have made
+     * an API call will be included.
+     *
+     * Generated from protobuf field <code>bool include_all_users = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $include_all_users = false;
+    /**
+     * Optional. Decides whether to return the users within user groups. This
+     * field works only when include_all_users is set to true. If true, it will
+     * return all users with access to the specified property or account.
+     * If false, only the users with direct access will be returned.
+     *
+     * Generated from protobuf field <code>bool expand_groups = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $expand_groups = false;
 
     /**
      * Constructor.
@@ -188,6 +207,17 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level
      *           requests, this field must be false.
+     *     @type bool $include_all_users
+     *           Optional. Determines whether to include users who have never made an API
+     *           call in the response. If true, all users with access to the specified
+     *           property or account are included in the response, regardless of whether
+     *           they have made an API call or not. If false, only the users who have made
+     *           an API call will be included.
+     *     @type bool $expand_groups
+     *           Optional. Decides whether to return the users within user groups. This
+     *           field works only when include_all_users is set to true. If true, it will
+     *           return all users with access to the specified property or account.
+     *           If false, only the users with direct access will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -575,6 +605,72 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_entity_quota = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines whether to include users who have never made an API
+     * call in the response. If true, all users with access to the specified
+     * property or account are included in the response, regardless of whether
+     * they have made an API call or not. If false, only the users who have made
+     * an API call will be included.
+     *
+     * Generated from protobuf field <code>bool include_all_users = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIncludeAllUsers()
+    {
+        return $this->include_all_users;
+    }
+
+    /**
+     * Optional. Determines whether to include users who have never made an API
+     * call in the response. If true, all users with access to the specified
+     * property or account are included in the response, regardless of whether
+     * they have made an API call or not. If false, only the users who have made
+     * an API call will be included.
+     *
+     * Generated from protobuf field <code>bool include_all_users = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludeAllUsers($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_all_users = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Decides whether to return the users within user groups. This
+     * field works only when include_all_users is set to true. If true, it will
+     * return all users with access to the specified property or account.
+     * If false, only the users with direct access will be returned.
+     *
+     * Generated from protobuf field <code>bool expand_groups = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getExpandGroups()
+    {
+        return $this->expand_groups;
+    }
+
+    /**
+     * Optional. Decides whether to return the users within user groups. This
+     * field works only when include_all_users is set to true. If true, it will
+     * return all users with access to the specified property or account.
+     * If false, only the users with direct access will be returned.
+     *
+     * Generated from protobuf field <code>bool expand_groups = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExpandGroups($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->expand_groups = $var;
 
         return $this;
     }

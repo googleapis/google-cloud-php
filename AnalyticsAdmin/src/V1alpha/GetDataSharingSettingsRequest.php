@@ -18,7 +18,7 @@ class GetDataSharingSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the settings to lookup.
      * Format: accounts/{account}/dataSharingSettings
-     * Example: "accounts/1000/dataSharingSettings"
+     * Example: `accounts/1000/dataSharingSettings`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,7 +27,8 @@ class GetDataSharingSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the settings to lookup.
      *                     Format: accounts/{account}/dataSharingSettings
-     *                     Example: "accounts/1000/dataSharingSettings"
+     *
+     *                     Example: `accounts/1000/dataSharingSettings`
      *                     Please see {@see AnalyticsAdminServiceClient::dataSharingSettingsName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetDataSharingSettingsRequest
@@ -49,7 +50,7 @@ class GetDataSharingSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the settings to lookup.
      *           Format: accounts/{account}/dataSharingSettings
-     *           Example: "accounts/1000/dataSharingSettings"
+     *           Example: `accounts/1000/dataSharingSettings`
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +61,7 @@ class GetDataSharingSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the settings to lookup.
      * Format: accounts/{account}/dataSharingSettings
-     * Example: "accounts/1000/dataSharingSettings"
+     * Example: `accounts/1000/dataSharingSettings`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +74,7 @@ class GetDataSharingSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the settings to lookup.
      * Format: accounts/{account}/dataSharingSettings
-     * Example: "accounts/1000/dataSharingSettings"
+     * Example: `accounts/1000/dataSharingSettings`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

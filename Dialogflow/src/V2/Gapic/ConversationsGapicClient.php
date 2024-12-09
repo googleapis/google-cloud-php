@@ -37,17 +37,22 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\AssistQueryParameters;
 use Google\Cloud\Dialogflow\V2\CompleteConversationRequest;
 use Google\Cloud\Dialogflow\V2\Conversation;
+use Google\Cloud\Dialogflow\V2\ConversationContext;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\CreateConversationRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionRequest;
+use Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest\MinimalConversation;
 use Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryResponse;
+use Google\Cloud\Dialogflow\V2\Generator;
 use Google\Cloud\Dialogflow\V2\GetConversationRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationsResponse;
 use Google\Cloud\Dialogflow\V2\ListMessagesRequest;
 use Google\Cloud\Dialogflow\V2\ListMessagesResponse;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
@@ -56,6 +61,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\Struct;
 
 /**
  * Service Description: Service for managing
@@ -120,13 +126,19 @@ class ConversationsGapicClient
 
     private static $conversationProfileNameTemplate;
 
+    private static $dataStoreNameTemplate;
+
     private static $documentNameTemplate;
+
+    private static $generatorNameTemplate;
 
     private static $knowledgeBaseNameTemplate;
 
     private static $locationNameTemplate;
 
     private static $messageNameTemplate;
+
+    private static $phraseSetNameTemplate;
 
     private static $projectNameTemplate;
 
@@ -146,6 +158,8 @@ class ConversationsGapicClient
 
     private static $projectLocationAgentNameTemplate;
 
+    private static $projectLocationCollectionDataStoreNameTemplate;
+
     private static $projectLocationConversationNameTemplate;
 
     private static $projectLocationConversationMessageNameTemplate;
@@ -153,6 +167,8 @@ class ConversationsGapicClient
     private static $projectLocationConversationModelNameTemplate;
 
     private static $projectLocationConversationProfileNameTemplate;
+
+    private static $projectLocationDataStoreNameTemplate;
 
     private static $projectLocationKnowledgeBaseNameTemplate;
 
@@ -224,6 +240,15 @@ class ConversationsGapicClient
         return self::$conversationProfileNameTemplate;
     }
 
+    private static function getDataStoreNameTemplate()
+    {
+        if (self::$dataStoreNameTemplate == null) {
+            self::$dataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}');
+        }
+
+        return self::$dataStoreNameTemplate;
+    }
+
     private static function getDocumentNameTemplate()
     {
         if (self::$documentNameTemplate == null) {
@@ -231,6 +256,15 @@ class ConversationsGapicClient
         }
 
         return self::$documentNameTemplate;
+    }
+
+    private static function getGeneratorNameTemplate()
+    {
+        if (self::$generatorNameTemplate == null) {
+            self::$generatorNameTemplate = new PathTemplate('projects/{project}/locations/{location}/generators/{generator}');
+        }
+
+        return self::$generatorNameTemplate;
     }
 
     private static function getKnowledgeBaseNameTemplate()
@@ -258,6 +292,15 @@ class ConversationsGapicClient
         }
 
         return self::$messageNameTemplate;
+    }
+
+    private static function getPhraseSetNameTemplate()
+    {
+        if (self::$phraseSetNameTemplate == null) {
+            self::$phraseSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/phraseSets/{phrase_set}');
+        }
+
+        return self::$phraseSetNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -341,6 +384,15 @@ class ConversationsGapicClient
         return self::$projectLocationAgentNameTemplate;
     }
 
+    private static function getProjectLocationCollectionDataStoreNameTemplate()
+    {
+        if (self::$projectLocationCollectionDataStoreNameTemplate == null) {
+            self::$projectLocationCollectionDataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}');
+        }
+
+        return self::$projectLocationCollectionDataStoreNameTemplate;
+    }
+
     private static function getProjectLocationConversationNameTemplate()
     {
         if (self::$projectLocationConversationNameTemplate == null) {
@@ -377,6 +429,15 @@ class ConversationsGapicClient
         return self::$projectLocationConversationProfileNameTemplate;
     }
 
+    private static function getProjectLocationDataStoreNameTemplate()
+    {
+        if (self::$projectLocationDataStoreNameTemplate == null) {
+            self::$projectLocationDataStoreNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataStores/{data_store}');
+        }
+
+        return self::$projectLocationDataStoreNameTemplate;
+    }
+
     private static function getProjectLocationKnowledgeBaseNameTemplate()
     {
         if (self::$projectLocationKnowledgeBaseNameTemplate == null) {
@@ -404,10 +465,13 @@ class ConversationsGapicClient
                 'conversation' => self::getConversationNameTemplate(),
                 'conversationModel' => self::getConversationModelNameTemplate(),
                 'conversationProfile' => self::getConversationProfileNameTemplate(),
+                'dataStore' => self::getDataStoreNameTemplate(),
                 'document' => self::getDocumentNameTemplate(),
+                'generator' => self::getGeneratorNameTemplate(),
                 'knowledgeBase' => self::getKnowledgeBaseNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'message' => self::getMessageNameTemplate(),
+                'phraseSet' => self::getPhraseSetNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAgent' => self::getProjectAgentNameTemplate(),
                 'projectConversation' => self::getProjectConversationNameTemplate(),
@@ -417,10 +481,12 @@ class ConversationsGapicClient
                 'projectKnowledgeBase' => self::getProjectKnowledgeBaseNameTemplate(),
                 'projectKnowledgeBaseDocument' => self::getProjectKnowledgeBaseDocumentNameTemplate(),
                 'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
+                'projectLocationCollectionDataStore' => self::getProjectLocationCollectionDataStoreNameTemplate(),
                 'projectLocationConversation' => self::getProjectLocationConversationNameTemplate(),
                 'projectLocationConversationMessage' => self::getProjectLocationConversationMessageNameTemplate(),
                 'projectLocationConversationModel' => self::getProjectLocationConversationModelNameTemplate(),
                 'projectLocationConversationProfile' => self::getProjectLocationConversationProfileNameTemplate(),
+                'projectLocationDataStore' => self::getProjectLocationDataStoreNameTemplate(),
                 'projectLocationKnowledgeBase' => self::getProjectLocationKnowledgeBaseNameTemplate(),
                 'projectLocationKnowledgeBaseDocument' => self::getProjectLocationKnowledgeBaseDocumentNameTemplate(),
             ];
@@ -517,6 +583,27 @@ class ConversationsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName($project, $location, $collection, $dataStore)
+    {
+        return self::getDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a document
      * resource.
      *
@@ -532,6 +619,25 @@ class ConversationsGapicClient
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a generator
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $generator
+     *
+     * @return string The formatted generator resource.
+     */
+    public static function generatorName($project, $location, $generator)
+    {
+        return self::getGeneratorNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'generator' => $generator,
         ]);
     }
 
@@ -585,6 +691,25 @@ class ConversationsGapicClient
             'project' => $project,
             'conversation' => $conversation,
             'message' => $message,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName($project, $location, $phraseSet)
+    {
+        return self::getPhraseSetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -743,6 +868,27 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName($project, $location, $collection, $dataStore)
+    {
+        return self::getProjectLocationCollectionDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation resource.
      *
      * @param string $project
@@ -821,6 +967,25 @@ class ConversationsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName($project, $location, $dataStore)
+    {
+        return self::getProjectLocationDataStoreNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_knowledge_base resource.
      *
      * @param string $project
@@ -868,10 +1033,13 @@ class ConversationsGapicClient
      * - conversation: projects/{project}/conversations/{conversation}
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationProfile: projects/{project}/conversationProfiles/{conversation_profile}
+     * - dataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - document: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
+     * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - knowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - location: projects/{project}/locations/{location}
      * - message: projects/{project}/conversations/{conversation}/messages/{message}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - project: projects/{project}
      * - projectAgent: projects/{project}/agent
      * - projectConversation: projects/{project}/conversations/{conversation}
@@ -881,10 +1049,12 @@ class ConversationsGapicClient
      * - projectKnowledgeBase: projects/{project}/knowledgeBases/{knowledge_base}
      * - projectKnowledgeBaseDocument: projects/{project}/knowledgeBases/{knowledge_base}/documents/{document}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
      * - projectLocationConversationMessage: projects/{project}/locations/{location}/conversations/{conversation}/messages/{message}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - projectLocationConversationProfile: projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationKnowledgeBase: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}
      * - projectLocationKnowledgeBaseDocument: projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}
      *
@@ -1071,9 +1241,9 @@ class ConversationsGapicClient
      *           Google. Only set it if you cannot wait for the response to return a
      *           auto-generated one to you.
      *
-     *           The conversation ID must be compliant with the regression fomula
+     *           The conversation ID must be compliant with the regression formula
      *           `[a-zA-Z][a-zA-Z0-9_-]*` with the characters length in range of [3,64].
-     *           If the field is provided, the caller is resposible for
+     *           If the field is provided, the caller is responsible for
      *           1. the uniqueness of the ID, otherwise the request will be rejected.
      *           2. the consistency for whether to use custom ID or not under a project to
      *           better ensure uniqueness.
@@ -1104,6 +1274,75 @@ class ConversationsGapicClient
     }
 
     /**
+     * Generates and returns a suggestion for a conversation that does not have a
+     * resource created for it.
+     *
+     * Sample code:
+     * ```
+     * $conversationsClient = new ConversationsClient();
+     * try {
+     *     $formattedParent = $conversationsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $conversationsClient->generateStatelessSuggestion($formattedParent);
+     * } finally {
+     *     $conversationsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource to charge for the Suggestion's generation.
+     *                             Format: `projects/<Project ID>/locations/<Location ID>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Generator $generator
+     *           Uncreated generator. It should be a complete generator that includes all
+     *           information about the generator.
+     *     @type string $generatorName
+     *           The resource name of the existing created generator. Format:
+     *           `projects/<Project ID>/locations/<Location ID>/generators/<Generator ID>`
+     *     @type ConversationContext $conversationContext
+     *           Optional. Context of the conversation, including transcripts.
+     *     @type int[] $triggerEvents
+     *           Optional. A list of trigger events. Generator will be triggered only if
+     *           it's trigger event is included here.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\TriggerEvent}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\GenerateStatelessSuggestionResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateStatelessSuggestion($parent, array $optionalArgs = [])
+    {
+        $request = new GenerateStatelessSuggestionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['generator'])) {
+            $request->setGenerator($optionalArgs['generator']);
+        }
+
+        if (isset($optionalArgs['generatorName'])) {
+            $request->setGeneratorName($optionalArgs['generatorName']);
+        }
+
+        if (isset($optionalArgs['conversationContext'])) {
+            $request->setConversationContext($optionalArgs['conversationContext']);
+        }
+
+        if (isset($optionalArgs['triggerEvents'])) {
+            $request->setTriggerEvents($optionalArgs['triggerEvents']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GenerateStatelessSuggestion', GenerateStatelessSuggestionResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Generates and returns a summary for a conversation that does not have a
      * resource created for it.
      *
@@ -1128,12 +1367,12 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $latestMessage
-     *           The name of the latest conversation message used as context for
+     *           Optional. The name of the latest conversation message used as context for
      *           generating a Summary. If empty, the latest message of the conversation will
      *           be used. The format is specific to the user and the names of the messages
      *           provided.
      *     @type int $maxContextSize
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type RetrySettings|array $retrySettings
@@ -1248,18 +1487,9 @@ class ConversationsGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           A filter expression that filters conversations listed in the response. In
-     *           general, the expression must specify the field name, a comparison operator,
-     *           and the value to use for filtering:
-     *           <ul>
-     *           <li>The value must be a string, a number, or a boolean.</li>
-     *           <li>The comparison operator must be either `=`,`!=`, `>`, or `<`.</li>
-     *           <li>To filter on multiple expressions, separate the
-     *           expressions with `AND` or `OR` (omitting both implies `AND`).</li>
-     *           <li>For clarity, expressions can be enclosed in parentheses.</li>
-     *           </ul>
-     *           Only `lifecycle_state` can be filtered on in this way. For example,
-     *           the following expression only returns `COMPLETED` conversations:
+     *           Optional. A filter expression that filters conversations listed in the
+     *           response. Only `lifecycle_state` can be filtered on in this way. For
+     *           example, the following expression only returns `COMPLETED` conversations:
      *
      *           `lifecycle_state = "COMPLETED"`
      *
@@ -1408,11 +1638,11 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $parent
-     *           The parent resource contains the conversation profile
+     *           Required. The parent resource contains the conversation profile
      *           Format: 'projects/<Project ID>' or `projects/<Project
      *           ID>/locations/<Location ID>`.
      *     @type string $sessionId
-     *           The ID of the search session.
+     *           Required. The ID of the search session.
      *           The session_id can be combined with Dialogflow V3 Agent ID retrieved from
      *           conversation profile or on its own to identify a search session. The search
      *           history of the same session will impact the search result. It's up to the
@@ -1420,14 +1650,39 @@ class ConversationsGapicClient
      *           or some type of session identifiers (preferably hashed). The length must
      *           not exceed 36 characters.
      *     @type string $conversation
-     *           The conversation (between human agent and end user) where the search
-     *           request is triggered. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/conversations/<Conversation ID>`.
+     *           Optional. The conversation (between human agent and end user) where the
+     *           search request is triggered. Format: `projects/<Project
+     *           ID>/locations/<Location ID>/conversations/<Conversation ID>`.
      *     @type string $latestMessage
-     *           The name of the latest conversation message when the request is
+     *           Optional. The name of the latest conversation message when the request is
      *           triggered.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type int $querySource
+     *           Optional. The source of the query in the request.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\QuerySource}
+     *     @type Struct $endUserMetadata
+     *           Optional. Information about the end-user to improve the relevance and
+     *           accuracy of generative answers.
+     *
+     *           This will be interpreted and used by a language model, so, for good
+     *           results, the data should be self-descriptive, and in a simple structure.
+     *
+     *           Example:
+     *
+     *           ```json
+     *           {
+     *           "subscription plan": "Business Premium Plus",
+     *           "devices owned": [
+     *           {"model": "Google Pixel 7"},
+     *           {"model": "Google Pixel Tablet"}
+     *           ]
+     *           }
+     *           ```
+     *     @type SearchConfig $searchConfig
+     *           Optional. Configuration specific to search queries with data stores.
+     *     @type bool $exactSearch
+     *           Optional. Whether to search the query exactly without query rewrite.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1462,6 +1717,22 @@ class ConversationsGapicClient
             $request->setLatestMessage($optionalArgs['latestMessage']);
         }
 
+        if (isset($optionalArgs['querySource'])) {
+            $request->setQuerySource($optionalArgs['querySource']);
+        }
+
+        if (isset($optionalArgs['endUserMetadata'])) {
+            $request->setEndUserMetadata($optionalArgs['endUserMetadata']);
+        }
+
+        if (isset($optionalArgs['searchConfig'])) {
+            $request->setSearchConfig($optionalArgs['searchConfig']);
+        }
+
+        if (isset($optionalArgs['exactSearch'])) {
+            $request->setExactSearch($optionalArgs['exactSearch']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SearchKnowledge', SearchKnowledgeResponse::class, $optionalArgs, $request)->wait();
@@ -1490,18 +1761,19 @@ class ConversationsGapicClient
      *     Optional.
      *
      *     @type string $latestMessage
-     *           The name of the latest conversation message used as context for
+     *           Optional. The name of the latest conversation message used as context for
      *           compiling suggestion. If empty, the latest message of the conversation will
      *           be used.
      *
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $contextSize
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type AssistQueryParameters $assistQueryParams
-     *           Parameters for a human assist query. Only used for POC/demo purpose.
+     *           Optional. Parameters for a human assist query. Only used for POC/demo
+     *           purpose.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

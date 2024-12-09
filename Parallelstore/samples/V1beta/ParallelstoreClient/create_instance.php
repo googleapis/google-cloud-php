@@ -35,18 +35,18 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent     The instance's project and location, in the format
  *                                    `projects/{project}/locations/{location}`.
- *                                    Locations map to Google Cloud zones, for example **us-west1-b**. Please see
+ *                                    Locations map to Google Cloud zones; for example, `us-west1-b`. Please see
  *                                    {@see ParallelstoreClient::locationName()} for help formatting this field.
- * @param string $instanceId          The logical name of the Parallelstore instance in the user
- *                                    project with the following restrictions:
+ * @param string $instanceId          The name of the Parallelstore instance.
  *
  *                                    * Must contain only lowercase letters, numbers, and hyphens.
  *                                    * Must start with a letter.
  *                                    * Must be between 1-63 characters.
  *                                    * Must end with a number or a letter.
  *                                    * Must be unique within the customer project / location
- * @param int    $instanceCapacityGib Immutable. Storage capacity of Parallelstore instance in
- *                                    Gibibytes (GiB).
+ * @param int    $instanceCapacityGib Immutable. The instance's storage capacity in Gibibytes (GiB).
+ *                                    Allowed values are between 12000 and 100000, in multiples of 4000; e.g.,
+ *                                    12000, 16000, 20000, ...
  */
 function create_instance_sample(
     string $formattedParent,

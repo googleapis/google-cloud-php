@@ -20,14 +20,14 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
-     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
-     *   `organizations/`<var>ORG_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
+     * + Organizations scope, location specified:
+     *   `organizations/{org_id}/locations/{location_id}`
+     * + Organizations scope, no location specified (defaults to global):
+     *   `organizations/{org_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -35,23 +35,23 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Page token to continue retrieval. Comes from the previous call
      * to `ListInspectTemplates`.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Size of the page. This value can be limited by the server. If zero server
      * returns a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
-     * Comma separated list of fields to order by,
+     * Comma-separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -64,13 +64,13 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 5;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * @param string $parent Required. Parent resource name.
@@ -79,14 +79,14 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *                       (project or organization) and whether you have [specified a processing
      *                       location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                       + Projects scope, location specified:<br/>
-     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                       + Projects scope, no location specified (defaults to global):<br/>
-     *                       `projects/`<var>PROJECT_ID</var>
-     *                       + Organizations scope, location specified:<br/>
-     *                       `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                       + Organizations scope, no location specified (defaults to global):<br/>
-     *                       `organizations/`<var>ORG_ID</var>
+     *                       + Projects scope, location specified:
+     *                       `projects/{project_id}/locations/{location_id}`
+     *                       + Projects scope, no location specified (defaults to global):
+     *                       `projects/{project_id}`
+     *                       + Organizations scope, location specified:
+     *                       `organizations/{org_id}/locations/{location_id}`
+     *                       + Organizations scope, no location specified (defaults to global):
+     *                       `organizations/{org_id}`
      *
      *                       The following example `parent` string specifies a parent project with the
      *                       identifier `example-project`, and specifies the `europe-west3` location
@@ -116,14 +116,14 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on the scope of the request
      *           (project or organization) and whether you have [specified a processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     *           + Projects scope, location specified:<br/>
-     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
-     *             `projects/`<var>PROJECT_ID</var>
-     *           + Organizations scope, location specified:<br/>
-     *             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Organizations scope, no location specified (defaults to global):<br/>
-     *             `organizations/`<var>ORG_ID</var>
+     *           + Projects scope, location specified:
+     *             `projects/{project_id}/locations/{location_id}`
+     *           + Projects scope, no location specified (defaults to global):
+     *             `projects/{project_id}`
+     *           + Organizations scope, location specified:
+     *             `organizations/{org_id}/locations/{location_id}`
+     *           + Organizations scope, no location specified (defaults to global):
+     *             `organizations/{org_id}`
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -135,7 +135,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           Size of the page. This value can be limited by the server. If zero server
      *           returns a page of max size 100.
      *     @type string $order_by
-     *           Comma separated list of fields to order by,
+     *           Comma-separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -159,14 +159,14 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
-     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
-     *   `organizations/`<var>ORG_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
+     * + Organizations scope, location specified:
+     *   `organizations/{org_id}/locations/{location_id}`
+     * + Organizations scope, no location specified (defaults to global):
+     *   `organizations/{org_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -185,14 +185,14 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
-     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
-     *   `organizations/`<var>ORG_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
+     * + Organizations scope, location specified:
+     *   `organizations/{org_id}/locations/{location_id}`
+     * + Organizations scope, no location specified (defaults to global):
+     *   `organizations/{org_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -267,7 +267,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of fields to order by,
+     * Comma-separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -287,7 +287,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of fields to order by,
+     * Comma-separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.

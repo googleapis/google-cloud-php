@@ -20,13 +20,13 @@ class EnableFailure extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_id = 1;</code>
      */
-    private $service_id = '';
+    protected $service_id = '';
     /**
      * An error message describing why the service could not be enabled.
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    private $error_message = '';
+    protected $error_message = '';
 
     /**
      * Constructor.

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteAutomationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the `Automation` to delete. Format should be
+     * Required. The name of the `Automation` to delete. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -63,7 +63,7 @@ class DeleteAutomationRequest extends \Google\Protobuf\Internal\Message
     protected $etag = '';
 
     /**
-     * @param string $name Required. The name of the `Automation` to delete. Format should be
+     * @param string $name Required. The name of the `Automation` to delete. The format is
      *                     `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`. Please see
      *                     {@see CloudDeployClient::automationName()} for help formatting this field.
      *
@@ -84,7 +84,7 @@ class DeleteAutomationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the `Automation` to delete. Format should be
+     *           Required. The name of the `Automation` to delete. The format is
      *           `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
@@ -117,7 +117,7 @@ class DeleteAutomationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the `Automation` to delete. Format should be
+     * Required. The name of the `Automation` to delete. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -129,7 +129,7 @@ class DeleteAutomationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the `Automation` to delete. Format should be
+     * Required. The name of the `Automation` to delete. The format is
      * `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -33,26 +33,26 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The human-readable name of the database that the user connected to.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The username used to connect to the database. The username might not be an
      * IAM principal and does not have a set format.
      *
      * Generated from protobuf field <code>string user_name = 3;</code>
      */
-    private $user_name = '';
+    protected $user_name = '';
     /**
      * The SQL statement that is associated with the database access.
      *
      * Generated from protobuf field <code>string query = 4;</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * The target usernames, roles, or groups of an SQL privilege grant, which is
      * not an IAM policy change.
@@ -67,7 +67,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 6;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

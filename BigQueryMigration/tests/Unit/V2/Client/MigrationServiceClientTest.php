@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,9 @@ class MigrationServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return MigrationServiceClient */
@@ -97,7 +99,10 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/CreateMigrationWorkflow', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.migration.v2.MigrationService/CreateMigrationWorkflow',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getMigrationWorkflow();
@@ -116,12 +121,15 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -155,14 +163,16 @@ class MigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new DeleteMigrationWorkflowRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMigrationWorkflowRequest())->setName($formattedName);
         $gapicClient->deleteMigrationWorkflow($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/DeleteMigrationWorkflow', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.migration.v2.MigrationService/DeleteMigrationWorkflow',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -179,17 +189,19 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new DeleteMigrationWorkflowRequest())
-            ->setName($formattedName);
+        $request = (new DeleteMigrationWorkflowRequest())->setName($formattedName);
         try {
             $gapicClient->deleteMigrationWorkflow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -224,8 +236,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->migrationSubtaskName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[SUBTASK]');
-        $request = (new GetMigrationSubtaskRequest())
-            ->setName($formattedName);
+        $request = (new GetMigrationSubtaskRequest())->setName($formattedName);
         $response = $gapicClient->getMigrationSubtask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -249,17 +260,19 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->migrationSubtaskName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[SUBTASK]');
-        $request = (new GetMigrationSubtaskRequest())
-            ->setName($formattedName);
+        $request = (new GetMigrationSubtaskRequest())->setName($formattedName);
         try {
             $gapicClient->getMigrationSubtask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -290,8 +303,7 @@ class MigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new GetMigrationWorkflowRequest())
-            ->setName($formattedName);
+        $request = (new GetMigrationWorkflowRequest())->setName($formattedName);
         $response = $gapicClient->getMigrationWorkflow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -315,17 +327,19 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new GetMigrationWorkflowRequest())
-            ->setName($formattedName);
+        $request = (new GetMigrationWorkflowRequest())->setName($formattedName);
         try {
             $gapicClient->getMigrationWorkflow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -350,17 +364,14 @@ class MigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $migrationSubtasksElement = new MigrationSubtask();
-        $migrationSubtasks = [
-            $migrationSubtasksElement,
-        ];
+        $migrationSubtasks = [$migrationSubtasksElement];
         $expectedResponse = new ListMigrationSubtasksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMigrationSubtasks($migrationSubtasks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new ListMigrationSubtasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMigrationSubtasksRequest())->setParent($formattedParent);
         $response = $gapicClient->listMigrationSubtasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -370,7 +381,10 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationSubtasks', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationSubtasks',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -387,17 +401,19 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new ListMigrationSubtasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMigrationSubtasksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMigrationSubtasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -422,17 +438,14 @@ class MigrationServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $migrationWorkflowsElement = new MigrationWorkflow();
-        $migrationWorkflows = [
-            $migrationWorkflowsElement,
-        ];
+        $migrationWorkflows = [$migrationWorkflowsElement];
         $expectedResponse = new ListMigrationWorkflowsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMigrationWorkflows($migrationWorkflows);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMigrationWorkflowsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMigrationWorkflowsRequest())->setParent($formattedParent);
         $response = $gapicClient->listMigrationWorkflows($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -442,7 +455,10 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationWorkflows', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationWorkflows',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -459,17 +475,19 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListMigrationWorkflowsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListMigrationWorkflowsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMigrationWorkflows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -496,14 +514,16 @@ class MigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new StartMigrationWorkflowRequest())
-            ->setName($formattedName);
+        $request = (new StartMigrationWorkflowRequest())->setName($formattedName);
         $gapicClient->startMigrationWorkflow($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/StartMigrationWorkflow', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.migration.v2.MigrationService/StartMigrationWorkflow',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -520,17 +540,19 @@ class MigrationServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new StartMigrationWorkflowRequest())
-            ->setName($formattedName);
+        $request = (new StartMigrationWorkflowRequest())->setName($formattedName);
         try {
             $gapicClient->startMigrationWorkflow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -571,7 +593,10 @@ class MigrationServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/CreateMigrationWorkflow', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.bigquery.migration.v2.MigrationService/CreateMigrationWorkflow',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getMigrationWorkflow();

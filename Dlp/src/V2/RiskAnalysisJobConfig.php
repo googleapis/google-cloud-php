@@ -22,13 +22,13 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric privacy_metric = 1;</code>
      */
-    private $privacy_metric = null;
+    protected $privacy_metric = null;
     /**
      * Input dataset to compute metrics over.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable source_table = 2;</code>
      */
-    private $source_table = null;
+    protected $source_table = null;
     /**
      * Actions to execute at the completion of the job. Are executed in the order
      * provided.

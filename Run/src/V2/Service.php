@@ -28,14 +28,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User-provided description of the Service. This field currently has a
      * 512-character limit.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Server assigned unique identifier for the trigger. The value
      * is a UUID4 string and guaranteed to remain unchanged until the resource is
@@ -43,7 +43,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
@@ -52,7 +52,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 generation = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * Optional. Unstructured key value map that can be used to organize and
      * categorize objects. User-provided labels are shared with Google's billing
@@ -87,60 +87,61 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
      * permamently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. Email address of the authenticated creator.
      *
      * Generated from protobuf field <code>string creator = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Output only. Email address of the last authenticated modifier.
      *
      * Generated from protobuf field <code>string last_modifier = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modifier = '';
+    protected $last_modifier = '';
     /**
      * Arbitrary identifier for the API client.
      *
      * Generated from protobuf field <code>string client = 13;</code>
      */
-    private $client = '';
+    protected $client = '';
     /**
      * Arbitrary version identifier for the API client.
      *
      * Generated from protobuf field <code>string client_version = 14;</code>
      */
-    private $client_version = '';
+    protected $client_version = '';
     /**
-     * Provides the ingress settings for this Service. On output, returns the
-     * currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     * revision is active.
+     * Optional. Provides the ingress settings for this Service. On output,
+     * returns the currently observed ingress settings, or
+     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ingress = 0;
+    protected $ingress = 0;
     /**
-     * The launch stage as defined by [Google Cloud Platform
+     * Optional. The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
@@ -151,27 +152,27 @@ class Service extends \Google\Protobuf\Internal\Message
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
-     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $launch_stage = 0;
+    protected $launch_stage = 0;
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $binary_authorization = null;
+    protected $binary_authorization = null;
     /**
      * Required. The template used to create revisions for this Service.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.RevisionTemplate template = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = null;
+    protected $template = null;
     /**
-     * Specifies how to distribute traffic over a collection of Revisions
-     * belonging to the Service. If traffic is empty or not provided, defaults to
-     * 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of
+     * Revisions belonging to the Service. If traffic is empty or not provided,
+     * defaults to 100% traffic to the latest `Ready` Revision.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $traffic;
     /**
@@ -179,13 +180,38 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ServiceScaling scaling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $scaling = null;
+    protected $scaling = null;
+    /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *
+     * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $invoker_iam_disabled = false;
     /**
      * Optional. Disables public resolution of the default URI of this service.
      *
      * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_uri_disabled = false;
+    protected $default_uri_disabled = false;
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     *
+     * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $urls;
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     */
+    private $custom_audiences;
     /**
      * Output only. The generation of this Service currently serving traffic. See
      * comments in `reconciling` for additional information on reconciliation
@@ -195,7 +221,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 observed_generation = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $observed_generation = 0;
+    protected $observed_generation = 0;
     /**
      * Output only. The Condition of this Service, containing its readiness
      * status, and detailed error information in case it did not reach a serving
@@ -204,7 +230,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $terminal_condition = null;
+    protected $terminal_condition = null;
     /**
      * Output only. The Conditions of all other associated sub-resources. They
      * contain additional diagnostics information in case the Service does not
@@ -221,7 +247,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_ready_revision = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $latest_ready_revision = '';
+    protected $latest_ready_revision = '';
     /**
      * Output only. Name of the last created revision. See comments in
      * `reconciling` for additional information on reconciliation process in Cloud
@@ -229,7 +255,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_created_revision = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $latest_created_revision = '';
+    protected $latest_created_revision = '';
     /**
      * Output only. Detailed status information for corresponding traffic targets.
      * See comments in `reconciling` for additional information on reconciliation
@@ -243,23 +269,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uri = '';
-    /**
-     * One or more custom audiences that you want this service to support. Specify
-     * each custom audience as the full URL in a string. The custom audiences are
-     * encoded in the token and used to authenticate requests. For more
-     * information, see
-     * https://cloud.google.com/run/docs/configuring/custom-audiences.
-     *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     */
-    private $custom_audiences;
+    protected $uri = '';
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. Returns true if the Service is currently being acted upon by
      * the system to bring it into the desired state.
@@ -283,14 +299,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 98 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * Constructor.
@@ -342,7 +358,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           Output only. The deletion time.
+     *           Output only. The deletion time. It is only populated as a response to a
+     *           Delete request.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. For a deleted resource, the time after which it will be
      *           permamently deleted.
@@ -355,11 +372,11 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type string $client_version
      *           Arbitrary version identifier for the API client.
      *     @type int $ingress
-     *           Provides the ingress settings for this Service. On output, returns the
-     *           currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     *           revision is active.
+     *           Optional. Provides the ingress settings for this Service. On output,
+     *           returns the currently observed ingress settings, or
+     *           INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *     @type int $launch_stage
-     *           The launch stage as defined by [Google Cloud Platform
+     *           Optional. The launch stage as defined by [Google Cloud Platform
      *           Launch Stages](https://cloud.google.com/terms/launch-stages).
      *           Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      *           is assumed.
@@ -370,17 +387,30 @@ class Service extends \Google\Protobuf\Internal\Message
      *           For example, if ALPHA is provided as input, but only BETA and GA-level
      *           features are used, this field will be BETA on output.
      *     @type \Google\Cloud\Run\V2\BinaryAuthorization $binary_authorization
-     *           Settings for the Binary Authorization feature.
+     *           Optional. Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\RevisionTemplate $template
      *           Required. The template used to create revisions for this Service.
      *     @type array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $traffic
-     *           Specifies how to distribute traffic over a collection of Revisions
-     *           belonging to the Service. If traffic is empty or not provided, defaults to
-     *           100% traffic to the latest `Ready` Revision.
+     *           Optional. Specifies how to distribute traffic over a collection of
+     *           Revisions belonging to the Service. If traffic is empty or not provided,
+     *           defaults to 100% traffic to the latest `Ready` Revision.
      *     @type \Google\Cloud\Run\V2\ServiceScaling $scaling
      *           Optional. Specifies service-level scaling settings
+     *     @type bool $invoker_iam_disabled
+     *           Optional. Disables IAM permission check for run.routes.invoke for callers
+     *           of this service. This feature is available by invitation only. For more
+     *           information, visit
+     *           https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *     @type bool $default_uri_disabled
      *           Optional. Disables public resolution of the default URI of this service.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
+     *           Output only. All URLs serving traffic for this Service.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
+     *           One or more custom audiences that you want this service to support. Specify
+     *           each custom audience as the full URL in a string. The custom audiences are
+     *           encoded in the token and used to authenticate requests. For more
+     *           information, see
+     *           https://cloud.google.com/run/docs/configuring/custom-audiences.
      *     @type int|string $observed_generation
      *           Output only. The generation of this Service currently serving traffic. See
      *           comments in `reconciling` for additional information on reconciliation
@@ -411,12 +441,6 @@ class Service extends \Google\Protobuf\Internal\Message
      *           process in Cloud Run.
      *     @type string $uri
      *           Output only. The main URI in which this Service is serving traffic.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
-     *           One or more custom audiences that you want this service to support. Specify
-     *           each custom audience as the full URL in a string. The custom audiences are
-     *           encoded in the token and used to authenticate requests. For more
-     *           information, see
-     *           https://cloud.google.com/run/docs/configuring/custom-audiences.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
      *     @type bool $reconciling
@@ -732,7 +756,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -753,7 +778,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -910,11 +936,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides the ingress settings for this Service. On output, returns the
-     * currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     * revision is active.
+     * Optional. Provides the ingress settings for this Service. On output,
+     * returns the currently observed ingress settings, or
+     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getIngress()
@@ -923,11 +949,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provides the ingress settings for this Service. On output, returns the
-     * currently observed ingress settings, or INGRESS_TRAFFIC_UNSPECIFIED if no
-     * revision is active.
+     * Optional. Provides the ingress settings for this Service. On output,
+     * returns the currently observed ingress settings, or
+     * INGRESS_TRAFFIC_UNSPECIFIED if no revision is active.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.IngressTraffic ingress = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -940,7 +966,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The launch stage as defined by [Google Cloud Platform
+     * Optional. The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
@@ -951,7 +977,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
-     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getLaunchStage()
@@ -960,7 +986,7 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The launch stage as defined by [Google Cloud Platform
+     * Optional. The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
      * Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA
      * is assumed.
@@ -971,7 +997,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * For example, if ALPHA is provided as input, but only BETA and GA-level
      * features are used, this field will be BETA on output.
      *
-     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16;</code>
+     * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -984,9 +1010,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Run\V2\BinaryAuthorization|null
      */
     public function getBinaryAuthorization()
@@ -1005,9 +1031,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings for the Binary Authorization feature.
+     * Optional. Settings for the Binary Authorization feature.
      *
-     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Run\V2\BinaryAuthorization $var
      * @return $this
      */
@@ -1056,11 +1082,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to distribute traffic over a collection of Revisions
-     * belonging to the Service. If traffic is empty or not provided, defaults to
-     * 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of
+     * Revisions belonging to the Service. If traffic is empty or not provided,
+     * defaults to 100% traffic to the latest `Ready` Revision.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTraffic()
@@ -1069,11 +1095,11 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to distribute traffic over a collection of Revisions
-     * belonging to the Service. If traffic is empty or not provided, defaults to
-     * 100% traffic to the latest `Ready` Revision.
+     * Optional. Specifies how to distribute traffic over a collection of
+     * Revisions belonging to the Service. If traffic is empty or not provided,
+     * defaults to 100% traffic to the latest `Ready` Revision.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -1122,6 +1148,38 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *
+     * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getInvokerIamDisabled()
+    {
+        return $this->invoker_iam_disabled;
+    }
+
+    /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
+     *
+     * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInvokerIamDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->invoker_iam_disabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Disables public resolution of the default URI of this service.
      *
      * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1143,6 +1201,66 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->default_uri_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     *
+     * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUrls()
+    {
+        return $this->urls;
+    }
+
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     *
+     * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUrls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomAudiences()
+    {
+        return $this->custom_audiences;
+    }
+
+    /**
+     * One or more custom audiences that you want this service to support. Specify
+     * each custom audience as the full URL in a string. The custom audiences are
+     * encoded in the token and used to authenticate requests. For more
+     * information, see
+     * https://cloud.google.com/run/docs/configuring/custom-audiences.
+     *
+     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomAudiences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_audiences = $arr;
 
         return $this;
     }
@@ -1367,40 +1485,6 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
-
-        return $this;
-    }
-
-    /**
-     * One or more custom audiences that you want this service to support. Specify
-     * each custom audience as the full URL in a string. The custom audiences are
-     * encoded in the token and used to authenticate requests. For more
-     * information, see
-     * https://cloud.google.com/run/docs/configuring/custom-audiences.
-     *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getCustomAudiences()
-    {
-        return $this->custom_audiences;
-    }
-
-    /**
-     * One or more custom audiences that you want this service to support. Specify
-     * each custom audience as the full URL in a string. The custom audiences are
-     * encoded in the token and used to authenticate requests. For more
-     * information, see
-     * https://cloud.google.com/run/docs/configuring/custom-audiences.
-     *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setCustomAudiences($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->custom_audiences = $arr;
 
         return $this;
     }

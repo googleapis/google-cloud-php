@@ -21,19 +21,19 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The create time of the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time of the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Labels.
      *
@@ -45,7 +45,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     protected $profile;
     protected $connectivity;
 
@@ -75,6 +75,8 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           BigQuery Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlProfile $postgresql_profile
      *           PostgreSQL Connection Profile configuration.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerProfile $sql_server_profile
+     *           SQLServer Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\Datastream\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -389,6 +391,37 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlProfile::class);
         $this->writeOneof(104, $var);
+
+        return $this;
+    }
+
+    /**
+     * SQLServer Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerProfile sql_server_profile = 105;</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerProfile|null
+     */
+    public function getSqlServerProfile()
+    {
+        return $this->readOneof(105);
+    }
+
+    public function hasSqlServerProfile()
+    {
+        return $this->hasOneof(105);
+    }
+
+    /**
+     * SQLServer Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerProfile sql_server_profile = 105;</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerProfile $var
+     * @return $this
+     */
+    public function setSqlServerProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerProfile::class);
+        $this->writeOneof(105, $var);
 
         return $this;
     }

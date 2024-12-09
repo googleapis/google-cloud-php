@@ -23,10 +23,48 @@
 return [
     'interfaces' => [
         'google.cloud.discoveryengine.v1.CompletionService' => [
+            'ImportCompletionSuggestions' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DiscoveryEngine\V1\ImportCompletionSuggestionsResponse',
+                    'metadataReturnType' => '\Google\Cloud\DiscoveryEngine\V1\ImportCompletionSuggestionsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ImportSuggestionDenyListEntries' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\DiscoveryEngine\V1\ImportSuggestionDenyListEntriesResponse',
                     'metadataReturnType' => '\Google\Cloud\DiscoveryEngine\V1\ImportSuggestionDenyListEntriesMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PurgeCompletionSuggestions' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\DiscoveryEngine\V1\PurgeCompletionSuggestionsResponse',
+                    'metadataReturnType' => '\Google\Cloud\DiscoveryEngine\V1\PurgeCompletionSuggestionsMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

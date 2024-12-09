@@ -30,7 +30,8 @@ use Google\Cloud\Run\V2\Execution;
 use Google\Cloud\Run\V2\ListExecutionsRequest;
 
 /**
- * Lists Executions from a Job.
+ * Lists Executions from a Job. Results are sorted by creation time,
+ * descending.
  *
  * @param string $formattedParent The Execution from which the Executions should be listed.
  *                                To list all Executions across Jobs, use "-" instead of Job name.

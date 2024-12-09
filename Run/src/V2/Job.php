@@ -23,7 +23,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Server assigned unique identifier for the Execution. The value
      * is a UUID4 string and guaranteed to remain unchanged until the resource is
@@ -31,14 +31,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. A number that monotonically increases every time the user
      * modifies the desired state.
      *
      * Generated from protobuf field <code>int64 generation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * Unstructured key value map that can be used to organize and categorize
      * objects.
@@ -75,50 +75,51 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. For a deleted resource, the time after which it will be
      * permamently deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. Email address of the authenticated creator.
      *
      * Generated from protobuf field <code>string creator = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Output only. Email address of the last authenticated modifier.
      *
      * Generated from protobuf field <code>string last_modifier = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_modifier = '';
+    protected $last_modifier = '';
     /**
      * Arbitrary identifier for the API client.
      *
      * Generated from protobuf field <code>string client = 12;</code>
      */
-    private $client = '';
+    protected $client = '';
     /**
      * Arbitrary version identifier for the API client.
      *
      * Generated from protobuf field <code>string client_version = 13;</code>
      */
-    private $client_version = '';
+    protected $client_version = '';
     /**
      * The launch stage as defined by [Google Cloud Platform
      * Launch Stages](https://cloud.google.com/terms/launch-stages).
@@ -133,33 +134,33 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.LaunchStage launch_stage = 14;</code>
      */
-    private $launch_stage = 0;
+    protected $launch_stage = 0;
     /**
      * Settings for the Binary Authorization feature.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.BinaryAuthorization binary_authorization = 15;</code>
      */
-    private $binary_authorization = null;
+    protected $binary_authorization = null;
     /**
      * Required. The template used to create executions for this Job.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionTemplate template = 16 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $template = null;
+    protected $template = null;
     /**
      * Output only. The generation of this Job. See comments in `reconciling` for
      * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $observed_generation = 0;
+    protected $observed_generation = 0;
     /**
      * Output only. The Condition of this Job, containing its readiness status,
      * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.Condition terminal_condition = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $terminal_condition = null;
+    protected $terminal_condition = null;
     /**
      * Output only. The Conditions of all other associated sub-resources. They
      * contain additional diagnostics information in case the Job does not reach
@@ -174,13 +175,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 execution_count = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $execution_count = 0;
+    protected $execution_count = 0;
     /**
      * Output only. Name of the last created execution.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.ExecutionReference latest_created_execution = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $latest_created_execution = null;
+    protected $latest_created_execution = null;
     /**
      * Output only. Returns true if the Job is currently being acted upon by the
      * system to bring it into the desired state.
@@ -203,20 +204,21 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reconciling = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
     /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
+    protected $create_execution;
 
     /**
      * Constructor.
@@ -263,7 +265,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
-     *           Output only. The deletion time.
+     *           Output only. The deletion time. It is only populated as a response to a
+     *           Delete request.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. For a deleted resource, the time after which it will be
      *           permamently deleted.
@@ -326,6 +329,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *           failure can be found in `terminal_condition` and `conditions`.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type string $start_execution_token
+     *           A unique string used as a suffix creating a new execution. The Job will
+     *           become ready when the execution is successfully started.
+     *           The sum of job name and token length must be fewer than 63 characters.
+     *     @type string $run_execution_token
+     *           A unique string used as a suffix for creating a new execution. The Job
+     *           will become ready when the execution is successfully completed.
+     *           The sum of job name and token length must be fewer than 63 characters.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -587,7 +598,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -608,7 +620,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The deletion time.
+     * Output only. The deletion time. It is only populated as a response to a
+     * Delete request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -1127,6 +1140,76 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A unique string used as a suffix creating a new execution. The Job will
+     * become ready when the execution is successfully started.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string start_execution_token = 26;</code>
+     * @return string
+     */
+    public function getStartExecutionToken()
+    {
+        return $this->readOneof(26);
+    }
+
+    public function hasStartExecutionToken()
+    {
+        return $this->hasOneof(26);
+    }
+
+    /**
+     * A unique string used as a suffix creating a new execution. The Job will
+     * become ready when the execution is successfully started.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string start_execution_token = 26;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStartExecutionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * A unique string used as a suffix for creating a new execution. The Job
+     * will become ready when the execution is successfully completed.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string run_execution_token = 27;</code>
+     * @return string
+     */
+    public function getRunExecutionToken()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasRunExecutionToken()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * A unique string used as a suffix for creating a new execution. The Job
+     * will become ready when the execution is successfully completed.
+     * The sum of job name and token length must be fewer than 63 characters.
+     *
+     * Generated from protobuf field <code>string run_execution_token = 27;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRunExecutionToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -1152,6 +1235,14 @@ class Job extends \Google\Protobuf\Internal\Message
         $this->etag = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreateExecution()
+    {
+        return $this->whichOneof("create_execution");
     }
 
 }

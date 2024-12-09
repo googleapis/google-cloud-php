@@ -21,7 +21,7 @@ class FetchDatabasePropertiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $environment = '';
+    protected $environment = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig private_registry_access_config = 1;</code>
      */
-    private $private_registry_access_config = null;
+    protected $private_registry_access_config = null;
 
     /**
      * Constructor.

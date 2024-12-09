@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Supported WAF features. For more information, see
- * https://cloud.google.com/recaptcha-enterprise/docs/usecase#comparison_of_features.
+ * https://cloud.google.com/recaptcha/docs/usecase#comparison_of_features.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.WafSettings.WafFeature</code>
  */

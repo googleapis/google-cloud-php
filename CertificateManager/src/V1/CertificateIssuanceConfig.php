@@ -22,19 +22,19 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation timestamp of a CertificateIssuanceConfig.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of a CertificateIssuanceConfig.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Set of labels associated with a CertificateIssuanceConfig.
      *
@@ -46,20 +46,20 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. The CA that issues the workload certificate. It includes the CA
      * address, type, authentication to CA service, etc.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.CertificateIssuanceConfig.CertificateAuthorityConfig certificate_authority_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $certificate_authority_config = null;
+    protected $certificate_authority_config = null;
     /**
      * Required. Workload certificate lifetime requested.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $lifetime = null;
+    protected $lifetime = null;
     /**
      * Required. Specifies the percentage of elapsed time of the certificate
      * lifetime to wait before renewing the certificate. Must be a number between
@@ -67,13 +67,13 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 rotation_window_percentage = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rotation_window_percentage = 0;
+    protected $rotation_window_percentage = 0;
     /**
      * Required. The key algorithm to use when generating the private key.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.CertificateIssuanceConfig.KeyAlgorithm key_algorithm = 9 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_algorithm = 0;
+    protected $key_algorithm = 0;
 
     /**
      * Constructor.

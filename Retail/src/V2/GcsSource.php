@@ -50,7 +50,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      */
-    private $data_schema = '';
+    protected $data_schema = '';
 
     /**
      * Constructor.

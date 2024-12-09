@@ -29,7 +29,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string action = 1;</code>
      */
-    private $action = '';
+    protected $action = '';
     /**
      * Type of GCP resource being modified/tested. This field is always populated.
      * Example: cloudresourcemanager.googleapis.com/Project,
@@ -37,21 +37,21 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 2;</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * Contains the fully qualified resource name. This field is always populated.
      * ex: //cloudresourcemanager.googleapis.com/projects/foo.
      *
      * Generated from protobuf field <code>string resource = 3;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * Path to the target field being operated on. If the operation is at the
      * resource level, then path should be "/". This field is always populated.
      *
      * Generated from protobuf field <code>string path = 4;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Can be set with action 'copy' to copy resource configuration across
      * different resources of the same type. Example: A resource clone can be
@@ -61,14 +61,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_resource = 5;</code>
      */
-    private $source_resource = '';
+    protected $source_resource = '';
     /**
      * Can be set with action 'copy' or 'move' to indicate the source field within
      * resource or source_resource, ignored if provided for other operation types.
      *
      * Generated from protobuf field <code>string source_path = 6;</code>
      */
-    private $source_path = '';
+    protected $source_path = '';
     /**
      * Set of filters to apply if `path` refers to array elements or nested array
      * elements in order to narrow down to a single unique element that is being

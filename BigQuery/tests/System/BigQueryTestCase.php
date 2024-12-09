@@ -22,7 +22,7 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
-class BigQueryTestCase extends SystemTestCase
+abstract class BigQueryTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const ENCRYPTION_SERVICE_ACCOUNT_EMAIL_TEMPLATE = 'bq-%s@bigquery-encryption.iam.gserviceaccount.com';
@@ -35,7 +35,10 @@ class BigQueryTestCase extends SystemTestCase
     protected static $table;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$hasSetUp) {
             return;

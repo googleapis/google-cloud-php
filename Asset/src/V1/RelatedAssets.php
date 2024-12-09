@@ -24,7 +24,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.RelationshipAttributes relationship_attributes = 1;</code>
      */
-    private $relationship_attributes = null;
+    protected $relationship_attributes = null;
     /**
      * The peer resources of the relationship.
      *

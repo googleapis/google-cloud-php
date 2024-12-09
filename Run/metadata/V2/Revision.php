@@ -29,7 +29,7 @@ class Revision
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬
+¥
 "google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto google/cloud/run/v2/status.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
 GetRevisionRequest1
 name (	B#‡A˙A
@@ -47,7 +47,7 @@ page_token (	
 name (	B#‡A˙A
 run.googleapis.com/Revision
 validate_only (
-etag (	"Ì
+etag (	"ﬂ
 Revision
 name (	B‡A
 uid (	B‡A
@@ -74,7 +74,8 @@ containers (2.google.cloud.run.v2.Container,
 volumes (2.google.cloud.run.v2.VolumeH
 execution_environment (2).google.cloud.run.v2.ExecutionEnvironment>
 encryption_key (	B&˙A#
-!cloudkms.googleapis.com/CryptoKey\\
+!cloudkms.googleapis.com/CryptoKey6
+service_mesh (2 .google.cloud.run.v2.ServiceMesh\\
  encryption_key_revocation_action (22.google.cloud.run.v2.EncryptionKeyRevocationActionC
  encryption_key_shutdown_duration (2.google.protobuf.Duration
 reconciling (B‡A7
@@ -84,7 +85,8 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 log_uri! (	B‡A
 satisfies_pzs% (B‡A
 session_affinity& (G
-scaling_status\' (2*.google.cloud.run.v2.RevisionScalingStatusB‡A
+scaling_status\' (2*.google.cloud.run.v2.RevisionScalingStatusB‡A8
+node_selector( (2!.google.cloud.run.v2.NodeSelector
 etagc (	B‡A-
 LabelsEntry
 key (	

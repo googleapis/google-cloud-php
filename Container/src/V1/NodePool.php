@@ -25,13 +25,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The node configuration of the pool.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeConfig config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The initial node count for the pool. You must ensure that your
      * Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
@@ -40,7 +40,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 initial_node_count = 3;</code>
      */
-    private $initial_node_count = 0;
+    protected $initial_node_count = 0;
     /**
      * The list of Google Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -60,13 +60,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
      */
-    private $network_config = null;
+    protected $network_config = null;
     /**
-     * [Output only] Server-defined URL for the resource.
+     * Output only. Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 100;</code>
+     * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $self_link = '';
+    protected $self_link = '';
     /**
      * The version of Kubernetes running on this NodePool's nodes. If unspecified,
      * it defaults as described
@@ -74,29 +74,29 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 101;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
-     * [Output only] The resource URLs of the [managed instance
+     * Output only. The resource URLs of the [managed instance
      * groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      * associated with this node pool.
      * During the node pool blue-green upgrade operation, the URLs contain both
      * blue and green resources.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 102;</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $instance_group_urls;
     /**
-     * [Output only] The status of the nodes in this pool instance.
+     * Output only. The status of the nodes in this pool instance.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodePool.Status status = 103;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodePool.Status status = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $status = 0;
+    protected $status = 0;
     /**
-     * [Output only] Deprecated. Use conditions instead.
+     * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
      * node pool instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 104 [deprecated = true];</code>
+     * Generated from protobuf field <code>string status_message = 104 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     protected $status_message = '';
@@ -106,20 +106,20 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling autoscaling = 4;</code>
      */
-    private $autoscaling = null;
+    protected $autoscaling = null;
     /**
      * NodeManagement configuration for this NodePool.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeManagement management = 5;</code>
      */
-    private $management = null;
+    protected $management = null;
     /**
      * The constraint on the maximum number of pods that can be run
      * simultaneously on a node in the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint max_pods_constraint = 6;</code>
      */
-    private $max_pods_constraint = null;
+    protected $max_pods_constraint = null;
     /**
      * Which conditions caused the current node pool state.
      *
@@ -127,30 +127,30 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $conditions;
     /**
-     * [Output only] The pod CIDR block size per node in this node pool.
+     * Output only. The pod CIDR block size per node in this node pool.
      *
-     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
+     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $pod_ipv4_cidr_size = 0;
+    protected $pod_ipv4_cidr_size = 0;
     /**
      * Upgrade settings control disruption and speed of the upgrade.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 107;</code>
      */
-    private $upgrade_settings = null;
+    protected $upgrade_settings = null;
     /**
      * Specifies the node placement policy.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.PlacementPolicy placement_policy = 108;</code>
      */
-    private $placement_policy = null;
+    protected $placement_policy = null;
     /**
-     * Output only. [Output only] Update info contains relevant information during
-     * a node pool update.
+     * Output only. Update info contains relevant information during a node
+     * pool update.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_info = null;
+    protected $update_info = null;
     /**
      * This checksum is computed by the server based on the value of node pool
      * fields, and may be sent on update requests to ensure the client has an
@@ -158,19 +158,19 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 110;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Specifies the configuration of queued provisioning.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.QueuedProvisioning queued_provisioning = 112;</code>
      */
-    private $queued_provisioning = null;
+    protected $queued_provisioning = null;
     /**
      * Enable best effort provisioning for nodes
      *
      * Generated from protobuf field <code>.google.container.v1.BestEffortProvisioning best_effort_provisioning = 113;</code>
      */
-    private $best_effort_provisioning = null;
+    protected $best_effort_provisioning = null;
 
     /**
      * Constructor.
@@ -200,21 +200,21 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Networking configuration for this NodePool. If specified, it overrides the
      *           cluster-level defaults.
      *     @type string $self_link
-     *           [Output only] Server-defined URL for the resource.
+     *           Output only. Server-defined URL for the resource.
      *     @type string $version
      *           The version of Kubernetes running on this NodePool's nodes. If unspecified,
      *           it defaults as described
      *           [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
-     *           [Output only] The resource URLs of the [managed instance
+     *           Output only. The resource URLs of the [managed instance
      *           groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with this node pool.
      *           During the node pool blue-green upgrade operation, the URLs contain both
      *           blue and green resources.
      *     @type int $status
-     *           [Output only] The status of the nodes in this pool instance.
+     *           Output only. The status of the nodes in this pool instance.
      *     @type string $status_message
-     *           [Output only] Deprecated. Use conditions instead.
+     *           Output only. Deprecated. Use conditions instead.
      *           Additional information about the current status of this
      *           node pool instance, if available.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $autoscaling
@@ -228,14 +228,14 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Which conditions caused the current node pool state.
      *     @type int $pod_ipv4_cidr_size
-     *           [Output only] The pod CIDR block size per node in this node pool.
+     *           Output only. The pod CIDR block size per node in this node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
      *           Upgrade settings control disruption and speed of the upgrade.
      *     @type \Google\Cloud\Container\V1\NodePool\PlacementPolicy $placement_policy
      *           Specifies the node placement policy.
      *     @type \Google\Cloud\Container\V1\NodePool\UpdateInfo $update_info
-     *           Output only. [Output only] Update info contains relevant information during
-     *           a node pool update.
+     *           Output only. Update info contains relevant information during a node
+     *           pool update.
      *     @type string $etag
      *           This checksum is computed by the server based on the value of node pool
      *           fields, and may be sent on update requests to ensure the client has an
@@ -424,9 +424,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Server-defined URL for the resource.
+     * Output only. Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 100;</code>
+     * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSelfLink()
@@ -435,9 +435,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Server-defined URL for the resource.
+     * Output only. Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 100;</code>
+     * Generated from protobuf field <code>string self_link = 100 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -480,13 +480,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The resource URLs of the [managed instance
+     * Output only. The resource URLs of the [managed instance
      * groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      * associated with this node pool.
      * During the node pool blue-green upgrade operation, the URLs contain both
      * blue and green resources.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 102;</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInstanceGroupUrls()
@@ -495,13 +495,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The resource URLs of the [managed instance
+     * Output only. The resource URLs of the [managed instance
      * groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      * associated with this node pool.
      * During the node pool blue-green upgrade operation, the URLs contain both
      * blue and green resources.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 102;</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -514,9 +514,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The status of the nodes in this pool instance.
+     * Output only. The status of the nodes in this pool instance.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodePool.Status status = 103;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodePool.Status status = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getStatus()
@@ -525,9 +525,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The status of the nodes in this pool instance.
+     * Output only. The status of the nodes in this pool instance.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodePool.Status status = 103;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodePool.Status status = 103 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -540,11 +540,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Deprecated. Use conditions instead.
+     * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
      * node pool instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 104 [deprecated = true];</code>
+     * Generated from protobuf field <code>string status_message = 104 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      * @deprecated
      */
@@ -555,11 +555,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Deprecated. Use conditions instead.
+     * Output only. Deprecated. Use conditions instead.
      * Additional information about the current status of this
      * node pool instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 104 [deprecated = true];</code>
+     * Generated from protobuf field <code>string status_message = 104 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      * @deprecated
@@ -712,9 +712,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The pod CIDR block size per node in this node pool.
+     * Output only. The pod CIDR block size per node in this node pool.
      *
-     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
+     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getPodIpv4CidrSize()
@@ -723,9 +723,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The pod CIDR block size per node in this node pool.
+     * Output only. The pod CIDR block size per node in this node pool.
      *
-     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
+     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -810,8 +810,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Update info contains relevant information during
-     * a node pool update.
+     * Output only. Update info contains relevant information during a node
+     * pool update.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Container\V1\NodePool\UpdateInfo|null
@@ -832,8 +832,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Update info contains relevant information during
-     * a node pool update.
+     * Output only. Update info contains relevant information during a node
+     * pool update.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Container\V1\NodePool\UpdateInfo $var

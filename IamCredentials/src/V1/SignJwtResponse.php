@@ -18,13 +18,13 @@ class SignJwtResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 1;</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
     /**
      * The signed JWT.
      *
      * Generated from protobuf field <code>string signed_jwt = 2;</code>
      */
-    private $signed_jwt = '';
+    protected $signed_jwt = '';
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings.AssetDiscoveryConfig.InclusionMode inclusion_mode = 2;</code>
      */
-    private $inclusion_mode = 0;
+    protected $inclusion_mode = 0;
     /**
      * The folder ids to use for filtering asset discovery.
      * It consists of only digits, e.g., 756619654966.
@@ -137,6 +137,4 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AssetDiscoveryConfig::class, \Google\Cloud\SecurityCenter\V1\OrganizationSettings_AssetDiscoveryConfig::class);
 

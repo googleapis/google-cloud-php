@@ -16,8 +16,8 @@ use UnexpectedValueException;
  * the [`Entry`](#resource:-entry) field `user_specified_type`. For more
  * information, see
  * [Surface files from Cloud Storage with fileset
- * entries](https://cloud.google.com/data-catalog/docs/how-to/filesets) or [Create custom entries for
- * your data sources](https://cloud.google.com/data-catalog/docs/how-to/custom-entries).
+ * entries](/data-catalog/docs/how-to/filesets) or [Create custom entries for
+ * your data sources](/data-catalog/docs/how-to/custom-entries).
  *
  * Protobuf type <code>google.cloud.datacatalog.v1.EntryType</code>
  */
@@ -39,7 +39,7 @@ class EntryType
     /**
      * The type of models.
      * For more information, see [Supported models in BigQuery
-     * ML](https://cloud.google.com/bigquery/docs/bqml-introduction#supported_models).
+     * ML](/bigquery/docs/bqml-introduction#supported_models).
      *
      * Generated from protobuf enum <code>MODEL = 5;</code>
      */
@@ -128,6 +128,24 @@ class EntryType
      * Generated from protobuf enum <code>LOOK = 18;</code>
      */
     const LOOK = 18;
+    /**
+     * Feature Online Store resource in Vertex AI Feature Store.
+     *
+     * Generated from protobuf enum <code>FEATURE_ONLINE_STORE = 19;</code>
+     */
+    const FEATURE_ONLINE_STORE = 19;
+    /**
+     * Feature View resource in Vertex AI Feature Store.
+     *
+     * Generated from protobuf enum <code>FEATURE_VIEW = 20;</code>
+     */
+    const FEATURE_VIEW = 20;
+    /**
+     * Feature Group resource in Vertex AI Feature Store.
+     *
+     * Generated from protobuf enum <code>FEATURE_GROUP = 21;</code>
+     */
+    const FEATURE_GROUP = 21;
 
     private static $valueToName = [
         self::ENTRY_TYPE_UNSPECIFIED => 'ENTRY_TYPE_UNSPECIFIED',
@@ -146,6 +164,9 @@ class EntryType
         self::DASHBOARD => 'DASHBOARD',
         self::EXPLORE => 'EXPLORE',
         self::LOOK => 'LOOK',
+        self::FEATURE_ONLINE_STORE => 'FEATURE_ONLINE_STORE',
+        self::FEATURE_VIEW => 'FEATURE_VIEW',
+        self::FEATURE_GROUP => 'FEATURE_GROUP',
     ];
 
     public static function name($value)

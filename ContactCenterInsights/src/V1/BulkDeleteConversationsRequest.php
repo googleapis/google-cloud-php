@@ -22,19 +22,19 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Filter used to select the subset of conversations to delete.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Maximum number of conversations to delete.
      *
      * Generated from protobuf field <code>int32 max_delete_count = 3;</code>
      */
-    private $max_delete_count = 0;
+    protected $max_delete_count = 0;
     /**
      * If set to true, all of this conversation's analyses will also be deleted.
      * Otherwise, the request will only succeed if the conversation has no
@@ -42,7 +42,7 @@ class BulkDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 4;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $parent Required. The parent resource to delete conversations from.

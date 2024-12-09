@@ -20,7 +20,7 @@ class LookerColumnSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ColumnSchema.LookerColumnSpec.LookerColumnType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class LookerColumnSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LookerColumnSpec::class, \Google\Cloud\DataCatalog\V1\ColumnSchema_LookerColumnSpec::class);
 

@@ -22,14 +22,14 @@ class SplitReadStreamResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadStream primary_stream = 1;</code>
      */
-    private $primary_stream = null;
+    protected $primary_stream = null;
     /**
      * Remainder stream, which contains the tail of |original_stream|. An empty
      * value indicates that the original stream can no longer be split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadStream remainder_stream = 2;</code>
      */
-    private $remainder_stream = null;
+    protected $remainder_stream = null;
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,7 @@ use Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest;
+use Google\Cloud\BigQuery\Reservation\V1\FailoverReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest;
@@ -86,27 +87,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAssignmentAsync(CreateAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCapacityCommitmentAsync(CreateCapacityCommitmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReservationAsync(CreateReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAssignmentAsync(DeleteAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCapacityCommitmentAsync(DeleteCapacityCommitmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteReservationAsync(DeleteReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBiReservationAsync(GetBiReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCapacityCommitmentAsync(GetCapacityCommitmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReservationAsync(GetReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAssignmentsAsync(ListAssignmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCapacityCommitmentsAsync(ListCapacityCommitmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReservationsAsync(ListReservationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface mergeCapacityCommitmentsAsync(MergeCapacityCommitmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveAssignmentAsync(MoveAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchAllAssignmentsAsync(SearchAllAssignmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchAssignmentsAsync(SearchAssignmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface splitCapacityCommitmentAsync(SplitCapacityCommitmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAssignmentAsync(UpdateAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBiReservationAsync(UpdateBiReservationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCapacityCommitmentAsync(UpdateCapacityCommitmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateReservationAsync(UpdateReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Assignment> createAssignmentAsync(CreateAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CapacityCommitment> createCapacityCommitmentAsync(CreateCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reservation> createReservationAsync(CreateReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAssignmentAsync(DeleteAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCapacityCommitmentAsync(DeleteCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteReservationAsync(DeleteReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reservation> failoverReservationAsync(FailoverReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BiReservation> getBiReservationAsync(GetBiReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CapacityCommitment> getCapacityCommitmentAsync(GetCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reservation> getReservationAsync(GetReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAssignmentsAsync(ListAssignmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCapacityCommitmentsAsync(ListCapacityCommitmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReservationsAsync(ListReservationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CapacityCommitment> mergeCapacityCommitmentsAsync(MergeCapacityCommitmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Assignment> moveAssignmentAsync(MoveAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAllAssignmentsAsync(SearchAllAssignmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAssignmentsAsync(SearchAssignmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SplitCapacityCommitmentResponse> splitCapacityCommitmentAsync(SplitCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Assignment> updateAssignmentAsync(UpdateAssignmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BiReservation> updateBiReservationAsync(UpdateBiReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CapacityCommitment> updateCapacityCommitmentAsync(UpdateCapacityCommitmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Reservation> updateReservationAsync(UpdateReservationRequest $request, array $optionalArgs = [])
  */
 final class ReservationServiceClient
 {
@@ -168,8 +170,12 @@ final class ReservationServiceClient
      *
      * @return string The formatted assignment resource.
      */
-    public static function assignmentName(string $project, string $location, string $reservation, string $assignment): string
-    {
+    public static function assignmentName(
+        string $project,
+        string $location,
+        string $reservation,
+        string $assignment
+    ): string {
         return self::getPathTemplate('assignment')->render([
             'project' => $project,
             'location' => $location,
@@ -431,8 +437,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCapacityCommitment(CreateCapacityCommitmentRequest $request, array $callOptions = []): CapacityCommitment
-    {
+    public function createCapacityCommitment(
+        CreateCapacityCommitmentRequest $request,
+        array $callOptions = []
+    ): CapacityCommitment {
         return $this->startApiCall('CreateCapacityCommitment', $request, $callOptions)->wait();
     }
 
@@ -554,6 +562,37 @@ final class ReservationServiceClient
     }
 
     /**
+     * Fail over a reservation to the secondary location. The operation should be
+     * done in the current secondary location, which will be promoted to the
+     * new primary location for the reservation.
+     * Attempting to failover a reservation in the current primary location will
+     * fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     *
+     * The async variant is {@see ReservationServiceClient::failoverReservationAsync()}
+     * .
+     *
+     * @example samples/V1/ReservationServiceClient/failover_reservation.php
+     *
+     * @param FailoverReservationRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Reservation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function failoverReservation(FailoverReservationRequest $request, array $callOptions = []): Reservation
+    {
+        return $this->startApiCall('FailoverReservation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a BI reservation.
      *
      * The async variant is {@see ReservationServiceClient::getBiReservationAsync()} .
@@ -601,8 +640,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCapacityCommitment(GetCapacityCommitmentRequest $request, array $callOptions = []): CapacityCommitment
-    {
+    public function getCapacityCommitment(
+        GetCapacityCommitmentRequest $request,
+        array $callOptions = []
+    ): CapacityCommitment {
         return $this->startApiCall('GetCapacityCommitment', $request, $callOptions)->wait();
     }
 
@@ -700,8 +741,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCapacityCommitments(ListCapacityCommitmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCapacityCommitments(
+        ListCapacityCommitmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCapacityCommitments', $request, $callOptions);
     }
 
@@ -759,8 +802,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function mergeCapacityCommitments(MergeCapacityCommitmentsRequest $request, array $callOptions = []): CapacityCommitment
-    {
+    public function mergeCapacityCommitments(
+        MergeCapacityCommitmentsRequest $request,
+        array $callOptions = []
+    ): CapacityCommitment {
         return $this->startApiCall('MergeCapacityCommitments', $request, $callOptions)->wait();
     }
 
@@ -835,8 +880,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchAllAssignments(SearchAllAssignmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchAllAssignments(
+        SearchAllAssignmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchAllAssignments', $request, $callOptions);
     }
 
@@ -919,8 +966,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function splitCapacityCommitment(SplitCapacityCommitmentRequest $request, array $callOptions = []): SplitCapacityCommitmentResponse
-    {
+    public function splitCapacityCommitment(
+        SplitCapacityCommitmentRequest $request,
+        array $callOptions = []
+    ): SplitCapacityCommitmentResponse {
         return $this->startApiCall('SplitCapacityCommitment', $request, $callOptions)->wait();
     }
 
@@ -1014,8 +1063,10 @@ final class ReservationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCapacityCommitment(UpdateCapacityCommitmentRequest $request, array $callOptions = []): CapacityCommitment
-    {
+    public function updateCapacityCommitment(
+        UpdateCapacityCommitmentRequest $request,
+        array $callOptions = []
+    ): CapacityCommitment {
         return $this->startApiCall('UpdateCapacityCommitment', $request, $callOptions)->wait();
     }
 

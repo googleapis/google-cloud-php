@@ -24,8 +24,8 @@ class HyperparameterTuningJob
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-√
-:google/cloud/aiplatform/v1/hyperparameter_tuning_job.protogoogle.cloud.aiplatform.v1google/api/resource.proto+google/cloud/aiplatform/v1/custom_job.proto0google/cloud/aiplatform/v1/encryption_spec.proto*google/cloud/aiplatform/v1/job_state.proto&google/cloud/aiplatform/v1/study.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"˚
+˚
+:google/cloud/aiplatform/v1/hyperparameter_tuning_job.protogoogle.cloud.aiplatform.v1google/api/resource.proto+google/cloud/aiplatform/v1/custom_job.proto0google/cloud/aiplatform/v1/encryption_spec.proto*google/cloud/aiplatform/v1/job_state.proto&google/cloud/aiplatform/v1/study.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"≥
 HyperparameterTuningJob
 name (	B‡A
 display_name (	B‡A>
@@ -45,7 +45,9 @@ start_time (2.google.protobuf.TimestampB‡A1
 update_time (2.google.protobuf.TimestampB‡A&
 error (2.google.rpc.StatusB‡AO
 labels (2?.google.cloud.aiplatform.v1.HyperparameterTuningJob.LabelsEntryC
-encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpec-
+encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpec
+satisfies_pzs (B‡A
+satisfies_pzi (B‡A-
 LabelsEntry
 key (	
 value (	:8:ïÍAë

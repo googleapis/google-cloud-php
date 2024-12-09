@@ -20,13 +20,13 @@ class MySqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $host = '';
+    protected $host = '';
     /**
      * Required. The network port of the source MySQL database.
      *
      * Generated from protobuf field <code>int32 port = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * Required. The username that Database Migration Service will use to connect
      * to the database. The value is encrypted when stored in Database Migration
@@ -34,7 +34,7 @@ class MySqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * Required. Input only. The password for the user that Database Migration
      * Service will be using to connect to the database. This field is not
@@ -43,26 +43,26 @@ class MySqlConnectionProfile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $password = '';
+    protected $password = '';
     /**
      * Output only. Indicates If this connection profile password is stored.
      *
      * Generated from protobuf field <code>bool password_set = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $password_set = false;
+    protected $password_set = false;
     /**
      * SSL configuration for the destination to connect to the source database.
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.SslConfig ssl = 6;</code>
      */
-    private $ssl = null;
+    protected $ssl = null;
     /**
      * If the source is a Cloud SQL database, use this field to
      * provide the Cloud SQL instance ID of the source.
      *
      * Generated from protobuf field <code>string cloud_sql_id = 7;</code>
      */
-    private $cloud_sql_id = '';
+    protected $cloud_sql_id = '';
 
     /**
      * Constructor.

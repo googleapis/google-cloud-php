@@ -20,43 +20,43 @@ class ConfigSyncVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string importer = 1;</code>
      */
-    private $importer = '';
+    protected $importer = '';
     /**
      * Version of the deployed syncer pod
      *
      * Generated from protobuf field <code>string syncer = 2;</code>
      */
-    private $syncer = '';
+    protected $syncer = '';
     /**
      * Version of the deployed git-sync pod
      *
      * Generated from protobuf field <code>string git_sync = 3;</code>
      */
-    private $git_sync = '';
+    protected $git_sync = '';
     /**
      * Version of the deployed monitor pod
      *
      * Generated from protobuf field <code>string monitor = 4;</code>
      */
-    private $monitor = '';
+    protected $monitor = '';
     /**
      * Version of the deployed reconciler-manager pod
      *
      * Generated from protobuf field <code>string reconciler_manager = 5;</code>
      */
-    private $reconciler_manager = '';
+    protected $reconciler_manager = '';
     /**
      * Version of the deployed reconciler container in root-reconciler pod
      *
      * Generated from protobuf field <code>string root_reconciler = 6;</code>
      */
-    private $root_reconciler = '';
+    protected $root_reconciler = '';
     /**
      * Version of the deployed admission_webhook pod
      *
      * Generated from protobuf field <code>string admission_webhook = 7;</code>
      */
-    private $admission_webhook = '';
+    protected $admission_webhook = '';
 
     /**
      * Constructor.

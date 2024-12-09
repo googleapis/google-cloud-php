@@ -20,38 +20,38 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value min_length = 1;</code>
      */
-    private $min_length = null;
+    protected $min_length = null;
     /**
      * The complexity of the password.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PasswordValidationPolicy.Complexity complexity = 2;</code>
      */
-    private $complexity = 0;
+    protected $complexity = 0;
     /**
      * Number of previous passwords that cannot be reused.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value reuse_interval = 3;</code>
      */
-    private $reuse_interval = null;
+    protected $reuse_interval = null;
     /**
      * Disallow username as a part of the password.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_username_substring = 4;</code>
      */
-    private $disallow_username_substring = null;
+    protected $disallow_username_substring = null;
     /**
      * Minimum interval after which the password can be changed. This flag is only
      * supported for PostgreSQL.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration password_change_interval = 5;</code>
      */
-    private $password_change_interval = null;
+    protected $password_change_interval = null;
     /**
      * Whether the password policy is enabled or not.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      */
-    private $enable_password_policy = null;
+    protected $enable_password_policy = null;
     /**
      * This field is deprecated and will be removed in a future version of the
      * API.
@@ -119,7 +119,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value min_length = 1;</code>
      * @return int|null
      */
-    public function getMinLengthValue()
+    public function getMinLengthUnwrapped()
     {
         return $this->readWrapperValue("min_length");
     }
@@ -148,7 +148,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setMinLengthValue($var)
+    public function setMinLengthUnwrapped($var)
     {
         $this->writeWrapperValue("min_length", $var);
         return $this;}
@@ -208,7 +208,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value reuse_interval = 3;</code>
      * @return int|null
      */
-    public function getReuseIntervalValue()
+    public function getReuseIntervalUnwrapped()
     {
         return $this->readWrapperValue("reuse_interval");
     }
@@ -237,7 +237,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setReuseIntervalValue($var)
+    public function setReuseIntervalUnwrapped($var)
     {
         $this->writeWrapperValue("reuse_interval", $var);
         return $this;}
@@ -271,7 +271,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_username_substring = 4;</code>
      * @return bool|null
      */
-    public function getDisallowUsernameSubstringValue()
+    public function getDisallowUsernameSubstringUnwrapped()
     {
         return $this->readWrapperValue("disallow_username_substring");
     }
@@ -300,7 +300,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setDisallowUsernameSubstringValue($var)
+    public function setDisallowUsernameSubstringUnwrapped($var)
     {
         $this->writeWrapperValue("disallow_username_substring", $var);
         return $this;}
@@ -372,7 +372,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      * @return bool|null
      */
-    public function getEnablePasswordPolicyValue()
+    public function getEnablePasswordPolicyUnwrapped()
     {
         return $this->readWrapperValue("enable_password_policy");
     }
@@ -401,7 +401,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnablePasswordPolicyValue($var)
+    public function setEnablePasswordPolicyUnwrapped($var)
     {
         $this->writeWrapperValue("enable_password_policy", $var);
         return $this;}
@@ -441,7 +441,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue disallow_compromised_credentials = 7 [deprecated = true];</code>
      * @return bool|null
      */
-    public function getDisallowCompromisedCredentialsValue()
+    public function getDisallowCompromisedCredentialsUnwrapped()
     {
         @trigger_error('disallow_compromised_credentials is deprecated.', E_USER_DEPRECATED);
         return $this->readWrapperValue("disallow_compromised_credentials");
@@ -475,7 +475,7 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setDisallowCompromisedCredentialsValue($var)
+    public function setDisallowCompromisedCredentialsUnwrapped($var)
     {
         $this->writeWrapperValue("disallow_compromised_credentials", $var);
         return $this;}

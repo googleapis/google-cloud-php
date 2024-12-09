@@ -26,13 +26,13 @@ class RunReportJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The range of usage or invoice dates to include in the result.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.DateRange date_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $date_range = null;
+    protected $date_range = null;
     /**
      * Optional. A structured string that defines conditions on dimension columns
      * to restrict the report output.
@@ -45,7 +45,7 @@ class RunReportJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The BCP-47 language code, such as "en-US".  If specified, the
      * response is localized to the corresponding language code if the
@@ -54,7 +54,7 @@ class RunReportJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

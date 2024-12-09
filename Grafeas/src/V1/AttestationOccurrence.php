@@ -28,7 +28,7 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes serialized_payload = 1;</code>
      */
-    private $serialized_payload = '';
+    protected $serialized_payload = '';
     /**
      * One or more signatures over `serialized_payload`.  Verifier implementations
      * should consider this attestation message verified if at least one

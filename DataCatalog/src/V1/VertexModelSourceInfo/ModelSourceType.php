@@ -43,6 +43,24 @@ class ModelSourceType
      * Generated from protobuf enum <code>MODEL_GARDEN = 4;</code>
      */
     const MODEL_GARDEN = 4;
+    /**
+     * The Model is saved or tuned from Genie.
+     *
+     * Generated from protobuf enum <code>GENIE = 5;</code>
+     */
+    const GENIE = 5;
+    /**
+     * The Model is uploaded by text embedding finetuning pipeline.
+     *
+     * Generated from protobuf enum <code>CUSTOM_TEXT_EMBEDDING = 6;</code>
+     */
+    const CUSTOM_TEXT_EMBEDDING = 6;
+    /**
+     * The Model is saved or tuned from Marketplace.
+     *
+     * Generated from protobuf enum <code>MARKETPLACE = 7;</code>
+     */
+    const MARKETPLACE = 7;
 
     private static $valueToName = [
         self::MODEL_SOURCE_TYPE_UNSPECIFIED => 'MODEL_SOURCE_TYPE_UNSPECIFIED',
@@ -50,6 +68,9 @@ class ModelSourceType
         self::CUSTOM => 'CUSTOM',
         self::BQML => 'BQML',
         self::MODEL_GARDEN => 'MODEL_GARDEN',
+        self::GENIE => 'GENIE',
+        self::CUSTOM_TEXT_EMBEDDING => 'CUSTOM_TEXT_EMBEDDING',
+        self::MARKETPLACE => 'MARKETPLACE',
     ];
 
     public static function name($value)
@@ -73,6 +94,4 @@ class ModelSourceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ModelSourceType::class, \Google\Cloud\DataCatalog\V1\VertexModelSourceInfo_ModelSourceType::class);
 

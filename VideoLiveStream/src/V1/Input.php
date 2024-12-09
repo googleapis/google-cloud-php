@@ -22,19 +22,19 @@ class Input extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The update time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * User-defined key/value metadata.
      *
@@ -46,7 +46,7 @@ class Input extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Input.Type type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Tier defines the maximum input specification that is accepted by the
      * video pipeline. The billing is charged based on the tier specified here.
@@ -55,7 +55,7 @@ class Input extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Input.Tier tier = 14;</code>
      */
-    private $tier = 0;
+    protected $tier = 0;
     /**
      * Output only. URI to push the input stream to.
      * Its format depends on the input
@@ -65,26 +65,26 @@ class Input extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Preprocessing configurations.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.PreprocessingConfig preprocessing_config = 9;</code>
      */
-    private $preprocessing_config = null;
+    protected $preprocessing_config = null;
     /**
      * Security rule for access control.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Input.SecurityRule security_rules = 12;</code>
      */
-    private $security_rules = null;
+    protected $security_rules = null;
     /**
      * Output only. The information for the input stream. This field will be
      * present only when this input receives the input stream.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.InputStreamProperty input_stream_property = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $input_stream_property = null;
+    protected $input_stream_property = null;
 
     /**
      * Constructor.

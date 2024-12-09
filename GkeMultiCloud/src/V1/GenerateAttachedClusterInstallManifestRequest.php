@@ -26,7 +26,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A client provided ID of the resource. Must be unique within the
      * parent resource.
@@ -42,7 +42,7 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string attached_cluster_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $attached_cluster_id = '';
+    protected $attached_cluster_id = '';
     /**
      * Required. The platform version for the cluster (e.g. `1.19.0-gke.1000`).
      * You can list all supported versions on a given Google Cloud region by
@@ -51,13 +51,13 @@ class GenerateAttachedClusterInstallManifestRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string platform_version = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $platform_version = '';
+    protected $platform_version = '';
     /**
      * Optional. Proxy configuration for outbound HTTP(S) traffic.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AttachedProxyConfig proxy_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy_config = null;
+    protected $proxy_config = null;
 
     /**
      * @param string $parent            Required. The parent location where this

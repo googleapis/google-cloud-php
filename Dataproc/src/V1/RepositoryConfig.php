@@ -20,7 +20,7 @@ class RepositoryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.PyPiRepositoryConfig pypi_repository_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pypi_repository_config = null;
+    protected $pypi_repository_config = null;
 
     /**
      * Constructor.

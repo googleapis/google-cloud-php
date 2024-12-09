@@ -21,7 +21,7 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issue_model = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $issue_model = '';
+    protected $issue_model = '';
     /**
      * All the matched issues.
      *

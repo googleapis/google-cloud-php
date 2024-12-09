@@ -25,14 +25,14 @@ class EvaluateProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string processor_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $processor_version = '';
+    protected $processor_version = '';
     /**
      * Optional. The documents used in the evaluation. If unspecified, use the
      * processor's dataset as evaluation input.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BatchDocumentsInputConfig evaluation_documents = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $evaluation_documents = null;
+    protected $evaluation_documents = null;
 
     /**
      * @param string $processorVersion Required. The resource name of the

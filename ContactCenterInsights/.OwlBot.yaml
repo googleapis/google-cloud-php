@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/contactcenterinsights/v1/.*-php/(.*)
-      dest: /owl-bot-staging/ContactCenterInsights/v1/$1
+    - source: /google/cloud/contactcenterinsights/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/ContactCenterInsights/$1/$2
 api-name: ContactCenterInsights

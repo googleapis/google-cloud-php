@@ -20,10 +20,10 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -31,7 +31,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Allows filtering.
      * Supported syntax:
@@ -59,27 +59,27 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The standard list page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The standard list page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The type of job. Defaults to `DlpJobType.INSPECT`
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
-     * Comma separated list of fields to order by,
+     * Comma-separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -92,13 +92,13 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>string location_id = 7;</code>
      */
-    private $location_id = '';
+    protected $location_id = '';
 
     /**
      * @param string $parent Required. Parent resource name.
@@ -107,10 +107,10 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *                       processing
      *                       location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
-     *                       + Projects scope, location specified:<br/>
-     *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                       + Projects scope, no location specified (defaults to global):<br/>
-     *                       `projects/`<var>PROJECT_ID</var>
+     *                       + Projects scope, location specified:
+     *                       `projects/{project_id}/locations/{location_id}`
+     *                       + Projects scope, no location specified (defaults to global):
+     *                       `projects/{project_id}`
      *
      *                       The following example `parent` string specifies a parent project with the
      *                       identifier `example-project`, and specifies the `europe-west3` location
@@ -140,10 +140,10 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           The format of this value varies depending on whether you have [specified a
      *           processing
      *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     *           + Projects scope, location specified:<br/>
-     *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Projects scope, no location specified (defaults to global):<br/>
-     *             `projects/`<var>PROJECT_ID</var>
+     *           + Projects scope, location specified:
+     *             `projects/{project_id}/locations/{location_id}`
+     *           + Projects scope, no location specified (defaults to global):
+     *             `projects/{project_id}`
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -179,7 +179,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           The type of job. Defaults to `DlpJobType.INSPECT`
      *     @type string $order_by
-     *           Comma separated list of fields to order by,
+     *           Comma-separated list of fields to order by,
      *           followed by `asc` or `desc` postfix. This list is case insensitive. The
      *           default sorting order is ascending. Redundant space characters are
      *           insignificant.
@@ -203,10 +203,10 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -225,10 +225,10 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * The format of this value varies depending on whether you have [specified a
      * processing
      * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
-     * + Projects scope, location specified:<br/>
-     *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Projects scope, no location specified (defaults to global):<br/>
-     *   `projects/`<var>PROJECT_ID</var>
+     * + Projects scope, location specified:
+     *   `projects/{project_id}/locations/{location_id}`
+     * + Projects scope, no location specified (defaults to global):
+     *   `projects/{project_id}`
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -395,7 +395,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of fields to order by,
+     * Comma-separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.
@@ -415,7 +415,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Comma separated list of fields to order by,
+     * Comma-separated list of fields to order by,
      * followed by `asc` or `desc` postfix. This list is case insensitive. The
      * default sorting order is ascending. Redundant space characters are
      * insignificant.

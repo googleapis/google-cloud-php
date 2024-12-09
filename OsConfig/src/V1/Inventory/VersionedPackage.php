@@ -21,19 +21,19 @@ class VersionedPackage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package_name = 4;</code>
      */
-    private $package_name = '';
+    protected $package_name = '';
     /**
      * The system architecture this package is intended for.
      *
      * Generated from protobuf field <code>string architecture = 2;</code>
      */
-    private $architecture = '';
+    protected $architecture = '';
     /**
      * The version of the package.
      *
      * Generated from protobuf field <code>string version = 3;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

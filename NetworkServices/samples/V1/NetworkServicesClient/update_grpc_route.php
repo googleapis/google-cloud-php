@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkservices_v1_generated_NetworkServices_UpdateGrpcRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkServices\V1\Client\NetworkServicesClient;
 use Google\Cloud\NetworkServices\V1\GrpcRoute;
 use Google\Cloud\NetworkServices\V1\GrpcRoute\RouteAction;
 use Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule;
-use Google\Cloud\NetworkServices\V1\NetworkServicesClient;
+use Google\Cloud\NetworkServices\V1\UpdateGrpcRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -73,7 +74,7 @@ function update_grpc_route_sample(string $grpcRouteName, string $grpcRouteHostna
     // Create a client.
     $networkServicesClient = new NetworkServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $grpcRouteHostnames = [$grpcRouteHostnamesElement,];
     $grpcRouteRulesAction = new RouteAction();
     $routeRule = (new RouteRule())
@@ -83,11 +84,13 @@ function update_grpc_route_sample(string $grpcRouteName, string $grpcRouteHostna
         ->setName($grpcRouteName)
         ->setHostnames($grpcRouteHostnames)
         ->setRules($grpcRouteRules);
+    $request = (new UpdateGrpcRouteRequest())
+        ->setGrpcRoute($grpcRoute);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkServicesClient->updateGrpcRoute($grpcRoute);
+        $response = $networkServicesClient->updateGrpcRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

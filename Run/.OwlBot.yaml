@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/run/v2/.*-php/(.*)
-      dest: /owl-bot-staging/Run/v2/$1
+    - source: /google/cloud/run/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Run/$1/$2
 api-name: Run

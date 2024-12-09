@@ -22,14 +22,14 @@ class FormField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      */
-    private $field_name = null;
+    protected $field_name = null;
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      * [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_value = 2;</code>
      */
-    private $field_value = null;
+    protected $field_value = null;
     /**
      * A list of detected languages for name together with confidence.
      *
@@ -51,7 +51,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value_type = 5;</code>
      */
-    private $value_type = '';
+    protected $value_type = '';
     /**
      * Created for Labeling UI to export key text.
      * If corrections were made to the text identified by the
@@ -59,7 +59,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string corrected_key_text = 6;</code>
      */
-    private $corrected_key_text = '';
+    protected $corrected_key_text = '';
     /**
      * Created for Labeling UI to export value text.
      * If corrections were made to the text identified by the
@@ -67,13 +67,13 @@ class FormField extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string corrected_value_text = 7;</code>
      */
-    private $corrected_value_text = '';
+    protected $corrected_value_text = '';
     /**
      * The history of this annotation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 8;</code>
      */
-    private $provenance = null;
+    protected $provenance = null;
 
     /**
      * Constructor.

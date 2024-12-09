@@ -20,7 +20,7 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cert_path = 1;</code>
      */
-    private $cert_path = '';
+    protected $cert_path = '';
     /**
      * Path to the Certificate Private Key (.pvk)  in Cloud Storage, in the
      * form `gs://bucketName/fileName`. The instance must have
@@ -28,13 +28,13 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pvk_path = 2;</code>
      */
-    private $pvk_path = '';
+    protected $pvk_path = '';
     /**
      * Password that encrypts the private key
      *
      * Generated from protobuf field <code>string pvk_password = 3;</code>
      */
-    private $pvk_password = '';
+    protected $pvk_password = '';
 
     /**
      * Constructor.

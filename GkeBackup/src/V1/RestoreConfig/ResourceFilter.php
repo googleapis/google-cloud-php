@@ -46,7 +46,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string json_path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $json_path = '';
+    protected $json_path = '';
 
     /**
      * Constructor.

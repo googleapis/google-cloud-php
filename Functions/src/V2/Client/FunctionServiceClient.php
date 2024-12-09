@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Functions\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -53,6 +52,7 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -72,18 +72,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFunctionAsync(CreateFunctionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFunctionAsync(DeleteFunctionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateDownloadUrlAsync(GenerateDownloadUrlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateUploadUrlAsync(GenerateUploadUrlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFunctionAsync(GetFunctionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFunctionsAsync(ListFunctionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimesAsync(ListRuntimesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFunctionAsync(UpdateFunctionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFunctionAsync(CreateFunctionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFunctionAsync(DeleteFunctionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateDownloadUrlResponse> generateDownloadUrlAsync(GenerateDownloadUrlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateUploadUrlResponse> generateUploadUrlAsync(GenerateUploadUrlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBFunction> getFunctionAsync(GetFunctionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFunctionsAsync(ListFunctionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListRuntimesResponse> listRuntimesAsync(ListRuntimesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFunctionAsync(UpdateFunctionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class FunctionServiceClient
 {
@@ -110,9 +110,7 @@ final class FunctionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -158,10 +156,31 @@ final class FunctionServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -558,8 +577,10 @@ final class FunctionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateDownloadUrl(GenerateDownloadUrlRequest $request, array $callOptions = []): GenerateDownloadUrlResponse
-    {
+    public function generateDownloadUrl(
+        GenerateDownloadUrlRequest $request,
+        array $callOptions = []
+    ): GenerateDownloadUrlResponse {
         return $this->startApiCall('GenerateDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -580,11 +601,11 @@ final class FunctionServiceClient
      * attached, the identity from the credentials would be used, but that
      * identity does not have permissions to upload files to the URL.
      *
-     * When making a HTTP PUT request, these two headers need to be specified:
+     * When making a HTTP PUT request, specify this header:
      *
      * * `content-type: application/zip`
      *
-     * And this header SHOULD NOT be specified:
+     * Do not specify this header:
      *
      * * `Authorization: Bearer YOUR_TOKEN`
      *
@@ -606,8 +627,10 @@ final class FunctionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateUploadUrl(GenerateUploadUrlRequest $request, array $callOptions = []): GenerateUploadUrlResponse
-    {
+    public function generateUploadUrl(
+        GenerateUploadUrlRequest $request,
+        array $callOptions = []
+    ): GenerateUploadUrlResponse {
         return $this->startApiCall('GenerateUploadUrl', $request, $callOptions)->wait();
     }
 
@@ -825,8 +848,10 @@ final class FunctionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

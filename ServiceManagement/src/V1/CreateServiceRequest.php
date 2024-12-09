@@ -20,7 +20,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.ManagedService service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $service = null;
+    protected $service = null;
 
     /**
      * @param \Google\Cloud\ServiceManagement\V1\ManagedService $service Required. Initial values for the service resource.

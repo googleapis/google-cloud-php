@@ -20,14 +20,14 @@ class UpdateMuteConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MuteConfig mute_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mute_config = null;
+    protected $mute_config = null;
     /**
      * The list of fields to be updated.
      * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V1\MuteConfig $muteConfig Required. The mute config being updated.

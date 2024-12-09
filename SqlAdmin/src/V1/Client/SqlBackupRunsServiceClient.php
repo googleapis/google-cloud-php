@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,10 +46,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlBackupRunsListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupRun> getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupRunsListResponse> listAsync(SqlBackupRunsListRequest $request, array $optionalArgs = [])
  */
 final class SqlBackupRunsServiceClient
 {

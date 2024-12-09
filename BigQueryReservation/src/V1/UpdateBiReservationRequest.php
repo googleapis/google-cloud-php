@@ -20,13 +20,13 @@ class UpdateBiReservationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.BiReservation bi_reservation = 1;</code>
      */
-    private $bi_reservation = null;
+    protected $bi_reservation = null;
     /**
      * A list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\BigQuery\Reservation\V1\BiReservation $biReservation A reservation to update.

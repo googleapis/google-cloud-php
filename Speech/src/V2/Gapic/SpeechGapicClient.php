@@ -614,7 +614,7 @@ class SpeechGapicClient
      *           request.
      *     @type BatchRecognizeFileMetadata[] $files
      *           Audio files with file metadata for ASR.
-     *           The maximum number of files allowed to be specified is 5.
+     *           The maximum number of files allowed to be specified is 15.
      *     @type RecognitionOutputConfig $recognitionOutputConfig
      *           Configuration options for where to output the transcripts of each file.
      *     @type int $processingStrategy

@@ -23,19 +23,19 @@ class UpdateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * New DeidentifyTemplate value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2;</code>
      */
-    private $deidentify_template = null;
+    protected $deidentify_template = null;
     /**
      * Mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                  $name               Required. Resource name of organization and deidentify template to be

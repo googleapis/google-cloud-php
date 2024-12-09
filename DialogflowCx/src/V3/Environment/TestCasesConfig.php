@@ -17,8 +17,8 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of test case names to run. They should be under the same agent.
-     * Format of each test case name: `projects/<Project ID>/locations/
-     * <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`
+     * Format of each test case name:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
      *
      * Generated from protobuf field <code>repeated string test_cases = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -48,8 +48,8 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $test_cases
      *           A list of test case names to run. They should be under the same agent.
-     *           Format of each test case name: `projects/<Project ID>/locations/
-     *           <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`
+     *           Format of each test case name:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
      *     @type bool $enable_continuous_run
      *           Whether to run test cases in
      *           [TestCasesConfig.test_cases][google.cloud.dialogflow.cx.v3.Environment.TestCasesConfig.test_cases]
@@ -67,8 +67,8 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of test case names to run. They should be under the same agent.
-     * Format of each test case name: `projects/<Project ID>/locations/
-     * <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`
+     * Format of each test case name:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
      *
      * Generated from protobuf field <code>repeated string test_cases = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -80,8 +80,8 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of test case names to run. They should be under the same agent.
-     * Format of each test case name: `projects/<Project ID>/locations/
-     * <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`
+     * Format of each test case name:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
      *
      * Generated from protobuf field <code>repeated string test_cases = 1 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

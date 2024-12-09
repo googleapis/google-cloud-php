@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,10 +52,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getNotificationAsync(GetNotificationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNotificationsAsync(ListNotificationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Notification> getNotificationAsync(GetNotificationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Settings> getSettingsAsync(GetSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNotificationsAsync(ListNotificationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Settings> updateSettingsAsync(UpdateSettingsRequest $request, array $optionalArgs = [])
  */
 final class AdvisoryNotificationsServiceClient
 {
@@ -82,9 +82,7 @@ final class AdvisoryNotificationsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -99,7 +97,8 @@ final class AdvisoryNotificationsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/advisory_notifications_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/advisory_notifications_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -168,8 +167,11 @@ final class AdvisoryNotificationsServiceClient
      *
      * @return string The formatted organization_location_notification resource.
      */
-    public static function organizationLocationNotificationName(string $organization, string $location, string $notification): string
-    {
+    public static function organizationLocationNotificationName(
+        string $organization,
+        string $location,
+        string $notification
+    ): string {
         return self::getPathTemplate('organizationLocationNotification')->render([
             'organization' => $organization,
             'location' => $location,
@@ -221,8 +223,11 @@ final class AdvisoryNotificationsServiceClient
      *
      * @return string The formatted project_location_notification resource.
      */
-    public static function projectLocationNotificationName(string $project, string $location, string $notification): string
-    {
+    public static function projectLocationNotificationName(
+        string $project,
+        string $location,
+        string $notification
+    ): string {
         return self::getPathTemplate('projectLocationNotification')->render([
             'project' => $project,
             'location' => $location,

@@ -20,7 +20,7 @@ class CreateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_job = null;
+    protected $transfer_job = null;
 
     /**
      * Constructor.

@@ -23,13 +23,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class TagTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the tag template in URL format.
+     * Identifier. The resource name of the tag template in URL format.
      * Note: The tag template itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Display name for this template. Defaults to an empty string.
      * The name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -38,7 +38,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Indicates whether tags created with this template are public. Public tags
      * do not require tag template access to appear in
@@ -48,7 +48,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_publicly_readable = 5;</code>
      */
-    private $is_publicly_readable = false;
+    protected $is_publicly_readable = false;
     /**
      * Required. Map of tag template field IDs to the settings for the field.
      * This map is an exhaustive list of the allowed fields. The map must contain
@@ -63,6 +63,12 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.TagTemplateField> fields = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $fields;
+    /**
+     * Optional. Transfer status of the TagTemplate
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate.DataplexTransferStatus dataplex_transfer_status = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dataplex_transfer_status = 0;
 
     /**
      * Constructor.
@@ -71,7 +77,7 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the tag template in URL format.
+     *           Identifier. The resource name of the tag template in URL format.
      *           Note: The tag template itself and its child resources might not be
      *           stored in the location specified in its name.
      *     @type string $display_name
@@ -95,6 +101,8 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
      *             underscores (_).
      *           * Must be at least 1 character and at most 64 characters long.
      *           * Must start with a letter or underscore.
+     *     @type int $dataplex_transfer_status
+     *           Optional. Transfer status of the TagTemplate
      * }
      */
     public function __construct($data = NULL) {
@@ -103,11 +111,11 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the tag template in URL format.
+     * Identifier. The resource name of the tag template in URL format.
      * Note: The tag template itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -116,11 +124,11 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the tag template in URL format.
+     * Identifier. The resource name of the tag template in URL format.
      * Note: The tag template itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -236,6 +244,32 @@ class TagTemplate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DataCatalog\V1\TagTemplateField::class);
         $this->fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Transfer status of the TagTemplate
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate.DataplexTransferStatus dataplex_transfer_status = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDataplexTransferStatus()
+    {
+        return $this->dataplex_transfer_status;
+    }
+
+    /**
+     * Optional. Transfer status of the TagTemplate
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate.DataplexTransferStatus dataplex_transfer_status = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDataplexTransferStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DataCatalog\V1\TagTemplate\DataplexTransferStatus::class);
+        $this->dataplex_transfer_status = $var;
 
         return $this;
     }

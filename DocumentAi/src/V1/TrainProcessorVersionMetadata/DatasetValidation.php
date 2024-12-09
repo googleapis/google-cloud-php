@@ -21,13 +21,13 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 document_error_count = 3;</code>
      */
-    private $document_error_count = 0;
+    protected $document_error_count = 0;
     /**
      * The total number of dataset errors.
      *
      * Generated from protobuf field <code>int32 dataset_error_count = 4;</code>
      */
-    private $dataset_error_count = 0;
+    protected $dataset_error_count = 0;
     /**
      * Error information pertaining to specific documents. A maximum of 10
      * document errors will be returned.

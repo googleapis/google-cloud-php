@@ -20,7 +20,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * * MP3: MPEG audio frames with optional (ignored) ID3 metadata.
  * * OGG_OPUS: Opus audio frames in an Ogg container.
  * * WEBM_OPUS: Opus audio frames in a WebM container.
- * * M4A: M4A audio format.
+ * * MP4_AAC: AAC audio frames in an MP4 container.
+ * * M4A_AAC: AAC audio frames in an M4A container.
+ * * MOV_AAC: AAC audio frames in an MOV container.
  *
  * Generated from protobuf message <code>google.cloud.speech.v2.AutoDetectDecodingConfig</code>
  */

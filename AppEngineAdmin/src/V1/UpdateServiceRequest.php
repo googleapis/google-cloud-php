@@ -20,20 +20,20 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A Service resource containing the updated service. Only fields set in the
      * field mask will be updated.
      *
      * Generated from protobuf field <code>.google.appengine.v1.Service service = 2;</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Set to `true` to gradually shift traffic to one or more versions that you
      * specify. By default, traffic is shifted immediately.
@@ -50,7 +50,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool migrate_traffic = 4;</code>
      */
-    private $migrate_traffic = false;
+    protected $migrate_traffic = false;
 
     /**
      * Constructor.

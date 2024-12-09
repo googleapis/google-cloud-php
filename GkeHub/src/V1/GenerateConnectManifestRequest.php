@@ -23,7 +23,7 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Namespace for GKE Connect agent resources. Defaults to
      * `gke-connect`.
@@ -33,7 +33,7 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * Optional. URI of a proxy if connectivity from the agent to
      * gkeconnect.googleapis.com requires the use of a proxy. Format must be in
@@ -43,34 +43,34 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes proxy = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $proxy = '';
+    protected $proxy = '';
     /**
      * Optional. The Connect agent version to use. Defaults to the most current
      * version.
      *
      * Generated from protobuf field <code>string version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. If true, generate the resources for upgrade only. Some resources
      * generated only for installation (e.g. secrets) will be excluded.
      *
      * Generated from protobuf field <code>bool is_upgrade = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $is_upgrade = false;
+    protected $is_upgrade = false;
     /**
      * Optional. The registry to fetch the connect agent image from. Defaults to
      * gcr.io/gkeconnect.
      *
      * Generated from protobuf field <code>string registry = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $registry = '';
+    protected $registry = '';
     /**
      * Optional. The image pull secret content for the registry, if not public.
      *
      * Generated from protobuf field <code>bytes image_pull_secret_content = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image_pull_secret_content = '';
+    protected $image_pull_secret_content = '';
 
     /**
      * Constructor.

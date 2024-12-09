@@ -21,14 +21,14 @@ class AuthenticatorGroupsConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    private $enabled = false;
+    protected $enabled = false;
     /**
      * The name of the security group-of-groups to be used. Only relevant
      * if enabled = true.
      *
      * Generated from protobuf field <code>string security_group = 2;</code>
      */
-    private $security_group = '';
+    protected $security_group = '';
 
     /**
      * Constructor.

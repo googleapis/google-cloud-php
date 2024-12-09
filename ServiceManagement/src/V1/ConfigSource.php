@@ -23,7 +23,7 @@ class ConfigSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 5;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Set of source configuration files that are used to generate a service
      * configuration (`google.api.Service`).

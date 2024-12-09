@@ -21,7 +21,7 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Subcomponents of the asset that was exfiltrated, like URIs used during
      * exfiltration, table names, databases, and filenames. For example, multiple

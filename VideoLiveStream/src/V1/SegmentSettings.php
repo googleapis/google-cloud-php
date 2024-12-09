@@ -27,7 +27,7 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      */
-    private $segment_duration = null;
+    protected $segment_duration = null;
 
     /**
      * Constructor.

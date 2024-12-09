@@ -20,19 +20,19 @@ class AdRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The request metadata used to make the ad request.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.RequestMetadata request_metadata = 2;</code>
      */
-    private $request_metadata = null;
+    protected $request_metadata = null;
     /**
      * The response metadata received from the ad request.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ResponseMetadata response_metadata = 3;</code>
      */
-    private $response_metadata = null;
+    protected $response_metadata = null;
 
     /**
      * Constructor.

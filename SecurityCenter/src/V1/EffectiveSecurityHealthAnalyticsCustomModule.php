@@ -34,20 +34,20 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The user-specified configuration for the module.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CustomConfig custom_config = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $custom_config = null;
+    protected $custom_config = null;
     /**
      * Output only. The effective state of enablement for the module at the given
      * level of the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.EffectiveSecurityHealthAnalyticsCustomModule.EnablementState enablement_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $enablement_state = 0;
+    protected $enablement_state = 0;
     /**
      * Output only. The display name for the custom module. The name must be
      * between 1 and 128 characters, start with a lowercase letter, and contain
@@ -55,7 +55,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

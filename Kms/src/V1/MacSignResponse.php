@@ -23,13 +23,13 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The created signature.
      *
      * Generated from protobuf field <code>bytes mac = 2;</code>
      */
-    private $mac = '';
+    protected $mac = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
@@ -47,7 +47,7 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      */
-    private $mac_crc32c = null;
+    protected $mac_crc32c = null;
     /**
      * Integrity verification field. A flag indicating whether
      * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
@@ -66,14 +66,14 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_data_crc32c = 4;</code>
      */
-    private $verified_data_crc32c = false;
+    protected $verified_data_crc32c = false;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.
@@ -235,7 +235,7 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      * @return int|string|null
      */
-    public function getMacCrc32CValue()
+    public function getMacCrc32CUnwrapped()
     {
         return $this->readWrapperValue("mac_crc32c");
     }
@@ -288,7 +288,7 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setMacCrc32CValue($var)
+    public function setMacCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("mac_crc32c", $var);
         return $this;}

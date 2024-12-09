@@ -20,13 +20,13 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ExecutionConfig execution_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_config = null;
+    protected $execution_config = null;
     /**
      * Optional. Peripherals configuration that workload has access to.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.PeripheralsConfig peripherals_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $peripherals_config = null;
+    protected $peripherals_config = null;
 
     /**
      * Constructor.

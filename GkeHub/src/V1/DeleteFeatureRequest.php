@@ -21,7 +21,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set to true, the delete will ignore any outstanding resources for
      * this Feature (that is, `FeatureState.has_resources` is set to true). These
@@ -29,7 +29,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      */
-    private $force = false;
+    protected $force = false;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45,7 +45,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string $name Required. The Feature resource name in the format

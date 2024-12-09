@@ -20,13 +20,13 @@ class CidrBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * CIDR block that must be specified in CIDR notation.
      *
      * Generated from protobuf field <code>string cidr_block = 2;</code>
      */
-    private $cidr_block = '';
+    protected $cidr_block = '';
 
     /**
      * Constructor.

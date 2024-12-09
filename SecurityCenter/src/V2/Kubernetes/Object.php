@@ -22,13 +22,13 @@ class Object extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 1;</code>
      */
-    private $group = '';
+    protected $group = '';
     /**
      * Kubernetes object kind, such as "Namespace".
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Kubernetes object namespace. Must be a valid DNS label. Named
      * "ns" to avoid collision with C++ namespace keyword. For details see
@@ -36,14 +36,14 @@ class Object extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ns = 3;</code>
      */
-    private $ns = '';
+    protected $ns = '';
     /**
      * Kubernetes object name. For details see
      * https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Pod containers associated with this finding, if any.
      *
@@ -215,6 +215,4 @@ class Object extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Object::class, \Google\Cloud\SecurityCenter\V2\Kubernetes_Object::class);
 

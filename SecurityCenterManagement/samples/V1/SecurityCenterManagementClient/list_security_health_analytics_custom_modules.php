@@ -30,12 +30,14 @@ use Google\Cloud\SecurityCenterManagement\V1\ListSecurityHealthAnalyticsCustomMo
 use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule;
 
 /**
- * Returns a list of all SecurityHealthAnalyticsCustomModules for the given
- * parent. This includes resident modules defined at the scope of the parent,
- * and inherited modules, inherited from CRM ancestors (no descendants).
+ * Returns a list of all
+ * [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+ * resources for the given parent. This includes resident modules defined at
+ * the scope of the parent, and inherited modules, inherited from ancestor
+ * organizations, folders, and projects (no descendants).
  *
- * @param string $formattedParent Name of parent organization, folder, or project in which to list
- *                                custom modules, specified in one of the following formats:
+ * @param string $formattedParent Name of the parent organization, folder, or project in which to
+ *                                list custom modules, in one of the following formats:
  *
  *                                * `organizations/{organization}/locations/{location}`
  *                                * `folders/{folder}/locations/{location}`

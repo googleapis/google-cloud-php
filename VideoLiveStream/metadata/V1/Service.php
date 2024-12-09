@@ -17,6 +17,7 @@ class Service
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\FieldInfo::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Video\Livestream\V1\Resources::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
@@ -25,8 +26,8 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ºD
-.google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"µ
+êO
+.google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"µ
 CreateAssetRequest7
 parent (	B\'àAúA!livestream.googleapis.com/Asset;
 asset (2\'.google.cloud.video.livestream.v1.AssetBàA
@@ -149,7 +150,32 @@ page_token (	
 livestream.googleapis.com/Event
 
 request_id (	"
-ChannelOperationResponse"ã
+ChannelOperationResponse"“
+ListClipsRequest6
+parent (	B&àAúA livestream.googleapis.com/Clip
+	page_size (
+
+page_token (	
+filter (	
+order_by (	"x
+ListClipsResponse5
+clips (2&.google.cloud.video.livestream.v1.Clip
+next_page_token (	
+unreachable (	"F
+GetClipRequest4
+name (	B&àAúA 
+livestream.googleapis.com/Clip"µ
+CreateClipRequest6
+parent (	B&àAúA livestream.googleapis.com/Clip
+clip_id (	BàA9
+clip (2&.google.cloud.video.livestream.v1.ClipBàA
+
+request_id (	BàA"j
+DeleteClipRequest4
+name (	B&àAúA 
+livestream.googleapis.com/Clip
+
+request_id (	BàAâŒÏ×"ã
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
 end_time (2.google.protobuf.TimestampBàA
@@ -164,7 +190,7 @@ request_id (	"
 update_mask (2.google.protobuf.FieldMask9
 pool (2&.google.cloud.video.livestream.v1.PoolBàA
 
-request_id (	2Â"
+request_id (	2Ù(
 LivestreamServiceà
 CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"xÊA
 ChannelOperationMetadataÚAparent,channel,channel_id‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channel¼
@@ -192,7 +218,15 @@ ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.v
 
 ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"FÚAparent‚Óä“75/v1/{parent=projects/*/locations/*/channels/*}/events¬
 GetEvent1.google.cloud.video.livestream.v1.GetEventRequest\'.google.cloud.video.livestream.v1.Event"DÚAname‚Óä“75/v1/{name=projects/*/locations/*/channels/*/events/*}¡
-DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"DÚAname‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}Ò
+DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"DÚAname‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}»
+	ListClips2.google.cloud.video.livestream.v1.ListClipsRequest3.google.cloud.video.livestream.v1.ListClipsResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*/channels/*}/clips¨
+GetClip0.google.cloud.video.livestream.v1.GetClipRequest&.google.cloud.video.livestream.v1.Clip"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/channels/*/clips/*}Ö
+
+CreateClip3.google.cloud.video.livestream.v1.CreateClipRequest.google.longrunning.Operation"tÊA
+ClipOperationMetadataÚAparent,clip,clip_id‚Óä“<"4/v1/{parent=projects/*/locations/*/channels/*}/clips:clipÒ
+
+DeleteClip3.google.cloud.video.livestream.v1.DeleteClipRequest.google.longrunning.Operation"pÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/channels/*/clips/*}Ò
 CreateAsset4.google.cloud.video.livestream.v1.CreateAssetRequest.google.longrunning.Operation"nÊA
 AssetOperationMetadataÚAparent,asset,asset_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/assets:assetÊ
 DeleteAsset4.google.cloud.video.livestream.v1.DeleteAssetRequest.google.longrunning.Operation"fÊA*

@@ -30,15 +30,15 @@ use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 
 /**
  * Creates a resident Event Threat Detection custom module at the scope of the
- * given Resource Manager parent, and also creates inherited custom modules
- * for all descendants of the given parent. These modules are enabled by
- * default.
+ * given organization, folder, or project, and creates inherited custom
+ * modules for all descendants of the given parent. These modules are enabled
+ * by default.
  *
- * @param string $formattedParent Name of parent for the module. Its format is
- *                                `organizations/{organization}/locations/{location}`,
- *                                `folders/{folder}/locations/{location}`,
- *                                or
- *                                `projects/{project}/locations/{location}`
+ * @param string $formattedParent Name of parent for the module, in one of the following formats:
+ *
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                * `folders/{folder}/locations/{location}`
+ *                                * `projects/{project}/locations/{location}`
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
 function create_event_threat_detection_custom_module_sample(string $formattedParent): void

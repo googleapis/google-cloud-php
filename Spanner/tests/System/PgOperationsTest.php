@@ -34,12 +34,15 @@ class PgOperationsTest extends SpannerPgTestCase
     private static $id;
     private static $isSetup = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$isSetup) {
             return;
         }
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$id = rand(1000, 9999);
         self::$row = [

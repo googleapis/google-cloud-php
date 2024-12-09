@@ -16,17 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class Encryption extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier for this set of encryption options.
+     * Required. Identifier for this set of encryption options. The ID must be
+     * 1-63 characters in length. The ID must begin and end with a letter
+     * (regardless of case) or a number, but can contain dashes or underscores in
+     * between.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. Configuration for DRM systems.
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.Encryption.DrmSystems drm_systems = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $drm_systems = null;
+    protected $drm_systems = null;
     protected $secret_source;
     protected $encryption_mode;
 
@@ -37,7 +40,10 @@ class Encryption extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Required. Identifier for this set of encryption options.
+     *           Required. Identifier for this set of encryption options. The ID must be
+     *           1-63 characters in length. The ID must begin and end with a letter
+     *           (regardless of case) or a number, but can contain dashes or underscores in
+     *           between.
      *     @type \Google\Cloud\Video\LiveStream\V1\Encryption\SecretManagerSource $secret_manager_key_source
      *           For keys stored in Google Secret Manager.
      *     @type \Google\Cloud\Video\LiveStream\V1\Encryption\DrmSystems $drm_systems
@@ -56,7 +62,10 @@ class Encryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier for this set of encryption options.
+     * Required. Identifier for this set of encryption options. The ID must be
+     * 1-63 characters in length. The ID must begin and end with a letter
+     * (regardless of case) or a number, but can contain dashes or underscores in
+     * between.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -67,7 +76,10 @@ class Encryption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier for this set of encryption options.
+     * Required. Identifier for this set of encryption options. The ID must be
+     * 1-63 characters in length. The ID must begin and end with a letter
+     * (regardless of case) or a number, but can contain dashes or underscores in
+     * between.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

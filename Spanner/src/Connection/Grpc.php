@@ -43,9 +43,11 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
+use Google\Cloud\Spanner\MutationGroup;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\RequestHeaderTrait;
+use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup as MutationGroupProto;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions;
@@ -1101,6 +1103,13 @@ class Grpc implements ConnectionInterface
             $args = $this->addLarHeader($args, $this->larEnabled);
         }
 
+        // NOTE: if set for read-only actions, will throw exception
+        if (isset($transactionOptions['excludeTxnFromChangeStreams'])) {
+            $options->setExcludeTxnFromChangeStreams(
+                $transactionOptions['excludeTxnFromChangeStreams']
+            );
+        }
+
         $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
         if ($requestOptions) {
             $args['requestOptions'] = $this->serializer->decodeMessage(
@@ -1124,47 +1133,7 @@ class Grpc implements ConnectionInterface
     {
         $inputMutations = $this->pluck('mutations', $args);
 
-        $mutations = [];
-        if (is_array($inputMutations)) {
-            foreach ($inputMutations as $mutation) {
-                $type = array_keys($mutation)[0];
-                $data = $mutation[$type];
-
-                switch ($type) {
-                    case Operation::OP_DELETE:
-                        if (isset($data['keySet'])) {
-                            $data['keySet'] = $this->formatKeySet($data['keySet']);
-                        }
-
-                        $operation = $this->serializer->decodeMessage(
-                            new Delete,
-                            $data
-                        );
-                        break;
-                    default:
-                        $operation = new Write;
-                        $operation->setTable($data['table']);
-                        $operation->setColumns($data['columns']);
-
-                        $modifiedData = [];
-                        foreach ($data['values'] as $key => $param) {
-                            $modifiedData[$key] = $this->fieldValue($param);
-                        }
-
-                        $list = new ListValue;
-                        $list->setValues($modifiedData);
-                        $values = [$list];
-                        $operation->setValues($values);
-
-                        break;
-                }
-
-                $setterName = $this->mutationSetters[$type];
-                $mutation = new Mutation;
-                $mutation->$setterName($operation);
-                $mutations[] = $mutation;
-            }
-        }
+        $mutations = $this->parseMutations($inputMutations);
 
         if (isset($args['singleUseTransaction'])) {
             $readWrite = $this->serializer->decodeMessage(
@@ -1190,6 +1159,40 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
             $mutations,
+            $this->addResourcePrefixHeader($args, $databaseName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     * @return \Generator
+     */
+    public function batchWrite(array $args)
+    {
+        $databaseName = $this->pluck('database', $args);
+        $mutationGroups = $this->pluck('mutationGroups', $args);
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+
+        array_walk(
+            $mutationGroups,
+            fn(&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
+        );
+
+        $mutationGroups = array_map(
+            fn($x) => $this->serializer->decodeMessage(new MutationGroupProto(), $x),
+            $mutationGroups
+        );
+
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
+
+        return $this->send([$this->spannerClient, 'batchWrite'], [
+            $this->pluck('session', $args),
+            $mutationGroups,
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
@@ -1720,5 +1723,53 @@ class Grpc implements ConnectionInterface
         }
 
         return $fieldsData;
+    }
+
+    private function parseMutations($rawMutations)
+    {
+        if (!is_array($rawMutations)) {
+            return [];
+        }
+
+        $mutations = [];
+        foreach ($rawMutations as $mutation) {
+            $type = array_keys($mutation)[0];
+            $data = $mutation[$type];
+
+            switch ($type) {
+                case Operation::OP_DELETE:
+                    if (isset($data['keySet'])) {
+                        $data['keySet'] = $this->formatKeySet($data['keySet']);
+                    }
+
+                    $operation = $this->serializer->decodeMessage(
+                        new Delete,
+                        $data
+                    );
+                    break;
+                default:
+                    $operation = new Write;
+                    $operation->setTable($data['table']);
+                    $operation->setColumns($data['columns']);
+
+                    $modifiedData = [];
+                    foreach ($data['values'] as $key => $param) {
+                        $modifiedData[$key] = $this->fieldValue($param);
+                    }
+
+                    $list = new ListValue;
+                    $list->setValues($modifiedData);
+                    $values = [$list];
+                    $operation->setValues($values);
+
+                    break;
+            }
+
+            $setterName = $this->mutationSetters[$type];
+            $mutation = new Mutation;
+            $mutation->$setterName($operation);
+            $mutations[] = $mutation;
+        }
+        return $mutations;
     }
 }

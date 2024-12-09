@@ -21,19 +21,19 @@ class ResourceLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 1;</code>
      */
-    private $resource_type = '';
+    protected $resource_type = '';
     /**
      * Minimum amount of the resource in the cluster.
      *
      * Generated from protobuf field <code>int64 minimum = 2;</code>
      */
-    private $minimum = 0;
+    protected $minimum = 0;
     /**
      * Maximum amount of the resource in the cluster.
      *
      * Generated from protobuf field <code>int64 maximum = 3;</code>
      */
-    private $maximum = 0;
+    protected $maximum = 0;
 
     /**
      * Constructor.

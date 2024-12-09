@@ -28,37 +28,37 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $scope = '';
+    protected $scope = '';
     /**
      * Optional. Specifies a resource for analysis.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ResourceSelector resource_selector = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource_selector = null;
+    protected $resource_selector = null;
     /**
      * Optional. Specifies an identity for analysis.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.IdentitySelector identity_selector = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $identity_selector = null;
+    protected $identity_selector = null;
     /**
      * Optional. Specifies roles or permissions for analysis. This is optional.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.AccessSelector access_selector = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $access_selector = null;
+    protected $access_selector = null;
     /**
      * Optional. The query options.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.Options options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $options = null;
+    protected $options = null;
     /**
      * Optional. The hypothetical context for IAM conditions evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $condition_context = null;
+    protected $condition_context = null;
 
     /**
      * Constructor.

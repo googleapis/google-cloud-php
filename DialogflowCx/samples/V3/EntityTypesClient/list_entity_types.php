@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\ListEntityTypesRequest;
  * Returns the list of all entity types in the specified agent.
  *
  * @param string $formattedParent The agent to list all entity types for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see EntityTypesClient::agentName()} for help formatting this field.
  */
 function list_entity_types_sample(string $formattedParent): void

@@ -21,13 +21,13 @@ class AzureClusterResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network_security_group_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $network_security_group_id = '';
+    protected $network_security_group_id = '';
     /**
      * Output only. The ARM ID of the control plane application security group.
      *
      * Generated from protobuf field <code>string control_plane_application_security_group_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $control_plane_application_security_group_id = '';
+    protected $control_plane_application_security_group_id = '';
 
     /**
      * Constructor.

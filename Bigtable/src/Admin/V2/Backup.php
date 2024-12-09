@@ -40,17 +40,19 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
-     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     * are of the form:
+     * projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $source_backup = '';
     /**
-     * Required. The expiration time of the backup, with microseconds
-     * granularity that must be at least 6 hours and at most 90 days
-     * from the time the request is received. Once the `expire_time`
-     * has passed, Cloud Bigtable will delete the backup and free the
-     * resources used by the backup.
+     * Required. The expiration time of the backup.
+     * When creating a backup or updating its `expire_time`, the value must be
+     * greater than the backup creation time by:
+     * - At least 6 hours
+     * - At most 90 days
+     * Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -90,6 +92,24 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo encryption_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $encryption_info = null;
+    /**
+     * Indicates the backup type of the backup.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup.BackupType backup_type = 11;</code>
+     */
+    protected $backup_type = 0;
+    /**
+     * The time at which the hot backup will be converted to a standard backup.
+     * Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the
+     * hot backup to a standard backup. This value must be greater than the backup
+     * creation time by:
+     * - At least 24 hours
+     * This field only applies for hot backups. When creating or updating a
+     * standard backup, attempting to set this field will fail the request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp hot_to_standard_time = 12;</code>
+     */
+    protected $hot_to_standard_time = null;
 
     /**
      * Constructor.
@@ -114,13 +134,15 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type string $source_backup
      *           Output only. Name of the backup from which this backup was copied. If a
      *           backup is not created by copying a backup, this field will be empty. Values
-     *           are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     *           are of the form:
+     *           projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Required. The expiration time of the backup, with microseconds
-     *           granularity that must be at least 6 hours and at most 90 days
-     *           from the time the request is received. Once the `expire_time`
-     *           has passed, Cloud Bigtable will delete the backup and free the
-     *           resources used by the backup.
+     *           Required. The expiration time of the backup.
+     *           When creating a backup or updating its `expire_time`, the value must be
+     *           greater than the backup creation time by:
+     *           - At least 6 hours
+     *           - At most 90 days
+     *           Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. `start_time` is the time that the backup was started
      *           (i.e. approximately the time the
@@ -136,6 +158,16 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of the backup.
      *     @type \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo $encryption_info
      *           Output only. The encryption information for the backup.
+     *     @type int $backup_type
+     *           Indicates the backup type of the backup.
+     *     @type \Google\Protobuf\Timestamp $hot_to_standard_time
+     *           The time at which the hot backup will be converted to a standard backup.
+     *           Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the
+     *           hot backup to a standard backup. This value must be greater than the backup
+     *           creation time by:
+     *           - At least 24 hours
+     *           This field only applies for hot backups. When creating or updating a
+     *           standard backup, attempting to set this field will fail the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,7 +250,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
-     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     * are of the form:
+     * projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -231,7 +264,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Name of the backup from which this backup was copied. If a
      * backup is not created by copying a backup, this field will be empty. Values
-     * are of the form: projects/<project>/instances/<instance>/backups/<backup>.
+     * are of the form:
+     * projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>
      *
      * Generated from protobuf field <code>string source_backup = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -246,11 +280,12 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The expiration time of the backup, with microseconds
-     * granularity that must be at least 6 hours and at most 90 days
-     * from the time the request is received. Once the `expire_time`
-     * has passed, Cloud Bigtable will delete the backup and free the
-     * resources used by the backup.
+     * Required. The expiration time of the backup.
+     * When creating a backup or updating its `expire_time`, the value must be
+     * greater than the backup creation time by:
+     * - At least 6 hours
+     * - At most 90 days
+     * Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -271,11 +306,12 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The expiration time of the backup, with microseconds
-     * granularity that must be at least 6 hours and at most 90 days
-     * from the time the request is received. Once the `expire_time`
-     * has passed, Cloud Bigtable will delete the backup and free the
-     * resources used by the backup.
+     * Required. The expiration time of the backup.
+     * When creating a backup or updating its `expire_time`, the value must be
+     * greater than the backup creation time by:
+     * - At least 6 hours
+     * - At most 90 days
+     * Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -455,6 +491,80 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo::class);
         $this->encryption_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates the backup type of the backup.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup.BackupType backup_type = 11;</code>
+     * @return int
+     */
+    public function getBackupType()
+    {
+        return $this->backup_type;
+    }
+
+    /**
+     * Indicates the backup type of the backup.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup.BackupType backup_type = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBackupType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Backup\BackupType::class);
+        $this->backup_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time at which the hot backup will be converted to a standard backup.
+     * Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the
+     * hot backup to a standard backup. This value must be greater than the backup
+     * creation time by:
+     * - At least 24 hours
+     * This field only applies for hot backups. When creating or updating a
+     * standard backup, attempting to set this field will fail the request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp hot_to_standard_time = 12;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getHotToStandardTime()
+    {
+        return $this->hot_to_standard_time;
+    }
+
+    public function hasHotToStandardTime()
+    {
+        return isset($this->hot_to_standard_time);
+    }
+
+    public function clearHotToStandardTime()
+    {
+        unset($this->hot_to_standard_time);
+    }
+
+    /**
+     * The time at which the hot backup will be converted to a standard backup.
+     * Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the
+     * hot backup to a standard backup. This value must be greater than the backup
+     * creation time by:
+     * - At least 24 hours
+     * This field only applies for hot backups. When creating or updating a
+     * standard backup, attempting to set this field will fail the request.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp hot_to_standard_time = 12;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setHotToStandardTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->hot_to_standard_time = $var;
 
         return $this;
     }

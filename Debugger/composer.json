@@ -18,7 +18,7 @@
         "phpdocumentor/reflection": "^5.3.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
-        "google/cloud-tools": "^0.13.0",
+        "google/cloud-tools": "^0.15.0",
         "kreait/firebase-php": "^6.9"
     },
     "suggest": {

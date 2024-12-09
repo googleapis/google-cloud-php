@@ -17,8 +17,8 @@ class CreateManagementServerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The management server project and location in the format
-     * `projects/{project_id}/locations/{location}`. In Cloud Backup and DR
-     * locations map to GCP regions, for example **us-central1**.
+     * 'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
+     * locations map to Google Cloud regions, for example **us-central1**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,8 +56,8 @@ class CreateManagementServerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                     $parent             Required. The management server project and location in the format
-     *                                                                       `projects/{project_id}/locations/{location}`. In Cloud Backup and DR
-     *                                                                       locations map to GCP regions, for example **us-central1**. Please see
+     *                                                                       'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
+     *                                                                       locations map to Google Cloud regions, for example **us-central1**. Please see
      *                                                                       {@see BackupDRClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BackupDR\V1\ManagementServer $managementServer   Required. A [management server
      *                                                                       resource][google.cloud.backupdr.v1.ManagementServer]
@@ -84,8 +84,8 @@ class CreateManagementServerRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The management server project and location in the format
-     *           `projects/{project_id}/locations/{location}`. In Cloud Backup and DR
-     *           locations map to GCP regions, for example **us-central1**.
+     *           'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
+     *           locations map to Google Cloud regions, for example **us-central1**.
      *     @type string $management_server_id
      *           Required. The name of the management server to create. The name must be
      *           unique for the specified project and location.
@@ -113,8 +113,8 @@ class CreateManagementServerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The management server project and location in the format
-     * `projects/{project_id}/locations/{location}`. In Cloud Backup and DR
-     * locations map to GCP regions, for example **us-central1**.
+     * 'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
+     * locations map to Google Cloud regions, for example **us-central1**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -126,8 +126,8 @@ class CreateManagementServerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The management server project and location in the format
-     * `projects/{project_id}/locations/{location}`. In Cloud Backup and DR
-     * locations map to GCP regions, for example **us-central1**.
+     * 'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
+     * locations map to Google Cloud regions, for example **us-central1**.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

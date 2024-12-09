@@ -20,25 +20,25 @@ class CreateAnalysisOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Output only. The Conversation that this Analysis Operation belongs to.
      *
      * Generated from protobuf field <code>string conversation = 3 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $conversation = '';
+    protected $conversation = '';
     /**
      * Output only. The annotator selector used for the analysis (if any).
      *
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.AnnotatorSelector annotator_selector = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $annotator_selector = null;
+    protected $annotator_selector = null;
 
     /**
      * Constructor.

@@ -45,7 +45,7 @@ items:
           description: 'Required. The project in which the Product should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
         -
           id: '↳ product'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>'
           description: 'Required. The product to create.'
         -
           id: '↳ product_id'
@@ -102,7 +102,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductRequest::hasProduct()'
     name: hasProduct
@@ -132,7 +132,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>'
           description: ''
       returns:
         -
@@ -194,10 +194,10 @@ items:
 
             Format is
             `projects/PROJECT_ID/locations/LOC_ID`. Please see
-            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">ProductSearchClient::locationName()</xref> for help formatting this field.
         -
           id: product
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>'
           description: 'Required. The product to create.'
         -
           id: productId
@@ -209,4 +209,4 @@ items:
             long. It cannot contain the character `/`.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductRequest">Google\Cloud\Vision\V1\CreateProductRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductRequest">CreateProductRequest</xref>'

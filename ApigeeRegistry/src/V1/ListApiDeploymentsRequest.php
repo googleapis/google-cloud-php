@@ -21,7 +21,7 @@ class ListApiDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The maximum number of deployments to return.
      * The service may return fewer than this value.
@@ -30,7 +30,7 @@ class ListApiDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListApiDeployments` call.
      * Provide this to retrieve the subsequent page.
@@ -39,14 +39,14 @@ class ListApiDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * An expression that can be used to filter the list. Filters use the Common
      * Expression Language and can refer to all message fields.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent, which owns this collection of deployments.

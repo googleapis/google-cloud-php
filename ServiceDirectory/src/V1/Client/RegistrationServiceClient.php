@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,26 +86,26 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEndpointAsync(CreateEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNamespaceAsync(CreateNamespaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEndpointAsync(DeleteEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNamespaceAsync(DeleteNamespaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEndpointAsync(GetEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNamespaceAsync(GetNamespaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEndpointsAsync(ListEndpointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNamespacesAsync(ListNamespacesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEndpointAsync(UpdateEndpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNamespaceAsync(UpdateNamespaceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Endpoint> createEndpointAsync(CreateEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBNamespace> createNamespaceAsync(CreateNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEndpointAsync(DeleteEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteNamespaceAsync(DeleteNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Endpoint> getEndpointAsync(GetEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBNamespace> getNamespaceAsync(GetNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEndpointsAsync(ListEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNamespacesAsync(ListNamespacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Endpoint> updateEndpointAsync(UpdateEndpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBNamespace> updateNamespaceAsync(UpdateNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class RegistrationServiceClient
 {
@@ -132,9 +132,7 @@ final class RegistrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -167,8 +165,13 @@ final class RegistrationServiceClient
      *
      * @return string The formatted endpoint resource.
      */
-    public static function endpointName(string $project, string $location, string $namespace, string $service, string $endpoint): string
-    {
+    public static function endpointName(
+        string $project,
+        string $location,
+        string $namespace,
+        string $service,
+        string $endpoint
+    ): string {
         return self::getPathTemplate('endpoint')->render([
             'project' => $project,
             'location' => $location,
@@ -733,8 +736,10 @@ final class RegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

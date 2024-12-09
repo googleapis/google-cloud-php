@@ -51,10 +51,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAccountLabelAsync(CreateAccountLabelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountLabelAsync(DeleteAccountLabelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountLabelsAsync(ListAccountLabelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountLabelAsync(UpdateAccountLabelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountLabel> createAccountLabelAsync(CreateAccountLabelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountLabelAsync(DeleteAccountLabelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountLabelsAsync(ListAccountLabelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountLabel> updateAccountLabelAsync(UpdateAccountLabelRequest $request, array $optionalArgs = [])
  */
 final class AccountLabelsServiceClient
 {
@@ -283,7 +283,7 @@ final class AccountLabelsServiceClient
     }
 
     /**
-     * Lists the labels assigned to an account.
+     * Lists the labels owned by an account.
      *
      * The async variant is {@see AccountLabelsServiceClient::listAccountLabelsAsync()}
      * .

@@ -23,7 +23,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.video.livestream.v1.LogConfig.LogSeverity log_severity = 1;</code>
      */
-    private $log_severity = 0;
+    protected $log_severity = 0;
 
     /**
      * Constructor.

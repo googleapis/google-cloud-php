@@ -20,19 +20,19 @@ class SqlInstancesPerformDiskShrinkRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Project ID of the project that contains the instance.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Perform disk shrink context.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.PerformDiskShrinkContext body = 100;</code>
      */
-    private $body = null;
+    protected $body = null;
 
     /**
      * Constructor.

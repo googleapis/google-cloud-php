@@ -63,14 +63,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEkmConnectionsAsync(GetEkmConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartnerAsync(GetPartnerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPartnerPermissionsAsync(GetPartnerPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccessApprovalRequestsAsync(ListAccessApprovalRequestsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Customer> getCustomerAsync(GetCustomerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EkmConnections> getEkmConnectionsAsync(GetEkmConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Partner> getPartnerAsync(GetPartnerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PartnerPermissions> getPartnerPermissionsAsync(GetPartnerPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccessApprovalRequestsAsync(ListAccessApprovalRequestsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomersAsync(ListCustomersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
  */
 final class CloudControlsPartnerCoreClient
 {
@@ -508,7 +508,8 @@ final class CloudControlsPartnerCoreClient
     }
 
     /**
-     * Lists access requests associated with a workload
+     * Deprecated: Only returns access approval requests directly associated with
+     * an assured workload folder.
      *
      * The async variant is
      * {@see CloudControlsPartnerCoreClient::listAccessApprovalRequestsAsync()} .
@@ -530,6 +531,8 @@ final class CloudControlsPartnerCoreClient
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAccessApprovalRequests(
         ListAccessApprovalRequestsRequest $request,

@@ -21,7 +21,7 @@ class DialogflowIntent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

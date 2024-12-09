@@ -21,34 +21,41 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Required. The cluster name.
      *
      * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_name = '';
+    protected $cluster_name = '';
     /**
-     * Optional. The output Cloud Storage directory for the diagnostic
+     * Optional. (Optional) The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
      * staging bucket will be used.
      *
      * Generated from protobuf field <code>string tarball_gcs_dir = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $tarball_gcs_dir = '';
+    protected $tarball_gcs_dir = '';
+    /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not
+     * specified, falls back to default access of the bucket
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tarball_access = 0;
     /**
      * Optional. Time interval in which diagnosis should be carried out on the
      * cluster.
      *
      * Generated from protobuf field <code>.google.type.Interval diagnosis_interval = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $diagnosis_interval = null;
+    protected $diagnosis_interval = null;
     /**
      * Optional. Specifies a list of jobs on which diagnosis is to be performed.
      * Format: projects/{project}/regions/{region}/jobs/{job}
@@ -96,9 +103,12 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_name
      *           Required. The cluster name.
      *     @type string $tarball_gcs_dir
-     *           Optional. The output Cloud Storage directory for the diagnostic
+     *           Optional. (Optional) The output Cloud Storage directory for the diagnostic
      *           tarball. If not specified, a task-specific directory in the cluster's
      *           staging bucket will be used.
+     *     @type int $tarball_access
+     *           Optional. (Optional) The access type to the diagnostic tarball. If not
+     *           specified, falls back to default access of the bucket
      *     @type \Google\Type\Interval $diagnosis_interval
      *           Optional. Time interval in which diagnosis should be carried out on the
      *           cluster.
@@ -196,7 +206,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The output Cloud Storage directory for the diagnostic
+     * Optional. (Optional) The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
      * staging bucket will be used.
      *
@@ -209,7 +219,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The output Cloud Storage directory for the diagnostic
+     * Optional. (Optional) The output Cloud Storage directory for the diagnostic
      * tarball. If not specified, a task-specific directory in the cluster's
      * staging bucket will be used.
      *
@@ -221,6 +231,34 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tarball_gcs_dir = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not
+     * specified, falls back to default access of the bucket
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTarballAccess()
+    {
+        return $this->tarball_access;
+    }
+
+    /**
+     * Optional. (Optional) The access type to the diagnostic tarball. If not
+     * specified, falls back to default access of the bucket
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiagnoseClusterRequest.TarballAccess tarball_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTarballAccess($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\DiagnoseClusterRequest\TarballAccess::class);
+        $this->tarball_access = $var;
 
         return $this;
     }

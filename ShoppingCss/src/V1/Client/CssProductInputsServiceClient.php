@@ -49,8 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface deleteCssProductInputAsync(DeleteCssProductInputRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertCssProductInputAsync(InsertCssProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteCssProductInputAsync(DeleteCssProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CssProductInput> insertCssProductInputAsync(InsertCssProductInputRequest $request, array $optionalArgs = [])
  */
 final class CssProductInputsServiceClient
 {

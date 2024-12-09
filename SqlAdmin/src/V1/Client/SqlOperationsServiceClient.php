@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,9 +44,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface cancelAsync(SqlOperationsCancelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlOperationsGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlOperationsListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelAsync(SqlOperationsCancelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getAsync(SqlOperationsGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationsListResponse> listAsync(SqlOperationsListRequest $request, array $optionalArgs = [])
  */
 final class SqlOperationsServiceClient
 {

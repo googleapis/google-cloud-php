@@ -75,6 +75,4 @@ class FfxCommonNativeAlphabet
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FfxCommonNativeAlphabet::class, \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig_FfxCommonNativeAlphabet::class);
 

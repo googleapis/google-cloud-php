@@ -30,10 +30,26 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      * address otherwise.
      * Only specify this option when `cluster` is a [private GKE
      * cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     * Note that `internal_ip` and `dns_endpoint` cannot both be set to true.
      *
      * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $internal_ip = false;
+    /**
+     * Optional. If set, used to configure a
+     * [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     * to the Kubernetes server.
+     *
+     * Generated from protobuf field <code>string proxy_url = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $proxy_url = '';
+    /**
+     * Optional. If set, the cluster will be accessed using the DNS endpoint. Note
+     * that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     *
+     * Generated from protobuf field <code>bool dns_endpoint = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dns_endpoint = false;
 
     /**
      * Constructor.
@@ -52,6 +68,14 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *           address otherwise.
      *           Only specify this option when `cluster` is a [private GKE
      *           cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     *           Note that `internal_ip` and `dns_endpoint` cannot both be set to true.
+     *     @type string $proxy_url
+     *           Optional. If set, used to configure a
+     *           [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     *           to the Kubernetes server.
+     *     @type bool $dns_endpoint
+     *           Optional. If set, the cluster will be accessed using the DNS endpoint. Note
+     *           that `dns_endpoint` and `internal_ip` cannot both be set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +119,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      * address otherwise.
      * Only specify this option when `cluster` is a [private GKE
      * cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     * Note that `internal_ip` and `dns_endpoint` cannot both be set to true.
      *
      * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -112,6 +137,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      * address otherwise.
      * Only specify this option when `cluster` is a [private GKE
      * cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     * Note that `internal_ip` and `dns_endpoint` cannot both be set to true.
      *
      * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -121,6 +147,64 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->internal_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, used to configure a
+     * [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     * to the Kubernetes server.
+     *
+     * Generated from protobuf field <code>string proxy_url = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getProxyUrl()
+    {
+        return $this->proxy_url;
+    }
+
+    /**
+     * Optional. If set, used to configure a
+     * [proxy](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#proxy)
+     * to the Kubernetes server.
+     *
+     * Generated from protobuf field <code>string proxy_url = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProxyUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->proxy_url = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, the cluster will be accessed using the DNS endpoint. Note
+     * that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     *
+     * Generated from protobuf field <code>bool dns_endpoint = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDnsEndpoint()
+    {
+        return $this->dns_endpoint;
+    }
+
+    /**
+     * Optional. If set, the cluster will be accessed using the DNS endpoint. Note
+     * that `dns_endpoint` and `internal_ip` cannot both be set to true.
+     *
+     * Generated from protobuf field <code>bool dns_endpoint = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDnsEndpoint($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dns_endpoint = $var;
 
         return $this;
     }

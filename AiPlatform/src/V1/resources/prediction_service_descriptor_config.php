@@ -116,14 +116,6 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectPredictResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'endpoint',
-                        'fieldAccessors' => [
-                            'getEndpoint',
-                        ],
-                    ],
-                ],
             ],
             'StreamDirectRawPredict' => [
                 'grpcStreaming' => [
@@ -131,14 +123,6 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectRawPredictResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'endpoint',
-                        'fieldAccessors' => [
-                            'getEndpoint',
-                        ],
-                    ],
-                ],
             ],
             'StreamGenerateContent' => [
                 'grpcStreaming' => [
@@ -261,6 +245,7 @@ return [
                 'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
                 'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
+                'ragCorpus' => 'projects/{project}/locations/{location}/ragCorpora/{rag_corpus}',
             ],
         ],
     ],

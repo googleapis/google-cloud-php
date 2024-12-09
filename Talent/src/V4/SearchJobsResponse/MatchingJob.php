@@ -22,14 +22,14 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1;</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * A summary of the job with core information that's displayed on the search
      * results listing page.
      *
      * Generated from protobuf field <code>string job_summary = 2;</code>
      */
-    private $job_summary = '';
+    protected $job_summary = '';
     /**
      * Contains snippets of text from the
      * [Job.title][google.cloud.talent.v4.Job.title] field most closely matching
@@ -38,7 +38,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_title_snippet = 3;</code>
      */
-    private $job_title_snippet = '';
+    protected $job_title_snippet = '';
     /**
      * Contains snippets of text from the
      * [Job.description][google.cloud.talent.v4.Job.description] and similar
@@ -48,14 +48,14 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string search_text_snippet = 4;</code>
      */
-    private $search_text_snippet = '';
+    protected $search_text_snippet = '';
     /**
      * Commute information which is generated based on specified
      *  [CommuteFilter][google.cloud.talent.v4.CommuteFilter].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsResponse.CommuteInfo commute_info = 5;</code>
      */
-    private $commute_info = null;
+    protected $commute_info = null;
 
     /**
      * Constructor.

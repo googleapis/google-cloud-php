@@ -27,6 +27,8 @@ class Reference extends \Google\Protobuf\Internal\Message
      *           Unstructured document information.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\ChunkInfo $chunk_info
      *           Chunk information.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\StructuredDocumentInfo $structured_document_info
+     *           Structured document information.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +94,37 @@ class Reference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\ChunkInfo::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Structured document information.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Answer.Reference.StructuredDocumentInfo structured_document_info = 3;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\StructuredDocumentInfo|null
+     */
+    public function getStructuredDocumentInfo()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasStructuredDocumentInfo()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Structured document information.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Answer.Reference.StructuredDocumentInfo structured_document_info = 3;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\StructuredDocumentInfo $var
+     * @return $this
+     */
+    public function setStructuredDocumentInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\StructuredDocumentInfo::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

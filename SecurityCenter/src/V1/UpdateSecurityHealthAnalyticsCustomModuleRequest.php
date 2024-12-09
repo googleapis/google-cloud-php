@@ -20,17 +20,21 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_module = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_health_analytics_custom_module = null;
+    protected $security_health_analytics_custom_module = null;
     /**
-     * The list of fields to update.
+     * The list of fields to be updated. The only fields that can be updated are
+     * `enablement_state` and `custom_config`. If empty or set to the wildcard
+     * value `*`, both `enablement_state` and `custom_config` are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule $securityHealthAnalyticsCustomModule Required. The SecurityHealthAnalytics custom module to update.
-     * @param \Google\Protobuf\FieldMask                                          $updateMask                          The list of fields to update.
+     * @param \Google\Protobuf\FieldMask                                          $updateMask                          The list of fields to be updated. The only fields that can be updated are
+     *                                                                                                                 `enablement_state` and `custom_config`. If empty or set to the wildcard
+     *                                                                                                                 value `*`, both `enablement_state` and `custom_config` are updated.
      *
      * @return \Google\Cloud\SecurityCenter\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest
      *
@@ -52,7 +56,9 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
      *     @type \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule $security_health_analytics_custom_module
      *           Required. The SecurityHealthAnalytics custom module to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The list of fields to update.
+     *           The list of fields to be updated. The only fields that can be updated are
+     *           `enablement_state` and `custom_config`. If empty or set to the wildcard
+     *           value `*`, both `enablement_state` and `custom_config` are updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,7 +103,9 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * The list of fields to update.
+     * The list of fields to be updated. The only fields that can be updated are
+     * `enablement_state` and `custom_config`. If empty or set to the wildcard
+     * value `*`, both `enablement_state` and `custom_config` are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -118,7 +126,9 @@ class UpdateSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\
     }
 
     /**
-     * The list of fields to update.
+     * The list of fields to be updated. The only fields that can be updated are
+     * `enablement_state` and `custom_config`. If empty or set to the wildcard
+     * value `*`, both `enablement_state` and `custom_config` are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

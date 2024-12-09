@@ -34,7 +34,7 @@ use Google\Cloud\Dataplex\V1\ListEntryGroupsRequest;
  *
  * @param string $formattedParent The resource name of the entryGroup location, of the form:
  *                                `projects/{project_number}/locations/{location_id}`
- *                                where `location_id` refers to a GCP region. Please see
+ *                                where `location_id` refers to a Google Cloud region. Please see
  *                                {@see CatalogServiceClient::locationName()} for help formatting this field.
  */
 function list_entry_groups_sample(string $formattedParent): void

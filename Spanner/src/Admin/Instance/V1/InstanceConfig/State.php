@@ -7,7 +7,7 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use UnexpectedValueException;
 
 /**
- * Indicates the current state of the instance config.
+ * Indicates the current state of the instance configuration.
  *
  * Protobuf type <code>google.spanner.admin.instance.v1.InstanceConfig.State</code>
  */
@@ -20,14 +20,14 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * The instance config is still being created.
+     * The instance configuration is still being created.
      *
      * Generated from protobuf enum <code>CREATING = 1;</code>
      */
     const CREATING = 1;
     /**
-     * The instance config is fully created and ready to be used to create
-     * instances.
+     * The instance configuration is fully created and ready to be used to
+     * create instances.
      *
      * Generated from protobuf enum <code>READY = 2;</code>
      */

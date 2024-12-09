@@ -21,26 +21,26 @@ class Tag extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string tag_key = 1;</code>
      */
-    private $tag_key = null;
+    protected $tag_key = null;
     /**
      * TagKey ID, in the format of tagKeys/{TAG_KEY_ID}.
      *
      * Generated from protobuf field <code>optional string tag_key_id = 2;</code>
      */
-    private $tag_key_id = null;
+    protected $tag_key_id = null;
     /**
      * TagValue namespaced name, in the format of
      * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      *
      * Generated from protobuf field <code>optional string tag_value = 3;</code>
      */
-    private $tag_value = null;
+    protected $tag_value = null;
     /**
      * TagValue ID, in the format of tagValues/{TAG_VALUE_ID}.
      *
      * Generated from protobuf field <code>optional string tag_value_id = 4;</code>
      */
-    private $tag_value_id = null;
+    protected $tag_value_id = null;
 
     /**
      * Constructor.

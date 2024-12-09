@@ -23,14 +23,14 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. New Offer.
      * Format: accounts/{account_id}/offers/{offer_id}.
      *
      * Generated from protobuf field <code>string offer = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $offer = '';
+    protected $offer = '';
     /**
      * Optional. Parameters needed to purchase the Offer. To view the available
      * Parameters refer to the
@@ -45,7 +45,7 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string purchase_order_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $purchase_order_id = '';
+    protected $purchase_order_id = '';
     /**
      * Optional. You can specify an optional unique request ID, and if you need to
      * retry your request, the server will know to ignore the request if it's
@@ -60,7 +60,7 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. The billing account resource name that is used to pay for this
      * entitlement when setting up billing on a trial subscription.
@@ -69,7 +69,7 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string billing_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $billing_account = '';
+    protected $billing_account = '';
 
     /**
      * Constructor.

@@ -19,7 +19,7 @@ class GetGlobalSiteTagRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the site tag to lookup.
      * Note that site tags are singletons and do not have unique IDs.
      * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
-     * Example: "properties/123/dataStreams/456/globalSiteTag"
+     * Example: `properties/123/dataStreams/456/globalSiteTag`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +29,8 @@ class GetGlobalSiteTagRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the site tag to lookup.
      *                     Note that site tags are singletons and do not have unique IDs.
      *                     Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
-     *                     Example: "properties/123/dataStreams/456/globalSiteTag"
+     *
+     *                     Example: `properties/123/dataStreams/456/globalSiteTag`
      *                     Please see {@see AnalyticsAdminServiceClient::globalSiteTagName()} for help formatting this field.
      *
      * @return \Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest
@@ -52,7 +53,7 @@ class GetGlobalSiteTagRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the site tag to lookup.
      *           Note that site tags are singletons and do not have unique IDs.
      *           Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
-     *           Example: "properties/123/dataStreams/456/globalSiteTag"
+     *           Example: `properties/123/dataStreams/456/globalSiteTag`
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +65,7 @@ class GetGlobalSiteTagRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the site tag to lookup.
      * Note that site tags are singletons and do not have unique IDs.
      * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
-     * Example: "properties/123/dataStreams/456/globalSiteTag"
+     * Example: `properties/123/dataStreams/456/globalSiteTag`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,7 +79,7 @@ class GetGlobalSiteTagRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the site tag to lookup.
      * Note that site tags are singletons and do not have unique IDs.
      * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
-     * Example: "properties/123/dataStreams/456/globalSiteTag"
+     * Example: `properties/123/dataStreams/456/globalSiteTag`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

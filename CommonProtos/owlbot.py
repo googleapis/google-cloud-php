@@ -16,59 +16,62 @@
 
 import logging
 from pathlib import Path
-from pathlib import PosixPath
+import shutil
 import subprocess
 
+import os
 import synthtool as s
 from synthtool.languages import php
 from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-audit_src = Path(f"../{php.STAGING_DIR}/CommonProtos/audit-protos").resolve()
-devtools_src = Path(f"../{php.STAGING_DIR}/CommonProtos/devtools-protos").resolve()
-common_src = Path(f"../{php.STAGING_DIR}/CommonProtos/common-protos").resolve()
+# (dirname, version)
+protos = [
+    ("api", "api"),
+    ("extendedoperations", "cloud"),
+    ("location", "cloud"),
+    ("logging", "google"), # for the metadata
+    ("logging", "cloud"),
+    ("iam", "google"), # for the metadata
+    ("iam", "cloud"),
+    ("iamlogging", "iam"),
+    ("rpc", "rpc"),
+    ("type", "type"),
+]
+
 dest = Path().resolve()
+for proto in protos:
+    src = Path(f"{php.STAGING_DIR}/{proto[0]}").resolve()
 
-# Added so that we can pass copy_excludes in the owlbot_main() call
-_tracked_paths.add(audit_src)
-_tracked_paths.add(devtools_src)
-_tracked_paths.add(common_src)
+    # Added so that we can pass copy_excludes in the owlbot_main() call
+    _tracked_paths.add(src)
 
-# use owlbot_copy_version instead of owlbot_main and set "version_string"
-# manually because some common protos do not have a version
-php.owlbot_copy_version(
-    src=audit_src,
-    dest=dest,
-    copy_excludes=[
-        audit_src / "**/[A-Z]*_*.php"
-    ],
-    version_string="audit",
-)
-php.owlbot_copy_version(
-    src=devtools_src,
-    dest=dest,
-    copy_excludes=[
-        devtools_src / "**/[A-Z]*_*.php"
-    ],
-    version_string="devtools",
-)
-php.owlbot_copy_version(
-    src=common_src,
-    dest=dest,
-    copy_excludes=[
-        common_src / "**/[A-Z]*_*.php"
-    ],
-    version_string="common",
-)
+    # use owlbot_copy_version instead of owlbot_main and set "version_string"
+    # manually because common protos do not have a version
+    php.owlbot_copy_version(
+        src=src,
+        dest=dest,
+        version_string=proto[1],
+        copy_excludes=[
+            src / "**/[A-Z]*_*.php"
+        ],
+    )
 
-# remove class_alias code (but keep the existing class aliases)
-sources = list(Path(".").glob("src/**/*.php"))
-sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/FirstPartyPrincipal.php"))
-sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/ThirdPartyPrincipal.php"))
-sources.remove(PosixPath("src/DevTools/Source/V1/AliasContext/Kind.php"))
+# move metadata to more specific directories (owlbot isnt smart enough to do this)
+s.move("metadata/Google/Iam/V1", "metadata/Iam/V1")
+s.move("metadata/Google/Logging/Type", "metadata/Logging/Type")
+
+# remove owl-bot-staging dir
+if os.path.exists(php.STAGING_DIR):
+    shutil.rmtree(Path(php.STAGING_DIR))
+
+# remove the metadata/Google files that we copied
+if os.path.exists("metadata/Google"):
+    shutil.rmtree(Path("metadata/Google"))
+
 s.replace(
-    sources,
+    "src/**/*.php",
     r"^// Adding a class alias for backwards compatibility with the previous class name.$"
     + "\n"
     + r"^class_alias\(.*\);$"

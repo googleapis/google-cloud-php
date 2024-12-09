@@ -25,14 +25,14 @@ class CreateHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The initial description of a new HCX activation key. When
      * creating a new key, this field must be an empty object.
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.HcxActivationKey hcx_activation_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hcx_activation_key = null;
+    protected $hcx_activation_key = null;
     /**
      * Required. The user-provided identifier of the `HcxActivationKey` to be
      * created. This identifier must be unique among `HcxActivationKey` resources
@@ -47,7 +47,7 @@ class CreateHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string hcx_activation_key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hcx_activation_key_id = '';
+    protected $hcx_activation_key_id = '';
     /**
      * A request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -64,7 +64,7 @@ class CreateHcxActivationKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                                         $parent             Required. The resource name of the private cloud to create the key for.

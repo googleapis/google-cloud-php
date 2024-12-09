@@ -99,7 +99,7 @@ class PubSubClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '2.2.1';
+    const VERSION = '2.8.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -262,7 +262,7 @@ class PubSubClient
      * Lazily instantiate a topic with a topic name.
      *
      * No API requests are made by this method. If you want to create a new
-     * topic, use {@see Topic::createTopic()}.
+     * topic, use {@see Topic::create()}.
      *
      * Example:
      * ```

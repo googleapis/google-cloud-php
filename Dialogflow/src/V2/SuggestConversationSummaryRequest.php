@@ -25,27 +25,28 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      */
     private $conversation = '';
     /**
-     * The name of the latest conversation message used as context for
+     * Optional. The name of the latest conversation message used as context for
      * compiling suggestion. If empty, the latest message of the conversation will
      * be used.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $latest_message = '';
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 500 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 context_size = 4;</code>
+     * Generated from protobuf field <code>int32 context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $context_size = 0;
     /**
-     * Parameters for a human assist query. Only used for POC/demo purpose.
+     * Optional. Parameters for a human assist query. Only used for POC/demo
+     * purpose.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $assist_query_params = null;
 
@@ -76,17 +77,18 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>`.
      *     @type string $latest_message
-     *           The name of the latest conversation message used as context for
+     *           Optional. The name of the latest conversation message used as context for
      *           compiling suggestion. If empty, the latest message of the conversation will
      *           be used.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $context_size
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 500 and at most 1000.
      *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
-     *           Parameters for a human assist query. Only used for POC/demo purpose.
+     *           Optional. Parameters for a human assist query. Only used for POC/demo
+     *           purpose.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,13 +127,13 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The name of the latest conversation message used as context for
+     * Optional. The name of the latest conversation message used as context for
      * compiling suggestion. If empty, the latest message of the conversation will
      * be used.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLatestMessage()
@@ -140,13 +142,13 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The name of the latest conversation message used as context for
+     * Optional. The name of the latest conversation message used as context for
      * compiling suggestion. If empty, the latest message of the conversation will
      * be used.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -159,11 +161,11 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 500 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 context_size = 4;</code>
+     * Generated from protobuf field <code>int32 context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getContextSize()
@@ -172,11 +174,11 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 500 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 context_size = 4;</code>
+     * Generated from protobuf field <code>int32 context_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -189,9 +191,10 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Parameters for a human assist query. Only used for POC/demo purpose.
+     * Optional. Parameters for a human assist query. Only used for POC/demo
+     * purpose.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\AssistQueryParameters|null
      */
     public function getAssistQueryParams()
@@ -210,9 +213,10 @@ class SuggestConversationSummaryRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Parameters for a human assist query. Only used for POC/demo purpose.
+     * Optional. Parameters for a human assist query. Only used for POC/demo
+     * purpose.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\AssistQueryParameters $var
      * @return $this
      */

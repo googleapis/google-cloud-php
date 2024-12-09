@@ -262,6 +262,18 @@ return [
                     ],
                 ],
             ],
+            'MoveInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*}:move',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/instances/*}:setIamPolicy',

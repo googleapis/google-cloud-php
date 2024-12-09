@@ -34,7 +34,7 @@ use Google\Cloud\DiscoveryEngine\V1\Session;
  * [DataStore][google.cloud.discoveryengine.v1.DataStore].
  *
  * @param string $formattedParent The data store resource name. Format:
- *                                `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+ *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
  *                                Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
  */
 function list_sessions_sample(string $formattedParent): void

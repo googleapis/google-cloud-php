@@ -20,13 +20,13 @@ class PasswordStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool locked = 1;</code>
      */
-    private $locked = false;
+    protected $locked = false;
     /**
      * The expiration time of the current password.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp password_expiration_time = 2;</code>
      */
-    private $password_expiration_time = null;
+    protected $password_expiration_time = null;
 
     /**
      * Constructor.

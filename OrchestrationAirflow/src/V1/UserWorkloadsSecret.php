@@ -22,12 +22,17 @@ class UserWorkloadsSecret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The "data" field of Kubernetes Secret, organized in key-value
      * pairs, which can contain sensitive values such as a password, a token, or a
      * key. The values for all keys have to be base64-encoded strings. For details
      * see: https://kubernetes.io/docs/concepts/configuration/secret/
+     * Example:
+     * {
+     *   "example": "ZXhhbXBsZV92YWx1ZQ==",
+     *   "another-example": "YW5vdGhlcl9leGFtcGxlX3ZhbHVl"
+     * }
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,6 +52,11 @@ class UserWorkloadsSecret extends \Google\Protobuf\Internal\Message
      *           pairs, which can contain sensitive values such as a password, a token, or a
      *           key. The values for all keys have to be base64-encoded strings. For details
      *           see: https://kubernetes.io/docs/concepts/configuration/secret/
+     *           Example:
+     *           {
+     *             "example": "ZXhhbXBsZV92YWx1ZQ==",
+     *             "another-example": "YW5vdGhlcl9leGFtcGxlX3ZhbHVl"
+     *           }
      * }
      */
     public function __construct($data = NULL) {
@@ -87,6 +97,11 @@ class UserWorkloadsSecret extends \Google\Protobuf\Internal\Message
      * pairs, which can contain sensitive values such as a password, a token, or a
      * key. The values for all keys have to be base64-encoded strings. For details
      * see: https://kubernetes.io/docs/concepts/configuration/secret/
+     * Example:
+     * {
+     *   "example": "ZXhhbXBsZV92YWx1ZQ==",
+     *   "another-example": "YW5vdGhlcl9leGFtcGxlX3ZhbHVl"
+     * }
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -101,6 +116,11 @@ class UserWorkloadsSecret extends \Google\Protobuf\Internal\Message
      * pairs, which can contain sensitive values such as a password, a token, or a
      * key. The values for all keys have to be base64-encoded strings. For details
      * see: https://kubernetes.io/docs/concepts/configuration/secret/
+     * Example:
+     * {
+     *   "example": "ZXhhbXBsZV92YWx1ZQ==",
+     *   "another-example": "YW5vdGhlcl9leGFtcGxlX3ZhbHVl"
+     * }
      *
      * Generated from protobuf field <code>map<string, string> data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

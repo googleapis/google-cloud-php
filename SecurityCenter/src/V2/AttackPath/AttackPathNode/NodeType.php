@@ -73,6 +73,4 @@ class NodeType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NodeType::class, \Google\Cloud\SecurityCenter\V2\AttackPath_AttackPathNode_NodeType::class);
 

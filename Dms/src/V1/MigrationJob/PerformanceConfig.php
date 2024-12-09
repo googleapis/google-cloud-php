@@ -20,7 +20,7 @@ class PerformanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.PerformanceConfig.DumpParallelLevel dump_parallel_level = 1;</code>
      */
-    private $dump_parallel_level = 0;
+    protected $dump_parallel_level = 0;
 
     /**
      * Constructor.

@@ -24,7 +24,7 @@ class EntityMove extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string new_schema = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $new_schema = '';
+    protected $new_schema = '';
 
     /**
      * Constructor.

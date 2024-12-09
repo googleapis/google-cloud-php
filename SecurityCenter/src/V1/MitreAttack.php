@@ -21,7 +21,7 @@ class MitreAttack extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack.Tactic primary_tactic = 1;</code>
      */
-    private $primary_tactic = 0;
+    protected $primary_tactic = 0;
     /**
      * The MITRE ATT&CK technique most closely represented by this finding, if
      * any. primary_techniques is a repeated field because there are multiple
@@ -51,7 +51,7 @@ class MitreAttack extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 5;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

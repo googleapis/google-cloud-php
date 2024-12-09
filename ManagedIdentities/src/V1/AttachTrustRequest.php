@@ -22,13 +22,13 @@ class AttachTrustRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The domain trust resource.
      *
      * Generated from protobuf field <code>.google.cloud.managedidentities.v1.Trust trust = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trust = null;
+    protected $trust = null;
 
     /**
      * @param string                                   $name  Required. The resource domain name, project name and location using the form:

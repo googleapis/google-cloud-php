@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * of users, one segment might be users from a particular country or city.
  * Another segment might be users who purchase a particular line of products or
  * who visit a specific part of your site or trigger certain events in your app.
- * To learn more, see [GA4 Segment
+ * To learn more, see [Segment
  * Builder](https://support.google.com/analytics/answer/9304353).
  *
  * Generated from protobuf message <code>google.analytics.data.v1alpha.Segment</code>

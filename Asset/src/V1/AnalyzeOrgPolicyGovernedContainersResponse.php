@@ -27,14 +27,14 @@ class AnalyzeOrgPolicyGovernedContainersResponse extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.AnalyzerOrgPolicyConstraint constraint = 2;</code>
      */
-    private $constraint = null;
+    protected $constraint = null;
     /**
      * The page token to fetch the next page for
      * [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.

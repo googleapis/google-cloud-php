@@ -25,13 +25,13 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
@@ -40,7 +40,7 @@ class GoogleChannelConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crypto_key_name = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $crypto_key_name = '';
+    protected $crypto_key_name = '';
 
     /**
      * Constructor.

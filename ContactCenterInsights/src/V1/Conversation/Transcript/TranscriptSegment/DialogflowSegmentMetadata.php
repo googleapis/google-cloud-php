@@ -21,7 +21,7 @@ class DialogflowSegmentMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool smart_reply_allowlist_covered = 1;</code>
      */
-    private $smart_reply_allowlist_covered = false;
+    protected $smart_reply_allowlist_covered = false;
 
     /**
      * Constructor.

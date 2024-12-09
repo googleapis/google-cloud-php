@@ -32,7 +32,7 @@ use Google\Cloud\Dialogflow\Cx\V3\Webhook;
  * Creates a webhook in the specified agent.
  *
  * @param string $formattedParent    The agent to create a webhook for.
- *                                   Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                   Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                   {@see WebhooksClient::agentName()} for help formatting this field.
  * @param string $webhookDisplayName The human-readable name of the webhook, unique within the agent.
  */

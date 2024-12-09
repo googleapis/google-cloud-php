@@ -22,6 +22,13 @@ class DeleteAccountRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. If set to `true`, the account is deleted even if it provides
+     * services to other accounts or has processed offers.
+     *
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force = false;
 
     /**
      * @param string $name Required. The name of the account to delete.
@@ -47,6 +54,9 @@ class DeleteAccountRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the account to delete.
      *           Format: `accounts/{account}`
+     *     @type bool $force
+     *           Optional. If set to `true`, the account is deleted even if it provides
+     *           services to other accounts or has processed offers.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +88,34 @@ class DeleteAccountRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to `true`, the account is deleted even if it provides
+     * services to other accounts or has processed offers.
+     *
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Optional. If set to `true`, the account is deleted even if it provides
+     * services to other accounts or has processed offers.
+     *
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

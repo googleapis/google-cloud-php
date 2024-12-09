@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,26 +77,26 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAuthorizationPolicyAsync(CreateAuthorizationPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createClientTlsPolicyAsync(CreateClientTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServerTlsPolicyAsync(CreateServerTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAuthorizationPolicyAsync(DeleteAuthorizationPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClientTlsPolicyAsync(DeleteClientTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServerTlsPolicyAsync(DeleteServerTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizationPolicyAsync(GetAuthorizationPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClientTlsPolicyAsync(GetClientTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServerTlsPolicyAsync(GetServerTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAuthorizationPoliciesAsync(ListAuthorizationPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClientTlsPoliciesAsync(ListClientTlsPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServerTlsPoliciesAsync(ListServerTlsPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAuthorizationPolicyAsync(UpdateAuthorizationPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClientTlsPolicyAsync(UpdateClientTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServerTlsPolicyAsync(UpdateServerTlsPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAuthorizationPolicyAsync(CreateAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClientTlsPolicyAsync(CreateClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServerTlsPolicyAsync(CreateServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAuthorizationPolicyAsync(DeleteAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClientTlsPolicyAsync(DeleteClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServerTlsPolicyAsync(DeleteServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizationPolicy> getAuthorizationPolicyAsync(GetAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ClientTlsPolicy> getClientTlsPolicyAsync(GetClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServerTlsPolicy> getServerTlsPolicyAsync(GetServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthorizationPoliciesAsync(ListAuthorizationPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClientTlsPoliciesAsync(ListClientTlsPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServerTlsPoliciesAsync(ListServerTlsPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAuthorizationPolicyAsync(UpdateAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClientTlsPolicyAsync(UpdateClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateServerTlsPolicyAsync(UpdateServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class NetworkSecurityClient
 {
@@ -123,9 +123,7 @@ final class NetworkSecurityClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -171,7 +169,9 @@ final class NetworkSecurityClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -206,8 +206,11 @@ final class NetworkSecurityClient
      *
      * @return string The formatted authorization_policy resource.
      */
-    public static function authorizationPolicyName(string $project, string $location, string $authorizationPolicy): string
-    {
+    public static function authorizationPolicyName(
+        string $project,
+        string $location,
+        string $authorizationPolicy
+    ): string {
         return self::getPathTemplate('authorizationPolicy')->render([
             'project' => $project,
             'location' => $location,
@@ -391,8 +394,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthorizationPolicy(CreateAuthorizationPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAuthorizationPolicy(
+        CreateAuthorizationPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -418,8 +423,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createClientTlsPolicy(CreateClientTlsPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createClientTlsPolicy(
+        CreateClientTlsPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateClientTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -445,8 +452,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServerTlsPolicy(CreateServerTlsPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createServerTlsPolicy(
+        CreateServerTlsPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateServerTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -472,8 +481,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteAuthorizationPolicy(DeleteAuthorizationPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteAuthorizationPolicy(
+        DeleteAuthorizationPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -499,8 +510,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteClientTlsPolicy(DeleteClientTlsPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteClientTlsPolicy(
+        DeleteClientTlsPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteClientTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -526,8 +539,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServerTlsPolicy(DeleteServerTlsPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteServerTlsPolicy(
+        DeleteServerTlsPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteServerTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -553,8 +568,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAuthorizationPolicy(GetAuthorizationPolicyRequest $request, array $callOptions = []): AuthorizationPolicy
-    {
+    public function getAuthorizationPolicy(
+        GetAuthorizationPolicyRequest $request,
+        array $callOptions = []
+    ): AuthorizationPolicy {
         return $this->startApiCall('GetAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -632,8 +649,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAuthorizationPolicies(ListAuthorizationPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAuthorizationPolicies(
+        ListAuthorizationPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAuthorizationPolicies', $request, $callOptions);
     }
 
@@ -659,8 +678,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listClientTlsPolicies(ListClientTlsPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listClientTlsPolicies(
+        ListClientTlsPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListClientTlsPolicies', $request, $callOptions);
     }
 
@@ -686,8 +707,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServerTlsPolicies(ListServerTlsPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listServerTlsPolicies(
+        ListServerTlsPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListServerTlsPolicies', $request, $callOptions);
     }
 
@@ -713,8 +736,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthorizationPolicy(UpdateAuthorizationPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateAuthorizationPolicy(
+        UpdateAuthorizationPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateAuthorizationPolicy', $request, $callOptions)->wait();
     }
 
@@ -740,8 +765,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateClientTlsPolicy(UpdateClientTlsPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateClientTlsPolicy(
+        UpdateClientTlsPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateClientTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -767,8 +794,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateServerTlsPolicy(UpdateServerTlsPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateServerTlsPolicy(
+        UpdateServerTlsPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateServerTlsPolicy', $request, $callOptions)->wait();
     }
 
@@ -908,8 +937,10 @@ final class NetworkSecurityClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

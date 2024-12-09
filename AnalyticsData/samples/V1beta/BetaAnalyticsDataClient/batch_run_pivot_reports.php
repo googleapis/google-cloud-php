@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 
 /**
  * Returns multiple pivot reports in a batch. All reports must be for the same
- * GA4 Property.
+ * Google Analytics property.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

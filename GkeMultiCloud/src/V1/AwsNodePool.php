@@ -24,7 +24,7 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The Kubernetes version to run on this node pool (e.g.
      * `1.19.10-gke.1000`).
@@ -34,56 +34,56 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Required. The configuration of the node pool.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodeConfig config = 28 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Required. Autoscaler configuration for this node pool.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodePoolAutoscaling autoscaling = 25 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $autoscaling = null;
+    protected $autoscaling = null;
     /**
      * Required. The subnet where the node pool node run.
      *
      * Generated from protobuf field <code>string subnet_id = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subnet_id = '';
+    protected $subnet_id = '';
     /**
      * Output only. The lifecycle state of the node pool.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodePool.State state = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. A globally unique identifier for the node pool.
      *
      * Generated from protobuf field <code>string uid = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * Output only. If set, there are currently changes in flight to the node
      * pool.
      *
      * Generated from protobuf field <code>bool reconciling = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The time at which this node pool was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time at which this node pool was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Allows clients to perform consistent read-modify-writes
      * through optimistic concurrency control.
@@ -92,7 +92,7 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 21;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Annotations on the node pool.
      * This field has the same restrictions as Kubernetes annotations.
@@ -112,7 +112,7 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.MaxPodsConstraint max_pods_constraint = 27 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_pods_constraint = null;
+    protected $max_pods_constraint = null;
     /**
      * Output only. A set of errors found in the node pool.
      *
@@ -124,13 +124,19 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.AwsNodeManagement management = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $management = null;
+    protected $management = null;
+    /**
+     * Optional. Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeKubeletConfig kubelet_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $kubelet_config = null;
     /**
      * Optional. Update settings control the speed and disruption of the update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.UpdateSettings update_settings = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_settings = null;
+    protected $update_settings = null;
 
     /**
      * Constructor.
@@ -188,6 +194,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *           Output only. A set of errors found in the node pool.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement $management
      *           Optional. The Management configuration for this node pool.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig $kubelet_config
+     *           Optional. Node kubelet configs.
      *     @type \Google\Cloud\GkeMultiCloud\V1\UpdateSettings $update_settings
      *           Optional. Update settings control the speed and disruption of the update.
      * }
@@ -683,6 +691,42 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement::class);
         $this->management = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeKubeletConfig kubelet_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig|null
+     */
+    public function getKubeletConfig()
+    {
+        return $this->kubelet_config;
+    }
+
+    public function hasKubeletConfig()
+    {
+        return isset($this->kubelet_config);
+    }
+
+    public function clearKubeletConfig()
+    {
+        unset($this->kubelet_config);
+    }
+
+    /**
+     * Optional. Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeKubeletConfig kubelet_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig::class);
+        $this->kubelet_config = $var;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.ObjectConditions object_conditions = 5;</code>
      */
-    private $object_conditions = null;
+    protected $object_conditions = null;
     /**
      * If the option
      * [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink]
@@ -32,7 +32,7 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferOptions transfer_options = 6;</code>
      */
-    private $transfer_options = null;
+    protected $transfer_options = null;
     /**
      * A manifest file provides a list of objects to be transferred from the data
      * source. This field points to the location of the manifest file.
@@ -40,21 +40,21 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferManifest transfer_manifest = 15;</code>
      */
-    private $transfer_manifest = null;
+    protected $transfer_manifest = null;
     /**
      * Specifies the agent pool name associated with the posix data source. When
      * unspecified, the default name is used.
      *
      * Generated from protobuf field <code>string source_agent_pool_name = 17;</code>
      */
-    private $source_agent_pool_name = '';
+    protected $source_agent_pool_name = '';
     /**
      * Specifies the agent pool name associated with the posix data sink. When
      * unspecified, the default name is used.
      *
      * Generated from protobuf field <code>string sink_agent_pool_name = 18;</code>
      */
-    private $sink_agent_pool_name = '';
+    protected $sink_agent_pool_name = '';
     protected $data_sink;
     protected $data_source;
     protected $intermediate_data_location;
@@ -81,6 +81,8 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *           An Azure Blob Storage data source.
      *     @type \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData $aws_s3_compatible_data_source
      *           An AWS S3 compatible data source.
+     *     @type \Google\Cloud\StorageTransfer\V1\HdfsData $hdfs_data_source
+     *           An HDFS cluster data source.
      *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_intermediate_data_location
      *           For transfers between file systems, specifies a Cloud Storage bucket
      *           to be used as an intermediate location through which to transfer data.
@@ -358,6 +360,37 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData::class);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * An HDFS cluster data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.HdfsData hdfs_data_source = 20;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\HdfsData|null
+     */
+    public function getHdfsDataSource()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasHdfsDataSource()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * An HDFS cluster data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.HdfsData hdfs_data_source = 20;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\HdfsData $var
+     * @return $this
+     */
+    public function setHdfsDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\HdfsData::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Video\Stitcher\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Video\Stitcher\V1\AdTracking;
@@ -75,6 +74,7 @@ use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
 use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -99,7 +99,9 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return VideoStitcherServiceClient */
@@ -211,12 +213,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -356,12 +361,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -419,9 +427,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $liveSession = new LiveSession();
         $liveSessionLiveConfig = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
         $liveSession->setLiveConfig($liveSessionLiveConfig);
-        $request = (new CreateLiveSessionRequest())
-            ->setParent($formattedParent)
-            ->setLiveSession($liveSession);
+        $request = (new CreateLiveSessionRequest())->setParent($formattedParent)->setLiveSession($liveSession);
         $response = $gapicClient->createLiveSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -447,21 +453,22 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $liveSession = new LiveSession();
         $liveSessionLiveConfig = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
         $liveSession->setLiveConfig($liveSessionLiveConfig);
-        $request = (new CreateLiveSessionRequest())
-            ->setParent($formattedParent)
-            ->setLiveSession($liveSession);
+        $request = (new CreateLiveSessionRequest())->setParent($formattedParent)->setLiveSession($liveSession);
         try {
             $gapicClient->createLiveSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -575,12 +582,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -718,12 +728,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -787,9 +800,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $vodSession = new VodSession();
         $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
         $vodSession->setAdTracking($vodSessionAdTracking);
-        $request = (new CreateVodSessionRequest())
-            ->setParent($formattedParent)
-            ->setVodSession($vodSession);
+        $request = (new CreateVodSessionRequest())->setParent($formattedParent)->setVodSession($vodSession);
         $response = $gapicClient->createVodSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -815,21 +826,22 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vodSession = new VodSession();
         $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
         $vodSession->setAdTracking($vodSessionAdTracking);
-        $request = (new CreateVodSessionRequest())
-            ->setParent($formattedParent)
-            ->setVodSession($vodSession);
+        $request = (new CreateVodSessionRequest())->setParent($formattedParent)->setVodSession($vodSession);
         try {
             $gapicClient->createVodSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -874,8 +886,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-        $request = (new DeleteCdnKeyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCdnKeyRequest())->setName($formattedName);
         $response = $gapicClient->deleteCdnKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -931,17 +942,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-        $request = (new DeleteCdnKeyRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCdnKeyRequest())->setName($formattedName);
         $response = $gapicClient->deleteCdnKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -995,8 +1008,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
-        $request = (new DeleteLiveConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteLiveConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteLiveConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1052,17 +1064,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
-        $request = (new DeleteLiveConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteLiveConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteLiveConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1116,8 +1130,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-        $request = (new DeleteSlateRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSlateRequest())->setName($formattedName);
         $response = $gapicClient->deleteSlate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1173,17 +1186,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-        $request = (new DeleteSlateRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSlateRequest())->setName($formattedName);
         $response = $gapicClient->deleteSlate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1237,8 +1252,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
-        $request = (new DeleteVodConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVodConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteVodConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1294,17 +1308,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
-        $request = (new DeleteVodConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteVodConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteVodConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1344,8 +1360,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-        $request = (new GetCdnKeyRequest())
-            ->setName($formattedName);
+        $request = (new GetCdnKeyRequest())->setName($formattedName);
         $response = $gapicClient->getCdnKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1369,17 +1384,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-        $request = (new GetCdnKeyRequest())
-            ->setName($formattedName);
+        $request = (new GetCdnKeyRequest())->setName($formattedName);
         try {
             $gapicClient->getCdnKey($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1407,9 +1424,13 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->liveAdTagDetailName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]', '[LIVE_AD_TAG_DETAIL]');
-        $request = (new GetLiveAdTagDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->liveAdTagDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[LIVE_SESSION]',
+            '[LIVE_AD_TAG_DETAIL]'
+        );
+        $request = (new GetLiveAdTagDetailRequest())->setName($formattedName);
         $response = $gapicClient->getLiveAdTagDetail($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1433,17 +1454,24 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->liveAdTagDetailName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]', '[LIVE_AD_TAG_DETAIL]');
-        $request = (new GetLiveAdTagDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->liveAdTagDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[LIVE_SESSION]',
+            '[LIVE_AD_TAG_DETAIL]'
+        );
+        $request = (new GetLiveAdTagDetailRequest())->setName($formattedName);
         try {
             $gapicClient->getLiveAdTagDetail($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1478,8 +1506,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
-        $request = (new GetLiveConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetLiveConfigRequest())->setName($formattedName);
         $response = $gapicClient->getLiveConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1503,17 +1530,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->liveConfigName('[PROJECT]', '[LOCATION]', '[LIVE_CONFIG]');
-        $request = (new GetLiveConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetLiveConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getLiveConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1546,8 +1575,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
-        $request = (new GetLiveSessionRequest())
-            ->setName($formattedName);
+        $request = (new GetLiveSessionRequest())->setName($formattedName);
         $response = $gapicClient->getLiveSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1571,17 +1599,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
-        $request = (new GetLiveSessionRequest())
-            ->setName($formattedName);
+        $request = (new GetLiveSessionRequest())->setName($formattedName);
         try {
             $gapicClient->getLiveSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1612,8 +1642,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-        $request = (new GetSlateRequest())
-            ->setName($formattedName);
+        $request = (new GetSlateRequest())->setName($formattedName);
         $response = $gapicClient->getSlate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1637,17 +1666,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-        $request = (new GetSlateRequest())
-            ->setName($formattedName);
+        $request = (new GetSlateRequest())->setName($formattedName);
         try {
             $gapicClient->getSlate($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1675,9 +1706,13 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->vodAdTagDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_AD_TAG_DETAIL]');
-        $request = (new GetVodAdTagDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->vodAdTagDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VOD_SESSION]',
+            '[VOD_AD_TAG_DETAIL]'
+        );
+        $request = (new GetVodAdTagDetailRequest())->setName($formattedName);
         $response = $gapicClient->getVodAdTagDetail($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1701,17 +1736,24 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->vodAdTagDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_AD_TAG_DETAIL]');
-        $request = (new GetVodAdTagDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->vodAdTagDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VOD_SESSION]',
+            '[VOD_AD_TAG_DETAIL]'
+        );
+        $request = (new GetVodAdTagDetailRequest())->setName($formattedName);
         try {
             $gapicClient->getVodAdTagDetail($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1744,8 +1786,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
-        $request = (new GetVodConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetVodConfigRequest())->setName($formattedName);
         $response = $gapicClient->getVodConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1769,17 +1810,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
-        $request = (new GetVodConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetVodConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getVodConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1818,8 +1861,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $request = (new GetVodSessionRequest())
-            ->setName($formattedName);
+        $request = (new GetVodSessionRequest())->setName($formattedName);
         $response = $gapicClient->getVodSession($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1843,17 +1885,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $request = (new GetVodSessionRequest())
-            ->setName($formattedName);
+        $request = (new GetVodSessionRequest())->setName($formattedName);
         try {
             $gapicClient->getVodSession($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1881,9 +1925,13 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->vodStitchDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_STITCH_DETAIL]');
-        $request = (new GetVodStitchDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->vodStitchDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VOD_SESSION]',
+            '[VOD_STITCH_DETAIL]'
+        );
+        $request = (new GetVodStitchDetailRequest())->setName($formattedName);
         $response = $gapicClient->getVodStitchDetail($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1907,17 +1955,24 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->vodStitchDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_STITCH_DETAIL]');
-        $request = (new GetVodStitchDetailRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->vodStitchDetailName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[VOD_SESSION]',
+            '[VOD_STITCH_DETAIL]'
+        );
+        $request = (new GetVodStitchDetailRequest())->setName($formattedName);
         try {
             $gapicClient->getVodStitchDetail($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1942,17 +1997,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $cdnKeysElement = new CdnKey();
-        $cdnKeys = [
-            $cdnKeysElement,
-        ];
+        $cdnKeys = [$cdnKeysElement];
         $expectedResponse = new ListCdnKeysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCdnKeys($cdnKeys);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCdnKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCdnKeysRequest())->setParent($formattedParent);
         $response = $gapicClient->listCdnKeys($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1979,17 +2031,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListCdnKeysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCdnKeysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCdnKeys($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2014,17 +2068,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $liveAdTagDetailsElement = new LiveAdTagDetail();
-        $liveAdTagDetails = [
-            $liveAdTagDetailsElement,
-        ];
+        $liveAdTagDetails = [$liveAdTagDetailsElement];
         $expectedResponse = new ListLiveAdTagDetailsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLiveAdTagDetails($liveAdTagDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
-        $request = (new ListLiveAdTagDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLiveAdTagDetailsRequest())->setParent($formattedParent);
         $response = $gapicClient->listLiveAdTagDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2051,17 +2102,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
-        $request = (new ListLiveAdTagDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLiveAdTagDetailsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLiveAdTagDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2086,17 +2139,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $liveConfigsElement = new LiveConfig();
-        $liveConfigs = [
-            $liveConfigsElement,
-        ];
+        $liveConfigs = [$liveConfigsElement];
         $expectedResponse = new ListLiveConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLiveConfigs($liveConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListLiveConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLiveConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listLiveConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2123,17 +2173,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListLiveConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLiveConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLiveConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2158,17 +2210,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $slatesElement = new Slate();
-        $slates = [
-            $slatesElement,
-        ];
+        $slates = [$slatesElement];
         $expectedResponse = new ListSlatesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSlates($slates);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSlatesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSlatesRequest())->setParent($formattedParent);
         $response = $gapicClient->listSlates($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2195,17 +2244,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListSlatesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSlatesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSlates($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2230,17 +2281,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $vodAdTagDetailsElement = new VodAdTagDetail();
-        $vodAdTagDetails = [
-            $vodAdTagDetailsElement,
-        ];
+        $vodAdTagDetails = [$vodAdTagDetailsElement];
         $expectedResponse = new ListVodAdTagDetailsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVodAdTagDetails($vodAdTagDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $request = (new ListVodAdTagDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVodAdTagDetailsRequest())->setParent($formattedParent);
         $response = $gapicClient->listVodAdTagDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2267,17 +2315,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $request = (new ListVodAdTagDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVodAdTagDetailsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVodAdTagDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2302,17 +2352,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $vodConfigsElement = new VodConfig();
-        $vodConfigs = [
-            $vodConfigsElement,
-        ];
+        $vodConfigs = [$vodConfigsElement];
         $expectedResponse = new ListVodConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVodConfigs($vodConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVodConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVodConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listVodConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2339,17 +2386,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListVodConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVodConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVodConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2374,17 +2423,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $vodStitchDetailsElement = new VodStitchDetail();
-        $vodStitchDetails = [
-            $vodStitchDetailsElement,
-        ];
+        $vodStitchDetails = [$vodStitchDetailsElement];
         $expectedResponse = new ListVodStitchDetailsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVodStitchDetails($vodStitchDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $request = (new ListVodStitchDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVodStitchDetailsRequest())->setParent($formattedParent);
         $response = $gapicClient->listVodStitchDetails($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -2411,17 +2457,19 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $request = (new ListVodStitchDetailsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListVodStitchDetailsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listVodStitchDetails($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2471,9 +2519,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock request
         $cdnKey = new CdnKey();
         $updateMask = new FieldMask();
-        $request = (new UpdateCdnKeyRequest())
-            ->setCdnKey($cdnKey)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateCdnKeyRequest())->setCdnKey($cdnKey)->setUpdateMask($updateMask);
         $response = $gapicClient->updateCdnKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2531,19 +2577,20 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $cdnKey = new CdnKey();
         $updateMask = new FieldMask();
-        $request = (new UpdateCdnKeyRequest())
-            ->setCdnKey($cdnKey)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateCdnKeyRequest())->setCdnKey($cdnKey)->setUpdateMask($updateMask);
         $response = $gapicClient->updateCdnKey($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2610,9 +2657,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
         $liveConfig->setAdTracking($liveConfigAdTracking);
         $updateMask = new FieldMask();
-        $request = (new UpdateLiveConfigRequest())
-            ->setLiveConfig($liveConfig)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateLiveConfigRequest())->setLiveConfig($liveConfig)->setUpdateMask($updateMask);
         $response = $gapicClient->updateLiveConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2670,12 +2715,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $liveConfig = new LiveConfig();
@@ -2684,9 +2732,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
         $liveConfig->setAdTracking($liveConfigAdTracking);
         $updateMask = new FieldMask();
-        $request = (new UpdateLiveConfigRequest())
-            ->setLiveConfig($liveConfig)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateLiveConfigRequest())->setLiveConfig($liveConfig)->setUpdateMask($updateMask);
         $response = $gapicClient->updateLiveConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2745,9 +2791,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock request
         $slate = new Slate();
         $updateMask = new FieldMask();
-        $request = (new UpdateSlateRequest())
-            ->setSlate($slate)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSlateRequest())->setSlate($slate)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSlate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2805,19 +2849,20 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $slate = new Slate();
         $updateMask = new FieldMask();
-        $request = (new UpdateSlateRequest())
-            ->setSlate($slate)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateSlateRequest())->setSlate($slate)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSlate($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2882,9 +2927,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $vodConfigAdTagUri = 'vodConfigAdTagUri-1204642686';
         $vodConfig->setAdTagUri($vodConfigAdTagUri);
         $updateMask = new FieldMask();
-        $request = (new UpdateVodConfigRequest())
-            ->setVodConfig($vodConfig)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateVodConfigRequest())->setVodConfig($vodConfig)->setUpdateMask($updateMask);
         $response = $gapicClient->updateVodConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2942,12 +2985,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $vodConfig = new VodConfig();
@@ -2956,9 +3002,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $vodConfigAdTagUri = 'vodConfigAdTagUri-1204642686';
         $vodConfig->setAdTagUri($vodConfigAdTagUri);
         $updateMask = new FieldMask();
-        $request = (new UpdateVodConfigRequest())
-            ->setVodConfig($vodConfig)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateVodConfigRequest())->setVodConfig($vodConfig)->setUpdateMask($updateMask);
         $response = $gapicClient->updateVodConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

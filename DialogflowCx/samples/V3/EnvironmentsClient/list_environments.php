@@ -34,8 +34,8 @@ use Google\Cloud\Dialogflow\Cx\V3\ListEnvironmentsRequest;
  * [Agent][google.cloud.dialogflow.cx.v3.Agent].
  *
  * @param string $formattedParent The [Agent][google.cloud.dialogflow.cx.v3.Agent] to list all
- *                                environments for. Format: `projects/<Project ID>/locations/<Location
- *                                ID>/agents/<Agent ID>`. Please see
+ *                                environments for. Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see EnvironmentsClient::agentName()} for help formatting this field.
  */
 function list_environments_sample(string $formattedParent): void

@@ -45,7 +45,7 @@ items:
           description: 'Required. The project in which the ProductSet should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
         -
           id: '↳ product_set'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>'
           description: 'Required. The ProductSet to create.'
         -
           id: '↳ product_set_id'
@@ -100,7 +100,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::hasProductSet()'
     name: hasProductSet
@@ -130,7 +130,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>'
           description: ''
       returns:
         -
@@ -191,10 +191,10 @@ items:
             Required. The project in which the ProductSet should be created.
 
             Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
-            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">ProductSearchClient::locationName()</xref> for help formatting this field.
         -
           id: productSet
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>'
           description: 'Required. The ProductSet to create.'
         -
           id: productSetId
@@ -206,4 +206,4 @@ items:
             long. It cannot contain the character `/`.
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductSetRequest">Google\Cloud\Vision\V1\CreateProductSetRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductSetRequest">CreateProductSetRequest</xref>'

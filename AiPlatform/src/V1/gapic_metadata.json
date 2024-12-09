@@ -164,6 +164,11 @@
                                 "queryDeployedModels"
                             ]
                         },
+                        "UpdateDeploymentResourcePool": {
+                            "methods": [
+                                "updateDeploymentResourcePool"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -236,6 +241,50 @@
                         "UpdateEndpoint": {
                             "methods": [
                                 "updateEndpoint"
+                            ]
+                        },
+                        "UpdateEndpointLongRunning": {
+                            "methods": [
+                                "updateEndpointLongRunning"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EvaluationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EvaluationServiceGapicClient",
+                    "rpcs": {
+                        "EvaluateInstances": {
+                            "methods": [
+                                "evaluateInstances"
                             ]
                         },
                         "GetLocation": {
@@ -603,6 +652,11 @@
                 "grpc": {
                     "libraryClient": "FeatureRegistryServiceGapicClient",
                     "rpcs": {
+                        "BatchCreateFeatures": {
+                            "methods": [
+                                "batchCreateFeatures"
+                            ]
+                        },
                         "CreateFeature": {
                             "methods": [
                                 "createFeature"
@@ -705,6 +759,11 @@
                         "ListTuningJobs": {
                             "methods": [
                                 "listTuningJobs"
+                            ]
+                        },
+                        "RebaseTunedModel": {
+                            "methods": [
+                                "rebaseTunedModel"
                             ]
                         },
                         "GetLocation": {
@@ -1686,9 +1745,19 @@
                                 "assignNotebookRuntime"
                             ]
                         },
+                        "CreateNotebookExecutionJob": {
+                            "methods": [
+                                "createNotebookExecutionJob"
+                            ]
+                        },
                         "CreateNotebookRuntimeTemplate": {
                             "methods": [
                                 "createNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "DeleteNotebookExecutionJob": {
+                            "methods": [
+                                "deleteNotebookExecutionJob"
                             ]
                         },
                         "DeleteNotebookRuntime": {
@@ -1701,6 +1770,11 @@
                                 "deleteNotebookRuntimeTemplate"
                             ]
                         },
+                        "GetNotebookExecutionJob": {
+                            "methods": [
+                                "getNotebookExecutionJob"
+                            ]
+                        },
                         "GetNotebookRuntime": {
                             "methods": [
                                 "getNotebookRuntime"
@@ -1709,6 +1783,11 @@
                         "GetNotebookRuntimeTemplate": {
                             "methods": [
                                 "getNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "ListNotebookExecutionJobs": {
+                            "methods": [
+                                "listNotebookExecutionJobs"
                             ]
                         },
                         "ListNotebookRuntimeTemplates": {
@@ -1724,6 +1803,11 @@
                         "StartNotebookRuntime": {
                             "methods": [
                                 "startNotebookRuntime"
+                            ]
+                        },
+                        "StopNotebookRuntime": {
+                            "methods": [
+                                "stopNotebookRuntime"
                             ]
                         },
                         "UpdateNotebookRuntimeTemplate": {
@@ -2204,6 +2288,139 @@
                         "WriteTensorboardRunData": {
                             "methods": [
                                 "writeTensorboardRunData"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "VertexRagDataService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VertexRagDataServiceGapicClient",
+                    "rpcs": {
+                        "CreateRagCorpus": {
+                            "methods": [
+                                "createRagCorpus"
+                            ]
+                        },
+                        "DeleteRagCorpus": {
+                            "methods": [
+                                "deleteRagCorpus"
+                            ]
+                        },
+                        "DeleteRagFile": {
+                            "methods": [
+                                "deleteRagFile"
+                            ]
+                        },
+                        "GetRagCorpus": {
+                            "methods": [
+                                "getRagCorpus"
+                            ]
+                        },
+                        "GetRagFile": {
+                            "methods": [
+                                "getRagFile"
+                            ]
+                        },
+                        "ImportRagFiles": {
+                            "methods": [
+                                "importRagFiles"
+                            ]
+                        },
+                        "ListRagCorpora": {
+                            "methods": [
+                                "listRagCorpora"
+                            ]
+                        },
+                        "ListRagFiles": {
+                            "methods": [
+                                "listRagFiles"
+                            ]
+                        },
+                        "UpdateRagCorpus": {
+                            "methods": [
+                                "updateRagCorpus"
+                            ]
+                        },
+                        "UploadRagFile": {
+                            "methods": [
+                                "uploadRagFile"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "VertexRagService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VertexRagServiceGapicClient",
+                    "rpcs": {
+                        "AugmentPrompt": {
+                            "methods": [
+                                "augmentPrompt"
+                            ]
+                        },
+                        "CorroborateContent": {
+                            "methods": [
+                                "corroborateContent"
+                            ]
+                        },
+                        "RetrieveContexts": {
+                            "methods": [
+                                "retrieveContexts"
                             ]
                         },
                         "GetLocation": {

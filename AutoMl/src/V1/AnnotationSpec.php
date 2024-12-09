@@ -22,21 +22,21 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the annotation spec to show in the interface. The name can be
      * up to 32 characters long and must match the regexp `[a-zA-Z0-9_]+`.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The number of examples in the parent dataset
      * labeled by the annotation spec.
      *
      * Generated from protobuf field <code>int32 example_count = 9;</code>
      */
-    private $example_count = 0;
+    protected $example_count = 0;
 
     /**
      * Constructor.

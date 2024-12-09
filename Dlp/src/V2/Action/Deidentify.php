@@ -31,7 +31,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationConfig transformation_config = 7;</code>
      */
-    private $transformation_config = null;
+    protected $transformation_config = null;
     /**
      * Config for storing transformation details. This is separate from the
      * de-identified content, and contains metadata about the successful
@@ -43,15 +43,15 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationDetailsStorageConfig transformation_details_storage_config = 3;</code>
      */
-    private $transformation_details_storage_config = null;
+    protected $transformation_details_storage_config = null;
     /**
      * List of user-specified file type groups to transform. If specified, only
-     * the files with these filetypes will be transformed. If empty, all
+     * the files with these file types will be transformed. If empty, all
      * supported files will be transformed. Supported types may be automatically
      * added over time. If a file type is set in this field that isn't supported
      * by the Deidentify action then the job will fail and will not be
-     * successfully created/started. Currently the only filetypes supported are:
-     * IMAGES, TEXT_FILES, CSV, TSV.
+     * successfully created/started. Currently the only file types supported
+     * are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
      */
@@ -77,19 +77,19 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *           message for more information about what is noted).
      *     @type string $cloud_storage_output
      *           Required. User settable Cloud Storage bucket and folders to store
-     *           de-identified files. This field must be set for cloud storage
+     *           de-identified files. This field must be set for Cloud Storage
      *           deidentification. The output Cloud Storage bucket must be different
      *           from the input bucket. De-identified files will overwrite files in the
      *           output path.
      *           Form of: gs://bucket/folder/ or gs://bucket
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $file_types_to_transform
      *           List of user-specified file type groups to transform. If specified, only
-     *           the files with these filetypes will be transformed. If empty, all
+     *           the files with these file types will be transformed. If empty, all
      *           supported files will be transformed. Supported types may be automatically
      *           added over time. If a file type is set in this field that isn't supported
      *           by the Deidentify action then the job will fail and will not be
-     *           successfully created/started. Currently the only filetypes supported are:
-     *           IMAGES, TEXT_FILES, CSV, TSV.
+     *           successfully created/started. Currently the only file types supported
+     *           are: IMAGES, TEXT_FILES, CSV, TSV.
      * }
      */
     public function __construct($data = NULL) {
@@ -185,7 +185,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. User settable Cloud Storage bucket and folders to store
-     * de-identified files. This field must be set for cloud storage
+     * de-identified files. This field must be set for Cloud Storage
      * deidentification. The output Cloud Storage bucket must be different
      * from the input bucket. De-identified files will overwrite files in the
      * output path.
@@ -206,7 +206,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. User settable Cloud Storage bucket and folders to store
-     * de-identified files. This field must be set for cloud storage
+     * de-identified files. This field must be set for Cloud Storage
      * deidentification. The output Cloud Storage bucket must be different
      * from the input bucket. De-identified files will overwrite files in the
      * output path.
@@ -226,12 +226,12 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * List of user-specified file type groups to transform. If specified, only
-     * the files with these filetypes will be transformed. If empty, all
+     * the files with these file types will be transformed. If empty, all
      * supported files will be transformed. Supported types may be automatically
      * added over time. If a file type is set in this field that isn't supported
      * by the Deidentify action then the job will fail and will not be
-     * successfully created/started. Currently the only filetypes supported are:
-     * IMAGES, TEXT_FILES, CSV, TSV.
+     * successfully created/started. Currently the only file types supported
+     * are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -243,12 +243,12 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
     /**
      * List of user-specified file type groups to transform. If specified, only
-     * the files with these filetypes will be transformed. If empty, all
+     * the files with these file types will be transformed. If empty, all
      * supported files will be transformed. Supported types may be automatically
      * added over time. If a file type is set in this field that isn't supported
      * by the Deidentify action then the job will fail and will not be
-     * successfully created/started. Currently the only filetypes supported are:
-     * IMAGES, TEXT_FILES, CSV, TSV.
+     * successfully created/started. Currently the only file types supported
+     * are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -272,6 +272,4 @@ class Deidentify extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Deidentify::class, \Google\Cloud\Dlp\V2\Action_Deidentify::class);
 

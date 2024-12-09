@@ -20,7 +20,7 @@ class UpdateGoogleChannelConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleChannelConfig google_channel_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $google_channel_config = null;
+    protected $google_channel_config = null;
     /**
      * The fields to be updated; only fields explicitly provided are updated.
      * If no field mask is provided, all provided fields in the request are
@@ -28,7 +28,7 @@ class UpdateGoogleChannelConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Eventarc\V1\GoogleChannelConfig $googleChannelConfig Required. The config to be updated.

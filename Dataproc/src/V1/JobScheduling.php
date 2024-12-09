@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobScheduling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Maximum number of times per hour a driver may be restarted as
+     * Optional. Maximum number of times per hour a driver can be restarted as
      * a result of driver exiting with non-zero code before job is
      * reported failed.
-     * A job may be reported as thrashing if the driver exits with a non-zero code
-     * four times within a 10-minute window.
+     * A job might be reported as thrashing if the driver exits with a non-zero
+     * code four times within a 10-minute window.
      * Maximum value is 10.
      * **Note:** This restartable job option is not supported in Dataproc
      * [workflow templates]
@@ -28,9 +28,9 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_failures_per_hour = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_failures_per_hour = 0;
+    protected $max_failures_per_hour = 0;
     /**
-     * Optional. Maximum total number of times a driver may be restarted as a
+     * Optional. Maximum total number of times a driver can be restarted as a
      * result of the driver exiting with a non-zero code. After the maximum number
      * is reached, the job will be reported as failed.
      * Maximum value is 240.
@@ -41,7 +41,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $max_failures_total = 0;
+    protected $max_failures_total = 0;
 
     /**
      * Constructor.
@@ -50,17 +50,17 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $max_failures_per_hour
-     *           Optional. Maximum number of times per hour a driver may be restarted as
+     *           Optional. Maximum number of times per hour a driver can be restarted as
      *           a result of driver exiting with non-zero code before job is
      *           reported failed.
-     *           A job may be reported as thrashing if the driver exits with a non-zero code
-     *           four times within a 10-minute window.
+     *           A job might be reported as thrashing if the driver exits with a non-zero
+     *           code four times within a 10-minute window.
      *           Maximum value is 10.
      *           **Note:** This restartable job option is not supported in Dataproc
      *           [workflow templates]
      *           (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
      *     @type int $max_failures_total
-     *           Optional. Maximum total number of times a driver may be restarted as a
+     *           Optional. Maximum total number of times a driver can be restarted as a
      *           result of the driver exiting with a non-zero code. After the maximum number
      *           is reached, the job will be reported as failed.
      *           Maximum value is 240.
@@ -76,11 +76,11 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of times per hour a driver may be restarted as
+     * Optional. Maximum number of times per hour a driver can be restarted as
      * a result of driver exiting with non-zero code before job is
      * reported failed.
-     * A job may be reported as thrashing if the driver exits with a non-zero code
-     * four times within a 10-minute window.
+     * A job might be reported as thrashing if the driver exits with a non-zero
+     * code four times within a 10-minute window.
      * Maximum value is 10.
      * **Note:** This restartable job option is not supported in Dataproc
      * [workflow templates]
@@ -95,11 +95,11 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of times per hour a driver may be restarted as
+     * Optional. Maximum number of times per hour a driver can be restarted as
      * a result of driver exiting with non-zero code before job is
      * reported failed.
-     * A job may be reported as thrashing if the driver exits with a non-zero code
-     * four times within a 10-minute window.
+     * A job might be reported as thrashing if the driver exits with a non-zero
+     * code four times within a 10-minute window.
      * Maximum value is 10.
      * **Note:** This restartable job option is not supported in Dataproc
      * [workflow templates]
@@ -118,7 +118,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum total number of times a driver may be restarted as a
+     * Optional. Maximum total number of times a driver can be restarted as a
      * result of the driver exiting with a non-zero code. After the maximum number
      * is reached, the job will be reported as failed.
      * Maximum value is 240.
@@ -136,7 +136,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum total number of times a driver may be restarted as a
+     * Optional. Maximum total number of times a driver can be restarted as a
      * result of the driver exiting with a non-zero code. After the maximum number
      * is reached, the job will be reported as failed.
      * Maximum value is 240.

@@ -61,6 +61,30 @@ class EventType
      * Generated from protobuf enum <code>PARTITION_DELETED = 7;</code>
      */
     const PARTITION_DELETED = 7;
+    /**
+     * An event representing a table being published.
+     *
+     * Generated from protobuf enum <code>TABLE_PUBLISHED = 10;</code>
+     */
+    const TABLE_PUBLISHED = 10;
+    /**
+     * An event representing a table being updated.
+     *
+     * Generated from protobuf enum <code>TABLE_UPDATED = 11;</code>
+     */
+    const TABLE_UPDATED = 11;
+    /**
+     * An event representing a table being skipped in publishing.
+     *
+     * Generated from protobuf enum <code>TABLE_IGNORED = 12;</code>
+     */
+    const TABLE_IGNORED = 12;
+    /**
+     * An event representing a table being deleted.
+     *
+     * Generated from protobuf enum <code>TABLE_DELETED = 13;</code>
+     */
+    const TABLE_DELETED = 13;
 
     private static $valueToName = [
         self::EVENT_TYPE_UNSPECIFIED => 'EVENT_TYPE_UNSPECIFIED',
@@ -71,6 +95,10 @@ class EventType
         self::PARTITION_CREATED => 'PARTITION_CREATED',
         self::PARTITION_UPDATED => 'PARTITION_UPDATED',
         self::PARTITION_DELETED => 'PARTITION_DELETED',
+        self::TABLE_PUBLISHED => 'TABLE_PUBLISHED',
+        self::TABLE_UPDATED => 'TABLE_UPDATED',
+        self::TABLE_IGNORED => 'TABLE_IGNORED',
+        self::TABLE_DELETED => 'TABLE_DELETED',
     ];
 
     public static function name($value)

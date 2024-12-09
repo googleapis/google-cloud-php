@@ -24,7 +24,7 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The value of the flag. Boolean flags are set to `on` for true
      * and `off` for false. This field must be omitted if the flag
@@ -32,7 +32,7 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

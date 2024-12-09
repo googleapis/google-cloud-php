@@ -22,7 +22,7 @@ class ReconcileTagsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ReconcileTagsMetadata.ReconciliationState state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Maps the name of each tagged column (or empty string for a
      * sole entry) to tagging operation [status][google.rpc.Status].

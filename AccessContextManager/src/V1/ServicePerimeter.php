@@ -32,32 +32,32 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Human readable title. Must be unique within the Policy.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Description of the `ServicePerimeter` and its use. Does not affect
      * behavior.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Time the `ServicePerimeter` was created in UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Time the `ServicePerimeter` was updated in UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Perimeter type indicator. A single project is
      * allowed to be a member of single regular perimeter, but multiple service
@@ -68,7 +68,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter.PerimeterType perimeter_type = 6;</code>
      */
-    private $perimeter_type = 0;
+    protected $perimeter_type = 0;
     /**
      * Current ServicePerimeter configuration. Specifies sets of resources,
      * restricted services and access levels that determine perimeter
@@ -76,7 +76,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig status = 7;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Proposed (or dry run) ServicePerimeter configuration. This configuration
      * allows to specify and test ServicePerimeter configuration without enforcing
@@ -85,7 +85,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeterConfig spec = 8;</code>
      */
-    private $spec = null;
+    protected $spec = null;
     /**
      * Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly
      * exists  for all Service Perimeters, and that spec is identical to the
@@ -100,7 +100,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_explicit_dry_run_spec = 9;</code>
      */
-    private $use_explicit_dry_run_spec = false;
+    protected $use_explicit_dry_run_spec = false;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class CreateAuthorizedCertificateRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * SSL certificate data.
      *
      * Generated from protobuf field <code>.google.appengine.v1.AuthorizedCertificate certificate = 2;</code>
      */
-    private $certificate = null;
+    protected $certificate = null;
 
     /**
      * Constructor.

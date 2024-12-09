@@ -20,13 +20,13 @@ class ExitInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 exit_code = 1;</code>
      */
-    private $exit_code = 0;
+    protected $exit_code = 0;
     /**
      * Error message. Empty if there was no error.
      *
      * Generated from protobuf field <code>string error = 2;</code>
      */
-    private $error = '';
+    protected $error = '';
 
     /**
      * Constructor.

@@ -484,6 +484,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $templateUri = 'templateUri-975637465';
         $scheduleName = 'scheduleName1677633331';
+        $preflightValidations = true;
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -491,6 +492,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setTemplateUri($templateUri);
         $expectedResponse->setScheduleName($scheduleName);
+        $expectedResponse->setPreflightValidations($preflightValidations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -900,6 +902,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $network = 'network1843485230';
         $templateUri = 'templateUri-975637465';
         $scheduleName = 'scheduleName1677633331';
+        $preflightValidations = true;
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -907,6 +910,7 @@ class PipelineServiceClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setTemplateUri($templateUri);
         $expectedResponse->setScheduleName($scheduleName);
+        $expectedResponse->setPreflightValidations($preflightValidations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');

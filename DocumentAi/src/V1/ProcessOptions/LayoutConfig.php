@@ -20,7 +20,7 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig.ChunkingConfig chunking_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $chunking_config = null;
+    protected $chunking_config = null;
 
     /**
      * Constructor.

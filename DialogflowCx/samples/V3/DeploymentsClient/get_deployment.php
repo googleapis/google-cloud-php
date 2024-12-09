@@ -34,8 +34,7 @@ use Google\Cloud\Dialogflow\Cx\V3\GetDeploymentRequest;
  *
  * @param string $formattedName The name of the
  *                              [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
- *                              `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/environments/<Environment ID>/deployments/<Deployment ID>`. Please see
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`. Please see
  *                              {@see DeploymentsClient::deploymentName()} for help formatting this field.
  */
 function get_deployment_sample(string $formattedName): void

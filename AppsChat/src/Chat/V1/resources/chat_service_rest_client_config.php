@@ -168,6 +168,17 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=spaces/*/spaceEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSpaceReadState' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=users/*/spaces/*/spaceReadState}',
@@ -223,9 +234,27 @@ return [
                     ],
                 ],
             ],
+            'ListSpaceEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*}/spaceEvents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'filter',
+                ],
+            ],
             'ListSpaces' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces',
+            ],
+            'SearchSpaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces:search',
             ],
             'SetUpSpace' => [
                 'method' => 'post',
@@ -257,6 +286,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',
                         'body' => 'message',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -266,6 +298,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSpace' => [
@@ -279,6 +314,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSpaceReadState' => [

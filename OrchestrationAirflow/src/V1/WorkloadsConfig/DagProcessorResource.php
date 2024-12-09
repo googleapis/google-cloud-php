@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Configuration for resources used by Airflow DAG processors.
+ * This field is supported for Cloud Composer environments in versions
+ * composer-3.*.*-airflow-*.*.* and newer.
  *
  * Generated from protobuf message <code>google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource</code>
  */
@@ -21,28 +23,28 @@ class DagProcessorResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float cpu = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cpu = 0.0;
+    protected $cpu = 0.0;
     /**
      * Optional. Memory (GB) request and limit for a single Airflow DAG
      * processor replica.
      *
      * Generated from protobuf field <code>float memory_gb = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $memory_gb = 0.0;
+    protected $memory_gb = 0.0;
     /**
      * Optional. Storage (GB) request and limit for a single Airflow DAG
      * processor replica.
      *
      * Generated from protobuf field <code>float storage_gb = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $storage_gb = 0.0;
+    protected $storage_gb = 0.0;
     /**
      * Optional. The number of DAG processors. If not provided or set to 0, a
      * single DAG processor instance will be created.
      *
      * Generated from protobuf field <code>int32 count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $count = 0;
+    protected $count = 0;
 
     /**
      * Constructor.

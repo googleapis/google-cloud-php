@@ -30,7 +30,7 @@ use Google\Cloud\Run\V2\ListServicesRequest;
 use Google\Cloud\Run\V2\Service;
 
 /**
- * Lists Services.
+ * Lists Services. Results are sorted by creation time, descending.
  *
  * @param string $formattedParent The location and project to list resources on.
  *                                Location must be a valid Google Cloud region, and cannot be the "-"

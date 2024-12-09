@@ -31,7 +31,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 /**
  * Creates an Assessment of the likelihood an event is legitimate.
  *
- * @param string $formattedParent The name of the project in which the assessment will be created,
+ * @param string $formattedParent The name of the project in which the assessment is created,
  *                                in the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */

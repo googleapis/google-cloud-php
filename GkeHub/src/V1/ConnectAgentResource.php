@@ -21,13 +21,13 @@ class ConnectAgentResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.TypeMeta type = 1;</code>
      */
-    private $type = null;
+    protected $type = null;
     /**
      * YAML manifest of the resource.
      *
      * Generated from protobuf field <code>string manifest = 2;</code>
      */
-    private $manifest = '';
+    protected $manifest = '';
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,11 +52,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTenantAsync(CreateTenantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTenantAsync(DeleteTenantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTenantAsync(GetTenantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTenantsAsync(ListTenantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTenantAsync(UpdateTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tenant> createTenantAsync(CreateTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTenantAsync(DeleteTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tenant> getTenantAsync(GetTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTenantsAsync(ListTenantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tenant> updateTenantAsync(UpdateTenantRequest $request, array $optionalArgs = [])
  */
 final class TenantServiceClient
 {

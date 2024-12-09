@@ -80,6 +80,11 @@
                                 "getSpace"
                             ]
                         },
+                        "GetSpaceEvent": {
+                            "methods": [
+                                "getSpaceEvent"
+                            ]
+                        },
                         "GetSpaceReadState": {
                             "methods": [
                                 "getSpaceReadState"
@@ -105,9 +110,19 @@
                                 "listReactions"
                             ]
                         },
+                        "ListSpaceEvents": {
+                            "methods": [
+                                "listSpaceEvents"
+                            ]
+                        },
                         "ListSpaces": {
                             "methods": [
                                 "listSpaces"
+                            ]
+                        },
+                        "SearchSpaces": {
+                            "methods": [
+                                "searchSpaces"
                             ]
                         },
                         "SetUpSpace": {

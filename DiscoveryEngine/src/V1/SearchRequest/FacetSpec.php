@@ -25,6 +25,9 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * Maximum facet values that are returned for this facet. If
      * unspecified, defaults to 20. The maximum allowed value is 300. Values
      * above 300 are coerced to 300.
+     * For aggregation in healthcare search, when the [FacetKey.key] is
+     * "healthcare_aggregation_key", the limit will be overridden to
+     * 10,000 internally, regardless of the value set here.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 limit = 2;</code>
@@ -97,6 +100,9 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *           Maximum facet values that are returned for this facet. If
      *           unspecified, defaults to 20. The maximum allowed value is 300. Values
      *           above 300 are coerced to 300.
+     *           For aggregation in healthcare search, when the [FacetKey.key] is
+     *           "healthcare_aggregation_key", the limit will be overridden to
+     *           10,000 internally, regardless of the value set here.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_filter_keys
      *           List of keys to exclude when faceting.
@@ -191,6 +197,9 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * Maximum facet values that are returned for this facet. If
      * unspecified, defaults to 20. The maximum allowed value is 300. Values
      * above 300 are coerced to 300.
+     * For aggregation in healthcare search, when the [FacetKey.key] is
+     * "healthcare_aggregation_key", the limit will be overridden to
+     * 10,000 internally, regardless of the value set here.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 limit = 2;</code>
@@ -205,6 +214,9 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * Maximum facet values that are returned for this facet. If
      * unspecified, defaults to 20. The maximum allowed value is 300. Values
      * above 300 are coerced to 300.
+     * For aggregation in healthcare search, when the [FacetKey.key] is
+     * "healthcare_aggregation_key", the limit will be overridden to
+     * 10,000 internally, regardless of the value set here.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
      *
      * Generated from protobuf field <code>int32 limit = 2;</code>

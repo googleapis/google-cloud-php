@@ -24,7 +24,7 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vpc_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $vpc_id = '';
+    protected $vpc_id = '';
     /**
      * Required. All pods in the cluster are assigned an IPv4 address from these
      * ranges. Only a single range is supported. This field cannot be changed
@@ -50,7 +50,7 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool per_node_pool_sg_rules_disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $per_node_pool_sg_rules_disabled = false;
+    protected $per_node_pool_sg_rules_disabled = false;
 
     /**
      * Constructor.

@@ -20,25 +20,25 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The creation time of the object.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update time of the object.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Required. Display name.
      *
      * Generated from protobuf field <code>string display_name = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. Active errors on the object.
      *
@@ -50,13 +50,13 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.BackfillJob backfill_job = 7;</code>
      */
-    private $backfill_job = null;
+    protected $backfill_job = null;
     /**
      * The object identifier in the data source.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier source_object = 8;</code>
      */
-    private $source_object = null;
+    protected $source_object = null;
 
     /**
      * Constructor.

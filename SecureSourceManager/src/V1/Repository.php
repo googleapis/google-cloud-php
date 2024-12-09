@@ -31,11 +31,15 @@ class Repository extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Output only. The name of the instance in which the repository is hosted,
+     * Optional. The name of the instance in which the repository is hosted,
      * formatted as
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
+     * When creating repository via
+     * securesourcemanager.googleapis.com (Control Plane API), this field is used
+     * as input. When creating repository via *.sourcemanager.dev (Data Plane
+     * API), this field is output only.
      *
-     * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $instance = '';
     /**
@@ -91,9 +95,13 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           Optional. Description of the repository, which cannot exceed 500
      *           characters.
      *     @type string $instance
-     *           Output only. The name of the instance in which the repository is hosted,
+     *           Optional. The name of the instance in which the repository is hosted,
      *           formatted as
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
+     *           When creating repository via
+     *           securesourcemanager.googleapis.com (Control Plane API), this field is used
+     *           as input. When creating repository via *.sourcemanager.dev (Data Plane
+     *           API), this field is output only.
      *     @type string $uid
      *           Output only. Unique identifier of the repository.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -174,11 +182,15 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the instance in which the repository is hosted,
+     * Optional. The name of the instance in which the repository is hosted,
      * formatted as
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
+     * When creating repository via
+     * securesourcemanager.googleapis.com (Control Plane API), this field is used
+     * as input. When creating repository via *.sourcemanager.dev (Data Plane
+     * API), this field is output only.
      *
-     * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getInstance()
@@ -187,11 +199,15 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the instance in which the repository is hosted,
+     * Optional. The name of the instance in which the repository is hosted,
      * formatted as
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
+     * When creating repository via
+     * securesourcemanager.googleapis.com (Control Plane API), this field is used
+     * as input. When creating repository via *.sourcemanager.dev (Data Plane
+     * API), this field is output only.
      *
-     * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string instance = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

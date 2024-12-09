@@ -47,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Route> getAsync(GetRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRoutesRequest $request, array $optionalArgs = [])
  */
 final class RoutesClient
 {

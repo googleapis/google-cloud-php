@@ -57,7 +57,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
     private $config_mask = null;
     /**
      * Audio files with file metadata for ASR.
-     * The maximum number of files allowed to be specified is 5.
+     * The maximum number of files allowed to be specified is 15.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
      */
@@ -101,7 +101,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *                                                                         overrides and replaces the config in the recognizer for this recognition
      *                                                                         request.
      * @param \Google\Cloud\Speech\V2\BatchRecognizeFileMetadata[] $files      Audio files with file metadata for ASR.
-     *                                                                         The maximum number of files allowed to be specified is 5.
+     *                                                                         The maximum number of files allowed to be specified is 15.
      *
      * @return \Google\Cloud\Speech\V2\BatchRecognizeRequest
      *
@@ -150,7 +150,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           request.
      *     @type array<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>|\Google\Protobuf\Internal\RepeatedField $files
      *           Audio files with file metadata for ASR.
-     *           The maximum number of files allowed to be specified is 5.
+     *           The maximum number of files allowed to be specified is 15.
      *     @type \Google\Cloud\Speech\V2\RecognitionOutputConfig $recognition_output_config
      *           Configuration options for where to output the transcripts of each file.
      *     @type int $processing_strategy
@@ -302,7 +302,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Audio files with file metadata for ASR.
-     * The maximum number of files allowed to be specified is 5.
+     * The maximum number of files allowed to be specified is 15.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -314,7 +314,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Audio files with file metadata for ASR.
-     * The maximum number of files allowed to be specified is 5.
+     * The maximum number of files allowed to be specified is 15.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
      * @param array<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>|\Google\Protobuf\Internal\RepeatedField $var

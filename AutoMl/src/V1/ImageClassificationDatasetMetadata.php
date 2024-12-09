@@ -20,7 +20,7 @@ class ImageClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $classification_type = 0;
+    protected $classification_type = 0;
 
     /**
      * Constructor.

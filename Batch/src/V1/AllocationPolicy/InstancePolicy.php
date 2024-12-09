@@ -21,7 +21,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 2;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * The minimum CPU platform.
      * See
@@ -29,13 +29,13 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string min_cpu_platform = 3;</code>
      */
-    private $min_cpu_platform = '';
+    protected $min_cpu_platform = '';
     /**
      * The provisioning model.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.ProvisioningModel provisioning_model = 4;</code>
      */
-    private $provisioning_model = 0;
+    protected $provisioning_model = 0;
     /**
      * The accelerators attached to each VM instance.
      *
@@ -49,7 +49,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.Disk boot_disk = 8;</code>
      */
-    private $boot_disk = null;
+    protected $boot_disk = null;
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
      * New disks will be deleted when the VM is deleted.
@@ -61,12 +61,14 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      */
     private $disks;
     /**
-     * Optional. If specified, VMs will consume only the specified reservation.
-     * If not specified (default), VMs will consume any applicable reservation.
+     * Optional. If not specified (default), VMs will consume any applicable
+     * reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     * reservation. Otherwise, if specified, VMs will consume only the specified
+     * reservation.
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reservation = '';
+    protected $reservation = '';
 
     /**
      * Constructor.
@@ -95,8 +97,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *           file system or a raw storage drive that is not ready for data
      *           storage and accessing.
      *     @type string $reservation
-     *           Optional. If specified, VMs will consume only the specified reservation.
-     *           If not specified (default), VMs will consume any applicable reservation.
+     *           Optional. If not specified (default), VMs will consume any applicable
+     *           reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     *           reservation. Otherwise, if specified, VMs will consume only the specified
+     *           reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -287,8 +291,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, VMs will consume only the specified reservation.
-     * If not specified (default), VMs will consume any applicable reservation.
+     * Optional. If not specified (default), VMs will consume any applicable
+     * reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     * reservation. Otherwise, if specified, VMs will consume only the specified
+     * reservation.
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -299,8 +305,10 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If specified, VMs will consume only the specified reservation.
-     * If not specified (default), VMs will consume any applicable reservation.
+     * Optional. If not specified (default), VMs will consume any applicable
+     * reservation. If "NO_RESERVATION" is specified, VMs will not consume any
+     * reservation. Otherwise, if specified, VMs will consume only the specified
+     * reservation.
      *
      * Generated from protobuf field <code>string reservation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

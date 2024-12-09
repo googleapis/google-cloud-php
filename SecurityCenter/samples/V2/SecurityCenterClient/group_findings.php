@@ -70,14 +70,6 @@ use Google\Cloud\SecurityCenter\V2\GroupResult;
  * @param string $groupBy         Expression that defines what assets fields to use for grouping.
  *                                The string value should follow SQL syntax: comma separated list of fields.
  *                                For example: "parent,resource_name".
- *
- *                                The following fields are supported:
- *
- *                                * resource_name
- *                                * category
- *                                * state
- *                                * parent
- *                                * severity
  */
 function group_findings_sample(string $formattedParent, string $groupBy): void
 {

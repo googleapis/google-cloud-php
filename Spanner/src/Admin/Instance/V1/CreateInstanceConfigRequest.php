@@ -17,17 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project in which to create the instance config.
-     * Values are of the form `projects/<project>`.
+     * Required. The name of the project in which to create the instance
+     * configuration. Values are of the form `projects/<project>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The ID of the instance config to create.  Valid identifiers are
-     * of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     * Required. The ID of the instance configuration to create. Valid identifiers
+     * are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
      * characters in length. The `custom-` prefix is required to avoid name
-     * conflicts with Google managed configurations.
+     * conflicts with Google-managed configurations.
      *
      * Generated from protobuf field <code>string instance_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,18 +51,18 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
-     * @param string                                                 $parent           Required. The name of the project in which to create the instance config.
-     *                                                                                 Values are of the form `projects/<project>`. Please see
+     * @param string                                                 $parent           Required. The name of the project in which to create the instance
+     *                                                                                 configuration. Values are of the form `projects/<project>`. Please see
      *                                                                                 {@see InstanceAdminClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instanceConfig   Required. The InstanceConfig proto of the configuration to create.
      *                                                                                 instance_config.name must be
      *                                                                                 `<parent>/instanceConfigs/<instance_config_id>`.
      *                                                                                 instance_config.base_config must be a Google managed configuration name,
      *                                                                                 e.g. <parent>/instanceConfigs/us-east1, <parent>/instanceConfigs/nam3.
-     * @param string                                                 $instanceConfigId Required. The ID of the instance config to create.  Valid identifiers are
-     *                                                                                 of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     * @param string                                                 $instanceConfigId Required. The ID of the instance configuration to create. Valid identifiers
+     *                                                                                 are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
      *                                                                                 characters in length. The `custom-` prefix is required to avoid name
-     *                                                                                 conflicts with Google managed configurations.
+     *                                                                                 conflicts with Google-managed configurations.
      *
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest
      *
@@ -83,13 +83,13 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the project in which to create the instance config.
-     *           Values are of the form `projects/<project>`.
+     *           Required. The name of the project in which to create the instance
+     *           configuration. Values are of the form `projects/<project>`.
      *     @type string $instance_config_id
-     *           Required. The ID of the instance config to create.  Valid identifiers are
-     *           of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     *           Required. The ID of the instance configuration to create. Valid identifiers
+     *           are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
      *           characters in length. The `custom-` prefix is required to avoid name
-     *           conflicts with Google managed configurations.
+     *           conflicts with Google-managed configurations.
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instance_config
      *           Required. The InstanceConfig proto of the configuration to create.
      *           instance_config.name must be
@@ -107,8 +107,8 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which to create the instance config.
-     * Values are of the form `projects/<project>`.
+     * Required. The name of the project in which to create the instance
+     * configuration. Values are of the form `projects/<project>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -119,8 +119,8 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which to create the instance config.
-     * Values are of the form `projects/<project>`.
+     * Required. The name of the project in which to create the instance
+     * configuration. Values are of the form `projects/<project>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -135,10 +135,10 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the instance config to create.  Valid identifiers are
-     * of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     * Required. The ID of the instance configuration to create. Valid identifiers
+     * are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
      * characters in length. The `custom-` prefix is required to avoid name
-     * conflicts with Google managed configurations.
+     * conflicts with Google-managed configurations.
      *
      * Generated from protobuf field <code>string instance_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -149,10 +149,10 @@ class CreateInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the instance config to create.  Valid identifiers are
-     * of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     * Required. The ID of the instance configuration to create. Valid identifiers
+     * are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
      * characters in length. The `custom-` prefix is required to avoid name
-     * conflicts with Google managed configurations.
+     * conflicts with Google-managed configurations.
      *
      * Generated from protobuf field <code>string instance_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

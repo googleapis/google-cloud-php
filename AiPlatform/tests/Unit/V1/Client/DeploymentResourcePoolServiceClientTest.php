@@ -38,6 +38,7 @@ use Google\Cloud\AIPlatform\V1\ListDeploymentResourcePoolsResponse;
 use Google\Cloud\AIPlatform\V1\MachineSpec;
 use Google\Cloud\AIPlatform\V1\QueryDeployedModelsRequest;
 use Google\Cloud\AIPlatform\V1\QueryDeployedModelsResponse;
+use Google\Cloud\AIPlatform\V1\UpdateDeploymentResourcePoolRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -51,6 +52,7 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -109,10 +111,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -387,10 +393,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name2);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentResourcePoolName(
@@ -605,6 +615,161 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDeploymentResourcePoolTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDeploymentResourcePoolTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $expectedResponse = new DeploymentResourcePool();
+        $expectedResponse->setName($name);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateDeploymentResourcePoolTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $deploymentResourcePool = new DeploymentResourcePool();
+        $deploymentResourcePoolDedicatedResources = new DedicatedResources();
+        $dedicatedResourcesMachineSpec = new MachineSpec();
+        $deploymentResourcePoolDedicatedResources->setMachineSpec($dedicatedResourcesMachineSpec);
+        $dedicatedResourcesMinReplicaCount = 386489645;
+        $deploymentResourcePoolDedicatedResources->setMinReplicaCount($dedicatedResourcesMinReplicaCount);
+        $deploymentResourcePool->setDedicatedResources($deploymentResourcePoolDedicatedResources);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDeploymentResourcePoolRequest())
+            ->setDeploymentResourcePool($deploymentResourcePool)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateDeploymentResourcePool($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.DeploymentResourcePoolService/UpdateDeploymentResourcePool',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getDeploymentResourcePool();
+        $this->assertProtobufEquals($deploymentResourcePool, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDeploymentResourcePoolTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDeploymentResourcePoolExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDeploymentResourcePoolTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $deploymentResourcePool = new DeploymentResourcePool();
+        $deploymentResourcePoolDedicatedResources = new DedicatedResources();
+        $dedicatedResourcesMachineSpec = new MachineSpec();
+        $deploymentResourcePoolDedicatedResources->setMachineSpec($dedicatedResourcesMachineSpec);
+        $dedicatedResourcesMinReplicaCount = 386489645;
+        $deploymentResourcePoolDedicatedResources->setMinReplicaCount($dedicatedResourcesMinReplicaCount);
+        $deploymentResourcePool->setDedicatedResources($deploymentResourcePoolDedicatedResources);
+        $updateMask = new FieldMask();
+        $request = (new UpdateDeploymentResourcePoolRequest())
+            ->setDeploymentResourcePool($deploymentResourcePool)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateDeploymentResourcePool($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDeploymentResourcePoolTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -964,10 +1129,14 @@ class DeploymentResourcePoolServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $serviceAccount = 'serviceAccount-1948028253';
         $disableContainerLogging = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new DeploymentResourcePool();
         $expectedResponse->setName($name);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setDisableContainerLogging($disableContainerLogging);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

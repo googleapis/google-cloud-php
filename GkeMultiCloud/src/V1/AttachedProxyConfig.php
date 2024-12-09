@@ -22,7 +22,7 @@ class AttachedProxyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.KubernetesSecret kubernetes_secret = 1;</code>
      */
-    private $kubernetes_secret = null;
+    protected $kubernetes_secret = null;
 
     /**
      * Constructor.

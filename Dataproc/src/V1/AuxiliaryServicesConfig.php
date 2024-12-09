@@ -20,13 +20,13 @@ class AuxiliaryServicesConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.MetastoreConfig metastore_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metastore_config = null;
+    protected $metastore_config = null;
     /**
      * Optional. The Spark History Server configuration for the workload.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkHistoryServerConfig spark_history_server_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $spark_history_server_config = null;
+    protected $spark_history_server_config = null;
 
     /**
      * Constructor.

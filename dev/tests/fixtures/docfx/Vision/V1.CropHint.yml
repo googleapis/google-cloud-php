@@ -40,7 +40,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ bounding_poly'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: "The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale."
         -
           id: '↳ confidence'
@@ -64,7 +64,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\CropHint::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -96,7 +96,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -

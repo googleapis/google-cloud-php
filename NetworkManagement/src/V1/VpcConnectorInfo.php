@@ -20,19 +20,19 @@ class VpcConnectorInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * URI of a VPC connector.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Location in which the VPC connector is deployed.
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

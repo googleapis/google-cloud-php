@@ -66,18 +66,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createScheduleAsync(CreateScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteScheduleAsync(DeleteScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getScheduleAsync(GetScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSchedulesAsync(ListSchedulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseScheduleAsync(PauseScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeScheduleAsync(ResumeScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateScheduleAsync(UpdateScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schedule> createScheduleAsync(CreateScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteScheduleAsync(DeleteScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schedule> getScheduleAsync(GetScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSchedulesAsync(ListSchedulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseScheduleAsync(PauseScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeScheduleAsync(ResumeScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Schedule> updateScheduleAsync(UpdateScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ScheduleServiceClient
 {
@@ -325,6 +325,50 @@ final class ScheduleServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * notebook_execution_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookExecutionJob
+     *
+     * @return string The formatted notebook_execution_job resource.
+     */
+    public static function notebookExecutionJobName(
+        string $project,
+        string $location,
+        string $notebookExecutionJob
+    ): string {
+        return self::getPathTemplate('notebookExecutionJob')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_execution_job' => $notebookExecutionJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * notebook_runtime_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notebookRuntimeTemplate
+     *
+     * @return string The formatted notebook_runtime_template resource.
+     */
+    public static function notebookRuntimeTemplateName(
+        string $project,
+        string $location,
+        string $notebookRuntimeTemplate
+    ): string {
+        return self::getPathTemplate('notebookRuntimeTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'notebook_runtime_template' => $notebookRuntimeTemplate,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a pipeline_job
      * resource.
      *
@@ -340,6 +384,25 @@ final class ScheduleServiceClient
             'project' => $project,
             'location' => $location,
             'pipeline_job' => $pipelineJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a reservation
+     * resource.
+     *
+     * @param string $projectIdOrNumber
+     * @param string $zone
+     * @param string $reservationName
+     *
+     * @return string The formatted reservation resource.
+     */
+    public static function reservationName(string $projectIdOrNumber, string $zone, string $reservationName): string
+    {
+        return self::getPathTemplate('reservation')->render([
+            'project_id_or_number' => $projectIdOrNumber,
+            'zone' => $zone,
+            'reservation_name' => $reservationName,
         ]);
     }
 
@@ -363,6 +426,25 @@ final class ScheduleServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     */
+    public static function subnetworkName(string $project, string $region, string $subnetwork): string
+    {
+        return self::getPathTemplate('subnetwork')->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -373,8 +455,12 @@ final class ScheduleServiceClient
      * - location: projects/{project}/locations/{location}
      * - metadataStore: projects/{project}/locations/{location}/metadataStores/{metadata_store}
      * - network: projects/{project}/global/networks/{network}
+     * - notebookExecutionJob: projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}
+     * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - pipelineJob: projects/{project}/locations/{location}/pipelineJobs/{pipeline_job}
+     * - reservation: projects/{project_id_or_number}/zones/{zone}/reservations/{reservation_name}
      * - schedule: projects/{project}/locations/{location}/schedules/{schedule}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -604,8 +690,9 @@ final class ScheduleServiceClient
      *
      * When the Schedule is resumed, new runs will be scheduled starting from the
      * next execution time after the current time based on the time_specification
-     * in the Schedule. If [Schedule.catchUp][] is set up true, all
-     * missed runs will be scheduled for backfill first.
+     * in the Schedule. If
+     * [Schedule.catch_up][google.cloud.aiplatform.v1.Schedule.catch_up] is set up
+     * true, all missed runs will be scheduled for backfill first.
      *
      * The async variant is {@see ScheduleServiceClient::resumeScheduleAsync()} .
      *

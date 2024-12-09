@@ -22,13 +22,13 @@ class SplitCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Number of slots in the capacity commitment after the split.
      *
      * Generated from protobuf field <code>int64 slot_count = 2;</code>
      */
-    private $slot_count = 0;
+    protected $slot_count = 0;
 
     /**
      * @param string $name      Required. The resource name e.g.,:

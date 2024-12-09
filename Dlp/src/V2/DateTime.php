@@ -22,25 +22,25 @@ class DateTime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Date date = 1;</code>
      */
-    private $date = null;
+    protected $date = null;
     /**
      * Day of week
      *
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2;</code>
      */
-    private $day_of_week = 0;
+    protected $day_of_week = 0;
     /**
      * Time of day
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay time = 3;</code>
      */
-    private $time = null;
+    protected $time = null;
     /**
      * Time zone
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
      */
-    private $time_zone = null;
+    protected $time_zone = null;
 
     /**
      * Constructor.

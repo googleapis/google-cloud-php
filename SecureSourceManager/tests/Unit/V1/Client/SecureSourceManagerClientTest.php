@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,23 +35,31 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\SecureSourceManager\V1\BranchRule;
 use Google\Cloud\SecureSourceManager\V1\Client\SecureSourceManagerClient;
+use Google\Cloud\SecureSourceManager\V1\CreateBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateInstanceRequest;
 use Google\Cloud\SecureSourceManager\V1\CreateRepositoryRequest;
+use Google\Cloud\SecureSourceManager\V1\DeleteBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteInstanceRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest;
+use Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\GetInstanceRequest;
 use Google\Cloud\SecureSourceManager\V1\GetRepositoryRequest;
 use Google\Cloud\SecureSourceManager\V1\Instance;
+use Google\Cloud\SecureSourceManager\V1\ListBranchRulesRequest;
+use Google\Cloud\SecureSourceManager\V1\ListBranchRulesResponse;
 use Google\Cloud\SecureSourceManager\V1\ListInstancesRequest;
 use Google\Cloud\SecureSourceManager\V1\ListInstancesResponse;
 use Google\Cloud\SecureSourceManager\V1\ListRepositoriesRequest;
 use Google\Cloud\SecureSourceManager\V1\ListRepositoriesResponse;
 use Google\Cloud\SecureSourceManager\V1\Repository;
+use Google\Cloud\SecureSourceManager\V1\UpdateBranchRuleRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -84,6 +92,167 @@ class SecureSourceManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new SecureSourceManagerClient($options);
+    }
+
+    /** @test */
+    public function createBranchRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createBranchRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $uid = 'uid115792';
+        $etag = 'etag3123477';
+        $includePattern = 'includePattern-1182351623';
+        $disabled = true;
+        $requirePullRequest = false;
+        $minimumReviewsCount = 672799098;
+        $minimumApprovalsCount = 579210129;
+        $requireCommentsResolved = false;
+        $allowStaleReviews = false;
+        $requireLinearHistory = true;
+        $expectedResponse = new BranchRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIncludePattern($includePattern);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setRequirePullRequest($requirePullRequest);
+        $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
+        $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
+        $expectedResponse->setAllowStaleReviews($allowStaleReviews);
+        $expectedResponse->setRequireLinearHistory($requireLinearHistory);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createBranchRuleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $branchRule = new BranchRule();
+        $branchRuleId = 'branchRuleId786871201';
+        $request = (new CreateBranchRuleRequest())
+            ->setParent($formattedParent)
+            ->setBranchRule($branchRule)
+            ->setBranchRuleId($branchRuleId);
+        $response = $gapicClient->createBranchRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateBranchRule',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBranchRule();
+        $this->assertProtobufEquals($branchRule, $actualValue);
+        $actualValue = $actualApiRequestObject->getBranchRuleId();
+        $this->assertProtobufEquals($branchRuleId, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createBranchRuleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createBranchRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createBranchRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $branchRule = new BranchRule();
+        $branchRuleId = 'branchRuleId786871201';
+        $request = (new CreateBranchRuleRequest())
+            ->setParent($formattedParent)
+            ->setBranchRule($branchRule)
+            ->setBranchRuleId($branchRuleId);
+        $response = $gapicClient->createBranchRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createBranchRuleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -379,6 +548,131 @@ class SecureSourceManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteBranchRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteBranchRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteBranchRuleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->branchRuleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[BRANCH_RULE]');
+        $request = (new DeleteBranchRuleRequest())->setName($formattedName);
+        $response = $gapicClient->deleteBranchRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/DeleteBranchRule',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteBranchRuleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteBranchRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteBranchRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->branchRuleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[BRANCH_RULE]');
+        $request = (new DeleteBranchRuleRequest())->setName($formattedName);
+        $response = $gapicClient->deleteBranchRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteBranchRuleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -629,6 +923,91 @@ class SecureSourceManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getBranchRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $etag = 'etag3123477';
+        $includePattern = 'includePattern-1182351623';
+        $disabled = true;
+        $requirePullRequest = false;
+        $minimumReviewsCount = 672799098;
+        $minimumApprovalsCount = 579210129;
+        $requireCommentsResolved = false;
+        $allowStaleReviews = false;
+        $requireLinearHistory = true;
+        $expectedResponse = new BranchRule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIncludePattern($includePattern);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setRequirePullRequest($requirePullRequest);
+        $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
+        $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
+        $expectedResponse->setAllowStaleReviews($allowStaleReviews);
+        $expectedResponse->setRequireLinearHistory($requireLinearHistory);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->branchRuleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[BRANCH_RULE]');
+        $request = (new GetBranchRuleRequest())->setName($formattedName);
+        $response = $gapicClient->getBranchRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/GetBranchRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBranchRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->branchRuleName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[BRANCH_RULE]');
+        $request = (new GetBranchRuleRequest())->setName($formattedName);
+        try {
+            $gapicClient->getBranchRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getIamPolicyRepoTest()
     {
         $transport = $this->createTransport();
@@ -824,6 +1203,77 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBranchRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $branchRulesElement = new BranchRule();
+        $branchRules = [$branchRulesElement];
+        $expectedResponse = new ListBranchRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBranchRules($branchRules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ListBranchRulesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listBranchRules($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBranchRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/ListBranchRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBranchRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ListBranchRulesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listBranchRules($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1116,6 +1566,157 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBranchRuleTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBranchRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $uid = 'uid115792';
+        $etag = 'etag3123477';
+        $includePattern = 'includePattern-1182351623';
+        $disabled = true;
+        $requirePullRequest = false;
+        $minimumReviewsCount = 672799098;
+        $minimumApprovalsCount = 579210129;
+        $requireCommentsResolved = false;
+        $allowStaleReviews = false;
+        $requireLinearHistory = true;
+        $expectedResponse = new BranchRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIncludePattern($includePattern);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setRequirePullRequest($requirePullRequest);
+        $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
+        $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
+        $expectedResponse->setAllowStaleReviews($allowStaleReviews);
+        $expectedResponse->setRequireLinearHistory($requireLinearHistory);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateBranchRuleTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $branchRule = new BranchRule();
+        $updateMask = new FieldMask();
+        $request = (new UpdateBranchRuleRequest())->setBranchRule($branchRule)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBranchRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/UpdateBranchRule',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getBranchRule();
+        $this->assertProtobufEquals($branchRule, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBranchRuleTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateBranchRuleExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateBranchRuleTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $branchRule = new BranchRule();
+        $updateMask = new FieldMask();
+        $request = (new UpdateBranchRuleRequest())->setBranchRule($branchRule)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateBranchRule($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateBranchRuleTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -1452,7 +2053,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createInstanceAsyncTest()
+    public function createBranchRuleAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1469,30 +2070,48 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createInstanceTest');
+        $incompleteOperation->setName('operations/createBranchRuleTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $kmsKey = 'kmsKey-591635343';
-        $expectedResponse = new Instance();
+        $uid = 'uid115792';
+        $etag = 'etag3123477';
+        $includePattern = 'includePattern-1182351623';
+        $disabled = true;
+        $requirePullRequest = false;
+        $minimumReviewsCount = 672799098;
+        $minimumApprovalsCount = 579210129;
+        $requireCommentsResolved = false;
+        $allowStaleReviews = false;
+        $requireLinearHistory = true;
+        $expectedResponse = new BranchRule();
         $expectedResponse->setName($name);
-        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIncludePattern($includePattern);
+        $expectedResponse->setDisabled($disabled);
+        $expectedResponse->setRequirePullRequest($requirePullRequest);
+        $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
+        $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
+        $expectedResponse->setAllowStaleReviews($allowStaleReviews);
+        $expectedResponse->setRequireLinearHistory($requireLinearHistory);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createInstanceTest');
+        $completeOperation->setName('operations/createBranchRuleTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $instanceId = 'instanceId-2101995259';
-        $instance = new Instance();
-        $request = (new CreateInstanceRequest())
+        $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $branchRule = new BranchRule();
+        $branchRuleId = 'branchRuleId786871201';
+        $request = (new CreateBranchRuleRequest())
             ->setParent($formattedParent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance);
-        $response = $gapicClient->createInstanceAsync($request)->wait();
+            ->setBranchRule($branchRule)
+            ->setBranchRuleId($branchRuleId);
+        $response = $gapicClient->createBranchRuleAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1502,17 +2121,17 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateInstance',
+            '/google.cloud.securesourcemanager.v1.SecureSourceManager/CreateBranchRule',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstanceId();
-        $this->assertProtobufEquals($instanceId, $actualValue);
-        $actualValue = $actualApiRequestObject->getInstance();
-        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualApiRequestObject->getBranchRule();
+        $this->assertProtobufEquals($branchRule, $actualValue);
+        $actualValue = $actualApiRequestObject->getBranchRuleId();
+        $this->assertProtobufEquals($branchRuleId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createInstanceTest');
+        $expectedOperationsRequestObject->setName('operations/createBranchRuleTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

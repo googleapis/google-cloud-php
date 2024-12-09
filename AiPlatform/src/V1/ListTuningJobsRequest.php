@@ -37,8 +37,9 @@ class ListTuningJobsRequest extends \Google\Protobuf\Internal\Message
     protected $page_size = 0;
     /**
      * Optional. The standard list page token.
-     * Typically obtained via [ListTuningJob.next_page_token][] of the
-     * previous GenAiTuningService.ListTuningJob][] call.
+     * Typically obtained via
+     * [ListTuningJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListTuningJobsResponse.next_page_token]
+     * of the previous GenAiTuningService.ListTuningJob][] call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -74,8 +75,9 @@ class ListTuningJobsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The standard list page size.
      *     @type string $page_token
      *           Optional. The standard list page token.
-     *           Typically obtained via [ListTuningJob.next_page_token][] of the
-     *           previous GenAiTuningService.ListTuningJob][] call.
+     *           Typically obtained via
+     *           [ListTuningJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListTuningJobsResponse.next_page_token]
+     *           of the previous GenAiTuningService.ListTuningJob][] call.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,8 +167,9 @@ class ListTuningJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The standard list page token.
-     * Typically obtained via [ListTuningJob.next_page_token][] of the
-     * previous GenAiTuningService.ListTuningJob][] call.
+     * Typically obtained via
+     * [ListTuningJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListTuningJobsResponse.next_page_token]
+     * of the previous GenAiTuningService.ListTuningJob][] call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -178,8 +181,9 @@ class ListTuningJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The standard list page token.
-     * Typically obtained via [ListTuningJob.next_page_token][] of the
-     * previous GenAiTuningService.ListTuningJob][] call.
+     * Typically obtained via
+     * [ListTuningJobsResponse.next_page_token][google.cloud.aiplatform.v1.ListTuningJobsResponse.next_page_token]
+     * of the previous GenAiTuningService.ListTuningJob][] call.
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

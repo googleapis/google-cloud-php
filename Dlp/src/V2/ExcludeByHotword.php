@@ -23,7 +23,7 @@ class ExcludeByHotword extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex hotword_regex = 1;</code>
      */
-    private $hotword_regex = null;
+    protected $hotword_regex = null;
     /**
      * Range of characters within which the entire hotword must reside.
      * The total length of the window cannot exceed 1000 characters.
@@ -32,7 +32,7 @@ class ExcludeByHotword extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
      */
-    private $proximity = null;
+    protected $proximity = null;
 
     /**
      * Constructor.

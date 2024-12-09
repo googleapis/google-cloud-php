@@ -20,13 +20,13 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The status code.
      *
      * Generated from protobuf field <code>.google.api.servicemanagement.v1.OperationMetadata.Status status = 4;</code>
      */
-    private $status = 0;
+    protected $status = 0;
 
     /**
      * Constructor.

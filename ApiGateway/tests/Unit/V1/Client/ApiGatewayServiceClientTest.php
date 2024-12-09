@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\ApiGateway\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ApiGateway\V1\Api;
@@ -49,6 +48,7 @@ use Google\Cloud\ApiGateway\V1\ListGatewaysResponse;
 use Google\Cloud\ApiGateway\V1\UpdateApiConfigRequest;
 use Google\Cloud\ApiGateway\V1\UpdateApiRequest;
 use Google\Cloud\ApiGateway\V1\UpdateGatewayRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -72,7 +72,9 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ApiGatewayServiceClient */
@@ -186,12 +188,15 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -327,12 +332,15 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
@@ -470,12 +478,15 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -540,8 +551,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $request = (new DeleteApiRequest())
-            ->setName($formattedName);
+        $request = (new DeleteApiRequest())->setName($formattedName);
         $response = $gapicClient->deleteApi($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -597,17 +607,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $request = (new DeleteApiRequest())
-            ->setName($formattedName);
+        $request = (new DeleteApiRequest())->setName($formattedName);
         $response = $gapicClient->deleteApi($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -661,8 +673,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $request = (new DeleteApiConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteApiConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteApiConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -718,17 +729,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $request = (new DeleteApiConfigRequest())
-            ->setName($formattedName);
+        $request = (new DeleteApiConfigRequest())->setName($formattedName);
         $response = $gapicClient->deleteApiConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -782,8 +795,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $request = (new DeleteGatewayRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGatewayRequest())->setName($formattedName);
         $response = $gapicClient->deleteGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -839,17 +851,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $request = (new DeleteGatewayRequest())
-            ->setName($formattedName);
+        $request = (new DeleteGatewayRequest())->setName($formattedName);
         $response = $gapicClient->deleteGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -891,8 +905,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $request = (new GetApiRequest())
-            ->setName($formattedName);
+        $request = (new GetApiRequest())->setName($formattedName);
         $response = $gapicClient->getApi($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -916,17 +929,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
-        $request = (new GetApiRequest())
-            ->setName($formattedName);
+        $request = (new GetApiRequest())->setName($formattedName);
         try {
             $gapicClient->getApi($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -961,8 +976,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $request = (new GetApiConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetApiConfigRequest())->setName($formattedName);
         $response = $gapicClient->getApiConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -986,17 +1000,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $request = (new GetApiConfigRequest())
-            ->setName($formattedName);
+        $request = (new GetApiConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getApiConfig($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1031,8 +1047,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $request = (new GetGatewayRequest())
-            ->setName($formattedName);
+        $request = (new GetGatewayRequest())->setName($formattedName);
         $response = $gapicClient->getGateway($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1056,17 +1071,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $request = (new GetGatewayRequest())
-            ->setName($formattedName);
+        $request = (new GetGatewayRequest())->setName($formattedName);
         try {
             $gapicClient->getGateway($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1091,17 +1108,14 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $apiConfigsElement = new ApiConfig();
-        $apiConfigs = [
-            $apiConfigsElement,
-        ];
+        $apiConfigs = [$apiConfigsElement];
         $expectedResponse = new ListApiConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApiConfigs($apiConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
-        $request = (new ListApiConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListApiConfigsRequest())->setParent($formattedParent);
         $response = $gapicClient->listApiConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1128,17 +1142,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
-        $request = (new ListApiConfigsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListApiConfigsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listApiConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1163,17 +1179,14 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $apisElement = new Api();
-        $apis = [
-            $apisElement,
-        ];
+        $apis = [$apisElement];
         $expectedResponse = new ListApisResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApis($apis);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListApisRequest())
-            ->setParent($formattedParent);
+        $request = (new ListApisRequest())->setParent($formattedParent);
         $response = $gapicClient->listApis($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1200,17 +1213,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListApisRequest())
-            ->setParent($formattedParent);
+        $request = (new ListApisRequest())->setParent($formattedParent);
         try {
             $gapicClient->listApis($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1235,17 +1250,14 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $gatewaysElement = new Gateway();
-        $gateways = [
-            $gatewaysElement,
-        ];
+        $gateways = [$gatewaysElement];
         $expectedResponse = new ListGatewaysResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setGateways($gateways);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListGatewaysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGatewaysRequest())->setParent($formattedParent);
         $response = $gapicClient->listGateways($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1272,17 +1284,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListGatewaysRequest())
-            ->setParent($formattedParent);
+        $request = (new ListGatewaysRequest())->setParent($formattedParent);
         try {
             $gapicClient->listGateways($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1333,8 +1347,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $api = new Api();
-        $request = (new UpdateApiRequest())
-            ->setApi($api);
+        $request = (new UpdateApiRequest())->setApi($api);
         $response = $gapicClient->updateApi($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1390,17 +1403,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $api = new Api();
-        $request = (new UpdateApiRequest())
-            ->setApi($api);
+        $request = (new UpdateApiRequest())->setApi($api);
         $response = $gapicClient->updateApi($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1462,8 +1477,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $apiConfig = new ApiConfig();
-        $request = (new UpdateApiConfigRequest())
-            ->setApiConfig($apiConfig);
+        $request = (new UpdateApiConfigRequest())->setApiConfig($apiConfig);
         $response = $gapicClient->updateApiConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1519,17 +1533,19 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $apiConfig = new ApiConfig();
-        $request = (new UpdateApiConfigRequest())
-            ->setApiConfig($apiConfig);
+        $request = (new UpdateApiConfigRequest())->setApiConfig($apiConfig);
         $response = $gapicClient->updateApiConfig($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1593,8 +1609,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $gateway = new Gateway();
         $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         $gateway->setApiConfig($gatewayApiConfig);
-        $request = (new UpdateGatewayRequest())
-            ->setGateway($gateway);
+        $request = (new UpdateGatewayRequest())->setGateway($gateway);
         $response = $gapicClient->updateGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1650,19 +1665,21 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $gateway = new Gateway();
         $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         $gateway->setApiConfig($gatewayApiConfig);
-        $request = (new UpdateGatewayRequest())
-            ->setGateway($gateway);
+        $request = (new UpdateGatewayRequest())->setGateway($gateway);
         $response = $gapicClient->updateGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

@@ -27,7 +27,7 @@ class ManagementCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * Required. The map of cluster node types in this cluster, where the key is
      * canonical identifier of the node type (corresponds to the `NodeType`).
@@ -41,7 +41,7 @@ class ManagementCluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vmwareengine.v1.StretchedClusterConfig stretched_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stretched_cluster_config = null;
+    protected $stretched_cluster_config = null;
 
     /**
      * Constructor.

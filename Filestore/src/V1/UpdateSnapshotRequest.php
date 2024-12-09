@@ -21,13 +21,13 @@ class UpdateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. A snapshot resource.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Snapshot snapshot = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $snapshot = null;
+    protected $snapshot = null;
 
     /**
      * @param \Google\Cloud\Filestore\V1\Snapshot $snapshot   Required. A snapshot resource.

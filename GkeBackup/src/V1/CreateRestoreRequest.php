@@ -21,13 +21,13 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The restore resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.gkebackup.v1.Restore restore = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $restore = null;
+    protected $restore = null;
     /**
      * Required. The client-provided short name for the Restore resource.
      * This name must:
@@ -39,7 +39,7 @@ class CreateRestoreRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string restore_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $restore_id = '';
+    protected $restore_id = '';
 
     /**
      * @param string                             $parent    Required. The RestorePlan within which to create the Restore.
