@@ -23,7 +23,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. This must be unique within the project.
      * A secret ID is a string with a maximum length of 255 characters and can
@@ -32,14 +32,14 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $secret_id = '';
+    protected $secret_id = '';
     /**
      * Required. A [Secret][google.cloud.secretmanager.v1beta2.Secret] with
      * initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1beta2.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $secret = null;
+    protected $secret = null;
 
     /**
      * @param string                                     $parent   Required. The resource name of the project to associate with the
