@@ -64,7 +64,3 @@ class PointInTimeRecoveryEnablement
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PointInTimeRecoveryEnablement::class, \Google\Cloud\Firestore\Admin\V1\Database_PointInTimeRecoveryEnablement::class);
-

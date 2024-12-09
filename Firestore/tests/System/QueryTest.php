@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\Filter;
+use Google\Protobuf\Timestamp;
 
 /**
  * @group firestore
@@ -354,7 +354,8 @@ class QueryTest extends FirestoreTestCase
         sleep(1);
 
         // Creating a current timestamp and then inserting another document
-        $readTime = new Timestamp(new \DateTimeImmutable());
+        $timeSeconds = time();
+        $readTime = new Timestamp(['seconds' => $timeSeconds]);
         $this->insertDoc(['foo' => $randomVal]);
 
         $resultCount = $this->query

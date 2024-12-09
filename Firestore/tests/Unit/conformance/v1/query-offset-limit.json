@@ -20,7 +20,7 @@
             }
           ],
           "offset": 2,
-          "limit": 3
+          "limit": {"value": 3}
         }
       }
     }

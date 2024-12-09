@@ -63,7 +63,3 @@ class AppEngineIntegrationMode
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AppEngineIntegrationMode::class, \Google\Cloud\Firestore\Admin\V1\Database_AppEngineIntegrationMode::class);
-
