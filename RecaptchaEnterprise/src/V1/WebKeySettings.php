@@ -20,7 +20,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_all_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_all_domains = false;
+    protected $allow_all_domains = false;
     /**
      * Optional. Domains or subdomains of websites allowed to use the key. All
      * subdomains of an allowed domain are automatically allowed. A valid domain
@@ -36,13 +36,13 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_amp_traffic = false;
+    protected $allow_amp_traffic = false;
     /**
      * Required. Describes how this key is integrated with the website.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.IntegrationType integration_type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $integration_type = 0;
+    protected $integration_type = 0;
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
@@ -50,7 +50,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $challenge_security_preference = 0;
+    protected $challenge_security_preference = 0;
 
     /**
      * Constructor.

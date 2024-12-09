@@ -21,27 +21,27 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Gateway response code describing the state of the transaction.
      *
      * Generated from protobuf field <code>string gateway_response_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $gateway_response_code = '';
+    protected $gateway_response_code = '';
     /**
      * Optional. AVS response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
      * Generated from protobuf field <code>string avs_response_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $avs_response_code = '';
+    protected $avs_response_code = '';
     /**
      * Optional. CVV response code from the gateway
      * (available only when reCAPTCHA Enterprise is called after authorization).
      *
      * Generated from protobuf field <code>string cvv_response_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cvv_response_code = '';
+    protected $cvv_response_code = '';
 
     /**
      * Constructor.
@@ -179,6 +179,4 @@ class GatewayInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GatewayInfo::class, \Google\Cloud\RecaptchaEnterprise\V1\TransactionData_GatewayInfo::class);
 

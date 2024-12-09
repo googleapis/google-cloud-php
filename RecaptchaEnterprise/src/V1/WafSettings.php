@@ -21,13 +21,13 @@ class WafSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafService waf_service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $waf_service = 0;
+    protected $waf_service = 0;
     /**
      * Required. The WAF feature for which this key is enabled.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafFeature waf_feature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $waf_feature = 0;
+    protected $waf_feature = 0;
 
     /**
      * Constructor.

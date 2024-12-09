@@ -21,7 +21,7 @@ class FirewallPolicyAssessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Output only. The policy that matched the request. If more than one policy
      * may match, this is the first match. If no policy matches the incoming
@@ -29,7 +29,7 @@ class FirewallPolicyAssessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicy firewall_policy = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $firewall_policy = null;
+    protected $firewall_policy = null;
 
     /**
      * Constructor.

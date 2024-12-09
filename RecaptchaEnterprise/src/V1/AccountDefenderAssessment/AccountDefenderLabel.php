@@ -77,6 +77,4 @@ class AccountDefenderLabel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AccountDefenderLabel::class, \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment_AccountDefenderLabel::class);
 

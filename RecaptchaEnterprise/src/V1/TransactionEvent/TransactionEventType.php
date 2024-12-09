@@ -209,6 +209,4 @@ class TransactionEventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TransactionEventType::class, \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent_TransactionEventType::class);
 

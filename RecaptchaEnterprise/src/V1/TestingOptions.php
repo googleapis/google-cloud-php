@@ -21,7 +21,7 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $testing_score = 0.0;
+    protected $testing_score = 0.0;
     /**
      * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
      * challenge requests for this site return nocaptcha if NOCAPTCHA, or an
@@ -29,7 +29,7 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $testing_challenge = 0;
+    protected $testing_challenge = 0;
 
     /**
      * Constructor.
