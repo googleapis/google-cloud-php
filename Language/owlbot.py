@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,13 +30,7 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(
-    src=src,
-    dest=dest,
-    copy_excludes=[
-        src / "**/[A-Z]*_*.php",
-    ]
-)
+php.owlbot_main(src=src, dest=dest)
 
 # remove class_alias code
 s.replace(
