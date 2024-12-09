@@ -69,6 +69,7 @@ trait RetryTrait
         'objects.get',
         'objects.list',
         'serviceaccount.get',
+        'signBlob.execute'
     ];
 
     /**

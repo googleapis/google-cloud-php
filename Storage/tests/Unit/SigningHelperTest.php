@@ -806,10 +806,9 @@ class SigningHelperTest extends TestCase
 
     public function testRetrySignBlobSuccessAfterRetries()
     {
-        $attempts = 0;
-        $signBlobFn = function () use (&$attempts) {
-            $attempts++;
-            if ($attempts < 5) {
+        $attempt = 0;
+        $signBlobFn = function () use (&$attempt) {
+            if (++$attempt < 3) {
                 throw new ServiceException('Transient error', 503);
             }
             return 'signature';
@@ -820,7 +819,6 @@ class SigningHelperTest extends TestCase
         ]);
 
         $this->assertEquals('signature', $res);
-        $this->assertEquals(5, $attempts);
     }
 
     public function testRetrySignBlobNonRetryableError()

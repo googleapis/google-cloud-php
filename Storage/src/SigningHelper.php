@@ -25,8 +25,6 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\Connection\RetryTrait;
-use Google\Cloud\Storage\StorageClient;
-use Ramsey\Uuid\Uuid;
 
 /**
  * Provides common methods for signing storage URLs.
@@ -909,21 +907,10 @@ class SigningHelper
      */
     private function retrySignBlob(callable $signBlobFn, string $resourceName = 'signBlob', array $args = [])
     {
-        $attempts = 0;
-        $maxRetries = 5;
-        $invocationId = Uuid::uuid4()->toString();
-        $args['retryStrategy'] = StorageClient::RETRY_ALWAYS;
-
         // Generate a retry decider function using the RetryTrait logic.
         $retryDecider = $this->getRestRetryFunction($resourceName, 'execute', $args);
-
-        while ($attempts < $maxRetries) {
-            $attempts++;
+        while (true) {
             try {
-                // Attach retry headers
-                $headers = self::getRetryHeaders($invocationId, $attempts);
-                $args['headers'] = array_merge($args['headers'] ?? [], $headers);
-
                 // Attempt the operation
                 return $signBlobFn();
             } catch (\Exception $exception) {
