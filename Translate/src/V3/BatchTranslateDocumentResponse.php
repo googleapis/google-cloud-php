@@ -24,61 +24,61 @@ class BatchTranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 total_pages = 1;</code>
      */
-    private $total_pages = 0;
+    protected $total_pages = 0;
     /**
      * Number of successfully translated pages in all documents. Documents without
      * clear page definition (such as XLSX) are not counted.
      *
      * Generated from protobuf field <code>int64 translated_pages = 2;</code>
      */
-    private $translated_pages = 0;
+    protected $translated_pages = 0;
     /**
      * Number of pages that failed to process in all documents. Documents without
      * clear page definition (such as XLSX) are not counted.
      *
      * Generated from protobuf field <code>int64 failed_pages = 3;</code>
      */
-    private $failed_pages = 0;
+    protected $failed_pages = 0;
     /**
      * Number of billable pages in documents with clear page definition (such as
      * PDF, DOCX, PPTX)
      *
      * Generated from protobuf field <code>int64 total_billable_pages = 4;</code>
      */
-    private $total_billable_pages = 0;
+    protected $total_billable_pages = 0;
     /**
      * Total number of characters (Unicode codepoints) in all documents.
      *
      * Generated from protobuf field <code>int64 total_characters = 5;</code>
      */
-    private $total_characters = 0;
+    protected $total_characters = 0;
     /**
      * Number of successfully translated characters (Unicode codepoints) in all
      * documents.
      *
      * Generated from protobuf field <code>int64 translated_characters = 6;</code>
      */
-    private $translated_characters = 0;
+    protected $translated_characters = 0;
     /**
      * Number of characters that have failed to process (Unicode codepoints) in
      * all documents.
      *
      * Generated from protobuf field <code>int64 failed_characters = 7;</code>
      */
-    private $failed_characters = 0;
+    protected $failed_characters = 0;
     /**
      * Number of billable characters (Unicode codepoints) in documents without
      * clear page definition, such as XLSX.
      *
      * Generated from protobuf field <code>int64 total_billable_characters = 8;</code>
      */
-    private $total_billable_characters = 0;
+    protected $total_billable_characters = 0;
     /**
      * Time when the operation was submitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 9;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
     /**
      * The time when the operation is finished and
      * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
@@ -86,7 +86,7 @@ class BatchTranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

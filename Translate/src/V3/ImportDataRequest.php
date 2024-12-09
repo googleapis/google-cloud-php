@@ -21,13 +21,13 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. The config for the input content.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.DatasetInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
 
     /**
      * @param string                                        $dataset     Required. Name of the dataset. In form of

@@ -21,14 +21,14 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Requested page size. The server can return fewer results than
      * requested.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A token identifying a page of results for the server to return.
      * Typically obtained from next_page_token field in the response of a
@@ -36,7 +36,7 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. Name of the parent project. In form of

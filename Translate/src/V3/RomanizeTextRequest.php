@@ -25,7 +25,7 @@ class RomanizeTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The content of the input in string format.
      *
@@ -40,7 +40,7 @@ class RomanizeTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
 
     /**
      * @param string   $parent   Required. Project or location to make a call. Must refer to a caller's

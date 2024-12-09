@@ -20,13 +20,13 @@ class CreateGlossaryEntryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The glossary entry to create
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GlossaryEntry glossary_entry = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $glossary_entry = null;
+    protected $glossary_entry = null;
 
     /**
      * @param string                                   $parent        Required. The resource name of the glossary to create the entry under. Please see

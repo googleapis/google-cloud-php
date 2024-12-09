@@ -20,14 +20,14 @@ class UpdateGlossaryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Glossary glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $glossary = null;
+    protected $glossary = null;
     /**
      * The list of fields to be updated. Currently only `display_name` and
      * 'input_config'
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Translate\V3\Glossary $glossary   Required. The glossary entry to update.

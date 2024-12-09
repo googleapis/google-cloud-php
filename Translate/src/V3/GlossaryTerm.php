@@ -20,13 +20,13 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * The text for the glossary term.
      *
      * Generated from protobuf field <code>string text = 2;</code>
      */
-    private $text = '';
+    protected $text = '';
 
     /**
      * Constructor.

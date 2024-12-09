@@ -21,13 +21,13 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Model to create.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Model model = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $model = null;
+    protected $model = null;
 
     /**
      * @param string                           $parent Required. The project name, in form of

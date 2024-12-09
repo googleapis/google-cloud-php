@@ -28,7 +28,7 @@ class DocumentOutputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     protected $destination;
 
     /**

@@ -21,13 +21,13 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Required. The config for the output content.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.DatasetOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
 
     /**
      * @param string                                         $dataset      Required. Name of the dataset. In form of

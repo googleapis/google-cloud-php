@@ -26,7 +26,7 @@ class AdaptiveMtTranslateResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Text translation response if a glossary is provided in the request. This
      * could be the same as 'translation' above if no terms apply.

@@ -27,7 +27,7 @@ class DetectLanguageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The language detection model to be used.
      * Format:
@@ -38,14 +38,14 @@ class DetectLanguageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. The format of the source text, for example, "text/html",
      * "text/plain". If left blank, the MIME type defaults to "text/html".
      *
      * Generated from protobuf field <code>string mime_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters
