@@ -20,13 +20,13 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * The encoding type used by the API to calculate sentence offsets.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.EncodingType encoding_type = 2;</code>
      */
-    private $encoding_type = 0;
+    protected $encoding_type = 0;
 
     /**
      * @param \Google\Cloud\Language\V1\Document $document     Required. Input document.

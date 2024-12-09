@@ -21,7 +21,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
@@ -34,7 +34,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 4;</code>
      */
-    private $language = '';
+    protected $language = '';
     protected $source;
 
     /**

@@ -29,7 +29,7 @@ class AnalyzeEntitySentimentResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language = 2;</code>
      */
-    private $language = '';
+    protected $language = '';
 
     /**
      * Constructor.

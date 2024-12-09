@@ -21,19 +21,19 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
     /**
      * Required. The enabled features.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.AnnotateTextRequest.Features features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $features = null;
+    protected $features = null;
     /**
      * The encoding type used by the API to calculate offsets.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.EncodingType encoding_type = 3;</code>
      */
-    private $encoding_type = 0;
+    protected $encoding_type = 0;
 
     /**
      * @param \Google\Cloud\Language\V1\Document                     $document     Required. Input document.

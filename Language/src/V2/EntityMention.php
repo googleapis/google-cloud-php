@@ -21,13 +21,13 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.TextSpan text = 1;</code>
      */
-    private $text = null;
+    protected $text = null;
     /**
      * The type of the entity mention.
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.EntityMention.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
      * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_entity_sentiment]
@@ -36,7 +36,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.Sentiment sentiment = 3;</code>
      */
-    private $sentiment = null;
+    protected $sentiment = null;
     /**
      * Probability score associated with the entity.
      * The score shows the probability of the entity mention being the entity
@@ -44,7 +44,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float probability = 4;</code>
      */
-    private $probability = 0.0;
+    protected $probability = 0.0;
 
     /**
      * Constructor.

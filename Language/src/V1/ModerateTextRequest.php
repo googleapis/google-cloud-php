@@ -20,7 +20,7 @@ class ModerateTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
 
     /**
      * @param \Google\Cloud\Language\V1\Document $document Required. Input document.

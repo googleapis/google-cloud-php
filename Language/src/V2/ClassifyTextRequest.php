@@ -20,7 +20,7 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $document = null;
+    protected $document = null;
 
     /**
      * @param \Google\Cloud\Language\V2\Document $document Required. Input document.

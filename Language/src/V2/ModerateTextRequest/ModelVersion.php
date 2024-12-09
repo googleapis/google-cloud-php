@@ -63,6 +63,4 @@ class ModelVersion
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ModelVersion::class, \Google\Cloud\Language\V2\ModerateTextRequest_ModelVersion::class);
 

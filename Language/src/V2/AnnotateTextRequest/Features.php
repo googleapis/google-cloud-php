@@ -21,25 +21,25 @@ class Features extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool extract_entities = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $extract_entities = false;
+    protected $extract_entities = false;
     /**
      * Optional. Extract document-level sentiment.
      *
      * Generated from protobuf field <code>bool extract_document_sentiment = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $extract_document_sentiment = false;
+    protected $extract_document_sentiment = false;
     /**
      * Optional. Classify the full document into categories.
      *
      * Generated from protobuf field <code>bool classify_text = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $classify_text = false;
+    protected $classify_text = false;
     /**
      * Optional. Moderate the document for harmful and sensitive categories.
      *
      * Generated from protobuf field <code>bool moderate_text = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $moderate_text = false;
+    protected $moderate_text = false;
 
     /**
      * Constructor.
@@ -168,6 +168,4 @@ class Features extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Features::class, \Google\Cloud\Language\V2\AnnotateTextRequest_Features::class);
 

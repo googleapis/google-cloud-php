@@ -20,14 +20,14 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The classifier's confidence of the category. Number represents how certain
      * the classifier is that this category represents the given text.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * Optional. The classifier's severity of the category. This is only present
      * when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and
@@ -35,7 +35,7 @@ class ClassificationCategory extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float severity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $severity = 0.0;
+    protected $severity = 0.0;
 
     /**
      * Constructor.

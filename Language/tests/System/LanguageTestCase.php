@@ -17,11 +17,7 @@
 
 namespace Google\Cloud\Language\Tests\System;
 
-use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\Language\LanguageClient;
-use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Language\V2\LanguageClient;
 use PHPUnit\Framework\TestCase;
 
 class LanguageTestCase extends TestCase

@@ -20,7 +20,7 @@ class Sentence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.TextSpan text = 1;</code>
      */
-    private $text = null;
+    protected $text = null;
     /**
      * For calls to [AnalyzeSentiment][] or if
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v2.AnnotateTextRequest.Features.extract_document_sentiment]
@@ -28,7 +28,7 @@ class Sentence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v2.Sentiment sentiment = 2;</code>
      */
-    private $sentiment = null;
+    protected $sentiment = null;
 
     /**
      * Constructor.
