@@ -31,7 +31,9 @@ use Google\Apps\Chat\V1\Space;
 
 /**
  * Returns a list of spaces in a Google Workspace organization based on an
- * administrator's search. Requires [user
+ * administrator's search.
+ *
+ * Requires [user
  * authentication with administrator
  * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges).
  * In the request, set `use_admin_access` to `true`.

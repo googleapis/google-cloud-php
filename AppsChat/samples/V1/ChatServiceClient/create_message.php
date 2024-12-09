@@ -32,8 +32,11 @@ use Google\Apps\Chat\V1\Message;
  * Creates a message in a Google Chat space. For an example, see [Send a
  * message](https://developers.google.com/workspace/chat/create-messages).
  *
- * The `create()` method requires either user or app authentication. Chat
- * attributes the message sender differently depending on the type of
+ * The `create()` method requires either [user
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * or [app
+ * authentication](https://developers.google.com/workspace/chat/authorize-import).
+ * Chat attributes the message sender differently depending on the type of
  * authentication that you use in your request.
  *
  * The following image shows how Chat attributes a message when you use app
@@ -53,6 +56,12 @@ use Google\Apps\Chat\V1\Message;
  * authentication](https://developers.google.com/workspace/chat/images/message-user-auth.svg)
  *
  * The maximum message size, including the message contents, is 32,000 bytes.
+ *
+ * For
+ * [webhook](https://developers.google.com/workspace/chat/quickstart/webhooks)
+ * requests, the response doesn't contain the full message. The response only
+ * populates the `name` and `thread.name` fields in addition to the
+ * information that was in the request.
  *
  * @param string $formattedParent The resource name of the space in which to create a message.
  *

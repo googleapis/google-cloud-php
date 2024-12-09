@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class EmojiReactionSummary extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Emoji associated with the reactions.
+     * Output only. Emoji associated with the reactions.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Emoji emoji = 1;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Emoji emoji = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $emoji = null;
     /**
-     * The total number of reactions using the associated emoji.
+     * Output only. The total number of reactions using the associated emoji.
      *
-     * Generated from protobuf field <code>optional int32 reaction_count = 2;</code>
+     * Generated from protobuf field <code>optional int32 reaction_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $reaction_count = null;
 
@@ -35,9 +35,9 @@ class EmojiReactionSummary extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Chat\V1\Emoji $emoji
-     *           Emoji associated with the reactions.
+     *           Output only. Emoji associated with the reactions.
      *     @type int $reaction_count
-     *           The total number of reactions using the associated emoji.
+     *           Output only. The total number of reactions using the associated emoji.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class EmojiReactionSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Emoji associated with the reactions.
+     * Output only. Emoji associated with the reactions.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Emoji emoji = 1;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Emoji emoji = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Apps\Chat\V1\Emoji|null
      */
     public function getEmoji()
@@ -67,9 +67,9 @@ class EmojiReactionSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Emoji associated with the reactions.
+     * Output only. Emoji associated with the reactions.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Emoji emoji = 1;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Emoji emoji = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Apps\Chat\V1\Emoji $var
      * @return $this
      */
@@ -82,9 +82,9 @@ class EmojiReactionSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of reactions using the associated emoji.
+     * Output only. The total number of reactions using the associated emoji.
      *
-     * Generated from protobuf field <code>optional int32 reaction_count = 2;</code>
+     * Generated from protobuf field <code>optional int32 reaction_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getReactionCount()
@@ -103,9 +103,9 @@ class EmojiReactionSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of reactions using the associated emoji.
+     * Output only. The total number of reactions using the associated emoji.
      *
-     * Generated from protobuf field <code>optional int32 reaction_count = 2;</code>
+     * Generated from protobuf field <code>optional int32 reaction_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
