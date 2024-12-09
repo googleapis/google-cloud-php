@@ -166,6 +166,11 @@ $cloud = new StorageClient();
 
 The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### gRPC and Protobuf
 
 Many clients in Google Cloud PHP offer support for gRPC, either as an option or a requirement. gRPC is a high-performance RPC framework created by Google. To use gRPC in PHP, you must install the gRPC PHP extension on your server. While not required, it is also recommended that you install the protobuf extension whenever using gRPC in production.
