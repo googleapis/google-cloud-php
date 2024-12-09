@@ -29,14 +29,14 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * The total number of notification channels in all pages. This number is only
      * an estimate, and may change in subsequent pages. https://aip.dev/158
      *
      * Generated from protobuf field <code>int32 total_size = 4;</code>
      */
-    private $total_size = 0;
+    protected $total_size = 0;
 
     /**
      * Constructor.

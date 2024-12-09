@@ -28,7 +28,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A human-friendly name for the Uptime check configuration. The display name
      * should be unique within a Cloud Monitoring Workspace in order to make it
@@ -36,7 +36,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * How often, in seconds, the Uptime check is performed.
      * Currently, the only supported values are `60s` (1 minute), `300s`
@@ -45,14 +45,14 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      */
-    private $period = null;
+    protected $period = null;
     /**
      * The maximum amount of time to wait for the request to complete (must be
      * between 1 and 60 seconds). Required.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 8;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * The content that is expected to appear in the data returned by the target
      * server against which the check is run.  Currently, only the first entry
@@ -68,7 +68,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.CheckerType checker_type = 17;</code>
      */
-    private $checker_type = 0;
+    protected $checker_type = 0;
     /**
      * The list of regions from which the check will be run.
      * Some regions contain one location, and others contain more than one.

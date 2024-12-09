@@ -24,14 +24,14 @@ class MetricRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_series = 1;</code>
      */
-    private $time_series = '';
+    protected $time_series = '';
     /**
      * Range of values considered "good." For a one-sided range, set one bound
      * to an infinite value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Range range = 4;</code>
      */
-    private $range = null;
+    protected $range = null;
 
     /**
      * Constructor.
@@ -120,6 +120,4 @@ class MetricRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricRange::class, \Google\Cloud\Monitoring\V3\WindowsBasedSli_MetricRange::class);
 

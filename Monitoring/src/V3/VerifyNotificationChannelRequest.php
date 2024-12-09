@@ -20,7 +20,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The verification code that was delivered to the channel as
      * a result of invoking the `SendNotificationChannelVerificationCode` API
@@ -32,7 +32,7 @@ class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $code = '';
+    protected $code = '';
 
     /**
      * @param string $name Required. The notification channel to verify. Please see

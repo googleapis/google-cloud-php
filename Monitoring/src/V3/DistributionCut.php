@@ -26,14 +26,14 @@ class DistributionCut extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string distribution_filter = 4;</code>
      */
-    private $distribution_filter = '';
+    protected $distribution_filter = '';
     /**
      * Range of values considered "good." For a one-sided range, set one bound to
      * an infinite value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Range range = 5;</code>
      */
-    private $range = null;
+    protected $range = null;
 
     /**
      * Constructor.

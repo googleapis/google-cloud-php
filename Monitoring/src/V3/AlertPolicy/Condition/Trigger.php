@@ -113,6 +113,4 @@ class Trigger extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Trigger::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_Trigger::class);
 

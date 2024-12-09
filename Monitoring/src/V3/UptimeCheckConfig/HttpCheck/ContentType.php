@@ -62,6 +62,4 @@ class ContentType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ContentType::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_ContentType::class);
 

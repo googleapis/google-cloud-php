@@ -23,7 +23,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * If provided, this field specifies the criteria that must be met by
      * uptime checks to be included in the response.
@@ -32,7 +32,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of results to return in a single response. The server
      * may further constrain the maximum number of results returned in a single
@@ -41,7 +41,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
@@ -49,7 +49,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The

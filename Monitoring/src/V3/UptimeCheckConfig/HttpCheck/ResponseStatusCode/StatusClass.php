@@ -87,6 +87,4 @@ class StatusClass
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StatusClass::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_ResponseStatusCode_StatusClass::class);
 

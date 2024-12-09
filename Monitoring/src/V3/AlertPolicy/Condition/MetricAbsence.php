@@ -33,7 +33,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Specifies the alignment of data points in individual time series as
      * well as how to combine the retrieved time series together (such as
@@ -60,7 +60,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * The number/percent of time series for which the comparison must hold
      * in order for the condition to trigger. If unspecified, then the
@@ -69,7 +69,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 3;</code>
      */
-    private $trigger = null;
+    protected $trigger = null;
 
     /**
      * Constructor.
@@ -299,6 +299,4 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricAbsence::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence::class);
 

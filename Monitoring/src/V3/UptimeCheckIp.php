@@ -21,7 +21,7 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckRegion region = 1;</code>
      */
-    private $region = 0;
+    protected $region = 0;
     /**
      * A more specific location within the region that typically encodes
      * a particular city/town/metro (and its containing state/province or country)
@@ -29,7 +29,7 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 2;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The IP address from which the Uptime check originates. This is a fully
      * specified IP address (not an IP address range). Most IP addresses, as of
@@ -39,7 +39,7 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 3;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
 
     /**
      * Constructor.
