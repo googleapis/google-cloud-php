@@ -20,7 +20,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
      */
-    private $lat_lng = null;
+    protected $lat_lng = null;
 
     /**
      * Constructor.

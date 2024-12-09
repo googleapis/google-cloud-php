@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Vision\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest;
@@ -37,6 +36,7 @@ use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\OutputConfig;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -59,7 +59,9 @@ class ImageAnnotatorClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ImageAnnotatorClient */
@@ -102,8 +104,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $requests = [];
-        $request = (new AsyncBatchAnnotateFilesRequest())
-            ->setRequests($requests);
+        $request = (new AsyncBatchAnnotateFilesRequest())->setRequests($requests);
         $response = $gapicClient->asyncBatchAnnotateFiles($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -159,17 +160,19 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $requests = [];
-        $request = (new AsyncBatchAnnotateFilesRequest())
-            ->setRequests($requests);
+        $request = (new AsyncBatchAnnotateFilesRequest())->setRequests($requests);
         $response = $gapicClient->asyncBatchAnnotateFiles($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -224,9 +227,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock request
         $requests = [];
         $outputConfig = new OutputConfig();
-        $request = (new AsyncBatchAnnotateImagesRequest())
-            ->setRequests($requests)
-            ->setOutputConfig($outputConfig);
+        $request = (new AsyncBatchAnnotateImagesRequest())->setRequests($requests)->setOutputConfig($outputConfig);
         $response = $gapicClient->asyncBatchAnnotateImages($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -284,19 +285,20 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $requests = [];
         $outputConfig = new OutputConfig();
-        $request = (new AsyncBatchAnnotateImagesRequest())
-            ->setRequests($requests)
-            ->setOutputConfig($outputConfig);
+        $request = (new AsyncBatchAnnotateImagesRequest())->setRequests($requests)->setOutputConfig($outputConfig);
         $response = $gapicClient->asyncBatchAnnotateImages($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -332,8 +334,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $requests = [];
-        $request = (new BatchAnnotateFilesRequest())
-            ->setRequests($requests);
+        $request = (new BatchAnnotateFilesRequest())->setRequests($requests);
         $response = $gapicClient->batchAnnotateFiles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -357,17 +358,19 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $requests = [];
-        $request = (new BatchAnnotateFilesRequest())
-            ->setRequests($requests);
+        $request = (new BatchAnnotateFilesRequest())->setRequests($requests);
         try {
             $gapicClient->batchAnnotateFiles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -394,8 +397,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $requests = [];
-        $request = (new BatchAnnotateImagesRequest())
-            ->setRequests($requests);
+        $request = (new BatchAnnotateImagesRequest())->setRequests($requests);
         $response = $gapicClient->batchAnnotateImages($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -419,17 +421,19 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $requests = [];
-        $request = (new BatchAnnotateImagesRequest())
-            ->setRequests($requests);
+        $request = (new BatchAnnotateImagesRequest())->setRequests($requests);
         try {
             $gapicClient->batchAnnotateImages($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -474,8 +478,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $requests = [];
-        $request = (new AsyncBatchAnnotateFilesRequest())
-            ->setRequests($requests);
+        $request = (new AsyncBatchAnnotateFilesRequest())->setRequests($requests);
         $response = $gapicClient->asyncBatchAnnotateFilesAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
