@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class PermissionSetting extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether spaces managers have this permission.
+     * Optional. Whether spaces managers have this permission.
      *
-     * Generated from protobuf field <code>bool managers_allowed = 1;</code>
+     * Generated from protobuf field <code>bool managers_allowed = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $managers_allowed = false;
     /**
-     * Whether non-manager members have this permission.
+     * Optional. Whether non-manager members have this permission.
      *
-     * Generated from protobuf field <code>bool members_allowed = 2;</code>
+     * Generated from protobuf field <code>bool members_allowed = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $members_allowed = false;
 
@@ -35,9 +35,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $managers_allowed
-     *           Whether spaces managers have this permission.
+     *           Optional. Whether spaces managers have this permission.
      *     @type bool $members_allowed
-     *           Whether non-manager members have this permission.
+     *           Optional. Whether non-manager members have this permission.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether spaces managers have this permission.
+     * Optional. Whether spaces managers have this permission.
      *
-     * Generated from protobuf field <code>bool managers_allowed = 1;</code>
+     * Generated from protobuf field <code>bool managers_allowed = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getManagersAllowed()
@@ -57,9 +57,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether spaces managers have this permission.
+     * Optional. Whether spaces managers have this permission.
      *
-     * Generated from protobuf field <code>bool managers_allowed = 1;</code>
+     * Generated from protobuf field <code>bool managers_allowed = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether non-manager members have this permission.
+     * Optional. Whether non-manager members have this permission.
      *
-     * Generated from protobuf field <code>bool members_allowed = 2;</code>
+     * Generated from protobuf field <code>bool members_allowed = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getMembersAllowed()
@@ -83,9 +83,9 @@ class PermissionSetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether non-manager members have this permission.
+     * Optional. Whether non-manager members have this permission.
      *
-     * Generated from protobuf field <code>bool members_allowed = 2;</code>
+     * Generated from protobuf field <code>bool members_allowed = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

@@ -23,29 +23,28 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * The maximum number of messages returned. The service might return fewer
-     * messages than this value.
+     * Optional. The maximum number of messages returned. The service might return
+     * fewer messages than this value.
      * If unspecified, at most 25 are returned.
      * The maximum value is 1000. If you use a value more than 1000, it's
      * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional, if resuming from a previous query.
-     * A page token received from a previous list messages call. Provide this
-     * parameter to retrieve the subsequent page.
+     * Optional. A page token received from a previous list messages call. Provide
+     * this parameter to retrieve the subsequent page.
      * When paginating, all other parameters provided should match the call that
      * provided the page token. Passing different values to the other parameters
      * might lead to unexpected results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * A query filter.
+     * Optional. A query filter.
      * You can filter messages by date (`create_time`) and thread (`thread.name`).
      * To filter messages by the date they were created, specify the `create_time`
      * with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339)
@@ -72,25 +71,25 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
      * error.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Optional, if resuming from a previous query.
-     * How the list of messages is ordered. Specify a value to order by an
-     * ordering operation. Valid ordering operation values are as follows:
+     * Optional. How the list of messages is ordered. Specify a value to order by
+     * an ordering operation. Valid ordering operation values are as follows:
      * - `ASC` for ascending.
      * - `DESC` for descending.
      * The default ordering is `create_time ASC`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
     /**
-     * Whether to include deleted messages. Deleted messages include deleted time
-     * and metadata about their deletion, but message content is unavailable.
+     * Optional. Whether to include deleted messages. Deleted messages include
+     * deleted time and metadata about their deletion, but message content is
+     * unavailable.
      *
-     * Generated from protobuf field <code>bool show_deleted = 6;</code>
+     * Generated from protobuf field <code>bool show_deleted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $show_deleted = false;
 
@@ -120,21 +119,20 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the space to list messages from.
      *           Format: `spaces/{space}`
      *     @type int $page_size
-     *           The maximum number of messages returned. The service might return fewer
-     *           messages than this value.
+     *           Optional. The maximum number of messages returned. The service might return
+     *           fewer messages than this value.
      *           If unspecified, at most 25 are returned.
      *           The maximum value is 1000. If you use a value more than 1000, it's
      *           automatically changed to 1000.
      *           Negative values return an `INVALID_ARGUMENT` error.
      *     @type string $page_token
-     *           Optional, if resuming from a previous query.
-     *           A page token received from a previous list messages call. Provide this
-     *           parameter to retrieve the subsequent page.
+     *           Optional. A page token received from a previous list messages call. Provide
+     *           this parameter to retrieve the subsequent page.
      *           When paginating, all other parameters provided should match the call that
      *           provided the page token. Passing different values to the other parameters
      *           might lead to unexpected results.
      *     @type string $filter
-     *           A query filter.
+     *           Optional. A query filter.
      *           You can filter messages by date (`create_time`) and thread (`thread.name`).
      *           To filter messages by the date they were created, specify the `create_time`
      *           with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339)
@@ -161,15 +159,15 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      *           Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
      *           error.
      *     @type string $order_by
-     *           Optional, if resuming from a previous query.
-     *           How the list of messages is ordered. Specify a value to order by an
-     *           ordering operation. Valid ordering operation values are as follows:
+     *           Optional. How the list of messages is ordered. Specify a value to order by
+     *           an ordering operation. Valid ordering operation values are as follows:
      *           - `ASC` for ascending.
      *           - `DESC` for descending.
      *           The default ordering is `create_time ASC`.
      *     @type bool $show_deleted
-     *           Whether to include deleted messages. Deleted messages include deleted time
-     *           and metadata about their deletion, but message content is unavailable.
+     *           Optional. Whether to include deleted messages. Deleted messages include
+     *           deleted time and metadata about their deletion, but message content is
+     *           unavailable.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,14 +204,14 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of messages returned. The service might return fewer
-     * messages than this value.
+     * Optional. The maximum number of messages returned. The service might return
+     * fewer messages than this value.
      * If unspecified, at most 25 are returned.
      * The maximum value is 1000. If you use a value more than 1000, it's
      * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -222,14 +220,14 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of messages returned. The service might return fewer
-     * messages than this value.
+     * Optional. The maximum number of messages returned. The service might return
+     * fewer messages than this value.
      * If unspecified, at most 25 are returned.
      * The maximum value is 1000. If you use a value more than 1000, it's
      * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -242,14 +240,13 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional, if resuming from a previous query.
-     * A page token received from a previous list messages call. Provide this
-     * parameter to retrieve the subsequent page.
+     * Optional. A page token received from a previous list messages call. Provide
+     * this parameter to retrieve the subsequent page.
      * When paginating, all other parameters provided should match the call that
      * provided the page token. Passing different values to the other parameters
      * might lead to unexpected results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -258,14 +255,13 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional, if resuming from a previous query.
-     * A page token received from a previous list messages call. Provide this
-     * parameter to retrieve the subsequent page.
+     * Optional. A page token received from a previous list messages call. Provide
+     * this parameter to retrieve the subsequent page.
      * When paginating, all other parameters provided should match the call that
      * provided the page token. Passing different values to the other parameters
      * might lead to unexpected results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -278,7 +274,7 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query filter.
+     * Optional. A query filter.
      * You can filter messages by date (`create_time`) and thread (`thread.name`).
      * To filter messages by the date they were created, specify the `create_time`
      * with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339)
@@ -305,7 +301,7 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
      * error.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -314,7 +310,7 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query filter.
+     * Optional. A query filter.
      * You can filter messages by date (`create_time`) and thread (`thread.name`).
      * To filter messages by the date they were created, specify the `create_time`
      * with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339)
@@ -341,7 +337,7 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
      * error.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -354,14 +350,13 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional, if resuming from a previous query.
-     * How the list of messages is ordered. Specify a value to order by an
-     * ordering operation. Valid ordering operation values are as follows:
+     * Optional. How the list of messages is ordered. Specify a value to order by
+     * an ordering operation. Valid ordering operation values are as follows:
      * - `ASC` for ascending.
      * - `DESC` for descending.
      * The default ordering is `create_time ASC`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -370,14 +365,13 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional, if resuming from a previous query.
-     * How the list of messages is ordered. Specify a value to order by an
-     * ordering operation. Valid ordering operation values are as follows:
+     * Optional. How the list of messages is ordered. Specify a value to order by
+     * an ordering operation. Valid ordering operation values are as follows:
      * - `ASC` for ascending.
      * - `DESC` for descending.
      * The default ordering is `create_time ASC`.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -390,10 +384,11 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to include deleted messages. Deleted messages include deleted time
-     * and metadata about their deletion, but message content is unavailable.
+     * Optional. Whether to include deleted messages. Deleted messages include
+     * deleted time and metadata about their deletion, but message content is
+     * unavailable.
      *
-     * Generated from protobuf field <code>bool show_deleted = 6;</code>
+     * Generated from protobuf field <code>bool show_deleted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getShowDeleted()
@@ -402,10 +397,11 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to include deleted messages. Deleted messages include deleted time
-     * and metadata about their deletion, but message content is unavailable.
+     * Optional. Whether to include deleted messages. Deleted messages include
+     * deleted time and metadata about their deletion, but message content is
+     * unavailable.
      *
-     * Generated from protobuf field <code>bool show_deleted = 6;</code>
+     * Generated from protobuf field <code>bool show_deleted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

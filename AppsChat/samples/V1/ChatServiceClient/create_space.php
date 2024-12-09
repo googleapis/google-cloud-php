@@ -29,21 +29,27 @@ use Google\Apps\Chat\V1\CreateSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 
 /**
- * Creates a space with no members. Can be used to create a named space.
- * Spaces grouped by topics aren't supported. For an example, see
- * [Create a
+ * Creates a space with no members. Can be used to create a named space, or a
+ * group chat in `Import mode`. For an example, see [Create a
  * space](https://developers.google.com/workspace/chat/create-spaces).
  *
  * If you receive the error message `ALREADY_EXISTS` when creating
  * a space, try a different `displayName`. An existing space within
  * the Google Workspace organization might already use this display name.
  *
- * If you're a member of the [Developer Preview
- * program](https://developers.google.com/workspace/preview), you can create a
- * group chat in import mode using `spaceType.GROUP_CHAT`.
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
  *
- * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+ * in [Developer Preview](https://developers.google.com/workspace/preview)
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ *
+ * When authenticating as an app, the `space.customer` field must be set in
+ * the request.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

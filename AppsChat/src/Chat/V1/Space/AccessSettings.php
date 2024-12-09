@@ -33,8 +33,19 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Format: `audiences/{audience}`
      * To use the default target audience for the Google Workspace organization,
      * set to `audiences/default`.
+     * Reading the target audience supports:
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth)
+     * with the `chat.app.spaces` scope in [Developer
+     * Preview](https://developers.google.com/workspace/preview).
      * This field is not populated when using the `chat.bot` scope with [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * Setting the target audience requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>string audience = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,8 +70,19 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *           Format: `audiences/{audience}`
      *           To use the default target audience for the Google Workspace organization,
      *           set to `audiences/default`.
+     *           Reading the target audience supports:
+     *           - [User
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     *           - [App
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     *           with [administrator
+     *           approval](https://support.google.com/a?p=chat-app-auth)
+     *           with the `chat.app.spaces` scope in [Developer
+     *           Preview](https://developers.google.com/workspace/preview).
      *           This field is not populated when using the `chat.bot` scope with [app
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     *           Setting the target audience requires [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * }
      */
     public function __construct($data = NULL) {
@@ -105,8 +127,19 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Format: `audiences/{audience}`
      * To use the default target audience for the Google Workspace organization,
      * set to `audiences/default`.
+     * Reading the target audience supports:
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth)
+     * with the `chat.app.spaces` scope in [Developer
+     * Preview](https://developers.google.com/workspace/preview).
      * This field is not populated when using the `chat.bot` scope with [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * Setting the target audience requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>string audience = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -127,8 +160,19 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Format: `audiences/{audience}`
      * To use the default target audience for the Google Workspace organization,
      * set to `audiences/default`.
+     * Reading the target audience supports:
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * - [App
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+     * with [administrator
+     * approval](https://support.google.com/a?p=chat-app-auth)
+     * with the `chat.app.spaces` scope in [Developer
+     * Preview](https://developers.google.com/workspace/preview).
      * This field is not populated when using the `chat.bot` scope with [app
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
+     * Setting the target audience requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>string audience = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -34,20 +34,24 @@ use Google\Apps\Chat\V1\Space;
  * see
  * [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message).
  *
- * With [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
- * returns the direct message space between the specified user and the
- * authenticated user.
- *
  * With [app
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
  * returns the direct message space between the specified user and the calling
  * Chat app.
  *
- * Requires [user
+ * With [user
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+ * returns the direct message space between the specified user and the
+ * authenticated user.
+ *
+ * // Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ *
+ * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * or [app
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
  *
  * @param string $name Resource name of the user to find direct message with.
  *

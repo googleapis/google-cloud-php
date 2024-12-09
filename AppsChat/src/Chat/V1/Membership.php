@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Membership extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the membership, assigned by the server.
+     * Identifier. Resource name of the membership, assigned by the server.
      * Format: `spaces/{space}/members/{member}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -62,7 +62,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the membership, assigned by the server.
+     *           Identifier. Resource name of the membership, assigned by the server.
      *           Format: `spaces/{space}/members/{member}`
      *     @type int $state
      *           Output only. State of the membership.
@@ -71,14 +71,16 @@ class Membership extends \Google\Protobuf\Internal\Message
      *           actions in the space.
      *           This field can only be used as input in `UpdateMembership`.
      *     @type \Google\Apps\Chat\V1\User $member
-     *           The Google Chat user or app the membership corresponds to.
+     *           Optional. The Google Chat user or app the membership corresponds to.
      *           If your Chat app [authenticates as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      *           the output populates the
      *           [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
      *           `name` and `type`.
      *     @type \Google\Apps\Chat\V1\Group $group_member
-     *           The Google Group the membership corresponds to.
+     *           Optional. The Google Group the membership corresponds to.
+     *           Reading or mutating memberships for Google Groups requires [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Optional. Immutable. The creation time of the membership, such as when a
      *           member joined or was invited to join a space. This field is output only,
@@ -95,10 +97,10 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the membership, assigned by the server.
+     * Identifier. Resource name of the membership, assigned by the server.
      * Format: `spaces/{space}/members/{member}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -107,10 +109,10 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the membership, assigned by the server.
+     * Identifier. Resource name of the membership, assigned by the server.
      * Format: `spaces/{space}/members/{member}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -179,14 +181,14 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Chat user or app the membership corresponds to.
+     * Optional. The Google Chat user or app the membership corresponds to.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the output populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
      * `name` and `type`.
      *
-     * Generated from protobuf field <code>.google.chat.v1.User member = 3;</code>
+     * Generated from protobuf field <code>.google.chat.v1.User member = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\User|null
      */
     public function getMember()
@@ -200,14 +202,14 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Chat user or app the membership corresponds to.
+     * Optional. The Google Chat user or app the membership corresponds to.
      * If your Chat app [authenticates as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * the output populates the
      * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
      * `name` and `type`.
      *
-     * Generated from protobuf field <code>.google.chat.v1.User member = 3;</code>
+     * Generated from protobuf field <code>.google.chat.v1.User member = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\User $var
      * @return $this
      */
@@ -220,9 +222,11 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Group the membership corresponds to.
+     * Optional. The Google Group the membership corresponds to.
+     * Reading or mutating memberships for Google Groups requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
-     * Generated from protobuf field <code>.google.chat.v1.Group group_member = 5;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Group group_member = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Group|null
      */
     public function getGroupMember()
@@ -236,9 +240,11 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Group the membership corresponds to.
+     * Optional. The Google Group the membership corresponds to.
+     * Reading or mutating memberships for Google Groups requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
-     * Generated from protobuf field <code>.google.chat.v1.Group group_member = 5;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Group group_member = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Group $var
      * @return $this
      */

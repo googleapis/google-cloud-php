@@ -32,13 +32,15 @@ use Google\Apps\Chat\V1\DeleteMessageRequest;
  * For an example, see [Delete a
  * message](https://developers.google.com/workspace/chat/delete-messages).
  *
- * Requires
- * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
- * Supports
- * [app
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
- * and [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ *
  * When using app authentication, requests can only delete messages
  * created by the calling Chat app.
  *

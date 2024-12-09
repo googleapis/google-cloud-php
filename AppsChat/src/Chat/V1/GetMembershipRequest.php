@@ -21,9 +21,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * you can optionally use `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
-     * When [authenticated as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * you can use the user's email as an alias for `{member}`. For example,
+     * You can use the user's email as an alias for `{member}`. For example,
      * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      * email of the Google Chat user.
      *
@@ -31,7 +29,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -41,7 +39,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      * Getting app memberships in a space isn't supported when using admin access.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_admin_access = false;
 
@@ -54,9 +52,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      *
      *                     Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      *
-     *                     When [authenticated as a
-     *                     user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     *                     you can use the user's email as an alias for `{member}`. For example,
+     *                     You can use the user's email as an alias for `{member}`. For example,
      *                     `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      *                     email of the Google Chat user. Please see
      *                     {@see ChatServiceClient::membershipName()} for help formatting this field.
@@ -83,13 +79,11 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      *           you can optionally use `spaces/{space}/members/app`.
      *           Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
-     *           When [authenticated as a
-     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     *           you can use the user's email as an alias for `{member}`. For example,
+     *           You can use the user's email as an alias for `{member}`. For example,
      *           `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      *           email of the Google Chat user.
      *     @type bool $use_admin_access
-     *           When `true`, the method runs using the user's Google Workspace
+     *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
      *           The calling user must be a Google Workspace administrator with the
      *           [manage chat and spaces conversations
@@ -111,9 +105,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * you can optionally use `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
-     * When [authenticated as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * you can use the user's email as an alias for `{member}`. For example,
+     * You can use the user's email as an alias for `{member}`. For example,
      * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      * email of the Google Chat user.
      *
@@ -131,9 +123,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * you can optionally use `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
-     * When [authenticated as a
-     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
-     * you can use the user's email as an alias for `{member}`. For example,
+     * You can use the user's email as an alias for `{member}`. For example,
      * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      * email of the Google Chat user.
      *
@@ -150,7 +140,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -160,7 +150,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      * Getting app memberships in a space isn't supported when using admin access.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseAdminAccess()
@@ -169,7 +159,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -179,7 +169,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      * Getting app memberships in a space isn't supported when using admin access.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

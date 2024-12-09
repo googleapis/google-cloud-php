@@ -19,39 +19,40 @@ use Google\Protobuf\Internal\GPBUtil;
 class PermissionSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Setting for managing members and groups in a space.
+     * Optional. Setting for managing members and groups in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_members_and_groups = 1;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_members_and_groups = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $manage_members_and_groups = null;
     /**
-     * Setting for updating space name, avatar, description and guidelines.
+     * Optional. Setting for updating space name, avatar, description and
+     * guidelines.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting modify_space_details = 2;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting modify_space_details = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $modify_space_details = null;
     /**
-     * Setting for toggling space history on and off.
+     * Optional. Setting for toggling space history on and off.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting toggle_history = 3;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting toggle_history = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $toggle_history = null;
     /**
-     * Setting for using &#64;all in a space.
+     * Optional. Setting for using &#64;all in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_at_mention_all = null;
     /**
-     * Setting for managing apps in a space.
+     * Optional. Setting for managing apps in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_apps = 5;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_apps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $manage_apps = null;
     /**
-     * Setting for managing webhooks in a space.
+     * Optional. Setting for managing webhooks in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_webhooks = 6;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_webhooks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $manage_webhooks = null;
     /**
@@ -61,9 +62,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
      */
     protected $post_messages = null;
     /**
-     * Setting for replying to messages in a space.
+     * Optional. Setting for replying to messages in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $reply_messages = null;
 
@@ -74,21 +75,22 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $manage_members_and_groups
-     *           Setting for managing members and groups in a space.
+     *           Optional. Setting for managing members and groups in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $modify_space_details
-     *           Setting for updating space name, avatar, description and guidelines.
+     *           Optional. Setting for updating space name, avatar, description and
+     *           guidelines.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $toggle_history
-     *           Setting for toggling space history on and off.
+     *           Optional. Setting for toggling space history on and off.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $use_at_mention_all
-     *           Setting for using &#64;all in a space.
+     *           Optional. Setting for using &#64;all in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $manage_apps
-     *           Setting for managing apps in a space.
+     *           Optional. Setting for managing apps in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $manage_webhooks
-     *           Setting for managing webhooks in a space.
+     *           Optional. Setting for managing webhooks in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $post_messages
      *           Output only. Setting for posting messages in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $reply_messages
-     *           Setting for replying to messages in a space.
+     *           Optional. Setting for replying to messages in a space.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,9 +99,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for managing members and groups in a space.
+     * Optional. Setting for managing members and groups in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_members_and_groups = 1;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_members_and_groups = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getManageMembersAndGroups()
@@ -118,9 +120,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for managing members and groups in a space.
+     * Optional. Setting for managing members and groups in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_members_and_groups = 1;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_members_and_groups = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
@@ -133,9 +135,10 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for updating space name, avatar, description and guidelines.
+     * Optional. Setting for updating space name, avatar, description and
+     * guidelines.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting modify_space_details = 2;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting modify_space_details = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getModifySpaceDetails()
@@ -154,9 +157,10 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for updating space name, avatar, description and guidelines.
+     * Optional. Setting for updating space name, avatar, description and
+     * guidelines.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting modify_space_details = 2;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting modify_space_details = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
@@ -169,9 +173,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for toggling space history on and off.
+     * Optional. Setting for toggling space history on and off.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting toggle_history = 3;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting toggle_history = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getToggleHistory()
@@ -190,9 +194,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for toggling space history on and off.
+     * Optional. Setting for toggling space history on and off.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting toggle_history = 3;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting toggle_history = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
@@ -205,9 +209,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for using &#64;all in a space.
+     * Optional. Setting for using &#64;all in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getUseAtMentionAll()
@@ -226,9 +230,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for using &#64;all in a space.
+     * Optional. Setting for using &#64;all in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
@@ -241,9 +245,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for managing apps in a space.
+     * Optional. Setting for managing apps in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_apps = 5;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_apps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getManageApps()
@@ -262,9 +266,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for managing apps in a space.
+     * Optional. Setting for managing apps in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_apps = 5;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_apps = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
@@ -277,9 +281,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for managing webhooks in a space.
+     * Optional. Setting for managing webhooks in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_webhooks = 6;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_webhooks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getManageWebhooks()
@@ -298,9 +302,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for managing webhooks in a space.
+     * Optional. Setting for managing webhooks in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_webhooks = 6;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting manage_webhooks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
@@ -349,9 +353,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for replying to messages in a space.
+     * Optional. Setting for replying to messages in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
      */
     public function getReplyMessages()
@@ -370,9 +374,9 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Setting for replying to messages in a space.
+     * Optional. Setting for replying to messages in a space.
      *
-     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8;</code>
+     * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting reply_messages = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
      * @return $this
      */
