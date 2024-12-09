@@ -22,7 +22,7 @@ class VoiceActivityTimeout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration speech_start_timeout = 1;</code>
      */
-    private $speech_start_timeout = null;
+    protected $speech_start_timeout = null;
     /**
      * Duration to timeout the stream after speech ends. If this is set and no
      * speech is detected in this duration after speech was detected, the server
@@ -30,7 +30,7 @@ class VoiceActivityTimeout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration speech_end_timeout = 2;</code>
      */
-    private $speech_end_timeout = null;
+    protected $speech_end_timeout = null;
 
     /**
      * Constructor.
@@ -135,6 +135,4 @@ class VoiceActivityTimeout extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VoiceActivityTimeout::class, \Google\Cloud\Speech\V2\StreamingRecognitionFeatures_VoiceActivityTimeout::class);
 

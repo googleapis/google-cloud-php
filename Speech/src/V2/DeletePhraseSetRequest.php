@@ -22,21 +22,21 @@ class DeletePhraseSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If set, validate the request and preview the deleted PhraseSet, but do not
      * actually delete it.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * If set to true, and the PhraseSet is not found, the request will succeed
      * and  be a no-op (no Operation is recorded in this case).
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>
      */
-    private $allow_missing = false;
+    protected $allow_missing = false;
     /**
      * This checksum is computed by the server based on the value of other
      * fields. This may be sent on update, undelete, and delete requests to ensure
@@ -44,7 +44,7 @@ class DeletePhraseSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
 
     /**
      * @param string $name Required. The name of the PhraseSet to delete.

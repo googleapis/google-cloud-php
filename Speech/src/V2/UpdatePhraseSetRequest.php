@@ -23,21 +23,21 @@ class UpdatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.PhraseSet phrase_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $phrase_set = null;
+    protected $phrase_set = null;
     /**
      * The list of fields to update. If empty, all non-default valued fields are
      * considered for update. Use `*` to update the entire PhraseSet resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set, validate the request and preview the updated PhraseSet, but do not
      * actually update it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Speech\V2\PhraseSet $phraseSet  Required. The PhraseSet to update.

@@ -22,13 +22,13 @@ class LocationsMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.LanguageMetadata languages = 1;</code>
      */
-    private $languages = null;
+    protected $languages = null;
     /**
      * Information about access metadata for the region and given project.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.AccessMetadata access_metadata = 2;</code>
      */
-    private $access_metadata = null;
+    protected $access_metadata = null;
 
     /**
      * Constructor.

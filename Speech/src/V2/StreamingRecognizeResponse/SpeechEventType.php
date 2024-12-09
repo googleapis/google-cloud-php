@@ -77,6 +77,4 @@ class SpeechEventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SpeechEventType::class, \Google\Cloud\Speech\V2\StreamingRecognizeResponse_SpeechEventType::class);
 

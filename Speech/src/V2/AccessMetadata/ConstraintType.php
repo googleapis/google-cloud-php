@@ -53,6 +53,4 @@ class ConstraintType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConstraintType::class, \Google\Cloud\Speech\V2\AccessMetadata_ConstraintType::class);
 

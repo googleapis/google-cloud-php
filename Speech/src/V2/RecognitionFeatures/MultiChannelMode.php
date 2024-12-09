@@ -56,6 +56,4 @@ class MultiChannelMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MultiChannelMode::class, \Google\Cloud\Speech\V2\RecognitionFeatures_MultiChannelMode::class);
 

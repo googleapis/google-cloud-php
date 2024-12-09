@@ -21,7 +21,7 @@ class StreamingRecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_voice_activity_events = 1;</code>
      */
-    private $enable_voice_activity_events = false;
+    protected $enable_voice_activity_events = false;
     /**
      * Whether or not to stream interim results to the client. If set to true,
      * interim results will be streamed to the client. Otherwise, only the final
@@ -29,7 +29,7 @@ class StreamingRecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool interim_results = 2;</code>
      */
-    private $interim_results = false;
+    protected $interim_results = false;
     /**
      * If set, the server will automatically close the stream after the specified
      * duration has elapsed after the last VOICE_ACTIVITY speech event has been
@@ -37,7 +37,7 @@ class StreamingRecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.StreamingRecognitionFeatures.VoiceActivityTimeout voice_activity_timeout = 3;</code>
      */
-    private $voice_activity_timeout = null;
+    protected $voice_activity_timeout = null;
 
     /**
      * Constructor.

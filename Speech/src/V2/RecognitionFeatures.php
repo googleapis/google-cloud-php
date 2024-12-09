@@ -23,7 +23,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool profanity_filter = 1;</code>
      */
-    private $profanity_filter = false;
+    protected $profanity_filter = false;
     /**
      * If `true`, the top result includes a list of words and the start and end
      * time offsets (timestamps) for those words. If `false`, no word-level time
@@ -31,7 +31,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_word_time_offsets = 2;</code>
      */
-    private $enable_word_time_offsets = false;
+    protected $enable_word_time_offsets = false;
     /**
      * If `true`, the top result includes a list of words and the confidence for
      * those words. If `false`, no word-level confidence information is returned.
@@ -39,7 +39,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_word_confidence = 3;</code>
      */
-    private $enable_word_confidence = false;
+    protected $enable_word_confidence = false;
     /**
      * If `true`, adds punctuation to recognition result hypotheses. This feature
      * is only available in select languages. The default `false` value does not
@@ -47,7 +47,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 4;</code>
      */
-    private $enable_automatic_punctuation = false;
+    protected $enable_automatic_punctuation = false;
     /**
      * The spoken punctuation behavior for the call. If `true`, replaces spoken
      * punctuation with the corresponding symbols in the request. For example,
@@ -57,7 +57,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_spoken_punctuation = 14;</code>
      */
-    private $enable_spoken_punctuation = false;
+    protected $enable_spoken_punctuation = false;
     /**
      * The spoken emoji behavior for the call. If `true`, adds spoken emoji
      * formatting for the request. This will replace spoken emojis with the
@@ -66,13 +66,13 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_spoken_emojis = 15;</code>
      */
-    private $enable_spoken_emojis = false;
+    protected $enable_spoken_emojis = false;
     /**
      * Mode for recognizing multi-channel audio.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionFeatures.MultiChannelMode multi_channel_mode = 17;</code>
      */
-    private $multi_channel_mode = 0;
+    protected $multi_channel_mode = 0;
     /**
      * Configuration to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
@@ -85,7 +85,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SpeakerDiarizationConfig diarization_config = 9;</code>
      */
-    private $diarization_config = null;
+    protected $diarization_config = null;
     /**
      * Maximum number of recognition hypotheses to be returned.
      * The server may return fewer than `max_alternatives`.
@@ -94,7 +94,7 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_alternatives = 16;</code>
      */
-    private $max_alternatives = 0;
+    protected $max_alternatives = 0;
 
     /**
      * Constructor.

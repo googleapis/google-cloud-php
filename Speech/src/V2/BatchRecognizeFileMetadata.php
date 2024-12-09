@@ -27,7 +27,7 @@ class BatchRecognizeFileMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionConfig config = 4;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The list of fields in
      * [config][google.cloud.speech.v2.BatchRecognizeFileMetadata.config] that
@@ -45,7 +45,7 @@ class BatchRecognizeFileMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask config_mask = 5;</code>
      */
-    private $config_mask = null;
+    protected $config_mask = null;
     protected $audio_source;
 
     /**
