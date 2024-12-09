@@ -920,9 +920,5 @@ class SigningHelper
                 }
             }
         }
-
-        throw new \RuntimeException(
-            'Failed to sign message after maximum attempts.'
-        );
     }
 }

@@ -836,20 +836,6 @@ class SigningHelperTest extends TestCase
 
         $this->assertEquals('Non-retryable error', $res);
     }
-
-    public function testRetrySignBlobRetriesExhausted()
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Failed to sign message after maximum attempts.');
-
-        $signBlobFn = function () {
-            throw new ServiceException('Transient error', 503);
-        };
-
-        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
-            $signBlobFn
-        ]);
-    }
 }
 
 //@codingStandardsIgnoreStart
