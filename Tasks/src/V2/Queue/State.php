@@ -84,6 +84,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Tasks\V2\Queue_State::class);
 
