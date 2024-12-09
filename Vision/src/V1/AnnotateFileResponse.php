@@ -21,7 +21,7 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Individual responses to images found within the file. This field will be
      * empty if the `error` field is set.
@@ -34,14 +34,14 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 total_pages = 3;</code>
      */
-    private $total_pages = 0;
+    protected $total_pages = 0;
     /**
      * If set, represents the error message for the failed request. The
      * `responses` field will not be set in this case.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

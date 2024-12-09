@@ -23,7 +23,7 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_text_detection_confidence_score = 9;</code>
      */
-    private $enable_text_detection_confidence_score = false;
+    protected $enable_text_detection_confidence_score = false;
     /**
      * A list of advanced OCR options to further fine-tune OCR behavior.
      * Current valid values are:

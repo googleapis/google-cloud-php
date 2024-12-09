@@ -21,7 +21,7 @@ class GroupedResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * List of results, one for each product match.
      *
@@ -144,6 +144,4 @@ class GroupedResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GroupedResult::class, \Google\Cloud\Vision\V1\ProductSearchResults_GroupedResult::class);
 

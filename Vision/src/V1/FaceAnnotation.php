@@ -26,7 +26,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * The `fd_bounding_poly` bounding polygon is tighter than the
      * `boundingPoly`, and encloses only the skin part of the face. Typically, it
@@ -37,7 +37,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
      */
-    private $fd_bounding_poly = null;
+    protected $fd_bounding_poly = null;
     /**
      * Detected face landmarks.
      *
@@ -51,7 +51,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float roll_angle = 4;</code>
      */
-    private $roll_angle = 0.0;
+    protected $roll_angle = 0.0;
     /**
      * Yaw angle, which indicates the leftward/rightward angle that the face is
      * pointing relative to the vertical plane perpendicular to the image. Range
@@ -59,68 +59,68 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float pan_angle = 5;</code>
      */
-    private $pan_angle = 0.0;
+    protected $pan_angle = 0.0;
     /**
      * Pitch angle, which indicates the upwards/downwards angle that the face is
      * pointing relative to the image's horizontal plane. Range [-180,180].
      *
      * Generated from protobuf field <code>float tilt_angle = 6;</code>
      */
-    private $tilt_angle = 0.0;
+    protected $tilt_angle = 0.0;
     /**
      * Detection confidence. Range [0, 1].
      *
      * Generated from protobuf field <code>float detection_confidence = 7;</code>
      */
-    private $detection_confidence = 0.0;
+    protected $detection_confidence = 0.0;
     /**
      * Face landmarking confidence. Range [0, 1].
      *
      * Generated from protobuf field <code>float landmarking_confidence = 8;</code>
      */
-    private $landmarking_confidence = 0.0;
+    protected $landmarking_confidence = 0.0;
     /**
      * Joy likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
      */
-    private $joy_likelihood = 0;
+    protected $joy_likelihood = 0;
     /**
      * Sorrow likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
      */
-    private $sorrow_likelihood = 0;
+    protected $sorrow_likelihood = 0;
     /**
      * Anger likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
      */
-    private $anger_likelihood = 0;
+    protected $anger_likelihood = 0;
     /**
      * Surprise likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
      */
-    private $surprise_likelihood = 0;
+    protected $surprise_likelihood = 0;
     /**
      * Under-exposed likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
      */
-    private $under_exposed_likelihood = 0;
+    protected $under_exposed_likelihood = 0;
     /**
      * Blurred likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
      */
-    private $blurred_likelihood = 0;
+    protected $blurred_likelihood = 0;
     /**
      * Headwear likelihood.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
      */
-    private $headwear_likelihood = 0;
+    protected $headwear_likelihood = 0;
 
     /**
      * Constructor.

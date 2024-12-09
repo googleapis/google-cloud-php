@@ -20,21 +20,21 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
-    private $property = null;
+    protected $property = null;
     /**
      * Page width. For PDFs the unit is points. For images (including
      * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 width = 2;</code>
      */
-    private $width = 0;
+    protected $width = 0;
     /**
      * Page height. For PDFs the unit is points. For images (including
      * TIFFs) the unit is pixels.
      *
      * Generated from protobuf field <code>int32 height = 3;</code>
      */
-    private $height = 0;
+    protected $height = 0;
     /**
      * List of blocks of text, images etc on this page.
      *
@@ -46,7 +46,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 5;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.
