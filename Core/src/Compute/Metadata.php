@@ -59,7 +59,7 @@ class Metadata
     /**
      * @param ReaderInterface $reader [optional] A metadata reader implementation.
      */
-    public function __construct(ReaderInterface $reader = null)
+    public function __construct(?ReaderInterface $reader = null)
     {
         $this->reader = $reader ?: new HttpHandlerReader();
     }

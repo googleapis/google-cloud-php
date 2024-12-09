@@ -496,7 +496,7 @@ class SigningHelperTest extends TestCase
     /**
      * @dataProvider options
      */
-    public function testNormalizeOptions(array $options, array $expected = null, $exception = null)
+    public function testNormalizeOptions(array $options, ?array $expected = null, $exception = null)
     {
         if ($exception) {
             $this->expectException($exception);

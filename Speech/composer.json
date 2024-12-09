@@ -12,7 +12,7 @@
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^5.3.3",
+        "phpdocumentor/reflection": "^5.3.3||^6.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
         "google/cloud-storage": "^1.3"

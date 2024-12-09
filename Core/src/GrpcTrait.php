@@ -98,8 +98,8 @@ trait GrpcTrait
      */
     private function getGaxConfig(
         $version,
-        callable $authHttpHandler = null,
-        string $universeDomain = null
+        ?callable $authHttpHandler = null,
+        ?string $universeDomain = null
     ) {
         $config = [
             'libName' => 'gccl',

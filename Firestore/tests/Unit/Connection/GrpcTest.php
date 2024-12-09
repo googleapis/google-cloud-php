@@ -410,7 +410,7 @@ class GrpcTest extends TestCase
         ];
     }
 
-    private function sendAndAssert($method, array $args, array $expectedArgs, Grpc $connection = null)
+    private function sendAndAssert($method, array $args, array $expectedArgs, ?Grpc $connection = null)
     {
         $connection = $connection ?: new Grpc([
             'projectId' => 'test',

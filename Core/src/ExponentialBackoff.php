@@ -64,8 +64,8 @@ class ExponentialBackoff
      */
     public function __construct(
         $retries = null,
-        callable $retryFunction = null,
-        callable $retryListener = null
+        ?callable $retryFunction = null,
+        ?callable $retryListener = null
     ) {
         $this->retries = $retries !== null ? (int) $retries : 3;
         $this->retryFunction = $retryFunction;

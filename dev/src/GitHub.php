@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev;
 
+use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
@@ -302,7 +303,7 @@ class GitHub
      *
      * @return array|null
      */
-    public function getReleases($target, \DateTime $fromDate = null): ?array
+    public function getReleases($target, ?DateTime $fromDate = null): ?array
     {
         try {
             $res = $this->client->get(sprintf(

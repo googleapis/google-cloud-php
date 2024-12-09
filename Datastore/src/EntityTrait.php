@@ -56,7 +56,7 @@ trait EntityTrait
      *           created as the result of a service request.
      * }
      */
-    public function __construct(Key $key = null, array $entity = [], array $options = [])
+    public function __construct(?Key $key = null, array $entity = [], array $options = [])
     {
         $this->key = $key;
         $this->entity = $entity;
@@ -92,7 +92,7 @@ trait EntityTrait
      * }
      * @throws \InvalidArgumentException
      */
-    public static function build(Key $key = null, array $entity = [], array $options = [])
+    public static function build(?Key $key = null, array $entity = [], array $options = [])
     {
         return new static($key, $entity, $options);
     }

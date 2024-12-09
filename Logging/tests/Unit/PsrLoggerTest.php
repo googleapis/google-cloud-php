@@ -46,7 +46,7 @@ class PsrLoggerTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    public function getPsrLogger($connection, array $resource = null, array $labels = null, $messageKey = 'message')
+    public function getPsrLogger($connection, ?array $resource = null, ?array $labels = null, $messageKey = 'message')
     {
         $logger = new Logger($connection->reveal(), $this->logName, $this->projectId, $resource, $labels);
         return new PsrLogger($logger, $messageKey, ['metadataProvider' => new EmptyMetadataProvider()]);

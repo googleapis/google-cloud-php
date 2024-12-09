@@ -323,7 +323,7 @@ class LoggerTest extends TestCase
         $this->assertNull($logger->writeBatch([$entry1, $entry2]));
     }
 
-    private function getLogger($connection, array $resource = null, array $labels = null)
+    private function getLogger($connection, ?array $resource = null, ?array $labels = null)
     {
         $logger = new LoggerStub($connection->reveal(), $this->logName, $this->projectId, $resource, $labels);
         $logger->setTime($this->microtime);
