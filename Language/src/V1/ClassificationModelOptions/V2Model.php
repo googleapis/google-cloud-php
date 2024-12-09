@@ -20,7 +20,7 @@ class V2Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions.V2Model.ContentCategoriesVersion content_categories_version = 1;</code>
      */
-    private $content_categories_version = 0;
+    protected $content_categories_version = 0;
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class V2Model extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(V2Model::class, \Google\Cloud\Language\V1\ClassificationModelOptions_V2Model::class);
 

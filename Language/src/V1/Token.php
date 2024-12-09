@@ -20,25 +20,25 @@ class Token extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.TextSpan text = 1;</code>
      */
-    private $text = null;
+    protected $text = null;
     /**
      * Parts of speech tag for this token.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.PartOfSpeech part_of_speech = 2;</code>
      */
-    private $part_of_speech = null;
+    protected $part_of_speech = null;
     /**
      * Dependency tree parse for this token.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.DependencyEdge dependency_edge = 3;</code>
      */
-    private $dependency_edge = null;
+    protected $dependency_edge = null;
     /**
      * [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
      *
      * Generated from protobuf field <code>string lemma = 4;</code>
      */
-    private $lemma = '';
+    protected $lemma = '';
 
     /**
      * Constructor.

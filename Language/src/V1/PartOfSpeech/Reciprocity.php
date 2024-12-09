@@ -60,6 +60,4 @@ class Reciprocity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reciprocity::class, \Google\Cloud\Language\V1\PartOfSpeech_Reciprocity::class);
 
