@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\TextToSpeech\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
@@ -33,6 +32,7 @@ use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechLongAudioSynthesizeClient;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioRequest;
 use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -55,7 +55,9 @@ class TextToSpeechLongAudioSynthesizeClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TextToSpeechLongAudioSynthesizeClient */
@@ -101,9 +103,7 @@ class TextToSpeechLongAudioSynthesizeClientTest extends GeneratedTest
         $audioConfig = new AudioConfig();
         $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
         $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
-        $request = (new SynthesizeLongAudioRequest())
-            ->setInput($input)
-            ->setAudioConfig($audioConfig);
+        $request = (new SynthesizeLongAudioRequest())->setInput($input)->setAudioConfig($audioConfig);
         $response = $gapicClient->synthesizeLongAudio($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -113,7 +113,10 @@ class TextToSpeechLongAudioSynthesizeClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.texttospeech.v1.TextToSpeechLongAudioSynthesize/SynthesizeLongAudio', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.texttospeech.v1.TextToSpeechLongAudioSynthesize/SynthesizeLongAudio',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInput();
         $this->assertProtobufEquals($input, $actualValue);
         $actualValue = $actualApiRequestObject->getAudioConfig();
@@ -161,21 +164,22 @@ class TextToSpeechLongAudioSynthesizeClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $input = new SynthesisInput();
         $audioConfig = new AudioConfig();
         $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
         $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
-        $request = (new SynthesizeLongAudioRequest())
-            ->setInput($input)
-            ->setAudioConfig($audioConfig);
+        $request = (new SynthesizeLongAudioRequest())->setInput($input)->setAudioConfig($audioConfig);
         $response = $gapicClient->synthesizeLongAudio($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -232,9 +236,7 @@ class TextToSpeechLongAudioSynthesizeClientTest extends GeneratedTest
         $audioConfig = new AudioConfig();
         $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
         $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
-        $request = (new SynthesizeLongAudioRequest())
-            ->setInput($input)
-            ->setAudioConfig($audioConfig);
+        $request = (new SynthesizeLongAudioRequest())->setInput($input)->setAudioConfig($audioConfig);
         $response = $gapicClient->synthesizeLongAudioAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -244,7 +246,10 @@ class TextToSpeechLongAudioSynthesizeClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.texttospeech.v1.TextToSpeechLongAudioSynthesize/SynthesizeLongAudio', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.texttospeech.v1.TextToSpeechLongAudioSynthesize/SynthesizeLongAudio',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInput();
         $this->assertProtobufEquals($input, $actualValue);
         $actualValue = $actualApiRequestObject->getAudioConfig();
