@@ -1,0 +1,236 @@
+{
+    "interfaces": {
+        "google.cloud.dataplex.v1.CatalogService": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_7_codes": [
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
+                ],
+                "retry_policy_8_codes": [
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
+                ],
+                "no_retry_4_codes": [],
+                "retry_policy_9_codes": [
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
+                ],
+                "no_retry_5_codes": []
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_7_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 10000,
+                    "initial_rpc_timeout_millis": 20000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 20000,
+                    "total_timeout_millis": 20000
+                },
+                "retry_policy_8_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 10000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_4_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_9_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 10000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_5_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                }
+            },
+            "methods": {
+                "CancelMetadataJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateAspectType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "CreateEntry": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
+                },
+                "CreateEntryGroup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "CreateEntryType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "CreateMetadataJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "DeleteAspectType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "DeleteEntry": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
+                },
+                "DeleteEntryGroup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "DeleteEntryType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "GetAspectType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "GetEntry": {
+                    "timeout_millis": 20000,
+                    "retry_codes_name": "retry_policy_7_codes",
+                    "retry_params_name": "retry_policy_7_params"
+                },
+                "GetEntryGroup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "GetEntryType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "GetMetadataJob": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListAspectTypes": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "ListEntries": {
+                    "timeout_millis": 20000,
+                    "retry_codes_name": "retry_policy_7_codes",
+                    "retry_params_name": "retry_policy_7_params"
+                },
+                "ListEntryGroups": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "ListEntryTypes": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "ListMetadataJobs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "LookupEntry": {
+                    "timeout_millis": 20000,
+                    "retry_codes_name": "retry_policy_7_codes",
+                    "retry_params_name": "retry_policy_7_params"
+                },
+                "SearchEntries": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_9_codes",
+                    "retry_params_name": "retry_policy_9_params"
+                },
+                "UpdateAspectType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "UpdateEntry": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_8_codes",
+                    "retry_params_name": "retry_policy_8_params"
+                },
+                "UpdateEntryGroup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "UpdateEntryType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "TestIamPermissions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetLocation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListLocations": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                }
+            }
+        }
+    }
+}
