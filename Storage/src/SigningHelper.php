@@ -185,11 +185,9 @@ class SigningHelper
         $stringToSign = $this->createV2CanonicalRequest($toSign);
 
         // Use exponential backOff
-        $signature = $this->retrySignBlob(function () use ($credentials, $stringToSign, $options) {
-            return $credentials->signBlob($stringToSign, [
-                'forceOpenssl' => $options['forceOpenssl']
-            ]);
-        });
+        $signature = $this->retrySignBlob(fn () => $credentials->signBlob($stringToSign, [
+            'forceOpenssl' => $options['forceOpenssl']
+        ]));
 
         // Start with user-provided query params and add required parameters.
         $params = $options['queryParams'];
@@ -343,15 +341,11 @@ class SigningHelper
             $requestHash
         ]);
 
-        $signature = bin2hex(base64_decode($this->retrySignBlob(function () use (
-            $credentials,
-            $stringToSign,
-            $options
-        ) {
-            return $credentials->signBlob($stringToSign, [
+        $signature = bin2hex(base64_decode($this->retrySignBlob(
+            fn() => $credentials->signBlob($stringToSign, [
                 'forceOpenssl' => $options['forceOpenssl']
-            ]);
-        })));
+            ])
+        )));
 
         // Construct the modified resource name. If a custom hostname is provided,
         // this will remove the bucket name from the resource.

@@ -819,6 +819,7 @@ class SigningHelperTest extends TestCase
         ]);
 
         $this->assertEquals('signature', $res);
+        $this->assertEquals(3, $attempt);
     }
 
     public function testRetrySignBlobNonRetryableError()
@@ -833,8 +834,6 @@ class SigningHelperTest extends TestCase
         $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
             $signBlobFn
         ]);
-
-        $this->assertEquals('Non-retryable error', $res);
     }
 }
 
