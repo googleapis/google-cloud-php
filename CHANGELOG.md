@@ -1,5 +1,76 @@
 # Changelog
 
+## 0.270.0
+
+<details><summary>google/apps-chat 0.7.1</summary>
+
+
+
+### Bug Fixes
+
+* Add missing field annotations in space.proto, message.proto, reaction.proto, space_event.proto, membership.proto, attachment.proto ([#7899](https://github.com/googleapis/google-cloud-php/issues/7899)) ([fc71d45](https://github.com/googleapis/google-cloud-php/commit/fc71d4586b720e51768b195722990eabb659611a))
+
+</details>
+
+<details><summary>google/cloud-compute 1.22.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20241201 ([#966](https://github.com/googleapis/google-cloud-php/issues/966)) ([#7906](https://github.com/googleapis/google-cloud-php/issues/7906)) ([0f75adc](https://github.com/googleapis/google-cloud-php/commit/0f75adc147ac131a6823357c958cbc45e7237e9d))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.2</summary>
+
+
+
+### Documentation
+
+* Add examples for kubernetes secret ([#7897](https://github.com/googleapis/google-cloud-php/issues/7897)) ([0630f4e](https://github.com/googleapis/google-cloud-php/commit/0630f4e64f36a01b7be059c5ad85e15f1ddcf088))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* An existing field `gtin` is moved out of oneof in message `.google.shopping.merchant.products.v1beta.Attributes`
+* Changed repeated flag of an existing field `gtin` in message `.google.shopping.merchant.products.v1beta.Attributes` ([#7901](https://github.com/googleapis/google-cloud-php/issues/7901))
+
+### Features
+
+* A new field `member_price_effective_date` is added to message `.google.shopping.merchant.products.v1beta.LoyaltyProgram` ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A new field `shipping_label` is added to message `.google.shopping.merchant.products.v1beta.LoyaltyProgram` ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+
+
+### Bug Fixes
+
+* An existing field `gtin` is moved out of oneof in message `.google.shopping.merchant.products.v1beta.Attributes` ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* Changed repeated flag of an existing field `gtin` in message `.google.shopping.merchant.products.v1beta.Attributes` ([#7901](https://github.com/googleapis/google-cloud-php/issues/7901)) ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+
+
+### Documentation
+
+* A comment for field `gtin` in message `.google.shopping.merchant.products.v1beta.Attributes` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `max_handling_time` in message `.google.shopping.merchant.products.v1beta.Shipping` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `max_transit_time` in message `.google.shopping.merchant.products.v1beta.Shipping` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `min_handling_time` in message `.google.shopping.merchant.products.v1beta.Shipping` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `min_transit_time` in message `.google.shopping.merchant.products.v1beta.Shipping` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `name` in message `.google.shopping.merchant.products.v1beta.DeleteProductInputRequest` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `name` in message `.google.shopping.merchant.products.v1beta.GetProductRequest` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `name` in message `.google.shopping.merchant.products.v1beta.Product` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `name` in message `.google.shopping.merchant.products.v1beta.ProductInput` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `page_size` in message `.google.shopping.merchant.products.v1beta.ListProductsRequest` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for field `tax_category` in message `.google.shopping.merchant.products.v1beta.Attributes` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for message `Product` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+* A comment for message `ProductInput` is changed ([d67f842](https://github.com/googleapis/google-cloud-php/commit/d67f842437e6a86bb9545a24ed7650625f3bda67))
+
+</details>
+
 ## 0.269.0
 
 <details><summary>google/cloud-ai-platform 1.13.0</summary>
