@@ -39,6 +39,7 @@ use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation;
 use Google\LongRunning\WaitOperationRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages long-running operations with an API service.
@@ -155,6 +156,9 @@ class OperationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
