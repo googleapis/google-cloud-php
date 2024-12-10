@@ -1,0 +1,156 @@
+<?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
+
+return [
+    'interfaces' => [
+        'google.cloud.resourcemanager.v3.Folders' => [
+            'CreateFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/folders',
+                'body' => 'folder',
+            ],
+            'DeleteFolder' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=folders/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFolder' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=folders/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{resource=folders/*}:getIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFolders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/folders',
+                'queryParams' => [
+                    'parent',
+                ],
+            ],
+            'MoveFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=folders/*}:move',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchFolders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/folders:search',
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{resource=folders/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{resource=folders/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UndeleteFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=folders/*}:undelete',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateFolder' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v3/{folder.name=folders/*}',
+                'body' => 'folder',
+                'placeholders' => [
+                    'folder.name' => [
+                        'getters' => [
+                            'getFolder',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=operations/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'numericEnums' => true,
+];
