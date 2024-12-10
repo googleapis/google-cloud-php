@@ -52,7 +52,7 @@ class RestTest extends TestCase
     public function testApiEndpointForUniverseDomain(
         array $config,
         string $expectedEndpoint,
-        string $envUniverse = null
+        ?string $envUniverse = null
     ) {
         if ($envUniverse) {
             putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);

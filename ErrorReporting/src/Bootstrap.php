@@ -33,7 +33,7 @@ class Bootstrap
      * @return void
      * @codeCoverageIgnore
      */
-    public static function init(PsrLogger $psrLogger = null)
+    public static function init(?PsrLogger $psrLogger = null)
     {
         self::$psrLogger = $psrLogger ?: (new LoggingClient())
             ->psrLogger(self::DEFAULT_LOGNAME, [
@@ -79,9 +79,6 @@ class Bootstrap
             case E_USER_NOTICE:
                 $prefix = 'PHP Notice';
                 break;
-            case E_STRICT:
-                $prefix = 'PHP Debug';
-                break;
             default:
                 $prefix = 'PHP Notice';
         }
@@ -113,8 +110,6 @@ class Bootstrap
             case E_NOTICE:
             case E_USER_NOTICE:
                 return 'NOTICE';
-            case E_STRICT:
-                return 'DEBUG';
             default:
                 return 'NOTICE';
         }
@@ -264,7 +259,7 @@ class Bootstrap
      *
      * @param array $trace The stack trace returned from Exception::getTrace()
      */
-    private static function getFunctionNameForReport(array $trace = null)
+    private static function getFunctionNameForReport(?array $trace = null)
     {
         if (null === $trace) {
             return '<unknown function>';

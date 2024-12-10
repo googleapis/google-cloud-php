@@ -46,7 +46,7 @@ class ServiceBuilderTest extends TestCase
     /**
      * @dataProvider serviceProvider
      */
-    public function testBuildsClients($serviceName, $expectedClient, array $args = [], callable $beforeCallable = null)
+    public function testBuildsClients($serviceName, $expectedClient, array $args = [], ?callable $beforeCallable = null)
     {
         $this->checkAndSkipTest([$expectedClient]);
 
@@ -86,7 +86,7 @@ class ServiceBuilderTest extends TestCase
         $serviceName,
         $expectedClient,
         array $args = [],
-        callable $beforeCallable = null
+        ?callable $beforeCallable = null
     ) {
         $this->checkAndSkipTest([$expectedClient]);
 
@@ -124,7 +124,7 @@ class ServiceBuilderTest extends TestCase
         $serviceName,
         $expectedClient,
         array $args = [],
-        callable $beforeCallable = null
+        ?callable $beforeCallable = null
     ) {
         $this->checkAndSkipTest([$expectedClient]);
 

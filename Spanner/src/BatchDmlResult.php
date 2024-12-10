@@ -67,7 +67,7 @@ class BatchDmlResult
      * @param array|null $errorStatement The statement (with params and types)
      *        which triggered an error.
      */
-    public function __construct(array $data, array $errorStatement = null)
+    public function __construct(array $data, ?array $errorStatement = null)
     {
         $this->data = $data;
         $this->errorStatement = $errorStatement;

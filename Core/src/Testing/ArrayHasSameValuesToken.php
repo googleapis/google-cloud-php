@@ -25,7 +25,7 @@ class ArrayHasSameValuesToken implements TokenInterface
      * @experimental
      * @internal
      */
-    public function __construct($value, StringUtil $util = null)
+    public function __construct($value, ?StringUtil $util = null)
     {
         $this->value = $value;
         $this->util = $util ?: new StringUtil();

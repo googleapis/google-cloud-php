@@ -99,14 +99,33 @@ class ReflectionHandlerV5
     }
 
     /**
+     * Split this into a separate method because ReflectionHandler V6 looks
+     * different
+     */
+    protected function createParser()
+    {
+        return (new ParserFactory())->create(
+            ParserFactory::ONLY_PHP7,
+            new Lexer\Emulative(['phpVersion' => Lexer\Emulative::PHP_8_0])
+        );
+    }
+
+    /**
+     * Split this into a separate method because V6 does not support it
+     */
+    protected function getAdditionalStrategies()
+    {
+        return [
+            new Factory\Argument(new PrettyPrinter()) // @phpstan-ignore-line
+        ];
+    }
+
+    /**
      * @return ProjectFactory
      */
     public function createProjectFactory()
     {
-        $parser = (new ParserFactory())->create(
-            ParserFactory::ONLY_PHP7,
-            new Lexer\Emulative(['phpVersion' => Lexer\Emulative::PHP_8_0])
-        );
+        $parser = $this->createParser();
         $nodeTraverser = new NodeTraverser();
         $nodeTraverser->addVisitor(new NameResolver());
         $nodeTraverser->addVisitor(new ElementNameResolver());
@@ -119,7 +138,6 @@ class ReflectionHandlerV5
         $strategies = new ProjectFactoryStrategies(
             [
                 new Factory\Namespace_(),
-                new Factory\Argument(new PrettyPrinter()),
                 new Factory\Class_($docblockFactory),
                 new Factory\Enum_($docblockFactory),
                 new Factory\EnumCase($docblockFactory, new PrettyPrinter()),
@@ -134,7 +152,7 @@ class ReflectionHandlerV5
                 new Factory\Trait_($docblockFactory),
                 new Factory\IfStatement(),
                 new TraitUse(),
-            ]
+            ] + $this->getAdditionalStrategies()
         );
 
         $strategies->addStrategy(

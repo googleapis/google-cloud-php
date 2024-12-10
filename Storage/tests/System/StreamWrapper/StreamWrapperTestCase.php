@@ -42,7 +42,7 @@ class StreamWrapperTestCase extends StorageTestCase
         self::$client->unregisterStreamWrapper();
     }
 
-    protected static function generateUrl($file, Bucket $bucket = null)
+    protected static function generateUrl($file, ?Bucket $bucket = null)
     {
         $bucket = $bucket ?: self::$bucket;
         $bucketName = $bucket->name();

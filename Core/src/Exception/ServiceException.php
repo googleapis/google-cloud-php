@@ -65,7 +65,7 @@ class ServiceException extends GoogleException
     public function __construct(
         $message = null,
         $code = 0,
-        Exception $serviceException = null,
+        ?Exception $serviceException = null,
         array $metadata = []
     ) {
         $this->serviceException = $serviceException;

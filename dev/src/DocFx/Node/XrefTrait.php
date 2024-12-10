@@ -156,7 +156,7 @@ trait XrefTrait
         );
     }
 
-    private function replaceUidWithLink(string $uid, string $name = null): string
+    private function replaceUidWithLink(string $uid, ?string $name = null): string
     {
         if (is_null($name)) {
             $name = ltrim($uid, '\\');

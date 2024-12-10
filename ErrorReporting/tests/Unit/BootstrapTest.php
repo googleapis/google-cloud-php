@@ -78,7 +78,6 @@ class BootstrapTest extends TestCase
             [E_USER_WARNING, 'PHP Warning'],
             [E_NOTICE, 'PHP Notice'],
             [E_USER_NOTICE, 'PHP Notice'],
-            [E_STRICT, 'PHP Debug'],
             [PHP_INT_MAX, 'PHP Notice'],
         ];
     }
@@ -107,7 +106,6 @@ class BootstrapTest extends TestCase
             [E_USER_WARNING, 'WARNING'],
             [E_NOTICE, 'NOTICE'],
             [E_USER_NOTICE, 'NOTICE'],
-            [E_STRICT, 'DEBUG'],
             [PHP_INT_MAX, 'NOTICE'],
         ];
     }

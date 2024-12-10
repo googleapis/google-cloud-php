@@ -37,7 +37,7 @@ class Retry
      *
      * @param BatchRunner $runner [optional] **Defaults to** a new BatchRunner.
      */
-    public function __construct(BatchRunner $runner = null)
+    public function __construct(?BatchRunner $runner = null)
     {
         $this->runner = $runner ?: new BatchRunner();
         $this->initFailureFile();

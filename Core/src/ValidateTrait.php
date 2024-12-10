@@ -37,7 +37,7 @@ trait ValidateTrait
     private function validateBatch(
         array $input,
         $type,
-        callable $additionalCheck = null
+        ?callable $additionalCheck = null
     ) {
         foreach ($input as $element) {
             if (!($element instanceof $type)) {
