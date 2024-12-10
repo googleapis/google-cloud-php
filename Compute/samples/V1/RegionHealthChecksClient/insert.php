@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionHealthChecks_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionHealthChecksClient;
 use Google\Cloud\Compute\V1\HealthCheck;
-use Google\Cloud\Compute\V1\RegionHealthChecksClient;
+use Google\Cloud\Compute\V1\InsertRegionHealthCheckRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionHealthChecksClient = new RegionHealthChecksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $healthCheckResource = new HealthCheck();
+    $request = (new InsertRegionHealthCheckRequest())
+        ->setHealthCheckResource($healthCheckResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionHealthChecksClient->insert($healthCheckResource, $project, $region);
+        $response = $regionHealthChecksClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

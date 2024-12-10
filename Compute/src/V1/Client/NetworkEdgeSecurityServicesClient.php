@@ -245,6 +245,8 @@ final class NetworkEdgeSecurityServicesClient
      * The async variant is
      * {@see NetworkEdgeSecurityServicesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/aggregated_list.php
+     *
      * @param AggregatedListNetworkEdgeSecurityServicesRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -268,6 +270,8 @@ final class NetworkEdgeSecurityServicesClient
      * Deletes the specified service.
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::deleteAsync()} .
+     *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/delete.php
      *
      * @param DeleteNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -293,6 +297,8 @@ final class NetworkEdgeSecurityServicesClient
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::getAsync()} .
      *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/get.php
+     *
      * @param GetNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -317,6 +323,8 @@ final class NetworkEdgeSecurityServicesClient
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::insertAsync()} .
      *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/insert.php
+     *
      * @param InsertNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -340,6 +348,8 @@ final class NetworkEdgeSecurityServicesClient
      * Patches the specified policy with the data included in the request.
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::patchAsync()} .
+     *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/patch.php
      *
      * @param PatchNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

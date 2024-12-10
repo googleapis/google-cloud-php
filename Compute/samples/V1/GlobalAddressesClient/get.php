@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalAddresses_Get_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\Address;
-use Google\Cloud\Compute\V1\GlobalAddressesClient;
+use Google\Cloud\Compute\V1\Client\GlobalAddressesClient;
+use Google\Cloud\Compute\V1\GetGlobalAddressRequest;
 
 /**
  * Returns the specified address resource.
@@ -38,10 +39,15 @@ function get_sample(string $address, string $project): void
     // Create a client.
     $globalAddressesClient = new GlobalAddressesClient();
 
+    // Prepare the request message.
+    $request = (new GetGlobalAddressRequest())
+        ->setAddress($address)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var Address $response */
-        $response = $globalAddressesClient->get($address, $project);
+        $response = $globalAddressesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

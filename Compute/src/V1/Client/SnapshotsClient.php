@@ -251,6 +251,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::deleteAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/delete.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -274,6 +276,8 @@ final class SnapshotsClient
      * Returns the specified Snapshot resource.
      *
      * The async variant is {@see SnapshotsClient::getAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/get.php
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -299,6 +303,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/get_iam_policy.php
+     *
      * @param GetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -322,6 +328,8 @@ final class SnapshotsClient
      * Creates a snapshot in the specified project using the data included in the request. For regular snapshot creation, consider using this method instead of disks.createSnapshot, as this method supports more features, such as creating snapshots in a project different from the source disk project.
      *
      * The async variant is {@see SnapshotsClient::insertAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/insert.php
      *
      * @param InsertSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -347,6 +355,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::listAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/list.php
+     *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -370,6 +380,8 @@ final class SnapshotsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see SnapshotsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/set_iam_policy.php
      *
      * @param SetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -395,6 +407,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::setLabelsAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/set_labels.php
+     *
      * @param SetLabelsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -418,6 +432,8 @@ final class SnapshotsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see SnapshotsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

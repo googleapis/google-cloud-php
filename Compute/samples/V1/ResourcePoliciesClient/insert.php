@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ResourcePolicies_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\Client\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\InsertResourcePolicyRequest;
 use Google\Cloud\Compute\V1\ResourcePolicy;
 use Google\Rpc\Status;
 
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $resourcePoliciesClient = new ResourcePoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resourcePolicyResource = new ResourcePolicy();
+    $request = (new InsertResourcePolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResourcePolicyResource($resourcePolicyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $resourcePoliciesClient->insert($project, $region, $resourcePolicyResource);
+        $response = $resourcePoliciesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

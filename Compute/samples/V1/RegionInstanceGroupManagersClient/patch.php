@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\PatchRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $instanceGroupManager, string $project, string $reg
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagerResource = new InstanceGroupManager();
+    $request = (new PatchRegionInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagerResource($instanceGroupManagerResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->patch(
-            $instanceGroupManager,
-            $instanceGroupManagerResource,
-            $project,
-            $region
-        );
+        $response = $regionInstanceGroupManagersClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

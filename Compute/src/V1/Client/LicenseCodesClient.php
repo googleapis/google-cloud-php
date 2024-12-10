@@ -182,6 +182,8 @@ final class LicenseCodesClient
      *
      * The async variant is {@see LicenseCodesClient::getAsync()} .
      *
+     * @example samples/V1/LicenseCodesClient/get.php
+     *
      * @param GetLicenseCodeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -205,6 +207,8 @@ final class LicenseCodesClient
      * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicenseCodesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/LicenseCodesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsLicenseCodeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

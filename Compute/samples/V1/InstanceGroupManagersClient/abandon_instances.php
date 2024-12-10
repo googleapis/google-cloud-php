@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_AbandonInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AbandonInstancesInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstanceGroupManagersAbandonInstancesRequest;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function abandon_instances_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersAbandonInstancesRequestResource = new InstanceGroupManagersAbandonInstancesRequest();
+    $request = (new AbandonInstancesInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersAbandonInstancesRequestResource(
+            $instanceGroupManagersAbandonInstancesRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->abandonInstances(
-            $instanceGroupManager,
-            $instanceGroupManagersAbandonInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->abandonInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

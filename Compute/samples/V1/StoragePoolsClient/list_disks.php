@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_StoragePools_ListDisks_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
+use Google\Cloud\Compute\V1\ListDisksStoragePoolsRequest;
 use Google\Cloud\Compute\V1\StoragePoolListDisks;
-use Google\Cloud\Compute\V1\StoragePoolsClient;
 
 /**
  * Lists the disks in a specified storage pool.
@@ -39,10 +40,16 @@ function list_disks_sample(string $project, string $storagePool, string $zone): 
     // Create a client.
     $storagePoolsClient = new StoragePoolsClient();
 
+    // Prepare the request message.
+    $request = (new ListDisksStoragePoolsRequest())
+        ->setProject($project)
+        ->setStoragePool($storagePool)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var StoragePoolListDisks $response */
-        $response = $storagePoolsClient->listDisks($project, $storagePool, $zone);
+        $response = $storagePoolsClient->listDisks($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_ServiceAttachments_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\ServiceAttachmentsClient;
+use Google\Cloud\Compute\V1\Client\ServiceAttachmentsClient;
+use Google\Cloud\Compute\V1\TestIamPermissionsServiceAttachmentRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 
@@ -40,18 +41,18 @@ function test_iam_permissions_sample(string $project, string $region, string $re
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $testPermissionsRequestResource = new TestPermissionsRequest();
+    $request = (new TestIamPermissionsServiceAttachmentRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResource($resource)
+        ->setTestPermissionsRequestResource($testPermissionsRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestPermissionsResponse $response */
-        $response = $serviceAttachmentsClient->testIamPermissions(
-            $project,
-            $region,
-            $resource,
-            $testPermissionsRequestResource
-        );
+        $response = $serviceAttachmentsClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

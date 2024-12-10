@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ExternalVpnGateways_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ExternalVpnGatewaysClient;
+use Google\Cloud\Compute\V1\Client\ExternalVpnGatewaysClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
+use Google\Cloud\Compute\V1\SetLabelsExternalVpnGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,17 +41,17 @@ function set_labels_sample(string $project, string $resource): void
     // Create a client.
     $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+    $request = (new SetLabelsExternalVpnGatewayRequest())
+        ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+        ->setProject($project)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $externalVpnGatewaysClient->setLabels(
-            $globalSetLabelsRequestResource,
-            $project,
-            $resource
-        );
+        $response = $externalVpnGatewaysClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

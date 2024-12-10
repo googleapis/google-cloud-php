@@ -249,6 +249,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/aggregated_list.php
+     *
      * @param AggregatedListPacketMirroringsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -272,6 +274,8 @@ final class PacketMirroringsClient
      * Deletes the specified PacketMirroring resource.
      *
      * The async variant is {@see PacketMirroringsClient::deleteAsync()} .
+     *
+     * @example samples/V1/PacketMirroringsClient/delete.php
      *
      * @param DeletePacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -297,6 +301,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::getAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/get.php
+     *
      * @param GetPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -320,6 +326,8 @@ final class PacketMirroringsClient
      * Creates a PacketMirroring resource in the specified project and region using the data included in the request.
      *
      * The async variant is {@see PacketMirroringsClient::insertAsync()} .
+     *
+     * @example samples/V1/PacketMirroringsClient/insert.php
      *
      * @param InsertPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -345,6 +353,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::listAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/list.php
+     *
      * @param ListPacketMirroringsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -369,6 +379,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::patchAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/patch.php
+     *
      * @param PatchPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -392,6 +404,8 @@ final class PacketMirroringsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see PacketMirroringsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PacketMirroringsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

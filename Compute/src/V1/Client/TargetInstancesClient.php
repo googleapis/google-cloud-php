@@ -246,6 +246,8 @@ final class TargetInstancesClient
      *
      * The async variant is {@see TargetInstancesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetInstancesClient/aggregated_list.php
+     *
      * @param AggregatedListTargetInstancesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -269,6 +271,8 @@ final class TargetInstancesClient
      * Deletes the specified TargetInstance resource.
      *
      * The async variant is {@see TargetInstancesClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/delete.php
      *
      * @param DeleteTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -294,6 +298,8 @@ final class TargetInstancesClient
      *
      * The async variant is {@see TargetInstancesClient::getAsync()} .
      *
+     * @example samples/V1/TargetInstancesClient/get.php
+     *
      * @param GetTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -317,6 +323,8 @@ final class TargetInstancesClient
      * Creates a TargetInstance resource in the specified project and zone using the data included in the request.
      *
      * The async variant is {@see TargetInstancesClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/insert.php
      *
      * @param InsertTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -342,6 +350,8 @@ final class TargetInstancesClient
      *
      * The async variant is {@see TargetInstancesClient::listAsync()} .
      *
+     * @example samples/V1/TargetInstancesClient/list.php
+     *
      * @param ListTargetInstancesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -365,6 +375,8 @@ final class TargetInstancesClient
      * Sets the Google Cloud Armor security policy for the specified target instance. For more information, see Google Cloud Armor Overview
      *
      * The async variant is {@see TargetInstancesClient::setSecurityPolicyAsync()} .
+     *
+     * @example samples/V1/TargetInstancesClient/set_security_policy.php
      *
      * @param SetSecurityPolicyTargetInstanceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

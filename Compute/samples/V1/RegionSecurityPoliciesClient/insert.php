@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSecurityPolicies_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\InsertRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Rpc\Status;
 
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyResource = new SecurityPolicy();
+    $request = (new InsertRegionSecurityPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicyResource($securityPolicyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSecurityPoliciesClient->insert($project, $region, $securityPolicyResource);
+        $response = $regionSecurityPoliciesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

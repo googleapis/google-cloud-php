@@ -184,6 +184,8 @@ final class StoragePoolTypesClient
      *
      * The async variant is {@see StoragePoolTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/StoragePoolTypesClient/aggregated_list.php
+     *
      * @param AggregatedListStoragePoolTypesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -208,6 +210,8 @@ final class StoragePoolTypesClient
      *
      * The async variant is {@see StoragePoolTypesClient::getAsync()} .
      *
+     * @example samples/V1/StoragePoolTypesClient/get.php
+     *
      * @param GetStoragePoolTypeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -231,6 +235,8 @@ final class StoragePoolTypesClient
      * Retrieves a list of storage pool types available to the specified project.
      *
      * The async variant is {@see StoragePoolTypesClient::listAsync()} .
+     *
+     * @example samples/V1/StoragePoolTypesClient/list.php
      *
      * @param ListStoragePoolTypesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

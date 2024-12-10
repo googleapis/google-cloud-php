@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionDisks_AddResourcePolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AddResourcePoliciesRegionDiskRequest;
+use Google\Cloud\Compute\V1\Client\RegionDisksClient;
 use Google\Cloud\Compute\V1\RegionDisksAddResourcePoliciesRequest;
-use Google\Cloud\Compute\V1\RegionDisksClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function add_resource_policies_sample(string $disk, string $project, string $reg
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionDisksAddResourcePoliciesRequestResource = new RegionDisksAddResourcePoliciesRequest();
+    $request = (new AddResourcePoliciesRegionDiskRequest())
+        ->setDisk($disk)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionDisksAddResourcePoliciesRequestResource($regionDisksAddResourcePoliciesRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionDisksClient->addResourcePolicies(
-            $disk,
-            $project,
-            $region,
-            $regionDisksAddResourcePoliciesRequestResource
-        );
+        $response = $regionDisksClient->addResourcePolicies($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

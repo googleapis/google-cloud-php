@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionBackendServices_Get_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\BackendService;
-use Google\Cloud\Compute\V1\RegionBackendServicesClient;
+use Google\Cloud\Compute\V1\Client\RegionBackendServicesClient;
+use Google\Cloud\Compute\V1\GetRegionBackendServiceRequest;
 
 /**
  * Returns the specified regional BackendService resource.
@@ -39,10 +40,16 @@ function get_sample(string $backendService, string $project, string $region): vo
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var BackendService $response */
-        $response = $regionBackendServicesClient->get($backendService, $project, $region);
+        $response = $regionBackendServicesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

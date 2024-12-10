@@ -242,6 +242,8 @@ final class RegionSslCertificatesClient
      *
      * The async variant is {@see RegionSslCertificatesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionSslCertificatesClient/delete.php
+     *
      * @param DeleteRegionSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -265,6 +267,8 @@ final class RegionSslCertificatesClient
      * Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request.
      *
      * The async variant is {@see RegionSslCertificatesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionSslCertificatesClient/get.php
      *
      * @param GetRegionSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -290,6 +294,8 @@ final class RegionSslCertificatesClient
      *
      * The async variant is {@see RegionSslCertificatesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionSslCertificatesClient/insert.php
+     *
      * @param InsertRegionSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -313,6 +319,8 @@ final class RegionSslCertificatesClient
      * Retrieves the list of SslCertificate resources available to the specified project in the specified region.
      *
      * The async variant is {@see RegionSslCertificatesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionSslCertificatesClient/list.php
      *
      * @param ListRegionSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

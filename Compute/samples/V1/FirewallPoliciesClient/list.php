@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_FirewallPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\ListFirewallPoliciesRequest;
 
 /**
  * Lists all the policies that have been configured for the specified folder or organization.
@@ -41,10 +42,13 @@ function list_sample(): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = new ListFirewallPoliciesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $firewallPoliciesClient->list();
+        $response = $firewallPoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Routers_GetRouterStatus_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RoutersClient;
+use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\RouterStatusResponse;
-use Google\Cloud\Compute\V1\RoutersClient;
 
 /**
  * Retrieves runtime information of the specified router.
@@ -39,10 +40,16 @@ function get_router_status_sample(string $project, string $region, string $route
     // Create a client.
     $routersClient = new RoutersClient();
 
+    // Prepare the request message.
+    $request = (new GetRouterStatusRouterRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRouter($router);
+
     // Call the API and handle any network failures.
     try {
         /** @var RouterStatusResponse $response */
-        $response = $routersClient->getRouterStatus($project, $region, $router);
+        $response = $routersClient->getRouterStatus($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

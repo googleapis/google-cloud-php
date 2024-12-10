@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_MoveDisk_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\DiskMoveRequest;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\MoveDiskProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function move_disk_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $diskMoveRequestResource = new DiskMoveRequest();
+    $request = (new MoveDiskProjectRequest())
+        ->setDiskMoveRequestResource($diskMoveRequestResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->moveDisk($diskMoveRequestResource, $project);
+        $response = $projectsClient->moveDisk($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

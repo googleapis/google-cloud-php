@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\Autoscaler;
-use Google\Cloud\Compute\V1\AutoscalersClient;
+use Google\Cloud\Compute\V1\Client\AutoscalersClient;
+use Google\Cloud\Compute\V1\InsertAutoscalerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $autoscalersClient = new AutoscalersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $autoscalerResource = new Autoscaler();
+    $request = (new InsertAutoscalerRequest())
+        ->setAutoscalerResource($autoscalerResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoscalersClient->insert($autoscalerResource, $project, $zone);
+        $response = $autoscalersClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

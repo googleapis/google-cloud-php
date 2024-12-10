@@ -252,6 +252,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::addInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/add_instances.php
+     *
      * @param AddInstancesInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -275,6 +277,8 @@ final class InstanceGroupsClient
      * Retrieves the list of instance groups and sorts them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InstanceGroupsClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/aggregated_list.php
      *
      * @param AggregatedListInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -300,6 +304,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::deleteAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/delete.php
+     *
      * @param DeleteInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -323,6 +329,8 @@ final class InstanceGroupsClient
      * Returns the specified zonal instance group. Get a list of available zonal instance groups by making a list() request. For managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.
      *
      * The async variant is {@see InstanceGroupsClient::getAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/get.php
      *
      * @param GetInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -348,6 +356,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::insertAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/insert.php
+     *
      * @param InsertInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -371,6 +381,8 @@ final class InstanceGroupsClient
      * Retrieves the list of zonal instance group resources contained within the specified zone. For managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.
      *
      * The async variant is {@see InstanceGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/list.php
      *
      * @param ListInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -396,6 +408,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::listInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/list_instances.php
+     *
      * @param ListInstancesInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -420,6 +434,8 @@ final class InstanceGroupsClient
      *
      * The async variant is {@see InstanceGroupsClient::removeInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupsClient/remove_instances.php
+     *
      * @param RemoveInstancesInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -443,6 +459,8 @@ final class InstanceGroupsClient
      * Sets the named ports for the specified instance group.
      *
      * The async variant is {@see InstanceGroupsClient::setNamedPortsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupsClient/set_named_ports.php
      *
      * @param SetNamedPortsInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionNotificationEndpoints_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionNotificationEndpointsClient;
+use Google\Cloud\Compute\V1\Client\RegionNotificationEndpointsClient;
+use Google\Cloud\Compute\V1\ListRegionNotificationEndpointsRequest;
 
 /**
  * Lists the NotificationEndpoints for a project in the given region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionNotificationEndpointsClient = new RegionNotificationEndpointsClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionNotificationEndpointsRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionNotificationEndpointsClient->list($project, $region);
+        $response = $regionNotificationEndpointsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

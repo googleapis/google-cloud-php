@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetMinCpuPlatform_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesSetMinCpuPlatformRequest;
+use Google\Cloud\Compute\V1\SetMinCpuPlatformInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_min_cpu_platform_sample(string $instance, string $project, string $
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
+    $request = (new SetMinCpuPlatformInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesSetMinCpuPlatformRequestResource($instancesSetMinCpuPlatformRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setMinCpuPlatform(
-            $instance,
-            $instancesSetMinCpuPlatformRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->setMinCpuPlatform($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

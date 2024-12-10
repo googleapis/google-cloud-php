@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionTargetTcpProxies_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionTargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\GetRegionTargetTcpProxyRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxy;
 
 /**
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $targetTcpProxy): vo
     // Create a client.
     $regionTargetTcpProxiesClient = new RegionTargetTcpProxiesClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionTargetTcpProxyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetTcpProxy($targetTcpProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var TargetTcpProxy $response */
-        $response = $regionTargetTcpProxiesClient->get($project, $region, $targetTcpProxy);
+        $response = $regionTargetTcpProxiesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_PerformMaintenance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NodeGroupsClient;
+use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
 use Google\Cloud\Compute\V1\NodeGroupsPerformMaintenanceRequest;
+use Google\Cloud\Compute\V1\PerformMaintenanceNodeGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function perform_maintenance_sample(string $nodeGroup, string $project, string $
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupsPerformMaintenanceRequestResource = new NodeGroupsPerformMaintenanceRequest();
+    $request = (new PerformMaintenanceNodeGroupRequest())
+        ->setNodeGroup($nodeGroup)
+        ->setNodeGroupsPerformMaintenanceRequestResource($nodeGroupsPerformMaintenanceRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->performMaintenance(
-            $nodeGroup,
-            $nodeGroupsPerformMaintenanceRequestResource,
-            $project,
-            $zone
-        );
+        $response = $nodeGroupsClient->performMaintenance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

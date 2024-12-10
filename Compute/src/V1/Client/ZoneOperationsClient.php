@@ -186,6 +186,8 @@ final class ZoneOperationsClient
      *
      * The async variant is {@see ZoneOperationsClient::deleteAsync()} .
      *
+     * @example samples/V1/ZoneOperationsClient/delete.php
+     *
      * @param DeleteZoneOperationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -209,6 +211,8 @@ final class ZoneOperationsClient
      * Retrieves the specified zone-specific Operations resource.
      *
      * The async variant is {@see ZoneOperationsClient::getAsync()} .
+     *
+     * @example samples/V1/ZoneOperationsClient/get.php
      *
      * @param GetZoneOperationRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -234,6 +238,8 @@ final class ZoneOperationsClient
      *
      * The async variant is {@see ZoneOperationsClient::listAsync()} .
      *
+     * @example samples/V1/ZoneOperationsClient/list.php
+     *
      * @param ListZoneOperationsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -257,6 +263,8 @@ final class ZoneOperationsClient
      * Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method waits for no more than the 2 minutes and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`.
      *
      * The async variant is {@see ZoneOperationsClient::waitAsync()} .
+     *
+     * @example samples/V1/ZoneOperationsClient/wait.php
      *
      * @param WaitZoneOperationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

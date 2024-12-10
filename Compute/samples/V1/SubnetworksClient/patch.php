@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Subnetworks_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\SubnetworksClient;
+use Google\Cloud\Compute\V1\PatchSubnetworkRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
-use Google\Cloud\Compute\V1\SubnetworksClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function patch_sample(string $project, string $region, string $subnetwork): void
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subnetworkResource = new Subnetwork();
+    $request = (new PatchSubnetworkRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSubnetwork($subnetwork)
+        ->setSubnetworkResource($subnetworkResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $subnetworksClient->patch($project, $region, $subnetwork, $subnetworkResource);
+        $response = $subnetworksClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

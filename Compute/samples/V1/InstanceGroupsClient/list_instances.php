@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroups_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
 use Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest;
+use Google\Cloud\Compute\V1\ListInstancesInstanceGroupsRequest;
 
 /**
  * Lists the instances in the specified instance group. The orderBy query parameter is not supported. The filter query parameter is supported, but only for expressions that use `eq` (equal) or `ne` (not equal) operators.
@@ -40,18 +41,18 @@ function list_instances_sample(string $instanceGroup, string $project, string $z
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupsListInstancesRequestResource = new InstanceGroupsListInstancesRequest();
+    $request = (new ListInstancesInstanceGroupsRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setInstanceGroupsListInstancesRequestResource($instanceGroupsListInstancesRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instanceGroupsClient->listInstances(
-            $instanceGroup,
-            $instanceGroupsListInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupsClient->listInstances($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionTargetHttpsProxies_SetSslCertificates_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetHttpsProxiesClient;
 use Google\Cloud\Compute\V1\RegionTargetHttpsProxiesSetSslCertificatesRequest;
+use Google\Cloud\Compute\V1\SetSslCertificatesRegionTargetHttpsProxyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function set_ssl_certificates_sample(
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionTargetHttpsProxiesSetSslCertificatesRequestResource = new RegionTargetHttpsProxiesSetSslCertificatesRequest();
+    $request = (new SetSslCertificatesRegionTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionTargetHttpsProxiesSetSslCertificatesRequestResource(
+            $regionTargetHttpsProxiesSetSslCertificatesRequestResource
+        )
+        ->setTargetHttpsProxy($targetHttpsProxy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionTargetHttpsProxiesClient->setSslCertificates(
-            $project,
-            $region,
-            $regionTargetHttpsProxiesSetSslCertificatesRequestResource,
-            $targetHttpsProxy
-        );
+        $response = $regionTargetHttpsProxiesClient->setSslCertificates($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

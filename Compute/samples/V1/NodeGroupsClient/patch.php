@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
 use Google\Cloud\Compute\V1\NodeGroup;
-use Google\Cloud\Compute\V1\NodeGroupsClient;
+use Google\Cloud\Compute\V1\PatchNodeGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function patch_sample(string $nodeGroup, string $project, string $zone): void
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupResource = new NodeGroup();
+    $request = (new PatchNodeGroupRequest())
+        ->setNodeGroup($nodeGroup)
+        ->setNodeGroupResource($nodeGroupResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->patch($nodeGroup, $nodeGroupResource, $project, $zone);
+        $response = $nodeGroupsClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

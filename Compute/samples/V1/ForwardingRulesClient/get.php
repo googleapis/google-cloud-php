@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_ForwardingRules_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
 use Google\Cloud\Compute\V1\ForwardingRule;
-use Google\Cloud\Compute\V1\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\GetForwardingRuleRequest;
 
 /**
  * Returns the specified ForwardingRule resource.
@@ -39,10 +40,16 @@ function get_sample(string $forwardingRule, string $project, string $region): vo
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
+    // Prepare the request message.
+    $request = (new GetForwardingRuleRequest())
+        ->setForwardingRule($forwardingRule)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var ForwardingRule $response */
-        $response = $forwardingRulesClient->get($forwardingRule, $project, $region);
+        $response = $forwardingRulesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

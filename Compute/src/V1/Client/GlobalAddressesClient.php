@@ -245,6 +245,8 @@ final class GlobalAddressesClient
      *
      * The async variant is {@see GlobalAddressesClient::deleteAsync()} .
      *
+     * @example samples/V1/GlobalAddressesClient/delete.php
+     *
      * @param DeleteGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -268,6 +270,8 @@ final class GlobalAddressesClient
      * Returns the specified address resource.
      *
      * The async variant is {@see GlobalAddressesClient::getAsync()} .
+     *
+     * @example samples/V1/GlobalAddressesClient/get.php
      *
      * @param GetGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -293,6 +297,8 @@ final class GlobalAddressesClient
      *
      * The async variant is {@see GlobalAddressesClient::insertAsync()} .
      *
+     * @example samples/V1/GlobalAddressesClient/insert.php
+     *
      * @param InsertGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -316,6 +322,8 @@ final class GlobalAddressesClient
      * Retrieves a list of global addresses.
      *
      * The async variant is {@see GlobalAddressesClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalAddressesClient/list.php
      *
      * @param ListGlobalAddressesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -341,6 +349,8 @@ final class GlobalAddressesClient
      *
      * The async variant is {@see GlobalAddressesClient::moveAsync()} .
      *
+     * @example samples/V1/GlobalAddressesClient/move.php
+     *
      * @param MoveGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -364,6 +374,8 @@ final class GlobalAddressesClient
      * Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see GlobalAddressesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/GlobalAddressesClient/set_labels.php
      *
      * @param SetLabelsGlobalAddressRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

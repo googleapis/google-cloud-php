@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionCommitments_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionCommitmentsClient;
 use Google\Cloud\Compute\V1\Commitment;
-use Google\Cloud\Compute\V1\RegionCommitmentsClient;
+use Google\Cloud\Compute\V1\GetRegionCommitmentRequest;
 
 /**
  * Returns the specified commitment resource.
@@ -39,10 +40,16 @@ function get_sample(string $commitment, string $project, string $region): void
     // Create a client.
     $regionCommitmentsClient = new RegionCommitmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionCommitmentRequest())
+        ->setCommitment($commitment)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var Commitment $response */
-        $response = $regionCommitmentsClient->get($commitment, $project, $region);
+        $response = $regionCommitmentsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

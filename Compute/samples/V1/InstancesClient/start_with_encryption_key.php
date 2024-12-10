@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_StartWithEncryptionKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesStartWithEncryptionKeyRequest;
+use Google\Cloud\Compute\V1\StartWithEncryptionKeyInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function start_with_encryption_key_sample(string $instance, string $project, str
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
+    $request = (new StartWithEncryptionKeyInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesStartWithEncryptionKeyRequestResource($instancesStartWithEncryptionKeyRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->startWithEncryptionKey(
-            $instance,
-            $instancesStartWithEncryptionKeyRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->startWithEncryptionKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

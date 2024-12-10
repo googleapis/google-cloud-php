@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetGrpcProxies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\ListTargetGrpcProxiesRequest;
 
 /**
  * Lists the TargetGrpcProxies for a project in the given scope.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetGrpcProxiesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetGrpcProxiesClient->list($project);
+        $response = $targetGrpcProxiesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

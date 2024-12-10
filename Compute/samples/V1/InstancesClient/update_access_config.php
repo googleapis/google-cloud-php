@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\AccessConfig;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\UpdateAccessConfigInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -46,19 +47,19 @@ function update_access_config_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $accessConfigResource = new AccessConfig();
+    $request = (new UpdateAccessConfigInstanceRequest())
+        ->setAccessConfigResource($accessConfigResource)
+        ->setInstance($instance)
+        ->setNetworkInterface($networkInterface)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->updateAccessConfig(
-            $accessConfigResource,
-            $instance,
-            $networkInterface,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->updateAccessConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

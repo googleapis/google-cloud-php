@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Instances_GetSerialPortOutput_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\GetSerialPortOutputInstanceRequest;
 use Google\Cloud\Compute\V1\SerialPortOutput;
 
 /**
@@ -39,10 +40,16 @@ function get_serial_port_output_sample(string $instance, string $project, string
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new GetSerialPortOutputInstanceRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var SerialPortOutput $response */
-        $response = $instancesClient->getSerialPortOutput($instance, $project, $zone);
+        $response = $instancesClient->getSerialPortOutput($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

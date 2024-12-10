@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_RecreateInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstanceGroupManagersRecreateInstancesRequest;
+use Google\Cloud\Compute\V1\RecreateInstancesInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function recreate_instances_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersRecreateInstancesRequestResource = new InstanceGroupManagersRecreateInstancesRequest();
+    $request = (new RecreateInstancesInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersRecreateInstancesRequestResource(
+            $instanceGroupManagersRecreateInstancesRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->recreateInstances(
-            $instanceGroupManager,
-            $instanceGroupManagersRecreateInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->recreateInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -242,6 +242,8 @@ final class RegionTargetTcpProxiesClient
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionTargetTcpProxiesClient/delete.php
+     *
      * @param DeleteRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -265,6 +267,8 @@ final class RegionTargetTcpProxiesClient
      * Returns the specified TargetTcpProxy resource.
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionTargetTcpProxiesClient/get.php
      *
      * @param GetRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -290,6 +294,8 @@ final class RegionTargetTcpProxiesClient
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionTargetTcpProxiesClient/insert.php
+     *
      * @param InsertRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -313,6 +319,8 @@ final class RegionTargetTcpProxiesClient
      * Retrieves a list of TargetTcpProxy resources available to the specified project in a given region.
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionTargetTcpProxiesClient/list.php
      *
      * @param ListRegionTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

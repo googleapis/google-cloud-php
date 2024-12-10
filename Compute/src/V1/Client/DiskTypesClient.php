@@ -184,6 +184,8 @@ final class DiskTypesClient
      *
      * The async variant is {@see DiskTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/DiskTypesClient/aggregated_list.php
+     *
      * @param AggregatedListDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -208,6 +210,8 @@ final class DiskTypesClient
      *
      * The async variant is {@see DiskTypesClient::getAsync()} .
      *
+     * @example samples/V1/DiskTypesClient/get.php
+     *
      * @param GetDiskTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -231,6 +235,8 @@ final class DiskTypesClient
      * Retrieves a list of disk types available to the specified project.
      *
      * The async variant is {@see DiskTypesClient::listAsync()} .
+     *
+     * @example samples/V1/DiskTypesClient/list.php
      *
      * @param ListDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

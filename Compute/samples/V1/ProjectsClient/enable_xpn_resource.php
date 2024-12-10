@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_EnableXpnResource_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
+use Google\Cloud\Compute\V1\EnableXpnResourceProjectRequest;
 use Google\Cloud\Compute\V1\ProjectsEnableXpnResourceRequest;
 use Google\Rpc\Status;
 
@@ -39,13 +40,16 @@ function enable_xpn_resource_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $projectsEnableXpnResourceRequestResource = new ProjectsEnableXpnResourceRequest();
+    $request = (new EnableXpnResourceProjectRequest())
+        ->setProject($project)
+        ->setProjectsEnableXpnResourceRequestResource($projectsEnableXpnResourceRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->enableXpnResource($project, $projectsEnableXpnResourceRequestResource);
+        $response = $projectsClient->enableXpnResource($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -256,6 +256,8 @@ final class NetworksClient
      *
      * The async variant is {@see NetworksClient::addPeeringAsync()} .
      *
+     * @example samples/V1/NetworksClient/add_peering.php
+     *
      * @param AddPeeringNetworkRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -279,6 +281,8 @@ final class NetworksClient
      * Deletes the specified network.
      *
      * The async variant is {@see NetworksClient::deleteAsync()} .
+     *
+     * @example samples/V1/NetworksClient/delete.php
      *
      * @param DeleteNetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -304,6 +308,8 @@ final class NetworksClient
      *
      * The async variant is {@see NetworksClient::getAsync()} .
      *
+     * @example samples/V1/NetworksClient/get.php
+     *
      * @param GetNetworkRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -327,6 +333,8 @@ final class NetworksClient
      * Returns the effective firewalls on a given network.
      *
      * The async variant is {@see NetworksClient::getEffectiveFirewallsAsync()} .
+     *
+     * @example samples/V1/NetworksClient/get_effective_firewalls.php
      *
      * @param GetEffectiveFirewallsNetworkRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -352,6 +360,8 @@ final class NetworksClient
      *
      * The async variant is {@see NetworksClient::insertAsync()} .
      *
+     * @example samples/V1/NetworksClient/insert.php
+     *
      * @param InsertNetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -375,6 +385,8 @@ final class NetworksClient
      * Retrieves the list of networks available to the specified project.
      *
      * The async variant is {@see NetworksClient::listAsync()} .
+     *
+     * @example samples/V1/NetworksClient/list.php
      *
      * @param ListNetworksRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -400,6 +412,8 @@ final class NetworksClient
      *
      * The async variant is {@see NetworksClient::listPeeringRoutesAsync()} .
      *
+     * @example samples/V1/NetworksClient/list_peering_routes.php
+     *
      * @param ListPeeringRoutesNetworksRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -423,6 +437,8 @@ final class NetworksClient
      * Patches the specified network with the data included in the request. Only routingConfig can be modified.
      *
      * The async variant is {@see NetworksClient::patchAsync()} .
+     *
+     * @example samples/V1/NetworksClient/patch.php
      *
      * @param PatchNetworkRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -448,6 +464,8 @@ final class NetworksClient
      *
      * The async variant is {@see NetworksClient::removePeeringAsync()} .
      *
+     * @example samples/V1/NetworksClient/remove_peering.php
+     *
      * @param RemovePeeringNetworkRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -472,6 +490,8 @@ final class NetworksClient
      *
      * The async variant is {@see NetworksClient::switchToCustomModeAsync()} .
      *
+     * @example samples/V1/NetworksClient/switch_to_custom_mode.php
+     *
      * @param SwitchToCustomModeNetworkRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -495,6 +515,8 @@ final class NetworksClient
      * Updates the specified network peering with the data included in the request. You can only modify the NetworkPeering.export_custom_routes field and the NetworkPeering.import_custom_routes field.
      *
      * The async variant is {@see NetworksClient::updatePeeringAsync()} .
+     *
+     * @example samples/V1/NetworksClient/update_peering.php
      *
      * @param UpdatePeeringNetworkRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

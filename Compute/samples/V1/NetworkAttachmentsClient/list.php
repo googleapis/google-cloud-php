@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkAttachments_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\ListNetworkAttachmentsRequest;
 
 /**
  * Lists the NetworkAttachments for a project in the given scope.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworkAttachmentsRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkAttachmentsClient->list($project, $region);
+        $response = $networkAttachmentsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

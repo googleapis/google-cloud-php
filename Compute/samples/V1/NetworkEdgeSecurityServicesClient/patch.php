@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEdgeSecurityServices_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NetworkEdgeSecurityServicesClient;
 use Google\Cloud\Compute\V1\NetworkEdgeSecurityService;
-use Google\Cloud\Compute\V1\NetworkEdgeSecurityServicesClient;
+use Google\Cloud\Compute\V1\PatchNetworkEdgeSecurityServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $networkEdgeSecurityService, string $project, strin
     // Create a client.
     $networkEdgeSecurityServicesClient = new NetworkEdgeSecurityServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEdgeSecurityServiceResource = new NetworkEdgeSecurityService();
+    $request = (new PatchNetworkEdgeSecurityServiceRequest())
+        ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
+        ->setNetworkEdgeSecurityServiceResource($networkEdgeSecurityServiceResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkEdgeSecurityServicesClient->patch(
-            $networkEdgeSecurityService,
-            $networkEdgeSecurityServiceResource,
-            $project,
-            $region
-        );
+        $response = $networkEdgeSecurityServicesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

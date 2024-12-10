@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicDelegatedPrefixes_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\AggregatedListPublicDelegatedPrefixesRequest;
+use Google\Cloud\Compute\V1\Client\PublicDelegatedPrefixesClient;
 
 /**
  * Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListPublicDelegatedPrefixesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $publicDelegatedPrefixesClient->aggregatedList($project);
+        $response = $publicDelegatedPrefixesClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

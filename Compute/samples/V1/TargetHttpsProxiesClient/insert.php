@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetHttpsProxies_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\InsertTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpsProxy;
 use Google\Rpc\Status;
 
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $targetHttpsProxiesClient = new TargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetHttpsProxyResource = new TargetHttpsProxy();
+    $request = (new InsertTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setTargetHttpsProxyResource($targetHttpsProxyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetHttpsProxiesClient->insert($project, $targetHttpsProxyResource);
+        $response = $targetHttpsProxiesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

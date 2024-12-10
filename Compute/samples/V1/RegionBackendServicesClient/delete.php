@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionBackendServices_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionBackendServicesClient;
+use Google\Cloud\Compute\V1\Client\RegionBackendServicesClient;
+use Google\Cloud\Compute\V1\DeleteRegionBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $backendService, string $project, string $region):
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionBackendServicesClient->delete($backendService, $project, $region);
+        $response = $regionBackendServicesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -234,6 +234,8 @@ final class RegionInstancesClient
      *
      * The async variant is {@see RegionInstancesClient::bulkInsertAsync()} .
      *
+     * @example samples/V1/RegionInstancesClient/bulk_insert.php
+     *
      * @param BulkInsertRegionInstanceRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.

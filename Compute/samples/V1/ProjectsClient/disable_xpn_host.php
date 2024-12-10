@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_DisableXpnHost_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
+use Google\Cloud\Compute\V1\DisableXpnHostProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -38,10 +39,14 @@ function disable_xpn_host_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new DisableXpnHostProjectRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->disableXpnHost($project);
+        $response = $projectsClient->disableXpnHost($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NodeTemplates_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\NodeTemplatesClient;
+use Google\Cloud\Compute\V1\Client\NodeTemplatesClient;
+use Google\Cloud\Compute\V1\GetIamPolicyNodeTemplateRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
@@ -39,10 +40,16 @@ function get_iam_policy_sample(string $project, string $region, string $resource
     // Create a client.
     $nodeTemplatesClient = new NodeTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyNodeTemplateRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $nodeTemplatesClient->getIamPolicy($project, $region, $resource);
+        $response = $nodeTemplatesClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

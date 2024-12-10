@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEdgeSecurityServices_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NetworkEdgeSecurityServicesClient;
+use Google\Cloud\Compute\V1\Client\NetworkEdgeSecurityServicesClient;
+use Google\Cloud\Compute\V1\DeleteNetworkEdgeSecurityServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,14 +41,16 @@ function delete_sample(string $networkEdgeSecurityService, string $project, stri
     // Create a client.
     $networkEdgeSecurityServicesClient = new NetworkEdgeSecurityServicesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNetworkEdgeSecurityServiceRequest())
+        ->setNetworkEdgeSecurityService($networkEdgeSecurityService)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkEdgeSecurityServicesClient->delete(
-            $networkEdgeSecurityService,
-            $project,
-            $region
-        );
+        $response = $networkEdgeSecurityServicesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

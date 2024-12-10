@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionDisks_CreateSnapshot_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionDisksClient;
+use Google\Cloud\Compute\V1\Client\RegionDisksClient;
+use Google\Cloud\Compute\V1\CreateSnapshotRegionDiskRequest;
 use Google\Cloud\Compute\V1\Snapshot;
 use Google\Rpc\Status;
 
@@ -41,13 +42,18 @@ function create_snapshot_sample(string $disk, string $project, string $region): 
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snapshotResource = new Snapshot();
+    $request = (new CreateSnapshotRegionDiskRequest())
+        ->setDisk($disk)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSnapshotResource($snapshotResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionDisksClient->createSnapshot($disk, $project, $region, $snapshotResource);
+        $response = $regionDisksClient->createSnapshot($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

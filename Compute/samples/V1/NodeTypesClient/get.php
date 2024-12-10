@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NodeTypes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\NodeTypesClient;
+use Google\Cloud\Compute\V1\GetNodeTypeRequest;
 use Google\Cloud\Compute\V1\NodeType;
-use Google\Cloud\Compute\V1\NodeTypesClient;
 
 /**
  * Returns the specified node type.
@@ -39,10 +40,16 @@ function get_sample(string $nodeType, string $project, string $zone): void
     // Create a client.
     $nodeTypesClient = new NodeTypesClient();
 
+    // Prepare the request message.
+    $request = (new GetNodeTypeRequest())
+        ->setNodeType($nodeType)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var NodeType $response */
-        $response = $nodeTypesClient->get($nodeType, $project, $zone);
+        $response = $nodeTypesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

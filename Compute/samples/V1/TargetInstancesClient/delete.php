@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetInstances_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetInstancesClient;
+use Google\Cloud\Compute\V1\Client\TargetInstancesClient;
+use Google\Cloud\Compute\V1\DeleteTargetInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $targetInstance, string $zone): v
     // Create a client.
     $targetInstancesClient = new TargetInstancesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTargetInstanceRequest())
+        ->setProject($project)
+        ->setTargetInstance($targetInstance)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetInstancesClient->delete($project, $targetInstance, $zone);
+        $response = $targetInstancesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

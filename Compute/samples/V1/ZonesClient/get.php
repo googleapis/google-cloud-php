@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Zones_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ZonesClient;
+use Google\Cloud\Compute\V1\GetZoneRequest;
 use Google\Cloud\Compute\V1\Zone;
-use Google\Cloud\Compute\V1\ZonesClient;
 
 /**
  * Returns the specified Zone resource.
@@ -38,10 +39,15 @@ function get_sample(string $project, string $zone): void
     // Create a client.
     $zonesClient = new ZonesClient();
 
+    // Prepare the request message.
+    $request = (new GetZoneRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var Zone $response */
-        $response = $zonesClient->get($project, $zone);
+        $response = $zonesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

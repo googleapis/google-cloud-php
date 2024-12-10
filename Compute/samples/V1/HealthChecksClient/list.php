@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_HealthChecks_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\HealthChecksClient;
+use Google\Cloud\Compute\V1\Client\HealthChecksClient;
+use Google\Cloud\Compute\V1\ListHealthChecksRequest;
 
 /**
  * Retrieves the list of HealthCheck resources available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $healthChecksClient = new HealthChecksClient();
 
+    // Prepare the request message.
+    $request = (new ListHealthChecksRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $healthChecksClient->list($project);
+        $response = $healthChecksClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

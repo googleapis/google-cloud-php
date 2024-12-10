@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionTargetHttpsProxies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\ListRegionTargetHttpsProxiesRequest;
 
 /**
  * Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionTargetHttpsProxiesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionTargetHttpsProxiesClient->list($project, $region);
+        $response = $regionTargetHttpsProxiesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

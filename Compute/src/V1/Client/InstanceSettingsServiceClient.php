@@ -237,6 +237,8 @@ final class InstanceSettingsServiceClient
      *
      * The async variant is {@see InstanceSettingsServiceClient::getAsync()} .
      *
+     * @example samples/V1/InstanceSettingsServiceClient/get.php
+     *
      * @param GetInstanceSettingRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -260,6 +262,8 @@ final class InstanceSettingsServiceClient
      * Patch Instance settings
      *
      * The async variant is {@see InstanceSettingsServiceClient::patchAsync()} .
+     *
+     * @example samples/V1/InstanceSettingsServiceClient/patch.php
      *
      * @param PatchInstanceSettingRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

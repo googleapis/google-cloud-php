@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_StoragePoolTypes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\StoragePoolTypesClient;
+use Google\Cloud\Compute\V1\GetStoragePoolTypeRequest;
 use Google\Cloud\Compute\V1\StoragePoolType;
-use Google\Cloud\Compute\V1\StoragePoolTypesClient;
 
 /**
  * Returns the specified storage pool type.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $storagePoolType, string $zone): voi
     // Create a client.
     $storagePoolTypesClient = new StoragePoolTypesClient();
 
+    // Prepare the request message.
+    $request = (new GetStoragePoolTypeRequest())
+        ->setProject($project)
+        ->setStoragePoolType($storagePoolType)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var StoragePoolType $response */
-        $response = $storagePoolTypesClient->get($project, $storagePoolType, $zone);
+        $response = $storagePoolTypesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

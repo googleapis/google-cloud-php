@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_UpdatePerInstanceConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstanceGroupManagersUpdatePerInstanceConfigsReq;
+use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function update_per_instance_configs_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersUpdatePerInstanceConfigsReqResource = new InstanceGroupManagersUpdatePerInstanceConfigsReq();
+    $request = (new UpdatePerInstanceConfigsInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersUpdatePerInstanceConfigsReqResource(
+            $instanceGroupManagersUpdatePerInstanceConfigsReqResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->updatePerInstanceConfigs(
-            $instanceGroupManager,
-            $instanceGroupManagersUpdatePerInstanceConfigsReqResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->updatePerInstanceConfigs($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -236,6 +236,8 @@ final class SnapshotSettingsServiceClient
      *
      * The async variant is {@see SnapshotSettingsServiceClient::getAsync()} .
      *
+     * @example samples/V1/SnapshotSettingsServiceClient/get.php
+     *
      * @param GetSnapshotSettingRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -259,6 +261,8 @@ final class SnapshotSettingsServiceClient
      * Patch snapshot settings.
      *
      * The async variant is {@see SnapshotSettingsServiceClient::patchAsync()} .
+     *
+     * @example samples/V1/SnapshotSettingsServiceClient/patch.php
      *
      * @param PatchSnapshotSettingRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

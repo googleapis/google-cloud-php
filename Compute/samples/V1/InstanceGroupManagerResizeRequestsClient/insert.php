@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagerResizeRequests_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\InsertInstanceGroupManagerResizeRequestRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
-use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestsClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function insert_sample(string $instanceGroupManager, string $project, string $zo
     // Create a client.
     $instanceGroupManagerResizeRequestsClient = new InstanceGroupManagerResizeRequestsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagerResizeRequestResource = new InstanceGroupManagerResizeRequest();
+    $request = (new InsertInstanceGroupManagerResizeRequestRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagerResizeRequestResource($instanceGroupManagerResizeRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagerResizeRequestsClient->insert(
-            $instanceGroupManager,
-            $instanceGroupManagerResizeRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagerResizeRequestsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

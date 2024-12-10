@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_MachineImages_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\MachineImagesClient;
+use Google\Cloud\Compute\V1\GetMachineImageRequest;
 use Google\Cloud\Compute\V1\MachineImage;
-use Google\Cloud\Compute\V1\MachineImagesClient;
 
 /**
  * Returns the specified machine image.
@@ -38,10 +39,15 @@ function get_sample(string $machineImage, string $project): void
     // Create a client.
     $machineImagesClient = new MachineImagesClient();
 
+    // Prepare the request message.
+    $request = (new GetMachineImageRequest())
+        ->setMachineImage($machineImage)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var MachineImage $response */
-        $response = $machineImagesClient->get($machineImage, $project);
+        $response = $machineImagesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

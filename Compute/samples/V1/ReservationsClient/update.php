@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Reservations_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ReservationsClient;
 use Google\Cloud\Compute\V1\Reservation;
-use Google\Cloud\Compute\V1\ReservationsClient;
+use Google\Cloud\Compute\V1\UpdateReservationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function update_sample(string $project, string $reservation, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $reservationResource = new Reservation();
+    $request = (new UpdateReservationRequest())
+        ->setProject($project)
+        ->setReservation($reservation)
+        ->setReservationResource($reservationResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reservationsClient->update($project, $reservation, $reservationResource, $zone);
+        $response = $reservationsClient->update($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

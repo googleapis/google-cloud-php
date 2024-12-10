@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Routers_GetNatIpInfo_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RoutersClient;
+use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\NatIpInfoResponse;
-use Google\Cloud\Compute\V1\RoutersClient;
 
 /**
  * Retrieves runtime NAT IP information.
@@ -39,10 +40,16 @@ function get_nat_ip_info_sample(string $project, string $region, string $router)
     // Create a client.
     $routersClient = new RoutersClient();
 
+    // Prepare the request message.
+    $request = (new GetNatIpInfoRouterRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRouter($router);
+
     // Call the API and handle any network failures.
     try {
         /** @var NatIpInfoResponse $response */
-        $response = $routersClient->getNatIpInfo($project, $region, $router);
+        $response = $routersClient->getNatIpInfo($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_MachineImages_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\MachineImagesClient;
+use Google\Cloud\Compute\V1\Client\MachineImagesClient;
+use Google\Cloud\Compute\V1\DeleteMachineImageRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $machineImage, string $project): void
     // Create a client.
     $machineImagesClient = new MachineImagesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMachineImageRequest())
+        ->setMachineImage($machineImage)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $machineImagesClient->delete($machineImage, $project);
+        $response = $machineImagesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

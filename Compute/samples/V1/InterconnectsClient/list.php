@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Interconnects_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InterconnectsClient;
+use Google\Cloud\Compute\V1\Client\InterconnectsClient;
+use Google\Cloud\Compute\V1\ListInterconnectsRequest;
 
 /**
  * Retrieves the list of Interconnects available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $interconnectsClient = new InterconnectsClient();
 
+    // Prepare the request message.
+    $request = (new ListInterconnectsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $interconnectsClient->list($project);
+        $response = $interconnectsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

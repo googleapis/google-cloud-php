@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendBuckets_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\BackendBucketsClient;
+use Google\Cloud\Compute\V1\Client\BackendBucketsClient;
+use Google\Cloud\Compute\V1\DeleteBackendBucketRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $backendBucket, string $project): void
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteBackendBucketRequest())
+        ->setBackendBucket($backendBucket)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendBucketsClient->delete($backendBucket, $project);
+        $response = $backendBucketsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

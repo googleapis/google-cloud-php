@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetHttpsProxies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\ListTargetHttpsProxiesRequest;
 
 /**
  * Retrieves the list of TargetHttpsProxy resources available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $targetHttpsProxiesClient = new TargetHttpsProxiesClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetHttpsProxiesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetHttpsProxiesClient->list($project);
+        $response = $targetHttpsProxiesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkFirewallPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\ListNetworkFirewallPoliciesRequest;
 
 /**
  * Lists all the policies that have been configured for the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworkFirewallPoliciesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkFirewallPoliciesClient->list($project);
+        $response = $networkFirewallPoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

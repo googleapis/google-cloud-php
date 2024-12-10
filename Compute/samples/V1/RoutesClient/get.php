@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Routes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RoutesClient;
+use Google\Cloud\Compute\V1\GetRouteRequest;
 use Google\Cloud\Compute\V1\Route;
-use Google\Cloud\Compute\V1\RoutesClient;
 
 /**
  * Returns the specified Route resource.
@@ -38,10 +39,15 @@ function get_sample(string $project, string $route): void
     // Create a client.
     $routesClient = new RoutesClient();
 
+    // Prepare the request message.
+    $request = (new GetRouteRequest())
+        ->setProject($project)
+        ->setRoute($route);
+
     // Call the API and handle any network failures.
     try {
         /** @var Route $response */
-        $response = $routesClient->get($project, $route);
+        $response = $routesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

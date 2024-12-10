@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Subnetworks_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SubnetworksClient;
+use Google\Cloud\Compute\V1\Client\SubnetworksClient;
+use Google\Cloud\Compute\V1\DeleteSubnetworkRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $subnetwork): voi
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSubnetworkRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSubnetwork($subnetwork);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $subnetworksClient->delete($project, $region, $subnetwork);
+        $response = $subnetworksClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

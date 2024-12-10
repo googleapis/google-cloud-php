@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SecurityPolicies_RemoveRule_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\RemoveRuleSecurityPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function remove_rule_sample(string $project, string $securityPolicy): void
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new RemoveRuleSecurityPolicyRequest())
+        ->setProject($project)
+        ->setSecurityPolicy($securityPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $securityPoliciesClient->removeRule($project, $securityPolicy);
+        $response = $securityPoliciesClient->removeRule($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

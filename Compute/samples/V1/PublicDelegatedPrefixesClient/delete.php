@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicDelegatedPrefixes_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\Client\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\DeletePublicDelegatedPrefixeRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $publicDelegatedPrefix, string $r
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new DeletePublicDelegatedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicDelegatedPrefix($publicDelegatedPrefix)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicDelegatedPrefixesClient->delete($project, $publicDelegatedPrefix, $region);
+        $response = $publicDelegatedPrefixesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

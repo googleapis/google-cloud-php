@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkFirewallPolicies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\DeleteNetworkFirewallPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $firewallPolicy, string $project): void
     // Create a client.
     $networkFirewallPoliciesClient = new NetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNetworkFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkFirewallPoliciesClient->delete($firewallPolicy, $project);
+        $response = $networkFirewallPoliciesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

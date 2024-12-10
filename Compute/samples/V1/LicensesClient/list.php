@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Licenses_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\LicensesClient;
+use Google\Cloud\Compute\V1\Client\LicensesClient;
+use Google\Cloud\Compute\V1\ListLicensesRequest;
 
 /**
  * Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 9. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $licensesClient = new LicensesClient();
 
+    // Prepare the request message.
+    $request = (new ListLicensesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $licensesClient->list($project);
+        $response = $licensesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

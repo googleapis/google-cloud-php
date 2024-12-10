@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\BackendService;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
+use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backendServiceResource = new BackendService();
+    $request = (new InsertBackendServiceRequest())
+        ->setBackendServiceResource($backendServiceResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendServicesClient->insert($backendServiceResource, $project);
+        $response = $backendServicesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Disks_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\DisksClient;
 use Google\Cloud\Compute\V1\Disk;
-use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\UpdateDiskRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function update_sample(string $disk, string $project, string $zone): void
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $diskResource = new Disk();
+    $request = (new UpdateDiskRequest())
+        ->setDisk($disk)
+        ->setDiskResource($diskResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $disksClient->update($disk, $diskResource, $project, $zone);
+        $response = $disksClient->update($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

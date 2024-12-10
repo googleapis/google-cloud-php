@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\InsertTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPool;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolResource = new TargetPool();
+    $request = (new InsertTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPoolResource($targetPoolResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->insert($project, $region, $targetPoolResource);
+        $response = $targetPoolsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routes_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RoutesClient;
+use Google\Cloud\Compute\V1\Client\RoutesClient;
+use Google\Cloud\Compute\V1\DeleteRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $project, string $route): void
     // Create a client.
     $routesClient = new RoutesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRouteRequest())
+        ->setProject($project)
+        ->setRoute($route);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $routesClient->delete($project, $route);
+        $response = $routesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

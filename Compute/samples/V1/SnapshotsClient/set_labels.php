@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Snapshots_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\SnapshotsClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
-use Google\Cloud\Compute\V1\SnapshotsClient;
+use Google\Cloud\Compute\V1\SetLabelsSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function set_labels_sample(string $project, string $resource): void
     // Create a client.
     $snapshotsClient = new SnapshotsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+    $request = (new SetLabelsSnapshotRequest())
+        ->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource)
+        ->setProject($project)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $snapshotsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+        $response = $snapshotsClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

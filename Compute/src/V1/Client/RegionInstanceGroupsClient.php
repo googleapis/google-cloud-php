@@ -242,6 +242,8 @@ final class RegionInstanceGroupsClient
      *
      * The async variant is {@see RegionInstanceGroupsClient::getAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupsClient/get.php
+     *
      * @param GetRegionInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -265,6 +267,8 @@ final class RegionInstanceGroupsClient
      * Retrieves the list of instance group resources contained within the specified region.
      *
      * The async variant is {@see RegionInstanceGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupsClient/list.php
      *
      * @param ListRegionInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -290,6 +294,8 @@ final class RegionInstanceGroupsClient
      *
      * The async variant is {@see RegionInstanceGroupsClient::listInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupsClient/list_instances.php
+     *
      * @param ListInstancesRegionInstanceGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -313,6 +319,8 @@ final class RegionInstanceGroupsClient
      * Sets the named ports for the specified regional instance group.
      *
      * The async variant is {@see RegionInstanceGroupsClient::setNamedPortsAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupsClient/set_named_ports.php
      *
      * @param SetNamedPortsRegionInstanceGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

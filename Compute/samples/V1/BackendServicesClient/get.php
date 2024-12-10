@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_Get_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\BackendService;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
+use Google\Cloud\Compute\V1\GetBackendServiceRequest;
 
 /**
  * Returns the specified BackendService resource.
@@ -38,10 +39,15 @@ function get_sample(string $backendService, string $project): void
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
+    // Prepare the request message.
+    $request = (new GetBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var BackendService $response */
-        $response = $backendServicesClient->get($backendService, $project);
+        $response = $backendServicesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

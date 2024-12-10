@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Images_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ImagesClient;
 use Google\Cloud\Compute\V1\Image;
-use Google\Cloud\Compute\V1\ImagesClient;
+use Google\Cloud\Compute\V1\PatchImageRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function patch_sample(string $image, string $project): void
     // Create a client.
     $imagesClient = new ImagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $imageResource = new Image();
+    $request = (new PatchImageRequest())
+        ->setImage($image)
+        ->setImageResource($imageResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $imagesClient->patch($image, $imageResource, $project);
+        $response = $imagesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

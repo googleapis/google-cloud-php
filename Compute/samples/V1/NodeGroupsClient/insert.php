@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
+use Google\Cloud\Compute\V1\InsertNodeGroupRequest;
 use Google\Cloud\Compute\V1\NodeGroup;
-use Google\Cloud\Compute\V1\NodeGroupsClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function insert_sample(int $initialNodeCount, string $project, string $zone): vo
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupResource = new NodeGroup();
+    $request = (new InsertNodeGroupRequest())
+        ->setInitialNodeCount($initialNodeCount)
+        ->setNodeGroupResource($nodeGroupResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->insert($initialNodeCount, $nodeGroupResource, $project, $zone);
+        $response = $nodeGroupsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

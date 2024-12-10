@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesSetLabelsRequest;
+use Google\Cloud\Compute\V1\SetLabelsInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_labels_sample(string $instance, string $project, string $zone): voi
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
+    $request = (new SetLabelsInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesSetLabelsRequestResource($instancesSetLabelsRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setLabels(
-            $instance,
-            $instancesSetLabelsRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

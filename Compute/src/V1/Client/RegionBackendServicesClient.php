@@ -261,6 +261,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/delete.php
+     *
      * @param DeleteRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -284,6 +286,8 @@ final class RegionBackendServicesClient
      * Returns the specified regional BackendService resource.
      *
      * The async variant is {@see RegionBackendServicesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/get.php
      *
      * @param GetRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -309,6 +313,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::getHealthAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/get_health.php
+     *
      * @param GetHealthRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -332,6 +338,8 @@ final class RegionBackendServicesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see RegionBackendServicesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/get_iam_policy.php
      *
      * @param GetIamPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -357,6 +365,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/insert.php
+     *
      * @param InsertRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -380,6 +390,8 @@ final class RegionBackendServicesClient
      * Retrieves the list of regional BackendService resources available to the specified project in the given region.
      *
      * The async variant is {@see RegionBackendServicesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/list.php
      *
      * @param ListRegionBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -405,6 +417,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::listUsableAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/list_usable.php
+     *
      * @param ListUsableRegionBackendServicesRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -429,6 +443,8 @@ final class RegionBackendServicesClient
      *
      * The async variant is {@see RegionBackendServicesClient::patchAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/patch.php
+     *
      * @param PatchRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -452,6 +468,8 @@ final class RegionBackendServicesClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see RegionBackendServicesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/set_iam_policy.php
      *
      * @param SetIamPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -478,6 +496,8 @@ final class RegionBackendServicesClient
      * The async variant is
      * {@see RegionBackendServicesClient::setSecurityPolicyAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/set_security_policy.php
+     *
      * @param SetSecurityPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -503,6 +523,8 @@ final class RegionBackendServicesClient
      * The async variant is
      * {@see RegionBackendServicesClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/RegionBackendServicesClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -526,6 +548,8 @@ final class RegionBackendServicesClient
      * Updates the specified regional BackendService resource with the data included in the request. For more information, see Backend services overview .
      *
      * The async variant is {@see RegionBackendServicesClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionBackendServicesClient/update.php
      *
      * @param UpdateRegionBackendServiceRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

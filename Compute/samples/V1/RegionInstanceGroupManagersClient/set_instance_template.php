@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_SetInstanceTemplate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
+use Google\Cloud\Compute\V1\SetInstanceTemplateRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function set_instance_template_sample(
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionInstanceGroupManagersSetTemplateRequestResource = new RegionInstanceGroupManagersSetTemplateRequest();
+    $request = (new SetInstanceTemplateRegionInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionInstanceGroupManagersSetTemplateRequestResource(
+            $regionInstanceGroupManagersSetTemplateRequestResource
+        );
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->setInstanceTemplate(
-            $instanceGroupManager,
-            $project,
-            $region,
-            $regionInstanceGroupManagersSetTemplateRequestResource
-        );
+        $response = $regionInstanceGroupManagersClient->setInstanceTemplate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

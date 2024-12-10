@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagerResizeRequests_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\ListInstanceGroupManagerResizeRequestsRequest;
 
 /**
  * Retrieves a list of resize requests that are contained in the managed instance group.
@@ -39,10 +40,16 @@ function list_sample(string $instanceGroupManager, string $project, string $zone
     // Create a client.
     $instanceGroupManagerResizeRequestsClient = new InstanceGroupManagerResizeRequestsClient();
 
+    // Prepare the request message.
+    $request = (new ListInstanceGroupManagerResizeRequestsRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instanceGroupManagerResizeRequestsClient->list($instanceGroupManager, $project, $zone);
+        $response = $instanceGroupManagerResizeRequestsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

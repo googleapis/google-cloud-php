@@ -249,6 +249,8 @@ final class RegionUrlMapsClient
      *
      * The async variant is {@see RegionUrlMapsClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionUrlMapsClient/delete.php
+     *
      * @param DeleteRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -272,6 +274,8 @@ final class RegionUrlMapsClient
      * Returns the specified UrlMap resource.
      *
      * The async variant is {@see RegionUrlMapsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionUrlMapsClient/get.php
      *
      * @param GetRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -297,6 +301,8 @@ final class RegionUrlMapsClient
      *
      * The async variant is {@see RegionUrlMapsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionUrlMapsClient/insert.php
+     *
      * @param InsertRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -320,6 +326,8 @@ final class RegionUrlMapsClient
      * Retrieves the list of UrlMap resources available to the specified project in the specified region.
      *
      * The async variant is {@see RegionUrlMapsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionUrlMapsClient/list.php
      *
      * @param ListRegionUrlMapsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -345,6 +353,8 @@ final class RegionUrlMapsClient
      *
      * The async variant is {@see RegionUrlMapsClient::patchAsync()} .
      *
+     * @example samples/V1/RegionUrlMapsClient/patch.php
+     *
      * @param PatchRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -369,6 +379,8 @@ final class RegionUrlMapsClient
      *
      * The async variant is {@see RegionUrlMapsClient::updateAsync()} .
      *
+     * @example samples/V1/RegionUrlMapsClient/update.php
+     *
      * @param UpdateRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -392,6 +404,8 @@ final class RegionUrlMapsClient
      * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
      *
      * The async variant is {@see RegionUrlMapsClient::validateAsync()} .
+     *
+     * @example samples/V1/RegionUrlMapsClient/validate.php
      *
      * @param ValidateRegionUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_ListPerInstanceConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\ListPerInstanceConfigsInstanceGroupManagersRequest;
 
 /**
  * Lists all of the per-instance configurations defined for the managed instance group. The orderBy query parameter is not supported.
@@ -42,14 +43,16 @@ function list_per_instance_configs_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
+    // Prepare the request message.
+    $request = (new ListPerInstanceConfigsInstanceGroupManagersRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instanceGroupManagersClient->listPerInstanceConfigs(
-            $instanceGroupManager,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->listPerInstanceConfigs($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionNetworkFirewallPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\ListRegionNetworkFirewallPoliciesRequest;
 
 /**
  * Lists all the network firewall policies that have been configured for the specified project in the given region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionNetworkFirewallPoliciesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionNetworkFirewallPoliciesClient->list($project, $region);
+        $response = $regionNetworkFirewallPoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -254,6 +254,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/aggregated_list.php
+     *
      * @param AggregatedListNetworkAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -277,6 +279,8 @@ final class NetworkAttachmentsClient
      * Deletes the specified NetworkAttachment in the given scope
      *
      * The async variant is {@see NetworkAttachmentsClient::deleteAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/delete.php
      *
      * @param DeleteNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -302,6 +306,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::getAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/get.php
+     *
      * @param GetNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -325,6 +331,8 @@ final class NetworkAttachmentsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NetworkAttachmentsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/get_iam_policy.php
      *
      * @param GetIamPolicyNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -350,6 +358,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::insertAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/insert.php
+     *
      * @param InsertNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -373,6 +383,8 @@ final class NetworkAttachmentsClient
      * Lists the NetworkAttachments for a project in the given scope.
      *
      * The async variant is {@see NetworkAttachmentsClient::listAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/list.php
      *
      * @param ListNetworkAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -398,6 +410,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::patchAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/patch.php
+     *
      * @param PatchNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -421,6 +435,8 @@ final class NetworkAttachmentsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see NetworkAttachmentsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/set_iam_policy.php
      *
      * @param SetIamPolicyNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -446,6 +462,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {

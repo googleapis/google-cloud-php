@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Licenses_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\LicensesClient;
+use Google\Cloud\Compute\V1\InsertLicenseRequest;
 use Google\Cloud\Compute\V1\License;
-use Google\Cloud\Compute\V1\LicensesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $licensesClient = new LicensesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $licenseResource = new License();
+    $request = (new InsertLicenseRequest())
+        ->setLicenseResource($licenseResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $licensesClient->insert($licenseResource, $project);
+        $response = $licensesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

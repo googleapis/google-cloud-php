@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RoutesClient;
+use Google\Cloud\Compute\V1\Client\RoutesClient;
+use Google\Cloud\Compute\V1\ListRoutesRequest;
 
 /**
  * Retrieves the list of Route resources available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $routesClient = new RoutesClient();
 
+    // Prepare the request message.
+    $request = (new ListRoutesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $routesClient->list($project);
+        $response = $routesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionCommitments_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionCommitmentsClient;
+use Google\Cloud\Compute\V1\Client\RegionCommitmentsClient;
+use Google\Cloud\Compute\V1\ListRegionCommitmentsRequest;
 
 /**
  * Retrieves a list of commitments contained within the specified region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionCommitmentsClient = new RegionCommitmentsClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionCommitmentsRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionCommitmentsClient->list($project, $region);
+        $response = $regionCommitmentsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

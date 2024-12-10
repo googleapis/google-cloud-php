@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SecurityPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\ListSecurityPoliciesRequest;
 
 /**
  * List all the policies that have been configured for the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListSecurityPoliciesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityPoliciesClient->list($project);
+        $response = $securityPoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

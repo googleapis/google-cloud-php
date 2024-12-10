@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalNetworkEndpointGroups_ListNetworkEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\GlobalNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest;
 
 /**
  * Lists the network endpoints in the specified network endpoint group.
@@ -38,13 +39,15 @@ function list_network_endpoints_sample(string $networkEndpointGroup, string $pro
     // Create a client.
     $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworkEndpointsGlobalNetworkEndpointGroupsRequest())
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $globalNetworkEndpointGroupsClient->listNetworkEndpoints(
-            $networkEndpointGroup,
-            $project
-        );
+        $response = $globalNetworkEndpointGroupsClient->listNetworkEndpoints($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

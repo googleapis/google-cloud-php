@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_CreateInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\CreateInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersCreateInstancesRequest;
 use Google\Rpc\Status;
 
@@ -44,18 +45,20 @@ function create_instances_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersCreateInstancesRequestResource = new InstanceGroupManagersCreateInstancesRequest();
+    $request = (new CreateInstancesInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersCreateInstancesRequestResource(
+            $instanceGroupManagersCreateInstancesRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->createInstances(
-            $instanceGroupManager,
-            $instanceGroupManagersCreateInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->createInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

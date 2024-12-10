@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetTags_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\SetTagsInstanceRequest;
 use Google\Cloud\Compute\V1\Tags;
 use Google\Rpc\Status;
 
@@ -41,13 +42,18 @@ function set_tags_sample(string $instance, string $project, string $zone): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagsResource = new Tags();
+    $request = (new SetTagsInstanceRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setTagsResource($tagsResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setTags($instance, $project, $tagsResource, $zone);
+        $response = $instancesClient->setTags($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

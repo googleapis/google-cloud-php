@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicAdvertisedPrefixes_Announce_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\PublicAdvertisedPrefixesClient;
+use Google\Cloud\Compute\V1\AnnouncePublicAdvertisedPrefixeRequest;
+use Google\Cloud\Compute\V1\Client\PublicAdvertisedPrefixesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function announce_sample(string $project, string $publicAdvertisedPrefix): void
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new AnnouncePublicAdvertisedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicAdvertisedPrefixesClient->announce($project, $publicAdvertisedPrefix);
+        $response = $publicAdvertisedPrefixesClient->announce($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -255,6 +255,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::addRuleAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/add_rule.php
+     *
      * @param AddRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -278,6 +280,8 @@ final class RegionSecurityPoliciesClient
      * Deletes the specified policy.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/delete.php
      *
      * @param DeleteRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -303,6 +307,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::getAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/get.php
+     *
      * @param GetRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -326,6 +332,8 @@ final class RegionSecurityPoliciesClient
      * Gets a rule at the specified priority.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::getRuleAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/get_rule.php
      *
      * @param GetRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -351,6 +359,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/insert.php
+     *
      * @param InsertRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -374,6 +384,8 @@ final class RegionSecurityPoliciesClient
      * List all the policies that have been configured for the specified project and region.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/list.php
      *
      * @param ListRegionSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -399,6 +411,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::patchAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/patch.php
+     *
      * @param PatchRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -422,6 +436,8 @@ final class RegionSecurityPoliciesClient
      * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::patchRuleAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/patch_rule.php
      *
      * @param PatchRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -447,6 +463,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::removeRuleAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/remove_rule.php
+     *
      * @param RemoveRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -470,6 +488,8 @@ final class RegionSecurityPoliciesClient
      * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/set_labels.php
      *
      * @param SetLabelsRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

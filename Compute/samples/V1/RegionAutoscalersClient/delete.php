@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionAutoscalers_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionAutoscalersClient;
+use Google\Cloud\Compute\V1\Client\RegionAutoscalersClient;
+use Google\Cloud\Compute\V1\DeleteRegionAutoscalerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $autoscaler, string $project, string $region): voi
     // Create a client.
     $regionAutoscalersClient = new RegionAutoscalersClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionAutoscalerRequest())
+        ->setAutoscaler($autoscaler)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionAutoscalersClient->delete($autoscaler, $project, $region);
+        $response = $regionAutoscalersClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

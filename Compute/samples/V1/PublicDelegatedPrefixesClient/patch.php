@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicDelegatedPrefixes_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\PatchPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $project, string $publicDelegatedPrefix, string $re
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
+    $request = (new PatchPublicDelegatedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicDelegatedPrefix($publicDelegatedPrefix)
+        ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicDelegatedPrefixesClient->patch(
-            $project,
-            $publicDelegatedPrefix,
-            $publicDelegatedPrefixResource,
-            $region
-        );
+        $response = $publicDelegatedPrefixesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

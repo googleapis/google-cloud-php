@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionSecurityPolicies_GetRule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\GetRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
 
 /**
@@ -39,10 +40,16 @@ function get_rule_sample(string $project, string $region, string $securityPolicy
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetRuleRegionSecurityPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicy($securityPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var SecurityPolicyRule $response */
-        $response = $regionSecurityPoliciesClient->getRule($project, $region, $securityPolicy);
+        $response = $regionSecurityPoliciesClient->getRule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

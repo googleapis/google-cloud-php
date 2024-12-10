@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_ListUsable_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
+use Google\Cloud\Compute\V1\ListUsableBackendServicesRequest;
 
 /**
  * Retrieves a list of all usable backend services in the specified project.
@@ -37,10 +38,14 @@ function list_usable_sample(string $project): void
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
+    // Prepare the request message.
+    $request = (new ListUsableBackendServicesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $backendServicesClient->listUsable($project);
+        $response = $backendServicesClient->listUsable($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

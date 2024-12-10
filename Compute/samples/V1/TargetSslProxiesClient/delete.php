@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetSslProxies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\DeleteTargetSslProxyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $project, string $targetSslProxy): void
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTargetSslProxyRequest())
+        ->setProject($project)
+        ->setTargetSslProxy($targetSslProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetSslProxiesClient->delete($project, $targetSslProxy);
+        $response = $targetSslProxiesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

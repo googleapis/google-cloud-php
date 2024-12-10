@@ -184,6 +184,8 @@ final class GlobalOrganizationOperationsClient
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::deleteAsync()} .
      *
+     * @example samples/V1/GlobalOrganizationOperationsClient/delete.php
+     *
      * @param DeleteGlobalOrganizationOperationRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -208,6 +210,8 @@ final class GlobalOrganizationOperationsClient
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::getAsync()} .
      *
+     * @example samples/V1/GlobalOrganizationOperationsClient/get.php
+     *
      * @param GetGlobalOrganizationOperationRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -231,6 +235,8 @@ final class GlobalOrganizationOperationsClient
      * Retrieves a list of Operation resources contained within the specified organization.
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalOrganizationOperationsClient/list.php
      *
      * @param ListGlobalOrganizationOperationsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

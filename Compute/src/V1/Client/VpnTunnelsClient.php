@@ -246,6 +246,8 @@ final class VpnTunnelsClient
      *
      * The async variant is {@see VpnTunnelsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/VpnTunnelsClient/aggregated_list.php
+     *
      * @param AggregatedListVpnTunnelsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -269,6 +271,8 @@ final class VpnTunnelsClient
      * Deletes the specified VpnTunnel resource.
      *
      * The async variant is {@see VpnTunnelsClient::deleteAsync()} .
+     *
+     * @example samples/V1/VpnTunnelsClient/delete.php
      *
      * @param DeleteVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -294,6 +298,8 @@ final class VpnTunnelsClient
      *
      * The async variant is {@see VpnTunnelsClient::getAsync()} .
      *
+     * @example samples/V1/VpnTunnelsClient/get.php
+     *
      * @param GetVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -317,6 +323,8 @@ final class VpnTunnelsClient
      * Creates a VpnTunnel resource in the specified project and region using the data included in the request.
      *
      * The async variant is {@see VpnTunnelsClient::insertAsync()} .
+     *
+     * @example samples/V1/VpnTunnelsClient/insert.php
      *
      * @param InsertVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -342,6 +350,8 @@ final class VpnTunnelsClient
      *
      * The async variant is {@see VpnTunnelsClient::listAsync()} .
      *
+     * @example samples/V1/VpnTunnelsClient/list.php
+     *
      * @param ListVpnTunnelsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -365,6 +375,8 @@ final class VpnTunnelsClient
      * Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see VpnTunnelsClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/VpnTunnelsClient/set_labels.php
      *
      * @param SetLabelsVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

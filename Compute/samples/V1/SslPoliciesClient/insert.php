@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SslPolicies_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SslPoliciesClient;
+use Google\Cloud\Compute\V1\InsertSslPolicyRequest;
 use Google\Cloud\Compute\V1\SslPolicy;
 use Google\Rpc\Status;
 
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $sslPoliciesClient = new SslPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sslPolicyResource = new SslPolicy();
+    $request = (new InsertSslPolicyRequest())
+        ->setProject($project)
+        ->setSslPolicyResource($sslPolicyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $sslPoliciesClient->insert($project, $sslPolicyResource);
+        $response = $sslPoliciesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

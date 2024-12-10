@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetTcpProxies_SetProxyHeader_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\SetProxyHeaderTargetTcpProxyRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxiesSetProxyHeaderRequest;
 use Google\Rpc\Status;
 
@@ -40,17 +41,17 @@ function set_proxy_header_sample(string $project, string $targetTcpProxy): void
     // Create a client.
     $targetTcpProxiesClient = new TargetTcpProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetTcpProxiesSetProxyHeaderRequestResource = new TargetTcpProxiesSetProxyHeaderRequest();
+    $request = (new SetProxyHeaderTargetTcpProxyRequest())
+        ->setProject($project)
+        ->setTargetTcpProxiesSetProxyHeaderRequestResource($targetTcpProxiesSetProxyHeaderRequestResource)
+        ->setTargetTcpProxy($targetTcpProxy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetTcpProxiesClient->setProxyHeader(
-            $project,
-            $targetTcpProxiesSetProxyHeaderRequestResource,
-            $targetTcpProxy
-        );
+        $response = $targetTcpProxiesClient->setProxyHeader($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

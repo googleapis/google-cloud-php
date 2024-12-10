@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstantSnapshots_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionInstantSnapshotsClient;
+use Google\Cloud\Compute\V1\InsertRegionInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\InstantSnapshot;
-use Google\Cloud\Compute\V1\RegionInstantSnapshotsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionInstantSnapshotsClient = new RegionInstantSnapshotsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instantSnapshotResource = new InstantSnapshot();
+    $request = (new InsertRegionInstantSnapshotRequest())
+        ->setInstantSnapshotResource($instantSnapshotResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstantSnapshotsClient->insert($instantSnapshotResource, $project, $region);
+        $response = $regionInstantSnapshotsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

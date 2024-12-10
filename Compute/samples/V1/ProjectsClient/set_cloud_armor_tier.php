@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_SetCloudArmorTier_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\ProjectsSetCloudArmorTierRequest;
+use Google\Cloud\Compute\V1\SetCloudArmorTierProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function set_cloud_armor_tier_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $projectsSetCloudArmorTierRequestResource = new ProjectsSetCloudArmorTierRequest();
+    $request = (new SetCloudArmorTierProjectRequest())
+        ->setProject($project)
+        ->setProjectsSetCloudArmorTierRequestResource($projectsSetCloudArmorTierRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->setCloudArmorTier($project, $projectsSetCloudArmorTierRequestResource);
+        $response = $projectsClient->setCloudArmorTier($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

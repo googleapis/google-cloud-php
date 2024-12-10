@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionNetworkFirewallPolicies_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
 
 /**
  * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
@@ -39,10 +40,16 @@ function get_iam_policy_sample(string $project, string $region, string $resource
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRegionNetworkFirewallPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $regionNetworkFirewallPoliciesClient->getIamPolicy($project, $region, $resource);
+        $response = $regionNetworkFirewallPoliciesClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

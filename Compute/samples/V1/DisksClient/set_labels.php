@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Disks_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\Client\DisksClient;
+use Google\Cloud\Compute\V1\SetLabelsDiskRequest;
 use Google\Cloud\Compute\V1\ZoneSetLabelsRequest;
 use Google\Rpc\Status;
 
@@ -41,13 +42,18 @@ function set_labels_sample(string $project, string $resource, string $zone): voi
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
+    $request = (new SetLabelsDiskRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setZone($zone)
+        ->setZoneSetLabelsRequestResource($zoneSetLabelsRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $disksClient->setLabels($project, $resource, $zone, $zoneSetLabelsRequestResource);
+        $response = $disksClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

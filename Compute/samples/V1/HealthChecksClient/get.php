@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_HealthChecks_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\HealthChecksClient;
+use Google\Cloud\Compute\V1\GetHealthCheckRequest;
 use Google\Cloud\Compute\V1\HealthCheck;
-use Google\Cloud\Compute\V1\HealthChecksClient;
 
 /**
  * Returns the specified HealthCheck resource.
@@ -38,10 +39,15 @@ function get_sample(string $healthCheck, string $project): void
     // Create a client.
     $healthChecksClient = new HealthChecksClient();
 
+    // Prepare the request message.
+    $request = (new GetHealthCheckRequest())
+        ->setHealthCheck($healthCheck)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var HealthCheck $response */
-        $response = $healthChecksClient->get($healthCheck, $project);
+        $response = $healthChecksClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

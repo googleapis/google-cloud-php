@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_RemoveResourcePolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function remove_resource_policies_sample(string $instance, string $project, stri
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
+    $request = (new RemoveResourcePoliciesInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesRemoveResourcePoliciesRequestResource($instancesRemoveResourcePoliciesRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->removeResourcePolicies(
-            $instance,
-            $instancesRemoveResourcePoliciesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->removeResourcePolicies($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

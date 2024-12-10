@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalNetworkEndpointGroups_DetachNetworkEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\GlobalNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsDetachEndpointsRequest;
 use Google\Rpc\Status;
 
@@ -40,17 +41,19 @@ function detach_network_endpoints_sample(string $networkEndpointGroup, string $p
     // Create a client.
     $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalNetworkEndpointGroupsDetachEndpointsRequestResource = new GlobalNetworkEndpointGroupsDetachEndpointsRequest();
+    $request = (new DetachNetworkEndpointsGlobalNetworkEndpointGroupRequest())
+        ->setGlobalNetworkEndpointGroupsDetachEndpointsRequestResource(
+            $globalNetworkEndpointGroupsDetachEndpointsRequestResource
+        )
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $globalNetworkEndpointGroupsClient->detachNetworkEndpoints(
-            $globalNetworkEndpointGroupsDetachEndpointsRequestResource,
-            $networkEndpointGroup,
-            $project
-        );
+        $response = $globalNetworkEndpointGroupsClient->detachNetworkEndpoints($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

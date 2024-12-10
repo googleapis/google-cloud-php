@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionUrlMaps_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionUrlMapsClient;
+use Google\Cloud\Compute\V1\Client\RegionUrlMapsClient;
+use Google\Cloud\Compute\V1\GetRegionUrlMapRequest;
 use Google\Cloud\Compute\V1\UrlMap;
 
 /**
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $urlMap): void
     // Create a client.
     $regionUrlMapsClient = new RegionUrlMapsClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionUrlMapRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setUrlMap($urlMap);
+
     // Call the API and handle any network failures.
     try {
         /** @var UrlMap $response */
-        $response = $regionUrlMapsClient->get($project, $region, $urlMap);
+        $response = $regionUrlMapsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

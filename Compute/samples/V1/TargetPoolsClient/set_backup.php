@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_SetBackup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\SetBackupTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetReference;
 use Google\Rpc\Status;
 
@@ -41,13 +42,18 @@ function set_backup_sample(string $project, string $region, string $targetPool):
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetReferenceResource = new TargetReference();
+    $request = (new SetBackupTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool)
+        ->setTargetReferenceResource($targetReferenceResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->setBackup($project, $region, $targetPool, $targetReferenceResource);
+        $response = $targetPoolsClient->setBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

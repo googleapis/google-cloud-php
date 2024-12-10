@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEndpointGroups_ListNetworkEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\ListNetworkEndpointsNetworkEndpointGroupsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsListEndpointsRequest;
 
 /**
@@ -43,18 +44,20 @@ function list_network_endpoints_sample(
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEndpointGroupsListEndpointsRequestResource = new NetworkEndpointGroupsListEndpointsRequest();
+    $request = (new ListNetworkEndpointsNetworkEndpointGroupsRequest())
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setNetworkEndpointGroupsListEndpointsRequestResource(
+            $networkEndpointGroupsListEndpointsRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkEndpointGroupsClient->listNetworkEndpoints(
-            $networkEndpointGroup,
-            $networkEndpointGroupsListEndpointsRequestResource,
-            $project,
-            $zone
-        );
+        $response = $networkEndpointGroupsClient->listNetworkEndpoints($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

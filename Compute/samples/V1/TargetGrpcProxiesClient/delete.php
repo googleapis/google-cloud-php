@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetGrpcProxies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\DeleteTargetGrpcProxyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $project, string $targetGrpcProxy): void
     // Create a client.
     $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTargetGrpcProxyRequest())
+        ->setProject($project)
+        ->setTargetGrpcProxy($targetGrpcProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
+        $response = $targetGrpcProxiesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

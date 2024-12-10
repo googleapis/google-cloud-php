@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionSslPolicies_ListAvailableFeatures_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionSslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSslPoliciesClient;
+use Google\Cloud\Compute\V1\ListAvailableFeaturesRegionSslPoliciesRequest;
 use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
 
 /**
@@ -38,10 +39,15 @@ function list_available_features_sample(string $project, string $region): void
     // Create a client.
     $regionSslPoliciesClient = new RegionSslPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListAvailableFeaturesRegionSslPoliciesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var SslPoliciesListAvailableFeaturesResponse $response */
-        $response = $regionSslPoliciesClient->listAvailableFeatures($project, $region);
+        $response = $regionSslPoliciesClient->listAvailableFeatures($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

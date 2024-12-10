@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSecurityPolicies_AddRule_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\AddRuleRegionSecurityPolicyRequest;
+use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function add_rule_sample(string $project, string $region, string $securityPolicy
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyRuleResource = new SecurityPolicyRule();
+    $request = (new AddRuleRegionSecurityPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicy($securityPolicy)
+        ->setSecurityPolicyRuleResource($securityPolicyRuleResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSecurityPoliciesClient->addRule(
-            $project,
-            $region,
-            $securityPolicy,
-            $securityPolicyRuleResource
-        );
+        $response = $regionSecurityPoliciesClient->addRule($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

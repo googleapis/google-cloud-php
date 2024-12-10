@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_UrlMaps_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\UrlMapsClient;
+use Google\Cloud\Compute\V1\GetUrlMapRequest;
 use Google\Cloud\Compute\V1\UrlMap;
-use Google\Cloud\Compute\V1\UrlMapsClient;
 
 /**
  * Returns the specified UrlMap resource.
@@ -38,10 +39,15 @@ function get_sample(string $project, string $urlMap): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
+    // Prepare the request message.
+    $request = (new GetUrlMapRequest())
+        ->setProject($project)
+        ->setUrlMap($urlMap);
+
     // Call the API and handle any network failures.
     try {
         /** @var UrlMap $response */
-        $response = $urlMapsClient->get($project, $urlMap);
+        $response = $urlMapsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

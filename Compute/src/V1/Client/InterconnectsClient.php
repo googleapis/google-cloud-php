@@ -251,6 +251,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::deleteAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/delete.php
+     *
      * @param DeleteInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -274,6 +276,8 @@ final class InterconnectsClient
      * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
      *
      * The async variant is {@see InterconnectsClient::getAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/get.php
      *
      * @param GetInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -299,6 +303,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::getDiagnosticsAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/get_diagnostics.php
+     *
      * @param GetDiagnosticsInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -322,6 +328,8 @@ final class InterconnectsClient
      * Returns the interconnectMacsecConfig for the specified Interconnect.
      *
      * The async variant is {@see InterconnectsClient::getMacsecConfigAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/get_macsec_config.php
      *
      * @param GetMacsecConfigInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -347,6 +355,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::insertAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/insert.php
+     *
      * @param InsertInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -370,6 +380,8 @@ final class InterconnectsClient
      * Retrieves the list of Interconnects available to the specified project.
      *
      * The async variant is {@see InterconnectsClient::listAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/list.php
      *
      * @param ListInterconnectsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -395,6 +407,8 @@ final class InterconnectsClient
      *
      * The async variant is {@see InterconnectsClient::patchAsync()} .
      *
+     * @example samples/V1/InterconnectsClient/patch.php
+     *
      * @param PatchInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -418,6 +432,8 @@ final class InterconnectsClient
      * Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see InterconnectsClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/InterconnectsClient/set_labels.php
      *
      * @param SetLabelsInterconnectRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

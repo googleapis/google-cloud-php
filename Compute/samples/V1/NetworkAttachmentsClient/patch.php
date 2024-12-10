@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkAttachments_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient;
 use Google\Cloud\Compute\V1\NetworkAttachment;
-use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\PatchNetworkAttachmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $networkAttachment, string $project, string $region
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkAttachmentResource = new NetworkAttachment();
+    $request = (new PatchNetworkAttachmentRequest())
+        ->setNetworkAttachment($networkAttachment)
+        ->setNetworkAttachmentResource($networkAttachmentResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkAttachmentsClient->patch(
-            $networkAttachment,
-            $networkAttachmentResource,
-            $project,
-            $region
-        );
+        $response = $networkAttachmentsClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

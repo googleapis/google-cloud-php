@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetHttpsProxies_SetSslPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\SetSslPolicyTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\SslPolicyReference;
-use Google\Cloud\Compute\V1\TargetHttpsProxiesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,17 +41,17 @@ function set_ssl_policy_sample(string $project, string $targetHttpsProxy): void
     // Create a client.
     $targetHttpsProxiesClient = new TargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sslPolicyReferenceResource = new SslPolicyReference();
+    $request = (new SetSslPolicyTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setSslPolicyReferenceResource($sslPolicyReferenceResource)
+        ->setTargetHttpsProxy($targetHttpsProxy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetHttpsProxiesClient->setSslPolicy(
-            $project,
-            $sslPolicyReferenceResource,
-            $targetHttpsProxy
-        );
+        $response = $targetHttpsProxiesClient->setSslPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

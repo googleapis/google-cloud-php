@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalOperations_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\ListGlobalOperationsRequest;
 
 /**
  * Retrieves a list of Operation resources contained within the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $globalOperationsClient = new GlobalOperationsClient();
 
+    // Prepare the request message.
+    $request = (new ListGlobalOperationsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $globalOperationsClient->list($project);
+        $response = $globalOperationsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

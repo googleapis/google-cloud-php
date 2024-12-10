@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_ListErrors_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\ListErrorsRegionInstanceGroupManagersRequest;
 
 /**
  * Lists all errors thrown by actions on instances for a given regional managed instance group. The filter and orderBy query parameters are not supported.
@@ -39,14 +40,16 @@ function list_errors_sample(string $instanceGroupManager, string $project, strin
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
+    // Prepare the request message.
+    $request = (new ListErrorsRegionInstanceGroupManagersRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupManagersClient->listErrors(
-            $instanceGroupManager,
-            $project,
-            $region
-        );
+        $response = $regionInstanceGroupManagersClient->listErrors($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

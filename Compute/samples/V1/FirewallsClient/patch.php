@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Firewalls_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\FirewallsClient;
 use Google\Cloud\Compute\V1\Firewall;
-use Google\Cloud\Compute\V1\FirewallsClient;
+use Google\Cloud\Compute\V1\PatchFirewallRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function patch_sample(string $firewall, string $project): void
     // Create a client.
     $firewallsClient = new FirewallsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallResource = new Firewall();
+    $request = (new PatchFirewallRequest())
+        ->setFirewall($firewall)
+        ->setFirewallResource($firewallResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallsClient->patch($firewall, $firewallResource, $project);
+        $response = $firewallsClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

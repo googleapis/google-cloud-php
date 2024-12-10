@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionDisks_StopGroupAsyncReplication_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionDisksClient;
 use Google\Cloud\Compute\V1\DisksStopGroupAsyncReplicationResource;
-use Google\Cloud\Compute\V1\RegionDisksClient;
+use Google\Cloud\Compute\V1\StopGroupAsyncReplicationRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,17 +41,17 @@ function stop_group_async_replication_sample(string $project, string $region): v
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $disksStopGroupAsyncReplicationResourceResource = new DisksStopGroupAsyncReplicationResource();
+    $request = (new StopGroupAsyncReplicationRegionDiskRequest())
+        ->setDisksStopGroupAsyncReplicationResourceResource($disksStopGroupAsyncReplicationResourceResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionDisksClient->stopGroupAsyncReplication(
-            $disksStopGroupAsyncReplicationResourceResource,
-            $project,
-            $region
-        );
+        $response = $regionDisksClient->stopGroupAsyncReplication($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

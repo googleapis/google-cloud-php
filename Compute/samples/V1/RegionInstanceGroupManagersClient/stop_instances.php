@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_StopInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersStopInstancesRequest;
+use Google\Cloud\Compute\V1\StopInstancesRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function stop_instances_sample(
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionInstanceGroupManagersStopInstancesRequestResource = new RegionInstanceGroupManagersStopInstancesRequest();
+    $request = (new StopInstancesRegionInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionInstanceGroupManagersStopInstancesRequestResource(
+            $regionInstanceGroupManagersStopInstancesRequestResource
+        );
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceGroupManagersClient->stopInstances(
-            $instanceGroupManager,
-            $project,
-            $region,
-            $regionInstanceGroupManagersStopInstancesRequestResource
-        );
+        $response = $regionInstanceGroupManagersClient->stopInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

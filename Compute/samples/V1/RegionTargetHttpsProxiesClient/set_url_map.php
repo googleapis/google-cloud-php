@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionTargetHttpsProxies_SetUrlMap_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\SetUrlMapRegionTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\UrlMapReference;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function set_url_map_sample(string $project, string $region, string $targetHttps
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $urlMapReferenceResource = new UrlMapReference();
+    $request = (new SetUrlMapRegionTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetHttpsProxy($targetHttpsProxy)
+        ->setUrlMapReferenceResource($urlMapReferenceResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionTargetHttpsProxiesClient->setUrlMap(
-            $project,
-            $region,
-            $targetHttpsProxy,
-            $urlMapReferenceResource
-        );
+        $response = $regionTargetHttpsProxiesClient->setUrlMap($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -244,6 +244,8 @@ final class RegionHealthCheckServicesClient
      *
      * The async variant is {@see RegionHealthCheckServicesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionHealthCheckServicesClient/delete.php
+     *
      * @param DeleteRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -267,6 +269,8 @@ final class RegionHealthCheckServicesClient
      * Returns the specified regional HealthCheckService resource.
      *
      * The async variant is {@see RegionHealthCheckServicesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionHealthCheckServicesClient/get.php
      *
      * @param GetRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -292,6 +296,8 @@ final class RegionHealthCheckServicesClient
      *
      * The async variant is {@see RegionHealthCheckServicesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionHealthCheckServicesClient/insert.php
+     *
      * @param InsertRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -316,6 +322,8 @@ final class RegionHealthCheckServicesClient
      *
      * The async variant is {@see RegionHealthCheckServicesClient::listAsync()} .
      *
+     * @example samples/V1/RegionHealthCheckServicesClient/list.php
+     *
      * @param ListRegionHealthCheckServicesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -339,6 +347,8 @@ final class RegionHealthCheckServicesClient
      * Updates the specified regional HealthCheckService resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see RegionHealthCheckServicesClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionHealthCheckServicesClient/patch.php
      *
      * @param PatchRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

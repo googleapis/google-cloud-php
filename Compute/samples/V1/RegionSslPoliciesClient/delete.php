@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSslPolicies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionSslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSslPoliciesClient;
+use Google\Cloud\Compute\V1\DeleteRegionSslPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $sslPolicy): void
     // Create a client.
     $regionSslPoliciesClient = new RegionSslPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionSslPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSslPolicy($sslPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSslPoliciesClient->delete($project, $region, $sslPolicy);
+        $response = $regionSslPoliciesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

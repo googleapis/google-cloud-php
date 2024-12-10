@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_FirewallPolicies_PatchRule_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\FirewallPoliciesClient;
 use Google\Cloud\Compute\V1\FirewallPolicyRule;
+use Google\Cloud\Compute\V1\PatchRuleFirewallPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function patch_rule_sample(string $firewallPolicy): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallPolicyRuleResource = new FirewallPolicyRule();
+    $request = (new PatchRuleFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setFirewallPolicyRuleResource($firewallPolicyRuleResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->patchRule($firewallPolicy, $firewallPolicyRuleResource);
+        $response = $firewallPoliciesClient->patchRule($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

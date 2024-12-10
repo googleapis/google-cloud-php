@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Images_Deprecate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ImagesClient;
+use Google\Cloud\Compute\V1\DeprecateImageRequest;
 use Google\Cloud\Compute\V1\DeprecationStatus;
-use Google\Cloud\Compute\V1\ImagesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function deprecate_sample(string $image, string $project): void
     // Create a client.
     $imagesClient = new ImagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deprecationStatusResource = new DeprecationStatus();
+    $request = (new DeprecateImageRequest())
+        ->setDeprecationStatusResource($deprecationStatusResource)
+        ->setImage($image)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $imagesClient->deprecate($deprecationStatusResource, $image, $project);
+        $response = $imagesClient->deprecate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

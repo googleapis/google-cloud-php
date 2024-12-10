@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeTemplates_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NodeTemplatesClient;
+use Google\Cloud\Compute\V1\InsertNodeTemplateRequest;
 use Google\Cloud\Compute\V1\NodeTemplate;
-use Google\Cloud\Compute\V1\NodeTemplatesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $nodeTemplatesClient = new NodeTemplatesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeTemplateResource = new NodeTemplate();
+    $request = (new InsertNodeTemplateRequest())
+        ->setNodeTemplateResource($nodeTemplateResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeTemplatesClient->insert($nodeTemplateResource, $project, $region);
+        $response = $nodeTemplatesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
