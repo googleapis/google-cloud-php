@@ -273,6 +273,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::addAssociationAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/add_association.php
+     *
      * @param AddAssociationFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -296,6 +298,8 @@ final class FirewallPoliciesClient
      * Inserts a rule into a firewall policy.
      *
      * The async variant is {@see FirewallPoliciesClient::addRuleAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/add_rule.php
      *
      * @param AddRuleFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -321,6 +325,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::cloneRulesAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/clone_rules.php
+     *
      * @param CloneRulesFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -344,6 +350,8 @@ final class FirewallPoliciesClient
      * Deletes the specified policy.
      *
      * The async variant is {@see FirewallPoliciesClient::deleteAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/delete.php
      *
      * @param DeleteFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -369,6 +377,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::getAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/get.php
+     *
      * @param GetFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -392,6 +402,8 @@ final class FirewallPoliciesClient
      * Gets an association with the specified name.
      *
      * The async variant is {@see FirewallPoliciesClient::getAssociationAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/get_association.php
      *
      * @param GetAssociationFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -417,6 +429,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -440,6 +454,8 @@ final class FirewallPoliciesClient
      * Gets a rule of the specified priority.
      *
      * The async variant is {@see FirewallPoliciesClient::getRuleAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/get_rule.php
      *
      * @param GetRuleFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -465,6 +481,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::insertAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/insert.php
+     *
      * @param InsertFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -488,6 +506,8 @@ final class FirewallPoliciesClient
      * Lists all the policies that have been configured for the specified folder or organization.
      *
      * The async variant is {@see FirewallPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/list.php
      *
      * @param ListFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -513,6 +533,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::listAssociationsAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/list_associations.php
+     *
      * @param ListAssociationsFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -536,6 +558,8 @@ final class FirewallPoliciesClient
      * Moves the specified firewall policy.
      *
      * The async variant is {@see FirewallPoliciesClient::moveAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/move.php
      *
      * @param MoveFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -561,6 +585,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::patchAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/patch.php
+     *
      * @param PatchFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -584,6 +610,8 @@ final class FirewallPoliciesClient
      * Patches a rule of the specified priority.
      *
      * The async variant is {@see FirewallPoliciesClient::patchRuleAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/patch_rule.php
      *
      * @param PatchRuleFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -609,6 +637,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::removeAssociationAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/remove_association.php
+     *
      * @param RemoveAssociationFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -632,6 +662,8 @@ final class FirewallPoliciesClient
      * Deletes a rule of the specified priority.
      *
      * The async variant is {@see FirewallPoliciesClient::removeRuleAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/remove_rule.php
      *
      * @param RemoveRuleFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -657,6 +689,8 @@ final class FirewallPoliciesClient
      *
      * The async variant is {@see FirewallPoliciesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/FirewallPoliciesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -680,6 +714,8 @@ final class FirewallPoliciesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see FirewallPoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/FirewallPoliciesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

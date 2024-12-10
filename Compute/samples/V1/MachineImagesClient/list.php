@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_MachineImages_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\MachineImagesClient;
+use Google\Cloud\Compute\V1\Client\MachineImagesClient;
+use Google\Cloud\Compute\V1\ListMachineImagesRequest;
 
 /**
  * Retrieves a list of machine images that are contained within the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $machineImagesClient = new MachineImagesClient();
 
+    // Prepare the request message.
+    $request = (new ListMachineImagesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $machineImagesClient->list($project);
+        $response = $machineImagesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

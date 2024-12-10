@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Licenses_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\LicensesClient;
+use Google\Cloud\Compute\V1\Client\LicensesClient;
+use Google\Cloud\Compute\V1\DeleteLicenseRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $license, string $project): void
     // Create a client.
     $licensesClient = new LicensesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteLicenseRequest())
+        ->setLicense($license)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $licensesClient->delete($license, $project);
+        $response = $licensesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

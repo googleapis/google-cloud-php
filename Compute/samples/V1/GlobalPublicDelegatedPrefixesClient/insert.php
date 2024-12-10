@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalPublicDelegatedPrefixes_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\GlobalPublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\Client\GlobalPublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\InsertGlobalPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Rpc\Status;
 
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $globalPublicDelegatedPrefixesClient = new GlobalPublicDelegatedPrefixesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
+    $request = (new InsertGlobalPublicDelegatedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicDelegatedPrefixResource($publicDelegatedPrefixResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $globalPublicDelegatedPrefixesClient->insert($project, $publicDelegatedPrefixResource);
+        $response = $globalPublicDelegatedPrefixesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

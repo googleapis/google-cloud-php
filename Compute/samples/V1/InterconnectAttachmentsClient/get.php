@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InterconnectAttachments_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\InterconnectAttachmentsClient;
+use Google\Cloud\Compute\V1\GetInterconnectAttachmentRequest;
 use Google\Cloud\Compute\V1\InterconnectAttachment;
-use Google\Cloud\Compute\V1\InterconnectAttachmentsClient;
 
 /**
  * Returns the specified interconnect attachment.
@@ -39,10 +40,16 @@ function get_sample(string $interconnectAttachment, string $project, string $reg
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetInterconnectAttachmentRequest())
+        ->setInterconnectAttachment($interconnectAttachment)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectAttachment $response */
-        $response = $interconnectAttachmentsClient->get($interconnectAttachment, $project, $region);
+        $response = $interconnectAttachmentsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

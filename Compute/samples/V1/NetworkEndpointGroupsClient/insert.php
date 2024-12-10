@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEndpointGroups_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\InsertNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
-use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkEndpointGroupResource = new NetworkEndpointGroup();
+    $request = (new InsertNetworkEndpointGroupRequest())
+        ->setNetworkEndpointGroupResource($networkEndpointGroupResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkEndpointGroupsClient->insert($networkEndpointGroupResource, $project, $zone);
+        $response = $networkEndpointGroupsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

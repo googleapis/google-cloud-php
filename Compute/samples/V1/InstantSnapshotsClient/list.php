@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstantSnapshots_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstantSnapshotsClient;
+use Google\Cloud\Compute\V1\Client\InstantSnapshotsClient;
+use Google\Cloud\Compute\V1\ListInstantSnapshotsRequest;
 
 /**
  * Retrieves the list of InstantSnapshot resources contained within the specified zone.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $instantSnapshotsClient = new InstantSnapshotsClient();
 
+    // Prepare the request message.
+    $request = (new ListInstantSnapshotsRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instantSnapshotsClient->list($project, $zone);
+        $response = $instantSnapshotsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

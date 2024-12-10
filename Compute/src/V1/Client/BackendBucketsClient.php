@@ -259,6 +259,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::addSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/add_signed_url_key.php
+     *
      * @param AddSignedUrlKeyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -282,6 +284,8 @@ final class BackendBucketsClient
      * Deletes the specified BackendBucket resource.
      *
      * The async variant is {@see BackendBucketsClient::deleteAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/delete.php
      *
      * @param DeleteBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -307,6 +311,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::deleteSignedUrlKeyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/delete_signed_url_key.php
+     *
      * @param DeleteSignedUrlKeyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -330,6 +336,8 @@ final class BackendBucketsClient
      * Returns the specified BackendBucket resource.
      *
      * The async variant is {@see BackendBucketsClient::getAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/get.php
      *
      * @param GetBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -355,6 +363,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/get_iam_policy.php
+     *
      * @param GetIamPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -378,6 +388,8 @@ final class BackendBucketsClient
      * Creates a BackendBucket resource in the specified project using the data included in the request.
      *
      * The async variant is {@see BackendBucketsClient::insertAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/insert.php
      *
      * @param InsertBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -403,6 +415,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::listAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/list.php
+     *
      * @param ListBackendBucketsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -426,6 +440,8 @@ final class BackendBucketsClient
      * Updates the specified BackendBucket resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see BackendBucketsClient::patchAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/patch.php
      *
      * @param PatchBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -451,6 +467,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::setEdgeSecurityPolicyAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/set_edge_security_policy.php
+     *
      * @param SetEdgeSecurityPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -474,6 +492,8 @@ final class BackendBucketsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see BackendBucketsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/set_iam_policy.php
      *
      * @param SetIamPolicyBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -499,6 +519,8 @@ final class BackendBucketsClient
      *
      * The async variant is {@see BackendBucketsClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/BackendBucketsClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -522,6 +544,8 @@ final class BackendBucketsClient
      * Updates the specified BackendBucket resource with the data included in the request.
      *
      * The async variant is {@see BackendBucketsClient::updateAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/update.php
      *
      * @param UpdateBackendBucketRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

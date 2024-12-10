@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_TargetGrpcProxies_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetGrpcProxiesClient;
+use Google\Cloud\Compute\V1\GetTargetGrpcProxyRequest;
 use Google\Cloud\Compute\V1\TargetGrpcProxy;
 
 /**
@@ -38,10 +39,15 @@ function get_sample(string $project, string $targetGrpcProxy): void
     // Create a client.
     $targetGrpcProxiesClient = new TargetGrpcProxiesClient();
 
+    // Prepare the request message.
+    $request = (new GetTargetGrpcProxyRequest())
+        ->setProject($project)
+        ->setTargetGrpcProxy($targetGrpcProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var TargetGrpcProxy $response */
-        $response = $targetGrpcProxiesClient->get($project, $targetGrpcProxy);
+        $response = $targetGrpcProxiesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

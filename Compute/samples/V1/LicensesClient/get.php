@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Licenses_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\LicensesClient;
+use Google\Cloud\Compute\V1\GetLicenseRequest;
 use Google\Cloud\Compute\V1\License;
-use Google\Cloud\Compute\V1\LicensesClient;
 
 /**
  * Returns the specified License resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
@@ -38,10 +39,15 @@ function get_sample(string $license, string $project): void
     // Create a client.
     $licensesClient = new LicensesClient();
 
+    // Prepare the request message.
+    $request = (new GetLicenseRequest())
+        ->setLicense($license)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var License $response */
-        $response = $licensesClient->get($license, $project);
+        $response = $licensesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

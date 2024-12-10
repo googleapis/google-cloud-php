@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetVpnGateways_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\Client\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\DeleteTargetVpnGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $targetVpnGateway
     // Create a client.
     $targetVpnGatewaysClient = new TargetVpnGatewaysClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTargetVpnGatewayRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetVpnGateway($targetVpnGateway);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetVpnGatewaysClient->delete($project, $region, $targetVpnGateway);
+        $response = $targetVpnGatewaysClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

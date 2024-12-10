@@ -179,6 +179,8 @@ final class RegionZonesClient
      *
      * The async variant is {@see RegionZonesClient::listAsync()} .
      *
+     * @example samples/V1/RegionZonesClient/list.php
+     *
      * @param ListRegionZonesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.

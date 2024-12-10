@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_MachineImages_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\MachineImagesClient;
+use Google\Cloud\Compute\V1\InsertMachineImageRequest;
 use Google\Cloud\Compute\V1\MachineImage;
-use Google\Cloud\Compute\V1\MachineImagesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $machineImagesClient = new MachineImagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $machineImageResource = new MachineImage();
+    $request = (new InsertMachineImageRequest())
+        ->setMachineImageResource($machineImageResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $machineImagesClient->insert($machineImageResource, $project);
+        $response = $machineImagesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

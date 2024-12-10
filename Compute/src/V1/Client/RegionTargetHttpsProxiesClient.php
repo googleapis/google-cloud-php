@@ -248,6 +248,8 @@ final class RegionTargetHttpsProxiesClient
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/delete.php
+     *
      * @param DeleteRegionTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -271,6 +273,8 @@ final class RegionTargetHttpsProxiesClient
      * Returns the specified TargetHttpsProxy resource in the specified region.
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/get.php
      *
      * @param GetRegionTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -296,6 +300,8 @@ final class RegionTargetHttpsProxiesClient
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/insert.php
+     *
      * @param InsertRegionTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -320,6 +326,8 @@ final class RegionTargetHttpsProxiesClient
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::listAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/list.php
+     *
      * @param ListRegionTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -343,6 +351,8 @@ final class RegionTargetHttpsProxiesClient
      * Patches the specified regional TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/patch.php
      *
      * @param PatchRegionTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -369,6 +379,8 @@ final class RegionTargetHttpsProxiesClient
      * The async variant is
      * {@see RegionTargetHttpsProxiesClient::setSslCertificatesAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/set_ssl_certificates.php
+     *
      * @param SetSslCertificatesRegionTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                           $callOptions {
      *     Optional.
@@ -392,6 +404,8 @@ final class RegionTargetHttpsProxiesClient
      * Changes the URL map for TargetHttpsProxy.
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::setUrlMapAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpsProxiesClient/set_url_map.php
      *
      * @param SetUrlMapRegionTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

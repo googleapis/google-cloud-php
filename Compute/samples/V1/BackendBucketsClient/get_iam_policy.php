@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_BackendBuckets_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\BackendBucketsClient;
+use Google\Cloud\Compute\V1\Client\BackendBucketsClient;
+use Google\Cloud\Compute\V1\GetIamPolicyBackendBucketRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
@@ -38,10 +39,15 @@ function get_iam_policy_sample(string $project, string $resource): void
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyBackendBucketRequest())
+        ->setProject($project)
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $backendBucketsClient->getIamPolicy($project, $resource);
+        $response = $backendBucketsClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

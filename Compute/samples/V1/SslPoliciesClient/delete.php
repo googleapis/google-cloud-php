@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SslPolicies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SslPoliciesClient;
+use Google\Cloud\Compute\V1\DeleteSslPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $project, string $sslPolicy): void
     // Create a client.
     $sslPoliciesClient = new SslPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSslPolicyRequest())
+        ->setProject($project)
+        ->setSslPolicy($sslPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $sslPoliciesClient->delete($project, $sslPolicy);
+        $response = $sslPoliciesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_SecurityPolicies_ListPreconfiguredExpressionSets_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SecurityPoliciesClient;
+use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsResponse;
 
 /**
@@ -37,10 +38,14 @@ function list_preconfigured_expression_sets_sample(string $project): void
     // Create a client.
     $securityPoliciesClient = new SecurityPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListPreconfiguredExpressionSetsSecurityPoliciesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var SecurityPoliciesListPreconfiguredExpressionSetsResponse $response */
-        $response = $securityPoliciesClient->listPreconfiguredExpressionSets($project);
+        $response = $securityPoliciesClient->listPreconfiguredExpressionSets($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

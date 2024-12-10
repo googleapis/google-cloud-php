@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InterconnectRemoteLocations_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InterconnectRemoteLocationsClient;
+use Google\Cloud\Compute\V1\Client\InterconnectRemoteLocationsClient;
+use Google\Cloud\Compute\V1\ListInterconnectRemoteLocationsRequest;
 
 /**
  * Retrieves the list of interconnect remote locations available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $interconnectRemoteLocationsClient = new InterconnectRemoteLocationsClient();
 
+    // Prepare the request message.
+    $request = (new ListInterconnectRemoteLocationsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $interconnectRemoteLocationsClient->list($project);
+        $response = $interconnectRemoteLocationsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

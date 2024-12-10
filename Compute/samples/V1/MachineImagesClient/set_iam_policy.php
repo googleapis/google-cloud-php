@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_MachineImages_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\MachineImagesClient;
 use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
-use Google\Cloud\Compute\V1\MachineImagesClient;
 use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyMachineImageRequest;
 
 /**
  * Sets the access control policy on the specified resource. Replaces any existing policy.
@@ -39,17 +40,17 @@ function set_iam_policy_sample(string $project, string $resource): void
     // Create a client.
     $machineImagesClient = new MachineImagesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+    $request = (new SetIamPolicyMachineImageRequest())
+        ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+        ->setProject($project)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $machineImagesClient->setIamPolicy(
-            $globalSetPolicyRequestResource,
-            $project,
-            $resource
-        );
+        $response = $machineImagesClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -248,6 +248,8 @@ final class SslPoliciesClient
      *
      * The async variant is {@see SslPoliciesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/SslPoliciesClient/aggregated_list.php
+     *
      * @param AggregatedListSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -271,6 +273,8 @@ final class SslPoliciesClient
      * Deletes the specified SSL policy. The SSL policy resource can be deleted only if it is not in use by any TargetHttpsProxy or TargetSslProxy resources.
      *
      * The async variant is {@see SslPoliciesClient::deleteAsync()} .
+     *
+     * @example samples/V1/SslPoliciesClient/delete.php
      *
      * @param DeleteSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -296,6 +300,8 @@ final class SslPoliciesClient
      *
      * The async variant is {@see SslPoliciesClient::getAsync()} .
      *
+     * @example samples/V1/SslPoliciesClient/get.php
+     *
      * @param GetSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -319,6 +325,8 @@ final class SslPoliciesClient
      * Returns the specified SSL policy resource.
      *
      * The async variant is {@see SslPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/SslPoliciesClient/insert.php
      *
      * @param InsertSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -344,6 +352,8 @@ final class SslPoliciesClient
      *
      * The async variant is {@see SslPoliciesClient::listAsync()} .
      *
+     * @example samples/V1/SslPoliciesClient/list.php
+     *
      * @param ListSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -368,6 +378,8 @@ final class SslPoliciesClient
      *
      * The async variant is {@see SslPoliciesClient::listAvailableFeaturesAsync()} .
      *
+     * @example samples/V1/SslPoliciesClient/list_available_features.php
+     *
      * @param ListAvailableFeaturesSslPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -391,6 +403,8 @@ final class SslPoliciesClient
      * Patches the specified SSL policy with the data included in the request.
      *
      * The async variant is {@see SslPoliciesClient::patchAsync()} .
+     *
+     * @example samples/V1/SslPoliciesClient/patch.php
      *
      * @param PatchSslPolicyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

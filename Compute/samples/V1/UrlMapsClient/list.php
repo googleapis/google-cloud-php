@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_UrlMaps_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\UrlMapsClient;
+use Google\Cloud\Compute\V1\Client\UrlMapsClient;
+use Google\Cloud\Compute\V1\ListUrlMapsRequest;
 
 /**
  * Retrieves the list of UrlMap resources available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
+    // Prepare the request message.
+    $request = (new ListUrlMapsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $urlMapsClient->list($project);
+        $response = $urlMapsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

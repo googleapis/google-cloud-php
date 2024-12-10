@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionBackendServices_SetSecurityPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionBackendServicesClient;
+use Google\Cloud\Compute\V1\Client\RegionBackendServicesClient;
 use Google\Cloud\Compute\V1\SecurityPolicyReference;
+use Google\Cloud\Compute\V1\SetSecurityPolicyRegionBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_security_policy_sample(string $backendService, string $project, str
     // Create a client.
     $regionBackendServicesClient = new RegionBackendServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyReferenceResource = new SecurityPolicyReference();
+    $request = (new SetSecurityPolicyRegionBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionBackendServicesClient->setSecurityPolicy(
-            $backendService,
-            $project,
-            $region,
-            $securityPolicyReferenceResource
-        );
+        $response = $regionBackendServicesClient->setSecurityPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_ExternalVpnGateways_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ExternalVpnGatewaysClient;
 use Google\Cloud\Compute\V1\ExternalVpnGateway;
-use Google\Cloud\Compute\V1\ExternalVpnGatewaysClient;
+use Google\Cloud\Compute\V1\GetExternalVpnGatewayRequest;
 
 /**
  * Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
@@ -38,10 +39,15 @@ function get_sample(string $externalVpnGateway, string $project): void
     // Create a client.
     $externalVpnGatewaysClient = new ExternalVpnGatewaysClient();
 
+    // Prepare the request message.
+    $request = (new GetExternalVpnGatewayRequest())
+        ->setExternalVpnGateway($externalVpnGateway)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var ExternalVpnGateway $response */
-        $response = $externalVpnGatewaysClient->get($externalVpnGateway, $project);
+        $response = $externalVpnGatewaysClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

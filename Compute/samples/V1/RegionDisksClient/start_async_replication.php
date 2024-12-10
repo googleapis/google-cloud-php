@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionDisks_StartAsyncReplication_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionDisksClient;
+use Google\Cloud\Compute\V1\Client\RegionDisksClient;
 use Google\Cloud\Compute\V1\RegionDisksStartAsyncReplicationRequest;
+use Google\Cloud\Compute\V1\StartAsyncReplicationRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,20 @@ function start_async_replication_sample(string $disk, string $project, string $r
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionDisksStartAsyncReplicationRequestResource = new RegionDisksStartAsyncReplicationRequest();
+    $request = (new StartAsyncReplicationRegionDiskRequest())
+        ->setDisk($disk)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionDisksStartAsyncReplicationRequestResource(
+            $regionDisksStartAsyncReplicationRequestResource
+        );
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionDisksClient->startAsyncReplication(
-            $disk,
-            $project,
-            $region,
-            $regionDisksStartAsyncReplicationRequestResource
-        );
+        $response = $regionDisksClient->startAsyncReplication($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

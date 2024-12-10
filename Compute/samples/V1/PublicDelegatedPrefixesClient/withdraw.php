@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicDelegatedPrefixes_Withdraw_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\Client\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\WithdrawPublicDelegatedPrefixeRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function withdraw_sample(string $project, string $publicDelegatedPrefix, string 
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new WithdrawPublicDelegatedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicDelegatedPrefix($publicDelegatedPrefix)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicDelegatedPrefixesClient->withdraw($project, $publicDelegatedPrefix, $region);
+        $response = $publicDelegatedPrefixesClient->withdraw($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

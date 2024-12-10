@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstantSnapshots_SetLabels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionInstantSnapshotsClient;
+use Google\Cloud\Compute\V1\Client\RegionInstantSnapshotsClient;
 use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
+use Google\Cloud\Compute\V1\SetLabelsRegionInstantSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_labels_sample(string $project, string $region, string $resource): v
     // Create a client.
     $regionInstantSnapshotsClient = new RegionInstantSnapshotsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+    $request = (new SetLabelsRegionInstantSnapshotRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstantSnapshotsClient->setLabels(
-            $project,
-            $region,
-            $regionSetLabelsRequestResource,
-            $resource
-        );
+        $response = $regionInstantSnapshotsClient->setLabels($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

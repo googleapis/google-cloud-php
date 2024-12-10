@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Routers_Preview_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RoutersClient;
+use Google\Cloud\Compute\V1\PreviewRouterRequest;
 use Google\Cloud\Compute\V1\Router;
-use Google\Cloud\Compute\V1\RoutersClient;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
 
 /**
@@ -40,13 +41,18 @@ function preview_sample(string $project, string $region, string $router): void
     // Create a client.
     $routersClient = new RoutersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $routerResource = new Router();
+    $request = (new PreviewRouterRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRouter($router)
+        ->setRouterResource($routerResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var RoutersPreviewResponse $response */
-        $response = $routersClient->preview($project, $region, $router, $routerResource);
+        $response = $routersClient->preview($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

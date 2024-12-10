@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Reservations_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ReservationsClient;
+use Google\Cloud\Compute\V1\Client\ReservationsClient;
+use Google\Cloud\Compute\V1\ListReservationsRequest;
 
 /**
  * A list of all the reservations that have been configured for the specified project in specified zone.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
+    // Prepare the request message.
+    $request = (new ListReservationsRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $reservationsClient->list($project, $zone);
+        $response = $reservationsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

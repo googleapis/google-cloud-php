@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InstantSnapshots_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InstantSnapshotsClient;
+use Google\Cloud\Compute\V1\Client\InstantSnapshotsClient;
 use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 
 /**
@@ -40,18 +41,18 @@ function set_iam_policy_sample(string $project, string $resource, string $zone):
     // Create a client.
     $instantSnapshotsClient = new InstantSnapshotsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
+    $request = (new SetIamPolicyInstantSnapshotRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setZone($zone)
+        ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $instantSnapshotsClient->setIamPolicy(
-            $project,
-            $resource,
-            $zone,
-            $zoneSetPolicyRequestResource
-        );
+        $response = $instantSnapshotsClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

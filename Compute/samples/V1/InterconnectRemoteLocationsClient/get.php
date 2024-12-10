@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InterconnectRemoteLocations_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\InterconnectRemoteLocationsClient;
+use Google\Cloud\Compute\V1\GetInterconnectRemoteLocationRequest;
 use Google\Cloud\Compute\V1\InterconnectRemoteLocation;
-use Google\Cloud\Compute\V1\InterconnectRemoteLocationsClient;
 
 /**
  * Returns the details for the specified interconnect remote location. Gets a list of available interconnect remote locations by making a list() request.
@@ -38,10 +39,15 @@ function get_sample(string $interconnectRemoteLocation, string $project): void
     // Create a client.
     $interconnectRemoteLocationsClient = new InterconnectRemoteLocationsClient();
 
+    // Prepare the request message.
+    $request = (new GetInterconnectRemoteLocationRequest())
+        ->setInterconnectRemoteLocation($interconnectRemoteLocation)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var InterconnectRemoteLocation $response */
-        $response = $interconnectRemoteLocationsClient->get($interconnectRemoteLocation, $project);
+        $response = $interconnectRemoteLocationsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

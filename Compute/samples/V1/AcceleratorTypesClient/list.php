@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_AcceleratorTypes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\AcceleratorTypesClient;
+use Google\Cloud\Compute\V1\Client\AcceleratorTypesClient;
+use Google\Cloud\Compute\V1\ListAcceleratorTypesRequest;
 
 /**
  * Retrieves a list of accelerator types that are available to the specified project.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $acceleratorTypesClient = new AcceleratorTypesClient();
 
+    // Prepare the request message.
+    $request = (new ListAcceleratorTypesRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $acceleratorTypesClient->list($project, $zone);
+        $response = $acceleratorTypesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_Resize_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\ResizeInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,17 @@ function resize_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
+    // Prepare the request message.
+    $request = (new ResizeInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setSize($size)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->resize($instanceGroupManager, $project, $size, $zone);
+        $response = $instanceGroupManagersClient->resize($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

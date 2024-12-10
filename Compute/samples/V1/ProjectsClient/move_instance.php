@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_MoveInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\InstanceMoveRequest;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\MoveInstanceProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function move_instance_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceMoveRequestResource = new InstanceMoveRequest();
+    $request = (new MoveInstanceProjectRequest())
+        ->setInstanceMoveRequestResource($instanceMoveRequestResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->moveInstance($instanceMoveRequestResource, $project);
+        $response = $projectsClient->moveInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

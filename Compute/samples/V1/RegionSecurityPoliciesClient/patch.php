@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionSecurityPolicies_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
+use Google\Cloud\Compute\V1\PatchRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function patch_sample(string $project, string $region, string $securityPolicy): 
     // Create a client.
     $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyResource = new SecurityPolicy();
+    $request = (new PatchRegionSecurityPolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicy($securityPolicy)
+        ->setSecurityPolicyResource($securityPolicyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionSecurityPoliciesClient->patch(
-            $project,
-            $region,
-            $securityPolicy,
-            $securityPolicyResource
-        );
+        $response = $regionSecurityPoliciesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

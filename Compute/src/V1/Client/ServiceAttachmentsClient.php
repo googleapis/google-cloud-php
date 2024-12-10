@@ -254,6 +254,8 @@ final class ServiceAttachmentsClient
      *
      * The async variant is {@see ServiceAttachmentsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/ServiceAttachmentsClient/aggregated_list.php
+     *
      * @param AggregatedListServiceAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -277,6 +279,8 @@ final class ServiceAttachmentsClient
      * Deletes the specified ServiceAttachment in the given scope
      *
      * The async variant is {@see ServiceAttachmentsClient::deleteAsync()} .
+     *
+     * @example samples/V1/ServiceAttachmentsClient/delete.php
      *
      * @param DeleteServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -302,6 +306,8 @@ final class ServiceAttachmentsClient
      *
      * The async variant is {@see ServiceAttachmentsClient::getAsync()} .
      *
+     * @example samples/V1/ServiceAttachmentsClient/get.php
+     *
      * @param GetServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -325,6 +331,8 @@ final class ServiceAttachmentsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see ServiceAttachmentsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ServiceAttachmentsClient/get_iam_policy.php
      *
      * @param GetIamPolicyServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -350,6 +358,8 @@ final class ServiceAttachmentsClient
      *
      * The async variant is {@see ServiceAttachmentsClient::insertAsync()} .
      *
+     * @example samples/V1/ServiceAttachmentsClient/insert.php
+     *
      * @param InsertServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -373,6 +383,8 @@ final class ServiceAttachmentsClient
      * Lists the ServiceAttachments for a project in the given scope.
      *
      * The async variant is {@see ServiceAttachmentsClient::listAsync()} .
+     *
+     * @example samples/V1/ServiceAttachmentsClient/list.php
      *
      * @param ListServiceAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -398,6 +410,8 @@ final class ServiceAttachmentsClient
      *
      * The async variant is {@see ServiceAttachmentsClient::patchAsync()} .
      *
+     * @example samples/V1/ServiceAttachmentsClient/patch.php
+     *
      * @param PatchServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -421,6 +435,8 @@ final class ServiceAttachmentsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see ServiceAttachmentsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ServiceAttachmentsClient/set_iam_policy.php
      *
      * @param SetIamPolicyServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -446,6 +462,8 @@ final class ServiceAttachmentsClient
      *
      * The async variant is {@see ServiceAttachmentsClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/ServiceAttachmentsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsServiceAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {

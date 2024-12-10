@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routes_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RoutesClient;
+use Google\Cloud\Compute\V1\InsertRouteRequest;
 use Google\Cloud\Compute\V1\Route;
-use Google\Cloud\Compute\V1\RoutesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $routesClient = new RoutesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $routeResource = new Route();
+    $request = (new InsertRouteRequest())
+        ->setProject($project)
+        ->setRouteResource($routeResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $routesClient->insert($project, $routeResource);
+        $response = $routesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

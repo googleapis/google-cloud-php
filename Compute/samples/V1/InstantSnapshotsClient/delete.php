@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstantSnapshots_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstantSnapshotsClient;
+use Google\Cloud\Compute\V1\Client\InstantSnapshotsClient;
+use Google\Cloud\Compute\V1\DeleteInstantSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $instantSnapshot, string $project, string $zone): 
     // Create a client.
     $instantSnapshotsClient = new InstantSnapshotsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstantSnapshotRequest())
+        ->setInstantSnapshot($instantSnapshot)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instantSnapshotsClient->delete($instantSnapshot, $project, $zone);
+        $response = $instantSnapshotsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

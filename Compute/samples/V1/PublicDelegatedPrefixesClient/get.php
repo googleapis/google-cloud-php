@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_PublicDelegatedPrefixes_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\GetPublicDelegatedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 
 /**
  * Returns the specified PublicDelegatedPrefix resource in the given region.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $publicDelegatedPrefix, string $regi
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new GetPublicDelegatedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicDelegatedPrefix($publicDelegatedPrefix)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PublicDelegatedPrefix $response */
-        $response = $publicDelegatedPrefixesClient->get($project, $publicDelegatedPrefix, $region);
+        $response = $publicDelegatedPrefixesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

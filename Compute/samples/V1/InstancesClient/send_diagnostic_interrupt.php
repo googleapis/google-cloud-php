@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Instances_SendDiagnosticInterrupt_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\SendDiagnosticInterruptInstanceRequest;
 use Google\Cloud\Compute\V1\SendDiagnosticInterruptInstanceResponse;
 
 /**
@@ -39,10 +40,16 @@ function send_diagnostic_interrupt_sample(string $instance, string $project, str
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new SendDiagnosticInterruptInstanceRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var SendDiagnosticInterruptInstanceResponse $response */
-        $response = $instancesClient->sendDiagnosticInterrupt($instance, $project, $zone);
+        $response = $instancesClient->sendDiagnosticInterrupt($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

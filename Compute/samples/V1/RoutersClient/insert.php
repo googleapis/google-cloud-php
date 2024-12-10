@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routers_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RoutersClient;
+use Google\Cloud\Compute\V1\InsertRouterRequest;
 use Google\Cloud\Compute\V1\Router;
-use Google\Cloud\Compute\V1\RoutersClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $routersClient = new RoutersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $routerResource = new Router();
+    $request = (new InsertRouterRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRouterResource($routerResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $routersClient->insert($project, $region, $routerResource);
+        $response = $routersClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

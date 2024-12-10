@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_SetScheduling_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\Scheduling;
+use Google\Cloud\Compute\V1\SetSchedulingInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function set_scheduling_sample(string $instance, string $project, string $zone):
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $schedulingResource = new Scheduling();
+    $request = (new SetSchedulingInstanceRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setSchedulingResource($schedulingResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->setScheduling($instance, $project, $schedulingResource, $zone);
+        $response = $instancesClient->setScheduling($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

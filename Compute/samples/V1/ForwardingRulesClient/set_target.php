@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ForwardingRules_SetTarget_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\SetTargetForwardingRuleRequest;
 use Google\Cloud\Compute\V1\TargetReference;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function set_target_sample(string $forwardingRule, string $project, string $regi
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetReferenceResource = new TargetReference();
+    $request = (new SetTargetForwardingRuleRequest())
+        ->setForwardingRule($forwardingRule)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetReferenceResource($targetReferenceResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $forwardingRulesClient->setTarget(
-            $forwardingRule,
-            $project,
-            $region,
-            $targetReferenceResource
-        );
+        $response = $forwardingRulesClient->setTarget($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

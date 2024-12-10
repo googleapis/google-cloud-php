@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Subnetworks_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\SubnetworksClient;
+use Google\Cloud\Compute\V1\InsertSubnetworkRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
-use Google\Cloud\Compute\V1\SubnetworksClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $subnetworksClient = new SubnetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subnetworkResource = new Subnetwork();
+    $request = (new InsertSubnetworkRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSubnetworkResource($subnetworkResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $subnetworksClient->insert($project, $region, $subnetworkResource);
+        $response = $subnetworksClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

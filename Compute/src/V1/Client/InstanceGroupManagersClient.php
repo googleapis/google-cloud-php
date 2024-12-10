@@ -283,6 +283,8 @@ final class InstanceGroupManagersClient
      * The async variant is {@see InstanceGroupManagersClient::abandonInstancesAsync()}
      * .
      *
+     * @example samples/V1/InstanceGroupManagersClient/abandon_instances.php
+     *
      * @param AbandonInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -306,6 +308,8 @@ final class InstanceGroupManagersClient
      * Retrieves the list of managed instance groups and groups them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InstanceGroupManagersClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/aggregated_list.php
      *
      * @param AggregatedListInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
@@ -332,6 +336,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::applyUpdatesToInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/apply_updates_to_instances.php
+     *
      * @param ApplyUpdatesToInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                              $callOptions {
      *     Optional.
@@ -357,6 +363,8 @@ final class InstanceGroupManagersClient
      * The async variant is {@see InstanceGroupManagersClient::createInstancesAsync()}
      * .
      *
+     * @example samples/V1/InstanceGroupManagersClient/create_instances.php
+     *
      * @param CreateInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -380,6 +388,8 @@ final class InstanceGroupManagersClient
      * Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read Deleting an instance group for more information.
      *
      * The async variant is {@see InstanceGroupManagersClient::deleteAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/delete.php
      *
      * @param DeleteInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -406,6 +416,8 @@ final class InstanceGroupManagersClient
      * The async variant is {@see InstanceGroupManagersClient::deleteInstancesAsync()}
      * .
      *
+     * @example samples/V1/InstanceGroupManagersClient/delete_instances.php
+     *
      * @param DeleteInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -431,6 +443,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::deletePerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/delete_per_instance_configs.php
+     *
      * @param DeletePerInstanceConfigsInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                               $callOptions {
      *     Optional.
@@ -454,6 +468,8 @@ final class InstanceGroupManagersClient
      * Returns all of the details about the specified managed instance group.
      *
      * The async variant is {@see InstanceGroupManagersClient::getAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/get.php
      *
      * @param GetInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -479,6 +495,8 @@ final class InstanceGroupManagersClient
      *
      * The async variant is {@see InstanceGroupManagersClient::insertAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/insert.php
+     *
      * @param InsertInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -503,6 +521,8 @@ final class InstanceGroupManagersClient
      *
      * The async variant is {@see InstanceGroupManagersClient::listAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/list.php
+     *
      * @param ListInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -526,6 +546,8 @@ final class InstanceGroupManagersClient
      * Lists all errors thrown by actions on instances for a given managed instance group. The filter and orderBy query parameters are not supported.
      *
      * The async variant is {@see InstanceGroupManagersClient::listErrorsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/list_errors.php
      *
      * @param ListErrorsInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -552,6 +574,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::listManagedInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/list_managed_instances.php
+     *
      * @param ListManagedInstancesInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -577,6 +601,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::listPerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/list_per_instance_configs.php
+     *
      * @param ListPerInstanceConfigsInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                              $callOptions {
      *     Optional.
@@ -600,6 +626,8 @@ final class InstanceGroupManagersClient
      * Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. If you update your group to specify a new template or instance configuration, it's possible that your intended specification for each VM in the group is different from the current state of that VM. To learn how to apply an updated configuration to the VMs in a MIG, see Updating instances in a MIG.
      *
      * The async variant is {@see InstanceGroupManagersClient::patchAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/patch.php
      *
      * @param PatchInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -626,6 +654,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::patchPerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/patch_per_instance_configs.php
+     *
      * @param PatchPerInstanceConfigsInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                              $callOptions {
      *     Optional.
@@ -651,6 +681,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::recreateInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/recreate_instances.php
+     *
      * @param RecreateInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -674,6 +706,8 @@ final class InstanceGroupManagersClient
      * Resizes the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. When resizing down, the instance group arbitrarily chooses the order in which VMs are deleted. The group takes into account some VM attributes when making the selection including: + The status of the VM instance. + The health of the VM instance. + The instance template version the VM is based on. + For regional managed instance groups, the location of the VM instance. This list is subject to change. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      *
      * The async variant is {@see InstanceGroupManagersClient::resizeAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/resize.php
      *
      * @param ResizeInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -700,6 +734,8 @@ final class InstanceGroupManagersClient
      * The async variant is {@see InstanceGroupManagersClient::resumeInstancesAsync()}
      * .
      *
+     * @example samples/V1/InstanceGroupManagersClient/resume_instances.php
+     *
      * @param ResumeInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -725,6 +761,8 @@ final class InstanceGroupManagersClient
      * The async variant is
      * {@see InstanceGroupManagersClient::setInstanceTemplateAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/set_instance_template.php
+     *
      * @param SetInstanceTemplateInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
      *     Optional.
@@ -748,6 +786,8 @@ final class InstanceGroupManagersClient
      * Modifies the target pools to which all instances in this managed instance group are assigned. The target pools automatically apply to all of the instances in the managed instance group. This operation is marked DONE when you make the request even if the instances have not yet been added to their target pools. The change might take some time to apply to all of the instances in the group depending on the size of the group.
      *
      * The async variant is {@see InstanceGroupManagersClient::setTargetPoolsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/set_target_pools.php
      *
      * @param SetTargetPoolsInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -773,6 +813,8 @@ final class InstanceGroupManagersClient
      *
      * The async variant is {@see InstanceGroupManagersClient::startInstancesAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagersClient/start_instances.php
+     *
      * @param StartInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -796,6 +838,8 @@ final class InstanceGroupManagersClient
      * Flags the specified instances in the managed instance group to be immediately stopped. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetStoppedSize of the managed instance group by the number of instances that you stop. The stopInstances operation is marked DONE if the stopInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STOPPING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays stopping the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is stopped. Stopped instances can be started using the startInstances method. You can specify a maximum of 1000 instances with this method per request.
      *
      * The async variant is {@see InstanceGroupManagersClient::stopInstancesAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/stop_instances.php
      *
      * @param StopInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -822,6 +866,8 @@ final class InstanceGroupManagersClient
      * The async variant is {@see InstanceGroupManagersClient::suspendInstancesAsync()}
      * .
      *
+     * @example samples/V1/InstanceGroupManagersClient/suspend_instances.php
+     *
      * @param SuspendInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -846,6 +892,8 @@ final class InstanceGroupManagersClient
      *
      * The async variant is
      * {@see InstanceGroupManagersClient::updatePerInstanceConfigsAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagersClient/update_per_instance_configs.php
      *
      * @param UpdatePerInstanceConfigsInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                               $callOptions {

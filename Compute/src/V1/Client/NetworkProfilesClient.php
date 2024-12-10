@@ -182,6 +182,8 @@ final class NetworkProfilesClient
      *
      * The async variant is {@see NetworkProfilesClient::getAsync()} .
      *
+     * @example samples/V1/NetworkProfilesClient/get.php
+     *
      * @param GetNetworkProfileRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -205,6 +207,8 @@ final class NetworkProfilesClient
      * Retrieves a list of network profiles available to the specified project.
      *
      * The async variant is {@see NetworkProfilesClient::listAsync()} .
+     *
+     * @example samples/V1/NetworkProfilesClient/list.php
      *
      * @param ListNetworkProfilesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

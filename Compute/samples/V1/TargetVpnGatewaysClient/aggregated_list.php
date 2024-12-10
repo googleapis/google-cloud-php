@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetVpnGateways_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\AggregatedListTargetVpnGatewaysRequest;
+use Google\Cloud\Compute\V1\Client\TargetVpnGatewaysClient;
 
 /**
  * Retrieves an aggregated list of target VPN gateways. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $targetVpnGatewaysClient = new TargetVpnGatewaysClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListTargetVpnGatewaysRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetVpnGatewaysClient->aggregatedList($project);
+        $response = $targetVpnGatewaysClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

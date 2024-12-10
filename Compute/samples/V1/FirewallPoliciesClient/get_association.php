@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_FirewallPolicies_GetAssociation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\FirewallPoliciesClient;
 use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
+use Google\Cloud\Compute\V1\GetAssociationFirewallPolicyRequest;
 
 /**
  * Gets an association with the specified name.
@@ -37,10 +38,14 @@ function get_association_sample(string $firewallPolicy): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetAssociationFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicyAssociation $response */
-        $response = $firewallPoliciesClient->getAssociation($firewallPolicy);
+        $response = $firewallPoliciesClient->getAssociation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

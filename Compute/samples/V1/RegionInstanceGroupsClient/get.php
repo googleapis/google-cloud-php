@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionInstanceGroups_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupsClient;
+use Google\Cloud\Compute\V1\GetRegionInstanceGroupRequest;
 use Google\Cloud\Compute\V1\InstanceGroup;
-use Google\Cloud\Compute\V1\RegionInstanceGroupsClient;
 
 /**
  * Returns the specified instance group resource.
@@ -39,10 +40,16 @@ function get_sample(string $instanceGroup, string $project, string $region): voi
     // Create a client.
     $regionInstanceGroupsClient = new RegionInstanceGroupsClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionInstanceGroupRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceGroup $response */
-        $response = $regionInstanceGroupsClient->get($instanceGroup, $project, $region);
+        $response = $regionInstanceGroupsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

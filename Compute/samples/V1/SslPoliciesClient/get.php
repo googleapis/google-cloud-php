@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_SslPolicies_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\SslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SslPoliciesClient;
+use Google\Cloud\Compute\V1\GetSslPolicyRequest;
 use Google\Cloud\Compute\V1\SslPolicy;
 
 /**
@@ -38,10 +39,15 @@ function get_sample(string $project, string $sslPolicy): void
     // Create a client.
     $sslPoliciesClient = new SslPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetSslPolicyRequest())
+        ->setProject($project)
+        ->setSslPolicy($sslPolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var SslPolicy $response */
-        $response = $sslPoliciesClient->get($project, $sslPolicy);
+        $response = $sslPoliciesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

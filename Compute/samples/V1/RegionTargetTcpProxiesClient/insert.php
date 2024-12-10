@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionTargetTcpProxies_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionTargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\InsertRegionTargetTcpProxyRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxy;
 use Google\Rpc\Status;
 
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionTargetTcpProxiesClient = new RegionTargetTcpProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetTcpProxyResource = new TargetTcpProxy();
+    $request = (new InsertRegionTargetTcpProxyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetTcpProxyResource($targetTcpProxyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionTargetTcpProxiesClient->insert($project, $region, $targetTcpProxyResource);
+        $response = $regionTargetTcpProxiesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

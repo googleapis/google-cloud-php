@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Networks_AddPeering_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AddPeeringNetworkRequest;
+use Google\Cloud\Compute\V1\Client\NetworksClient;
 use Google\Cloud\Compute\V1\NetworksAddPeeringRequest;
-use Google\Cloud\Compute\V1\NetworksClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function add_peering_sample(string $network, string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
+    $request = (new AddPeeringNetworkRequest())
+        ->setNetwork($network)
+        ->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
+        $response = $networksClient->addPeering($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

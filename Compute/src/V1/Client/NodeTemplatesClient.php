@@ -252,6 +252,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/aggregated_list.php
+     *
      * @param AggregatedListNodeTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -275,6 +277,8 @@ final class NodeTemplatesClient
      * Deletes the specified NodeTemplate resource.
      *
      * The async variant is {@see NodeTemplatesClient::deleteAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/delete.php
      *
      * @param DeleteNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -300,6 +304,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::getAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/get.php
+     *
      * @param GetNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -323,6 +329,8 @@ final class NodeTemplatesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NodeTemplatesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/get_iam_policy.php
      *
      * @param GetIamPolicyNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -348,6 +356,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::insertAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/insert.php
+     *
      * @param InsertNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -371,6 +381,8 @@ final class NodeTemplatesClient
      * Retrieves a list of node templates available to the specified project.
      *
      * The async variant is {@see NodeTemplatesClient::listAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/list.php
      *
      * @param ListNodeTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -396,6 +408,8 @@ final class NodeTemplatesClient
      *
      * The async variant is {@see NodeTemplatesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/NodeTemplatesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -419,6 +433,8 @@ final class NodeTemplatesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see NodeTemplatesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NodeTemplatesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNodeTemplateRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_AddInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AddInstanceTargetPoolRequest;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
 use Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function add_instance_sample(string $project, string $region, string $targetPool
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolsAddInstanceRequestResource = new TargetPoolsAddInstanceRequest();
+    $request = (new AddInstanceTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool)
+        ->setTargetPoolsAddInstanceRequestResource($targetPoolsAddInstanceRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->addInstance(
-            $project,
-            $region,
-            $targetPool,
-            $targetPoolsAddInstanceRequestResource
-        );
+        $response = $targetPoolsClient->addInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

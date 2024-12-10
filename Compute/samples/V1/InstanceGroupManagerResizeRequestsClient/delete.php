@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagerResizeRequests_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\DeleteInstanceGroupManagerResizeRequestRequest;
 use Google\Rpc\Status;
 
 /**
@@ -45,15 +46,17 @@ function delete_sample(
     // Create a client.
     $instanceGroupManagerResizeRequestsClient = new InstanceGroupManagerResizeRequestsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstanceGroupManagerResizeRequestRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setResizeRequest($resizeRequest)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagerResizeRequestsClient->delete(
-            $instanceGroupManager,
-            $project,
-            $resizeRequest,
-            $zone
-        );
+        $response = $instanceGroupManagerResizeRequestsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

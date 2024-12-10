@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_UpdateDisplayDevice_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\DisplayDevice;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\UpdateDisplayDeviceInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function update_display_device_sample(string $instance, string $project, string 
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $displayDeviceResource = new DisplayDevice();
+    $request = (new UpdateDisplayDeviceInstanceRequest())
+        ->setDisplayDeviceResource($displayDeviceResource)
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->updateDisplayDevice(
-            $displayDeviceResource,
-            $instance,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->updateDisplayDevice($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

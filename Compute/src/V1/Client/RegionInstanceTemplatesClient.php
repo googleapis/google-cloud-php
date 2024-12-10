@@ -242,6 +242,8 @@ final class RegionInstanceTemplatesClient
      *
      * The async variant is {@see RegionInstanceTemplatesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionInstanceTemplatesClient/delete.php
+     *
      * @param DeleteRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -265,6 +267,8 @@ final class RegionInstanceTemplatesClient
      * Returns the specified instance template.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionInstanceTemplatesClient/get.php
      *
      * @param GetRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -290,6 +294,8 @@ final class RegionInstanceTemplatesClient
      *
      * The async variant is {@see RegionInstanceTemplatesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionInstanceTemplatesClient/insert.php
+     *
      * @param InsertRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -313,6 +319,8 @@ final class RegionInstanceTemplatesClient
      * Retrieves a list of instance templates that are contained within the specified project and region.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionInstanceTemplatesClient/list.php
      *
      * @param ListRegionInstanceTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

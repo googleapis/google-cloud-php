@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkEndpointGroups_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\AggregatedListNetworkEndpointGroupsRequest;
+use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
 
 /**
  * Retrieves the list of network endpoint groups and sorts them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListNetworkEndpointGroupsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networkEndpointGroupsClient->aggregatedList($project);
+        $response = $networkEndpointGroupsClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

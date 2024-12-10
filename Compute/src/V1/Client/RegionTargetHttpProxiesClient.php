@@ -244,6 +244,8 @@ final class RegionTargetHttpProxiesClient
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpProxiesClient/delete.php
+     *
      * @param DeleteRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -267,6 +269,8 @@ final class RegionTargetHttpProxiesClient
      * Returns the specified TargetHttpProxy resource in the specified region.
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpProxiesClient/get.php
      *
      * @param GetRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -292,6 +296,8 @@ final class RegionTargetHttpProxiesClient
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpProxiesClient/insert.php
+     *
      * @param InsertRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -316,6 +322,8 @@ final class RegionTargetHttpProxiesClient
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::listAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpProxiesClient/list.php
+     *
      * @param ListRegionTargetHttpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -339,6 +347,8 @@ final class RegionTargetHttpProxiesClient
      * Changes the URL map for TargetHttpProxy.
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::setUrlMapAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpProxiesClient/set_url_map.php
      *
      * @param SetUrlMapRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

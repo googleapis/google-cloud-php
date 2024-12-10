@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Networks_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NetworksClient;
+use Google\Cloud\Compute\V1\Client\NetworksClient;
+use Google\Cloud\Compute\V1\ListNetworksRequest;
 
 /**
  * Retrieves the list of networks available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworksRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networksClient->list($project);
+        $response = $networksClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

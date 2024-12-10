@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InstanceGroupManagers_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\GetInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
 
 /**
  * Returns all of the details about the specified managed instance group.
@@ -39,10 +40,16 @@ function get_sample(string $instanceGroupManager, string $project, string $zone)
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
+    // Prepare the request message.
+    $request = (new GetInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceGroupManager $response */
-        $response = $instanceGroupManagersClient->get($instanceGroupManager, $project, $zone);
+        $response = $instanceGroupManagersClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

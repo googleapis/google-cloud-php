@@ -254,6 +254,8 @@ final class ResourcePoliciesClient
      *
      * The async variant is {@see ResourcePoliciesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/ResourcePoliciesClient/aggregated_list.php
+     *
      * @param AggregatedListResourcePoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -277,6 +279,8 @@ final class ResourcePoliciesClient
      * Deletes the specified resource policy.
      *
      * The async variant is {@see ResourcePoliciesClient::deleteAsync()} .
+     *
+     * @example samples/V1/ResourcePoliciesClient/delete.php
      *
      * @param DeleteResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -302,6 +306,8 @@ final class ResourcePoliciesClient
      *
      * The async variant is {@see ResourcePoliciesClient::getAsync()} .
      *
+     * @example samples/V1/ResourcePoliciesClient/get.php
+     *
      * @param GetResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -325,6 +331,8 @@ final class ResourcePoliciesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see ResourcePoliciesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ResourcePoliciesClient/get_iam_policy.php
      *
      * @param GetIamPolicyResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -350,6 +358,8 @@ final class ResourcePoliciesClient
      *
      * The async variant is {@see ResourcePoliciesClient::insertAsync()} .
      *
+     * @example samples/V1/ResourcePoliciesClient/insert.php
+     *
      * @param InsertResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -373,6 +383,8 @@ final class ResourcePoliciesClient
      * A list all the resource policies that have been configured for the specified project in specified region.
      *
      * The async variant is {@see ResourcePoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/ResourcePoliciesClient/list.php
      *
      * @param ListResourcePoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -398,6 +410,8 @@ final class ResourcePoliciesClient
      *
      * The async variant is {@see ResourcePoliciesClient::patchAsync()} .
      *
+     * @example samples/V1/ResourcePoliciesClient/patch.php
+     *
      * @param PatchResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -422,6 +436,8 @@ final class ResourcePoliciesClient
      *
      * The async variant is {@see ResourcePoliciesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/ResourcePoliciesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -445,6 +461,8 @@ final class ResourcePoliciesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see ResourcePoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ResourcePoliciesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsResourcePolicyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NetworkAttachments_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\GetIamPolicyNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
@@ -39,10 +40,16 @@ function get_iam_policy_sample(string $project, string $region, string $resource
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyNetworkAttachmentRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $networkAttachmentsClient->getIamPolicy($project, $region, $resource);
+        $response = $networkAttachmentsClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

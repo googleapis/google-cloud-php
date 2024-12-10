@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceTemplates_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\ListRegionInstanceTemplatesRequest;
 
 /**
  * Retrieves a list of instance templates that are contained within the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionInstanceTemplatesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceTemplatesClient->list($project, $region);
+        $response = $regionInstanceTemplatesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

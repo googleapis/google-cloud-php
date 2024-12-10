@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionUrlMaps_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionUrlMapsClient;
+use Google\Cloud\Compute\V1\Client\RegionUrlMapsClient;
+use Google\Cloud\Compute\V1\InsertRegionUrlMapRequest;
 use Google\Cloud\Compute\V1\UrlMap;
 use Google\Rpc\Status;
 
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionUrlMapsClient = new RegionUrlMapsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $urlMapResource = new UrlMap();
+    $request = (new InsertRegionUrlMapRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setUrlMapResource($urlMapResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionUrlMapsClient->insert($project, $region, $urlMapResource);
+        $response = $regionUrlMapsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -259,6 +259,8 @@ final class SecurityPoliciesClient
      *
      * The async variant is {@see SecurityPoliciesClient::addRuleAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/add_rule.php
+     *
      * @param AddRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -282,6 +284,8 @@ final class SecurityPoliciesClient
      * Retrieves the list of all SecurityPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SecurityPoliciesClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/SecurityPoliciesClient/aggregated_list.php
      *
      * @param AggregatedListSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -307,6 +311,8 @@ final class SecurityPoliciesClient
      *
      * The async variant is {@see SecurityPoliciesClient::deleteAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/delete.php
+     *
      * @param DeleteSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -330,6 +336,8 @@ final class SecurityPoliciesClient
      * List all of the ordered rules present in a single specified policy.
      *
      * The async variant is {@see SecurityPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/SecurityPoliciesClient/get.php
      *
      * @param GetSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -355,6 +363,8 @@ final class SecurityPoliciesClient
      *
      * The async variant is {@see SecurityPoliciesClient::getRuleAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/get_rule.php
+     *
      * @param GetRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -379,6 +389,8 @@ final class SecurityPoliciesClient
      *
      * The async variant is {@see SecurityPoliciesClient::insertAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/insert.php
+     *
      * @param InsertSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -402,6 +414,8 @@ final class SecurityPoliciesClient
      * List all the policies that have been configured for the specified project.
      *
      * The async variant is {@see SecurityPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/SecurityPoliciesClient/list.php
      *
      * @param ListSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -428,6 +442,8 @@ final class SecurityPoliciesClient
      * The async variant is
      * {@see SecurityPoliciesClient::listPreconfiguredExpressionSetsAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/list_preconfigured_expression_sets.php
+     *
      * @param ListPreconfiguredExpressionSetsSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
      *     Optional.
@@ -451,6 +467,8 @@ final class SecurityPoliciesClient
      * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
      *
      * The async variant is {@see SecurityPoliciesClient::patchAsync()} .
+     *
+     * @example samples/V1/SecurityPoliciesClient/patch.php
      *
      * @param PatchSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -476,6 +494,8 @@ final class SecurityPoliciesClient
      *
      * The async variant is {@see SecurityPoliciesClient::patchRuleAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/patch_rule.php
+     *
      * @param PatchRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -500,6 +520,8 @@ final class SecurityPoliciesClient
      *
      * The async variant is {@see SecurityPoliciesClient::removeRuleAsync()} .
      *
+     * @example samples/V1/SecurityPoliciesClient/remove_rule.php
+     *
      * @param RemoveRuleSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -523,6 +545,8 @@ final class SecurityPoliciesClient
      * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see SecurityPoliciesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/SecurityPoliciesClient/set_labels.php
      *
      * @param SetLabelsSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

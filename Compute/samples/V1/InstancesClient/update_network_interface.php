@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_UpdateNetworkInterface_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\NetworkInterface;
+use Google\Cloud\Compute\V1\UpdateNetworkInterfaceInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -46,19 +47,19 @@ function update_network_interface_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkInterfaceResource = new NetworkInterface();
+    $request = (new UpdateNetworkInterfaceInstanceRequest())
+        ->setInstance($instance)
+        ->setNetworkInterface($networkInterface)
+        ->setNetworkInterfaceResource($networkInterfaceResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->updateNetworkInterface(
-            $instance,
-            $networkInterface,
-            $networkInterfaceResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->updateNetworkInterface($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_AddResourcePolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AddResourcePoliciesInstanceRequest;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest;
-use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function add_resource_policies_sample(string $instance, string $project, string 
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
+    $request = (new AddResourcePoliciesInstanceRequest())
+        ->setInstance($instance)
+        ->setInstancesAddResourcePoliciesRequestResource($instancesAddResourcePoliciesRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->addResourcePolicies(
-            $instance,
-            $instancesAddResourcePoliciesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->addResourcePolicies($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

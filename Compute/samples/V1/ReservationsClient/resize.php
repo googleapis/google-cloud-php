@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Reservations_Resize_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ReservationsClient;
+use Google\Cloud\Compute\V1\Client\ReservationsClient;
 use Google\Cloud\Compute\V1\ReservationsResizeRequest;
+use Google\Cloud\Compute\V1\ResizeReservationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function resize_sample(string $project, string $reservation, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $reservationsResizeRequestResource = new ReservationsResizeRequest();
+    $request = (new ResizeReservationRequest())
+        ->setProject($project)
+        ->setReservation($reservation)
+        ->setReservationsResizeRequestResource($reservationsResizeRequestResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reservationsClient->resize(
-            $project,
-            $reservation,
-            $reservationsResizeRequestResource,
-            $zone
-        );
+        $response = $reservationsClient->resize($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

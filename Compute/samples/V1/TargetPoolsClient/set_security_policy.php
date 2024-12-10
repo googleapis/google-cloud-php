@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_SetSecurityPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
 use Google\Cloud\Compute\V1\SecurityPolicyReference;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
+use Google\Cloud\Compute\V1\SetSecurityPolicyTargetPoolRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_security_policy_sample(string $project, string $region, string $tar
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $securityPolicyReferenceResource = new SecurityPolicyReference();
+    $request = (new SetSecurityPolicyTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource)
+        ->setTargetPool($targetPool);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->setSecurityPolicy(
-            $project,
-            $region,
-            $securityPolicyReferenceResource,
-            $targetPool
-        );
+        $response = $targetPoolsClient->setSecurityPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_GlobalOrganizationOperations_Delete_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\GlobalOrganizationOperationsClient;
+use Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationRequest;
 use Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationResponse;
-use Google\Cloud\Compute\V1\GlobalOrganizationOperationsClient;
 
 /**
  * Deletes the specified Operations resource.
@@ -37,10 +38,14 @@ function delete_sample(string $operation): void
     // Create a client.
     $globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteGlobalOrganizationOperationRequest())
+        ->setOperation($operation);
+
     // Call the API and handle any network failures.
     try {
         /** @var DeleteGlobalOrganizationOperationResponse $response */
-        $response = $globalOrganizationOperationsClient->delete($operation);
+        $response = $globalOrganizationOperationsClient->delete($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

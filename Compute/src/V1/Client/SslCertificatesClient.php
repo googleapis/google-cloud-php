@@ -243,6 +243,8 @@ final class SslCertificatesClient
      *
      * The async variant is {@see SslCertificatesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/SslCertificatesClient/aggregated_list.php
+     *
      * @param AggregatedListSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -266,6 +268,8 @@ final class SslCertificatesClient
      * Deletes the specified SslCertificate resource.
      *
      * The async variant is {@see SslCertificatesClient::deleteAsync()} .
+     *
+     * @example samples/V1/SslCertificatesClient/delete.php
      *
      * @param DeleteSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -291,6 +295,8 @@ final class SslCertificatesClient
      *
      * The async variant is {@see SslCertificatesClient::getAsync()} .
      *
+     * @example samples/V1/SslCertificatesClient/get.php
+     *
      * @param GetSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -315,6 +321,8 @@ final class SslCertificatesClient
      *
      * The async variant is {@see SslCertificatesClient::insertAsync()} .
      *
+     * @example samples/V1/SslCertificatesClient/insert.php
+     *
      * @param InsertSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -338,6 +346,8 @@ final class SslCertificatesClient
      * Retrieves the list of SslCertificate resources available to the specified project.
      *
      * The async variant is {@see SslCertificatesClient::listAsync()} .
+     *
+     * @example samples/V1/SslCertificatesClient/list.php
      *
      * @param ListSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

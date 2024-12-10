@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Zones_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ZonesClient;
+use Google\Cloud\Compute\V1\Client\ZonesClient;
+use Google\Cloud\Compute\V1\ListZonesRequest;
 
 /**
  * Retrieves the list of Zone resources available to the specified project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $zonesClient = new ZonesClient();
 
+    // Prepare the request message.
+    $request = (new ListZonesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $zonesClient->list($project);
+        $response = $zonesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

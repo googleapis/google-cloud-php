@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_DeleteAccessConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\DeleteAccessConfigInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,16 +48,18 @@ function delete_access_config_sample(
     // Create a client.
     $instancesClient = new InstancesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAccessConfigInstanceRequest())
+        ->setAccessConfig($accessConfig)
+        ->setInstance($instance)
+        ->setNetworkInterface($networkInterface)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->deleteAccessConfig(
-            $accessConfig,
-            $instance,
-            $networkInterface,
-            $project,
-            $zone
-        );
+        $response = $instancesClient->deleteAccessConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

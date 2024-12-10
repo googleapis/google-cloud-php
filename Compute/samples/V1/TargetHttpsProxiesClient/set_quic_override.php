@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetHttpsProxies_SetQuicOverride_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\SetQuicOverrideTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpsProxiesSetQuicOverrideRequest;
 use Google\Rpc\Status;
 
@@ -40,17 +41,19 @@ function set_quic_override_sample(string $project, string $targetHttpsProxy): vo
     // Create a client.
     $targetHttpsProxiesClient = new TargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetHttpsProxiesSetQuicOverrideRequestResource = new TargetHttpsProxiesSetQuicOverrideRequest();
+    $request = (new SetQuicOverrideTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setTargetHttpsProxiesSetQuicOverrideRequestResource(
+            $targetHttpsProxiesSetQuicOverrideRequestResource
+        )
+        ->setTargetHttpsProxy($targetHttpsProxy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetHttpsProxiesClient->setQuicOverride(
-            $project,
-            $targetHttpsProxiesSetQuicOverrideRequestResource,
-            $targetHttpsProxy
-        );
+        $response = $targetHttpsProxiesClient->setQuicOverride($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

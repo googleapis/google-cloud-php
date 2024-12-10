@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PacketMirrorings_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\PacketMirroringsClient;
 use Google\Cloud\Compute\V1\PacketMirroring;
-use Google\Cloud\Compute\V1\PacketMirroringsClient;
+use Google\Cloud\Compute\V1\PatchPacketMirroringRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function patch_sample(string $packetMirroring, string $project, string $region):
     // Create a client.
     $packetMirroringsClient = new PacketMirroringsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $packetMirroringResource = new PacketMirroring();
+    $request = (new PatchPacketMirroringRequest())
+        ->setPacketMirroring($packetMirroring)
+        ->setPacketMirroringResource($packetMirroringResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $packetMirroringsClient->patch(
-            $packetMirroring,
-            $packetMirroringResource,
-            $project,
-            $region
-        );
+        $response = $packetMirroringsClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

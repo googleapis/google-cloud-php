@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SslPolicies_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SslPoliciesClient;
+use Google\Cloud\Compute\V1\Client\SslPoliciesClient;
+use Google\Cloud\Compute\V1\PatchSslPolicyRequest;
 use Google\Cloud\Compute\V1\SslPolicy;
 use Google\Rpc\Status;
 
@@ -40,13 +41,17 @@ function patch_sample(string $project, string $sslPolicy): void
     // Create a client.
     $sslPoliciesClient = new SslPoliciesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sslPolicyResource = new SslPolicy();
+    $request = (new PatchSslPolicyRequest())
+        ->setProject($project)
+        ->setSslPolicy($sslPolicy)
+        ->setSslPolicyResource($sslPolicyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $sslPoliciesClient->patch($project, $sslPolicy, $sslPolicyResource);
+        $response = $sslPoliciesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

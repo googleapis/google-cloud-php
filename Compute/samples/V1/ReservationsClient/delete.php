@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Reservations_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ReservationsClient;
+use Google\Cloud\Compute\V1\Client\ReservationsClient;
+use Google\Cloud\Compute\V1\DeleteReservationRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $reservation, string $zone): void
     // Create a client.
     $reservationsClient = new ReservationsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteReservationRequest())
+        ->setProject($project)
+        ->setReservation($reservation)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reservationsClient->delete($project, $reservation, $zone);
+        $response = $reservationsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

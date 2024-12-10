@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_RemoveInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\RemoveInstanceTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPoolsRemoveInstanceRequest;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function remove_instance_sample(string $project, string $region, string $targetP
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolsRemoveInstanceRequestResource = new TargetPoolsRemoveInstanceRequest();
+    $request = (new RemoveInstanceTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool)
+        ->setTargetPoolsRemoveInstanceRequestResource($targetPoolsRemoveInstanceRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->removeInstance(
-            $project,
-            $region,
-            $targetPool,
-            $targetPoolsRemoveInstanceRequestResource
-        );
+        $response = $targetPoolsClient->removeInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

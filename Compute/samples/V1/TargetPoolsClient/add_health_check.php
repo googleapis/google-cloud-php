@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetPools_AddHealthCheck_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AddHealthCheckTargetPoolRequest;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
 use Google\Cloud\Compute\V1\TargetPoolsAddHealthCheckRequest;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function add_health_check_sample(string $project, string $region, string $target
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetPoolsAddHealthCheckRequestResource = new TargetPoolsAddHealthCheckRequest();
+    $request = (new AddHealthCheckTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool)
+        ->setTargetPoolsAddHealthCheckRequestResource($targetPoolsAddHealthCheckRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetPoolsClient->addHealthCheck(
-            $project,
-            $region,
-            $targetPool,
-            $targetPoolsAddHealthCheckRequestResource
-        );
+        $response = $targetPoolsClient->addHealthCheck($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

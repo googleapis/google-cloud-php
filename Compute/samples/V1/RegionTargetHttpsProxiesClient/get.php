@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionTargetHttpsProxies_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\RegionTargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\GetRegionTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpsProxy;
 
 /**
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $targetHttpsProxy): 
     // Create a client.
     $regionTargetHttpsProxiesClient = new RegionTargetHttpsProxiesClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetHttpsProxy($targetHttpsProxy);
+
     // Call the API and handle any network failures.
     try {
         /** @var TargetHttpsProxy $response */
-        $response = $regionTargetHttpsProxiesClient->get($project, $region, $targetHttpsProxy);
+        $response = $regionTargetHttpsProxiesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

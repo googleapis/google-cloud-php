@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_ServiceAttachments_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ServiceAttachmentsClient;
+use Google\Cloud\Compute\V1\GetServiceAttachmentRequest;
 use Google\Cloud\Compute\V1\ServiceAttachment;
-use Google\Cloud\Compute\V1\ServiceAttachmentsClient;
 
 /**
  * Returns the specified ServiceAttachment resource in the given scope.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $serviceAttachment):
     // Create a client.
     $serviceAttachmentsClient = new ServiceAttachmentsClient();
 
+    // Prepare the request message.
+    $request = (new GetServiceAttachmentRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setServiceAttachment($serviceAttachment);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServiceAttachment $response */
-        $response = $serviceAttachmentsClient->get($project, $region, $serviceAttachment);
+        $response = $serviceAttachmentsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

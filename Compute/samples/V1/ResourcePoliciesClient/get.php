@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_ResourcePolicies_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\Client\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\GetResourcePolicyRequest;
 use Google\Cloud\Compute\V1\ResourcePolicy;
 
 /**
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $resourcePolicy): vo
     // Create a client.
     $resourcePoliciesClient = new ResourcePoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetResourcePolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResourcePolicy($resourcePolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var ResourcePolicy $response */
-        $response = $resourcePoliciesClient->get($project, $region, $resourcePolicy);
+        $response = $resourcePoliciesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

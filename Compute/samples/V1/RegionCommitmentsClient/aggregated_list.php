@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionCommitments_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionCommitmentsClient;
+use Google\Cloud\Compute\V1\AggregatedListRegionCommitmentsRequest;
+use Google\Cloud\Compute\V1\Client\RegionCommitmentsClient;
 
 /**
  * Retrieves an aggregated list of commitments by region. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $regionCommitmentsClient = new RegionCommitmentsClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListRegionCommitmentsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionCommitmentsClient->aggregatedList($project);
+        $response = $regionCommitmentsClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

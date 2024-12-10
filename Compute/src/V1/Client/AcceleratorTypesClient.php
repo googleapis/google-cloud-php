@@ -187,6 +187,8 @@ final class AcceleratorTypesClient
      *
      * The async variant is {@see AcceleratorTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/AcceleratorTypesClient/aggregated_list.php
+     *
      * @param AggregatedListAcceleratorTypesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -211,6 +213,8 @@ final class AcceleratorTypesClient
      *
      * The async variant is {@see AcceleratorTypesClient::getAsync()} .
      *
+     * @example samples/V1/AcceleratorTypesClient/get.php
+     *
      * @param GetAcceleratorTypeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -234,6 +238,8 @@ final class AcceleratorTypesClient
      * Retrieves a list of accelerator types that are available to the specified project.
      *
      * The async variant is {@see AcceleratorTypesClient::listAsync()} .
+     *
+     * @example samples/V1/AcceleratorTypesClient/list.php
      *
      * @param ListAcceleratorTypesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

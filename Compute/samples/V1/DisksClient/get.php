@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Disks_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\DisksClient;
 use Google\Cloud\Compute\V1\Disk;
-use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\GetDiskRequest;
 
 /**
  * Returns the specified persistent disk.
@@ -39,10 +40,16 @@ function get_sample(string $disk, string $project, string $zone): void
     // Create a client.
     $disksClient = new DisksClient();
 
+    // Prepare the request message.
+    $request = (new GetDiskRequest())
+        ->setDisk($disk)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var Disk $response */
-        $response = $disksClient->get($disk, $project, $zone);
+        $response = $disksClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

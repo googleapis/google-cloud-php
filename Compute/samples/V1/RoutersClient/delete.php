@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Routers_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RoutersClient;
+use Google\Cloud\Compute\V1\Client\RoutersClient;
+use Google\Cloud\Compute\V1\DeleteRouterRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $router): void
     // Create a client.
     $routersClient = new RoutersClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRouterRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRouter($router);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $routersClient->delete($project, $region, $router);
+        $response = $routersClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

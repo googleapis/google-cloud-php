@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroups_AddInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\AddInstancesInstanceGroupRequest;
+use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
 use Google\Cloud\Compute\V1\InstanceGroupsAddInstancesRequest;
-use Google\Cloud\Compute\V1\InstanceGroupsClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function add_instances_sample(string $instanceGroup, string $project, string $zo
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupsAddInstancesRequestResource = new InstanceGroupsAddInstancesRequest();
+    $request = (new AddInstancesInstanceGroupRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setInstanceGroupsAddInstancesRequestResource($instanceGroupsAddInstancesRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupsClient->addInstances(
-            $instanceGroup,
-            $instanceGroupsAddInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupsClient->addInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

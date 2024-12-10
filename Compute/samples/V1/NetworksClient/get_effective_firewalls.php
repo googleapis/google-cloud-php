@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Networks_GetEffectiveFirewalls_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\NetworksClient;
+use Google\Cloud\Compute\V1\Client\NetworksClient;
+use Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest;
 use Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponse;
 
 /**
@@ -38,10 +39,15 @@ function get_effective_firewalls_sample(string $network, string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
+    // Prepare the request message.
+    $request = (new GetEffectiveFirewallsNetworkRequest())
+        ->setNetwork($network)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var NetworksGetEffectiveFirewallsResponse $response */
-        $response = $networksClient->getEffectiveFirewalls($network, $project);
+        $response = $networksClient->getEffectiveFirewalls($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

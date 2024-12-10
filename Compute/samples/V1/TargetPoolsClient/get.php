@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_TargetPools_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\GetTargetPoolRequest;
 use Google\Cloud\Compute\V1\TargetPool;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
 
 /**
  * Returns the specified target pool.
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $targetPool): void
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
+    // Prepare the request message.
+    $request = (new GetTargetPoolRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool);
+
     // Call the API and handle any network failures.
     try {
         /** @var TargetPool $response */
-        $response = $targetPoolsClient->get($project, $region, $targetPool);
+        $response = $targetPoolsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

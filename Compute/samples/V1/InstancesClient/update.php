@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\Instance;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function update_sample(string $instance, string $project, string $zone): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceResource = new Instance();
+    $request = (new UpdateInstanceRequest())
+        ->setInstance($instance)
+        ->setInstanceResource($instanceResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->update($instance, $instanceResource, $project, $zone);
+        $response = $instancesClient->update($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

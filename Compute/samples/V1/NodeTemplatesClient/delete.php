@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeTemplates_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NodeTemplatesClient;
+use Google\Cloud\Compute\V1\Client\NodeTemplatesClient;
+use Google\Cloud\Compute\V1\DeleteNodeTemplateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $nodeTemplate, string $project, string $region): v
     // Create a client.
     $nodeTemplatesClient = new NodeTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNodeTemplateRequest())
+        ->setNodeTemplate($nodeTemplate)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeTemplatesClient->delete($nodeTemplate, $project, $region);
+        $response = $nodeTemplatesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

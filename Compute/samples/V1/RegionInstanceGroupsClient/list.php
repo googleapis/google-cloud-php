@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroups_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionInstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupsClient;
+use Google\Cloud\Compute\V1\ListRegionInstanceGroupsRequest;
 
 /**
  * Retrieves the list of instance group resources contained within the specified region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $regionInstanceGroupsClient = new RegionInstanceGroupsClient();
 
+    // Prepare the request message.
+    $request = (new ListRegionInstanceGroupsRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupsClient->list($project, $region);
+        $response = $regionInstanceGroupsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

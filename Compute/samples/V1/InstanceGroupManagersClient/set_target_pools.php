@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_SetTargetPools_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest;
+use Google\Cloud\Compute\V1\SetTargetPoolsInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function set_target_pools_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersSetTargetPoolsRequestResource = new InstanceGroupManagersSetTargetPoolsRequest();
+    $request = (new SetTargetPoolsInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersSetTargetPoolsRequestResource(
+            $instanceGroupManagersSetTargetPoolsRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->setTargetPools(
-            $instanceGroupManager,
-            $instanceGroupManagersSetTargetPoolsRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->setTargetPools($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

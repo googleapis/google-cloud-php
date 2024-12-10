@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_DeleteSignedUrlKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
+use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,16 @@ function delete_signed_url_key_sample(
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSignedUrlKeyBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setKeyName($keyName)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendServicesClient->deleteSignedUrlKey($backendService, $keyName, $project);
+        $response = $backendServicesClient->deleteSignedUrlKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

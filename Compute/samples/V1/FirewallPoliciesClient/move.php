@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_FirewallPolicies_Move_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\FirewallPoliciesClient;
+use Google\Cloud\Compute\V1\MoveFirewallPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function move_sample(string $firewallPolicy, string $parentId): void
     // Create a client.
     $firewallPoliciesClient = new FirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new MoveFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setParentId($parentId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallPoliciesClient->move($firewallPolicy, $parentId);
+        $response = $firewallPoliciesClient->move($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

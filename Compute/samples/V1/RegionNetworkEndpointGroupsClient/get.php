@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionNetworkEndpointGroups_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
-use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
 
 /**
  * Returns the specified network endpoint group.
@@ -39,10 +40,16 @@ function get_sample(string $networkEndpointGroup, string $project, string $regio
     // Create a client.
     $regionNetworkEndpointGroupsClient = new RegionNetworkEndpointGroupsClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionNetworkEndpointGroupRequest())
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var NetworkEndpointGroup $response */
-        $response = $regionNetworkEndpointGroupsClient->get($networkEndpointGroup, $project, $region);
+        $response = $regionNetworkEndpointGroupsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

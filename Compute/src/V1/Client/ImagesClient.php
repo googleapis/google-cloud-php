@@ -257,6 +257,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::deleteAsync()} .
      *
+     * @example samples/V1/ImagesClient/delete.php
+     *
      * @param DeleteImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -280,6 +282,8 @@ final class ImagesClient
      * Sets the deprecation status of an image. If an empty request body is given, clears the deprecation status instead.
      *
      * The async variant is {@see ImagesClient::deprecateAsync()} .
+     *
+     * @example samples/V1/ImagesClient/deprecate.php
      *
      * @param DeprecateImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -305,6 +309,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::getAsync()} .
      *
+     * @example samples/V1/ImagesClient/get.php
+     *
      * @param GetImageRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -328,6 +334,8 @@ final class ImagesClient
      * Returns the latest image that is part of an image family and is not deprecated. For more information on image families, see Public image families documentation.
      *
      * The async variant is {@see ImagesClient::getFromFamilyAsync()} .
+     *
+     * @example samples/V1/ImagesClient/get_from_family.php
      *
      * @param GetFromFamilyImageRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -353,6 +361,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/ImagesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -376,6 +386,8 @@ final class ImagesClient
      * Creates an image in the specified project using the data included in the request.
      *
      * The async variant is {@see ImagesClient::insertAsync()} .
+     *
+     * @example samples/V1/ImagesClient/insert.php
      *
      * @param InsertImageRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -401,6 +413,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::listAsync()} .
      *
+     * @example samples/V1/ImagesClient/list.php
+     *
      * @param ListImagesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -424,6 +438,8 @@ final class ImagesClient
      * Patches the specified image with the data included in the request. Only the following fields can be modified: family, description, deprecation status.
      *
      * The async variant is {@see ImagesClient::patchAsync()} .
+     *
+     * @example samples/V1/ImagesClient/patch.php
      *
      * @param PatchImageRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -449,6 +465,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/ImagesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -473,6 +491,8 @@ final class ImagesClient
      *
      * The async variant is {@see ImagesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ImagesClient/set_labels.php
+     *
      * @param SetLabelsImageRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -496,6 +516,8 @@ final class ImagesClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see ImagesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ImagesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsImageRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

@@ -245,6 +245,8 @@ final class FirewallsClient
      *
      * The async variant is {@see FirewallsClient::deleteAsync()} .
      *
+     * @example samples/V1/FirewallsClient/delete.php
+     *
      * @param DeleteFirewallRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -268,6 +270,8 @@ final class FirewallsClient
      * Returns the specified firewall.
      *
      * The async variant is {@see FirewallsClient::getAsync()} .
+     *
+     * @example samples/V1/FirewallsClient/get.php
      *
      * @param GetFirewallRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -293,6 +297,8 @@ final class FirewallsClient
      *
      * The async variant is {@see FirewallsClient::insertAsync()} .
      *
+     * @example samples/V1/FirewallsClient/insert.php
+     *
      * @param InsertFirewallRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -316,6 +322,8 @@ final class FirewallsClient
      * Retrieves the list of firewall rules available to the specified project.
      *
      * The async variant is {@see FirewallsClient::listAsync()} .
+     *
+     * @example samples/V1/FirewallsClient/list.php
      *
      * @param ListFirewallsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -341,6 +349,8 @@ final class FirewallsClient
      *
      * The async variant is {@see FirewallsClient::patchAsync()} .
      *
+     * @example samples/V1/FirewallsClient/patch.php
+     *
      * @param PatchFirewallRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -364,6 +374,8 @@ final class FirewallsClient
      * Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead.
      *
      * The async variant is {@see FirewallsClient::updateAsync()} .
+     *
+     * @example samples/V1/FirewallsClient/update.php
      *
      * @param UpdateFirewallRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

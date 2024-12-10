@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionUrlMaps_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionUrlMapsClient;
+use Google\Cloud\Compute\V1\Client\RegionUrlMapsClient;
+use Google\Cloud\Compute\V1\DeleteRegionUrlMapRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $urlMap): void
     // Create a client.
     $regionUrlMapsClient = new RegionUrlMapsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionUrlMapRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setUrlMap($urlMap);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionUrlMapsClient->delete($project, $region, $urlMap);
+        $response = $regionUrlMapsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

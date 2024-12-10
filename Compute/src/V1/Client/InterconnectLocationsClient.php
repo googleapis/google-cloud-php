@@ -182,6 +182,8 @@ final class InterconnectLocationsClient
      *
      * The async variant is {@see InterconnectLocationsClient::getAsync()} .
      *
+     * @example samples/V1/InterconnectLocationsClient/get.php
+     *
      * @param GetInterconnectLocationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -205,6 +207,8 @@ final class InterconnectLocationsClient
      * Retrieves the list of interconnect locations available to the specified project.
      *
      * The async variant is {@see InterconnectLocationsClient::listAsync()} .
+     *
+     * @example samples/V1/InterconnectLocationsClient/list.php
      *
      * @param ListInterconnectLocationsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

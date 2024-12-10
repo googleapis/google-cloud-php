@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionInstanceTemplates_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\GetRegionInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\InstanceTemplate;
-use Google\Cloud\Compute\V1\RegionInstanceTemplatesClient;
 
 /**
  * Returns the specified instance template.
@@ -39,10 +40,16 @@ function get_sample(string $instanceTemplate, string $project, string $region): 
     // Create a client.
     $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionInstanceTemplateRequest())
+        ->setInstanceTemplate($instanceTemplate)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceTemplate $response */
-        $response = $regionInstanceTemplatesClient->get($instanceTemplate, $project, $region);
+        $response = $regionInstanceTemplatesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

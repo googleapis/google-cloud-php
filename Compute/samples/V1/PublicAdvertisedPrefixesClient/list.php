@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicAdvertisedPrefixes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\PublicAdvertisedPrefixesClient;
+use Google\Cloud\Compute\V1\Client\PublicAdvertisedPrefixesClient;
+use Google\Cloud\Compute\V1\ListPublicAdvertisedPrefixesRequest;
 
 /**
  * Lists the PublicAdvertisedPrefixes for a project.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new ListPublicAdvertisedPrefixesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $publicAdvertisedPrefixesClient->list($project);
+        $response = $publicAdvertisedPrefixesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

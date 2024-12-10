@@ -253,6 +253,8 @@ final class NetworkEndpointGroupsClient
      *
      * The async variant is {@see NetworkEndpointGroupsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NetworkEndpointGroupsClient/aggregated_list.php
+     *
      * @param AggregatedListNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -278,6 +280,8 @@ final class NetworkEndpointGroupsClient
      * The async variant is
      * {@see NetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/NetworkEndpointGroupsClient/attach_network_endpoints.php
+     *
      * @param AttachNetworkEndpointsNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
      *     Optional.
@@ -301,6 +305,8 @@ final class NetworkEndpointGroupsClient
      * Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::deleteAsync()} .
+     *
+     * @example samples/V1/NetworkEndpointGroupsClient/delete.php
      *
      * @param DeleteNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -327,6 +333,8 @@ final class NetworkEndpointGroupsClient
      * The async variant is
      * {@see NetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/NetworkEndpointGroupsClient/detach_network_endpoints.php
+     *
      * @param DetachNetworkEndpointsNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
      *     Optional.
@@ -350,6 +358,8 @@ final class NetworkEndpointGroupsClient
      * Returns the specified network endpoint group.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::getAsync()} .
+     *
+     * @example samples/V1/NetworkEndpointGroupsClient/get.php
      *
      * @param GetNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -375,6 +385,8 @@ final class NetworkEndpointGroupsClient
      *
      * The async variant is {@see NetworkEndpointGroupsClient::insertAsync()} .
      *
+     * @example samples/V1/NetworkEndpointGroupsClient/insert.php
+     *
      * @param InsertNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -398,6 +410,8 @@ final class NetworkEndpointGroupsClient
      * Retrieves the list of network endpoint groups that are located in the specified project and zone.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/NetworkEndpointGroupsClient/list.php
      *
      * @param ListNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -424,6 +438,8 @@ final class NetworkEndpointGroupsClient
      * The async variant is
      * {@see NetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
      *
+     * @example samples/V1/NetworkEndpointGroupsClient/list_network_endpoints.php
+     *
      * @param ListNetworkEndpointsNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -448,6 +464,8 @@ final class NetworkEndpointGroupsClient
      *
      * The async variant is
      * {@see NetworkEndpointGroupsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NetworkEndpointGroupsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {

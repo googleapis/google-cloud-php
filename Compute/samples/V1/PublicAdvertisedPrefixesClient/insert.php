@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicAdvertisedPrefixes_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\PublicAdvertisedPrefixesClient;
+use Google\Cloud\Compute\V1\InsertPublicAdvertisedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicAdvertisedPrefix;
-use Google\Cloud\Compute\V1\PublicAdvertisedPrefixesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $publicAdvertisedPrefixesClient = new PublicAdvertisedPrefixesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
+    $request = (new InsertPublicAdvertisedPrefixeRequest())
+        ->setProject($project)
+        ->setPublicAdvertisedPrefixResource($publicAdvertisedPrefixResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $publicAdvertisedPrefixesClient->insert($project, $publicAdvertisedPrefixResource);
+        $response = $publicAdvertisedPrefixesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -184,6 +184,8 @@ final class NodeTypesClient
      *
      * The async variant is {@see NodeTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NodeTypesClient/aggregated_list.php
+     *
      * @param AggregatedListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -208,6 +210,8 @@ final class NodeTypesClient
      *
      * The async variant is {@see NodeTypesClient::getAsync()} .
      *
+     * @example samples/V1/NodeTypesClient/get.php
+     *
      * @param GetNodeTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -231,6 +235,8 @@ final class NodeTypesClient
      * Retrieves a list of node types available to the specified project.
      *
      * The async variant is {@see NodeTypesClient::listAsync()} .
+     *
+     * @example samples/V1/NodeTypesClient/list.php
      *
      * @param ListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

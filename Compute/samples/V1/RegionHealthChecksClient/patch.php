@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionHealthChecks_Patch_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionHealthChecksClient;
 use Google\Cloud\Compute\V1\HealthCheck;
-use Google\Cloud\Compute\V1\RegionHealthChecksClient;
+use Google\Cloud\Compute\V1\PatchRegionHealthCheckRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function patch_sample(string $healthCheck, string $project, string $region): voi
     // Create a client.
     $regionHealthChecksClient = new RegionHealthChecksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $healthCheckResource = new HealthCheck();
+    $request = (new PatchRegionHealthCheckRequest())
+        ->setHealthCheck($healthCheck)
+        ->setHealthCheckResource($healthCheckResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionHealthChecksClient->patch($healthCheck, $healthCheckResource, $project, $region);
+        $response = $regionHealthChecksClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

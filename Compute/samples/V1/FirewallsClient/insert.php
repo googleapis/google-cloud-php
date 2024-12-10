@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Firewalls_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\FirewallsClient;
 use Google\Cloud\Compute\V1\Firewall;
-use Google\Cloud\Compute\V1\FirewallsClient;
+use Google\Cloud\Compute\V1\InsertFirewallRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $firewallsClient = new FirewallsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallResource = new Firewall();
+    $request = (new InsertFirewallRequest())
+        ->setFirewallResource($firewallResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallsClient->insert($firewallResource, $project);
+        $response = $firewallsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_SetDefaultNetworkTier_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest;
+use Google\Cloud\Compute\V1\SetDefaultNetworkTierProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,16 +40,16 @@ function set_default_network_tier_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $projectsSetDefaultNetworkTierRequestResource = new ProjectsSetDefaultNetworkTierRequest();
+    $request = (new SetDefaultNetworkTierProjectRequest())
+        ->setProject($project)
+        ->setProjectsSetDefaultNetworkTierRequestResource($projectsSetDefaultNetworkTierRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->setDefaultNetworkTier(
-            $project,
-            $projectsSetDefaultNetworkTierRequestResource
-        );
+        $response = $projectsClient->setDefaultNetworkTier($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
