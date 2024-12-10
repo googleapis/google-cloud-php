@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\ListRegionHealthCheckServicesRequest;
 use Google\Cloud\Compute\V1\PatchRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionHealthCheckServices API.
@@ -217,6 +218,9 @@ final class RegionHealthCheckServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
