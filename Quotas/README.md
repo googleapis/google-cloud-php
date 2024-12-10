@@ -36,6 +36,11 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 See the [samples directory](https://github.com/googleapis/google-cloud-php-quotas/tree/main/samples) for a canonical list of samples.
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in

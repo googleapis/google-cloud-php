@@ -58,6 +58,11 @@ foreach ($responses as $element) {
 }
 ```
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
@@ -67,4 +72,3 @@ any minor or patch releases. We will address issues and requests with the highes
 
 1. Understand the [official documentation](https://cloud.google.com/speech/docs/).
 2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/speech/).
-

@@ -77,6 +77,11 @@ try {
 }
 ```
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered beta. As such, it should be expected to be mostly
