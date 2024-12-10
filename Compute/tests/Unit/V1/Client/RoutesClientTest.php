@@ -208,8 +208,11 @@ class RoutesClientTest extends GeneratedTest
         $nextHopHub = 'nextHopHub-1948804429';
         $nextHopIlb = 'nextHopIlb-1948803747';
         $nextHopInstance = 'nextHopInstance1467250071';
+        $nextHopInterRegionCost = 1586170733;
         $nextHopIp = 'nextHopIp1184061353';
+        $nextHopMed = 1948800118;
         $nextHopNetwork = 'nextHopNetwork1872908524';
+        $nextHopOrigin = 'nextHopOrigin-1561859928';
         $nextHopPeering = 'nextHopPeering-661059074';
         $nextHopVpnTunnel = 'nextHopVpnTunnel-1627639147';
         $priority = 1165461084;
@@ -228,8 +231,11 @@ class RoutesClientTest extends GeneratedTest
         $expectedResponse->setNextHopHub($nextHopHub);
         $expectedResponse->setNextHopIlb($nextHopIlb);
         $expectedResponse->setNextHopInstance($nextHopInstance);
+        $expectedResponse->setNextHopInterRegionCost($nextHopInterRegionCost);
         $expectedResponse->setNextHopIp($nextHopIp);
+        $expectedResponse->setNextHopMed($nextHopMed);
         $expectedResponse->setNextHopNetwork($nextHopNetwork);
+        $expectedResponse->setNextHopOrigin($nextHopOrigin);
         $expectedResponse->setNextHopPeering($nextHopPeering);
         $expectedResponse->setNextHopVpnTunnel($nextHopVpnTunnel);
         $expectedResponse->setPriority($priority);

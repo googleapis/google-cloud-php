@@ -43,10 +43,12 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\PatchRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\RemoveRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Cloud\Compute\V1\SecurityPolicyList;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
+use Google\Cloud\Compute\V1\SetLabelsRegionSecurityPolicyRequest;
 
 /**
  * Service Description: The RegionSecurityPolicies API.
@@ -940,5 +942,84 @@ class RegionSecurityPoliciesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RemoveRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * Sample code:
+     * ```
+     * $regionSecurityPoliciesClient = new RegionSecurityPoliciesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+     *     $resource = 'resource';
+     *     $operationResponse = $regionSecurityPoliciesClient->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionSecurityPoliciesClient->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionSecurityPoliciesClient->resumeOperation($operationName, 'setLabels');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionSecurityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $region                         The region for this request.
+     * @param RegionSetLabelsRequest $regionSetLabelsRequestResource The body resource for this request
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setLabels($project, $region, $regionSetLabelsRequestResource, $resource, array $optionalArgs = [])
+    {
+        $request = new SetLabelsRegionSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionSetLabelsRequestResource($regionSetLabelsRequestResource);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }
