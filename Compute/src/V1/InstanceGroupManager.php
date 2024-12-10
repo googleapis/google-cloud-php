@@ -143,6 +143,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * Standby policy for stopped and suspended instances.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy standby_policy = 499352324;</code>
+     */
+    private $standby_policy = null;
+    /**
      * Stateful configuration for this Instanced Group Manager
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
@@ -166,6 +172,18 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
      */
     private $target_size = null;
+    /**
+     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
+     */
+    private $target_stopped_size = null;
+    /**
+     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
+     */
+    private $target_suspended_size = null;
     /**
      * The update policy for this managed instance group.
      *
@@ -234,6 +252,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] The URL for this managed instance group. The server defines this URL.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy $standby_policy
+     *           Standby policy for stopped and suspended instances.
      *     @type \Google\Cloud\Compute\V1\StatefulPolicy $stateful_policy
      *           Stateful configuration for this Instanced Group Manager
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $status
@@ -242,6 +262,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *     @type int $target_size
      *           The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
+     *     @type int $target_stopped_size
+     *           The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *     @type int $target_suspended_size
+     *           The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $update_policy
      *           The update policy for this managed instance group.
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $versions
@@ -994,6 +1018,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Standby policy for stopped and suspended instances.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy standby_policy = 499352324;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy|null
+     */
+    public function getStandbyPolicy()
+    {
+        return $this->standby_policy;
+    }
+
+    public function hasStandbyPolicy()
+    {
+        return isset($this->standby_policy);
+    }
+
+    public function clearStandbyPolicy()
+    {
+        unset($this->standby_policy);
+    }
+
+    /**
+     * Standby policy for stopped and suspended instances.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStandbyPolicy standby_policy = 499352324;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy $var
+     * @return $this
+     */
+    public function setStandbyPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy::class);
+        $this->standby_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * Stateful configuration for this Instanced Group Manager
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
@@ -1123,6 +1183,78 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->target_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
+     * @return int
+     */
+    public function getTargetStoppedSize()
+    {
+        return isset($this->target_stopped_size) ? $this->target_stopped_size : 0;
+    }
+
+    public function hasTargetStoppedSize()
+    {
+        return isset($this->target_stopped_size);
+    }
+
+    public function clearTargetStoppedSize()
+    {
+        unset($this->target_stopped_size);
+    }
+
+    /**
+     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetStoppedSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->target_stopped_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
+     * @return int
+     */
+    public function getTargetSuspendedSize()
+    {
+        return isset($this->target_suspended_size) ? $this->target_suspended_size : 0;
+    }
+
+    public function hasTargetSuspendedSize()
+    {
+        return isset($this->target_suspended_size);
+    }
+
+    public function clearTargetSuspendedSize()
+    {
+        unset($this->target_suspended_size);
+    }
+
+    /**
+     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *
+     * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTargetSuspendedSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->target_suspended_size = $var;
 
         return $this;
     }

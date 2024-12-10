@@ -32,6 +32,18 @@ class NicType
      */
     const IDPF = 2242641;
     /**
+     * IRDMA
+     *
+     * Generated from protobuf enum <code>IRDMA = 69927695;</code>
+     */
+    const IRDMA = 69927695;
+    /**
+     * MRDMA
+     *
+     * Generated from protobuf enum <code>MRDMA = 73621779;</code>
+     */
+    const MRDMA = 73621779;
+    /**
      * No type specified.
      *
      * Generated from protobuf enum <code>UNSPECIFIED_NIC_TYPE = 67411801;</code>
@@ -48,6 +60,8 @@ class NicType
         self::UNDEFINED_NIC_TYPE => 'UNDEFINED_NIC_TYPE',
         self::GVNIC => 'GVNIC',
         self::IDPF => 'IDPF',
+        self::IRDMA => 'IRDMA',
+        self::MRDMA => 'MRDMA',
         self::UNSPECIFIED_NIC_TYPE => 'UNSPECIFIED_NIC_TYPE',
         self::VIRTIO_NET => 'VIRTIO_NET',
     ];

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] An opaque ID of the host on which the VM is running.
+     * [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *
      * Generated from protobuf field <code>optional string physical_host = 464370704;</code>
      */
@@ -37,7 +37,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $physical_host
-     *           [Output Only] An opaque ID of the host on which the VM is running.
+     *           [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusScheduling $scheduling
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
      * }
@@ -48,7 +48,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An opaque ID of the host on which the VM is running.
+     * [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *
      * Generated from protobuf field <code>optional string physical_host = 464370704;</code>
      * @return string
@@ -69,7 +69,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An opaque ID of the host on which the VM is running.
+     * [Output Only] The precise location of your instance within the zone's data center, including the block, sub-block, and host. The field is formatted as follows: blockId/subBlockId/hostId.
      *
      * Generated from protobuf field <code>optional string physical_host = 464370704;</code>
      * @param string $var
