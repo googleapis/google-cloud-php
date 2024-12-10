@@ -37,4 +37,6 @@ class TlsEarlyData
     const PERMISSIVE = 'PERMISSIVE';
 
     const STRICT = 'STRICT';
+
+    const UNRESTRICTED = 'UNRESTRICTED';
 }

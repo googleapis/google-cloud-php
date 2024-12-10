@@ -51,8 +51,12 @@ use Google\Cloud\Compute\V1\PatchInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\PatchPerInstanceConfigsInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\RecreateInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\ResizeInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\ResumeInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetInstanceTemplateInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetTargetPoolsInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StartInstancesInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StopInstancesInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\SuspendInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -80,8 +84,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> patchPerInstanceConfigsAsync(PatchPerInstanceConfigsInstanceGroupManagerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> recreateInstancesAsync(RecreateInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resizeAsync(ResizeInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resumeInstancesAsync(ResumeInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setInstanceTemplateAsync(SetInstanceTemplateInstanceGroupManagerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setTargetPoolsAsync(SetTargetPoolsInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startInstancesAsync(StartInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopInstancesAsync(StopInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> suspendInstancesAsync(SuspendInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updatePerInstanceConfigsAsync(UpdatePerInstanceConfigsInstanceGroupManagerRequest $request, array $optionalArgs = [])
  */
 final class InstanceGroupManagersClient
@@ -687,6 +695,31 @@ final class InstanceGroupManagersClient
     }
 
     /**
+     * Flags the specified instances in the managed instance group to be resumed. This method increases the targetSize and decreases the targetSuspendedSize of the managed instance group by the number of instances that you resume. The resumeInstances operation is marked DONE if the resumeInstances request is successful. The underlying actions take additional time. You must separately verify the status of the RESUMING action with the listmanagedinstances method. In this request, you can only specify instances that are suspended. For example, if an instance was previously suspended using the suspendInstances method, it can be resumed using the resumeInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are resumed. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is {@see InstanceGroupManagersClient::resumeInstancesAsync()}
+     * .
+     *
+     * @param ResumeInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resumeInstances(ResumeInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ResumeInstances', $request, $callOptions)->wait();
+    }
+
+    /**
      * Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
      * The async variant is
@@ -733,6 +766,79 @@ final class InstanceGroupManagersClient
     public function setTargetPools(SetTargetPoolsInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetTargetPools', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be started. This method increases the targetSize and decreases the targetStoppedSize of the managed instance group by the number of instances that you start. The startInstances operation is marked DONE if the startInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STARTING action with the listmanagedinstances method. In this request, you can only specify instances that are stopped. For example, if an instance was previously stopped using the stopInstances method, it can be started using the startInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are started. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is {@see InstanceGroupManagersClient::startInstancesAsync()} .
+     *
+     * @param StartInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startInstances(StartInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartInstances', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be immediately stopped. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetStoppedSize of the managed instance group by the number of instances that you stop. The stopInstances operation is marked DONE if the stopInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STOPPING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays stopping the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is stopped. Stopped instances can be started using the startInstances method. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is {@see InstanceGroupManagersClient::stopInstancesAsync()} .
+     *
+     * @param StopInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function stopInstances(StopInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StopInstances', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be immediately suspended. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetSuspendedSize of the managed instance group by the number of instances that you suspend. The suspendInstances operation is marked DONE if the suspendInstances request is successful. The underlying actions take additional time. You must separately verify the status of the SUSPENDING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays suspension of the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is suspended. Suspended instances can be resumed using the resumeInstances method. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * The async variant is {@see InstanceGroupManagersClient::suspendInstancesAsync()}
+     * .
+     *
+     * @param SuspendInstancesInstanceGroupManagerRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function suspendInstances(SuspendInstancesInstanceGroupManagerRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SuspendInstances', $request, $callOptions)->wait();
     }
 
     /**

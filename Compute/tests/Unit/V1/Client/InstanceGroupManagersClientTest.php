@@ -50,9 +50,13 @@ use Google\Cloud\Compute\V1\InstanceGroupManagersListManagedInstancesResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersListPerInstanceConfigsResp;
 use Google\Cloud\Compute\V1\InstanceGroupManagersPatchPerInstanceConfigsReq;
 use Google\Cloud\Compute\V1\InstanceGroupManagersRecreateInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersResumeInstancesRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersScopedList;
 use Google\Cloud\Compute\V1\InstanceGroupManagersSetInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersStartInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersStopInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersSuspendInstancesRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersUpdatePerInstanceConfigsReq;
 use Google\Cloud\Compute\V1\InstanceManagedByIgmError;
 use Google\Cloud\Compute\V1\ListErrorsInstanceGroupManagersRequest;
@@ -67,8 +71,12 @@ use Google\Cloud\Compute\V1\PatchPerInstanceConfigsInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\PerInstanceConfig;
 use Google\Cloud\Compute\V1\RecreateInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\ResizeInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\ResumeInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetInstanceTemplateInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetTargetPoolsInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StartInstancesInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StopInstancesInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\SuspendInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Rpc\Code;
@@ -997,6 +1005,8 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $targetSize = 2084603409;
+        $targetStoppedSize = 1613032225;
+        $targetSuspendedSize = 765655981;
         $zone2 = 'zone2-696322977';
         $expectedResponse = new InstanceGroupManager();
         $expectedResponse->setBaseInstanceName($baseInstanceName);
@@ -1014,6 +1024,8 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetSize($targetSize);
+        $expectedResponse->setTargetStoppedSize($targetStoppedSize);
+        $expectedResponse->setTargetSuspendedSize($targetSuspendedSize);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -2075,6 +2087,139 @@ class InstanceGroupManagersClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function resumeInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/resumeInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/resumeInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersResumeInstancesRequestResource = new InstanceGroupManagersResumeInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ResumeInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersResumeInstancesRequestResource($instanceGroupManagersResumeInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->resumeInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/ResumeInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersResumeInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersResumeInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function resumeInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/resumeInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersResumeInstancesRequestResource = new InstanceGroupManagersResumeInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new ResumeInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersResumeInstancesRequestResource($instanceGroupManagersResumeInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->resumeInstances($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function setInstanceTemplateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2321,6 +2466,405 @@ class InstanceGroupManagersClientTest extends GeneratedTest
             ->setProject($project)
             ->setZone($zone);
         $response = $gapicClient->setTargetPools($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/startInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/startInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersStartInstancesRequestResource = new InstanceGroupManagersStartInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new StartInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersStartInstancesRequestResource($instanceGroupManagersStartInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->startInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/StartInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersStartInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersStartInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/startInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersStartInstancesRequestResource = new InstanceGroupManagersStartInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new StartInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersStartInstancesRequestResource($instanceGroupManagersStartInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->startInstances($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/stopInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/stopInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersStopInstancesRequestResource = new InstanceGroupManagersStopInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new StopInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersStopInstancesRequestResource($instanceGroupManagersStopInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->stopInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/StopInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersStopInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersStopInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/stopInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersStopInstancesRequestResource = new InstanceGroupManagersStopInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new StopInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersStopInstancesRequestResource($instanceGroupManagersStopInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->stopInstances($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function suspendInstancesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/suspendInstancesTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/suspendInstancesTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersSuspendInstancesRequestResource = new InstanceGroupManagersSuspendInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new SuspendInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersSuspendInstancesRequestResource($instanceGroupManagersSuspendInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->suspendInstances($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagers/SuspendInstances', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManager();
+        $this->assertProtobufEquals($instanceGroupManager, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstanceGroupManagersSuspendInstancesRequestResource();
+        $this->assertProtobufEquals($instanceGroupManagersSuspendInstancesRequestResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function suspendInstancesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/suspendInstancesExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instanceGroupManager = 'instanceGroupManager-1361249341';
+        $instanceGroupManagersSuspendInstancesRequestResource = new InstanceGroupManagersSuspendInstancesRequest();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $request = (new SuspendInstancesInstanceGroupManagerRequest())
+            ->setInstanceGroupManager($instanceGroupManager)
+            ->setInstanceGroupManagersSuspendInstancesRequestResource($instanceGroupManagersSuspendInstancesRequestResource)
+            ->setProject($project)
+            ->setZone($zone);
+        $response = $gapicClient->suspendInstances($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

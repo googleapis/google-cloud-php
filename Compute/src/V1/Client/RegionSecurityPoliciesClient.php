@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
+use Google\Cloud\Compute\V1\SetLabelsRegionSecurityPolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -62,6 +63,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  */
 final class RegionSecurityPoliciesClient
 {
@@ -462,5 +464,29 @@ final class RegionSecurityPoliciesClient
     public function removeRule(RemoveRuleRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * The async variant is {@see RegionSecurityPoliciesClient::setLabelsAsync()} .
+     *
+     * @param SetLabelsRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setLabels(SetLabelsRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 }

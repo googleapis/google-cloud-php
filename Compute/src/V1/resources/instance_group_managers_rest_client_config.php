@@ -372,6 +372,28 @@ return [
                     'size',
                 ],
             ],
+            'ResumeInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/resumeInstances',
+                'body' => 'instance_group_managers_resume_instances_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'SetInstanceTemplate' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/setInstanceTemplate',
@@ -398,6 +420,72 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/setTargetPools',
                 'body' => 'instance_group_managers_set_target_pools_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'StartInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/startInstances',
+                'body' => 'instance_group_managers_start_instances_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'StopInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/stopInstances',
+                'body' => 'instance_group_managers_stop_instances_request_resource',
+                'placeholders' => [
+                    'instance_group_manager' => [
+                        'getters' => [
+                            'getInstanceGroupManager',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'SuspendInstances' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/suspendInstances',
+                'body' => 'instance_group_managers_suspend_instances_request_resource',
                 'placeholders' => [
                     'instance_group_manager' => [
                         'getters' => [

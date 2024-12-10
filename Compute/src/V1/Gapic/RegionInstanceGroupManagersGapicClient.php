@@ -62,12 +62,20 @@ use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListErrorsResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstanceConfigsResp;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersListInstancesResponse;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersRecreateRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersResumeInstancesRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTargetPoolsRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersStartInstancesRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersStopInstancesRequest;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagersSuspendInstancesRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\ResizeRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\ResumeInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetInstanceTemplateRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\SetTargetPoolsRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StartInstancesRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\StopInstancesRegionInstanceGroupManagerRequest;
+use Google\Cloud\Compute\V1\SuspendInstancesRegionInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest;
 
 /**
@@ -1550,6 +1558,85 @@ class RegionInstanceGroupManagersGapicClient
     }
 
     /**
+     * Flags the specified instances in the managed instance group to be resumed. This method increases the targetSize and decreases the targetSuspendedSize of the managed instance group by the number of instances that you resume. The resumeInstances operation is marked DONE if the resumeInstances request is successful. The underlying actions take additional time. You must separately verify the status of the RESUMING action with the listmanagedinstances method. In this request, you can only specify instances that are suspended. For example, if an instance was previously suspended using the suspendInstances method, it can be resumed using the resumeInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are resumed. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * Sample code:
+     * ```
+     * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
+     * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersResumeInstancesRequestResource = new RegionInstanceGroupManagersResumeInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->resumeInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersResumeInstancesRequestResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionInstanceGroupManagersClient->resumeInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersResumeInstancesRequestResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'resumeInstances');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionInstanceGroupManagersClient->close();
+     * }
+     * ```
+     *
+     * @param string                                            $instanceGroupManager                                      Name of the managed instance group.
+     * @param string                                            $project                                                   Project ID for this request.
+     * @param string                                            $region                                                    Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersResumeInstancesRequest $regionInstanceGroupManagersResumeInstancesRequestResource The body resource for this request
+     * @param array                                             $optionalArgs                                              {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function resumeInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersResumeInstancesRequestResource, array $optionalArgs = [])
+    {
+        $request = new ResumeInstancesRegionInstanceGroupManagerRequest();
+        $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersResumeInstancesRequestResource($regionInstanceGroupManagersResumeInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ResumeInstances', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
      *
      * Sample code:
@@ -1705,6 +1792,243 @@ class RegionInstanceGroupManagersGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetTargetPools', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be started. This method increases the targetSize and decreases the targetStoppedSize of the managed instance group by the number of instances that you start. The startInstances operation is marked DONE if the startInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STARTING action with the listmanagedinstances method. In this request, you can only specify instances that are stopped. For example, if an instance was previously stopped using the stopInstances method, it can be started using the startInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are started. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * Sample code:
+     * ```
+     * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
+     * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersStartInstancesRequestResource = new RegionInstanceGroupManagersStartInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->startInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersStartInstancesRequestResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionInstanceGroupManagersClient->startInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersStartInstancesRequestResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'startInstances');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionInstanceGroupManagersClient->close();
+     * }
+     * ```
+     *
+     * @param string                                           $instanceGroupManager                                     Name of the managed instance group.
+     * @param string                                           $project                                                  Project ID for this request.
+     * @param string                                           $region                                                   Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersStartInstancesRequest $regionInstanceGroupManagersStartInstancesRequestResource The body resource for this request
+     * @param array                                            $optionalArgs                                             {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function startInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersStartInstancesRequestResource, array $optionalArgs = [])
+    {
+        $request = new StartInstancesRegionInstanceGroupManagerRequest();
+        $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersStartInstancesRequestResource($regionInstanceGroupManagersStartInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StartInstances', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be immediately stopped. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetStoppedSize of the managed instance group by the number of instances that you stop. The stopInstances operation is marked DONE if the stopInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STOPPING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays stopping the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is stopped. Stopped instances can be started using the startInstances method. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * Sample code:
+     * ```
+     * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
+     * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersStopInstancesRequestResource = new RegionInstanceGroupManagersStopInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->stopInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersStopInstancesRequestResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionInstanceGroupManagersClient->stopInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersStopInstancesRequestResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'stopInstances');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionInstanceGroupManagersClient->close();
+     * }
+     * ```
+     *
+     * @param string                                          $instanceGroupManager                                    The name of the managed instance group.
+     * @param string                                          $project                                                 Project ID for this request.
+     * @param string                                          $region                                                  Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersStopInstancesRequest $regionInstanceGroupManagersStopInstancesRequestResource The body resource for this request
+     * @param array                                           $optionalArgs                                            {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersStopInstancesRequestResource, array $optionalArgs = [])
+    {
+        $request = new StopInstancesRegionInstanceGroupManagerRequest();
+        $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersStopInstancesRequestResource($regionInstanceGroupManagersStopInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('StopInstances', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Flags the specified instances in the managed instance group to be immediately suspended. You can only specify instances that are running in this request. This method reduces the targetSize and increases the targetSuspendedSize of the managed instance group by the number of instances that you suspend. The suspendInstances operation is marked DONE if the suspendInstances request is successful. The underlying actions take additional time. You must separately verify the status of the SUSPENDING action with the listmanagedinstances method. If the standbyPolicy.initialDelaySec field is set, the group delays suspension of the instances until initialDelaySec have passed from instance.creationTimestamp (that is, when the instance was created). This delay gives your application time to set itself up and initialize on the instance. If more than initialDelaySec seconds have passed since instance.creationTimestamp when this method is called, there will be zero delay. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is suspended. Suspended instances can be resumed using the resumeInstances method. You can specify a maximum of 1000 instances with this method per request.
+     *
+     * Sample code:
+     * ```
+     * $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
+     * try {
+     *     $instanceGroupManager = 'instance_group_manager';
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionInstanceGroupManagersSuspendInstancesRequestResource = new RegionInstanceGroupManagersSuspendInstancesRequest();
+     *     $operationResponse = $regionInstanceGroupManagersClient->suspendInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSuspendInstancesRequestResource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $regionInstanceGroupManagersClient->suspendInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSuspendInstancesRequestResource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $regionInstanceGroupManagersClient->resumeOperation($operationName, 'suspendInstances');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $regionInstanceGroupManagersClient->close();
+     * }
+     * ```
+     *
+     * @param string                                             $instanceGroupManager                                       Name of the managed instance group.
+     * @param string                                             $project                                                    Project ID for this request.
+     * @param string                                             $region                                                     Name of the region scoping this request.
+     * @param RegionInstanceGroupManagersSuspendInstancesRequest $regionInstanceGroupManagersSuspendInstancesRequestResource The body resource for this request
+     * @param array                                              $optionalArgs                                               {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function suspendInstances($instanceGroupManager, $project, $region, $regionInstanceGroupManagersSuspendInstancesRequestResource, array $optionalArgs = [])
+    {
+        $request = new SuspendInstancesRegionInstanceGroupManagerRequest();
+        $requestParamHeaders = [];
+        $request->setInstanceGroupManager($instanceGroupManager);
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionInstanceGroupManagersSuspendInstancesRequestResource($regionInstanceGroupManagersSuspendInstancesRequestResource);
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SuspendInstances', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**

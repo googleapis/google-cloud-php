@@ -36,6 +36,10 @@ class NicType
 
     const IDPF = 'IDPF';
 
+    const IRDMA = 'IRDMA';
+
+    const MRDMA = 'MRDMA';
+
     const UNSPECIFIED_NIC_TYPE = 'UNSPECIFIED_NIC_TYPE';
 
     const VIRTIO_NET = 'VIRTIO_NET';

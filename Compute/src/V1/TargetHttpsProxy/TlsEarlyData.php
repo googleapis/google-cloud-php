@@ -37,12 +37,19 @@ class TlsEarlyData
      * Generated from protobuf enum <code>STRICT = 308826825;</code>
      */
     const STRICT = 308826825;
+    /**
+     * This enables TLS 1.3 Early Data for requests with any HTTP method including non-idempotent methods list POST. This mode does not enforce any other limitations. This may be valuable for gRPC use cases. However, we do not recommend this method unless you have evaluated your security stance and mitigated the risk of replay attacks using other mechanisms.
+     *
+     * Generated from protobuf enum <code>UNRESTRICTED = 457266100;</code>
+     */
+    const UNRESTRICTED = 457266100;
 
     private static $valueToName = [
         self::UNDEFINED_TLS_EARLY_DATA => 'UNDEFINED_TLS_EARLY_DATA',
         self::DISABLED => 'DISABLED',
         self::PERMISSIVE => 'PERMISSIVE',
         self::STRICT => 'STRICT',
+        self::UNRESTRICTED => 'UNRESTRICTED',
     ];
 
     public static function name($value)

@@ -206,6 +206,28 @@ return [
                     ],
                 ],
             ],
+            'SetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/securityPolicies/{resource}/setLabels',
+                'body' => 'region_set_labels_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.RegionOperations' => [
             'Delete' => [
