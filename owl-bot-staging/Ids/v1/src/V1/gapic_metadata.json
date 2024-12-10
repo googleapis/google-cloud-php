@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.ids.v1",
+    "libraryPackage": "Google\\Cloud\\Ids\\V1",
+    "services": {
+        "IDS": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IDSGapicClient",
+                    "rpcs": {
+                        "CreateEndpoint": {
+                            "methods": [
+                                "createEndpoint"
+                            ]
+                        },
+                        "DeleteEndpoint": {
+                            "methods": [
+                                "deleteEndpoint"
+                            ]
+                        },
+                        "GetEndpoint": {
+                            "methods": [
+                                "getEndpoint"
+                            ]
+                        },
+                        "ListEndpoints": {
+                            "methods": [
+                                "listEndpoints"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
