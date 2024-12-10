@@ -98,16 +98,15 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
      */
     protected $vehicle_match_type = 0;
     /**
-     * The order requested for sorting vehicle matches.
+     * The order requested for sorting vehicle matches. Equivalent to
+     * `ordered_by`.
      *
      * Generated from protobuf field <code>.maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder requested_ordered_by = 9;</code>
      */
     protected $requested_ordered_by = 0;
     /**
-     * The actual order that was used for this vehicle. Normally this
-     * will match the 'order_by' field from the request; however, in certain
-     * circumstances such as an internal server error, a different method
-     * may be used (such as `PICKUP_POINT_STRAIGHT_DISTANCE`).
+     * The order requested for sorting vehicle matches. Equivalent to
+     * `requested_ordered_by`.
      *
      * Generated from protobuf field <code>.maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder ordered_by = 10;</code>
      */
@@ -165,12 +164,11 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
      *     @type int $vehicle_match_type
      *           Type of the vehicle match.
      *     @type int $requested_ordered_by
-     *           The order requested for sorting vehicle matches.
+     *           The order requested for sorting vehicle matches. Equivalent to
+     *           `ordered_by`.
      *     @type int $ordered_by
-     *           The actual order that was used for this vehicle. Normally this
-     *           will match the 'order_by' field from the request; however, in certain
-     *           circumstances such as an internal server error, a different method
-     *           may be used (such as `PICKUP_POINT_STRAIGHT_DISTANCE`).
+     *           The order requested for sorting vehicle matches. Equivalent to
+     *           `requested_ordered_by`.
      * }
      */
     public function __construct($data = NULL) {
@@ -636,7 +634,8 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order requested for sorting vehicle matches.
+     * The order requested for sorting vehicle matches. Equivalent to
+     * `ordered_by`.
      *
      * Generated from protobuf field <code>.maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder requested_ordered_by = 9;</code>
      * @return int
@@ -647,7 +646,8 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The order requested for sorting vehicle matches.
+     * The order requested for sorting vehicle matches. Equivalent to
+     * `ordered_by`.
      *
      * Generated from protobuf field <code>.maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder requested_ordered_by = 9;</code>
      * @param int $var
@@ -662,10 +662,8 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The actual order that was used for this vehicle. Normally this
-     * will match the 'order_by' field from the request; however, in certain
-     * circumstances such as an internal server error, a different method
-     * may be used (such as `PICKUP_POINT_STRAIGHT_DISTANCE`).
+     * The order requested for sorting vehicle matches. Equivalent to
+     * `requested_ordered_by`.
      *
      * Generated from protobuf field <code>.maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder ordered_by = 10;</code>
      * @return int
@@ -676,10 +674,8 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The actual order that was used for this vehicle. Normally this
-     * will match the 'order_by' field from the request; however, in certain
-     * circumstances such as an internal server error, a different method
-     * may be used (such as `PICKUP_POINT_STRAIGHT_DISTANCE`).
+     * The order requested for sorting vehicle matches. Equivalent to
+     * `requested_ordered_by`.
      *
      * Generated from protobuf field <code>.maps.fleetengine.v1.SearchVehiclesRequest.VehicleMatchOrder ordered_by = 10;</code>
      * @param int $var
