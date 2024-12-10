@@ -35,14 +35,15 @@ namespace Google\ApiCore\Tests\Unit\Middleware;
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class FixedHeaderMiddlewareTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testCustomHeader()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $fixedHeader = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1 pb/6.6.6']
         ];
@@ -52,15 +53,13 @@ class FixedHeaderMiddlewareTest extends TestCase
             $handlerCalled = true;
         };
         $middleware = new FixedHeaderMiddleware($callable, $fixedHeader);
-        $middleware($call, []);
+        $middleware($call->reveal(), []);
         $this->assertTrue($handlerCalled);
     }
 
     public function testCustomHeaderNoOverride()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $fixedHeader = [
             'my-header' => ['some header string'],
             'fixed-only' => ['fixed header only'],
@@ -80,15 +79,14 @@ class FixedHeaderMiddlewareTest extends TestCase
             $handlerCalled = true;
         };
         $middleware = new FixedHeaderMiddleware($callable, $fixedHeader);
-        $middleware($call, ['headers' => $userHeader]);
+        $middleware($call->reveal(), ['headers' => $userHeader]);
         $this->assertTrue($handlerCalled);
     }
 
     public function testCustomHeaderOverride()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
+
         $fixedHeader = [
             'my-header' => ['some header string'],
             'fixed-only' => ['fixed header only'],
@@ -108,7 +106,7 @@ class FixedHeaderMiddlewareTest extends TestCase
             $handlerCalled = true;
         };
         $middleware = new FixedHeaderMiddleware($callable, $fixedHeader, true);
-        $middleware($call, ['headers' => $userHeader]);
+        $middleware($call->reveal(), ['headers' => $userHeader]);
         $this->assertTrue($handlerCalled);
     }
 }

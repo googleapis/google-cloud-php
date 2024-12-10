@@ -105,31 +105,26 @@ class GapicClientTraitTest extends TestCase
             'new-header' => ['this-should-be-used'],
             'x-goog-request-params' => ['name=foos%2F123%2Fbars%2F456']
         ];
-        $transport = $this->getMockBuilder(TransportInterface::class)->disableOriginalConstructor()->getMock();
+        $transport = $this->prophesize(TransportInterface::class);
         $credentialsWrapper = CredentialsWrapper::build([
             'keyFile' => __DIR__ . '/testdata/json-key-file.json'
         ]);
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'headers' => $expectedHeaders,
-                    'credentialsWrapper' => $credentialsWrapper,
-                ])
-            )
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'headers' => $expectedHeaders,
+                'credentialsWrapper' => $credentialsWrapper,
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
         $client = new StubGapicClient();
         $client->set('agentHeader', $header);
         $client->set(
             'retrySettings',
-            [
-            'method' => $this->getMockBuilder(RetrySettings::class)
-                ->disableOriginalConstructor()
-                ->getMock()
-            ]
+            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
         );
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('descriptors', ['method' => $unaryDescriptors]);
         $client->startApiCall(
@@ -139,7 +134,7 @@ class GapicClientTraitTest extends TestCase
         );
     }
 
-    public function testVersionedHeadersOverwriteBehavion()
+    public function testVersionedHeadersOverwriteBehavior()
     {
         $unaryDescriptors = [
             'callType' => Call::UNARY_CALL,
@@ -172,31 +167,26 @@ class GapicClientTraitTest extends TestCase
             'X-Goog-Api-Version' => ['20240418'],
             'x-goog-request-params' => ['name=foos%2F123%2Fbars%2F456'],
         ];
-        $transport = $this->getMockBuilder(TransportInterface::class)->disableOriginalConstructor()->getMock();
+        $transport = $this->prophesize(TransportInterface::class);
         $credentialsWrapper = CredentialsWrapper::build([
             'keyFile' => __DIR__ . '/testdata/json-key-file.json'
         ]);
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'headers' => $expectedHeaders,
-                    'credentialsWrapper' => $credentialsWrapper,
-                ])
-            )
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'headers' => $expectedHeaders,
+                'credentialsWrapper' => $credentialsWrapper,
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
         $client = new VersionedStubGapicClient();
         $client->set('agentHeader', $header);
         $client->set(
             'retrySettings',
-            [
-            'method' => $this->getMockBuilder(RetrySettings::class)
-                ->disableOriginalConstructor()
-                ->getMock()
-            ]
+            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
         );
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('descriptors', ['method' => $unaryDescriptors]);
         $client->startApiCall(
@@ -252,10 +242,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartOperationsCall()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
+        $retrySettings = $this->prophesize(RetrySettings::class);
         $longRunningDescriptors = [
             'longRunning' => [
                 'operationReturnType' => 'operationType',
@@ -267,33 +254,30 @@ class GapicClientTraitTest extends TestCase
             ]
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new StubGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
         $message = new MockRequest();
-        $operationsClient = $this->getMockBuilder(OperationsClient::class)
-            ->disableOriginalConstructor()
-            ->setMethodsExcept(['validate'])
-            ->getMock();
+        $operationsClient = $this->prophesize(OperationsClient::class);
 
         $response = $client->startOperationsCall(
             'method',
             [],
             $message,
-            $operationsClient
+            $operationsClient->reveal()
         )->wait();
 
         $expectedResponse = new OperationResponse(
             '',
-            $operationsClient,
+            $operationsClient->reveal(),
             $longRunningDescriptors['longRunning'] + ['lastProtoResponse' => new Operation()]
         );
 
@@ -303,9 +287,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallOperation()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
 
         $longRunningDescriptors = [
             'callType' => Call::LONGRUNNING_CALL,
@@ -319,22 +301,19 @@ class GapicClientTraitTest extends TestCase
             ]
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new OperationsGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
-        $operationsClient = $this->getMockBuilder(OperationsClient::class)
-            ->disableOriginalConstructor()
-            ->setMethodsExcept(['validate'])
-            ->getMock();
-        $client->set('operationsClient', $operationsClient);
+        $operationsClient = $this->prophesize(OperationsClient::class);
+        $client->set('operationsClient', $operationsClient->reveal());
 
         $request = new MockRequest();
         $response = $client->startApiCall(
@@ -344,7 +323,7 @@ class GapicClientTraitTest extends TestCase
 
         $expectedResponse = new OperationResponse(
             '',
-            $operationsClient,
+            $operationsClient->reveal(),
             $longRunningDescriptors['longRunning'] + ['lastProtoResponse' => new Operation()]
         );
 
@@ -354,9 +333,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallCustomOperation()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
 
         $longRunningDescriptors = [
             'callType' => Call::LONGRUNNING_CALL,
@@ -371,21 +348,18 @@ class GapicClientTraitTest extends TestCase
             ]
         ];
         $expectedPromise = new FulfilledPromise(new MockResponse());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new OperationsGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['method' => $longRunningDescriptors]);
-        $operationsClient = $this->getMockBuilder(OperationsClient::class)
-            ->disableOriginalConstructor()
-            ->setMethodsExcept(['validate'])
-            ->getMock();
+        $operationsClient = $this->prophesize(OperationsClient::class)->reveal();
         $client->set('operationsClient', $operationsClient);
 
         $request = new MockRequest();
@@ -465,31 +439,28 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallUnary()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
         $unaryDescriptors = [
             'callType' => Call::UNARY_CALL,
             'responseType' => 'Google\Longrunning\Operation',
             'interfaceOverride' => 'google.cloud.foo.v1.Foo'
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->with(
-                 $this->callback(function ($call) use ($unaryDescriptors) {
-                     return strpos($call->getMethod(), $unaryDescriptors['interfaceOverride']) !== false;
-                 }),
-                 $this->anything()
-             )
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::that(function ($call) use ($unaryDescriptors) {
+                return strpos($call->getMethod(), $unaryDescriptors['interfaceOverride']) !== false;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new StubGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['method' => $unaryDescriptors]);
 
         $request = new MockRequest();
@@ -502,9 +473,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartApiCallPaged()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
         $pagedDescriptors = [
             'callType' => Call::PAGINATED_CALL,
             'responseType' => 'Google\Longrunning\ListOperationsResponse',
@@ -518,16 +487,16 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new StubGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('retrySettings', ['method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['method' => $pagedDescriptors]);
 
         $request = new MockRequest();
@@ -540,24 +509,22 @@ class GapicClientTraitTest extends TestCase
     public function testStartAsyncCall()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
         $unaryDescriptors = [
             'callType' => Call::UNARY_CALL,
             'responseType' => 'Google\Longrunning\Operation'
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new StubGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['Method' => $retrySettings]);
+        $client->set('retrySettings', ['Method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['Method' => $unaryDescriptors]);
 
         $request = new MockRequest();
@@ -570,9 +537,7 @@ class GapicClientTraitTest extends TestCase
     public function testStartAsyncCallPaged()
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
         $pagedDescriptors = [
             'callType' => Call::PAGINATED_CALL,
             'responseType' => 'Google\Longrunning\ListOperationsResponse',
@@ -587,22 +552,21 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-             ->method('startUnaryCall')
-             ->with(
-                 $this->callback(function ($call) use ($pagedDescriptors) {
-                     return strpos($call->getMethod(), $pagedDescriptors['interfaceOverride']) !== false;
-                 }),
-                 $this->anything()
-             )
-             ->will($this->returnValue($expectedPromise));
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::that(function ($call) use ($pagedDescriptors) {
+                return strpos($call->getMethod(), $pagedDescriptors['interfaceOverride']) !== false;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedPromise);
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new StubGapicClient();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
-        $client->set('retrySettings', ['Method' => $retrySettings]);
+        $client->set('retrySettings', ['Method' => $retrySettings->reveal()]);
         $client->set('descriptors', ['Method' => $pagedDescriptors]);
 
         $request = new MockRequest();
@@ -959,9 +923,7 @@ class GapicClientTraitTest extends TestCase
     private function buildClientToTestModifyCallMethods($clientClass = null)
     {
         $header = AgentHeader::buildAgentHeader([]);
-        $retrySettings = $this->getMockBuilder(RetrySettings::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $retrySettings = $this->prophesize(RetrySettings::class);
 
         $longRunningDescriptors = [
             'longRunning' => [
@@ -979,22 +941,22 @@ class GapicClientTraitTest extends TestCase
                 'resourcesGetMethod' => 'getResources',
             ],
         ];
-        $transport = $this->getMockBuilder(TransportInterface::class)->disableOriginalConstructor()->getMock();
+        $transport = $this->prophesize(TransportInterface::class);
         $credentialsWrapper = CredentialsWrapper::build([
             'keyFile' => __DIR__ . '/testdata/json-key-file.json'
         ]);
         $clientClass = $clientClass ?: StubGapicClientExtension::class;
         $client = new $clientClass();
-        $client->set('transport', $transport);
+        $client->set('transport', $transport->reveal());
         $client->set('credentialsWrapper', $credentialsWrapper);
         $client->set('agentHeader', $header);
         $client->set('retrySettings', [
-            'simpleMethod' => $retrySettings,
-            'longRunningMethod' => $retrySettings,
-            'pagedMethod' => $retrySettings,
-            'bidiStreamingMethod' => $retrySettings,
-            'clientStreamingMethod' => $retrySettings,
-            'serverStreamingMethod' => $retrySettings,
+            'simpleMethod' => $retrySettings->reveal(),
+            'longRunningMethod' => $retrySettings->reveal(),
+            'pagedMethod' => $retrySettings->reveal(),
+            'bidiStreamingMethod' => $retrySettings->reveal(),
+            'clientStreamingMethod' => $retrySettings->reveal(),
+            'serverStreamingMethod' => $retrySettings->reveal(),
         ]);
         $client->set('descriptors', [
             'longRunningMethod' => $longRunningDescriptors,
@@ -1006,21 +968,21 @@ class GapicClientTraitTest extends TestCase
     public function testModifyUnaryCallFromStartCall()
     {
         list($client, $transport) = $this->buildClientToTestModifyCallMethods();
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'transportOptions' => [
-                        'custom' => ['addModifyUnaryCallableOption' => true]
-                    ],
-                    'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ])
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'transportOptions' => [
+                    'custom' => ['addModifyUnaryCallableOption' => true]
+                ],
+                'headers' => AgentHeader::buildAgentHeader([]),
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
                 ])
-            )
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
+
         $client->startCall(
             'simpleMethod',
             'decodeType',
@@ -1032,51 +994,47 @@ class GapicClientTraitTest extends TestCase
     public function testModifyUnaryCallFromOperationsCall()
     {
         list($client, $transport) = $this->buildClientToTestModifyCallMethods();
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'transportOptions' => [
-                        'custom' => ['addModifyUnaryCallableOption' => true]
-                    ],
-                    'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ]),
-                    'metadataReturnType' => 'metadataType'
-                ])
-            )
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'transportOptions' => [
+                    'custom' => ['addModifyUnaryCallableOption' => true]
+                ],
+                'headers' => AgentHeader::buildAgentHeader([]),
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                ]),
+                'metadataReturnType' => 'metadataType'
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
-        $operationsClient = $this->getMockBuilder(OperationsClient::class)
-                ->disableOriginalConstructor()
-                ->setMethodsExcept(['validate'])
-                ->getMock();
+        $operationsClient = $this->prophesize(OperationsClient::class);
+
         $client->startOperationsCall(
             'longRunningMethod',
             [],
             new MockRequest(),
-            $operationsClient
+            $operationsClient->reveal()
         )->wait();
     }
 
     public function testModifyUnaryCallFromGetPagedListResponse()
     {
         list($client, $transport) = $this->buildClientToTestModifyCallMethods();
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'transportOptions' => [
-                        'custom' => ['addModifyUnaryCallableOption' => true]
-                    ],
-                    'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ])
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'transportOptions' => [
+                    'custom' => ['addModifyUnaryCallableOption' => true]
+                ],
+                'headers' => AgentHeader::buildAgentHeader([]),
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
                 ])
-            )
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
         $client->getPagedListResponse(
             'pagedMethod',
@@ -1092,20 +1050,19 @@ class GapicClientTraitTest extends TestCase
     public function testModifyStreamingCallFromStartCall($callArgs, $expectedMethod, $expectedResponse)
     {
         list($client, $transport) = $this->buildClientToTestModifyCallMethods();
-        $transport->expects($this->once())
-            ->method($expectedMethod)
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'transportOptions' => [
-                        'custom' => ['addModifyStreamingCallable' => true]
-                    ],
-                    'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ])
+        $transport->$expectedMethod(
+            Argument::type(Call::class),
+            [
+                'transportOptions' => [
+                    'custom' => ['addModifyStreamingCallable' => true]
+                ],
+                'headers' => AgentHeader::buildAgentHeader([]),
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
                 ])
-            )
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn($expectedResponse);
         $client->startCall(...$callArgs);
     }
@@ -1122,9 +1079,7 @@ class GapicClientTraitTest extends TestCase
                     Call::BIDI_STREAMING_CALL
                 ],
                 'startBidiStreamingCall',
-                $this->getMockBuilder(BidiStream::class)
-                    ->disableOriginalConstructor()
-                    ->getMock()
+                $this->prophesize(BidiStream::class)->reveal()
             ],
             [
                 [
@@ -1135,9 +1090,7 @@ class GapicClientTraitTest extends TestCase
                     Call::CLIENT_STREAMING_CALL
                 ],
                 'startClientStreamingCall',
-                $this->getMockBuilder(ClientStream::class)
-                    ->disableOriginalConstructor()
-                    ->getMock()
+                $this->prophesize(ClientStream::class)->reveal()
             ],
             [
                 [
@@ -1148,16 +1101,14 @@ class GapicClientTraitTest extends TestCase
                     Call::SERVER_STREAMING_CALL
                 ],
                 'startServerStreamingCall',
-                $this->getMockBuilder(ServerStream::class)
-                    ->disableOriginalConstructor()
-                    ->getMock()
+                $this->prophesize(ServerStream::class)->reveal()
             ],
         ];
     }
 
     public function testGetTransport()
     {
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
+        $transport = $this->prophesize(TransportInterface::class)->reveal();
         $client = new StubGapicClient();
         $client->set('transport', $transport);
         $this->assertEquals($transport, $client->getTransport());
@@ -1165,9 +1116,7 @@ class GapicClientTraitTest extends TestCase
 
     public function testGetCredentialsWrapper()
     {
-        $credentialsWrapper = $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)->reveal();
         $client = new StubGapicClient();
         $client->set('credentialsWrapper', $credentialsWrapper);
         $this->assertEquals($credentialsWrapper, $client->getCredentialsWrapper());
@@ -1176,41 +1125,34 @@ class GapicClientTraitTest extends TestCase
     public function testUserProjectHeaderIsSetWhenProvidingQuotaProject()
     {
         $quotaProject = 'test-quota-project';
-        $credentialsWrapper = $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $credentialsWrapper->expects($this->once())
-            ->method('getQuotaProject')
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->getQuotaProject()
+            ->shouldBeCalledOnce()
             ->willReturn($quotaProject);
-        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'headers' => AgentHeader::buildAgentHeader([]) + [
-                        'X-Goog-User-Project' => [$quotaProject],
-                        'User-Agent' => ['gcloud-php-legacy/']
-                    ],
-                    'credentialsWrapper' => $credentialsWrapper
-                ])
-            )
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'headers' => AgentHeader::buildAgentHeader([]) + [
+                    'X-Goog-User-Project' => [$quotaProject],
+                    'User-Agent' => ['gcloud-php-legacy/']
+                ],
+                'credentialsWrapper' => $credentialsWrapper->reveal()
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
         $client = new StubGapicClient();
         $updatedOptions = $client->buildClientOptions(
             [
-                'transport' => $transport,
-                'credentials' => $credentialsWrapper,
+                'transport' => $transport->reveal(),
+                'credentials' => $credentialsWrapper->reveal(),
             ]
         );
         $client->setClientOptions($updatedOptions);
         $client->set(
             'retrySettings',
-            [
-            'method' => $this->getMockBuilder(RetrySettings::class)
-                ->disableOriginalConstructor()
-                ->getMock()
-            ]
+            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
         );
         $client->startCall(
             'method',
@@ -1301,10 +1243,7 @@ class GapicClientTraitTest extends TestCase
         );
         $client->set('transport', $transport->reveal());
         $client->set('descriptors', ['method.name' => $longRunningDescriptors]);
-        $operationsClient = $this->getMockBuilder(OperationsClient::class)
-            ->disableOriginalConstructor()
-            ->setMethodsExcept(['validate'])
-            ->getMock();
+        $operationsClient = $this->prophesize(OperationsClient::class)->reveal();
 
         // Test startOperationsCall with default audience
         $client->startOperationsCall(
@@ -1428,20 +1367,19 @@ class GapicClientTraitTest extends TestCase
         $client->addMiddleware($middleware1);
         $client->addMiddleware($middleware2);
 
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'transportOptions' => [
-                        'custom' => ['addModifyUnaryCallableOption' => true]
-                    ],
-                    'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ])
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'transportOptions' => [
+                    'custom' => ['addModifyUnaryCallableOption' => true]
+                ],
+                'headers' => AgentHeader::buildAgentHeader([]),
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
                 ])
-            )
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
 
         $client->startCall(
@@ -1480,19 +1418,18 @@ class GapicClientTraitTest extends TestCase
             GapicV2SurfaceClient::class
         );
 
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'headers' => AgentHeader::buildAgentHeader([]) + ['Foo' => 'Bar'],
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ]),
-                    'timeoutMillis' => null, // adds null timeoutMillis,
-                    'transportOptions' => [],
-                ])
-            )
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'headers' => AgentHeader::buildAgentHeader([]) + ['Foo' => 'Bar'],
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                ]),
+                'timeoutMillis' => null, // adds null timeoutMillis,
+                'transportOptions' => [],
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
 
         $callOptions = [
@@ -1511,19 +1448,18 @@ class GapicClientTraitTest extends TestCase
     {
         list($client, $transport) = $this->buildClientToTestModifyCallMethods();
 
-        $transport->expects($this->once())
-            ->method('startUnaryCall')
-            ->with(
-                $this->isInstanceOf(Call::class),
-                $this->equalTo([
-                    'transportOptions' => ['custom' => ['addModifyUnaryCallableOption' => true]],
-                    'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([
-                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
-                    ]),
-                    'timeoutMillis' => 'blue', // invalid type, this is ignored
-                ])
-            )
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            [
+                'transportOptions' => ['custom' => ['addModifyUnaryCallableOption' => true]],
+                'headers' => AgentHeader::buildAgentHeader([]),
+                'credentialsWrapper' => CredentialsWrapper::build([
+                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                ]),
+                'timeoutMillis' => 'blue', // invalid type, this is ignored
+            ]
+        )
+            ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
 
         $client->startCall(

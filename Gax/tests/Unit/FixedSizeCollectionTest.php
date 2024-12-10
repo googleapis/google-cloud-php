@@ -40,10 +40,12 @@ use Google\Rpc\Code;
 use InvalidArgumentException;
 use LengthException;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class FixedSizeCollectionTest extends TestCase
 {
     use TestTrait;
+    use ProphecyTrait;
 
     private function createPage($responseSequence)
     {
@@ -174,29 +176,26 @@ class FixedSizeCollectionTest extends TestCase
     public function testEmptyCollectionThrowsException()
     {
         $collectionSize = 0;
-        $page = $this->getMockBuilder(Page::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $page = $this->prophesize(Page::class);
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('collectionSize must be > 0.');
 
-        new FixedSizeCollection($page, $collectionSize);
+        new FixedSizeCollection($page->reveal(), $collectionSize);
     }
 
     public function testInvalidPageCount()
     {
         $collectionSize = 1;
-        $page = $this->getMockBuilder(Page::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $page->expects($this->exactly(2))
-            ->method('getPageElementCount')
-            ->will($this->returnValue(2));
+        $page = $this->prophesize(Page::class);
+
+        $page->getPageElementCount()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(2);
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('collectionSize must be greater than or equal to the number of elements in initialPage');
 
-        new FixedSizeCollection($page, $collectionSize);
+        new FixedSizeCollection($page->reveal(), $collectionSize);
     }
 }

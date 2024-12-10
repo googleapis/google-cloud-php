@@ -55,6 +55,7 @@ use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use TypeError;
 use UnexpectedValueException;
@@ -78,16 +79,14 @@ class RestTransportTest extends TestCase
     private function getTransport(?callable $httpHandler = null, $apiEndpoint = 'http://www.example.com')
     {
         $request = new Request('POST', $apiEndpoint);
-        $requestBuilder = $this->getMockBuilder(RequestBuilder::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $requestBuilder->method('build')
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
+        $requestBuilder->build(Argument::cetera())
             ->willReturn($request);
-        $requestBuilder->method('pathExists')
+        $requestBuilder->pathExists(Argument::type('string'))
             ->willReturn(true);
 
         return new RestTransport(
-            $requestBuilder,
+            $requestBuilder->reveal(),
             $httpHandler ?: HttpHandlerFactory::build()
         );
     }
@@ -242,13 +241,11 @@ class RestTransportTest extends TestCase
     public function testServerStreamingCallThrowsBadMethodCallException()
     {
         $request = new Request('POST', 'http://www.example.com');
-        $requestBuilder = $this->getMockBuilder(RequestBuilder::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $requestBuilder->method('pathExists')
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
+        $requestBuilder->pathExists(Argument::type('string'))
             ->willReturn(false);
 
-        $transport = new RestTransport($requestBuilder, HttpHandlerFactory::build());
+        $transport = new RestTransport($requestBuilder->reveal(), HttpHandlerFactory::build());
 
         $this->expectException(BadMethodCallException::class);
         $transport->startServerStreamingCall($this->call, []);

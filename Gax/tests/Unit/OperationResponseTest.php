@@ -505,23 +505,17 @@ class OperationResponseTest extends TestCase
     {
         $consecutiveCalls = [];
         for ($i = 0; $i < $reloadCount - 1; $i++) {
-            $consecutiveCalls[] = $this->returnValue(new Operation());
+            $consecutiveCalls[] = new Operation();
         }
-        $consecutiveCalls[] = $this->returnValue(new Operation(['done' => true]));
+        $consecutiveCalls[] = new Operation(['done' => true]);
 
-        $opClient = $this->getMockBuilder(OperationsClient::class)
-            ->setConstructorArgs([[
-                'apiEndpoint' => '',
-                'scopes' => [],
-            ]])
-            ->setMethods(['getOperation'])
-            ->getMock();
+        $opClient = $this->prophesize(OperationsClient::class);
 
-        $opClient->expects($this->exactly($reloadCount))
-            ->method('getOperation')
-            ->will($this->onConsecutiveCalls(...$consecutiveCalls));
+        $opClient->getOperation(Argument::type('string'))
+            ->shouldBeCalledTimes($reloadCount)
+            ->willReturn(...$consecutiveCalls);
 
-        return $opClient;
+        return $opClient->reveal();
     }
 }
 

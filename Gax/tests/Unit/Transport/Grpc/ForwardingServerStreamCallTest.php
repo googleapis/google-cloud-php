@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2020 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,32 +32,32 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport\Grpc;
 
-use Google\ApiCore\Tests\Unit\TestTrait;
-use Google\ApiCore\Transport\Grpc\ForwardingUnaryCall;
-use Grpc\UnaryCall;
+use Google\ApiCore\Transport\Grpc\ForwardingServerStreamingCall;
+use Grpc\ServerStreamingCall;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
-class ForwardingUnaryCallTest extends TestCase
+class ForwardingServerStreamCallTest extends TestCase
 {
-    use TestTrait;
+    use ProphecyTrait;
 
-    public function testUnaryForwardingCall()
+    public function testServerStreamingForwardingCall()
     {
-        $unaryCall = $this->getMockBuilder(UnaryCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $unaryCall->expects($this->once())->method('getMetadata');
-        $unaryCall->expects($this->once())->method('getTrailingMetadata');
-        $unaryCall->expects($this->once())->method('getPeer');
-        $unaryCall->expects($this->once())->method('cancel');
-        $unaryCall->expects($this->once())->method('wait');
+        $serverStreamingCall = $this->prophesize(ServerStreamingCall::class);
+        $serverStreamingCall->getMetadata()->shouldBeCalledOnce();
+        $serverStreamingCall->getTrailingMetadata()->shouldBeCalledOnce();
+        $serverStreamingCall->getPeer()->shouldBeCalledOnce();
+        $serverStreamingCall->cancel()->shouldBeCalledOnce();
+        $serverStreamingCall->responses()->shouldBeCalledOnce();
+        $serverStreamingCall->getStatus()->shouldBeCalledOnce();
 
-        $forwardingCall = new ForwardingUnaryCall($unaryCall);
+        $forwardingCall = new ForwardingServerStreamingCall($serverStreamingCall->reveal());
 
         $forwardingCall->getMetadata();
         $forwardingCall->getTrailingMetadata();
         $forwardingCall->getPeer();
         $forwardingCall->cancel();
-        $forwardingCall->wait();
+        $forwardingCall->responses();
+        $forwardingCall->getStatus();
     }
 }

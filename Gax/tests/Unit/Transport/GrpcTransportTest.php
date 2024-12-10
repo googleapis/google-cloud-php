@@ -53,6 +53,7 @@ use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 use stdClass;
 use TypeError;
 
@@ -85,14 +86,12 @@ class GrpcTransportTest extends TestCase
         $status = new stdClass();
         $status->code = Code::OK;
 
-        $clientStreamingCall = $this->getMockBuilder(ClientStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $clientStreamingCall->method('write');
-        $clientStreamingCall->method('wait')
-            ->will($this->returnValue([$response, $status]));
+        $clientStreamingCall = $this->prophesize(ClientStreamingCall::class);
+        $clientStreamingCall->wait()
+            ->shouldBeCalledOnce()
+            ->willReturn([$response, $status]);
 
-        $transport = new MockGrpcTransport($clientStreamingCall);
+        $transport = new MockGrpcTransport($clientStreamingCall->reveal());
 
         $stream = $transport->startClientStreamingCall(
             new Call('method', null),
@@ -113,13 +112,12 @@ class GrpcTransportTest extends TestCase
         $status->code = Code::INTERNAL;
         $status->details = 'client streaming failure';
 
-        $clientStreamingCall = $this->getMockBuilder(ClientStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $clientStreamingCall->method('wait')
-            ->will($this->returnValue([$response, $status]));
+        $clientStreamingCall = $this->prophesize(ClientStreamingCall::class);
+        $clientStreamingCall->wait()
+            ->shouldBeCalledOnce()
+            ->willReturn([$response, $status]);
 
-        $transport = new MockGrpcTransport($clientStreamingCall);
+        $transport = new MockGrpcTransport($clientStreamingCall->reveal());
 
         $stream = $transport->startClientStreamingCall(
             new Call('takeAction', null),
@@ -141,15 +139,15 @@ class GrpcTransportTest extends TestCase
 
         $message = $this->createMockRequest();
 
-        $serverStreamingCall = $this->getMockBuilder(\Grpc\ServerStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $serverStreamingCall->method('responses')
-            ->will($this->returnValue([$response]));
-        $serverStreamingCall->method('getStatus')
-            ->will($this->returnValue($status));
+        $serverStreamingCall = $this->prophesize(\Grpc\ServerStreamingCall::class);
+        $serverStreamingCall->responses()
+            ->shouldBeCalledOnce()
+            ->willReturn([$response]);
+        $serverStreamingCall->getStatus()
+            ->shouldBeCalledOnce()
+            ->willReturn($status);
 
-        $transport = new MockGrpcTransport($serverStreamingCall);
+        $transport = new MockGrpcTransport($serverStreamingCall->reveal());
 
         /* @var $stream \Google\ApiCore\ServerStream */
         $stream = $transport->startServerStreamingCall(
@@ -180,15 +178,15 @@ class GrpcTransportTest extends TestCase
 
         $message = $this->createMockRequest();
 
-        $call = $this->getMockBuilder(\Grpc\ServerStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $call->method('responses')
-            ->will($this->returnValue([$response]));
-        $call->method('getStatus')
-            ->will($this->returnValue($status));
+        $call = $this->prophesize(\Grpc\ServerStreamingCall::class);
+        $call->responses()
+            ->shouldBeCalledOnce()
+            ->willReturn([$response]);
+        $call->getStatus()
+            ->shouldBeCalledOnce()
+            ->willReturn($status);
 
-        $transport = new MockGrpcTransport($call);
+        $transport = new MockGrpcTransport($call->reveal());
 
         $call = new Call(
             'takeAction',
@@ -219,15 +217,15 @@ class GrpcTransportTest extends TestCase
 
         $message = $this->createMockRequest();
 
-        $serverStreamingCall = $this->getMockBuilder(\Grpc\ServerStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $serverStreamingCall->method('responses')
-            ->will($this->returnValue(['response1']));
-        $serverStreamingCall->method('getStatus')
-            ->will($this->returnValue($status));
+        $serverStreamingCall = $this->prophesize(\Grpc\ServerStreamingCall::class);
+        $serverStreamingCall->responses()
+            ->shouldBeCalledOnce()
+            ->willReturn(['response1']);
+        $serverStreamingCall->getStatus()
+            ->shouldBeCalledOnce()
+            ->willReturn($status);
 
-        $transport = new MockGrpcTransport($serverStreamingCall);
+        $transport = new MockGrpcTransport($serverStreamingCall->reveal());
 
         /* @var $stream \Google\ApiCore\ServerStream */
         $stream = $transport->startServerStreamingCall(
@@ -249,15 +247,17 @@ class GrpcTransportTest extends TestCase
         $status = new stdClass();
         $status->code = Code::OK;
 
-        $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $bidiStreamingCall->method('read')
-            ->will($this->onConsecutiveCalls($response, null));
-        $bidiStreamingCall->method('getStatus')
-            ->will($this->returnValue($status));
+        $bidiStreamingCall = $this->prophesize(\Grpc\BidiStreamingCall::class);
+        $bidiStreamingCall->read()
+            ->shouldBeCalled()
+            ->willReturn($response, null);
+        $bidiStreamingCall->getStatus()
+            ->shouldBeCalled()
+            ->willReturn($status);
+        $bidiStreamingCall->writesDone()
+            ->shouldBeCalledOnce();
 
-        $transport = new MockGrpcTransport($bidiStreamingCall);
+        $transport = new MockGrpcTransport($bidiStreamingCall->reveal());
 
         /* @var $stream \Google\ApiCore\BidiStream */
         $stream = $transport->startBidiStreamingCall(
@@ -281,15 +281,17 @@ class GrpcTransportTest extends TestCase
         $status = new stdClass();
         $status->code = Code::OK;
 
-        $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $bidiStreamingCall->method('read')
-            ->will($this->onConsecutiveCalls($response, null));
-        $bidiStreamingCall->method('getStatus')
-            ->will($this->returnValue($status));
+        $bidiStreamingCall = $this->prophesize(\Grpc\BidiStreamingCall::class);
+        $bidiStreamingCall->read()
+            ->shouldBeCalled()
+            ->willReturn($response, null);
+        $bidiStreamingCall->getStatus()
+            ->shouldBeCalled()
+            ->willReturn($status);
+        $bidiStreamingCall->writesDone()
+            ->shouldBeCalledOnce();
 
-        $transport = new MockGrpcTransport($bidiStreamingCall);
+        $transport = new MockGrpcTransport($bidiStreamingCall->reveal());
 
         /* @var $stream \Google\ApiCore\BidiStream */
         $stream = $transport->startBidiStreamingCall(
@@ -317,15 +319,17 @@ class GrpcTransportTest extends TestCase
         $status = new stdClass();
         $status->code = Code::OK;
 
-        $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $bidiStreamingCall->method('read')
-            ->will($this->onConsecutiveCalls($response, null));
-        $bidiStreamingCall->method('getStatus')
-            ->will($this->returnValue($status));
+        $bidiStreamingCall = $this->prophesize(\Grpc\BidiStreamingCall::class);
+        $bidiStreamingCall->read()
+            ->shouldBeCalled()
+            ->willReturn($response, null);
+        $bidiStreamingCall->getStatus()
+            ->shouldBeCalled()
+            ->willReturn($status);
+        $bidiStreamingCall->writesDone()
+            ->shouldBeCalledOnce();
 
-        $transport = new MockGrpcTransport($bidiStreamingCall);
+        $transport = new MockGrpcTransport($bidiStreamingCall->reveal());
 
         $call = new Call(
             'takeAction',
@@ -354,15 +358,17 @@ class GrpcTransportTest extends TestCase
         $status->code = Code::INTERNAL;
         $status->details = 'bidi failure';
 
-        $bidiStreamingCall = $this->getMockBuilder(\Grpc\BidiStreamingCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $bidiStreamingCall->method('read')
-            ->will($this->onConsecutiveCalls($response, null));
-        $bidiStreamingCall->method('getStatus')
-            ->will($this->returnValue($status));
+        $bidiStreamingCall = $this->prophesize(\Grpc\BidiStreamingCall::class);
+        $bidiStreamingCall->read()
+            ->shouldBeCalled()
+            ->willReturn($response, null);
+        $bidiStreamingCall->getStatus()
+            ->shouldBeCalled()
+            ->willReturn($status);
+        $bidiStreamingCall->writesDone()
+            ->shouldBeCalledOnce();
 
-        $transport = new MockGrpcTransport($bidiStreamingCall);
+        $transport = new MockGrpcTransport($bidiStreamingCall->reveal());
 
         /* @var $stream \Google\ApiCore\BidiStream */
         $stream = $transport->startBidiStreamingCall(
@@ -384,8 +390,8 @@ class GrpcTransportTest extends TestCase
 
         $call = $this->prophesize(Call::class);
         $call->getMessage()->willReturn($message);
-        $call->getMethod()->shouldBeCalled();
-        $call->getDecodeType()->shouldBeCalled();
+        $call->getMethod()->shouldBeCalledOnce();
+        $call->getDecodeType()->shouldBeCalledOnce();
 
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
         $credentialsWrapper->checkUniverseDomain()
@@ -558,28 +564,25 @@ class GrpcTransportTest extends TestCase
 
     private function buildMockCallForInterceptor($callType)
     {
-        $mockCall = $this->getMockBuilder($callType)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $mockCall->method('start')
-            ->with(
-                $this->isInstanceOf(Message::class),
-                $this->equalTo([]),
-                $this->equalTo([
-                    'call-option' => 'call-option-value',
-                    'test-interceptor-insert' => 'inserted-value'
-                ])
-            );
+        $mockCall = $this->prophesize($callType);
+        $mockCall->start(
+            Argument::type(Message::class),
+            [],
+            [
+                'call-option' => 'call-option-value',
+                'test-interceptor-insert' => 'inserted-value'
+            ]
+        )->shouldBeCalled();
 
         if ($callType === UnaryCall::class) {
-            $mockCall->method('wait')
-                ->will($this->returnValue([
+            $mockCall->wait()
+                ->willReturn([
                     null,
                     Code::OK
-                ]));
+                ]);
         }
 
-        return $mockCall;
+        return $mockCall->reveal();
     }
 }
 
