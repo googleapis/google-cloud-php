@@ -38,18 +38,16 @@ use Google\ApiCore\Middleware\OperationsMiddleware;
 use Google\ApiCore\Testing\MockResponse;
 use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class OperationsMiddlewareTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testOperationNameMethodDescriptor()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $operationsClient = $this->getMockBuilder(OperationsClient::class)
-            ->disableOriginalConstructor()
-            ->setMethodsExcept(['validate'])
-            ->getMock();
+        $call = $this->prophesize(Call::class);
+        $operationsClient = $this->prophesize(OperationsClient::class);
 
         $descriptor = [
             'operationNameMethod' => 'getNumber'
@@ -60,9 +58,9 @@ class OperationsMiddlewareTest extends TestCase
                 $promise->resolve($response);
             });
         };
-        $middleware = new OperationsMiddleware($handler, $operationsClient, $descriptor);
+        $middleware = new OperationsMiddleware($handler, $operationsClient->reveal(), $descriptor);
         $response = $middleware(
-            $call,
+            $call->reveal(),
             []
         )->wait();
 

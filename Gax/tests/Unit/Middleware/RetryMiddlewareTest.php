@@ -40,15 +40,17 @@ use Google\ApiCore\RetrySettings;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Prophecy\Argument;
 use function usleep;
 
 class RetryMiddlewareTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testRetryNoRetryableCode()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => false,
@@ -65,14 +67,12 @@ class RetryMiddlewareTest extends TestCase
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Call Count: 1');
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     public function testRetryBackoff()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => true,
@@ -90,7 +90,7 @@ class RetryMiddlewareTest extends TestCase
         };
         $middleware = new RetryMiddleware($handler, $retrySettings);
         $response = $middleware(
-            $call,
+            $call->reveal(),
             []
         )->wait();
 
@@ -100,9 +100,7 @@ class RetryMiddlewareTest extends TestCase
 
     public function testRetryTimeoutExceedsMaxTimeout()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => true,
@@ -119,14 +117,12 @@ class RetryMiddlewareTest extends TestCase
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Retry total timeout exceeded.');
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     public function testRetryTimeoutExceedsRealTime()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => true,
@@ -148,14 +144,12 @@ class RetryMiddlewareTest extends TestCase
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Retry total timeout exceeded.');
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     public function testRetryTimeoutIsInteger()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => true,
@@ -176,7 +170,7 @@ class RetryMiddlewareTest extends TestCase
             });
         };
         $middleware = new RetryMiddleware($handler, $retrySettings);
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
 
         $this->assertCount(2, $observedTimeouts, 'Expect 2 attempts');
         $this->assertSame(10000, $observedTimeouts[0], 'First timeout matches config');
@@ -190,9 +184,9 @@ class RetryMiddlewareTest extends TestCase
         $handler = function (Call $call, array $options) use (&$handlerCalled, $timeout) {
             $handlerCalled = true;
             $this->assertEquals($timeout, $options['timeoutMillis']);
-            return $this->getMockBuilder(Promise::class)
-                ->disableOriginalConstructor()
-                ->getMock();
+            $promise = $this->prophesize(Promise::class);
+            $promise->then(Argument::cetera())->willReturn($promise->reveal());
+            return $promise->reveal();
         };
         $retrySettings = RetrySettings::constructDefault()
             ->with([
@@ -201,20 +195,16 @@ class RetryMiddlewareTest extends TestCase
             ]);
         $middleware = new RetryMiddleware($handler, $retrySettings);
 
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $options = ['timeoutMillis' => $timeout];
-        $middleware($call, $options);
+        $middleware($call->reveal(), $options);
         $this->assertTrue($handlerCalled);
     }
 
     public function testRetryLogicalTimeout()
     {
         $timeout = 2000;
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => true,
@@ -238,7 +228,7 @@ class RetryMiddlewareTest extends TestCase
         };
         $middleware = new RetryMiddleware($handler, $retrySettings);
         $response = $middleware(
-            $call,
+            $call->reveal(),
             []
         )->wait();
 
@@ -254,9 +244,7 @@ class RetryMiddlewareTest extends TestCase
     public function testNoRetryLogicalTimeout()
     {
         $timeout = 2000;
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
         $retrySettings = RetrySettings::constructDefault()
             ->with(RetrySettings::logicalTimeout($timeout));
         $observedTimeout = 0;
@@ -268,7 +256,7 @@ class RetryMiddlewareTest extends TestCase
         };
         $middleware = new RetryMiddleware($handler, $retrySettings);
         $response = $middleware(
-            $call,
+            $call->reveal(),
             []
         )->wait();
 
@@ -278,9 +266,7 @@ class RetryMiddlewareTest extends TestCase
 
     public function testCustomRetry()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $maxAttempts = 3;
         $currentAttempt = 0;
@@ -309,14 +295,12 @@ class RetryMiddlewareTest extends TestCase
         // test if the custom retry func threw an exception after $maxAttempts
         $this->expectExceptionMessage('Call Count: ' . ($maxAttempts));
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     public function testCustomRetryRespectsRetriesEnabled()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $retrySettings = RetrySettings::constructDefault()
             ->with([
@@ -336,14 +320,12 @@ class RetryMiddlewareTest extends TestCase
         $middleware = new RetryMiddleware($handler, $retrySettings);
 
         $this->expectException(ApiException::class);
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     public function testCustomRetryRespectsTimeout()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $retrySettings = RetrySettings::constructDefault()
             ->with([
@@ -365,7 +347,7 @@ class RetryMiddlewareTest extends TestCase
         $middleware = new RetryMiddleware($handler, $retrySettings);
 
         try {
-            $middleware($call, [])->wait();
+            $middleware($call->reveal(), [])->wait();
             $this->fail('Expected an exception, but didn\'t receive any');
         } catch (ApiException $e) {
             $this->assertEquals('Retry total timeout exceeded.', $e->getMessage());
@@ -377,9 +359,7 @@ class RetryMiddlewareTest extends TestCase
 
     public function testMaxRetries()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $maxRetries = 2;
         $retrySettings = RetrySettings::constructDefault()
@@ -401,7 +381,7 @@ class RetryMiddlewareTest extends TestCase
         // test if the custom retry func threw an exception after $maxRetries + 1 calls
         $this->expectExceptionMessage('Call Count: ' . ($maxRetries + 1));
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     /**
@@ -409,9 +389,7 @@ class RetryMiddlewareTest extends TestCase
      */
     public function testMaxRetriesOverridesCustomRetryFunc()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $maxRetries = 2;
         $callCount = 0;
@@ -438,7 +416,7 @@ class RetryMiddlewareTest extends TestCase
         // the exception should be thrown after $maxRetries + 1 calls
         $this->expectExceptionMessage('Call Count: ' . ($maxRetries + 1));
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     /**
@@ -446,9 +424,7 @@ class RetryMiddlewareTest extends TestCase
      */
     public function testCustomRetryThrowsExceptionBeforeMaxRetries()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $maxRetries = 10;
         $customRetryMaxCalls = 4;
@@ -477,14 +453,12 @@ class RetryMiddlewareTest extends TestCase
         // because the custom retry function would return false.
         $this->expectExceptionMessage('Call Count: ' . ($customRetryMaxCalls));
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 
     public function testUnlimitedMaxRetries()
     {
-        $call = $this->getMockBuilder(Call::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $call = $this->prophesize(Call::class);
 
         $customRetryMaxCalls = 4;
         $callCount = 0;
@@ -512,6 +486,6 @@ class RetryMiddlewareTest extends TestCase
         // because then the custom retry function would return false.
         $this->expectExceptionMessage('Call Count: ' . ($customRetryMaxCalls));
 
-        $middleware($call, [])->wait();
+        $middleware($call->reveal(), [])->wait();
     }
 }

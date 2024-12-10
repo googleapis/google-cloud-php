@@ -63,19 +63,6 @@ trait TestTrait
         return $mockResponse;
     }
 
-    public function createMockCall($response = null, $status = null)
-    {
-        $status = $status ?: new MockStatus(Code::OK);
-        $call = $this->getMockBuilder(UnaryCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $call->method('wait')
-            ->will($this->returnValue([$response, $status]));
-
-        return $call;
-    }
-
     public function createCallWithResponseSequence($sequence)
     {
         foreach ($sequence as $key => $value) {
