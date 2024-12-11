@@ -30,7 +30,7 @@ use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\V2\TranslateClient as DeprecatedTranslateClient;
-use Google\Cloud\Translate\V3\Client\TranslateClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Cloud\Vision\VisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -358,7 +358,7 @@ class ServiceBuilder
 
     /**
      * @deprecated
-     * @see TranslateClient
+     * @see TranslationServiceClient
      * @throws \BadMethodCallException
      */
     public function translate(array $config = [])
@@ -367,8 +367,8 @@ class ServiceBuilder
             return $this->createClient(DeprecatedTranslateClient::class, 'translate', $config);
         }
         throw new \BadMethodCallException(sprintf(
-            'This method is no longer supported, create %s directly instead.'.
-            SpeechClient::class
+            'This method is no longer supported, create %s directly instead.',
+            TranslationServiceClient::class
         ));
     }
 
