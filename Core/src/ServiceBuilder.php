@@ -347,7 +347,7 @@ class ServiceBuilder
             return $this->createClient(DeprecatedVisionClient::class, 'vision', $config);
         }
         throw new \BadMethodCallException(sprintf(
-            'This method is no longer supported, create %s directly instead.'.
+            'This method is no longer supported, create %s directly instead.',
             ImageAnnotatorClient::class
         ));
     }

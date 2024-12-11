@@ -29,7 +29,6 @@ use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Tests\Unit\Fixtures;
 use Google\Cloud\Translate\TranslateClient;
-use Google\Cloud\Vision\VisionClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
@@ -190,9 +189,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'translate',
                 TranslateClient::class
-            ], [
-                'vision',
-                VisionClient::class
             ]
         ];
     }
