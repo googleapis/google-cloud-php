@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.36.0](https://github.com/googleapis/gax-php/compare/v1.35.1...v1.36.0) (2024-12-11)
+
+
+### Features
+
+* Add logging to the supported transports ([#585](https://github.com/googleapis/gax-php/issues/585)) ([819a677](https://github.com/googleapis/gax-php/commit/819a677e0d89d75662b30a1dbdd45f6a610d9f0c))
+
 ## [1.35.1](https://github.com/googleapis/gax-php/compare/v1.35.0...v1.35.1) (2024-12-04)
 
 
