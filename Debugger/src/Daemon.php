@@ -173,7 +173,7 @@ class Daemon
      * $daemon->run();
      * ```
      */
-    public function run(DebuggerClient $client = null, $asDaemon = true)
+    public function run(?DebuggerClient $client = null, $asDaemon = true)
     {
         $client = $client ?: $this->defaultClient();
         $extSourceContexts = $this->extSourceContext ? [$this->extSourceContext] : [];
@@ -274,7 +274,7 @@ class Daemon
         return new DebuggerClient($this->getUnwrappedClientConfig());
     }
 
-    private function defaultLabels(MetadataProviderInterface $metadataProvider = null)
+    private function defaultLabels(?MetadataProviderInterface $metadataProvider = null)
     {
         $metadataProvider = $metadataProvider ?: MetadataProviderUtils::autoSelect($_SERVER);
         $labels = [];

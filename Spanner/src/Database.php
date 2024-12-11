@@ -218,7 +218,7 @@ class Database
         array $lroCallables,
         $projectId,
         $name,
-        SessionPoolInterface $sessionPool = null,
+        ?SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
         $databaseRole = ''

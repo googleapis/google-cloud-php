@@ -511,7 +511,7 @@ class RequestWrapper
     /**
      * Verify that the expected universe domain matches the universe domain from the credentials.
      */
-    private function checkUniverseDomain(FetchAuthTokenInterface $credentialsFetcher = null)
+    private function checkUniverseDomain(?FetchAuthTokenInterface $credentialsFetcher = null)
     {
         if (false === $this->hasCheckedUniverse) {
             if ($this->universeDomain === '') {
