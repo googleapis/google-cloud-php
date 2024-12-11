@@ -910,6 +910,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "memcache"
     },
+    "Memorystore": {
+        "language": "php",
+        "distribution_name": "google/cloud-memorystore",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-memorystore/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "memorystore"
+    },
     "MigrationCenter": {
         "language": "php",
         "distribution_name": "google/cloud-migrationcenter",
