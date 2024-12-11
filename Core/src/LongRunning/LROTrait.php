@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\LongRunning;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
  * Provide Long Running Operation support to Google Cloud PHP Clients.
@@ -109,7 +108,7 @@ trait LROTrait
 
         $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
 
-        $options['name'] = $this->lroResource .'/operations';
+        $options['name'] = $this->lroResource . '/operations';
 
         return new ItemIterator(
             new PageIterator(

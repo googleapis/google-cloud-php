@@ -32,10 +32,10 @@ trait InterruptTrait
     private function setupSignalHandlers()
     {
         // setup signal handlers
-        pcntl_signal(SIGTERM, [$this, "sigHandler"]);
-        pcntl_signal(SIGINT, [$this, "sigHandler"]);
-        pcntl_signal(SIGHUP, [$this, "sigHandler"]);
-        pcntl_signal(SIGALRM, [$this, "sigHandler"]);
+        pcntl_signal(SIGTERM, [$this, 'sigHandler']);
+        pcntl_signal(SIGINT, [$this, 'sigHandler']);
+        pcntl_signal(SIGHUP, [$this, 'sigHandler']);
+        pcntl_signal(SIGALRM, [$this, 'sigHandler']);
     }
 
     /**

@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ValidateTrait;
 use Ramsey\Uuid\Uuid;
 

@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Spanner\Batch;
 
-use Google\Cloud\Spanner\Session\Session;
-
 /**
  * Represents a Query Partition.
  *

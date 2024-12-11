@@ -289,7 +289,7 @@ class DocumentSnapshot implements \ArrayAccess
 
         $fields = $this->data;
         foreach ($parts as $idx => $part) {
-            if ($idx === $len-1 && array_key_exists($part, $fields)) {
+            if ($idx === $len - 1 && array_key_exists($part, $fields)) {
                 $res = $fields[$part];
                 break;
             } else {

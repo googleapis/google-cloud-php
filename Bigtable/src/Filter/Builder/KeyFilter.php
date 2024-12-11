@@ -109,7 +109,7 @@ class KeyFilter
         }
 
         return new SimpleFilter(
-            (new RowFilter)->setRowSampleFilter($probability)
+            (new RowFilter())->setRowSampleFilter($probability)
         );
     }
 }

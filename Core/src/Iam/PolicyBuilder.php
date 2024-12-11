@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core\Iam;
 
-use InvalidArgumentException;
 use BadMethodCallException;
+use InvalidArgumentException;
 
 /**
  * Helper class for creating valid IAM policies
@@ -284,7 +284,7 @@ class PolicyBuilder
     private function validatePolicyVersion()
     {
         if (isset($this->version) && $this->version > 1) {
-            throw new BadMethodCallException("Helper methods cannot be " .
+            throw new BadMethodCallException('Helper methods cannot be ' .
                 "invoked on policies with version {$this->version}.");
         }
 
@@ -299,8 +299,8 @@ class PolicyBuilder
 
         foreach ($this->bindings as $binding) {
             if (isset($binding['condition'])) {
-                throw new BadMethodCallException("Helper methods cannot " .
-                    "be invoked on policies containing conditions.");
+                throw new BadMethodCallException('Helper methods cannot ' .
+                    'be invoked on policies containing conditions.');
             }
         }
     }

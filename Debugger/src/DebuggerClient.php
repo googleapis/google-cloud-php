@@ -19,9 +19,9 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Debugger\Connection\Firebase;
 use Google\Cloud\Debugger\Connection\Grpc;
 use Google\Cloud\Debugger\Connection\Rest;
-use Google\Cloud\Debugger\Connection\Firebase;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**

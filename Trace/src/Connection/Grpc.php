@@ -21,8 +21,8 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Trace\V2\TraceServiceClient;
 use Google\Cloud\Trace\V2\Span;
+use Google\Cloud\Trace\V2\TraceServiceClient;
 
 /**
  * Implementation of the

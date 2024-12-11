@@ -19,7 +19,6 @@ namespace Google\Cloud\BigQuery\Connection;
 
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;

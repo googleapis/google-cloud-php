@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Debugger;
 
-use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Debugger\Connection\ConnectionInterface;
 
 /**
  * This class represents a debuggee - a service that can handle breakpoints.

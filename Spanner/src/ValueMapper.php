@@ -20,8 +20,8 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+use Google\Cloud\Spanner\V1\TypeCode;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -150,11 +150,11 @@ class ValueMapper
 
             $definition = null;
             if ($type) {
-                list ($type, $definition) = $this->resolveTypeDefinition($type, $key);
+                list($type, $definition) = $this->resolveTypeDefinition($type, $key);
             }
 
             $paramDefinition = $this->paramType($value, $type, $definition);
-            list ($parameters[$key], $paramTypes[$key]) = $paramDefinition;
+            list($parameters[$key], $paramTypes[$key]) = $paramDefinition;
         }
 
         return [
@@ -446,14 +446,14 @@ class ValueMapper
                 break;
 
             case 'object':
-                list ($type, $value) = $this->objectParam($value);
+                list($type, $value) = $this->objectParam($value);
                 break;
 
             case 'array':
                 if ($givenType === Database::TYPE_STRUCT) {
                     if (!($definition instanceof StructType)) {
                         throw new \InvalidArgumentException(
-                            'Struct parameter types must be declared explicitly, and must '.
+                            'Struct parameter types must be declared explicitly, and must ' .
                             'be an instance of Google\Cloud\Spanner\StructType.'
                         );
                     }
@@ -462,7 +462,7 @@ class ValueMapper
                         $value = (array) $value;
                     }
 
-                    list ($value, $type) = $this->structParam($value, $definition);
+                    list($value, $type) = $this->structParam($value, $definition);
                 } else {
                     if (!($definition instanceof ArrayType)) {
                         throw new \InvalidArgumentException(
@@ -470,7 +470,7 @@ class ValueMapper
                         );
                     }
 
-                    list ($value, $type) = $this->arrayParam($value, $definition, $allowMixedArrayType);
+                    list($value, $type) = $this->arrayParam($value, $definition, $allowMixedArrayType);
                 }
 
                 break;
@@ -690,7 +690,6 @@ class ValueMapper
         if (!$allowMixedArrayType && count($uniqueTypes) > 1) {
             throw new \InvalidArgumentException('Array values may not be of mixed type');
         }
-
 
         // get typeCode either from the array type or the first element's inferred type
         $typeCode = self::isCustomType($arrayObj->type())

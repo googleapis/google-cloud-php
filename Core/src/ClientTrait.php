@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\CredentialsLoader;
 use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Exception\GoogleException;
 
@@ -256,7 +256,7 @@ trait ClientTrait
      */
     protected function getMetaData()
     {
-        return new Metadata;
+        return new Metadata();
     }
 
     /**

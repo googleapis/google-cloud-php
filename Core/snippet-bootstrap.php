@@ -1,7 +1,7 @@
 <?php
 
-use Google\Cloud\Core\Testing\TestHelpers;
 use DG\BypassFinals;
+use Google\Cloud\Core\Testing\TestHelpers;
 
 TestHelpers::snippetBootstrap();
 

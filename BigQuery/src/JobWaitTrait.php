@@ -18,7 +18,6 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Exception\JobException;
-use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Throwable;

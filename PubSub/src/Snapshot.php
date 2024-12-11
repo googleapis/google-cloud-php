@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\ApiCore\Serializer;
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
-use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 
 /**
  * Represents a Pub/Sub Snapshot

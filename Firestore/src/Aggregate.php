@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use InvalidArgumentException;
-
 /**
  * Represents Aggregate properties.
  *

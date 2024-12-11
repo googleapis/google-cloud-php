@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Core\Batch;
 
-use Opis\Closure\SerializableClosure;
-
 /**
  * A trait to assist in the registering and processing of batch jobs.
  *

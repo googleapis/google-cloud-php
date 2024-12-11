@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Storage\Bucket;
 use GuzzleHttp\Psr7\CachingStream;
 
 /**
@@ -232,7 +231,7 @@ class StreamWrapper
             }
 
             if (isset($options['flush'])) {
-                $this->flushing = (bool)$options['flush'];
+                $this->flushing = (bool) $options['flush'];
                 unset($options['flush']);
             }
 
@@ -312,7 +311,7 @@ class StreamWrapper
     public function stream_write($data)
     {
         $result = $this->stream->write($data);
-        $this->dirty = $this->dirty || (bool)$result;
+        $this->dirty = $this->dirty || (bool) $result;
         return $result;
     }
 
@@ -458,7 +457,7 @@ class StreamWrapper
                     // since the service call returns nested results and we only
                     // want to yield results directly within the requested directory,
                     // check if we've already yielded this value.
-                    if ($parts[0] === "" || in_array($parts[0], $yielded)) {
+                    if ($parts[0] === '' || in_array($parts[0], $yielded)) {
                         continue;
                     }
 
@@ -751,11 +750,11 @@ class StreamWrapper
         }
 
         // equivalent to 100666 and 100444 in octal
-        $stats = array(
+        $stats = [
             'mode' => $this->bucket->isWritable()
                 ? self::FILE_WRITABLE_MODE
                 : self::FILE_READABLE_MODE
-        );
+        ];
         $this->statsFromFileInfo($info, $stats);
         return $this->makeStatArray($stats);
     }

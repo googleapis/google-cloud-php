@@ -20,10 +20,9 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\TimestampTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\DocumentReference;
 
 /**
  * Methods common to representing Document Snapshots.

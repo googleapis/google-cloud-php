@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\ApiCore\ValidationException;
 
 /**
  * Common helper methods used for creating array representation of

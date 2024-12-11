@@ -67,9 +67,9 @@ class ChainFilter implements FilterInterface
      */
     public function toProto()
     {
-        $chain = (new Chain)
+        $chain = (new Chain())
             ->setFilters($this->filters);
-        return (new RowFilter)
+        return (new RowFilter())
             ->setChain($chain);
     }
 }

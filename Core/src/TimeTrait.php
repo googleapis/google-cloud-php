@@ -38,7 +38,7 @@ trait TimeTrait
         $subSeconds = $matches[1] ?? '0';
 
         if (strlen($subSeconds) > 6) {
-            $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
+            $timestamp = str_replace('.' . $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
         }
 
         $dt = new \DateTimeImmutable($timestamp);

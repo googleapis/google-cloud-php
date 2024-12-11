@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\Exception\UploadException;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Promise\PromiseInterface;

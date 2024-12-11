@@ -20,10 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
-use Google\Cloud\Firestore\QueryTrait;
-use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -1114,7 +1111,7 @@ class Query
             ];
         } else {
             $encodedValue = ($operator === FieldFilterOperator::IN || $operator === FieldFilterOperator::NOT_IN)
-                ? $this->valueMapper->encodeMultiValue((array)$value)
+                ? $this->valueMapper->encodeMultiValue((array) $value)
                 : $this->valueMapper->encodeValue($value);
 
             $filter = [

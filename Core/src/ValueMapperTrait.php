@@ -47,7 +47,7 @@ trait ValueMapperTrait
             $dt = $this->createDateTimeFromSeconds($timestamp['seconds']);
             $nanos = $timestamp['nanos'];
         } else {
-            list ($dt, $nanos) = $this->parseTimeString($timestamp);
+            list($dt, $nanos) = $this->parseTimeString($timestamp);
         }
 
         return new $returnType($dt, $nanos);

@@ -19,12 +19,12 @@ namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Protobuf\Internal\Message;
-use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 
 /**
  * Converts cell chunks into an easily digestable format. Please note this class
@@ -249,7 +249,7 @@ class ChunkFormatter implements \IteratorAggregate
                 foreach ($rowSet->getRowRanges() as $range) {
                     if (($range->getEndKeyOpen() && $prevRowKey > $range->getEndKeyOpen())
                         || ($range->getEndKeyClosed() && $prevRowKey >= $range->getEndKeyClosed())) {
-                            continue;
+                        continue;
                     } elseif ((!$range->getStartKeyOpen() || $prevRowKey > $range->getStartKeyOpen())
                         && (!$range->getStartKeyClosed() || $prevRowKey >= $range->getStartKeyClosed())) {
                         $range->setStartKeyOpen($prevRowKey);
@@ -268,8 +268,8 @@ class ChunkFormatter implements \IteratorAggregate
                 $options['requestCompleted'] = true;
             }
         } else {
-            $range = (new RowRange)->setStartKeyOpen($prevRowKey);
-            $options['rows'] = (new RowSet)->setRowRanges([$range]);
+            $range = (new RowRange())->setStartKeyOpen($prevRowKey);
+            $options['rows'] = (new RowSet())->setRowRanges([$range]);
         }
 
         return [$request, $options];

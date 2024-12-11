@@ -1,9 +1,9 @@
 <?php
 
-use Google\ApiCore\Testing\MessageAwareArrayComparator;
-use Google\ApiCore\Testing\ProtobufMessageComparator;
-use Google\ApiCore\Testing\ProtobufGPBEmptyComparator;
 use DG\BypassFinals;
+use Google\ApiCore\Testing\MessageAwareArrayComparator;
+use Google\ApiCore\Testing\ProtobufGPBEmptyComparator;
+use Google\ApiCore\Testing\ProtobufMessageComparator;
 
 date_default_timezone_set('UTC');
 \SebastianBergmann\Comparator\Factory::getInstance()->register(new MessageAwareArrayComparator());

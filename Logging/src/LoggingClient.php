@@ -464,7 +464,7 @@ class LoggingClient
         $resourceNames = ['projects/' . $this->projectId];
         if (isset($options['projectIds'])) {
             foreach ($options['projectIds'] as $projectId) {
-                  $resourceNames[] = 'projects/' . $projectId;
+                $resourceNames[] = 'projects/' . $projectId;
             }
             unset($options['projectIds']);
         }
