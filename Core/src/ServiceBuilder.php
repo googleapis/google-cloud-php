@@ -27,6 +27,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\SpeechClient as DeprecatedSpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\V2\TranslateClient;
@@ -274,6 +275,9 @@ class ServiceBuilder
      */
     public function speech(array $config = [])
     {
+        if (class_exists(DeprecatedSpeechClient::class)) {
+            return $this->createClient(DeprecatedSpeechClient::class, 'speech', $config);
+        }
         throw new \BadMethodCallException(sprintf(
             'This method is no longer supported, create %s directly instead.'.
             SpeechClient::class
