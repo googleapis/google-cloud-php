@@ -98,7 +98,3 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Order::class, \Google\Cloud\Firestore\V1beta1\StructuredQuery_Order::class);
-

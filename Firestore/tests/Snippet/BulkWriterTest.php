@@ -17,12 +17,15 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
@@ -35,24 +38,32 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BulkWriterTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const DATABASE = 'projects/example_project/databases/(default)';
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const DATABASE = 'projects/example_project/databases/(default)';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $requestHandler;
+    private $serializer;
     private $batch;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::DATABASE,
             [],
-        ]);
+        ], ['requestHandler']);
     }
 
     public function testClass()
@@ -205,9 +216,13 @@ class BulkWriterTest extends SnippetTestCase
 
     public function testFlush()
     {
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
-        $this->batch->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
+        $this->batch->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet = $this->snippetFromMethod(BulkWriter::class, 'flush');
         $snippet->addLocal('batch', $this->batch);
         $snippet->invoke();
@@ -215,22 +230,28 @@ class BulkWriterTest extends SnippetTestCase
 
     public function flushAndAssert(Snippet $snippet, $assertion)
     {
-        $connectionResponse = [
+        $response = [
             'writeResults' => [],
             'status' => [],
         ];
         for ($i = 0; $i < count($assertion); $i++) {
-            $connectionResponse['writeResults'][] = [];
-            $connectionResponse['status'][] = [
+            $response['writeResults'][] = [];
+            $response['status'][] = [
                 'code' => Code::OK,
             ];
         }
-        $this->connection->batchWrite([
-            'database' => self::DATABASE,
-            'writes' => $assertion,
-            'labels' => [],
-        ])->shouldBeCalled()
-            ->willReturn($connectionResponse);
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::that(function ($req) use ($assertion) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == self::DATABASE
+                    && array_replace_recursive($data['writes'], $assertion) == $data['writes']
+                    && $data['labels'] == [];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($response);
 
         $snippet->addLocal('batch', $this->batch);
         $snippet->addLocal('documentName', self::DOCUMENT);

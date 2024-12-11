@@ -18,17 +18,19 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
-use InvalidArgumentException;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use TypeError;
 
 /**
  * @group firestore
@@ -36,45 +38,62 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class SnapshotTraitTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const NAME = 'projects/example_project/databases/(default)/documents/a/b';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $requestHandler;
+    private $serializer;
     private $mapper;
     private $impl;
     private $valueMapper;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->impl = TestHelpers::impl(SnapshotTrait::class);
 
-        $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
+        $this->valueMapper = new ValueMapper(
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            false
+        );
     }
 
     public function testCreateSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['found' => [
-                'name' => self::NAME,
-                'fields' => [
-                    'hello' => [
-                        'stringValue' => 'world'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && $data['documents'] == [self::NAME];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => self::NAME,
+                    'fields' => [
+                        'hello' => [
+                            'stringValue' => 'world'
+                        ]
                     ]
                 ]
-            ]]
+            ]
         ]));
 
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
         $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper,
             $ref->reveal()
         ]);
@@ -87,17 +106,25 @@ class SnapshotTraitTest extends TestCase
 
     public function testCreateSnapshotNonExistence()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && $data['documents'] == [self::NAME];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]
         ]));
 
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
         $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper,
             $ref->reveal()
         ]);
@@ -109,15 +136,23 @@ class SnapshotTraitTest extends TestCase
 
     public function testGetSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && $data['documents'] == [self::NAME];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['found' => 'foo']
         ]));
 
         $this->assertEquals('foo', $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::NAME
         ]));
     }
@@ -129,30 +164,33 @@ class SnapshotTraitTest extends TestCase
             'nanos' => 501
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('readTime', $timestamp))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                ['found' => 'foo']
-            ]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($timestamp) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readTime'] == $timestamp;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            ['found' => 'foo']
+        ]));
 
         $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::NAME,
-            [
-                'readTime' => new Timestamp(
-                    \DateTimeImmutable::createFromFormat('U', (string) $timestamp['seconds']),
-                    $timestamp['nanos']
-                )
-            ]
+            ['readTime' => $timestamp]
         ]);
     }
 
     public function testGetSnapshotReadTimeInvalidReadTime()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(TypeError::class);
 
         $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::NAME,
             ['readTime' => 'foo']
         ]);
@@ -162,15 +200,23 @@ class SnapshotTraitTest extends TestCase
     {
         $this->expectException(NotFoundException::class);
 
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && $data['documents'] == [self::NAME];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]
         ]));
 
         $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::NAME
         ]);
     }

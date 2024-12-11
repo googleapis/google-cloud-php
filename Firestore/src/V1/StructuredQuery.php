@@ -195,7 +195,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *     @type int $offset
      *           The number of documents to skip before returning the first result.
      *           This applies after the constraints specified by the `WHERE`, `START AT`, &
-     *           `END AT` but before the `LIMIT` clause.
+    *           `END AT` but before the `LIMIT` clause.
      *           Requires:
      *           * The value must be greater than or equal to zero if specified.
      *     @type \Google\Protobuf\Int32Value $limit

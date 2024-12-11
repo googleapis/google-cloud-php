@@ -17,8 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Firestore\QueryTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 
 /**
  * A Cloud Firestore Aggregate Query.
@@ -35,13 +39,18 @@ use Google\Cloud\Firestore\QueryTrait;
  */
 class AggregateQuery
 {
+    use ApiHelperTrait;
     use QueryTrait;
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    private $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var array
@@ -61,20 +70,22 @@ class AggregateQuery
     /**
      * Create an aggregation query.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $parent The parent of the query.
      * @param array $query Represents the underlying structured query.
      * @param Aggregate $aggregate Aggregation over the provided query.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         $parent,
         array $query,
         Aggregate $aggregate
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->parentName = $parent;
         $this->query = $query;
         $this->aggregates[] = $aggregate;
@@ -95,25 +106,31 @@ class AggregateQuery
     /**
      * Executes the AggregateQuery.
      *
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param array $options [optional] Configuration options is an array.
+     *
      * @return AggregateQuerySnapshot
      */
     public function getSnapshot($options = [])
     {
-        $parsedAggregates = [];
-        foreach ($this->aggregates as $aggregate) {
-            $parsedAggregates[] = $aggregate->getProps();
-        }
-        $snapshot = $this->connection->runAggregationQuery([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += $this->arrayFilterRemoveNull([
             'parent' => $this->parentName,
             'structuredAggregationQuery' => $this->aggregateQueryPrepare([
                 'aggregates' => $this->aggregates
             ] + $this->query),
-        ] + $options)->current();
+        ]);
+        $request = $this->serializer->decodeMessage(new RunAggregationQueryRequest(), $data);
+
+        $snapshot = $this->requestHandler->sendRequest(
+            FirestoreClient::class,
+            'runAggregationQuery',
+            $request,
+            $optionalArgs
+        )->current();
 
         return new AggregateQuerySnapshot($snapshot);
     }

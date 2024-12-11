@@ -6,7 +6,7 @@
       "update": {
         "docRefPath": "projects/projectID/databases/(default)/documents/C/d",
         "precondition": {
-          "updateTime": "1970-01-01T00:00:42Z"
+          "updateTime": {"seconds": "42", "nanos": "0"}
         },
         "jsonData": "{\"a\": 1}",
         "request": {
@@ -27,7 +27,7 @@
                 ]
               },
               "currentDocument": {
-                "updateTime": "1970-01-01T00:00:42Z"
+                "updateTime": {"seconds": "42", "nanos": "0"}
               }
             }
           ]

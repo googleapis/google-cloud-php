@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
-use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Protobuf\NullValue;
+use Google\Protobuf\Timestamp;
 
 /**
  * Normalizes values between Google Cloud PHP and Cloud Firestore.
@@ -38,17 +38,20 @@ class ValueMapper
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
-    use TimeTrait;
     use ValidateTrait;
 
-    const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
-    const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
+    public const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
+    public const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    private $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var bool
@@ -56,15 +59,19 @@ class ValueMapper
     private $returnInt64AsObject;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param bool $returnInt64AsObject Whether to wrap int types in a wrapper
      *        (to preserve values in 32-bit environments).
      */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
-    {
-        $this->connection = $connection;
+    public function __construct(
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        $returnInt64AsObject
+    ) {
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
@@ -110,7 +117,7 @@ class ValueMapper
     /**
      * Convert a Firestore value to a Google Cloud PHP value.
      *
-     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value Value
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#value Value
      * @param string $type The Firestore value type.
      * @param mixed $value The firestore value.
      * @return mixed
@@ -122,6 +129,7 @@ class ValueMapper
             case 'booleanValue':
             case 'stringValue':
             case 'doubleValue':
+            case 'timestampValue':
                 return $value;
                 break;
 
@@ -136,10 +144,7 @@ class ValueMapper
                     ? new Int64($value)
                     : (int) $value;
 
-            case 'timestampValue':
-                $time = $this->parseTimeString($value);
-                return new Timestamp($time[0], $time[1]);
-                break;
+
 
             case 'geoPointValue':
                 $value += [
@@ -179,8 +184,19 @@ class ValueMapper
                 break;
 
             case 'referenceValue':
-                $parent = new CollectionReference($this->connection, $this, $this->parentPath($value));
-                return new DocumentReference($this->connection, $this, $parent, $value);
+                $parent = new CollectionReference(
+                    $this->requestHandler,
+                    $this->serializer,
+                    $this,
+                    $this->parentPath($value)
+                );
+                return new DocumentReference(
+                    $this->requestHandler,
+                    $this->serializer,
+                    $this,
+                    $parent,
+                    $value
+                );
 
             default:
                 throw new \RuntimeException(sprintf(
@@ -196,7 +212,7 @@ class ValueMapper
      * Encode a Google Cloud PHP value as a Firestore value.
      *
      * @param mixed $value
-     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#value)
      * @throws \RuntimeException If an unknown type is encountered.
      */
     public function encodeValue($value)
@@ -241,14 +257,14 @@ class ValueMapper
                 return ['nullValue' => NullValue::NULL_VALUE];
                 break;
 
-            // @codeCoverageIgnoreStart
+                // @codeCoverageIgnoreStart
             default:
                 throw new \RuntimeException(sprintf(
                     'Invalid value type %s',
                     $type
                 ));
                 break;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
         }
     }
 
@@ -257,7 +273,7 @@ class ValueMapper
      *
      * @codingStandardsIgnoreStart
      * @param array $value
-     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ArrayValue)
+     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.ArrayValue)
      * @throws \RuntimeException If the array contains a nested array.
      * @codingStandardsIgnoreEnd
      */
@@ -292,22 +308,8 @@ class ValueMapper
             return ['bytesValue' => (string) $value];
         }
 
-        if ($value instanceof \DateTimeInterface) {
-            return [
-                'timestampValue' => [
-                    'seconds' => $value->format('U'),
-                    'nanos' => (int)($value->format('u') * 1000)
-                ]
-            ];
-        }
-
         if ($value instanceof Timestamp) {
-            return [
-                'timestampValue' => [
-                    'seconds' => $value->get()->format('U'),
-                    'nanos' => $value->nanoSeconds()
-                ]
-            ];
+            return ['timestampValue' => $value];
         }
 
         if ($value instanceof GeoPoint) {
@@ -329,7 +331,7 @@ class ValueMapper
      *
      * @codingStandardsIgnoreStart
      * @param array $value
-     * @return array [MapValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.MapValue)
+     * @return array [MapValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.MapValue)
      * @codingStandardsIgnoreEnd
      */
     private function encodeAssociativeArrayValue(array $value)
@@ -349,7 +351,7 @@ class ValueMapper
      * This is needed to properly encode values for "in" query filters.
      *
      * @param array $values
-     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#value)
      */
     public function encodeMultiValue(array $values)
     {

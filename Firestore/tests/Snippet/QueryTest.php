@@ -17,14 +17,18 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
@@ -38,18 +42,21 @@ use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilte
  */
 class QueryTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
-    const COLLECTION = 'a';
-    const NAME = 'projects/example_project/databases/(default)/documents/a/b';
+    public const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
+    public const COLLECTION = 'a';
+    public const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
     }
 
     public function testClass()
@@ -64,8 +71,13 @@ class QueryTest extends SnippetTestCase
     public function testDocuments()
     {
         $query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             [
                 'from' => [
@@ -74,13 +86,16 @@ class QueryTest extends SnippetTestCase
                     ]
                 ]
             ]
-        ]);
+        ], ['requestHandler']);
 
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([]));
 
-        $query->___setProperty('connection', $this->connection->reveal());
+        $query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(Query::class, 'documents');
         $snippet->addLocal('query', $query);
@@ -91,8 +106,13 @@ class QueryTest extends SnippetTestCase
     public function testCount()
     {
         $query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             [
                 'from' => [
@@ -101,11 +121,14 @@ class QueryTest extends SnippetTestCase
                     ]
                 ]
             ]
-        ]);
+        ], ['requestHandler']);
 
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
               [
                   'result' => [
                       'aggregateFields' => [
@@ -115,7 +138,7 @@ class QueryTest extends SnippetTestCase
               ]
           ]));
 
-        $query->___setProperty('connection', $this->connection->reveal());
+        $query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(Query::class, 'count');
         $snippet->addLocal('query', $query);
@@ -126,8 +149,13 @@ class QueryTest extends SnippetTestCase
     public function testAddAggregation()
     {
         $query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             [
                 'from' => [
@@ -136,11 +164,14 @@ class QueryTest extends SnippetTestCase
                     ]
                 ]
             ]
-        ]);
+        ], ['requestHandler']);
 
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runAggregationQuery',
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
               [
                   'result' => [
                       'aggregateFields' => [
@@ -150,7 +181,7 @@ class QueryTest extends SnippetTestCase
               ]
           ]));
 
-        $query->___setProperty('connection', $this->connection->reveal());
+        $query->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(Query::class, 'addAggregation');
         $snippet->addLocal('query', $query);
@@ -269,14 +300,14 @@ class QueryTest extends SnippetTestCase
     public function testLimit()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'limit');
-        $this->runAndAssert($snippet, 'limit', 10);
+        $this->runAndAssert($snippet, 'limit', ['value' => 10]);
     }
 
     public function testLimitToLast()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'limitToLast');
         $this->runAndAssertArray($snippet, [
-            'limit' => 10,
+            'limit' => ['value' => 10],
             'orderBy' => [
                 [
                     'field' => [
@@ -352,23 +383,32 @@ class QueryTest extends SnippetTestCase
         ];
 
         $q = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             [
                 'from' => $from
             ]
-        ]);
+        ], ['requestHandler']);
 
-        $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => self::QUERY_PARENT,
-            'retries' => 0,
-            'structuredQuery' => [
-                'from' => $from
-            ] + $query
-        ]))->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($query, $from) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['parent'] == self::QUERY_PARENT
+                    && array_replace_recursive($data['structuredQuery'], ['from' => $from] + $query)
+                        == $data['structuredQuery'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
-        $q->___setProperty('connection', $this->connection->reveal());
+        $q->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('query', $q);
 
         $res = $snippet->invoke('query');

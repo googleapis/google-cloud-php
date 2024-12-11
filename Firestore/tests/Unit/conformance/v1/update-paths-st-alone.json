@@ -24,7 +24,7 @@
                 "fieldTransforms": [
                   {
                     "fieldPath": "a",
-                    "setToServerValue": "REQUEST_TIME"
+                    "setToServerValue": "1"
                   }
                 ]
               },
