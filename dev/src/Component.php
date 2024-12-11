@@ -40,7 +40,7 @@ class Component
     /** @var array<Component> */
     private array $componentDependencies;
 
-    public function __construct(private string $name, string $path = null)
+    public function __construct(private string $name, ?string $path = null)
     {
         $this->path = $path ?: $this->getComponentPath($name);
         $this->validateComponentFiles();

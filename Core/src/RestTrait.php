@@ -122,7 +122,7 @@ trait RestTrait
      * @param string $apiEndpointTemplate
      * @return string
      */
-    private function getApiEndpoint($default, array $config, string $apiEndpointTemplate = null)
+    private function getApiEndpoint($default, array $config, ?string $apiEndpointTemplate = null)
     {
         // If the $default parameter is provided, or the user has set an "apiEndoint" config option,
         // fall back to the previous behavior.
