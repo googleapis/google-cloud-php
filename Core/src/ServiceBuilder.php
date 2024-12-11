@@ -279,7 +279,7 @@ class ServiceBuilder
             return $this->createClient(DeprecatedSpeechClient::class, 'speech', $config);
         }
         throw new \BadMethodCallException(sprintf(
-            'This method is no longer supported, create %s directly instead.'.
+            'This method is no longer supported, create %s directly instead.',
             SpeechClient::class
         ));
     }
