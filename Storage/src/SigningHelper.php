@@ -43,6 +43,7 @@ class SigningHelper
     const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
     const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
     const V4_DATESTAMP_FORMAT = 'Ymd';
+    const MAX_RETRIES = 5;
 
     /**
      * Create or fetch a SigningHelper instance.
@@ -901,14 +902,16 @@ class SigningHelper
      */
     private function retrySignBlob(callable $signBlobFn, string $resourceName = 'signBlob', array $args = [])
     {
+        $attempt = 0;
         // Generate a retry decider function using the RetryTrait logic.
         $retryDecider = $this->getRestRetryFunction($resourceName, 'execute', $args);
         while (true) {
+            ++$attempt;
             try {
                 // Attempt the operation
                 return $signBlobFn();
             } catch (\Exception $exception) {
-                if (!$retryDecider($exception)) {
+                if (!$retryDecider($exception, $attempt, self::MAX_RETRIES)) {
                     // Non-retryable error
                     throw $exception;
                 }

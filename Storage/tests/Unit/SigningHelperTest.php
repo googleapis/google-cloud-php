@@ -835,6 +835,22 @@ class SigningHelperTest extends TestCase
             $signBlobFn
         ]);
     }
+
+    public function testRetrySignBlobThrowsExceptionAfterThreeAttempts()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionMessage('Transient error (5 attempts)');
+
+        $attempt = 0;
+        $signBlobFn = function () use (&$attempt) {
+            throw new ServiceException(
+                sprintf('Transient error (%s attempts)', ++$attempt),
+                503
+            );
+        };
+
+        $this->helper->proxyPrivateMethodCall('retrySignBlob', [$signBlobFn]);
+    }
 }
 
 //@codingStandardsIgnoreStart
