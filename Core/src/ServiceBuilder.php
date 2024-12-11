@@ -275,7 +275,7 @@ class ServiceBuilder
     public function speech(array $config = [])
     {
         throw new \BadMethodCallException(sprintf(
-            'This method is no longer supported, create %s directly instead.'
+            'This method is no longer supported, create %s directly instead.'.
             SpeechClient::class
         ));
     }
