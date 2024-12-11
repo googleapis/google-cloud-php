@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * MySQL database profile.
+ * Next ID: 7.
  *
  * Generated from protobuf message <code>google.cloud.datastream.v1.MysqlProfile</code>
  */
@@ -34,9 +35,10 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
      */
     protected $username = '';
     /**
-     * Required. Input only. Password for the MySQL connection.
+     * Optional. Input only. Password for the MySQL connection. Mutually exclusive
+     * with the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $password = '';
     /**
@@ -59,7 +61,8 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
      *     @type string $username
      *           Required. Username for the MySQL connection.
      *     @type string $password
-     *           Required. Input only. Password for the MySQL connection.
+     *           Optional. Input only. Password for the MySQL connection. Mutually exclusive
+     *           with the `secret_manager_stored_password` field.
      *     @type \Google\Cloud\Datastream\V1\MysqlSslConfig $ssl_config
      *           SSL configuration for the MySQL connection.
      * }
@@ -148,9 +151,10 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Password for the MySQL connection.
+     * Optional. Input only. Password for the MySQL connection. Mutually exclusive
+     * with the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getPassword()
@@ -159,9 +163,10 @@ class MysqlProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Password for the MySQL connection.
+     * Optional. Input only. Password for the MySQL connection. Mutually exclusive
+     * with the `secret_manager_stored_password` field.
      *
-     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string password = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

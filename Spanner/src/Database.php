@@ -915,7 +915,7 @@ class Database
         ];
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -1554,7 +1554,7 @@ class Database
      * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
+     *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
@@ -1571,7 +1571,7 @@ class Database
      * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
+     *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
@@ -1591,11 +1591,10 @@ class Database
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration Options.
-     *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
-     *     for detailed description of available transaction options. Please
-     *     note that only one of `$strong`, `$minReadTimestamp`,
-     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
-     *     a request.
+     *     See {@see V1\TransactionOptions\PBReadOnly} for detailed description of
+     *     available transaction options. Please note that only one of
+     *     `$strong`, `$minReadTimestamp`, `$maxStaleness`, `$readTimestamp` or
+     *     `$exactStaleness` may be set in a request.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
@@ -1897,11 +1896,16 @@ class Database
         unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
-        $transaction = $this->operation->transaction($session, [
+        $beginTransactionOptions = [
             'transactionOptions' => [
-                'partitionedDml' => []
+                'partitionedDml' => [],
             ]
-        ]);
+        ];
+        if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
+            $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
+                $options['transactionOptions']['excludeTxnFromChangeStreams'];
+        }
+        $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
         $options = $this->addLarHeader($options);
 

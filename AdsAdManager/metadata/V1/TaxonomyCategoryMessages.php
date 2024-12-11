@@ -19,7 +19,7 @@ class TaxonomyCategoryMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-°
+Í
 8google/ads/admanager/v1/taxonomy_category_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.proto"ß
 TaxonomyCategory
 name (	BàA!
@@ -30,8 +30,8 @@ class TaxonomyCategoryMessages
 taxonomy_type	 (26.google.ads.admanager.v1.TaxonomyTypeEnum.TaxonomyTypeBàA
 ancestor_names (	BàA+
 ancestor_taxonomy_category_ids (BàA:•êA‘
-)admanager.googleapis.com/TaxonomyCategory>networks/{network_code}/taxonomyCategories/{taxonomy_category}*taxonomyCategories2taxonomyCategoryB´
-com.google.ads.admanager.v1BTaxonomyCategoryMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+)admanager.googleapis.com/TaxonomyCategory>networks/{network_code}/taxonomyCategories/{taxonomy_category}*taxonomyCategories2taxonomyCategoryBÑ
+com.google.ads.admanager.v1BTaxonomyCategoryMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

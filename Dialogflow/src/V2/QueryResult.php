@@ -43,8 +43,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * correct. The default of 0.0 is a sentinel value indicating that confidence
      * was not set.
      * This field is not guaranteed to be accurate or set. In particular this
-     * field isn't set for StreamingDetectIntent since the streaming endpoint has
-     * separate confidence estimates per portion of the audio in
+     * field isn't set for [StreamingDetectIntent][] since the streaming endpoint
+     * has separate confidence estimates per portion of the audio in
      * StreamingRecognitionResult.
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>
@@ -193,8 +193,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           correct. The default of 0.0 is a sentinel value indicating that confidence
      *           was not set.
      *           This field is not guaranteed to be accurate or set. In particular this
-     *           field isn't set for StreamingDetectIntent since the streaming endpoint has
-     *           separate confidence estimates per portion of the audio in
+     *           field isn't set for [StreamingDetectIntent][] since the streaming endpoint
+     *           has separate confidence estimates per portion of the audio in
      *           StreamingRecognitionResult.
      *     @type string $action
      *           The action name from the matched intent.
@@ -345,8 +345,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * correct. The default of 0.0 is a sentinel value indicating that confidence
      * was not set.
      * This field is not guaranteed to be accurate or set. In particular this
-     * field isn't set for StreamingDetectIntent since the streaming endpoint has
-     * separate confidence estimates per portion of the audio in
+     * field isn't set for [StreamingDetectIntent][] since the streaming endpoint
+     * has separate confidence estimates per portion of the audio in
      * StreamingRecognitionResult.
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>
@@ -363,8 +363,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * correct. The default of 0.0 is a sentinel value indicating that confidence
      * was not set.
      * This field is not guaranteed to be accurate or set. In particular this
-     * field isn't set for StreamingDetectIntent since the streaming endpoint has
-     * separate confidence estimates per portion of the audio in
+     * field isn't set for [StreamingDetectIntent][] since the streaming endpoint
+     * has separate confidence estimates per portion of the audio in
      * StreamingRecognitionResult.
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>

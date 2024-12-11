@@ -18,13 +18,13 @@ class TeamMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù
+∫
 +google/ads/admanager/v1/team_messages.protogoogle.ads.admanager.v1google/api/resource.proto"Ü
 Team
 name (	B‡A
 team_id (B‡A:UÍAR
-admanager.googleapis.com/Team$networks/{network_code}/teams/{team}*teams2teamB®
-com.google.ads.admanager.v1BTeamMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1bproto3'
+admanager.googleapis.com/Team$networks/{network_code}/teams/{team}*teams2teamB≈
+com.google.ads.admanager.v1BTeamMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1ÍGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -183,7 +183,9 @@ class Service extends \Google\Protobuf\Internal\Message
     protected $scaling = null;
     /**
      * Optional. Disables IAM permission check for run.routes.invoke for callers
-     * of this service. This setting should not be used with external ingress.
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
      * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -396,7 +398,9 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies service-level scaling settings
      *     @type bool $invoker_iam_disabled
      *           Optional. Disables IAM permission check for run.routes.invoke for callers
-     *           of this service. This setting should not be used with external ingress.
+     *           of this service. This feature is available by invitation only. For more
+     *           information, visit
+     *           https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *     @type bool $default_uri_disabled
      *           Optional. Disables public resolution of the default URI of this service.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
@@ -1145,7 +1149,9 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Disables IAM permission check for run.routes.invoke for callers
-     * of this service. This setting should not be used with external ingress.
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
      * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -1157,7 +1163,9 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Disables IAM permission check for run.routes.invoke for callers
-     * of this service. This setting should not be used with external ingress.
+     * of this service. This feature is available by invitation only. For more
+     * information, visit
+     * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
      * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

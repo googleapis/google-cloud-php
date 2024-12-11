@@ -30,6 +30,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * kernel.shmmni
+     * kernel.shmmax
+     * kernel.shmall
      *
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      */
@@ -68,6 +71,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.ipv4.tcp_rmem
      *           net.ipv4.tcp_wmem
      *           net.ipv4.tcp_tw_reuse
+     *           kernel.shmmni
+     *           kernel.shmmax
+     *           kernel.shmall
      *     @type int $cgroup_mode
      *           cgroup_mode specifies the cgroup mode to be used on the node.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\HugepagesConfig $hugepages
@@ -94,6 +100,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * kernel.shmmni
+     * kernel.shmmax
+     * kernel.shmall
      *
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -118,6 +127,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * kernel.shmmni
+     * kernel.shmmax
+     * kernel.shmall
      *
      * Generated from protobuf field <code>map<string, string> sysctls = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

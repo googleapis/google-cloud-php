@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The message returned from the DetectIntent method.
+ * The message returned from the [DetectIntent][] method.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DetectIntentResponse</code>
  */

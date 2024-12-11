@@ -23,8 +23,8 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     protected $null_ratio = 0.0;
     /**
      * Ratio of rows with distinct values against total scanned rows.
-     * Not available for complex non-groupable field type RECORD and fields
-     * with REPEATABLE mode.
+     * Not available for complex non-groupable field type, including RECORD,
+     * ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      */
@@ -33,8 +33,8 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      * The list of top N non-null values, frequency and ratio with which
      * they occur in the scanned data. N is 10 or equal to the number of
      * distinct values in the field, whichever is smaller. Not available for
-     * complex non-groupable field type RECORD and fields with REPEATABLE
-     * mode.
+     * complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY,
+     * and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4;</code>
      */
@@ -51,14 +51,14 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      *           Ratio of rows with null value against total scanned rows.
      *     @type float $distinct_ratio
      *           Ratio of rows with distinct values against total scanned rows.
-     *           Not available for complex non-groupable field type RECORD and fields
-     *           with REPEATABLE mode.
+     *           Not available for complex non-groupable field type, including RECORD,
+     *           ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      *     @type array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>|\Google\Protobuf\Internal\RepeatedField $top_n_values
      *           The list of top N non-null values, frequency and ratio with which
      *           they occur in the scanned data. N is 10 or equal to the number of
      *           distinct values in the field, whichever is smaller. Not available for
-     *           complex non-groupable field type RECORD and fields with REPEATABLE
-     *           mode.
+     *           complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY,
+     *           and JSON, as well as fields with REPEATABLE mode.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\StringFieldInfo $string_profile
      *           String type field information.
      *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\IntegerFieldInfo $integer_profile
@@ -100,8 +100,8 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Ratio of rows with distinct values against total scanned rows.
-     * Not available for complex non-groupable field type RECORD and fields
-     * with REPEATABLE mode.
+     * Not available for complex non-groupable field type, including RECORD,
+     * ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      * @return float
@@ -113,8 +113,8 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Ratio of rows with distinct values against total scanned rows.
-     * Not available for complex non-groupable field type RECORD and fields
-     * with REPEATABLE mode.
+     * Not available for complex non-groupable field type, including RECORD,
+     * ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>double distinct_ratio = 3;</code>
      * @param float $var
@@ -132,8 +132,8 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      * The list of top N non-null values, frequency and ratio with which
      * they occur in the scanned data. N is 10 or equal to the number of
      * distinct values in the field, whichever is smaller. Not available for
-     * complex non-groupable field type RECORD and fields with REPEATABLE
-     * mode.
+     * complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY,
+     * and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -147,8 +147,8 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      * The list of top N non-null values, frequency and ratio with which
      * they occur in the scanned data. N is 10 or equal to the number of
      * distinct values in the field, whichever is smaller. Not available for
-     * complex non-groupable field type RECORD and fields with REPEATABLE
-     * mode.
+     * complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY,
+     * and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>|\Google\Protobuf\Internal\RepeatedField $var

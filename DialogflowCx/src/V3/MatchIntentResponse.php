@@ -44,8 +44,7 @@ class MatchIntentResponse extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_intent
      *           If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      *           input, this field will contain a copy of the intent identifier. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $transcript
      *           If [natural language speech
      *           audio][google.cloud.dialogflow.cx.v3.AudioInput] was provided as input,
@@ -103,8 +102,7 @@ class MatchIntentResponse extends \Google\Protobuf\Internal\Message
     /**
      * If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      * input, this field will contain a copy of the intent identifier. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string trigger_intent = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -122,8 +120,7 @@ class MatchIntentResponse extends \Google\Protobuf\Internal\Message
     /**
      * If an [intent][google.cloud.dialogflow.cx.v3.IntentInput] was provided as
      * input, this field will contain a copy of the intent identifier. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string trigger_intent = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

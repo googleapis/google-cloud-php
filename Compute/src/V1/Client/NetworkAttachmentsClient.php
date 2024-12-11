@@ -47,6 +47,7 @@ use Google\Cloud\Compute\V1\SetIamPolicyNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The NetworkAttachments API.
@@ -54,15 +55,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNetworkAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNetworkAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkAttachment> getAsync(GetNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNetworkAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNetworkAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNetworkAttachmentRequest $request, array $optionalArgs = [])
  */
 final class NetworkAttachmentsClient
 {
@@ -227,6 +228,9 @@ final class NetworkAttachmentsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -254,6 +258,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/aggregated_list.php
+     *
      * @param AggregatedListNetworkAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -277,6 +283,8 @@ final class NetworkAttachmentsClient
      * Deletes the specified NetworkAttachment in the given scope
      *
      * The async variant is {@see NetworkAttachmentsClient::deleteAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/delete.php
      *
      * @param DeleteNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -302,6 +310,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::getAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/get.php
+     *
      * @param GetNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -325,6 +335,8 @@ final class NetworkAttachmentsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NetworkAttachmentsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/get_iam_policy.php
      *
      * @param GetIamPolicyNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -350,6 +362,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::insertAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/insert.php
+     *
      * @param InsertNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -373,6 +387,8 @@ final class NetworkAttachmentsClient
      * Lists the NetworkAttachments for a project in the given scope.
      *
      * The async variant is {@see NetworkAttachmentsClient::listAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/list.php
      *
      * @param ListNetworkAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -398,6 +414,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::patchAsync()} .
      *
+     * @example samples/V1/NetworkAttachmentsClient/patch.php
+     *
      * @param PatchNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -421,6 +439,8 @@ final class NetworkAttachmentsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see NetworkAttachmentsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/set_iam_policy.php
      *
      * @param SetIamPolicyNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -446,6 +466,8 @@ final class NetworkAttachmentsClient
      *
      * The async variant is {@see NetworkAttachmentsClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/NetworkAttachmentsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNetworkAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {

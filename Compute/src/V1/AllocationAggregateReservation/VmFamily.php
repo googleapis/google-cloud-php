@@ -20,6 +20,10 @@ class VmFamily
      */
     const UNDEFINED_VM_FAMILY = 0;
     /**
+     * Generated from protobuf enum <code>VM_FAMILY_CLOUD_TPU_DEVICE_CT3 = 42845948;</code>
+     */
+    const VM_FAMILY_CLOUD_TPU_DEVICE_CT3 = 42845948;
+    /**
      * Generated from protobuf enum <code>VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L = 108020067;</code>
      */
     const VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L = 108020067;
@@ -28,14 +32,20 @@ class VmFamily
      */
     const VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP = 18705267;
     /**
+     * Generated from protobuf enum <code>VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P = 517384376;</code>
+     */
+    const VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P = 517384376;
+    /**
      * Generated from protobuf enum <code>VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P = 517384407;</code>
      */
     const VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P = 517384407;
 
     private static $valueToName = [
         self::UNDEFINED_VM_FAMILY => 'UNDEFINED_VM_FAMILY',
+        self::VM_FAMILY_CLOUD_TPU_DEVICE_CT3 => 'VM_FAMILY_CLOUD_TPU_DEVICE_CT3',
         self::VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L => 'VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L',
         self::VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP => 'VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP',
+        self::VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P => 'VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P',
         self::VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P => 'VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P',
     ];
 

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionDisks_RemoveResourcePolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionDisksClient;
+use Google\Cloud\Compute\V1\Client\RegionDisksClient;
 use Google\Cloud\Compute\V1\RegionDisksRemoveResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\RemoveResourcePoliciesRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,20 @@ function remove_resource_policies_sample(string $disk, string $project, string $
     // Create a client.
     $regionDisksClient = new RegionDisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionDisksRemoveResourcePoliciesRequestResource = new RegionDisksRemoveResourcePoliciesRequest();
+    $request = (new RemoveResourcePoliciesRegionDiskRequest())
+        ->setDisk($disk)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionDisksRemoveResourcePoliciesRequestResource(
+            $regionDisksRemoveResourcePoliciesRequestResource
+        );
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionDisksClient->removeResourcePolicies(
-            $disk,
-            $project,
-            $region,
-            $regionDisksRemoveResourcePoliciesRequestResource
-        );
+        $response = $regionDisksClient->removeResourcePolicies($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

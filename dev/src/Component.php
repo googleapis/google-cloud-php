@@ -37,6 +37,8 @@ class Component
     private string $clientDocumentation;
     private string $description;
     private array $namespaces;
+    /** @var array<Component> */
+    private array $componentDependencies;
 
     public function __construct(private string $name, string $path = null)
     {
@@ -168,9 +170,6 @@ class Component
         if (empty($composerJson['name'])) {
             throw new RuntimeException('composer.json does not contain "name"');
         }
-        if (empty($composerJson['extra']['component']['target'])) {
-            throw new RuntimeException('composer does not contain extra.component.target');
-        }
         if (empty($composerJson['description'])) {
             throw new RuntimeException('composer.json does not contain "description"');
         }
@@ -179,22 +178,32 @@ class Component
         }
 
         $this->packageName = $composerJson['name'];
-        $repoName = $composerJson['extra']['component']['target'];
-        $this->repoName = preg_replace('/\.git$/', '', $repoName); // Strip trailing ".git"
         $this->description = $composerJson['description'];
 
-        $repoMetadataPath = self::ROOT_DIR . '/.repo-metadata-full.json';
-        $repoMetadataFullJson = json_decode(file_get_contents($repoMetadataPath), true);
-        if (!$repoMetadataFullJson) {
-            throw new RuntimeException('Invalid .repo-metadata-full.json');
+        if (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
+            if (!str_starts_with($composerJson['homepage'], 'https://github.com/')) {
+                throw new RuntimeException(
+                    'composer does not contain extra.component.target, and homepage is not a github URL'
+                );
+            }
+            $repoName = str_replace('https://github.com', '', $composerJson['homepage']);
         }
-        if (!isset($repoMetadataFullJson[$this->name])) {
+        $this->repoName = preg_replace('/\.git$/', '', $repoName); // Strip trailing ".git"
+
+        $repoMetadataFullPath = self::ROOT_DIR . '/.repo-metadata-full.json';
+        $repoMetadataFullJson = json_decode(file_get_contents($repoMetadataFullPath), true);
+        if (isset($repoMetadataFullJson[$this->name])) {
+            $repoMetadataJson = $repoMetadataFullJson[$this->name];
+        } elseif (file_exists($repoMetadataPath = $this->path . '/.repo-metadata.json')) {
+            $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
+        } else {
             throw new RuntimeException(sprintf(
-                'repo metadata for component "%s" not found in .repo-metadata-full.json',
-                $this->name
+                'repo metadata not found for component "%s" and no .repo-metadata.json file found in %s',
+                $this->name,
+                $repoMetadataPath
             ));
         }
-        $repoMetadataJson = $repoMetadataFullJson[$this->name];
+
         if (empty($repoMetadataJson['release_level'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "release_level" for component "%s"',
@@ -211,8 +220,9 @@ class Component
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
         $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
 
+        $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
-            if (0 === strpos($dir, 'src')) {
+            if (str_starts_with($dir, 'src')) {
                 $namespaces[rtrim($namespace, '\\')] = $dir;
             }
         }
@@ -220,6 +230,23 @@ class Component
             throw new RuntimeException('composer autoload.psr-4 does not contain a namespace');
         }
         $this->namespaces = $namespaces;
+
+        // find dependencies which are google/cloud components
+        $this->componentDependencies = [];
+        foreach ($composerJson['require'] ?? [] as $name => $version) {
+            if ($componentName = key(array_filter(
+                $repoMetadataFullJson,
+                fn ($metadata) => $metadata['distribution_name'] === $name
+            ))) {
+                $this->componentDependencies[] = new Component($componentName);
+            }
+        }
+        if (isset($composerJson['require']['google/gax'])) {
+            $this->componentDependencies[] = new Component('gax', self::ROOT_DIR . '/dev/vendor/google/gax');
+            if (!isset($composerJson['require']['google/common-protos'])) {
+                $this->componentDependencies[] = new Component('CommonProtos');
+            }
+        }
     }
 
     /**
@@ -245,9 +272,51 @@ class Component
         return array_map(fn($v) => $v->getMigrationStatus(), $this->getComponentPackages());
     }
 
-    public function getProtoPackages(): array
+    public function getProtoNamespaces(): array
     {
-        return array_map(fn($v) => $v->getProtoPackage(), $this->getComponentPackages());
+        $protoNamespaces = [];
+        $componentPackages = $this->getComponentPackages();
+        foreach ($this->namespaces as $namespace => $dir) {
+            $componentPackages = $dir === 'src'
+                ? $this->getComponentPackages()
+                : [new ComponentPackage($this, str_replace('src/', '', $dir))];
+
+            $protoNamespaces = array_reduce(
+                $componentPackages,
+                fn($protoNamespaces, $pkg) => array_merge($protoNamespaces, $pkg->getProtoNamespaces()),
+                $protoNamespaces
+            );
+        }
+
+        return $protoNamespaces;
+    }
+
+    public static function getProtoPackageToNamespaceMap(): array
+    {
+        $protoNamespaces = [];
+        foreach (self::getComponents() as $component) {
+            $componentProtoNamespaces = $component->getProtoNamespaces();
+            if ($commonPackages = array_intersect_key($componentProtoNamespaces, $protoNamespaces)) {
+                foreach ($commonPackages as $package => $namespace) {
+                    if ($namespace !== $protoNamespaces[$package]) {
+                        throw new RuntimeException(sprintf(
+                            'Package "%s" has conflicting namespaces: "%s" and "%s"',
+                            $package,
+                            $namespace,
+                            $protoNamespaces[$package]
+                        ));
+                    }
+                }
+            }
+            $protoNamespaces = array_merge($protoNamespaces, $componentProtoNamespaces);
+        }
+
+        return $protoNamespaces;
+    }
+
+    public function getProtoPaths(): array
+    {
+        return array_map(fn($v) => $v->getProtoPath(), $this->getComponentPackages());
     }
 
     public function getServiceAddresses(): array
@@ -283,5 +352,10 @@ class Component
             $paths = [''];
         }
         return array_reverse($paths);
+    }
+
+    public function getComponentDependencies(): array
+    {
+        return $this->componentDependencies;
     }
 }

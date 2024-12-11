@@ -18,8 +18,8 @@ class AgentValidationResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the agent validation result.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -39,8 +39,8 @@ class AgentValidationResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The unique identifier of the agent validation result.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/validationResult`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\FlowValidationResult>|\Google\Protobuf\Internal\RepeatedField $flow_validation_results
      *           Contains all flow validation results.
      * }
@@ -52,8 +52,8 @@ class AgentValidationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the agent validation result.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -65,8 +65,8 @@ class AgentValidationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the agent validation result.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

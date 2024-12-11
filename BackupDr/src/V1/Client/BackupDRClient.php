@@ -78,6 +78,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The BackupDR Service
@@ -90,38 +91,38 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupPlanAssociationAsync(CreateBackupPlanAssociationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createManagementServerAsync(CreateManagementServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPlanAssociationAsync(DeleteBackupPlanAssociationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteManagementServerAsync(DeleteManagementServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchUsableBackupVaultsAsync(FetchUsableBackupVaultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPlanAssociationAsync(GetBackupPlanAssociationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listManagementServersAsync(ListManagementServersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreBackupAsync(RestoreBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface triggerBackupAsync(TriggerBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupPlanAssociationAsync(CreateBackupPlanAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createManagementServerAsync(CreateManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupPlanAssociationAsync(DeleteBackupPlanAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteManagementServerAsync(DeleteManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchUsableBackupVaultsAsync(FetchUsableBackupVaultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPlan> getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPlanAssociation> getBackupPlanAssociationAsync(GetBackupPlanAssociationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupVault> getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ManagementServer> getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataSourcesAsync(ListDataSourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listManagementServersAsync(ListManagementServersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreBackupAsync(RestoreBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> triggerBackupAsync(TriggerBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDataSourceAsync(UpdateDataSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class BackupDRClient
 {
@@ -388,14 +389,14 @@ final class BackupDRClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -450,6 +451,9 @@ final class BackupDRClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

@@ -69,12 +69,12 @@ class EventHandler extends \Google\Protobuf\Internal\Message
      *           handler handling webhooks.
      *     @type string $target_page
      *           The target page to transition to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *     @type string $target_flow
      *           The target flow to transition to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,8 +178,8 @@ class EventHandler extends \Google\Protobuf\Internal\Message
 
     /**
      * The target page to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string target_page = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -196,8 +196,8 @@ class EventHandler extends \Google\Protobuf\Internal\Message
 
     /**
      * The target page to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string target_page = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -213,8 +213,8 @@ class EventHandler extends \Google\Protobuf\Internal\Message
 
     /**
      * The target flow to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string target_flow = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -231,8 +231,8 @@ class EventHandler extends \Google\Protobuf\Internal\Message
 
     /**
      * The target flow to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string target_flow = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var

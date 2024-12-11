@@ -43,6 +43,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing [Pages][google.cloud.dialogflow.cx.v3.Page].
@@ -55,13 +56,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createPageAsync(CreatePageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePageAsync(DeletePageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPageAsync(GetPageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPagesAsync(ListPagesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePageAsync(UpdatePageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Page> createPageAsync(CreatePageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePageAsync(DeletePageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Page> getPageAsync(GetPageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPagesAsync(ListPagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Page> updatePageAsync(UpdatePageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class PagesClient
 {
@@ -324,14 +325,14 @@ final class PagesClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -386,6 +387,9 @@ final class PagesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

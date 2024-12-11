@@ -43,7 +43,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Custom keys to extract as conversation labels from metadata
      * files in `metadata_bucket_uri`. Keys not included in this field will be
-     * ignored. Note that there is a limit of 20 labels per conversation.
+     * ignored. Note that there is a limit of 100 labels per conversation.
      *
      * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -71,7 +71,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_metadata_keys
      *           Optional. Custom keys to extract as conversation labels from metadata
      *           files in `metadata_bucket_uri`. Keys not included in this field will be
-     *           ignored. Note that there is a limit of 20 labels per conversation.
+     *           ignored. Note that there is a limit of 100 labels per conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,7 +184,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Custom keys to extract as conversation labels from metadata
      * files in `metadata_bucket_uri`. Keys not included in this field will be
-     * ignored. Note that there is a limit of 20 labels per conversation.
+     * ignored. Note that there is a limit of 100 labels per conversation.
      *
      * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -197,7 +197,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Custom keys to extract as conversation labels from metadata
      * files in `metadata_bucket_uri`. Keys not included in this field will be
-     * ignored. Note that there is a limit of 20 labels per conversation.
+     * ignored. Note that there is a limit of 100 labels per conversation.
      *
      * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

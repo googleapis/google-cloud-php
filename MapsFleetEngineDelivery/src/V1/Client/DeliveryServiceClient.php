@@ -48,6 +48,7 @@ use Google\Maps\FleetEngine\Delivery\V1\TaskTrackingInfo;
 use Google\Maps\FleetEngine\Delivery\V1\UpdateDeliveryVehicleRequest;
 use Google\Maps\FleetEngine\Delivery\V1\UpdateTaskRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Last Mile Delivery service.
@@ -60,16 +61,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeliveryVehiclesAsync(ListDeliveryVehiclesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeliveryVehicleAsync(UpdateDeliveryVehicleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateTasksResponse> batchCreateTasksAsync(BatchCreateTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> createDeliveryVehicleAsync(CreateDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> getDeliveryVehicleAsync(GetDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TaskTrackingInfo> getTaskTrackingInfoAsync(GetTaskTrackingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeliveryVehiclesAsync(ListDeliveryVehiclesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeliveryVehicle> updateDeliveryVehicleAsync(UpdateDeliveryVehicleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
  */
 final class DeliveryServiceClient
 {
@@ -198,14 +199,14 @@ final class DeliveryServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -260,6 +261,9 @@ final class DeliveryServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

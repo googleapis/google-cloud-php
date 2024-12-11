@@ -27,10 +27,15 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
+use Google\Cloud\ContactCenterInsights\V1\AnalysisRule;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsResponse;
 use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsResponse;
+use Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsResponse;
+use Google\Cloud\ContactCenterInsights\V1\BulkUploadFeedbackLabelsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkUploadFeedbackLabelsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -38,29 +43,46 @@ use Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\Conversation;
 use Google\Cloud\ContactCenterInsights\V1\CreateAnalysisRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreateConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreateIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreatePhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateQaScorecardRequest;
+use Google\Cloud\ContactCenterInsights\V1\CreateQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\CreateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteAnalysisRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeletePhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteQaScorecardRequest;
+use Google\Cloud\ContactCenterInsights\V1\DeleteQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\DeployIssueModelResponse;
+use Google\Cloud\ContactCenterInsights\V1\DeployQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\EncryptionSpec;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest;
 use Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataResponse;
 use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\ExportIssueModelResponse;
+use Google\Cloud\ContactCenterInsights\V1\FeedbackLabel;
 use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetEncryptionSpecRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetPhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetQaScorecardRequest;
+use Google\Cloud\ContactCenterInsights\V1\GetQaScorecardRevisionRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\GetViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
@@ -71,27 +93,51 @@ use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest;
 use Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecResponse;
 use Google\Cloud\ContactCenterInsights\V1\Issue;
 use Google\Cloud\ContactCenterInsights\V1\IssueModel;
+use Google\Cloud\ContactCenterInsights\V1\ListAllFeedbackLabelsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListAllFeedbackLabelsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListAnalysesResponse;
+use Google\Cloud\ContactCenterInsights\V1\ListAnalysisRulesRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListAnalysisRulesResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListConversationsResponse;
+use Google\Cloud\ContactCenterInsights\V1\ListFeedbackLabelsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListFeedbackLabelsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListIssueModelsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListIssueModelsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListIssuesRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListIssuesResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersResponse;
+use Google\Cloud\ContactCenterInsights\V1\ListQaQuestionsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListQaQuestionsResponse;
+use Google\Cloud\ContactCenterInsights\V1\ListQaScorecardRevisionsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListQaScorecardRevisionsResponse;
+use Google\Cloud\ContactCenterInsights\V1\ListQaScorecardsRequest;
+use Google\Cloud\ContactCenterInsights\V1\ListQaScorecardsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListViewsRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListViewsResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher\PhraseMatcherType;
+use Google\Cloud\ContactCenterInsights\V1\QaQuestion;
+use Google\Cloud\ContactCenterInsights\V1\QaScorecard;
+use Google\Cloud\ContactCenterInsights\V1\QaScorecardRevision;
+use Google\Cloud\ContactCenterInsights\V1\QueryMetricsRequest;
+use Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
+use Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionRequest;
+use Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionResponse;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelResponse;
+use Google\Cloud\ContactCenterInsights\V1\UndeployQaScorecardRevisionRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateAnalysisRuleRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateFeedbackLabelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateQaQuestionRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdateQaScorecardRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\UploadConversationRequest;
@@ -404,6 +450,256 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function bulkDownloadFeedbackLabelsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/bulkDownloadFeedbackLabelsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new BulkDownloadFeedbackLabelsResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/bulkDownloadFeedbackLabelsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new BulkDownloadFeedbackLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->bulkDownloadFeedbackLabels($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkDownloadFeedbackLabels',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/bulkDownloadFeedbackLabelsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function bulkDownloadFeedbackLabelsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/bulkDownloadFeedbackLabelsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new BulkDownloadFeedbackLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->bulkDownloadFeedbackLabels($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/bulkDownloadFeedbackLabelsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function bulkUploadFeedbackLabelsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/bulkUploadFeedbackLabelsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new BulkUploadFeedbackLabelsResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/bulkUploadFeedbackLabelsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new BulkUploadFeedbackLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->bulkUploadFeedbackLabels($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/BulkUploadFeedbackLabels',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/bulkUploadFeedbackLabelsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function bulkUploadFeedbackLabelsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/bulkUploadFeedbackLabelsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new BulkUploadFeedbackLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->bulkUploadFeedbackLabels($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/bulkUploadFeedbackLabelsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function calculateIssueModelStatsTest()
     {
         $transport = $this->createTransport();
@@ -671,6 +967,86 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createAnalysisRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $conversationFilter = 'conversationFilter1770349236';
+        $analysisPercentage = 1.60975766e8;
+        $active = true;
+        $expectedResponse = new AnalysisRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setConversationFilter($conversationFilter);
+        $expectedResponse->setAnalysisPercentage($analysisPercentage);
+        $expectedResponse->setActive($active);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $analysisRule = new AnalysisRule();
+        $request = (new CreateAnalysisRuleRequest())->setParent($formattedParent)->setAnalysisRule($analysisRule);
+        $response = $gapicClient->createAnalysisRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateAnalysisRule',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAnalysisRule();
+        $this->assertProtobufEquals($analysisRule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAnalysisRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $analysisRule = new AnalysisRule();
+        $request = (new CreateAnalysisRuleRequest())->setParent($formattedParent)->setAnalysisRule($analysisRule);
+        try {
+            $gapicClient->createAnalysisRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createConversationTest()
     {
         $transport = $this->createTransport();
@@ -741,6 +1117,82 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new CreateConversationRequest())->setParent($formattedParent)->setConversation($conversation);
         try {
             $gapicClient->createConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createFeedbackLabelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $label = 'label102727412';
+        $name = 'name3373707';
+        $labeledResource = 'labeledResource556993594';
+        $expectedResponse = new FeedbackLabel();
+        $expectedResponse->setLabel($label);
+        $expectedResponse->setName($name);
+        $expectedResponse->setLabeledResource($labeledResource);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $feedbackLabel = new FeedbackLabel();
+        $request = (new CreateFeedbackLabelRequest())->setParent($formattedParent)->setFeedbackLabel($feedbackLabel);
+        $response = $gapicClient->createFeedbackLabel($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateFeedbackLabel',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFeedbackLabel();
+        $this->assertProtobufEquals($feedbackLabel, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createFeedbackLabelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $feedbackLabel = new FeedbackLabel();
+        $request = (new CreateFeedbackLabelRequest())->setParent($formattedParent)->setFeedbackLabel($feedbackLabel);
+        try {
+            $gapicClient->createFeedbackLabel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -974,6 +1426,248 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createQaQuestionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $abbreviation = 'abbreviation-1960645810';
+        $questionBody = 'questionBody-1030867365';
+        $answerInstructions = 'answerInstructions863229062';
+        $order = 106006350;
+        $expectedResponse = new QaQuestion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAbbreviation($abbreviation);
+        $expectedResponse->setQuestionBody($questionBody);
+        $expectedResponse->setAnswerInstructions($answerInstructions);
+        $expectedResponse->setOrder($order);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $qaQuestion = new QaQuestion();
+        $request = (new CreateQaQuestionRequest())->setParent($formattedParent)->setQaQuestion($qaQuestion);
+        $response = $gapicClient->createQaQuestion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateQaQuestion',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getQaQuestion();
+        $this->assertProtobufEquals($qaQuestion, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createQaQuestionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $qaQuestion = new QaQuestion();
+        $request = (new CreateQaQuestionRequest())->setParent($formattedParent)->setQaQuestion($qaQuestion);
+        try {
+            $gapicClient->createQaQuestion($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createQaScorecardTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new QaScorecard();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $qaScorecard = new QaScorecard();
+        $request = (new CreateQaScorecardRequest())->setParent($formattedParent)->setQaScorecard($qaScorecard);
+        $response = $gapicClient->createQaScorecard($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateQaScorecard',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getQaScorecard();
+        $this->assertProtobufEquals($qaScorecard, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createQaScorecardExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $qaScorecard = new QaScorecard();
+        $request = (new CreateQaScorecardRequest())->setParent($formattedParent)->setQaScorecard($qaScorecard);
+        try {
+            $gapicClient->createQaScorecard($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createQaScorecardRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new QaScorecardRevision();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $qaScorecardRevision = new QaScorecardRevision();
+        $request = (new CreateQaScorecardRevisionRequest())
+            ->setParent($formattedParent)
+            ->setQaScorecardRevision($qaScorecardRevision);
+        $response = $gapicClient->createQaScorecardRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateQaScorecardRevision',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getQaScorecardRevision();
+        $this->assertProtobufEquals($qaScorecardRevision, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createQaScorecardRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $qaScorecardRevision = new QaScorecardRevision();
+        $request = (new CreateQaScorecardRevisionRequest())
+            ->setParent($formattedParent)
+            ->setQaScorecardRevision($qaScorecardRevision);
+        try {
+            $gapicClient->createQaScorecardRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createViewTest()
     {
         $transport = $this->createTransport();
@@ -1112,6 +1806,71 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteAnalysisRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->analysisRuleName('[PROJECT]', '[LOCATION]', '[ANALYSIS_RULE]');
+        $request = (new DeleteAnalysisRuleRequest())->setName($formattedName);
+        $gapicClient->deleteAnalysisRule($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteAnalysisRule',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAnalysisRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->analysisRuleName('[PROJECT]', '[LOCATION]', '[ANALYSIS_RULE]');
+        $request = (new DeleteAnalysisRuleRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteAnalysisRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteConversationTest()
     {
         $transport = $this->createTransport();
@@ -1165,6 +1924,81 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new DeleteConversationRequest())->setName($formattedName);
         try {
             $gapicClient->deleteConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFeedbackLabelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->feedbackLabelName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSATION]',
+            '[FEEDBACK_LABEL]'
+        );
+        $request = (new DeleteFeedbackLabelRequest())->setName($formattedName);
+        $gapicClient->deleteFeedbackLabel($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteFeedbackLabel',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFeedbackLabelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->feedbackLabelName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSATION]',
+            '[FEEDBACK_LABEL]'
+        );
+        $request = (new DeleteFeedbackLabelRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteFeedbackLabel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1429,6 +2263,223 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteQaQuestionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaQuestionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]',
+            '[QA_QUESTION]'
+        );
+        $request = (new DeleteQaQuestionRequest())->setName($formattedName);
+        $gapicClient->deleteQaQuestion($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteQaQuestion',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQaQuestionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaQuestionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]',
+            '[QA_QUESTION]'
+        );
+        $request = (new DeleteQaQuestionRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteQaQuestion($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQaScorecardTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $request = (new DeleteQaScorecardRequest())->setName($formattedName);
+        $gapicClient->deleteQaScorecard($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteQaScorecard',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQaScorecardExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $request = (new DeleteQaScorecardRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteQaScorecard($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQaScorecardRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new DeleteQaScorecardRevisionRequest())->setName($formattedName);
+        $gapicClient->deleteQaScorecardRevision($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteQaScorecardRevision',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteQaScorecardRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new DeleteQaScorecardRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteQaScorecardRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteViewTest()
     {
         $transport = $this->createTransport();
@@ -1613,6 +2664,84 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deployQaScorecardRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new QaScorecardRevision();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new DeployQaScorecardRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->deployQaScorecardRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeployQaScorecardRevision',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deployQaScorecardRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new DeployQaScorecardRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->deployQaScorecardRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1931,6 +3060,82 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAnalysisRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $conversationFilter = 'conversationFilter1770349236';
+        $analysisPercentage = 1.60975766e8;
+        $active = true;
+        $expectedResponse = new AnalysisRule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setConversationFilter($conversationFilter);
+        $expectedResponse->setAnalysisPercentage($analysisPercentage);
+        $expectedResponse->setActive($active);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->analysisRuleName('[PROJECT]', '[LOCATION]', '[ANALYSIS_RULE]');
+        $request = (new GetAnalysisRuleRequest())->setName($formattedName);
+        $response = $gapicClient->getAnalysisRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetAnalysisRule',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAnalysisRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->analysisRuleName('[PROJECT]', '[LOCATION]', '[ANALYSIS_RULE]');
+        $request = (new GetAnalysisRuleRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAnalysisRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getConversationTest()
     {
         $transport = $this->createTransport();
@@ -2067,6 +3272,88 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new GetEncryptionSpecRequest())->setName($formattedName);
         try {
             $gapicClient->getEncryptionSpec($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getFeedbackLabelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $label = 'label102727412';
+        $name2 = 'name2-1052831874';
+        $labeledResource = 'labeledResource556993594';
+        $expectedResponse = new FeedbackLabel();
+        $expectedResponse->setLabel($label);
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLabeledResource($labeledResource);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->feedbackLabelName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSATION]',
+            '[FEEDBACK_LABEL]'
+        );
+        $request = (new GetFeedbackLabelRequest())->setName($formattedName);
+        $response = $gapicClient->getFeedbackLabel($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetFeedbackLabel',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getFeedbackLabelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->feedbackLabelName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CONVERSATION]',
+            '[FEEDBACK_LABEL]'
+        );
+        $request = (new GetFeedbackLabelRequest())->setName($formattedName);
+        try {
+            $gapicClient->getFeedbackLabel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2286,6 +3573,244 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new GetPhraseMatcherRequest())->setName($formattedName);
         try {
             $gapicClient->getPhraseMatcher($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQaQuestionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $abbreviation = 'abbreviation-1960645810';
+        $questionBody = 'questionBody-1030867365';
+        $answerInstructions = 'answerInstructions863229062';
+        $order = 106006350;
+        $expectedResponse = new QaQuestion();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setAbbreviation($abbreviation);
+        $expectedResponse->setQuestionBody($questionBody);
+        $expectedResponse->setAnswerInstructions($answerInstructions);
+        $expectedResponse->setOrder($order);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaQuestionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]',
+            '[QA_QUESTION]'
+        );
+        $request = (new GetQaQuestionRequest())->setName($formattedName);
+        $response = $gapicClient->getQaQuestion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetQaQuestion',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQaQuestionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaQuestionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]',
+            '[QA_QUESTION]'
+        );
+        $request = (new GetQaQuestionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getQaQuestion($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQaScorecardTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new QaScorecard();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $request = (new GetQaScorecardRequest())->setName($formattedName);
+        $response = $gapicClient->getQaScorecard($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetQaScorecard',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQaScorecardExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $request = (new GetQaScorecardRequest())->setName($formattedName);
+        try {
+            $gapicClient->getQaScorecard($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQaScorecardRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new QaScorecardRevision();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new GetQaScorecardRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->getQaScorecardRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetQaScorecardRevision',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getQaScorecardRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new GetQaScorecardRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getQaScorecardRevision($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2813,6 +4338,80 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listAllFeedbackLabelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $feedbackLabelsElement = new FeedbackLabel();
+        $feedbackLabels = [$feedbackLabelsElement];
+        $expectedResponse = new ListAllFeedbackLabelsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setFeedbackLabels($feedbackLabels);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAllFeedbackLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAllFeedbackLabels($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getFeedbackLabels()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListAllFeedbackLabels',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAllFeedbackLabelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAllFeedbackLabelsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAllFeedbackLabels($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listAnalysesTest()
     {
         $transport = $this->createTransport();
@@ -2872,6 +4471,80 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new ListAnalysesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnalyses($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAnalysisRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $analysisRulesElement = new AnalysisRule();
+        $analysisRules = [$analysisRulesElement];
+        $expectedResponse = new ListAnalysisRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAnalysisRules($analysisRules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAnalysisRulesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAnalysisRules($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAnalysisRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListAnalysisRules',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAnalysisRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAnalysisRulesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAnalysisRules($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2946,6 +4619,80 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new ListConversationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listConversations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listFeedbackLabelsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $feedbackLabelsElement = new FeedbackLabel();
+        $feedbackLabels = [$feedbackLabelsElement];
+        $expectedResponse = new ListFeedbackLabelsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setFeedbackLabels($feedbackLabels);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $request = (new ListFeedbackLabelsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listFeedbackLabels($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getFeedbackLabels()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListFeedbackLabels',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listFeedbackLabelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $request = (new ListFeedbackLabelsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listFeedbackLabels($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3161,6 +4908,238 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listQaQuestionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $qaQuestionsElement = new QaQuestion();
+        $qaQuestions = [$qaQuestionsElement];
+        $expectedResponse = new ListQaQuestionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setQaQuestions($qaQuestions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new ListQaQuestionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listQaQuestions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getQaQuestions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListQaQuestions',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQaQuestionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new ListQaQuestionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listQaQuestions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQaScorecardRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $qaScorecardRevisionsElement = new QaScorecardRevision();
+        $qaScorecardRevisions = [$qaScorecardRevisionsElement];
+        $expectedResponse = new ListQaScorecardRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setQaScorecardRevisions($qaScorecardRevisions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $request = (new ListQaScorecardRevisionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listQaScorecardRevisions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getQaScorecardRevisions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListQaScorecardRevisions',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQaScorecardRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardName('[PROJECT]', '[LOCATION]', '[QA_SCORECARD]');
+        $request = (new ListQaScorecardRevisionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listQaScorecardRevisions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQaScorecardsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $qaScorecardsElement = new QaScorecard();
+        $qaScorecards = [$qaScorecardsElement];
+        $expectedResponse = new ListQaScorecardsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setQaScorecards($qaScorecards);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListQaScorecardsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listQaScorecards($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getQaScorecards()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListQaScorecards',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listQaScorecardsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListQaScorecardsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listQaScorecards($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listViewsTest()
     {
         $transport = $this->createTransport();
@@ -3229,6 +5208,276 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryMetricsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/queryMetricsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $location2 = 'location21541837352';
+        $expectedResponse = new QueryMetricsResponse();
+        $expectedResponse->setLocation($location2);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/queryMetricsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $filter = 'filter-1274492040';
+        $request = (new QueryMetricsRequest())->setLocation($formattedLocation)->setFilter($filter);
+        $response = $gapicClient->queryMetrics($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/QueryMetrics',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getLocation();
+        $this->assertProtobufEquals($formattedLocation, $actualValue);
+        $actualValue = $actualApiRequestObject->getFilter();
+        $this->assertProtobufEquals($filter, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/queryMetricsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function queryMetricsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/queryMetricsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $filter = 'filter-1274492040';
+        $request = (new QueryMetricsRequest())->setLocation($formattedLocation)->setFilter($filter);
+        $response = $gapicClient->queryMetrics($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/queryMetricsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function tuneQaScorecardRevisionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/tuneQaScorecardRevisionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new TuneQaScorecardRevisionResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/tuneQaScorecardRevisionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $filter = 'filter-1274492040';
+        $request = (new TuneQaScorecardRevisionRequest())->setParent($formattedParent)->setFilter($filter);
+        $response = $gapicClient->tuneQaScorecardRevision($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/TuneQaScorecardRevision',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getFilter();
+        $this->assertProtobufEquals($filter, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/tuneQaScorecardRevisionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function tuneQaScorecardRevisionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/tuneQaScorecardRevisionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $filter = 'filter-1274492040';
+        $request = (new TuneQaScorecardRevisionRequest())->setParent($formattedParent)->setFilter($filter);
+        $response = $gapicClient->tuneQaScorecardRevision($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/tuneQaScorecardRevisionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -3357,6 +5606,160 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function undeployQaScorecardRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new QaScorecardRevision();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new UndeployQaScorecardRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->undeployQaScorecardRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UndeployQaScorecardRevision',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function undeployQaScorecardRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->qaScorecardRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[QA_SCORECARD]',
+            '[REVISION]'
+        );
+        $request = (new UndeployQaScorecardRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->undeployQaScorecardRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAnalysisRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $conversationFilter = 'conversationFilter1770349236';
+        $analysisPercentage = 1.60975766e8;
+        $active = true;
+        $expectedResponse = new AnalysisRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setConversationFilter($conversationFilter);
+        $expectedResponse->setAnalysisPercentage($analysisPercentage);
+        $expectedResponse->setActive($active);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $analysisRule = new AnalysisRule();
+        $request = (new UpdateAnalysisRuleRequest())->setAnalysisRule($analysisRule);
+        $response = $gapicClient->updateAnalysisRule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateAnalysisRule',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getAnalysisRule();
+        $this->assertProtobufEquals($analysisRule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAnalysisRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $analysisRule = new AnalysisRule();
+        $request = (new UpdateAnalysisRuleRequest())->setAnalysisRule($analysisRule);
+        try {
+            $gapicClient->updateAnalysisRule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateConversationTest()
     {
         $transport = $this->createTransport();
@@ -3423,6 +5826,82 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new UpdateConversationRequest())->setConversation($conversation);
         try {
             $gapicClient->updateConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateFeedbackLabelTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $label = 'label102727412';
+        $name = 'name3373707';
+        $labeledResource = 'labeledResource556993594';
+        $expectedResponse = new FeedbackLabel();
+        $expectedResponse->setLabel($label);
+        $expectedResponse->setName($name);
+        $expectedResponse->setLabeledResource($labeledResource);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $feedbackLabel = new FeedbackLabel();
+        $updateMask = new FieldMask();
+        $request = (new UpdateFeedbackLabelRequest())->setFeedbackLabel($feedbackLabel)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateFeedbackLabel($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateFeedbackLabel',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getFeedbackLabel();
+        $this->assertProtobufEquals($feedbackLabel, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateFeedbackLabelExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $feedbackLabel = new FeedbackLabel();
+        $updateMask = new FieldMask();
+        $request = (new UpdateFeedbackLabelRequest())->setFeedbackLabel($feedbackLabel)->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateFeedbackLabel($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3646,6 +6125,162 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $request = (new UpdatePhraseMatcherRequest())->setPhraseMatcher($phraseMatcher);
         try {
             $gapicClient->updatePhraseMatcher($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateQaQuestionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $abbreviation = 'abbreviation-1960645810';
+        $questionBody = 'questionBody-1030867365';
+        $answerInstructions = 'answerInstructions863229062';
+        $order = 106006350;
+        $expectedResponse = new QaQuestion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAbbreviation($abbreviation);
+        $expectedResponse->setQuestionBody($questionBody);
+        $expectedResponse->setAnswerInstructions($answerInstructions);
+        $expectedResponse->setOrder($order);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $qaQuestion = new QaQuestion();
+        $updateMask = new FieldMask();
+        $request = (new UpdateQaQuestionRequest())->setQaQuestion($qaQuestion)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateQaQuestion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateQaQuestion',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getQaQuestion();
+        $this->assertProtobufEquals($qaQuestion, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateQaQuestionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $qaQuestion = new QaQuestion();
+        $updateMask = new FieldMask();
+        $request = (new UpdateQaQuestionRequest())->setQaQuestion($qaQuestion)->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateQaQuestion($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateQaScorecardTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $expectedResponse = new QaScorecard();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $qaScorecard = new QaScorecard();
+        $updateMask = new FieldMask();
+        $request = (new UpdateQaScorecardRequest())->setQaScorecard($qaScorecard)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateQaScorecard($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateQaScorecard',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getQaScorecard();
+        $this->assertProtobufEquals($qaScorecard, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateQaScorecardExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $qaScorecard = new QaScorecard();
+        $updateMask = new FieldMask();
+        $request = (new UpdateQaScorecardRequest())->setQaScorecard($qaScorecard)->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateQaScorecard($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

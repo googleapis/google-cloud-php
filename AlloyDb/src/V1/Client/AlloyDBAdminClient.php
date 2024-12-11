@@ -81,6 +81,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -93,42 +94,42 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateInstancesAsync(BatchCreateInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSecondaryClusterAsync(CreateSecondaryClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSecondaryInstanceAsync(CreateSecondaryInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface executeSqlAsync(ExecuteSqlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateClientCertificateAsync(GenerateClientCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectionInfoAsync(GetConnectionInfoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getUserAsync(GetUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSupportedDatabaseFlagsAsync(ListSupportedDatabaseFlagsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface promoteClusterAsync(PromoteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restartInstanceAsync(RestartInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreClusterAsync(RestoreClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface switchoverClusterAsync(SwitchoverClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateInstancesAsync(BatchCreateInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSecondaryClusterAsync(CreateSecondaryClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createSecondaryInstanceAsync(CreateSecondaryInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> createUserAsync(CreateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserAsync(DeleteUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteSqlResponse> executeSqlAsync(ExecuteSqlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> failoverInstanceAsync(FailoverInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateClientCertificateResponse> generateClientCertificateAsync(GenerateClientCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectionInfo> getConnectionInfoAsync(GetConnectionInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> getUserAsync(GetUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> injectFaultAsync(InjectFaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSupportedDatabaseFlagsAsync(ListSupportedDatabaseFlagsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> promoteClusterAsync(PromoteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restartInstanceAsync(RestartInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreClusterAsync(RestoreClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> switchoverClusterAsync(SwitchoverClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class AlloyDBAdminClient
 {
@@ -388,14 +389,14 @@ final class AlloyDBAdminClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -450,6 +451,9 @@ final class AlloyDBAdminClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

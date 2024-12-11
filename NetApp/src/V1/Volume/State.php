@@ -61,6 +61,20 @@ class State
      * Generated from protobuf enum <code>ERROR = 7;</code>
      */
     const ERROR = 7;
+    /**
+     * Volume State is Preparing. Note that this is different from CREATING
+     * where CREATING means the volume is being created, while PREPARING means
+     * the volume is created and now being prepared for the replication.
+     *
+     * Generated from protobuf enum <code>PREPARING = 8;</code>
+     */
+    const PREPARING = 8;
+    /**
+     * Volume State is Read Only
+     *
+     * Generated from protobuf enum <code>READ_ONLY = 9;</code>
+     */
+    const READ_ONLY = 9;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -71,6 +85,8 @@ class State
         self::RESTORING => 'RESTORING',
         self::DISABLED => 'DISABLED',
         self::ERROR => 'ERROR',
+        self::PREPARING => 'PREPARING',
+        self::READ_ONLY => 'READ_ONLY',
     ];
 
     public static function name($value)

@@ -72,6 +72,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      */
     private $preserved_state_from_policy = null;
     /**
+     * [Output Only] Instance properties selected for this instance resulting from InstanceFlexibilityPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstancePropertiesFromFlexibilityPolicy properties_from_flexibility_policy = 155525825;</code>
+     */
+    private $properties_from_flexibility_policy = null;
+    /**
      * [Output Only] Intended version of this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
@@ -104,6 +110,8 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *           [Output Only] Preserved state applied from per-instance config for this instance.
      *     @type \Google\Cloud\Compute\V1\PreservedState $preserved_state_from_policy
      *           [Output Only] Preserved state generated based on stateful policy for this instance.
+     *     @type \Google\Cloud\Compute\V1\ManagedInstancePropertiesFromFlexibilityPolicy $properties_from_flexibility_policy
+     *           [Output Only] Instance properties selected for this instance resulting from InstanceFlexibilityPolicy.
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceVersion $version
      *           [Output Only] Intended version of this instance.
      * }
@@ -427,6 +435,42 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\PreservedState::class);
         $this->preserved_state_from_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Instance properties selected for this instance resulting from InstanceFlexibilityPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstancePropertiesFromFlexibilityPolicy properties_from_flexibility_policy = 155525825;</code>
+     * @return \Google\Cloud\Compute\V1\ManagedInstancePropertiesFromFlexibilityPolicy|null
+     */
+    public function getPropertiesFromFlexibilityPolicy()
+    {
+        return $this->properties_from_flexibility_policy;
+    }
+
+    public function hasPropertiesFromFlexibilityPolicy()
+    {
+        return isset($this->properties_from_flexibility_policy);
+    }
+
+    public function clearPropertiesFromFlexibilityPolicy()
+    {
+        unset($this->properties_from_flexibility_policy);
+    }
+
+    /**
+     * [Output Only] Instance properties selected for this instance resulting from InstanceFlexibilityPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstancePropertiesFromFlexibilityPolicy properties_from_flexibility_policy = 155525825;</code>
+     * @param \Google\Cloud\Compute\V1\ManagedInstancePropertiesFromFlexibilityPolicy $var
+     * @return $this
+     */
+    public function setPropertiesFromFlexibilityPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstancePropertiesFromFlexibilityPolicy::class);
+        $this->properties_from_flexibility_policy = $var;
 
         return $this;
     }

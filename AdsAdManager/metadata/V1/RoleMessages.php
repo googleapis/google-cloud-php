@@ -19,7 +19,7 @@ class RoleMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ó
+ð
 +google/ads/admanager/v1/role_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.proto"›
 Role
 name (	BàA
@@ -28,8 +28,8 @@ class RoleMessages
 description (	BàA
 built_in (BàAG
 status (22.google.ads.admanager.v1.RoleStatusEnum.RoleStatusBàA:UêAR
-admanager.googleapis.com/Role$networks/{network_code}/roles/{role}*roles2roleB¨
-com.google.ads.admanager.v1BRoleMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+admanager.googleapis.com/Role$networks/{network_code}/roles/{role}*roles2roleBÅ
+com.google.ads.admanager.v1BRoleMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -22,7 +22,7 @@ class Snooze
 ê
 !google/monitoring/v3/snooze.protogoogle.monitoring.v3google/api/resource.proto!google/monitoring/v3/common.proto"≈
 Snooze
-name (	B‡A<
+name (	B‡A<
 criteria (2%.google.monitoring.v3.Snooze.CriteriaB‡A9
 interval (2".google.monitoring.v3.TimeIntervalB‡A
 display_name (	B‡AH

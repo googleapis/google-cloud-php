@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Compute\V1\BackendService;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
+use Google\Cloud\Compute\V1\PatchBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function patch_sample(string $backendService, string $project): void
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $backendServiceResource = new BackendService();
+    $request = (new PatchBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setBackendServiceResource($backendServiceResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendServicesClient->patch($backendService, $backendServiceResource, $project);
+        $response = $backendServicesClient->patch($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

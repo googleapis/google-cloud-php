@@ -57,6 +57,12 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IssueModelResult issue_model_result = 8;</code>
      */
     protected $issue_model_result = null;
+    /**
+     * Results of scoring QaScorecards.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult qa_scorecard_results = 10;</code>
+     */
+    private $qa_scorecard_results;
 
     /**
      * Constructor.
@@ -78,6 +84,8 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      *           All the matched phrase matchers in the call.
      *     @type \Google\Cloud\ContactCenterInsights\V1\IssueModelResult $issue_model_result
      *           Overall conversation-level issue modeling result.
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult>|\Google\Protobuf\Internal\RepeatedField $qa_scorecard_results
+     *           Results of scoring QaScorecards.
      * }
      */
     public function __construct($data = NULL) {
@@ -283,6 +291,32 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\IssueModelResult::class);
         $this->issue_model_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Results of scoring QaScorecards.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult qa_scorecard_results = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getQaScorecardResults()
+    {
+        return $this->qa_scorecard_results;
+    }
+
+    /**
+     * Results of scoring QaScorecards.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult qa_scorecard_results = 10;</code>
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setQaScorecardResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult::class);
+        $this->qa_scorecard_results = $arr;
 
         return $this;
     }

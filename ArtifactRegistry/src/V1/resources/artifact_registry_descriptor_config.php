@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'CreateAttachment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1\Attachment',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRepository' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1\Repository',
@@ -57,6 +76,44 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAttachment' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFile' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -156,6 +213,18 @@ return [
                     ],
                 ],
             ],
+            'CreateRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Rule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTag' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Tag',
@@ -168,9 +237,33 @@ return [
                     ],
                 ],
             ],
+            'DeleteRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTag' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAttachment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Attachment',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -288,6 +381,18 @@ return [
                     ],
                 ],
             ],
+            'GetRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Rule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTag' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Tag',
@@ -320,6 +425,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAttachments' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAttachments',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\ListAttachmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -464,6 +589,26 @@ return [
                     ],
                 ],
             ],
+            'ListRules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\ListRulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTags' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -528,6 +673,32 @@ return [
                     ],
                 ],
             ],
+            'UpdateFile' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\File',
+                'headerParams' => [
+                    [
+                        'keyName' => 'file.name',
+                        'fieldAccessors' => [
+                            'getFile',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePackage' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Package',
+                'headerParams' => [
+                    [
+                        'keyName' => 'package.name',
+                        'fieldAccessors' => [
+                            'getPackage',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateProjectSettings' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ArtifactRegistry\V1\ProjectSettings',
@@ -554,6 +725,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Rule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'rule.name',
+                        'fieldAccessors' => [
+                            'getRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateTag' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Tag',
@@ -575,6 +759,19 @@ return [
                         'keyName' => 'vpcsc_config.name',
                         'fieldAccessors' => [
                             'getVpcscConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\ArtifactRegistry\V1\Version',
+                'headerParams' => [
+                    [
+                        'keyName' => 'version.name',
+                        'fieldAccessors' => [
+                            'getVersion',
                             'getName',
                         ],
                     ],
@@ -615,6 +812,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'attachment' => 'projects/{project}/locations/{location}/repositories/{repository}/attachments/{attachment}',
                 'dockerImage' => 'projects/{project}/locations/{location}/repositories/{repository}/dockerImages/{docker_image}',
                 'file' => 'projects/{project}/locations/{location}/repositories/{repository}/files/{file}',
                 'location' => 'projects/{project}/locations/{location}',
@@ -624,6 +822,7 @@ return [
                 'projectSettings' => 'projects/{project}/projectSettings',
                 'pythonPackage' => 'projects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
+                'rule' => 'projects/{project}/locations/{location}/repositories/{repository}/rules/{rule}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'tag' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}',
                 'version' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}',

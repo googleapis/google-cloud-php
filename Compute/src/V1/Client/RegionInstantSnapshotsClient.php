@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\SetLabelsRegionInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionInstantSnapshots API.
@@ -53,14 +54,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionInstantSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstantSnapshot> getAsync(GetRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionInstantSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionInstantSnapshotRequest $request, array $optionalArgs = [])
  */
 final class RegionInstantSnapshotsClient
 {
@@ -225,6 +226,9 @@ final class RegionInstantSnapshotsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -252,6 +256,8 @@ final class RegionInstantSnapshotsClient
      *
      * The async variant is {@see RegionInstantSnapshotsClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionInstantSnapshotsClient/delete.php
+     *
      * @param DeleteRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -275,6 +281,8 @@ final class RegionInstantSnapshotsClient
      * Returns the specified InstantSnapshot resource in the specified region.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionInstantSnapshotsClient/get.php
      *
      * @param GetRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -300,6 +308,8 @@ final class RegionInstantSnapshotsClient
      *
      * The async variant is {@see RegionInstantSnapshotsClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/RegionInstantSnapshotsClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -323,6 +333,8 @@ final class RegionInstantSnapshotsClient
      * Creates an instant snapshot in the specified region.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::insertAsync()} .
+     *
+     * @example samples/V1/RegionInstantSnapshotsClient/insert.php
      *
      * @param InsertRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -348,6 +360,8 @@ final class RegionInstantSnapshotsClient
      *
      * The async variant is {@see RegionInstantSnapshotsClient::listAsync()} .
      *
+     * @example samples/V1/RegionInstantSnapshotsClient/list.php
+     *
      * @param ListRegionInstantSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -371,6 +385,8 @@ final class RegionInstantSnapshotsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see RegionInstantSnapshotsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionInstantSnapshotsClient/set_iam_policy.php
      *
      * @param SetIamPolicyRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -396,6 +412,8 @@ final class RegionInstantSnapshotsClient
      *
      * The async variant is {@see RegionInstantSnapshotsClient::setLabelsAsync()} .
      *
+     * @example samples/V1/RegionInstantSnapshotsClient/set_labels.php
+     *
      * @param SetLabelsRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -420,6 +438,8 @@ final class RegionInstantSnapshotsClient
      *
      * The async variant is
      * {@see RegionInstantSnapshotsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegionInstantSnapshotsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRegionInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {

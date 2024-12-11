@@ -18,8 +18,8 @@ class ExportFlowRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the flow to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,8 +53,8 @@ class ExportFlowRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the flow to export.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type string $flow_uri
      *           Optional. The [Google Cloud
      *           Storage](https://cloud.google.com/storage/docs/) URI to export the flow to.
@@ -76,8 +76,8 @@ class ExportFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the flow to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,8 +89,8 @@ class ExportFlowRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the flow to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

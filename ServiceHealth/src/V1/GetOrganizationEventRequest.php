@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Message for getting an organization event.
+ *
  * Generated from protobuf message <code>google.cloud.servicehealth.v1.GetOrganizationEventRequest</code>
  */
 class GetOrganizationEventRequest extends \Google\Protobuf\Internal\Message

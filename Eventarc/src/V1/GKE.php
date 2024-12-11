@@ -16,16 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class GKE extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the cluster the GKE service is running in. The cluster must be
-     * running in the same project as the trigger being created.
+     * Required. The name of the cluster the GKE service is running in. The
+     * cluster must be running in the same project as the trigger being created.
      *
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $cluster = '';
     /**
-     * Required. The name of the Google Compute Engine in which the cluster resides, which
-     * can either be compute zone (for example, us-central1-a) for the zonal
-     * clusters or region (for example, us-central1) for regional clusters.
+     * Required. The name of the Google Compute Engine in which the cluster
+     * resides, which can either be compute zone (for example, us-central1-a) for
+     * the zonal clusters or region (for example, us-central1) for regional
+     * clusters.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +44,8 @@ class GKE extends \Google\Protobuf\Internal\Message
      */
     protected $service = '';
     /**
-     * Optional. The relative path on the GKE service the events should be sent to.
+     * Optional. The relative path on the GKE service the events should be sent
+     * to.
      * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
@@ -58,18 +60,20 @@ class GKE extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cluster
-     *           Required. The name of the cluster the GKE service is running in. The cluster must be
-     *           running in the same project as the trigger being created.
+     *           Required. The name of the cluster the GKE service is running in. The
+     *           cluster must be running in the same project as the trigger being created.
      *     @type string $location
-     *           Required. The name of the Google Compute Engine in which the cluster resides, which
-     *           can either be compute zone (for example, us-central1-a) for the zonal
-     *           clusters or region (for example, us-central1) for regional clusters.
+     *           Required. The name of the Google Compute Engine in which the cluster
+     *           resides, which can either be compute zone (for example, us-central1-a) for
+     *           the zonal clusters or region (for example, us-central1) for regional
+     *           clusters.
      *     @type string $namespace
      *           Required. The namespace the GKE service is running in.
      *     @type string $service
      *           Required. Name of the GKE service.
      *     @type string $path
-     *           Optional. The relative path on the GKE service the events should be sent to.
+     *           Optional. The relative path on the GKE service the events should be sent
+     *           to.
      *           The value must conform to the definition of a URI path segment (section 3.3
      *           of RFC2396). Examples: "/route", "route", "route/subroute".
      * }
@@ -80,8 +84,8 @@ class GKE extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cluster the GKE service is running in. The cluster must be
-     * running in the same project as the trigger being created.
+     * Required. The name of the cluster the GKE service is running in. The
+     * cluster must be running in the same project as the trigger being created.
      *
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,8 +96,8 @@ class GKE extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cluster the GKE service is running in. The cluster must be
-     * running in the same project as the trigger being created.
+     * Required. The name of the cluster the GKE service is running in. The
+     * cluster must be running in the same project as the trigger being created.
      *
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -108,9 +112,10 @@ class GKE extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Google Compute Engine in which the cluster resides, which
-     * can either be compute zone (for example, us-central1-a) for the zonal
-     * clusters or region (for example, us-central1) for regional clusters.
+     * Required. The name of the Google Compute Engine in which the cluster
+     * resides, which can either be compute zone (for example, us-central1-a) for
+     * the zonal clusters or region (for example, us-central1) for regional
+     * clusters.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -121,9 +126,10 @@ class GKE extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Google Compute Engine in which the cluster resides, which
-     * can either be compute zone (for example, us-central1-a) for the zonal
-     * clusters or region (for example, us-central1) for regional clusters.
+     * Required. The name of the Google Compute Engine in which the cluster
+     * resides, which can either be compute zone (for example, us-central1-a) for
+     * the zonal clusters or region (for example, us-central1) for regional
+     * clusters.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -190,7 +196,8 @@ class GKE extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The relative path on the GKE service the events should be sent to.
+     * Optional. The relative path on the GKE service the events should be sent
+     * to.
      * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
@@ -203,7 +210,8 @@ class GKE extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The relative path on the GKE service the events should be sent to.
+     * Optional. The relative path on the GKE service the events should be sent
+     * to.
      * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *

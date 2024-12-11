@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class LoggingSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Enables StackDriver logging.
+     * Enables Google Cloud Logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 2;</code>
      */
@@ -43,7 +43,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_stackdriver_logging
-     *           Enables StackDriver logging.
+     *           Enables Google Cloud Logging.
      *     @type bool $enable_interaction_logging
      *           Enables DF Interaction logging.
      *     @type bool $enable_consent_based_redaction
@@ -58,7 +58,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enables StackDriver logging.
+     * Enables Google Cloud Logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 2;</code>
      * @return bool
@@ -69,7 +69,7 @@ class LoggingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enables StackDriver logging.
+     * Enables Google Cloud Logging.
      *
      * Generated from protobuf field <code>bool enable_stackdriver_logging = 2;</code>
      * @param bool $var

@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 
 /**
  * Deletes a single entitlement. This method can only be called when there
- * are no in-progress (ACTIVE/ACTIVATING/REVOKING) grants under the
+ * are no in-progress (`ACTIVE`/`ACTIVATING`/`REVOKING`) grants under the
  * entitlement.
  *
  * @param string $formattedName Name of the resource. Please see

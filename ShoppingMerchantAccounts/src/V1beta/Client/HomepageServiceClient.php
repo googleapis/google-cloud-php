@@ -40,6 +40,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\Homepage;
 use Google\Shopping\Merchant\Accounts\V1beta\UnclaimHomepageRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\UpdateHomepageRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to support an API for a store's homepage.
@@ -54,10 +55,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface claimHomepageAsync(ClaimHomepageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHomepageAsync(GetHomepageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface unclaimHomepageAsync(UnclaimHomepageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateHomepageAsync(UpdateHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> claimHomepageAsync(ClaimHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> getHomepageAsync(GetHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> unclaimHomepageAsync(UnclaimHomepageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Homepage> updateHomepageAsync(UpdateHomepageRequest $request, array $optionalArgs = [])
  */
 final class HomepageServiceClient
 {
@@ -134,8 +135,8 @@ final class HomepageServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -143,7 +144,7 @@ final class HomepageServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -198,6 +199,9 @@ final class HomepageServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

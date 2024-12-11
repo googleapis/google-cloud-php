@@ -79,6 +79,14 @@ class AnswerSkippedReason
      * Generated from protobuf enum <code>NON_ANSWER_SEEKING_QUERY_IGNORED_V2 = 8;</code>
      */
     const NON_ANSWER_SEEKING_QUERY_IGNORED_V2 = 8;
+    /**
+     * The low-grounded answer case.
+     * Google skips the answer if a well grounded answer was unable to be
+     * generated.
+     *
+     * Generated from protobuf enum <code>LOW_GROUNDED_ANSWER = 9;</code>
+     */
+    const LOW_GROUNDED_ANSWER = 9;
 
     private static $valueToName = [
         self::ANSWER_SKIPPED_REASON_UNSPECIFIED => 'ANSWER_SKIPPED_REASON_UNSPECIFIED',
@@ -90,6 +98,7 @@ class AnswerSkippedReason
         self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
         self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
         self::NON_ANSWER_SEEKING_QUERY_IGNORED_V2 => 'NON_ANSWER_SEEKING_QUERY_IGNORED_V2',
+        self::LOW_GROUNDED_ANSWER => 'LOW_GROUNDED_ANSWER',
     ];
 
     public static function name($value)

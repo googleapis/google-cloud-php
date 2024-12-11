@@ -105,6 +105,11 @@
                                 "encryptVolumes"
                             ]
                         },
+                        "EstablishPeering": {
+                            "methods": [
+                                "establishPeering"
+                            ]
+                        },
                         "GetActiveDirectory": {
                             "methods": [
                                 "getActiveDirectory"
@@ -218,6 +223,11 @@
                         "SwitchActiveReplicaZone": {
                             "methods": [
                                 "switchActiveReplicaZone"
+                            ]
+                        },
+                        "SyncReplication": {
+                            "methods": [
+                                "syncReplication"
                             ]
                         },
                         "UpdateActiveDirectory": {

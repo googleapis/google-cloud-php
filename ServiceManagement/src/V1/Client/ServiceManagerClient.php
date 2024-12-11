@@ -60,6 +60,7 @@ use Google\Cloud\ServiceManagement\V1\UndeleteServiceResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: [Google Service Management
@@ -68,22 +69,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceConfigAsync(CreateServiceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceRolloutAsync(CreateServiceRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateConfigReportAsync(GenerateConfigReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceConfigAsync(GetServiceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceRolloutAsync(GetServiceRolloutRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServiceConfigsAsync(ListServiceConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServiceRolloutsAsync(ListServiceRolloutsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface submitConfigSourceAsync(SubmitConfigSourceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteServiceAsync(UndeleteServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> createServiceConfigAsync(CreateServiceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServiceRolloutAsync(CreateServiceRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateConfigReportResponse> generateConfigReportAsync(GenerateConfigReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ManagedService> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> getServiceConfigAsync(GetServiceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Rollout> getServiceRolloutAsync(GetServiceRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServiceConfigsAsync(ListServiceConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServiceRolloutsAsync(ListServiceRolloutsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> submitConfigSourceAsync(SubmitConfigSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteServiceAsync(UndeleteServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ServiceManagerClient
 {
@@ -237,6 +238,9 @@ final class ServiceManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

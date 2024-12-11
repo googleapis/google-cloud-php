@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NetworkEndpointGroups_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\TestIamPermissionsNetworkEndpointGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 
@@ -40,18 +41,18 @@ function test_iam_permissions_sample(string $project, string $resource, string $
     // Create a client.
     $networkEndpointGroupsClient = new NetworkEndpointGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $testPermissionsRequestResource = new TestPermissionsRequest();
+    $request = (new TestIamPermissionsNetworkEndpointGroupRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setTestPermissionsRequestResource($testPermissionsRequestResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestPermissionsResponse $response */
-        $response = $networkEndpointGroupsClient->testIamPermissions(
-            $project,
-            $resource,
-            $testPermissionsRequestResource,
-            $zone
-        );
+        $response = $networkEndpointGroupsClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

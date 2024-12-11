@@ -50,6 +50,7 @@ use Google\Cloud\AssuredWorkloads\V1\Workload;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to manage AssuredWorkloads.
@@ -62,15 +63,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface acknowledgeViolationAsync(AcknowledgeViolationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createWorkloadAsync(CreateWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteWorkloadAsync(DeleteWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getViolationAsync(GetViolationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listViolationsAsync(ListViolationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restrictAllowedResourcesAsync(RestrictAllowedResourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateWorkloadAsync(UpdateWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcknowledgeViolationResponse> acknowledgeViolationAsync(AcknowledgeViolationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createWorkloadAsync(CreateWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteWorkloadAsync(DeleteWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Violation> getViolationAsync(GetViolationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> getWorkloadAsync(GetWorkloadRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listViolationsAsync(ListViolationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestrictAllowedResourcesResponse> restrictAllowedResourcesAsync(RestrictAllowedResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Workload> updateWorkloadAsync(UpdateWorkloadRequest $request, array $optionalArgs = [])
  */
 final class AssuredWorkloadsServiceClient
 {
@@ -246,14 +247,14 @@ final class AssuredWorkloadsServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -308,6 +309,9 @@ final class AssuredWorkloadsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

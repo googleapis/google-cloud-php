@@ -39,6 +39,7 @@ use Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
 use Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
 use Google\Maps\RouteOptimization\V1\ShipmentRoute;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service for optimizing vehicle tours.
@@ -63,8 +64,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
- * @method PromiseInterface optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchOptimizeToursAsync(BatchOptimizeToursRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OptimizeToursResponse> optimizeToursAsync(OptimizeToursRequest $request, array $optionalArgs = [])
  */
 final class RouteOptimizationClient
 {
@@ -213,6 +214,9 @@ final class RouteOptimizationClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

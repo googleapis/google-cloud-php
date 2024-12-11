@@ -39,6 +39,7 @@ use Google\Cloud\AppEngine\V1\GetAuthorizedCertificateRequest;
 use Google\Cloud\AppEngine\V1\ListAuthorizedCertificatesRequest;
 use Google\Cloud\AppEngine\V1\UpdateAuthorizedCertificateRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages SSL certificates a user is authorized to administer. A user can
@@ -47,11 +48,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAuthorizedCertificatesAsync(ListAuthorizedCertificatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAuthorizedCertificateAsync(UpdateAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> createAuthorizedCertificateAsync(CreateAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAuthorizedCertificateAsync(DeleteAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> getAuthorizedCertificateAsync(GetAuthorizedCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthorizedCertificatesAsync(ListAuthorizedCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedCertificate> updateAuthorizedCertificateAsync(UpdateAuthorizedCertificateRequest $request, array $optionalArgs = [])
  */
 final class AuthorizedCertificatesClient
 {
@@ -152,6 +153,9 @@ final class AuthorizedCertificatesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

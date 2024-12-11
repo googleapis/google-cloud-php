@@ -25,8 +25,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      * method.
      * [Intents.CreateIntent][google.cloud.dialogflow.cx.v3.Intents.CreateIntent]
      * populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -110,8 +110,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           method.
      *           [Intents.CreateIntent][google.cloud.dialogflow.cx.v3.Intents.CreateIntent]
      *           populates the name automatically.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the intent, unique within the agent.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase>|\Google\Protobuf\Internal\RepeatedField $training_phrases
@@ -163,8 +163,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      * method.
      * [Intents.CreateIntent][google.cloud.dialogflow.cx.v3.Intents.CreateIntent]
      * populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -181,8 +181,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      * method.
      * [Intents.CreateIntent][google.cloud.dialogflow.cx.v3.Intents.CreateIntent]
      * populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

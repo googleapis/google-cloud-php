@@ -208,6 +208,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $enableCDN = false;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
+        $ipAddressSelectionPolicy = 'ipAddressSelectionPolicy614471752';
         $kind = 'kind3292052';
         $loadBalancingScheme = 'loadBalancingScheme1974502980';
         $localityLbPolicy = 'localityLbPolicy-2016052161';
@@ -231,6 +232,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setEnableCDN($enableCDN);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
+        $expectedResponse->setIpAddressSelectionPolicy($ipAddressSelectionPolicy);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLoadBalancingScheme($loadBalancingScheme);
         $expectedResponse->setLocalityLbPolicy($localityLbPolicy);

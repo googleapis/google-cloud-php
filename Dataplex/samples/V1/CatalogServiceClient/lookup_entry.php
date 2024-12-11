@@ -29,7 +29,12 @@ use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\LookupEntryRequest;
 
 /**
- * Looks up a single entry.
+ * Looks up a single Entry by name using the permission on the source system.
+ *
+ * **Caution**: The BigQuery metadata that is stored in Dataplex Catalog is
+ * changing. For more information, see [Changes to BigQuery metadata stored in
+ * Dataplex
+ * Catalog](https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
  *
  * @param string $name           The project to which the request should be attributed in the
  *                               following form: `projects/{project}/locations/{location}`.

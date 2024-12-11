@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class State
 {
     /**
-     * Unspecified state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
      */
@@ -26,8 +26,8 @@ class State
      */
     const ACTIVE = 1;
     /**
-     * The finding has been fixed, triaged as a non-issue or otherwise addressed
-     * and is no longer active.
+     * The finding has been fixed, triaged as a non-issue, or otherwise
+     * addressed and is no longer active.
      *
      * Generated from protobuf enum <code>INACTIVE = 2;</code>
      */

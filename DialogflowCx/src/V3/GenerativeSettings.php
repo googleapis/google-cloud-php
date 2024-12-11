@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GenerativeSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generativeSettings`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
@@ -54,8 +54,8 @@ class GenerativeSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/generativeSettings`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings\FallbackSettings $fallback_settings
      *           Settings for Generative Fallback.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings $generative_safety_settings
@@ -72,8 +72,8 @@ class GenerativeSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generativeSettings`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @return string
@@ -84,8 +84,8 @@ class GenerativeSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generativeSettings`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var

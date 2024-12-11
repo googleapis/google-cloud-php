@@ -20,12 +20,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Tag extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the tag in URL format where tag ID is a
+     * Identifier. The resource name of the tag in URL format where tag ID is a
      * system-generated identifier.
      * Note: The tag itself might not be stored in the location specified in its
      * name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -51,6 +51,12 @@ class Tag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.TagField> fields = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $fields;
+    /**
+     * Output only. Denotes the transfer status of the Tag Template.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate.DataplexTransferStatus dataplex_transfer_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $dataplex_transfer_status = 0;
     protected $scope;
 
     /**
@@ -60,7 +66,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the tag in URL format where tag ID is a
+     *           Identifier. The resource name of the tag in URL format where tag ID is a
      *           system-generated identifier.
      *           Note: The tag itself might not be stored in the location specified in its
      *           name.
@@ -80,6 +86,8 @@ class Tag extends \Google\Protobuf\Internal\Message
      *           information about that field.
      *           Tag template defines valid field IDs. A tag
      *           must have at least 1 field and at most 500 fields.
+     *     @type int $dataplex_transfer_status
+     *           Output only. Denotes the transfer status of the Tag Template.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,12 +96,12 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the tag in URL format where tag ID is a
+     * Identifier. The resource name of the tag in URL format where tag ID is a
      * system-generated identifier.
      * Note: The tag itself might not be stored in the location specified in its
      * name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -102,12 +110,12 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the tag in URL format where tag ID is a
+     * Identifier. The resource name of the tag in URL format where tag ID is a
      * system-generated identifier.
      * Note: The tag itself might not be stored in the location specified in its
      * name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -240,6 +248,32 @@ class Tag extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DataCatalog\V1\TagField::class);
         $this->fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Denotes the transfer status of the Tag Template.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate.DataplexTransferStatus dataplex_transfer_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDataplexTransferStatus()
+    {
+        return $this->dataplex_transfer_status;
+    }
+
+    /**
+     * Output only. Denotes the transfer status of the Tag Template.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplate.DataplexTransferStatus dataplex_transfer_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDataplexTransferStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DataCatalog\V1\TagTemplate\DataplexTransferStatus::class);
+        $this->dataplex_transfer_status = $var;
 
         return $this;
     }

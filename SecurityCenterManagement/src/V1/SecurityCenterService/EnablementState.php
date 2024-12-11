@@ -7,8 +7,7 @@ namespace Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService;
 use UnexpectedValueException;
 
 /**
- * Represents the possible intended states of enablement for a service or
- * module.
+ * Represents the possible enablement states for a service or module.
  *
  * Protobuf type <code>google.cloud.securitycentermanagement.v1.SecurityCenterService.EnablementState</code>
  */
@@ -21,8 +20,8 @@ class EnablementState
      */
     const ENABLEMENT_STATE_UNSPECIFIED = 0;
     /**
-     * State is inherited from the parent resource. Not a valid effective
-     * enablement state.
+     * State is inherited from the parent resource. Valid as an intended
+     * enablement state, but not as an effective enablement state.
      *
      * Generated from protobuf enum <code>INHERITED = 1;</code>
      */
@@ -40,9 +39,10 @@ class EnablementState
      */
     const DISABLED = 3;
     /**
-     * SCC is configured to ingest findings from this service but not enable
-     * this service. Not a valid intended_enablement_state (that is, this is a
-     * readonly state).
+     * Security Command Center is configured to ingest findings from this
+     * service, but not to enable this service. This state indicates that
+     * Security Command Center is misconfigured. You can't set this state
+     * yourself.
      *
      * Generated from protobuf enum <code>INGEST_ONLY = 4;</code>
      */

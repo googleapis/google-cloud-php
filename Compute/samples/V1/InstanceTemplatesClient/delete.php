@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceTemplates_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceTemplatesClient;
+use Google\Cloud\Compute\V1\Client\InstanceTemplatesClient;
+use Google\Cloud\Compute\V1\DeleteInstanceTemplateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $instanceTemplate, string $project): void
     // Create a client.
     $instanceTemplatesClient = new InstanceTemplatesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInstanceTemplateRequest())
+        ->setInstanceTemplate($instanceTemplate)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceTemplatesClient->delete($instanceTemplate, $project);
+        $response = $instanceTemplatesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

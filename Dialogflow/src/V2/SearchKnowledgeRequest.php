@@ -67,6 +67,43 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string latest_message = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $latest_message = '';
+    /**
+     * Optional. The source of the query in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.QuerySource query_source = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $query_source = 0;
+    /**
+     * Optional. Information about the end-user to improve the relevance and
+     * accuracy of generative answers.
+     * This will be interpreted and used by a language model, so, for good
+     * results, the data should be self-descriptive, and in a simple structure.
+     * Example:
+     * ```json
+     * {
+     *   "subscription plan": "Business Premium Plus",
+     *   "devices owned": [
+     *     {"model": "Google Pixel 7"},
+     *     {"model": "Google Pixel Tablet"}
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $end_user_metadata = null;
+    /**
+     * Optional. Configuration specific to search queries with data stores.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig search_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $search_config = null;
+    /**
+     * Optional. Whether to search the query exactly without query rewrite.
+     *
+     * Generated from protobuf field <code>bool exact_search = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $exact_search = false;
 
     /**
      * Constructor.
@@ -101,6 +138,27 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *           triggered.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type int $query_source
+     *           Optional. The source of the query in the request.
+     *     @type \Google\Protobuf\Struct $end_user_metadata
+     *           Optional. Information about the end-user to improve the relevance and
+     *           accuracy of generative answers.
+     *           This will be interpreted and used by a language model, so, for good
+     *           results, the data should be self-descriptive, and in a simple structure.
+     *           Example:
+     *           ```json
+     *           {
+     *             "subscription plan": "Business Premium Plus",
+     *             "devices owned": [
+     *               {"model": "Google Pixel 7"},
+     *               {"model": "Google Pixel Tablet"}
+     *             ]
+     *           }
+     *           ```
+     *     @type \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig $search_config
+     *           Optional. Configuration specific to search queries with data stores.
+     *     @type bool $exact_search
+     *           Optional. Whether to search the query exactly without query rewrite.
      * }
      */
     public function __construct($data = NULL) {
@@ -300,6 +358,156 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->latest_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The source of the query in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.QuerySource query_source = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQuerySource()
+    {
+        return $this->query_source;
+    }
+
+    /**
+     * Optional. The source of the query in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.QuerySource query_source = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQuerySource($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\QuerySource::class);
+        $this->query_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information about the end-user to improve the relevance and
+     * accuracy of generative answers.
+     * This will be interpreted and used by a language model, so, for good
+     * results, the data should be self-descriptive, and in a simple structure.
+     * Example:
+     * ```json
+     * {
+     *   "subscription plan": "Business Premium Plus",
+     *   "devices owned": [
+     *     {"model": "Google Pixel 7"},
+     *     {"model": "Google Pixel Tablet"}
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getEndUserMetadata()
+    {
+        return $this->end_user_metadata;
+    }
+
+    public function hasEndUserMetadata()
+    {
+        return isset($this->end_user_metadata);
+    }
+
+    public function clearEndUserMetadata()
+    {
+        unset($this->end_user_metadata);
+    }
+
+    /**
+     * Optional. Information about the end-user to improve the relevance and
+     * accuracy of generative answers.
+     * This will be interpreted and used by a language model, so, for good
+     * results, the data should be self-descriptive, and in a simple structure.
+     * Example:
+     * ```json
+     * {
+     *   "subscription plan": "Business Premium Plus",
+     *   "devices owned": [
+     *     {"model": "Google Pixel 7"},
+     *     {"model": "Google Pixel Tablet"}
+     *   ]
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setEndUserMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->end_user_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration specific to search queries with data stores.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig search_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig|null
+     */
+    public function getSearchConfig()
+    {
+        return $this->search_config;
+    }
+
+    public function hasSearchConfig()
+    {
+        return isset($this->search_config);
+    }
+
+    public function clearSearchConfig()
+    {
+        unset($this->search_config);
+    }
+
+    /**
+     * Optional. Configuration specific to search queries with data stores.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig search_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig $var
+     * @return $this
+     */
+    public function setSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig::class);
+        $this->search_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to search the query exactly without query rewrite.
+     *
+     * Generated from protobuf field <code>bool exact_search = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getExactSearch()
+    {
+        return $this->exact_search;
+    }
+
+    /**
+     * Optional. Whether to search the query exactly without query rewrite.
+     *
+     * Generated from protobuf field <code>bool exact_search = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExactSearch($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->exact_search = $var;
 
         return $this;
     }

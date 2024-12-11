@@ -29,17 +29,17 @@ class ListSpaceEventsRequest extends \Google\Protobuf\Internal\Message
      * return fewer than this value.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>int32 page_size = 5;</code>
+     * Generated from protobuf field <code>int32 page_size = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A page token, received from a previous list space events call. Provide this
-     * to retrieve the subsequent page.
+     * Optional. A page token, received from a previous list space events call.
+     * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to list space events must
      * match the call that provided the page token. Passing different values to
      * the other parameters might lead to unexpected results.
      *
-     * Generated from protobuf field <code>string page_token = 6;</code>
+     * Generated from protobuf field <code>string page_token = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
@@ -178,8 +178,8 @@ class ListSpaceEventsRequest extends \Google\Protobuf\Internal\Message
      *           return fewer than this value.
      *           Negative values return an `INVALID_ARGUMENT` error.
      *     @type string $page_token
-     *           A page token, received from a previous list space events call. Provide this
-     *           to retrieve the subsequent page.
+     *           Optional. A page token, received from a previous list space events call.
+     *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to list space events must
      *           match the call that provided the page token. Passing different values to
      *           the other parameters might lead to unexpected results.
@@ -271,7 +271,7 @@ class ListSpaceEventsRequest extends \Google\Protobuf\Internal\Message
      * return fewer than this value.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>int32 page_size = 5;</code>
+     * Generated from protobuf field <code>int32 page_size = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -284,7 +284,7 @@ class ListSpaceEventsRequest extends \Google\Protobuf\Internal\Message
      * return fewer than this value.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
-     * Generated from protobuf field <code>int32 page_size = 5;</code>
+     * Generated from protobuf field <code>int32 page_size = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -297,13 +297,13 @@ class ListSpaceEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous list space events call. Provide this
-     * to retrieve the subsequent page.
+     * Optional. A page token, received from a previous list space events call.
+     * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to list space events must
      * match the call that provided the page token. Passing different values to
      * the other parameters might lead to unexpected results.
      *
-     * Generated from protobuf field <code>string page_token = 6;</code>
+     * Generated from protobuf field <code>string page_token = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -312,13 +312,13 @@ class ListSpaceEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous list space events call. Provide this
-     * to retrieve the subsequent page.
+     * Optional. A page token, received from a previous list space events call.
+     * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to list space events must
      * match the call that provided the page token. Passing different values to
      * the other parameters might lead to unexpected results.
      *
-     * Generated from protobuf field <code>string page_token = 6;</code>
+     * Generated from protobuf field <code>string page_token = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

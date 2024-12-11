@@ -38,7 +38,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ gcs_destination'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">Google\Cloud\Vision\V1\GcsDestination</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">GcsDestination</xref>'
           description: 'The Google Cloud Storage location to write the output(s) to.'
         -
           id: '↳ batch_size'
@@ -56,7 +56,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">Google\Cloud\Vision\V1\GcsDestination</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">GcsDestination</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\OutputConfig::hasGcsDestination()'
     name: hasGcsDestination
@@ -86,7 +86,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">Google\Cloud\Vision\V1\GcsDestination</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">GcsDestination</xref>'
           description: ''
       returns:
         -

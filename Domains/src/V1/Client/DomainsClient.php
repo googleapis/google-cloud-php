@@ -57,6 +57,7 @@ use Google\Cloud\Domains\V1\UpdateRegistrationRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Cloud Domains API enables management and configuration of domain names.
@@ -69,21 +70,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface configureContactSettingsAsync(ConfigureContactSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface configureDnsSettingsAsync(ConfigureDnsSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface configureManagementSettingsAsync(ConfigureManagementSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRegistrationAsync(DeleteRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportRegistrationAsync(ExportRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRegistrationAsync(GetRegistrationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRegistrationsAsync(ListRegistrationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface registerDomainAsync(RegisterDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetAuthorizationCodeAsync(ResetAuthorizationCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveAuthorizationCodeAsync(RetrieveAuthorizationCodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveRegisterParametersAsync(RetrieveRegisterParametersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface retrieveTransferParametersAsync(RetrieveTransferParametersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchDomainsAsync(SearchDomainsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface transferDomainAsync(TransferDomainRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRegistrationAsync(UpdateRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> configureContactSettingsAsync(ConfigureContactSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> configureDnsSettingsAsync(ConfigureDnsSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> configureManagementSettingsAsync(ConfigureManagementSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRegistrationAsync(DeleteRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportRegistrationAsync(ExportRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Registration> getRegistrationAsync(GetRegistrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRegistrationsAsync(ListRegistrationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> registerDomainAsync(RegisterDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizationCode> resetAuthorizationCodeAsync(ResetAuthorizationCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizationCode> retrieveAuthorizationCodeAsync(RetrieveAuthorizationCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetrieveRegisterParametersResponse> retrieveRegisterParametersAsync(RetrieveRegisterParametersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetrieveTransferParametersResponse> retrieveTransferParametersAsync(RetrieveTransferParametersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SearchDomainsResponse> searchDomainsAsync(SearchDomainsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> transferDomainAsync(TransferDomainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRegistrationAsync(UpdateRegistrationRequest $request, array $optionalArgs = [])
  */
 final class DomainsClient
 {
@@ -232,14 +233,14 @@ final class DomainsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -294,6 +295,9 @@ final class DomainsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

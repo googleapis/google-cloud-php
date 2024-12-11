@@ -45,7 +45,9 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\RemoveRuleRegionSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
+use Google\Cloud\Compute\V1\SetLabelsRegionSecurityPolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionSecurityPolicies API.
@@ -53,15 +55,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addRuleAsync(AddRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuleAsync(GetRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionSecurityPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchRuleAsync(PatchRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeRuleAsync(RemoveRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicy> getAsync(GetRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecurityPolicyRule> getRuleAsync(GetRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionSecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchRuleAsync(PatchRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> removeRuleAsync(RemoveRuleRegionSecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsRegionSecurityPolicyRequest $request, array $optionalArgs = [])
  */
 final class RegionSecurityPoliciesClient
 {
@@ -226,6 +229,9 @@ final class RegionSecurityPoliciesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -253,6 +259,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::addRuleAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/add_rule.php
+     *
      * @param AddRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -276,6 +284,8 @@ final class RegionSecurityPoliciesClient
      * Deletes the specified policy.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/delete.php
      *
      * @param DeleteRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -301,6 +311,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::getAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/get.php
+     *
      * @param GetRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -324,6 +336,8 @@ final class RegionSecurityPoliciesClient
      * Gets a rule at the specified priority.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::getRuleAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/get_rule.php
      *
      * @param GetRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -349,6 +363,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/insert.php
+     *
      * @param InsertRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -372,6 +388,8 @@ final class RegionSecurityPoliciesClient
      * List all the policies that have been configured for the specified project and region.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/list.php
      *
      * @param ListRegionSecurityPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -397,6 +415,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::patchAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/patch.php
+     *
      * @param PatchRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -420,6 +440,8 @@ final class RegionSecurityPoliciesClient
      * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
      *
      * The async variant is {@see RegionSecurityPoliciesClient::patchRuleAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/patch_rule.php
      *
      * @param PatchRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -445,6 +467,8 @@ final class RegionSecurityPoliciesClient
      *
      * The async variant is {@see RegionSecurityPoliciesClient::removeRuleAsync()} .
      *
+     * @example samples/V1/RegionSecurityPoliciesClient/remove_rule.php
+     *
      * @param RemoveRuleRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -462,5 +486,31 @@ final class RegionSecurityPoliciesClient
     public function removeRule(RemoveRuleRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RemoveRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * The async variant is {@see RegionSecurityPoliciesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/RegionSecurityPoliciesClient/set_labels.php
+     *
+     * @param SetLabelsRegionSecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setLabels(SetLabelsRegionSecurityPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 }

@@ -81,6 +81,7 @@ use Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsRequest;
 use Google\Cloud\DataLabeling\V1beta1\UpdateEvaluationJobRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for the AI Platform Data Labeling API.
@@ -95,40 +96,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAnnotationSpecSetAsync(CreateAnnotationSpecSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEvaluationJobAsync(CreateEvaluationJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstructionAsync(CreateInstructionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAnnotatedDatasetAsync(DeleteAnnotatedDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAnnotationSpecSetAsync(DeleteAnnotationSpecSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEvaluationJobAsync(DeleteEvaluationJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstructionAsync(DeleteInstructionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnnotatedDatasetAsync(GetAnnotatedDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAnnotationSpecSetAsync(GetAnnotationSpecSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataItemAsync(GetDataItemRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEvaluationAsync(GetEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEvaluationJobAsync(GetEvaluationJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExampleAsync(GetExampleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstructionAsync(GetInstructionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface labelImageAsync(LabelImageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface labelTextAsync(LabelTextRequest $request, array $optionalArgs = [])
- * @method PromiseInterface labelVideoAsync(LabelVideoRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAnnotatedDatasetsAsync(ListAnnotatedDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAnnotationSpecSetsAsync(ListAnnotationSpecSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataItemsAsync(ListDataItemsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEvaluationJobsAsync(ListEvaluationJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExamplesAsync(ListExamplesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstructionsAsync(ListInstructionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseEvaluationJobAsync(PauseEvaluationJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeEvaluationJobAsync(ResumeEvaluationJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchEvaluationsAsync(SearchEvaluationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchExampleComparisonsAsync(SearchExampleComparisonsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEvaluationJobAsync(UpdateEvaluationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotationSpecSet> createAnnotationSpecSetAsync(CreateAnnotationSpecSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EvaluationJob> createEvaluationJobAsync(CreateEvaluationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstructionAsync(CreateInstructionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAnnotatedDatasetAsync(DeleteAnnotatedDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAnnotationSpecSetAsync(DeleteAnnotationSpecSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEvaluationJobAsync(DeleteEvaluationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteInstructionAsync(DeleteInstructionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotatedDataset> getAnnotatedDatasetAsync(GetAnnotatedDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AnnotationSpecSet> getAnnotationSpecSetAsync(GetAnnotationSpecSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataItem> getDataItemAsync(GetDataItemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Dataset> getDatasetAsync(GetDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Evaluation> getEvaluationAsync(GetEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EvaluationJob> getEvaluationJobAsync(GetEvaluationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Example> getExampleAsync(GetExampleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instruction> getInstructionAsync(GetInstructionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> labelImageAsync(LabelImageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> labelTextAsync(LabelTextRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> labelVideoAsync(LabelVideoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnnotatedDatasetsAsync(ListAnnotatedDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAnnotationSpecSetsAsync(ListAnnotationSpecSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataItemsAsync(ListDataItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatasetsAsync(ListDatasetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEvaluationJobsAsync(ListEvaluationJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExamplesAsync(ListExamplesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstructionsAsync(ListInstructionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> pauseEvaluationJobAsync(PauseEvaluationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> resumeEvaluationJobAsync(ResumeEvaluationJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchEvaluationsAsync(SearchEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchExampleComparisonsAsync(SearchExampleComparisonsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EvaluationJob> updateEvaluationJobAsync(UpdateEvaluationJobRequest $request, array $optionalArgs = [])
  */
 final class DataLabelingServiceClient
 {
@@ -412,8 +413,8 @@ final class DataLabelingServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -421,7 +422,7 @@ final class DataLabelingServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -476,6 +477,9 @@ final class DataLabelingServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

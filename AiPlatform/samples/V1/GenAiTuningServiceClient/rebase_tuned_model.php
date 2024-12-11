@@ -33,8 +33,6 @@ use Google\Rpc\Status;
 
 /**
  * Rebase a TunedModel.
- * Creates a LongRunningOperation that takes a legacy Tuned GenAI model
- * Reference and creates a TuningJob based on newly available model.
  *
  * @param string $formattedParent The resource name of the Location into which to rebase the Model.
  *                                Format: `projects/{project}/locations/{location}`

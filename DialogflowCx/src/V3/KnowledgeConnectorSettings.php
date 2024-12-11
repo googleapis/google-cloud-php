@@ -59,12 +59,12 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
      *           construct the fulfillment.
      *     @type string $target_page
      *           The target page to transition to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *     @type string $target_flow
      *           The target flow to transition to.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>|\Google\Protobuf\Internal\RepeatedField $data_store_connections
      *           Optional. List of related data store connections.
      * }
@@ -148,8 +148,8 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The target page to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string target_page = 4 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -166,8 +166,8 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The target page to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string target_page = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -183,8 +183,8 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The target flow to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string target_flow = 5 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -201,8 +201,8 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The target flow to transition to.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string target_flow = 5 [(.google.api.resource_reference) = {</code>
      * @param string $var

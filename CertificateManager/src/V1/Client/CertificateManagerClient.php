@@ -75,6 +75,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: API Overview
@@ -112,37 +113,37 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCertificateIssuanceConfigAsync(CreateCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCertificateMapAsync(CreateCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCertificateMapEntryAsync(CreateCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDnsAuthorizationAsync(CreateDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTrustConfigAsync(CreateTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateAsync(DeleteCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateIssuanceConfigAsync(DeleteCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateMapAsync(DeleteCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCertificateMapEntryAsync(DeleteCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDnsAuthorizationAsync(DeleteDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTrustConfigAsync(DeleteTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateAsync(GetCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateIssuanceConfigAsync(GetCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateMapAsync(GetCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCertificateMapEntryAsync(GetCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDnsAuthorizationAsync(GetDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTrustConfigAsync(GetTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificateIssuanceConfigsAsync(ListCertificateIssuanceConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificateMapEntriesAsync(ListCertificateMapEntriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificateMapsAsync(ListCertificateMapsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCertificatesAsync(ListCertificatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDnsAuthorizationsAsync(ListDnsAuthorizationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTrustConfigsAsync(ListTrustConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCertificateAsync(UpdateCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCertificateMapAsync(UpdateCertificateMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCertificateMapEntryAsync(UpdateCertificateMapEntryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDnsAuthorizationAsync(UpdateDnsAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTrustConfigAsync(UpdateTrustConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateIssuanceConfigAsync(CreateCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateMapAsync(CreateCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCertificateMapEntryAsync(CreateCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDnsAuthorizationAsync(CreateDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTrustConfigAsync(CreateTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateAsync(DeleteCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateIssuanceConfigAsync(DeleteCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateMapAsync(DeleteCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCertificateMapEntryAsync(DeleteCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDnsAuthorizationAsync(DeleteDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTrustConfigAsync(DeleteTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Certificate> getCertificateAsync(GetCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CertificateIssuanceConfig> getCertificateIssuanceConfigAsync(GetCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CertificateMap> getCertificateMapAsync(GetCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CertificateMapEntry> getCertificateMapEntryAsync(GetCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DnsAuthorization> getDnsAuthorizationAsync(GetDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TrustConfig> getTrustConfigAsync(GetTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificateIssuanceConfigsAsync(ListCertificateIssuanceConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificateMapEntriesAsync(ListCertificateMapEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificateMapsAsync(ListCertificateMapsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCertificatesAsync(ListCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDnsAuthorizationsAsync(ListDnsAuthorizationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTrustConfigsAsync(ListTrustConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateAsync(UpdateCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateMapAsync(UpdateCertificateMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCertificateMapEntryAsync(UpdateCertificateMapEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDnsAuthorizationAsync(UpdateDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTrustConfigAsync(UpdateTrustConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class CertificateManagerClient
 {
@@ -420,14 +421,14 @@ final class CertificateManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -482,6 +483,9 @@ final class CertificateManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

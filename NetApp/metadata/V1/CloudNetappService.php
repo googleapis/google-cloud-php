@@ -32,7 +32,7 @@ class CloudNetappService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∆_
+¯b
 1google/cloud/netapp/v1/cloud_netapp_service.protogoogle.cloud.netapp.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/netapp/v1/active_directory.proto#google/cloud/netapp/v1/backup.proto*google/cloud/netapp/v1/backup_policy.proto)google/cloud/netapp/v1/backup_vault.proto google/cloud/netapp/v1/kms.proto(google/cloud/netapp/v1/replication.proto%google/cloud/netapp/v1/snapshot.proto)google/cloud/netapp/v1/storage_pool.proto#google/cloud/netapp/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
@@ -41,7 +41,7 @@ class CloudNetappService
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2∫V
+api_version (	B‡A2ÏY
 NetApp∏
 ListStoragePools/.google.cloud.netapp.v1.ListStoragePoolsRequest0.google.cloud.netapp.v1.ListStoragePoolsResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/storagePoolsˆ
 CreateStoragePool0.google.cloud.netapp.v1.CreateStoragePoolRequest.google.longrunning.Operation"è A 
@@ -105,7 +105,11 @@ kms_config¬
 ResumeReplication0.google.cloud.netapp.v1.ResumeReplicationRequest.google.longrunning.Operation"o A 
 ReplicationOperationMetadataÇ”‰ìF"A/v1/{name=projects/*/locations/*/volumes/*/replications/*}:resume:*Û
 ReverseReplicationDirection:.google.cloud.netapp.v1.ReverseReplicationDirectionRequest.google.longrunning.Operation"y A 
-ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:*ˆ
+ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:*›
+EstablishPeering/.google.cloud.netapp.v1.EstablishPeeringRequest.google.longrunning.Operation"y A 
+ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:establishPeering:*œ
+SyncReplication..google.cloud.netapp.v1.SyncReplicationRequest.google.longrunning.Operation"m A 
+ReplicationOperationMetadataÇ”‰ìD"?/v1/{name=projects/*/locations/*/volumes/*/replications/*}:sync:*ˆ
 CreateBackupVault0.google.cloud.netapp.v1.CreateBackupVaultRequest.google.longrunning.Operation"è A 
 BackupVaultOperationMetadata⁄A#parent,backup_vault,backup_vault_idÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/backupVaults:backup_vault•
 GetBackupVault-.google.cloud.netapp.v1.GetBackupVaultRequest#.google.cloud.netapp.v1.BackupVault"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/backupVaults/*}∏

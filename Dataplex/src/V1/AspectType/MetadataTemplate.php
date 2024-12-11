@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * MetadataTemplate definition for AspectType
+ * MetadataTemplate definition for an AspectType.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectType.MetadataTemplate</code>
  */
@@ -34,60 +34,68 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Required. The datatype of this field. The following values are supported:
-     * Primitive types (string, integer, boolean, double, datetime); datetime
-     * must be of the format RFC3339 UTC "Zulu" (Examples:
-     * "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex
-     * types (enum, array, map, record).
+     * Primitive types:
+     * * string
+     * * integer
+     * * boolean
+     * * double
+     * * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
+     * "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").
+     * Complex types:
+     * * enum
+     * * array
+     * * map
+     * * record
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $type = '';
     /**
-     * Optional. Field definition, needs to be specified if the type is record.
-     * Defines the nested fields.
+     * Optional. Field definition. You must specify it if the type is record. It
+     * defines the nested fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate record_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $record_fields;
     /**
-     * Optional. The list of values for an enum type. Needs to be defined if the
+     * Optional. The list of values for an enum type. You must define it if the
      * type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue enum_values = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enum_values;
     /**
-     * Optional. map_items needs to be set if the type is map. map_items can
-     * refer to a primitive field or a complex (record only) field. To specify a
-     * primitive field, just name and type needs to be set in the nested
+     * Optional. If the type is map, set map_items. map_items can refer to a
+     * primitive field or a complex (record only) field. To specify a primitive
+     * field, you only need to set name and type in the nested
      * MetadataTemplate. The recommended value for the name field is item, as
-     * this is not used in the actual payload.
+     * this isn't used in the actual payload.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate map_items = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $map_items = null;
     /**
-     * Optional. array_items needs to be set if the type is array. array_items
-     * can refer to a primitive field or a complex (record only) field. To
-     * specify a primitive field, just name and type needs to be set in the
-     * nested MetadataTemplate. The recommended value for the name field is
-     * item, as this is not used in the actual payload.
+     * Optional. If the type is array, set array_items. array_items can refer
+     * to a primitive field or a complex (record only) field. To specify a
+     * primitive field, you only need to set name and type in the nested
+     * MetadataTemplate. The recommended value for the name field is item, as
+     * this isn't used in the actual payload.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate array_items = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $array_items = null;
     /**
-     * Optional. Id can be used if this definition of the field needs to be
-     * reused later. Id needs to be unique across the entire template. Id can
-     * only be specified if the field type is record.
+     * Optional. You can use type id if this definition of the field needs to be
+     * reused later. The type id must be unique across the entire template. You
+     * can only specify it if the field type is record.
      *
      * Generated from protobuf field <code>string type_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $type_id = '';
     /**
-     * Optional. A reference to another field definition (instead of an inline
+     * Optional. A reference to another field definition (not an inline
      * definition). The value must be equal to the value of an id field defined
-     * elsewhere in the MetadataTemplate. Only fields with type as record can
+     * elsewhere in the MetadataTemplate. Only fields with record type can
      * refer to other fields.
      *
      * Generated from protobuf field <code>string type_ref = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -123,36 +131,44 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *           Required. The name of the field.
      *     @type string $type
      *           Required. The datatype of this field. The following values are supported:
-     *           Primitive types (string, integer, boolean, double, datetime); datetime
-     *           must be of the format RFC3339 UTC "Zulu" (Examples:
-     *           "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex
-     *           types (enum, array, map, record).
+     *           Primitive types:
+     *           * string
+     *           * integer
+     *           * boolean
+     *           * double
+     *           * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
+     *           "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").
+     *           Complex types:
+     *           * enum
+     *           * array
+     *           * map
+     *           * record
      *     @type array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate>|\Google\Protobuf\Internal\RepeatedField $record_fields
-     *           Optional. Field definition, needs to be specified if the type is record.
-     *           Defines the nested fields.
+     *           Optional. Field definition. You must specify it if the type is record. It
+     *           defines the nested fields.
      *     @type array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\EnumValue>|\Google\Protobuf\Internal\RepeatedField $enum_values
-     *           Optional. The list of values for an enum type. Needs to be defined if the
+     *           Optional. The list of values for an enum type. You must define it if the
      *           type is enum.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $map_items
-     *           Optional. map_items needs to be set if the type is map. map_items can
-     *           refer to a primitive field or a complex (record only) field. To specify a
-     *           primitive field, just name and type needs to be set in the nested
+     *           Optional. If the type is map, set map_items. map_items can refer to a
+     *           primitive field or a complex (record only) field. To specify a primitive
+     *           field, you only need to set name and type in the nested
      *           MetadataTemplate. The recommended value for the name field is item, as
-     *           this is not used in the actual payload.
+     *           this isn't used in the actual payload.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $array_items
-     *           Optional. array_items needs to be set if the type is array. array_items
-     *           can refer to a primitive field or a complex (record only) field. To
-     *           specify a primitive field, just name and type needs to be set in the
-     *           nested MetadataTemplate. The recommended value for the name field is
-     *           item, as this is not used in the actual payload.
+     *           Optional. If the type is array, set array_items. array_items can refer
+     *           to a primitive field or a complex (record only) field. To specify a
+     *           primitive field, you only need to set name and type in the nested
+     *           MetadataTemplate. The recommended value for the name field is item, as
+     *           this isn't used in the actual payload.
      *     @type string $type_id
-     *           Optional. Id can be used if this definition of the field needs to be
-     *           reused later. Id needs to be unique across the entire template. Id can
-     *           only be specified if the field type is record.
+     *           Optional. You can use type id if this definition of the field needs to be
+     *           reused later. The type id must be unique across the entire template. You
+     *           can only specify it if the field type is record.
      *     @type string $type_ref
-     *           Optional. A reference to another field definition (instead of an inline
+     *           Optional. A reference to another field definition (not an inline
      *           definition). The value must be equal to the value of an id field defined
-     *           elsewhere in the MetadataTemplate. Only fields with type as record can
+     *           elsewhere in the MetadataTemplate. Only fields with record type can
      *           refer to other fields.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\Constraints $constraints
      *           Optional. Specifies the constraints on this field.
@@ -229,10 +245,18 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The datatype of this field. The following values are supported:
-     * Primitive types (string, integer, boolean, double, datetime); datetime
-     * must be of the format RFC3339 UTC "Zulu" (Examples:
-     * "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex
-     * types (enum, array, map, record).
+     * Primitive types:
+     * * string
+     * * integer
+     * * boolean
+     * * double
+     * * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
+     * "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").
+     * Complex types:
+     * * enum
+     * * array
+     * * map
+     * * record
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -244,10 +268,18 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The datatype of this field. The following values are supported:
-     * Primitive types (string, integer, boolean, double, datetime); datetime
-     * must be of the format RFC3339 UTC "Zulu" (Examples:
-     * "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex
-     * types (enum, array, map, record).
+     * Primitive types:
+     * * string
+     * * integer
+     * * boolean
+     * * double
+     * * datetime. Must be of the format RFC3339 UTC "Zulu" (Examples:
+     * "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").
+     * Complex types:
+     * * enum
+     * * array
+     * * map
+     * * record
      *
      * Generated from protobuf field <code>string type = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -262,8 +294,8 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field definition, needs to be specified if the type is record.
-     * Defines the nested fields.
+     * Optional. Field definition. You must specify it if the type is record. It
+     * defines the nested fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate record_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -274,8 +306,8 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field definition, needs to be specified if the type is record.
-     * Defines the nested fields.
+     * Optional. Field definition. You must specify it if the type is record. It
+     * defines the nested fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate record_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate>|\Google\Protobuf\Internal\RepeatedField $var
@@ -290,7 +322,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of values for an enum type. Needs to be defined if the
+     * Optional. The list of values for an enum type. You must define it if the
      * type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue enum_values = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -302,7 +334,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of values for an enum type. Needs to be defined if the
+     * Optional. The list of values for an enum type. You must define it if the
      * type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue enum_values = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -318,11 +350,11 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. map_items needs to be set if the type is map. map_items can
-     * refer to a primitive field or a complex (record only) field. To specify a
-     * primitive field, just name and type needs to be set in the nested
+     * Optional. If the type is map, set map_items. map_items can refer to a
+     * primitive field or a complex (record only) field. To specify a primitive
+     * field, you only need to set name and type in the nested
      * MetadataTemplate. The recommended value for the name field is item, as
-     * this is not used in the actual payload.
+     * this isn't used in the actual payload.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate map_items = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate|null
@@ -343,11 +375,11 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. map_items needs to be set if the type is map. map_items can
-     * refer to a primitive field or a complex (record only) field. To specify a
-     * primitive field, just name and type needs to be set in the nested
+     * Optional. If the type is map, set map_items. map_items can refer to a
+     * primitive field or a complex (record only) field. To specify a primitive
+     * field, you only need to set name and type in the nested
      * MetadataTemplate. The recommended value for the name field is item, as
-     * this is not used in the actual payload.
+     * this isn't used in the actual payload.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate map_items = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $var
@@ -362,11 +394,11 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. array_items needs to be set if the type is array. array_items
-     * can refer to a primitive field or a complex (record only) field. To
-     * specify a primitive field, just name and type needs to be set in the
-     * nested MetadataTemplate. The recommended value for the name field is
-     * item, as this is not used in the actual payload.
+     * Optional. If the type is array, set array_items. array_items can refer
+     * to a primitive field or a complex (record only) field. To specify a
+     * primitive field, you only need to set name and type in the nested
+     * MetadataTemplate. The recommended value for the name field is item, as
+     * this isn't used in the actual payload.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate array_items = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate|null
@@ -387,11 +419,11 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. array_items needs to be set if the type is array. array_items
-     * can refer to a primitive field or a complex (record only) field. To
-     * specify a primitive field, just name and type needs to be set in the
-     * nested MetadataTemplate. The recommended value for the name field is
-     * item, as this is not used in the actual payload.
+     * Optional. If the type is array, set array_items. array_items can refer
+     * to a primitive field or a complex (record only) field. To specify a
+     * primitive field, you only need to set name and type in the nested
+     * MetadataTemplate. The recommended value for the name field is item, as
+     * this isn't used in the actual payload.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.MetadataTemplate array_items = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $var
@@ -406,9 +438,9 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Id can be used if this definition of the field needs to be
-     * reused later. Id needs to be unique across the entire template. Id can
-     * only be specified if the field type is record.
+     * Optional. You can use type id if this definition of the field needs to be
+     * reused later. The type id must be unique across the entire template. You
+     * can only specify it if the field type is record.
      *
      * Generated from protobuf field <code>string type_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -419,9 +451,9 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Id can be used if this definition of the field needs to be
-     * reused later. Id needs to be unique across the entire template. Id can
-     * only be specified if the field type is record.
+     * Optional. You can use type id if this definition of the field needs to be
+     * reused later. The type id must be unique across the entire template. You
+     * can only specify it if the field type is record.
      *
      * Generated from protobuf field <code>string type_id = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -436,9 +468,9 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A reference to another field definition (instead of an inline
+     * Optional. A reference to another field definition (not an inline
      * definition). The value must be equal to the value of an id field defined
-     * elsewhere in the MetadataTemplate. Only fields with type as record can
+     * elsewhere in the MetadataTemplate. Only fields with record type can
      * refer to other fields.
      *
      * Generated from protobuf field <code>string type_ref = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -450,9 +482,9 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A reference to another field definition (instead of an inline
+     * Optional. A reference to another field definition (not an inline
      * definition). The value must be equal to the value of an id field defined
-     * elsewhere in the MetadataTemplate. Only fields with type as record can
+     * elsewhere in the MetadataTemplate. Only fields with record type can
      * refer to other fields.
      *
      * Generated from protobuf field <code>string type_ref = 13 [(.google.api.field_behavior) = OPTIONAL];</code>

@@ -52,7 +52,7 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
      */
     private $requested_run_duration = null;
     /**
-     * The number of instances to be created by this resize request. The group's target size will be increased by this number.
+     * The number of instances to be created by this resize request. The group's target size will be increased by this number. This field cannot be used together with 'instances'.
      *
      * Generated from protobuf field <code>optional int32 resize_by = 533735362;</code>
      */
@@ -108,7 +108,7 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
      *     @type \Google\Cloud\Compute\V1\Duration $requested_run_duration
      *           Requested run duration for instances that will be created by this request. At the end of the run duration instance will be deleted.
      *     @type int $resize_by
-     *           The number of instances to be created by this resize request. The group's target size will be increased by this number.
+     *           The number of instances to be created by this resize request. The group's target size will be increased by this number. This field cannot be used together with 'instances'.
      *     @type string $self_link
      *           [Output Only] The URL for this resize request. The server defines this URL.
      *     @type string $self_link_with_id
@@ -344,7 +344,7 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The number of instances to be created by this resize request. The group's target size will be increased by this number.
+     * The number of instances to be created by this resize request. The group's target size will be increased by this number. This field cannot be used together with 'instances'.
      *
      * Generated from protobuf field <code>optional int32 resize_by = 533735362;</code>
      * @return int
@@ -365,7 +365,7 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The number of instances to be created by this resize request. The group's target size will be increased by this number.
+     * The number of instances to be created by this resize request. The group's target size will be increased by this number. This field cannot be used together with 'instances'.
      *
      * Generated from protobuf field <code>optional int32 resize_by = 533735362;</code>
      * @param int $var

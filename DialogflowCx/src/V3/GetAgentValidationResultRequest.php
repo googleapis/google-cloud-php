@@ -18,8 +18,8 @@ class GetAgentValidationResultRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent name.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,8 +33,8 @@ class GetAgentValidationResultRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The agent name.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/validationResult`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`. Please see
      *                     {@see AgentsClient::agentValidationResultName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetAgentValidationResultRequest
@@ -55,8 +55,8 @@ class GetAgentValidationResultRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The agent name.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/validationResult`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *     @type string $language_code
      *           If not specified, the agent's default language is used.
      * }
@@ -68,8 +68,8 @@ class GetAgentValidationResultRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent name.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,8 +81,8 @@ class GetAgentValidationResultRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent name.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/validationResult`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/validationResult`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

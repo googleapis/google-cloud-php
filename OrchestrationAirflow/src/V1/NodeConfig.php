@@ -73,7 +73,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * [Shared VPC](/vpc/docs/shared-vpc) subnetwork requirements, see
      * `nodeConfig.subnetwork`.
      *
-     * Generated from protobuf field <code>string network = 3;</code>
+     * Generated from protobuf field <code>string network = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $network = '';
     /**
@@ -86,7 +86,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * and the subnetwork must belong to the enclosing environment's project and
      * location.
      *
-     * Generated from protobuf field <code>string subnetwork = 4;</code>
+     * Generated from protobuf field <code>string subnetwork = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $subnetwork = '';
     /**
@@ -113,7 +113,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * VMs. If a service account is not specified, the "default" Compute Engine
      * service account is used. Cannot be updated.
      *
-     * Generated from protobuf field <code>string service_account = 7;</code>
+     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_account = '';
     /**
@@ -418,7 +418,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * [Shared VPC](/vpc/docs/shared-vpc) subnetwork requirements, see
      * `nodeConfig.subnetwork`.
      *
-     * Generated from protobuf field <code>string network = 3;</code>
+     * Generated from protobuf field <code>string network = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNetwork()
@@ -438,7 +438,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * [Shared VPC](/vpc/docs/shared-vpc) subnetwork requirements, see
      * `nodeConfig.subnetwork`.
      *
-     * Generated from protobuf field <code>string network = 3;</code>
+     * Generated from protobuf field <code>string network = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -460,7 +460,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * and the subnetwork must belong to the enclosing environment's project and
      * location.
      *
-     * Generated from protobuf field <code>string subnetwork = 4;</code>
+     * Generated from protobuf field <code>string subnetwork = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSubnetwork()
@@ -478,7 +478,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * and the subnetwork must belong to the enclosing environment's project and
      * location.
      *
-     * Generated from protobuf field <code>string subnetwork = 4;</code>
+     * Generated from protobuf field <code>string subnetwork = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -561,7 +561,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * VMs. If a service account is not specified, the "default" Compute Engine
      * service account is used. Cannot be updated.
      *
-     * Generated from protobuf field <code>string service_account = 7;</code>
+     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceAccount()
@@ -574,7 +574,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * VMs. If a service account is not specified, the "default" Compute Engine
      * service account is used. Cannot be updated.
      *
-     * Generated from protobuf field <code>string service_account = 7;</code>
+     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

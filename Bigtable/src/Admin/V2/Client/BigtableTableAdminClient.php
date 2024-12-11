@@ -79,6 +79,7 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for creating, configuring, and deleting Cloud Bigtable tables.
@@ -95,36 +96,36 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkConsistencyAsync(CheckConsistencyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAuthorizedViewAsync(CreateAuthorizedViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTableAsync(CreateTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTableFromSnapshotAsync(CreateTableFromSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAuthorizedViewAsync(DeleteAuthorizedViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTableAsync(DeleteTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface dropRowRangeAsync(DropRowRangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateConsistencyTokenAsync(GenerateConsistencyTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizedViewAsync(GetAuthorizedViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTableAsync(GetTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAuthorizedViewsAsync(ListAuthorizedViewsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTablesAsync(ListTablesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface modifyColumnFamiliesAsync(ModifyColumnFamiliesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreTableAsync(RestoreTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface snapshotTableAsync(SnapshotTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteTableAsync(UndeleteTableRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAuthorizedViewAsync(UpdateAuthorizedViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTableAsync(UpdateTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckConsistencyResponse> checkConsistencyAsync(CheckConsistencyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAuthorizedViewAsync(CreateAuthorizedViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Table> createTableAsync(CreateTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTableFromSnapshotAsync(CreateTableFromSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAuthorizedViewAsync(DeleteAuthorizedViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTableAsync(DeleteTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> dropRowRangeAsync(DropRowRangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateConsistencyTokenResponse> generateConsistencyTokenAsync(GenerateConsistencyTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthorizedView> getAuthorizedViewAsync(GetAuthorizedViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Table> getTableAsync(GetTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthorizedViewsAsync(ListAuthorizedViewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTablesAsync(ListTablesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Table> modifyColumnFamiliesAsync(ModifyColumnFamiliesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreTableAsync(RestoreTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> snapshotTableAsync(SnapshotTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteTableAsync(UndeleteTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAuthorizedViewAsync(UpdateAuthorizedViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTableAsync(UpdateTableRequest $request, array $optionalArgs = [])
  */
 final class BigtableTableAdminClient
 {
@@ -388,14 +389,14 @@ final class BigtableTableAdminClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -454,6 +455,9 @@ final class BigtableTableAdminClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

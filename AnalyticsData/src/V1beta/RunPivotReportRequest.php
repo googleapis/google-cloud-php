@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked.
+     * A Google Analytics property identifier whose events are tracked.
      * Specified in the URL path and not the body. To learn more, see [where to
      * find your Property
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -95,7 +95,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * returned. If true, these rows will be returned if they are not separately
      * removed by a filter.
      * Regardless of this `keep_empty_rows` setting, only data recorded by the
-     * Google Analytics (GA4) property can be displayed in a report.
+     * Google Analytics property can be displayed in a report.
      * For example if a property never logs a `purchase` event, then a query for
      * the `eventName` dimension and  `eventCount` metric will not have a row
      * eventName: "purchase" and eventCount: 0.
@@ -104,8 +104,8 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $keep_empty_rows = false;
     /**
-     * Toggles whether to return the current state of this Analytics Property's
-     * quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics
+     * property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 11;</code>
      */
@@ -126,7 +126,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $property
-     *           A Google Analytics GA4 property identifier whose events are tracked.
+     *           A Google Analytics property identifier whose events are tracked.
      *           Specified in the URL path and not the body. To learn more, see [where to
      *           find your Property
      *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -169,13 +169,13 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *           returned. If true, these rows will be returned if they are not separately
      *           removed by a filter.
      *           Regardless of this `keep_empty_rows` setting, only data recorded by the
-     *           Google Analytics (GA4) property can be displayed in a report.
+     *           Google Analytics property can be displayed in a report.
      *           For example if a property never logs a `purchase` event, then a query for
      *           the `eventName` dimension and  `eventCount` metric will not have a row
      *           eventName: "purchase" and eventCount: 0.
      *     @type bool $return_property_quota
-     *           Toggles whether to return the current state of this Analytics Property's
-     *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *           Toggles whether to return the current state of this Google Analytics
+     *           property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *     @type array<\Google\Analytics\Data\V1beta\Comparison>|\Google\Protobuf\Internal\RepeatedField $comparisons
      *           Optional. The configuration of comparisons requested and displayed. The
      *           request requires both a comparisons field and a comparisons dimension to
@@ -188,7 +188,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked.
+     * A Google Analytics property identifier whose events are tracked.
      * Specified in the URL path and not the body. To learn more, see [where to
      * find your Property
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -205,7 +205,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked.
+     * A Google Analytics property identifier whose events are tracked.
      * Specified in the URL path and not the body. To learn more, see [where to
      * find your Property
      * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
@@ -498,7 +498,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * returned. If true, these rows will be returned if they are not separately
      * removed by a filter.
      * Regardless of this `keep_empty_rows` setting, only data recorded by the
-     * Google Analytics (GA4) property can be displayed in a report.
+     * Google Analytics property can be displayed in a report.
      * For example if a property never logs a `purchase` event, then a query for
      * the `eventName` dimension and  `eventCount` metric will not have a row
      * eventName: "purchase" and eventCount: 0.
@@ -516,7 +516,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * returned. If true, these rows will be returned if they are not separately
      * removed by a filter.
      * Regardless of this `keep_empty_rows` setting, only data recorded by the
-     * Google Analytics (GA4) property can be displayed in a report.
+     * Google Analytics property can be displayed in a report.
      * For example if a property never logs a `purchase` event, then a query for
      * the `eventName` dimension and  `eventCount` metric will not have a row
      * eventName: "purchase" and eventCount: 0.
@@ -534,8 +534,8 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Toggles whether to return the current state of this Analytics Property's
-     * quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics
+     * property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 11;</code>
      * @return bool
@@ -546,8 +546,8 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Toggles whether to return the current state of this Analytics Property's
-     * quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics
+     * property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 11;</code>
      * @param bool $var

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionHealthCheckServices_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionHealthCheckServicesClient;
+use Google\Cloud\Compute\V1\Client\RegionHealthCheckServicesClient;
+use Google\Cloud\Compute\V1\DeleteRegionHealthCheckServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $healthCheckService, string $project, string $regi
     // Create a client.
     $regionHealthCheckServicesClient = new RegionHealthCheckServicesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteRegionHealthCheckServiceRequest())
+        ->setHealthCheckService($healthCheckService)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionHealthCheckServicesClient->delete($healthCheckService, $project, $region);
+        $response = $regionHealthCheckServicesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

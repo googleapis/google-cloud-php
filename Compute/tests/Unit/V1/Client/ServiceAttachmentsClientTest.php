@@ -303,6 +303,7 @@ class ServiceAttachmentsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $producerForwardingRule = 'producerForwardingRule-825813935';
+        $propagatedConnectionLimit = 1814764418;
         $reconcileConnections = true;
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
@@ -317,6 +318,7 @@ class ServiceAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setProducerForwardingRule($producerForwardingRule);
+        $expectedResponse->setPropagatedConnectionLimit($propagatedConnectionLimit);
         $expectedResponse->setReconcileConnections($reconcileConnections);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);

@@ -22,7 +22,7 @@ class OrderMessages
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
+‰
 ,google/ads/admanager/v1/order_messages.protogoogle.ads.admanager.v10google/ads/admanager/v1/custom_field_value.proto)google/ads/admanager/v1/order_enums.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"è
 Order
 name (	B‡A
@@ -69,8 +69,8 @@ start_time (2.google.protobuf.TimestampB‡A1
 applied_labels (2%.google.ads.admanager.v1.AppliedLabelB‡AL
 effective_applied_labels (2%.google.ads.admanager.v1.AppliedLabelB‡AK
 custom_field_values& (2).google.ads.admanager.v1.CustomFieldValueB‡A:ZÍAW
-admanager.googleapis.com/Order&networks/{network_code}/orders/{order}*orders2orderB©
-com.google.ads.admanager.v1BOrderMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1bproto3'
+admanager.googleapis.com/Order&networks/{network_code}/orders/{order}*orders2orderB∆
+com.google.ads.admanager.v1BOrderMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1ÍGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

@@ -153,6 +153,95 @@ class SearchServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function searchLiteTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $totalSize = 705419236;
+        $attributionToken = 'attributionToken-729411015';
+        $redirectUri = 'redirectUri951230089';
+        $nextPageToken = '';
+        $correctedQuery = 'correctedQuery107869074';
+        $resultsElement = new SearchResult();
+        $results = [$resultsElement];
+        $expectedResponse = new SearchResponse();
+        $expectedResponse->setTotalSize($totalSize);
+        $expectedResponse->setAttributionToken($attributionToken);
+        $expectedResponse->setRedirectUri($redirectUri);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCorrectedQuery($correctedQuery);
+        $expectedResponse->setResults($results);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
+        $response = $gapicClient->searchLite($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.discoveryengine.v1.SearchService/SearchLite', $actualFuncCall);
+        $actualValue = $actualRequestObject->getServingConfig();
+        $this->assertProtobufEquals($formattedServingConfig, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchLiteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
+        try {
+            $gapicClient->searchLite($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function searchAsyncTest()
     {
         $transport = $this->createTransport();

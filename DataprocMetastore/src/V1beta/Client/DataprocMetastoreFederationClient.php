@@ -53,6 +53,7 @@ use Google\Cloud\Metastore\V1beta\UpdateFederationRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Configures and manages metastore federation services.
@@ -79,16 +80,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createFederationAsync(CreateFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFederationAsync(DeleteFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFederationAsync(GetFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFederationsAsync(ListFederationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFederationAsync(UpdateFederationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFederationAsync(CreateFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFederationAsync(DeleteFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Federation> getFederationAsync(GetFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFederationsAsync(ListFederationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFederationAsync(UpdateFederationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DataprocMetastoreFederationClient
 {
@@ -246,8 +247,8 @@ final class DataprocMetastoreFederationClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -255,7 +256,7 @@ final class DataprocMetastoreFederationClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -310,6 +311,9 @@ final class DataprocMetastoreFederationClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

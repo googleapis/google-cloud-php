@@ -321,7 +321,7 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * Stats of data used for training or evaluating the Model.
      * Only populated when the Model is trained by a TrainingPipeline with
-     * [data_input_config][TrainingPipeline.data_input_config].
+     * [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      */
@@ -589,7 +589,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Model\DataStats $data_stats
      *           Stats of data used for training or evaluating the Model.
      *           Only populated when the Model is trained by a TrainingPipeline with
-     *           [data_input_config][TrainingPipeline.data_input_config].
+     *           [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Model. If set, this
      *           Model and all sub-resources of this Model will be secured by this key.
@@ -1658,7 +1658,7 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * Stats of data used for training or evaluating the Model.
      * Only populated when the Model is trained by a TrainingPipeline with
-     * [data_input_config][TrainingPipeline.data_input_config].
+     * [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      * @return \Google\Cloud\AIPlatform\V1\Model\DataStats|null
@@ -1681,7 +1681,7 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * Stats of data used for training or evaluating the Model.
      * Only populated when the Model is trained by a TrainingPipeline with
-     * [data_input_config][TrainingPipeline.data_input_config].
+     * [data_input_config][google.cloud.aiplatform.v1.TrainingPipeline.input_data_config].
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.DataStats data_stats = 21;</code>
      * @param \Google\Cloud\AIPlatform\V1\Model\DataStats $var

@@ -53,6 +53,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsNodeGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The NodeGroups API.
@@ -60,21 +61,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface addNodesAsync(AddNodesNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface aggregatedListAsync(AggregatedListNodeGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodesAsync(DeleteNodesNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListNodeGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodesAsync(ListNodesNodeGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface performMaintenanceAsync(PerformMaintenanceNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodeTemplateAsync(SetNodeTemplateNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface simulateMaintenanceEventAsync(SimulateMaintenanceEventNodeGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addNodesAsync(AddNodesNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNodeGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNodesAsync(DeleteNodesNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodeGroup> getAsync(GetNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListNodeGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesNodeGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setNodeTemplateAsync(SetNodeTemplateNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> simulateMaintenanceEventAsync(SimulateMaintenanceEventNodeGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsNodeGroupRequest $request, array $optionalArgs = [])
  */
 final class NodeGroupsClient
 {
@@ -239,6 +240,9 @@ final class NodeGroupsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -266,6 +270,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::addNodesAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/add_nodes.php
+     *
      * @param AddNodesNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -289,6 +295,8 @@ final class NodeGroupsClient
      * Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NodeGroupsClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/aggregated_list.php
      *
      * @param AggregatedListNodeGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -314,6 +322,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::deleteAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/delete.php
+     *
      * @param DeleteNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -337,6 +347,8 @@ final class NodeGroupsClient
      * Deletes specified nodes from the node group.
      *
      * The async variant is {@see NodeGroupsClient::deleteNodesAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/delete_nodes.php
      *
      * @param DeleteNodesNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -362,6 +374,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::getAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/get.php
+     *
      * @param GetNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -385,6 +399,8 @@ final class NodeGroupsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NodeGroupsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/get_iam_policy.php
      *
      * @param GetIamPolicyNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -410,6 +426,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::insertAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/insert.php
+     *
      * @param InsertNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -433,6 +451,8 @@ final class NodeGroupsClient
      * Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
      *
      * The async variant is {@see NodeGroupsClient::listAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/list.php
      *
      * @param ListNodeGroupsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -458,6 +478,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::listNodesAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/list_nodes.php
+     *
      * @param ListNodesNodeGroupsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -481,6 +503,8 @@ final class NodeGroupsClient
      * Updates the specified node group.
      *
      * The async variant is {@see NodeGroupsClient::patchAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/patch.php
      *
      * @param PatchNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -506,6 +530,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::performMaintenanceAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/perform_maintenance.php
+     *
      * @param PerformMaintenanceNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -529,6 +555,8 @@ final class NodeGroupsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see NodeGroupsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/set_iam_policy.php
      *
      * @param SetIamPolicyNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -554,6 +582,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::setNodeTemplateAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/set_node_template.php
+     *
      * @param SetNodeTemplateNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -578,6 +608,8 @@ final class NodeGroupsClient
      *
      * The async variant is {@see NodeGroupsClient::simulateMaintenanceEventAsync()} .
      *
+     * @example samples/V1/NodeGroupsClient/simulate_maintenance_event.php
+     *
      * @param SimulateMaintenanceEventNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -601,6 +633,8 @@ final class NodeGroupsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see NodeGroupsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NodeGroupsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

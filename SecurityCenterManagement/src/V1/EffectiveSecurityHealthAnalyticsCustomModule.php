@@ -9,26 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An EffectiveSecurityHealthAnalyticsCustomModule is the representation of
- * a Security Health Analytics custom module at a specified level of the
- * resource hierarchy: organization, folder, or project. If a custom module is
- * inherited from a parent organization or folder, the value of the
- * `enablementState` property in EffectiveSecurityHealthAnalyticsCustomModule is
- * set to the value that is effective in the parent, instead of  `INHERITED`.
- * For example, if the module is enabled in a parent organization or folder, the
- * effective enablement_state for the module in all child folders or projects is
- * also `enabled`. EffectiveSecurityHealthAnalyticsCustomModule is read-only.
+ * The representation of a Security Health Analytics custom module at a
+ * specified level of the resource hierarchy: organization, folder, or project.
+ * If a custom module is inherited from an ancestor organization or folder, then
+ * the enablement state is set to the value that is effective in the parent, not
+ * to `INHERITED`. For example, if the module is enabled in an organization or
+ * folder, then the effective enablement state for the module is `ENABLED` in
+ * all descendant folders or projects.
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule</code>
  */
 class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The full resource name of the custom module, specified in one
-     * of the following formats:
-     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     * Identifier. The full resource name of the custom module, in one of the
+     * following formats:
+     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -40,7 +38,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      */
     protected $custom_config = null;
     /**
-     * Output only. The effective state of enablement for the module at the given
+     * Output only. The effective enablement state for the module at the given
      * level of the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule.EnablementState enablement_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -62,15 +60,15 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The full resource name of the custom module, specified in one
-     *           of the following formats:
-     *           * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     *           * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     *           * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     *           Identifier. The full resource name of the custom module, in one of the
+     *           following formats:
+     *           * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     *           * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     *           * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *     @type \Google\Cloud\SecurityCenterManagement\V1\CustomConfig $custom_config
      *           Output only. The user-specified configuration for the module.
      *     @type int $enablement_state
-     *           Output only. The effective state of enablement for the module at the given
+     *           Output only. The effective enablement state for the module at the given
      *           level of the hierarchy.
      *     @type string $display_name
      *           Output only. The display name for the custom module. The name must be
@@ -84,11 +82,11 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Identifier. The full resource name of the custom module, specified in one
-     * of the following formats:
-     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     * Identifier. The full resource name of the custom module, in one of the
+     * following formats:
+     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -99,11 +97,11 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Identifier. The full resource name of the custom module, specified in one
-     * of the following formats:
-     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
-     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}`
+     * Identifier. The full resource name of the custom module, in one of the
+     * following formats:
+     * * `organizations/organization/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `folders/folder/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
+     * * `projects/project/{location}/effectiveSecurityHealthAnalyticsCustomModules/{custom_module}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -154,7 +152,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Output only. The effective state of enablement for the module at the given
+     * Output only. The effective enablement state for the module at the given
      * level of the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule.EnablementState enablement_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -166,7 +164,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Output only. The effective state of enablement for the module at the given
+     * Output only. The effective enablement state for the module at the given
      * level of the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule.EnablementState enablement_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

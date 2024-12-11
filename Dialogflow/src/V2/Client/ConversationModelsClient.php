@@ -55,6 +55,7 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages a collection of models for human agent assistant.
@@ -67,17 +68,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConversationModelAsync(CreateConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversationModelEvaluationAsync(CreateConversationModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversationModelAsync(DeleteConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployConversationModelAsync(DeployConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationModelAsync(GetConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversationModelEvaluationAsync(GetConversationModelEvaluationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationModelEvaluationsAsync(ListConversationModelEvaluationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversationModelsAsync(ListConversationModelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeployConversationModelAsync(UndeployConversationModelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationModelAsync(CreateConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConversationModelEvaluationAsync(CreateConversationModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConversationModelAsync(DeleteConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployConversationModelAsync(DeployConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationModel> getConversationModelAsync(GetConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversationModelEvaluation> getConversationModelEvaluationAsync(GetConversationModelEvaluationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationModelEvaluationsAsync(ListConversationModelEvaluationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversationModelsAsync(ListConversationModelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeployConversationModelAsync(UndeployConversationModelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ConversationModelsClient
 {
@@ -372,14 +373,14 @@ final class ConversationModelsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -434,6 +435,9 @@ final class ConversationModelsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

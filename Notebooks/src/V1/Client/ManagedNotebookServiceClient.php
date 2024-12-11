@@ -60,6 +60,7 @@ use Google\Cloud\Notebooks\V1\UpgradeRuntimeRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: API v1 service for Managed Notebooks.
@@ -72,24 +73,24 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createRuntimeAsync(CreateRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRuntimeAsync(DeleteRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface diagnoseRuntimeAsync(DiagnoseRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeAsync(GetRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimesAsync(ListRuntimesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface refreshRuntimeTokenInternalAsync(RefreshRuntimeTokenInternalRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reportRuntimeEventAsync(ReportRuntimeEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetRuntimeAsync(ResetRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startRuntimeAsync(StartRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopRuntimeAsync(StopRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface switchRuntimeAsync(SwitchRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRuntimeAsync(UpdateRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface upgradeRuntimeAsync(UpgradeRuntimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRuntimeAsync(CreateRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRuntimeAsync(DeleteRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> diagnoseRuntimeAsync(DiagnoseRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Runtime> getRuntimeAsync(GetRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimesAsync(ListRuntimesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RefreshRuntimeTokenInternalResponse> refreshRuntimeTokenInternalAsync(RefreshRuntimeTokenInternalRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> reportRuntimeEventAsync(ReportRuntimeEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resetRuntimeAsync(ResetRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startRuntimeAsync(StartRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopRuntimeAsync(StopRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> switchRuntimeAsync(SwitchRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRuntimeAsync(UpdateRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> upgradeRuntimeAsync(UpgradeRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class ManagedNotebookServiceClient
 {
@@ -238,14 +239,14 @@ final class ManagedNotebookServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -300,6 +301,9 @@ final class ManagedNotebookServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

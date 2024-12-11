@@ -17,7 +17,7 @@ class File extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`.
      * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -60,6 +60,12 @@ class File extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp fetch_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $fetch_time = null;
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
 
     /**
      * Constructor.
@@ -69,7 +75,7 @@ class File extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the file, for example:
-     *           "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     *           `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`.
      *           If the file ID part contains slashes, they are escaped.
      *     @type int|string $size_bytes
      *           The size of the File in bytes.
@@ -84,6 +90,8 @@ class File extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $fetch_time
      *           Output only. The time when the last attempt to refresh the file's data was
      *           made. Only set when the repository is remote.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Client specified annotations.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +101,7 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`.
      * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -106,7 +114,7 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`.
      * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -305,6 +313,32 @@ class File extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->fetch_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }

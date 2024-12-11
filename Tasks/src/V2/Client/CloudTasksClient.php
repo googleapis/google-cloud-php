@@ -57,6 +57,7 @@ use Google\Cloud\Tasks\V2\RunTaskRequest;
 use Google\Cloud\Tasks\V2\Task;
 use Google\Cloud\Tasks\V2\UpdateQueueRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Cloud Tasks allows developers to manage the execution of background
@@ -70,24 +71,24 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createQueueAsync(CreateQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteQueueAsync(DeleteQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getQueueAsync(GetQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listQueuesAsync(ListQueuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pauseQueueAsync(PauseQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface purgeQueueAsync(PurgeQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumeQueueAsync(ResumeQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runTaskAsync(RunTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateQueueAsync(UpdateQueueRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Queue> createQueueAsync(CreateQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteQueueAsync(DeleteQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Queue> getQueueAsync(GetQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listQueuesAsync(ListQueuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Queue> pauseQueueAsync(PauseQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Queue> purgeQueueAsync(PurgeQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Queue> resumeQueueAsync(ResumeQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> runTaskAsync(RunTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Queue> updateQueueAsync(UpdateQueueRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class CloudTasksClient
 {
@@ -208,14 +209,14 @@ final class CloudTasksClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -270,6 +271,9 @@ final class CloudTasksClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

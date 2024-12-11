@@ -19,9 +19,8 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      * Always present for
      * [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest]. Ignored for
      * [WebhookResponse][google.cloud.dialogflow.cx.v3.WebhookResponse]. The
-     * unique identifier of the current page. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page
-     * ID>`.
+     * unique identifier of the current page. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string current_page = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -55,9 +54,8 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      *           Always present for
      *           [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest]. Ignored for
      *           [WebhookResponse][google.cloud.dialogflow.cx.v3.WebhookResponse]. The
-     *           unique identifier of the current page. Format: `projects/<Project
-     *           ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page
-     *           ID>`.
+     *           unique identifier of the current page. Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *     @type string $display_name
      *           Always present for
      *           [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest]. Ignored for
@@ -79,9 +77,8 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      * Always present for
      * [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest]. Ignored for
      * [WebhookResponse][google.cloud.dialogflow.cx.v3.WebhookResponse]. The
-     * unique identifier of the current page. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page
-     * ID>`.
+     * unique identifier of the current page. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string current_page = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -95,9 +92,8 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      * Always present for
      * [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest]. Ignored for
      * [WebhookResponse][google.cloud.dialogflow.cx.v3.WebhookResponse]. The
-     * unique identifier of the current page. Format: `projects/<Project
-     * ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page
-     * ID>`.
+     * unique identifier of the current page. Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.
      *
      * Generated from protobuf field <code>string current_page = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

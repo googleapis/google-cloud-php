@@ -61,6 +61,7 @@ use Google\Cloud\SecureSourceManager\V1\UpdateBranchRuleRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Secure Source Manager API
@@ -92,27 +93,27 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBranchRuleAsync(CreateBranchRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBranchRuleAsync(DeleteBranchRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBranchRuleAsync(GetBranchRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyRepoAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBranchRulesAsync(ListBranchRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyRepoAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsRepoAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBranchRuleAsync(UpdateBranchRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBranchRuleAsync(CreateBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBranchRuleAsync(DeleteBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BranchRule> getBranchRuleAsync(GetBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyRepoAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Repository> getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBranchRulesAsync(ListBranchRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRepositoriesAsync(ListRepositoriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyRepoAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsRepoAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBranchRuleAsync(UpdateBranchRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SecureSourceManagerClient
 {
@@ -369,14 +370,14 @@ final class SecureSourceManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -431,6 +432,9 @@ final class SecureSourceManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

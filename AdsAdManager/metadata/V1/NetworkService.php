@@ -21,7 +21,7 @@ class NetworkService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-◊
+Ù
 -google/ads/admanager/v1/network_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"K
 GetNetworkRequest6
 name (	B(‡A˙A"
@@ -32,8 +32,8 @@ class NetworkService
 NetworkServiceÄ
 
 GetNetwork*.google.ads.admanager.v1.GetNetworkRequest .google.ads.admanager.v1.Network"$⁄AnameÇ”‰ì/v1/{name=networks/*}Å
-ListNetworks,.google.ads.admanager.v1.ListNetworksRequest-.google.ads.admanager.v1.ListNetworksResponse"Ç”‰ì/v1/networks Aadmanager.googleapis.comB™
-com.google.ads.admanager.v1BNetworkServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1bproto3'
+ListNetworks,.google.ads.admanager.v1.ListNetworksRequest-.google.ads.admanager.v1.ListNetworksResponse"Ç”‰ì/v1/networks Aadmanager.googleapis.comB«
+com.google.ads.admanager.v1BNetworkServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager™Google.Ads.AdManager.V1 Google\\Ads\\AdManager\\V1ÍGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

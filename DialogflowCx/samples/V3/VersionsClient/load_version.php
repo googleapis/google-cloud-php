@@ -42,8 +42,8 @@ use Google\Rpc\Status;
  * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
  *
  * @param string $formattedName The [Version][google.cloud.dialogflow.cx.v3.Version] to be loaded
- *                              to draft flow. Format: `projects/<Project ID>/locations/<Location
- *                              ID>/agents/<Agent ID>/flows/<Flow ID>/versions/<Version ID>`. Please see
+ *                              to draft flow. Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`. Please see
  *                              {@see VersionsClient::versionName()} for help formatting this field.
  */
 function load_version_sample(string $formattedName): void

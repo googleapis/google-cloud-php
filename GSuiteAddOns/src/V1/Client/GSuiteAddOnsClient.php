@@ -46,6 +46,7 @@ use Google\Cloud\GSuiteAddOns\V1\ListDeploymentsRequest;
 use Google\Cloud\GSuiteAddOns\V1\ReplaceDeploymentRequest;
 use Google\Cloud\GSuiteAddOns\V1\UninstallDeploymentRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service for managing Google Workspace Add-ons deployments.
@@ -85,15 +86,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAuthorizationAsync(GetAuthorizationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInstallStatusAsync(GetInstallStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface installDeploymentAsync(InstallDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface replaceDeploymentAsync(ReplaceDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface uninstallDeploymentAsync(UninstallDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Authorization> getAuthorizationAsync(GetAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstallStatus> getInstallStatusAsync(GetInstallStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> installDeploymentAsync(InstallDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> replaceDeploymentAsync(ReplaceDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> uninstallDeploymentAsync(UninstallDeploymentRequest $request, array $optionalArgs = [])
  */
 final class GSuiteAddOnsClient
 {
@@ -220,14 +221,14 @@ final class GSuiteAddOnsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -282,6 +283,9 @@ final class GSuiteAddOnsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

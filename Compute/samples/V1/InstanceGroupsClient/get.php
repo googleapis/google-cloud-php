@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InstanceGroups_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\GetInstanceGroupRequest;
 use Google\Cloud\Compute\V1\InstanceGroup;
-use Google\Cloud\Compute\V1\InstanceGroupsClient;
 
 /**
  * Returns the specified zonal instance group. Get a list of available zonal instance groups by making a list() request. For managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.
@@ -39,10 +40,16 @@ function get_sample(string $instanceGroup, string $project, string $zone): void
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
+    // Prepare the request message.
+    $request = (new GetInstanceGroupRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceGroup $response */
-        $response = $instanceGroupsClient->get($instanceGroup, $project, $zone);
+        $response = $instanceGroupsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

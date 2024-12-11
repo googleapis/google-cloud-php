@@ -21,7 +21,8 @@ class TaxonomyCategoryService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-û	
+˜
+
 7google/ads/admanager/v1/taxonomy_category_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"]
 GetTaxonomyCategoryRequest?
 name (	B1àAúA+
@@ -42,8 +43,8 @@ page_token (	BàA
 total_size (2²
 TaxonomyCategoryService°
 GetTaxonomyCategory3.google.ads.admanager.v1.GetTaxonomyCategoryRequest).google.ads.admanager.v1.TaxonomyCategory"9ÚAname‚Óä“,*/v1/{name=networks/*/taxonomyCategories/*}Æ
-ListTaxonomyCategories6.google.ads.admanager.v1.ListTaxonomyCategoriesRequest7.google.ads.admanager.v1.ListTaxonomyCategoriesResponse";ÚAparent‚Óä“,*/v1/{parent=networks/*}/taxonomyCategoriesÊAadmanager.googleapis.comB³
-com.google.ads.admanager.v1BTaxonomyCategoryServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+ListTaxonomyCategories6.google.ads.admanager.v1.ListTaxonomyCategoriesRequest7.google.ads.admanager.v1.ListTaxonomyCategoriesResponse";ÚAparent‚Óä“,*/v1/{parent=networks/*}/taxonomyCategoriesÊAadmanager.googleapis.comBÐ
+com.google.ads.admanager.v1BTaxonomyCategoryServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

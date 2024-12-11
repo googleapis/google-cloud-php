@@ -350,6 +350,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $secondary_boot_disk_update_strategy = null;
     /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attahced to the node.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodeConfig.LocalSsdEncryptionMode local_ssd_encryption_mode = 54;</code>
+     */
+    protected $local_ssd_encryption_mode = null;
+    /**
      * Output only. effective_cgroup_mode is the cgroup mode actually used by the
      * node pool. It is determined by the cgroup mode specified in the
      * LinuxNodeConfig or the default cgroup mode based on the cluster creation
@@ -535,6 +542,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           List of Storage Pools where boot disks are provisioned.
      *     @type \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $secondary_boot_disk_update_strategy
      *           Secondary boot disk update strategy.
+     *     @type int $local_ssd_encryption_mode
+     *           Specifies which method should be used for encrypting the
+     *           Local SSDs attahced to the node.
      *     @type int $effective_cgroup_mode
      *           Output only. effective_cgroup_mode is the cgroup mode actually used by the
      *           node pool. It is determined by the cgroup mode specified in the
@@ -1953,6 +1963,44 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy::class);
         $this->secondary_boot_disk_update_strategy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attahced to the node.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodeConfig.LocalSsdEncryptionMode local_ssd_encryption_mode = 54;</code>
+     * @return int
+     */
+    public function getLocalSsdEncryptionMode()
+    {
+        return isset($this->local_ssd_encryption_mode) ? $this->local_ssd_encryption_mode : 0;
+    }
+
+    public function hasLocalSsdEncryptionMode()
+    {
+        return isset($this->local_ssd_encryption_mode);
+    }
+
+    public function clearLocalSsdEncryptionMode()
+    {
+        unset($this->local_ssd_encryption_mode);
+    }
+
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attahced to the node.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodeConfig.LocalSsdEncryptionMode local_ssd_encryption_mode = 54;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLocalSsdEncryptionMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\NodeConfig\LocalSsdEncryptionMode::class);
+        $this->local_ssd_encryption_mode = $var;
 
         return $this;
     }

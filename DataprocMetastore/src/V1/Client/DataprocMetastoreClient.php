@@ -67,6 +67,7 @@ use Google\Cloud\Metastore\V1\UpdateServiceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Configures and manages metastore services.
@@ -95,29 +96,29 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface alterMetadataResourceLocationAsync(AlterMetadataResourceLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMetadataImportAsync(CreateMetadataImportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportMetadataAsync(ExportMetadataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetadataImportAsync(GetMetadataImportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMetadataImportsAsync(ListMetadataImportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface moveTableToDatabaseAsync(MoveTableToDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryMetadataAsync(QueryMetadataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreServiceAsync(RestoreServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMetadataImportAsync(UpdateMetadataImportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> alterMetadataResourceLocationAsync(AlterMetadataResourceLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMetadataImportAsync(CreateMetadataImportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServiceAsync(CreateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServiceAsync(DeleteServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportMetadataAsync(ExportMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetadataImport> getMetadataImportAsync(GetMetadataImportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Service> getServiceAsync(GetServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMetadataImportsAsync(ListMetadataImportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServicesAsync(ListServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveTableToDatabaseAsync(MoveTableToDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> queryMetadataAsync(QueryMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreServiceAsync(RestoreServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMetadataImportAsync(UpdateMetadataImportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateServiceAsync(UpdateServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class DataprocMetastoreClient
 {
@@ -352,14 +353,14 @@ final class DataprocMetastoreClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -414,6 +415,9 @@ final class DataprocMetastoreClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

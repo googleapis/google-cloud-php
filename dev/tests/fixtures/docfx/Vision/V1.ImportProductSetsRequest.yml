@@ -43,7 +43,7 @@ items:
           description: 'Required. The project in which the ProductSets should be imported. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
         -
           id: '↳ input_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">ImportProductSetsInputConfig</xref>'
           description: 'Required. The input content for the list of requests.'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::getParent()'
@@ -94,7 +94,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">ImportProductSetsInputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::hasInputConfig()'
     name: hasInputConfig
@@ -124,7 +124,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">ImportProductSetsInputConfig</xref>'
           description: ''
       returns:
         -
@@ -146,11 +146,11 @@ items:
             Required. The project in which the ProductSets should be imported.
 
             Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
-            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">Google\Cloud\Vision\V1\ProductSearchClient::locationName()</xref> for help formatting this field.
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::locationName()">ProductSearchClient::locationName()</xref> for help formatting this field.
         -
           id: inputConfig
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">ImportProductSetsInputConfig</xref>'
           description: 'Required. The input content for the list of requests.'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsRequest">Google\Cloud\Vision\V1\ImportProductSetsRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsRequest">ImportProductSetsRequest</xref>'

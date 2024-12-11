@@ -9,53 +9,56 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for creating a EventThreatDetectionCustomModule
+ * Request message for
+ * [SecurityCenterManagement.CreateEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.CreateEventThreatDetectionCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.CreateEventThreatDetectionCustomModuleRequest</code>
  */
 class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent for the module. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent for the module, in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Required. The module to create. The
-     * event_threat_detection_custom_module.name will be ignored and server
-     * generated.
+     * [EventThreatDetectionCustomModule.name][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule.name]
+     * field is ignored; Security Command Center generates the name.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_module = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $event_threat_detection_custom_module = null;
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (no module will be created). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually create the module could
-     * still fail because 1. the state could have changed (e.g. IAM permission
-     * lost) or
-     * 2. A failure occurred during creation of the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be created. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to create the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $validate_only = false;
 
     /**
-     * @param string                                                                     $parent                           Required. Name of parent for the module. Its format is
-     *                                                                                                                     `organizations/{organization}/locations/{location}`,
-     *                                                                                                                     `folders/{folder}/locations/{location}`,
-     *                                                                                                                     or
-     *                                                                                                                     `projects/{project}/locations/{location}`
+     * @param string                                                                     $parent                           Required. Name of parent for the module, in one of the following formats:
+     *
+     *                                                                                                                     * `organizations/{organization}/locations/{location}`
+     *                                                                                                                     * `folders/{folder}/locations/{location}`
+     *                                                                                                                     * `projects/{project}/locations/{location}`
      *                                                                                                                     Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule $eventThreatDetectionCustomModule Required. The module to create. The
-     *                                                                                                                     event_threat_detection_custom_module.name will be ignored and server
-     *                                                                                                                     generated.
+     *                                                                                                                     [EventThreatDetectionCustomModule.name][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule.name]
+     *                                                                                                                     field is ignored; Security Command Center generates the name.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\CreateEventThreatDetectionCustomModuleRequest
      *
@@ -75,23 +78,25 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent for the module. Its format is
-     *           `organizations/{organization}/locations/{location}`,
-     *           `folders/{folder}/locations/{location}`,
-     *           or
-     *           `projects/{project}/locations/{location}`
+     *           Required. Name of parent for the module, in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule $event_threat_detection_custom_module
      *           Required. The module to create. The
-     *           event_threat_detection_custom_module.name will be ignored and server
-     *           generated.
+     *           [EventThreatDetectionCustomModule.name][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule.name]
+     *           field is ignored; Security Command Center generates the name.
      *     @type bool $validate_only
-     *           Optional. When set to true, only validations (including IAM checks) will
-     *           done for the request (no module will be created). An OK response indicates
-     *           the request is valid while an error response indicates the request is
-     *           invalid. Note that a subsequent request to actually create the module could
-     *           still fail because 1. the state could have changed (e.g. IAM permission
-     *           lost) or
-     *           2. A failure occurred during creation of the module.
+     *           Optional. When set to `true`, the request will be validated (including IAM
+     *           checks), but no module will be created. An `OK` response indicates that the
+     *           request is valid, while an error response indicates that the request is
+     *           invalid.
+     *           If the request is valid, a subsequent request to create the module could
+     *           still fail for one of the following reasons:
+     *           *  The state of your cloud resources changed; for example, you lost a
+     *              required IAM permission
+     *           *  An error occurred during creation of the module
+     *           Defaults to `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,11 +105,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. Name of parent for the module. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent for the module, in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -115,11 +119,10 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. Name of parent for the module. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent for the module, in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -135,8 +138,8 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
 
     /**
      * Required. The module to create. The
-     * event_threat_detection_custom_module.name will be ignored and server
-     * generated.
+     * [EventThreatDetectionCustomModule.name][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule.name]
+     * field is ignored; Security Command Center generates the name.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_module = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule|null
@@ -158,8 +161,8 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
 
     /**
      * Required. The module to create. The
-     * event_threat_detection_custom_module.name will be ignored and server
-     * generated.
+     * [EventThreatDetectionCustomModule.name][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule.name]
+     * field is ignored; Security Command Center generates the name.
      *
      * Generated from protobuf field <code>.google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_module = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule $var
@@ -174,13 +177,16 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (no module will be created). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually create the module could
-     * still fail because 1. the state could have changed (e.g. IAM permission
-     * lost) or
-     * 2. A failure occurred during creation of the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be created. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to create the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -191,13 +197,16 @@ class CreateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Optional. When set to true, only validations (including IAM checks) will
-     * done for the request (no module will be created). An OK response indicates
-     * the request is valid while an error response indicates the request is
-     * invalid. Note that a subsequent request to actually create the module could
-     * still fail because 1. the state could have changed (e.g. IAM permission
-     * lost) or
-     * 2. A failure occurred during creation of the module.
+     * Optional. When set to `true`, the request will be validated (including IAM
+     * checks), but no module will be created. An `OK` response indicates that the
+     * request is valid, while an error response indicates that the request is
+     * invalid.
+     * If the request is valid, a subsequent request to create the module could
+     * still fail for one of the following reasons:
+     * *  The state of your cloud resources changed; for example, you lost a
+     *    required IAM permission
+     * *  An error occurred during creation of the module
+     * Defaults to `false`.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

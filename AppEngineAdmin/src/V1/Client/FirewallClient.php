@@ -41,6 +41,7 @@ use Google\Cloud\AppEngine\V1\GetIngressRuleRequest;
 use Google\Cloud\AppEngine\V1\ListIngressRulesRequest;
 use Google\Cloud\AppEngine\V1\UpdateIngressRuleRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Firewall resources are used to define a collection of access control rules
@@ -57,12 +58,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchUpdateIngressRulesAsync(BatchUpdateIngressRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createIngressRuleAsync(CreateIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIngressRuleAsync(DeleteIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIngressRuleAsync(GetIngressRuleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIngressRulesAsync(ListIngressRulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIngressRuleAsync(UpdateIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateIngressRulesResponse> batchUpdateIngressRulesAsync(BatchUpdateIngressRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> createIngressRuleAsync(CreateIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIngressRuleAsync(DeleteIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> getIngressRuleAsync(GetIngressRuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIngressRulesAsync(ListIngressRulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirewallRule> updateIngressRuleAsync(UpdateIngressRuleRequest $request, array $optionalArgs = [])
  */
 final class FirewallClient
 {
@@ -163,6 +164,9 @@ final class FirewallClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

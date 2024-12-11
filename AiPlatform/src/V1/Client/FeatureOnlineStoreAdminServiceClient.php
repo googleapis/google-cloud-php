@@ -62,6 +62,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The service that handles CRUD and List for resources for
@@ -75,24 +76,24 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createFeatureOnlineStoreAsync(CreateFeatureOnlineStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeatureViewAsync(CreateFeatureViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureOnlineStoreAsync(DeleteFeatureOnlineStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureViewAsync(DeleteFeatureViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureOnlineStoreAsync(GetFeatureOnlineStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureViewAsync(GetFeatureViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureViewSyncAsync(GetFeatureViewSyncRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeatureOnlineStoresAsync(ListFeatureOnlineStoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeatureViewSyncsAsync(ListFeatureViewSyncsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeatureViewsAsync(ListFeatureViewsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface syncFeatureViewAsync(SyncFeatureViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureOnlineStoreAsync(UpdateFeatureOnlineStoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureViewAsync(UpdateFeatureViewRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureOnlineStoreAsync(CreateFeatureOnlineStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureViewAsync(CreateFeatureViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureOnlineStoreAsync(DeleteFeatureOnlineStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureViewAsync(DeleteFeatureViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeatureOnlineStore> getFeatureOnlineStoreAsync(GetFeatureOnlineStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeatureView> getFeatureViewAsync(GetFeatureViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FeatureViewSync> getFeatureViewSyncAsync(GetFeatureViewSyncRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeatureOnlineStoresAsync(ListFeatureOnlineStoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeatureViewSyncsAsync(ListFeatureViewSyncsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeatureViewsAsync(ListFeatureViewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SyncFeatureViewResponse> syncFeatureViewAsync(SyncFeatureViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeatureOnlineStoreAsync(UpdateFeatureOnlineStoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeatureViewAsync(UpdateFeatureViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class FeatureOnlineStoreAdminServiceClient
 {
@@ -295,14 +296,14 @@ final class FeatureOnlineStoreAdminServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -357,6 +358,9 @@ final class FeatureOnlineStoreAdminServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

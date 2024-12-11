@@ -48,6 +48,7 @@ use Google\Cloud\OsConfig\V1\PausePatchDeploymentRequest;
 use Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest;
 use Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: OS Config API
@@ -63,18 +64,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelPatchJobAsync(CancelPatchJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPatchDeploymentAsync(CreatePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePatchDeploymentAsync(DeletePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface executePatchJobAsync(ExecutePatchJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPatchDeploymentAsync(GetPatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPatchJobAsync(GetPatchJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPatchDeploymentsAsync(ListPatchDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPatchJobInstanceDetailsAsync(ListPatchJobInstanceDetailsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPatchJobsAsync(ListPatchJobsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pausePatchDeploymentAsync(PausePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resumePatchDeploymentAsync(ResumePatchDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePatchDeploymentAsync(UpdatePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchJob> cancelPatchJobAsync(CancelPatchJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> createPatchDeploymentAsync(CreatePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePatchDeploymentAsync(DeletePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchJob> executePatchJobAsync(ExecutePatchJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> getPatchDeploymentAsync(GetPatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchJob> getPatchJobAsync(GetPatchJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPatchDeploymentsAsync(ListPatchDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPatchJobInstanceDetailsAsync(ListPatchJobInstanceDetailsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPatchJobsAsync(ListPatchJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> pausePatchDeploymentAsync(PausePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> resumePatchDeploymentAsync(ResumePatchDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PatchDeployment> updatePatchDeploymentAsync(UpdatePatchDeploymentRequest $request, array $optionalArgs = [])
  */
 final class OsConfigServiceClient
 {
@@ -185,14 +186,14 @@ final class OsConfigServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -247,6 +248,9 @@ final class OsConfigServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

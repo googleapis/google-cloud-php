@@ -29,23 +29,37 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * `user.type` fields populated. The server will assign a resource name
      * and overwrite anything specified.
      * When a Chat app creates a membership relation for a human user, it must use
-     * the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
-     * `user.name` with format `users/{user}`, where `{user}` can be the email
-     * address for the user. For users in the same Workspace organization `{user}`
-     * can also be the `id` of the
-     * [person](https://developers.google.com/people/api/rest/v1/people) from the
-     * People API, or the `id` for the user in the Directory API. For example, if
-     * the People API Person profile ID for `user&#64;example.com` is `123456789`, you
-     * can add the user to the space by setting the `membership.member.name` to
-     * `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
-     * membership relation for itself, it must use the `chat.memberships.app`
-     * scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     * certain authorization scopes and set specific values for certain fields:
+     * - When [authenticating as a
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * the `chat.memberships` authorization scope is required.
+     * - When [authenticating as an
+     * app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
+     * the `chat.app.memberships` authorization scope is required.
+     * Authenticating as an app is available in [Developer
+     * Preview](https://developers.google.com/workspace/preview).
+     * - Set `user.type` to `HUMAN`, and set `user.name` with format
+     * `users/{user}`, where `{user}` can be the email address for the user. For
+     * users in the same Workspace organization `{user}` can also be the `id` of
+     * the [person](https://developers.google.com/people/api/rest/v1/people) from
+     * the People API, or the `id` for the user in the Directory API. For example,
+     * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     * you can add the user to the space by setting the `membership.member.name`
+     * to `users/user&#64;example.com` or `users/123456789`.
+     * Inviting users external to the Workspace organization that owns the space
+     * requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * When a Chat app creates a membership relation for itself, it must
+     * [authenticate as a
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * and use the `chat.memberships.app` scope, set `user.type` to `BOT`, and set
+     * `user.name` to `users/app`.
      *
      * Generated from protobuf field <code>.google.chat.v1.Membership membership = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $membership = null;
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -56,7 +70,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * administrator's Google Workspace organization isn't supported using admin
      * access.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 5;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_admin_access = false;
 
@@ -67,21 +81,42 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *                                                    Format: spaces/{space}
      *                                                    Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
      * @param \Google\Apps\Chat\V1\Membership $membership Required. The membership relation to create.
+     *
      *                                                    The `memberType` field must contain a user with the `user.name` and
      *                                                    `user.type` fields populated. The server will assign a resource name
      *                                                    and overwrite anything specified.
+     *
      *                                                    When a Chat app creates a membership relation for a human user, it must use
-     *                                                    the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
-     *                                                    `user.name` with format `users/{user}`, where `{user}` can be the email
-     *                                                    address for the user. For users in the same Workspace organization `{user}`
-     *                                                    can also be the `id` of the
-     *                                                    [person](https://developers.google.com/people/api/rest/v1/people) from the
-     *                                                    People API, or the `id` for the user in the Directory API. For example, if
-     *                                                    the People API Person profile ID for `user&#64;example.com` is `123456789`, you
-     *                                                    can add the user to the space by setting the `membership.member.name` to
-     *                                                    `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
-     *                                                    membership relation for itself, it must use the `chat.memberships.app`
-     *                                                    scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     *                                                    certain authorization scopes and set specific values for certain fields:
+     *
+     *                                                    - When [authenticating as a
+     *                                                    user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *                                                    the `chat.memberships` authorization scope is required.
+     *
+     *                                                    - When [authenticating as an
+     *                                                    app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
+     *                                                    the `chat.app.memberships` authorization scope is required.
+     *                                                    Authenticating as an app is available in [Developer
+     *                                                    Preview](https://developers.google.com/workspace/preview).
+     *
+     *                                                    - Set `user.type` to `HUMAN`, and set `user.name` with format
+     *                                                    `users/{user}`, where `{user}` can be the email address for the user. For
+     *                                                    users in the same Workspace organization `{user}` can also be the `id` of
+     *                                                    the [person](https://developers.google.com/people/api/rest/v1/people) from
+     *                                                    the People API, or the `id` for the user in the Directory API. For example,
+     *                                                    if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     *                                                    you can add the user to the space by setting the `membership.member.name`
+     *                                                    to `users/user&#64;example.com` or `users/123456789`.
+     *
+     *                                                    Inviting users external to the Workspace organization that owns the space
+     *                                                    requires [user
+     *                                                    authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     *                                                    When a Chat app creates a membership relation for itself, it must
+     *                                                    [authenticate as a
+     *                                                    user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     *                                                    and use the `chat.memberships.app` scope, set `user.type` to `BOT`, and set
+     *                                                    `user.name` to `users/app`.
      *
      * @return \Google\Apps\Chat\V1\CreateMembershipRequest
      *
@@ -110,19 +145,33 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *           `user.type` fields populated. The server will assign a resource name
      *           and overwrite anything specified.
      *           When a Chat app creates a membership relation for a human user, it must use
-     *           the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
-     *           `user.name` with format `users/{user}`, where `{user}` can be the email
-     *           address for the user. For users in the same Workspace organization `{user}`
-     *           can also be the `id` of the
-     *           [person](https://developers.google.com/people/api/rest/v1/people) from the
-     *           People API, or the `id` for the user in the Directory API. For example, if
-     *           the People API Person profile ID for `user&#64;example.com` is `123456789`, you
-     *           can add the user to the space by setting the `membership.member.name` to
-     *           `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
-     *           membership relation for itself, it must use the `chat.memberships.app`
-     *           scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     *           certain authorization scopes and set specific values for certain fields:
+     *           - When [authenticating as a
+     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           the `chat.memberships` authorization scope is required.
+     *           - When [authenticating as an
+     *           app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
+     *           the `chat.app.memberships` authorization scope is required.
+     *           Authenticating as an app is available in [Developer
+     *           Preview](https://developers.google.com/workspace/preview).
+     *           - Set `user.type` to `HUMAN`, and set `user.name` with format
+     *           `users/{user}`, where `{user}` can be the email address for the user. For
+     *           users in the same Workspace organization `{user}` can also be the `id` of
+     *           the [person](https://developers.google.com/people/api/rest/v1/people) from
+     *           the People API, or the `id` for the user in the Directory API. For example,
+     *           if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     *           you can add the user to the space by setting the `membership.member.name`
+     *           to `users/user&#64;example.com` or `users/123456789`.
+     *           Inviting users external to the Workspace organization that owns the space
+     *           requires [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *           When a Chat app creates a membership relation for itself, it must
+     *           [authenticate as a
+     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     *           and use the `chat.memberships.app` scope, set `user.type` to `BOT`, and set
+     *           `user.name` to `users/app`.
      *     @type bool $use_admin_access
-     *           When `true`, the method runs using the user's Google Workspace
+     *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
      *           The calling user must be a Google Workspace administrator with the
      *           [manage chat and spaces conversations
@@ -175,17 +224,31 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * `user.type` fields populated. The server will assign a resource name
      * and overwrite anything specified.
      * When a Chat app creates a membership relation for a human user, it must use
-     * the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
-     * `user.name` with format `users/{user}`, where `{user}` can be the email
-     * address for the user. For users in the same Workspace organization `{user}`
-     * can also be the `id` of the
-     * [person](https://developers.google.com/people/api/rest/v1/people) from the
-     * People API, or the `id` for the user in the Directory API. For example, if
-     * the People API Person profile ID for `user&#64;example.com` is `123456789`, you
-     * can add the user to the space by setting the `membership.member.name` to
-     * `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
-     * membership relation for itself, it must use the `chat.memberships.app`
-     * scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     * certain authorization scopes and set specific values for certain fields:
+     * - When [authenticating as a
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * the `chat.memberships` authorization scope is required.
+     * - When [authenticating as an
+     * app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
+     * the `chat.app.memberships` authorization scope is required.
+     * Authenticating as an app is available in [Developer
+     * Preview](https://developers.google.com/workspace/preview).
+     * - Set `user.type` to `HUMAN`, and set `user.name` with format
+     * `users/{user}`, where `{user}` can be the email address for the user. For
+     * users in the same Workspace organization `{user}` can also be the `id` of
+     * the [person](https://developers.google.com/people/api/rest/v1/people) from
+     * the People API, or the `id` for the user in the Directory API. For example,
+     * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     * you can add the user to the space by setting the `membership.member.name`
+     * to `users/user&#64;example.com` or `users/123456789`.
+     * Inviting users external to the Workspace organization that owns the space
+     * requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * When a Chat app creates a membership relation for itself, it must
+     * [authenticate as a
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * and use the `chat.memberships.app` scope, set `user.type` to `BOT`, and set
+     * `user.name` to `users/app`.
      *
      * Generated from protobuf field <code>.google.chat.v1.Membership membership = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Apps\Chat\V1\Membership|null
@@ -211,17 +274,31 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * `user.type` fields populated. The server will assign a resource name
      * and overwrite anything specified.
      * When a Chat app creates a membership relation for a human user, it must use
-     * the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
-     * `user.name` with format `users/{user}`, where `{user}` can be the email
-     * address for the user. For users in the same Workspace organization `{user}`
-     * can also be the `id` of the
-     * [person](https://developers.google.com/people/api/rest/v1/people) from the
-     * People API, or the `id` for the user in the Directory API. For example, if
-     * the People API Person profile ID for `user&#64;example.com` is `123456789`, you
-     * can add the user to the space by setting the `membership.member.name` to
-     * `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
-     * membership relation for itself, it must use the `chat.memberships.app`
-     * scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     * certain authorization scopes and set specific values for certain fields:
+     * - When [authenticating as a
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * the `chat.memberships` authorization scope is required.
+     * - When [authenticating as an
+     * app](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
+     * the `chat.app.memberships` authorization scope is required.
+     * Authenticating as an app is available in [Developer
+     * Preview](https://developers.google.com/workspace/preview).
+     * - Set `user.type` to `HUMAN`, and set `user.name` with format
+     * `users/{user}`, where `{user}` can be the email address for the user. For
+     * users in the same Workspace organization `{user}` can also be the `id` of
+     * the [person](https://developers.google.com/people/api/rest/v1/people) from
+     * the People API, or the `id` for the user in the Directory API. For example,
+     * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     * you can add the user to the space by setting the `membership.member.name`
+     * to `users/user&#64;example.com` or `users/123456789`.
+     * Inviting users external to the Workspace organization that owns the space
+     * requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * When a Chat app creates a membership relation for itself, it must
+     * [authenticate as a
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * and use the `chat.memberships.app` scope, set `user.type` to `BOT`, and set
+     * `user.name` to `users/app`.
      *
      * Generated from protobuf field <code>.google.chat.v1.Membership membership = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Apps\Chat\V1\Membership $var
@@ -236,7 +313,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -247,7 +324,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * administrator's Google Workspace organization isn't supported using admin
      * access.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 5;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseAdminAccess()
@@ -256,7 +333,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -267,7 +344,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * administrator's Google Workspace organization isn't supported using admin
      * access.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 5;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

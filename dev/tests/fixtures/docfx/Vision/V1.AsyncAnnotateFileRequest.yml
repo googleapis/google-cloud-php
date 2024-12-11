@@ -46,19 +46,19 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ input_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">InputConfig</xref>'
           description: 'Required. Information about the input file.'
         -
           id: '↳ features'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Feature</xref>&gt;'
           description: 'Required. Requested features.'
         -
           id: '↳ image_context'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref>'
           description: 'Additional context that may accompany the image(s) in the file.'
         -
           id: '↳ output_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: 'Required. The desired output location and metadata (e.g. format).'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getInputConfig()'
@@ -72,7 +72,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">InputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasInputConfig()'
     name: hasInputConfig
@@ -102,7 +102,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">InputConfig</xref>'
           description: ''
       returns:
         -
@@ -133,7 +133,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Feature</xref>&gt;'
           description: ''
       returns:
         -
@@ -150,7 +150,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasImageContext()'
     name: hasImageContext
@@ -180,7 +180,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">ImageContext</xref>'
           description: ''
       returns:
         -
@@ -197,7 +197,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasOutputConfig()'
     name: hasOutputConfig
@@ -227,7 +227,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: ''
       returns:
         -

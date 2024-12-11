@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ForwardingRules_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\AggregatedListForwardingRulesRequest;
+use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
 
 /**
  * Retrieves an aggregated list of forwarding rules. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListForwardingRulesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $forwardingRulesClient->aggregatedList($project);
+        $response = $forwardingRulesClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

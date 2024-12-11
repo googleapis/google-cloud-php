@@ -37,6 +37,7 @@ use Google\Cloud\Compute\V1\AggregatedListAcceleratorTypesRequest;
 use Google\Cloud\Compute\V1\GetAcceleratorTypeRequest;
 use Google\Cloud\Compute\V1\ListAcceleratorTypesRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description:
@@ -47,9 +48,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListAcceleratorTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListAcceleratorTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcceleratorType> getAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
  */
 final class AcceleratorTypesClient
 {
@@ -161,6 +162,9 @@ final class AcceleratorTypesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -187,6 +191,8 @@ final class AcceleratorTypesClient
      *
      * The async variant is {@see AcceleratorTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/AcceleratorTypesClient/aggregated_list.php
+     *
      * @param AggregatedListAcceleratorTypesRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -211,6 +217,8 @@ final class AcceleratorTypesClient
      *
      * The async variant is {@see AcceleratorTypesClient::getAsync()} .
      *
+     * @example samples/V1/AcceleratorTypesClient/get.php
+     *
      * @param GetAcceleratorTypeRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -234,6 +242,8 @@ final class AcceleratorTypesClient
      * Retrieves a list of accelerator types that are available to the specified project.
      *
      * The async variant is {@see AcceleratorTypesClient::listAsync()} .
+     *
+     * @example samples/V1/AcceleratorTypesClient/list.php
      *
      * @param ListAcceleratorTypesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

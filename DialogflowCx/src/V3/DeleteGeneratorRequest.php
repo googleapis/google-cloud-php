@@ -18,8 +18,8 @@ class DeleteGeneratorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the generator to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,8 +39,8 @@ class DeleteGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the generator to delete.
-     *                     Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/generators/<Generator ID>`. Please see
+     *                     Format:
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`. Please see
      *                     {@see GeneratorsClient::generatorName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\DeleteGeneratorRequest
@@ -61,8 +61,8 @@ class DeleteGeneratorRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the generator to delete.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/generators/<Generator ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *     @type bool $force
      *           This field has no effect for generators not being used.
      *           For generators that are used by pages/flows/transition route groups:
@@ -80,8 +80,8 @@ class DeleteGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the generator to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -93,8 +93,8 @@ class DeleteGeneratorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the generator to delete.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

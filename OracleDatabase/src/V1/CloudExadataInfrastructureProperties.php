@@ -75,9 +75,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      */
     protected $oci_url = '';
     /**
-     * Optional. The number of enabled CPU cores.
+     * Output only. The number of enabled CPU cores.
      *
-     * Generated from protobuf field <code>int32 cpu_count = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 cpu_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $cpu_count = 0;
     /**
@@ -87,9 +87,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      */
     protected $max_cpu_count = 0;
     /**
-     * Optional. The memory allocated in GBs.
+     * Output only. The memory allocated in GBs.
      *
-     * Generated from protobuf field <code>int32 memory_size_gb = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 memory_size_gb = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $memory_size_gb = 0;
     /**
@@ -99,9 +99,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      */
     protected $max_memory_gb = 0;
     /**
-     * Optional. The local node storage allocated in GBs.
+     * Output only. The local node storage allocated in GBs.
      *
-     * Generated from protobuf field <code>int32 db_node_storage_size_gb = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 db_node_storage_size_gb = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $db_node_storage_size_gb = 0;
     /**
@@ -219,15 +219,15 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      *     @type string $oci_url
      *           Output only. Deep link to the OCI console to view this resource.
      *     @type int $cpu_count
-     *           Optional. The number of enabled CPU cores.
+     *           Output only. The number of enabled CPU cores.
      *     @type int $max_cpu_count
      *           Output only. The total number of CPU cores available.
      *     @type int $memory_size_gb
-     *           Optional. The memory allocated in GBs.
+     *           Output only. The memory allocated in GBs.
      *     @type int $max_memory_gb
      *           Output only. The total memory available in GBs.
      *     @type int $db_node_storage_size_gb
-     *           Optional. The local node storage allocated in GBs.
+     *           Output only. The local node storage allocated in GBs.
      *     @type int $max_db_node_storage_size_gb
      *           Output only. The total local node storage available in GBs.
      *     @type float $data_storage_size_tb
@@ -522,9 +522,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. The number of enabled CPU cores.
+     * Output only. The number of enabled CPU cores.
      *
-     * Generated from protobuf field <code>int32 cpu_count = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 cpu_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getCpuCount()
@@ -533,9 +533,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. The number of enabled CPU cores.
+     * Output only. The number of enabled CPU cores.
      *
-     * Generated from protobuf field <code>int32 cpu_count = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 cpu_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -574,9 +574,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. The memory allocated in GBs.
+     * Output only. The memory allocated in GBs.
      *
-     * Generated from protobuf field <code>int32 memory_size_gb = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 memory_size_gb = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getMemorySizeGb()
@@ -585,9 +585,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. The memory allocated in GBs.
+     * Output only. The memory allocated in GBs.
      *
-     * Generated from protobuf field <code>int32 memory_size_gb = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 memory_size_gb = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -626,9 +626,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. The local node storage allocated in GBs.
+     * Output only. The local node storage allocated in GBs.
      *
-     * Generated from protobuf field <code>int32 db_node_storage_size_gb = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 db_node_storage_size_gb = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getDbNodeStorageSizeGb()
@@ -637,9 +637,9 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Optional. The local node storage allocated in GBs.
+     * Output only. The local node storage allocated in GBs.
      *
-     * Generated from protobuf field <code>int32 db_node_storage_size_gb = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 db_node_storage_size_gb = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

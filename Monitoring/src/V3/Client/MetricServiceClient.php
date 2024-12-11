@@ -45,6 +45,7 @@ use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
@@ -58,15 +59,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createMetricDescriptorAsync(CreateMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMetricDescriptorAsync(DeleteMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetricDescriptorAsync(GetMetricDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMonitoredResourceDescriptorAsync(GetMonitoredResourceDescriptorRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMetricDescriptorsAsync(ListMetricDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTimeSeriesAsync(ListTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetricDescriptor> createMetricDescriptorAsync(CreateMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> createServiceTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> createTimeSeriesAsync(CreateTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMetricDescriptorAsync(DeleteMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetricDescriptor> getMetricDescriptorAsync(GetMetricDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MonitoredResourceDescriptor> getMonitoredResourceDescriptorAsync(GetMonitoredResourceDescriptorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMetricDescriptorsAsync(ListMetricDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMonitoredResourceDescriptorsAsync(ListMonitoredResourceDescriptorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTimeSeriesAsync(ListTimeSeriesRequest $request, array $optionalArgs = [])
  */
 final class MetricServiceClient
 {
@@ -338,14 +339,14 @@ final class MetricServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -400,6 +401,9 @@ final class MetricServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

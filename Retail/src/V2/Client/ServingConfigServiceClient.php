@@ -42,6 +42,7 @@ use Google\Cloud\Retail\V2\RemoveControlRequest;
 use Google\Cloud\Retail\V2\ServingConfig;
 use Google\Cloud\Retail\V2\UpdateServingConfigRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for modifying ServingConfig.
@@ -54,13 +55,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface addControlAsync(AddControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeControlAsync(RemoveControlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> addControlAsync(AddControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> getServingConfigAsync(GetServingConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServingConfigsAsync(ListServingConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> removeControlAsync(RemoveControlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServingConfig> updateServingConfigAsync(UpdateServingConfigRequest $request, array $optionalArgs = [])
  */
 final class ServingConfigServiceClient
 {
@@ -165,14 +166,14 @@ final class ServingConfigServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -227,6 +228,9 @@ final class ServingConfigServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

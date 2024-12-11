@@ -62,6 +62,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Analytics reporting data service.
@@ -76,20 +77,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceList> getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PropertyQuotasSnapshot> getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecurringAudienceList> getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportTask> getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceListResponse> queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryReportTaskResponse> queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunFunnelReportResponse> runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SheetExportAudienceListResponse> sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
  */
 final class AlphaAnalyticsDataClient
 {
@@ -285,8 +286,8 @@ final class AlphaAnalyticsDataClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -294,7 +295,7 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -349,6 +350,9 @@ final class AlphaAnalyticsDataClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

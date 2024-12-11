@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Aspect Type is a template for creating Aspects, and represents the
- * JSON-schema for a given Entry, e.g., BigQuery Table Schema.
+ * AspectType is a template for creating Aspects, and represents the
+ * JSON-schema for a given Entry, for example, BigQuery Table Schema.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectType</code>
  */
@@ -24,9 +24,9 @@ class AspectType extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. System generated globally unique ID for the AspectType. This
-     * ID will be different if the AspectType is deleted and re-created with the
-     * same name.
+     * Output only. System generated globally unique ID for the AspectType.
+     * If you delete and recreate the AspectType with the same name, then this ID
+     * will be different.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -62,15 +62,14 @@ class AspectType extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * The service computes this checksum. The client may send it on update and
+     * delete requests to ensure it has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      */
     protected $etag = '';
     /**
-     * Immutable. Authorization defined for this type.
+     * Immutable. Defines the Authorization for this type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.Authorization authorization = 52 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -99,9 +98,9 @@ class AspectType extends \Google\Protobuf\Internal\Message
      *           Output only. The relative resource name of the AspectType, of the form:
      *           projects/{project_number}/locations/{location_id}/aspectTypes/{aspect_type_id}.
      *     @type string $uid
-     *           Output only. System generated globally unique ID for the AspectType. This
-     *           ID will be different if the AspectType is deleted and re-created with the
-     *           same name.
+     *           Output only. System generated globally unique ID for the AspectType.
+     *           If you delete and recreate the AspectType with the same name, then this ID
+     *           will be different.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the AspectType was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -113,11 +112,10 @@ class AspectType extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. User-defined labels for the AspectType.
      *     @type string $etag
-     *           This checksum is computed by the server based on the value of other
-     *           fields, and may be sent on update and delete requests to ensure the
-     *           client has an up-to-date value before proceeding.
+     *           The service computes this checksum. The client may send it on update and
+     *           delete requests to ensure it has an up-to-date value before proceeding.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\Authorization $authorization
-     *           Immutable. Authorization defined for this type.
+     *           Immutable. Defines the Authorization for this type.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $metadata_template
      *           Required. MetadataTemplate of the aspect.
      *     @type int $transfer_status
@@ -159,9 +157,9 @@ class AspectType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the AspectType. This
-     * ID will be different if the AspectType is deleted and re-created with the
-     * same name.
+     * Output only. System generated globally unique ID for the AspectType.
+     * If you delete and recreate the AspectType with the same name, then this ID
+     * will be different.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -172,9 +170,9 @@ class AspectType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. System generated globally unique ID for the AspectType. This
-     * ID will be different if the AspectType is deleted and re-created with the
-     * same name.
+     * Output only. System generated globally unique ID for the AspectType.
+     * If you delete and recreate the AspectType with the same name, then this ID
+     * will be different.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -339,9 +337,8 @@ class AspectType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * The service computes this checksum. The client may send it on update and
+     * delete requests to ensure it has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      * @return string
@@ -352,9 +349,8 @@ class AspectType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of other
-     * fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * The service computes this checksum. The client may send it on update and
+     * delete requests to ensure it has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
      * @param string $var
@@ -369,7 +365,7 @@ class AspectType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Authorization defined for this type.
+     * Immutable. Defines the Authorization for this type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.Authorization authorization = 52 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\Dataplex\V1\AspectType\Authorization|null
@@ -390,7 +386,7 @@ class AspectType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Authorization defined for this type.
+     * Immutable. Defines the Authorization for this type.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.AspectType.Authorization authorization = 52 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\Dataplex\V1\AspectType\Authorization $var

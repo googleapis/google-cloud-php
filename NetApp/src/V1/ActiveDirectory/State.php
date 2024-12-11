@@ -55,6 +55,12 @@ class State
      * Generated from protobuf enum <code>ERROR = 6;</code>
      */
     const ERROR = 6;
+    /**
+     * Active Directory State is Diagnosing.
+     *
+     * Generated from protobuf enum <code>DIAGNOSING = 7;</code>
+     */
+    const DIAGNOSING = 7;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -64,6 +70,7 @@ class State
         self::IN_USE => 'IN_USE',
         self::DELETING => 'DELETING',
         self::ERROR => 'ERROR',
+        self::DIAGNOSING => 'DIAGNOSING',
     ];
 
     public static function name($value)

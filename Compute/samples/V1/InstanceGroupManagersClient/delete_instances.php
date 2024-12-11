@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_DeleteInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\DeleteInstancesInstanceGroupManagerRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest;
 use Google\Rpc\Status;
 
@@ -44,18 +45,20 @@ function delete_instances_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersDeleteInstancesRequestResource = new InstanceGroupManagersDeleteInstancesRequest();
+    $request = (new DeleteInstancesInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersDeleteInstancesRequestResource(
+            $instanceGroupManagersDeleteInstancesRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->deleteInstances(
-            $instanceGroupManager,
-            $instanceGroupManagersDeleteInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->deleteInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

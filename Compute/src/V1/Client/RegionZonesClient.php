@@ -34,6 +34,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\ListRegionZonesRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionZones API.
@@ -41,7 +42,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface listAsync(ListRegionZonesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionZonesRequest $request, array $optionalArgs = [])
  */
 final class RegionZonesClient
 {
@@ -153,6 +154,9 @@ final class RegionZonesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -178,6 +182,8 @@ final class RegionZonesClient
      * Retrieves the list of Zone resources under the specific region available to the specified project.
      *
      * The async variant is {@see RegionZonesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionZonesClient/list.php
      *
      * @param ListRegionZonesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

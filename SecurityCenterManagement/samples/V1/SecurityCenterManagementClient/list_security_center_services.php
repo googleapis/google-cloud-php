@@ -33,13 +33,12 @@ use Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService;
  * Returns a list of all Security Command Center services for the given
  * parent.
  *
- * @param string $formattedParent The name of the parent to list Security Command Center services.
+ * @param string $formattedParent The name of the parent to list Security Command Center services,
+ *                                in one of the following formats:
  *
- *                                Formats:
- *
- *                                * organizations/{organization}/locations/{location}
- *                                * folders/{folder}/locations/{location}
- *                                * projects/{project}/locations/{location}
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                * `folders/{folder}/locations/{location}`
+ *                                * `projects/{project}/locations/{location}`
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
 function list_security_center_services_sample(string $formattedParent): void

@@ -45,6 +45,13 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
      */
     private $health_state = null;
+    /**
+     * Health state of the ipv6 network endpoint determined based on the health checks configured.
+     * Check the Ipv6HealthState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
+     */
+    private $ipv6_health_state = null;
 
     /**
      * Constructor.
@@ -63,6 +70,9 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
      *     @type string $health_state
      *           Health state of the network endpoint determined based on the health checks configured.
      *           Check the HealthState enum for the list of possible values.
+     *     @type string $ipv6_health_state
+     *           Health state of the ipv6 network endpoint determined based on the health checks configured.
+     *           Check the Ipv6HealthState enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,6 +258,44 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->health_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Health state of the ipv6 network endpoint determined based on the health checks configured.
+     * Check the Ipv6HealthState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
+     * @return string
+     */
+    public function getIpv6HealthState()
+    {
+        return isset($this->ipv6_health_state) ? $this->ipv6_health_state : '';
+    }
+
+    public function hasIpv6HealthState()
+    {
+        return isset($this->ipv6_health_state);
+    }
+
+    public function clearIpv6HealthState()
+    {
+        unset($this->ipv6_health_state);
+    }
+
+    /**
+     * Health state of the ipv6 network endpoint determined based on the health checks configured.
+     * Check the Ipv6HealthState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6HealthState($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_health_state = $var;
 
         return $this;
     }

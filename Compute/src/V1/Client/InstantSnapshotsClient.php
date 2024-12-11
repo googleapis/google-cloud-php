@@ -47,6 +47,7 @@ use Google\Cloud\Compute\V1\TestIamPermissionsInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The InstantSnapshots API.
@@ -54,15 +55,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListInstantSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListInstantSnapshotsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsInstantSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInstantSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstantSnapshot> getAsync(GetInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListInstantSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInstantSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsInstantSnapshotRequest $request, array $optionalArgs = [])
  */
 final class InstantSnapshotsClient
 {
@@ -227,6 +228,9 @@ final class InstantSnapshotsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -254,6 +258,8 @@ final class InstantSnapshotsClient
      *
      * The async variant is {@see InstantSnapshotsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/InstantSnapshotsClient/aggregated_list.php
+     *
      * @param AggregatedListInstantSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -277,6 +283,8 @@ final class InstantSnapshotsClient
      * Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot. For more information, see Deleting instantSnapshots.
      *
      * The async variant is {@see InstantSnapshotsClient::deleteAsync()} .
+     *
+     * @example samples/V1/InstantSnapshotsClient/delete.php
      *
      * @param DeleteInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -302,6 +310,8 @@ final class InstantSnapshotsClient
      *
      * The async variant is {@see InstantSnapshotsClient::getAsync()} .
      *
+     * @example samples/V1/InstantSnapshotsClient/get.php
+     *
      * @param GetInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -325,6 +335,8 @@ final class InstantSnapshotsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see InstantSnapshotsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/InstantSnapshotsClient/get_iam_policy.php
      *
      * @param GetIamPolicyInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -350,6 +362,8 @@ final class InstantSnapshotsClient
      *
      * The async variant is {@see InstantSnapshotsClient::insertAsync()} .
      *
+     * @example samples/V1/InstantSnapshotsClient/insert.php
+     *
      * @param InsertInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -373,6 +387,8 @@ final class InstantSnapshotsClient
      * Retrieves the list of InstantSnapshot resources contained within the specified zone.
      *
      * The async variant is {@see InstantSnapshotsClient::listAsync()} .
+     *
+     * @example samples/V1/InstantSnapshotsClient/list.php
      *
      * @param ListInstantSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -398,6 +414,8 @@ final class InstantSnapshotsClient
      *
      * The async variant is {@see InstantSnapshotsClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/InstantSnapshotsClient/set_iam_policy.php
+     *
      * @param SetIamPolicyInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -422,6 +440,8 @@ final class InstantSnapshotsClient
      *
      * The async variant is {@see InstantSnapshotsClient::setLabelsAsync()} .
      *
+     * @example samples/V1/InstantSnapshotsClient/set_labels.php
+     *
      * @param SetLabelsInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -445,6 +465,8 @@ final class InstantSnapshotsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see InstantSnapshotsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/InstantSnapshotsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsInstantSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

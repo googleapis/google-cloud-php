@@ -20,21 +20,22 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
     /**
-     * The estimated total number of matching entries. Not guaranteed to be
-     * accurate.
+     * The estimated total number of matching entries. This number isn't
+     * guaranteed to be accurate.
      *
      * Generated from protobuf field <code>int32 total_size = 2;</code>
      */
     protected $total_size = 0;
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
     protected $next_page_token = '';
     /**
-     * Unreachable locations. Search results don't include data from those
-     * locations.
+     * Locations that the service couldn't reach. Search results don't include
+     * data from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4;</code>
      */
@@ -49,13 +50,14 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dataplex\V1\SearchEntriesResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           The results matching the search query.
      *     @type int $total_size
-     *           The estimated total number of matching entries. Not guaranteed to be
-     *           accurate.
+     *           The estimated total number of matching entries. This number isn't
+     *           guaranteed to be accurate.
      *     @type string $next_page_token
-     *           Pagination token.
+     *           Token to retrieve the next page of results, or empty if there are no more
+     *           results in the list.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
-     *           Unreachable locations. Search results don't include data from those
-     *           locations.
+     *           Locations that the service couldn't reach. Search results don't include
+     *           data from these locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,8 +92,8 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The estimated total number of matching entries. Not guaranteed to be
-     * accurate.
+     * The estimated total number of matching entries. This number isn't
+     * guaranteed to be accurate.
      *
      * Generated from protobuf field <code>int32 total_size = 2;</code>
      * @return int
@@ -102,8 +104,8 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The estimated total number of matching entries. Not guaranteed to be
-     * accurate.
+     * The estimated total number of matching entries. This number isn't
+     * guaranteed to be accurate.
      *
      * Generated from protobuf field <code>int32 total_size = 2;</code>
      * @param int $var
@@ -118,7 +120,8 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @return string
@@ -129,7 +132,8 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more
+     * results in the list.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @param string $var
@@ -144,8 +148,8 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unreachable locations. Search results don't include data from those
-     * locations.
+     * Locations that the service couldn't reach. Search results don't include
+     * data from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -156,8 +160,8 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unreachable locations. Search results don't include data from those
-     * locations.
+     * Locations that the service couldn't reach. Search results don't include
+     * data from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

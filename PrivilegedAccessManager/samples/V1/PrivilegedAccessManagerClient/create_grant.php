@@ -30,7 +30,8 @@ use Google\Cloud\PrivilegedAccessManager\V1\Grant;
 use Google\Protobuf\Duration;
 
 /**
- * Creates a new grant in a given project and location.
+ * Creates a new grant in a given project/folder/organization and
+ * location.
  *
  * @param string $formattedParent Name of the parent entitlement for which this grant is being
  *                                requested. Please see

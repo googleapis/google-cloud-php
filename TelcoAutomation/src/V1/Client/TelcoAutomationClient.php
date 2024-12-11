@@ -85,6 +85,7 @@ use Google\Cloud\TelcoAutomation\V1\UpdateHydratedDeploymentRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: TelcoAutomation Service manages the control plane cluster a.k.a.
@@ -101,44 +102,44 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface applyDeploymentAsync(ApplyDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface applyHydratedDeploymentAsync(ApplyHydratedDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface approveBlueprintAsync(ApproveBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface computeDeploymentStatusAsync(ComputeDeploymentStatusRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBlueprintAsync(CreateBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEdgeSlmAsync(CreateEdgeSlmRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createOrchestrationClusterAsync(CreateOrchestrationClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBlueprintAsync(DeleteBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEdgeSlmAsync(DeleteEdgeSlmRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteOrchestrationClusterAsync(DeleteOrchestrationClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface discardBlueprintChangesAsync(DiscardBlueprintChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface discardDeploymentChangesAsync(DiscardDeploymentChangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBlueprintAsync(GetBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEdgeSlmAsync(GetEdgeSlmRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHydratedDeploymentAsync(GetHydratedDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOrchestrationClusterAsync(GetOrchestrationClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPublicBlueprintAsync(GetPublicBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBlueprintRevisionsAsync(ListBlueprintRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBlueprintsAsync(ListBlueprintsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentRevisionsAsync(ListDeploymentRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEdgeSlmsAsync(ListEdgeSlmsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHydratedDeploymentsAsync(ListHydratedDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrchestrationClustersAsync(ListOrchestrationClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPublicBlueprintsAsync(ListPublicBlueprintsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface proposeBlueprintAsync(ProposeBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rejectBlueprintAsync(RejectBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface removeDeploymentAsync(RemoveDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackDeploymentAsync(RollbackDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchBlueprintRevisionsAsync(SearchBlueprintRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchDeploymentRevisionsAsync(SearchDeploymentRevisionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBlueprintAsync(UpdateBlueprintRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateHydratedDeploymentAsync(UpdateHydratedDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> applyDeploymentAsync(ApplyDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HydratedDeployment> applyHydratedDeploymentAsync(ApplyHydratedDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Blueprint> approveBlueprintAsync(ApproveBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ComputeDeploymentStatusResponse> computeDeploymentStatusAsync(ComputeDeploymentStatusRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Blueprint> createBlueprintAsync(CreateBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEdgeSlmAsync(CreateEdgeSlmRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createOrchestrationClusterAsync(CreateOrchestrationClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBlueprintAsync(DeleteBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEdgeSlmAsync(DeleteEdgeSlmRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteOrchestrationClusterAsync(DeleteOrchestrationClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiscardBlueprintChangesResponse> discardBlueprintChangesAsync(DiscardBlueprintChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiscardDeploymentChangesResponse> discardDeploymentChangesAsync(DiscardDeploymentChangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Blueprint> getBlueprintAsync(GetBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EdgeSlm> getEdgeSlmAsync(GetEdgeSlmRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HydratedDeployment> getHydratedDeploymentAsync(GetHydratedDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OrchestrationCluster> getOrchestrationClusterAsync(GetOrchestrationClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PublicBlueprint> getPublicBlueprintAsync(GetPublicBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBlueprintRevisionsAsync(ListBlueprintRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBlueprintsAsync(ListBlueprintsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentRevisionsAsync(ListDeploymentRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEdgeSlmsAsync(ListEdgeSlmsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHydratedDeploymentsAsync(ListHydratedDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrchestrationClustersAsync(ListOrchestrationClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPublicBlueprintsAsync(ListPublicBlueprintsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Blueprint> proposeBlueprintAsync(ProposeBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Blueprint> rejectBlueprintAsync(RejectBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> removeDeploymentAsync(RemoveDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> rollbackDeploymentAsync(RollbackDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchBlueprintRevisionsAsync(SearchBlueprintRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchDeploymentRevisionsAsync(SearchDeploymentRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Blueprint> updateBlueprintAsync(UpdateBlueprintRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HydratedDeployment> updateHydratedDeploymentAsync(UpdateHydratedDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class TelcoAutomationClient
 {
@@ -411,14 +412,14 @@ final class TelcoAutomationClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -473,6 +474,9 @@ final class TelcoAutomationClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

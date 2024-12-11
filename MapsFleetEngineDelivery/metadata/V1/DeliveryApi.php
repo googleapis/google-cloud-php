@@ -27,7 +27,7 @@ class DeliveryApi
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ö,
+Ú,
 6google/maps/fleetengine/delivery/v1/delivery_api.protomaps.fleetengine.delivery.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/api/routing.protogoogle/geo/type/viewport.proto;google/maps/fleetengine/delivery/v1/delivery_vehicles.proto0google/maps/fleetengine/delivery/v1/header.proto<google/maps/fleetengine/delivery/v1/task_tracking_info.proto/google/maps/fleetengine/delivery/v1/tasks.proto google/protobuf/field_mask.proto"í
 CreateDeliveryVehicleRequestH
 header (23.maps.fleetengine.delivery.v1.DeliveryRequestHeaderBàA
@@ -112,8 +112,8 @@ UpdateTask/.maps.fleetengine.delivery.v1.UpdateTaskRequest".maps.fleetengine.d
 GetTaskTrackingInfo8.maps.fleetengine.delivery.v1.GetTaskTrackingInfoRequest..maps.fleetengine.delivery.v1.TaskTrackingInfo"aÚAname‚Óä“+)/v1/{name=providers/*/taskTrackingInfo/*}ŠÓä“#!
 name{provider_id=providers/*}ô
 ListDeliveryVehicles9.maps.fleetengine.delivery.v1.ListDeliveryVehiclesRequest:.maps.fleetengine.delivery.v1.ListDeliveryVehiclesResponse"eÚAparent‚Óä“+)/v1/{parent=providers/*}/deliveryVehiclesŠÓä“%#
-parent{provider_id=providers/*}NÊAfleetengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBº
-#google.maps.fleetengine.delivery.v1BDeliveryApiPZIcloud.google.com/go/maps/fleetengine/delivery/apiv1/deliverypb;deliverypb¢CFEDª#Google.Maps.FleetEngine.Delivery.V1Ê#Google\\Maps\\FleetEngine\\Delivery\\V1ê\'Google::Maps::FleetEngine::Delivery::V1êA;
+parent{provider_id=providers/*}NÊAfleetengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾
+\'com.google.maps.fleetengine.delivery.v1BDeliveryApiPZIcloud.google.com/go/maps/fleetengine/delivery/apiv1/deliverypb;deliverypb¢CFEDª#Google.Maps.FleetEngine.Delivery.V1Ê#Google\\Maps\\FleetEngine\\Delivery\\V1ê\'Google::Maps::FleetEngine::Delivery::V1êA;
 #fleetengine.googleapis.com/Providerproviders/{provider}bproto3'
         , true);
 

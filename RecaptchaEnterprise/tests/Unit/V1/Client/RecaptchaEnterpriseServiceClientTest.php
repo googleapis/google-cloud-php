@@ -47,6 +47,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData\OverrideType;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesResponse;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest;
@@ -57,6 +59,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
@@ -858,6 +862,78 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listIpOverridesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $ipOverridesElement = new IpOverrideData();
+        $ipOverrides = [
+            $ipOverridesElement,
+        ];
+        $expectedResponse = new ListIpOverridesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setIpOverrides($ipOverrides);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $request = (new ListIpOverridesRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listIpOverrides($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getIpOverrides()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListIpOverrides', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIpOverridesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $request = (new ListIpOverridesRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listIpOverrides($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listKeysTest()
     {
         $transport = $this->createTransport();
@@ -1128,6 +1204,82 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->migrateKey($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeIpOverrideTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RemoveIpOverrideResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $ipOverrideData = new IpOverrideData();
+        $ipOverrideDataIp = 'ipOverrideDataIp1421737572';
+        $ipOverrideData->setIp($ipOverrideDataIp);
+        $ipOverrideDataOverrideType = OverrideType::OVERRIDE_TYPE_UNSPECIFIED;
+        $ipOverrideData->setOverrideType($ipOverrideDataOverrideType);
+        $request = (new RemoveIpOverrideRequest())
+            ->setName($formattedName)
+            ->setIpOverrideData($ipOverrideData);
+        $response = $gapicClient->removeIpOverride($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/RemoveIpOverride', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getIpOverrideData();
+        $this->assertProtobufEquals($ipOverrideData, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeIpOverrideExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->keyName('[PROJECT]', '[KEY]');
+        $ipOverrideData = new IpOverrideData();
+        $ipOverrideDataIp = 'ipOverrideDataIp1421737572';
+        $ipOverrideData->setIp($ipOverrideDataIp);
+        $ipOverrideDataOverrideType = OverrideType::OVERRIDE_TYPE_UNSPECIFIED;
+        $ipOverrideData->setOverrideType($ipOverrideDataOverrideType);
+        $request = (new RemoveIpOverrideRequest())
+            ->setName($formattedName)
+            ->setIpOverrideData($ipOverrideData);
+        try {
+            $gapicClient->removeIpOverride($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

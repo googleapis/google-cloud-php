@@ -18,9 +18,9 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
     /**
      * Dump the anomalies to Cloud Logging. The anomalies will be put to json
      * payload encoded from proto
-     * [google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry][].
-     * This can be further sinked to Pub/Sub or any other services supported
-     * by Cloud Logging.
+     * [ModelMonitoringStatsAnomalies][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies].
+     * This can be further synced to Pub/Sub or any other services supported by
+     * Cloud Logging.
      *
      * Generated from protobuf field <code>bool enable_logging = 2;</code>
      */
@@ -46,9 +46,9 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_logging
      *           Dump the anomalies to Cloud Logging. The anomalies will be put to json
      *           payload encoded from proto
-     *           [google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry][].
-     *           This can be further sinked to Pub/Sub or any other services supported
-     *           by Cloud Logging.
+     *           [ModelMonitoringStatsAnomalies][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies].
+     *           This can be further synced to Pub/Sub or any other services supported by
+     *           Cloud Logging.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           Resource names of the NotificationChannels to send alert.
      *           Must be of the format
@@ -94,9 +94,9 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
     /**
      * Dump the anomalies to Cloud Logging. The anomalies will be put to json
      * payload encoded from proto
-     * [google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry][].
-     * This can be further sinked to Pub/Sub or any other services supported
-     * by Cloud Logging.
+     * [ModelMonitoringStatsAnomalies][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies].
+     * This can be further synced to Pub/Sub or any other services supported by
+     * Cloud Logging.
      *
      * Generated from protobuf field <code>bool enable_logging = 2;</code>
      * @return bool
@@ -109,9 +109,9 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
     /**
      * Dump the anomalies to Cloud Logging. The anomalies will be put to json
      * payload encoded from proto
-     * [google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry][].
-     * This can be further sinked to Pub/Sub or any other services supported
-     * by Cloud Logging.
+     * [ModelMonitoringStatsAnomalies][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies].
+     * This can be further synced to Pub/Sub or any other services supported by
+     * Cloud Logging.
      *
      * Generated from protobuf field <code>bool enable_logging = 2;</code>
      * @param bool $var

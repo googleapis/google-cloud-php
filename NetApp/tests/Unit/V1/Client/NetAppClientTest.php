@@ -55,6 +55,7 @@ use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\DestinationVolumeParameters;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
+use Google\Cloud\NetApp\V1\EstablishPeeringRequest;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
@@ -93,6 +94,7 @@ use Google\Cloud\NetApp\V1\Snapshot;
 use Google\Cloud\NetApp\V1\StopReplicationRequest;
 use Google\Cloud\NetApp\V1\StoragePool;
 use Google\Cloud\NetApp\V1\SwitchActiveReplicaZoneRequest;
+use Google\Cloud\NetApp\V1\SyncReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
@@ -949,6 +951,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -956,6 +959,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2841,6 +2845,162 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function establishPeeringTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/establishPeeringTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $stateDetails = 'stateDetails632437908';
+        $healthy = false;
+        $destinationVolume = 'destinationVolume-1177512853';
+        $description = 'description-1724546052';
+        $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
+        $expectedResponse = new Replication();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setHealthy($healthy);
+        $expectedResponse->setDestinationVolume($destinationVolume);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/establishPeeringTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $peerClusterName = 'peerClusterName-1759308435';
+        $peerSvmName = 'peerSvmName-1166928515';
+        $peerVolumeName = 'peerVolumeName486635827';
+        $request = (new EstablishPeeringRequest())
+            ->setName($formattedName)
+            ->setPeerClusterName($peerClusterName)
+            ->setPeerSvmName($peerSvmName)
+            ->setPeerVolumeName($peerVolumeName);
+        $response = $gapicClient->establishPeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/EstablishPeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerClusterName();
+        $this->assertProtobufEquals($peerClusterName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerSvmName();
+        $this->assertProtobufEquals($peerSvmName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerVolumeName();
+        $this->assertProtobufEquals($peerVolumeName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/establishPeeringTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function establishPeeringExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/establishPeeringTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $peerClusterName = 'peerClusterName-1759308435';
+        $peerSvmName = 'peerSvmName-1166928515';
+        $peerVolumeName = 'peerVolumeName486635827';
+        $request = (new EstablishPeeringRequest())
+            ->setName($formattedName)
+            ->setPeerClusterName($peerClusterName)
+            ->setPeerSvmName($peerSvmName)
+            ->setPeerVolumeName($peerVolumeName);
+        $response = $gapicClient->establishPeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/establishPeeringTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getActiveDirectoryTest()
     {
         $transport = $this->createTransport();
@@ -3244,6 +3404,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -3251,6 +3412,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
@@ -4241,6 +4403,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4248,6 +4411,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4375,6 +4539,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4382,6 +4547,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4679,6 +4845,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetails($stateDetails);
@@ -4686,6 +4853,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4921,6 +5089,142 @@ class NetAppClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/switchActiveReplicaZoneTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function syncReplicationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/syncReplicationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $stateDetails = 'stateDetails632437908';
+        $healthy = false;
+        $destinationVolume = 'destinationVolume-1177512853';
+        $description = 'description-1724546052';
+        $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
+        $expectedResponse = new Replication();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setHealthy($healthy);
+        $expectedResponse->setDestinationVolume($destinationVolume);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/syncReplicationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $request = (new SyncReplicationRequest())->setName($formattedName);
+        $response = $gapicClient->syncReplication($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/SyncReplication', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/syncReplicationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function syncReplicationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/syncReplicationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->replicationName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[REPLICATION]');
+        $request = (new SyncReplicationRequest())->setName($formattedName);
+        $response = $gapicClient->syncReplication($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/syncReplicationTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -5697,6 +6001,7 @@ class NetAppClientTest extends GeneratedTest
         $destinationVolume = 'destinationVolume-1177512853';
         $description = 'description-1724546052';
         $sourceVolume = 'sourceVolume327497662';
+        $clusterLocation = 'clusterLocation-44738470';
         $expectedResponse = new Replication();
         $expectedResponse->setName($name);
         $expectedResponse->setStateDetails($stateDetails);
@@ -5704,6 +6009,7 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setDestinationVolume($destinationVolume);
         $expectedResponse->setDescription($description);
         $expectedResponse->setSourceVolume($sourceVolume);
+        $expectedResponse->setClusterLocation($clusterLocation);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

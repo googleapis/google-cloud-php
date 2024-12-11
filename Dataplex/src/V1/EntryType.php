@@ -61,15 +61,15 @@ class EntryType extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. This checksum is computed by the server based on the value of
-     * other fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the service, and might be sent on
+     * update and delete requests to ensure the client has an up-to-date value
+     * before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
     /**
-     * Optional. Indicates the class this Entry Type belongs to, for example,
+     * Optional. Indicates the classes this Entry Type belongs to, for example,
      * TABLE, DATABASE, MODEL.
      *
      * Generated from protobuf field <code>repeated string type_aliases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -125,11 +125,11 @@ class EntryType extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. User-defined labels for the EntryType.
      *     @type string $etag
-     *           Optional. This checksum is computed by the server based on the value of
-     *           other fields, and may be sent on update and delete requests to ensure the
-     *           client has an up-to-date value before proceeding.
+     *           Optional. This checksum is computed by the service, and might be sent on
+     *           update and delete requests to ensure the client has an up-to-date value
+     *           before proceeding.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $type_aliases
-     *           Optional. Indicates the class this Entry Type belongs to, for example,
+     *           Optional. Indicates the classes this Entry Type belongs to, for example,
      *           TABLE, DATABASE, MODEL.
      *     @type string $platform
      *           Optional. The platform that Entries of this type belongs to.
@@ -356,9 +356,9 @@ class EntryType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This checksum is computed by the server based on the value of
-     * other fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the service, and might be sent on
+     * update and delete requests to ensure the client has an up-to-date value
+     * before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -369,9 +369,9 @@ class EntryType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This checksum is computed by the server based on the value of
-     * other fields, and may be sent on update and delete requests to ensure the
-     * client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the service, and might be sent on
+     * update and delete requests to ensure the client has an up-to-date value
+     * before proceeding.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -386,7 +386,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the class this Entry Type belongs to, for example,
+     * Optional. Indicates the classes this Entry Type belongs to, for example,
      * TABLE, DATABASE, MODEL.
      *
      * Generated from protobuf field <code>repeated string type_aliases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -398,7 +398,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates the class this Entry Type belongs to, for example,
+     * Optional. Indicates the classes this Entry Type belongs to, for example,
      * TABLE, DATABASE, MODEL.
      *
      * Generated from protobuf field <code>repeated string type_aliases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>

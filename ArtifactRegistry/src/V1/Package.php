@@ -42,6 +42,12 @@ class Package extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
     protected $update_time = null;
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class Package extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The time when the package was last updated. This includes publishing a new
      *           version of the package.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Client specified annotations.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,6 +201,32 @@ class Package extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Client specified annotations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }

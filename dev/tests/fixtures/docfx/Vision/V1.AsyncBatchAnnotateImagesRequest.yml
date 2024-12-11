@@ -23,6 +23,8 @@ items:
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setOutputConfig()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getParent()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getLabels()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setLabels()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::__construct()'
@@ -41,16 +43,20 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ requests'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">AnnotateImageRequest</xref>&gt;'
           description: 'Required. Individual image annotation requests for this batch.'
         -
           id: '↳ output_config'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: 'Required. The desired output location and metadata (e.g. format).'
         -
           id: '↳ parent'
           var_type: string
           description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+        -
+          id: '↳ labels'
+          var_type: 'array|<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+          description: 'Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getRequests()'
     name: getRequests
@@ -77,7 +83,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">AnnotateImageRequest</xref>&gt;'
           description: ''
       returns:
         -
@@ -94,7 +100,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::hasOutputConfig()'
     name: hasOutputConfig
@@ -124,7 +130,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: ''
       returns:
         -
@@ -179,6 +185,49 @@ items:
         -
           var_type: $this
   -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getLabels()'
+    name: getLabels
+    id: getLabels
+    summary: |-
+      Optional. The labels with user-defined metadata for the request.
+
+      Label keys and values can be no longer than 63 characters
+      (Unicode codepoints), can only contain lowercase letters, numeric
+      characters, underscores and dashes. International characters are allowed.
+      Label values are optional. Label keys must start with a letter.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setLabels()'
+    name: setLabels
+    id: setLabels
+    summary: |-
+      Optional. The labels with user-defined metadata for the request.
+
+      Label keys and values can be no longer than 63 characters
+      (Unicode codepoints), can only contain lowercase letters, numeric
+      characters, underscores and dashes. International characters are allowed.
+      Label values are optional. Label keys must start with a letter.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array|<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/MapField">Google\Protobuf\Internal\MapField</a>'
+          description: ''
+      returns:
+        -
+          var_type: $this
+  -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::build()'
     name: 'static::build'
     id: build
@@ -190,12 +239,12 @@ items:
       parameters:
         -
           id: requests
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">AnnotateImageRequest</xref>&gt;'
           description: 'Required. Individual image annotation requests for this batch.'
         -
           id: outputConfig
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">OutputConfig</xref>'
           description: 'Required. The desired output location and metadata (e.g. format).'
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">AsyncBatchAnnotateImagesRequest</xref>'

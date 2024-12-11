@@ -34,7 +34,7 @@ class InitializeEncryptionSpecMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $request = null;
     /**
-     * Partial errors during initialising operation that might cause the operation
+     * Partial errors during initializing operation that might cause the operation
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
@@ -54,7 +54,7 @@ class InitializeEncryptionSpecMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\InitializeEncryptionSpecRequest $request
      *           Output only. The original request for initialization.
      *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
-     *           Partial errors during initialising operation that might cause the operation
+     *           Partial errors during initializing operation that might cause the operation
      *           output to be incomplete.
      * }
      */
@@ -172,7 +172,7 @@ class InitializeEncryptionSpecMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Partial errors during initialising operation that might cause the operation
+     * Partial errors during initializing operation that might cause the operation
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
@@ -184,7 +184,7 @@ class InitializeEncryptionSpecMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Partial errors during initialising operation that might cause the operation
+     * Partial errors during initializing operation that might cause the operation
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>

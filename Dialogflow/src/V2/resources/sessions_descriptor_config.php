@@ -78,6 +78,7 @@ return [
             ],
             'templateMap' => [
                 'context' => 'projects/{project}/agent/sessions/{session}/contexts/{context}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'projectEnvironmentUserSession' => 'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}',
                 'projectEnvironmentUserSessionContext' => 'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}',
                 'projectEnvironmentUserSessionEntityType' => 'projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}',

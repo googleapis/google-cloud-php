@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Networks_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NetworksClient;
+use Google\Cloud\Compute\V1\InsertNetworkRequest;
 use Google\Cloud\Compute\V1\Network;
-use Google\Cloud\Compute\V1\NetworksClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkResource = new Network();
+    $request = (new InsertNetworkRequest())
+        ->setNetworkResource($networkResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networksClient->insert($networkResource, $project);
+        $response = $networksClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

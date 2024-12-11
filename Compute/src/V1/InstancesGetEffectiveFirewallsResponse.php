@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Effective firewalls from firewall policies.
+     * [Output Only] Effective firewalls from firewall policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
      */
@@ -34,7 +34,7 @@ class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policys
-     *           Effective firewalls from firewall policies.
+     *           [Output Only] Effective firewalls from firewall policies.
      *     @type array<\Google\Cloud\Compute\V1\Firewall>|\Google\Protobuf\Internal\RepeatedField $firewalls
      *           Effective firewalls on the instance.
      * }
@@ -45,7 +45,7 @@ class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Effective firewalls from firewall policies.
+     * [Output Only] Effective firewalls from firewall policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +56,7 @@ class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Effective firewalls from firewall policies.
+     * [Output Only] Effective firewalls from firewall policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
      * @param array<\Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $var

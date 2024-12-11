@@ -37,6 +37,7 @@ use Google\Cloud\Compute\V1\DiskType;
 use Google\Cloud\Compute\V1\GetDiskTypeRequest;
 use Google\Cloud\Compute\V1\ListDiskTypesRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The DiskTypes API.
@@ -44,9 +45,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListDiskTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetDiskTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListDiskTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListDiskTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiskType> getAsync(GetDiskTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListDiskTypesRequest $request, array $optionalArgs = [])
  */
 final class DiskTypesClient
 {
@@ -158,6 +159,9 @@ final class DiskTypesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -184,6 +188,8 @@ final class DiskTypesClient
      *
      * The async variant is {@see DiskTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/DiskTypesClient/aggregated_list.php
+     *
      * @param AggregatedListDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -208,6 +214,8 @@ final class DiskTypesClient
      *
      * The async variant is {@see DiskTypesClient::getAsync()} .
      *
+     * @example samples/V1/DiskTypesClient/get.php
+     *
      * @param GetDiskTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -231,6 +239,8 @@ final class DiskTypesClient
      * Retrieves a list of disk types available to the specified project.
      *
      * The async variant is {@see DiskTypesClient::listAsync()} .
+     *
+     * @example samples/V1/DiskTypesClient/list.php
      *
      * @param ListDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

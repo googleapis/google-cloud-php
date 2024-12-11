@@ -467,6 +467,20 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig desired_rbac_binding_config = 144;</code>
      */
     protected $desired_rbac_binding_config = null;
+    /**
+     * The desired enterprise configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147;</code>
+     */
+    protected $desired_enterprise_config = null;
+    /**
+     * The desired Linux node config for all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     * Currently only `cgroup_mode` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig desired_node_pool_auto_config_linux_node_config = 150;</code>
+     */
+    protected $desired_node_pool_auto_config_linux_node_config = null;
 
     /**
      * Constructor.
@@ -673,6 +687,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\RBACBindingConfig $desired_rbac_binding_config
      *           RBACBindingConfig allows user to restrict ClusterRoleBindings an
      *           RoleBindings that can be created.
+     *     @type \Google\Cloud\Container\V1\DesiredEnterpriseConfig $desired_enterprise_config
+     *           The desired enterprise configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig $desired_node_pool_auto_config_linux_node_config
+     *           The desired Linux node config for all auto-provisioned node pools
+     *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *           Currently only `cgroup_mode` can be set here.
      * }
      */
     public function __construct($data = NULL) {
@@ -2966,6 +2986,82 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RBACBindingConfig::class);
         $this->desired_rbac_binding_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired enterprise configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147;</code>
+     * @return \Google\Cloud\Container\V1\DesiredEnterpriseConfig|null
+     */
+    public function getDesiredEnterpriseConfig()
+    {
+        return $this->desired_enterprise_config;
+    }
+
+    public function hasDesiredEnterpriseConfig()
+    {
+        return isset($this->desired_enterprise_config);
+    }
+
+    public function clearDesiredEnterpriseConfig()
+    {
+        unset($this->desired_enterprise_config);
+    }
+
+    /**
+     * The desired enterprise configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DesiredEnterpriseConfig desired_enterprise_config = 147;</code>
+     * @param \Google\Cloud\Container\V1\DesiredEnterpriseConfig $var
+     * @return $this
+     */
+    public function setDesiredEnterpriseConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DesiredEnterpriseConfig::class);
+        $this->desired_enterprise_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired Linux node config for all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     * Currently only `cgroup_mode` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig desired_node_pool_auto_config_linux_node_config = 150;</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig|null
+     */
+    public function getDesiredNodePoolAutoConfigLinuxNodeConfig()
+    {
+        return $this->desired_node_pool_auto_config_linux_node_config;
+    }
+
+    public function hasDesiredNodePoolAutoConfigLinuxNodeConfig()
+    {
+        return isset($this->desired_node_pool_auto_config_linux_node_config);
+    }
+
+    public function clearDesiredNodePoolAutoConfigLinuxNodeConfig()
+    {
+        unset($this->desired_node_pool_auto_config_linux_node_config);
+    }
+
+    /**
+     * The desired Linux node config for all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     * Currently only `cgroup_mode` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig desired_node_pool_auto_config_linux_node_config = 150;</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig $var
+     * @return $this
+     */
+    public function setDesiredNodePoolAutoConfigLinuxNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig::class);
+        $this->desired_node_pool_auto_config_linux_node_config = $var;
 
         return $this;
     }

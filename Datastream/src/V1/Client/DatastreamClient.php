@@ -59,6 +59,7 @@ use Google\Cloud\Datastream\V1\ListStreamsRequest;
 use Google\Cloud\Datastream\V1\LookupStreamObjectRequest;
 use Google\Cloud\Datastream\V1\PrivateConnection;
 use Google\Cloud\Datastream\V1\Route;
+use Google\Cloud\Datastream\V1\RunStreamRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobRequest;
 use Google\Cloud\Datastream\V1\StartBackfillJobResponse;
 use Google\Cloud\Datastream\V1\StopBackfillJobRequest;
@@ -73,6 +74,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Datastream service
@@ -85,33 +87,34 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createConnectionProfileAsync(CreateConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRouteAsync(CreateRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createStreamAsync(CreateStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConnectionProfileAsync(DeleteConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRouteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteStreamAsync(DeleteStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface discoverConnectionProfileAsync(DiscoverConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchStaticIpsAsync(FetchStaticIpsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConnectionProfileAsync(GetConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStreamAsync(GetStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getStreamObjectAsync(GetStreamObjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConnectionProfilesAsync(ListConnectionProfilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listStreamObjectsAsync(ListStreamObjectsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listStreamsAsync(ListStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupStreamObjectAsync(LookupStreamObjectRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startBackfillJobAsync(StartBackfillJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopBackfillJobAsync(StopBackfillJobRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConnectionProfileAsync(UpdateConnectionProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateStreamAsync(UpdateStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createConnectionProfileAsync(CreateConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRouteAsync(CreateRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createStreamAsync(CreateStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteConnectionProfileAsync(DeleteConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePrivateConnectionAsync(DeletePrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRouteAsync(DeleteRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteStreamAsync(DeleteStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DiscoverConnectionProfileResponse> discoverConnectionProfileAsync(DiscoverConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchStaticIpsAsync(FetchStaticIpsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectionProfile> getConnectionProfileAsync(GetConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PrivateConnection> getPrivateConnectionAsync(GetPrivateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Route> getRouteAsync(GetRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Stream> getStreamAsync(GetStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StreamObject> getStreamObjectAsync(GetStreamObjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConnectionProfilesAsync(ListConnectionProfilesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPrivateConnectionsAsync(ListPrivateConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listStreamObjectsAsync(ListStreamObjectsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listStreamsAsync(ListStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StreamObject> lookupStreamObjectAsync(LookupStreamObjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runStreamAsync(RunStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StartBackfillJobResponse> startBackfillJobAsync(StartBackfillJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StopBackfillJobResponse> stopBackfillJobAsync(StopBackfillJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateConnectionProfileAsync(UpdateConnectionProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateStreamAsync(UpdateStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DatastreamClient
 {
@@ -366,14 +369,14 @@ final class DatastreamClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -428,6 +431,9 @@ final class DatastreamClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -1020,6 +1026,33 @@ final class DatastreamClient
     public function lookupStreamObject(LookupStreamObjectRequest $request, array $callOptions = []): StreamObject
     {
         return $this->startApiCall('LookupStreamObject', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Use this method to start, resume or recover a stream with a non default CDC
+     * strategy.
+     *
+     * The async variant is {@see DatastreamClient::runStreamAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/run_stream.php
+     *
+     * @param RunStreamRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function runStream(RunStreamRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RunStream', $request, $callOptions)->wait();
     }
 
     /**

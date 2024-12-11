@@ -77,6 +77,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: BackupForGKE allows Kubernetes administrators to configure, execute, and
@@ -90,36 +91,36 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRestoreAsync(CreateRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRestorePlanAsync(CreateRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRestoreAsync(DeleteRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRestorePlanAsync(DeleteRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupIndexDownloadUrlAsync(GetBackupIndexDownloadUrlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRestoreAsync(GetRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRestorePlanAsync(GetRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeBackupAsync(GetVolumeBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVolumeRestoreAsync(GetVolumeRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRestorePlansAsync(ListRestorePlansRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRestoresAsync(ListRestoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumeBackupsAsync(ListVolumeBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVolumeRestoresAsync(ListVolumeRestoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRestoreAsync(UpdateRestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRestorePlanAsync(UpdateRestorePlanRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupPlanAsync(CreateBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestoreAsync(CreateRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRestorePlanAsync(CreateRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupPlanAsync(DeleteBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestoreAsync(DeleteRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRestorePlanAsync(DeleteRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetBackupIndexDownloadUrlResponse> getBackupIndexDownloadUrlAsync(GetBackupIndexDownloadUrlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupPlan> getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Restore> getRestoreAsync(GetRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RestorePlan> getRestorePlanAsync(GetRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VolumeBackup> getVolumeBackupAsync(GetVolumeBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VolumeRestore> getVolumeRestoreAsync(GetVolumeRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestorePlansAsync(ListRestorePlansRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRestoresAsync(ListRestoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumeBackupsAsync(ListVolumeBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVolumeRestoresAsync(ListVolumeRestoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackupPlanAsync(UpdateBackupPlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRestoreAsync(UpdateRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRestorePlanAsync(UpdateRestorePlanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class BackupForGKEClient
 {
@@ -432,14 +433,14 @@ final class BackupForGKEClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -494,6 +495,9 @@ final class BackupForGKEClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

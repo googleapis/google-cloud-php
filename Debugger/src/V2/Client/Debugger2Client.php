@@ -41,6 +41,7 @@ use Google\Cloud\Debugger\V2\ListDebuggeesResponse;
 use Google\Cloud\Debugger\V2\SetBreakpointRequest;
 use Google\Cloud\Debugger\V2\SetBreakpointResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Debugger service provides the API that allows users to collect run-time
@@ -59,11 +60,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteBreakpointAsync(DeleteBreakpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBreakpointAsync(GetBreakpointRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBreakpointsAsync(ListBreakpointsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDebuggeesAsync(ListDebuggeesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setBreakpointAsync(SetBreakpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBreakpointAsync(DeleteBreakpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetBreakpointResponse> getBreakpointAsync(GetBreakpointRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListBreakpointsResponse> listBreakpointsAsync(ListBreakpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListDebuggeesResponse> listDebuggeesAsync(ListDebuggeesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SetBreakpointResponse> setBreakpointAsync(SetBreakpointRequest $request, array $optionalArgs = [])
  */
 final class Debugger2Client
 {
@@ -163,6 +164,9 @@ final class Debugger2Client
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

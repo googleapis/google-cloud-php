@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Definition of the constraints of a field
+ * Definition of the constraints of a field.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectType.MetadataTemplate.Constraints</code>
  */
 class Constraints extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Marks this as an optional/required field.
+     * Optional. Marks this field as optional or required.
      *
      * Generated from protobuf field <code>bool required = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -29,7 +29,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $required
-     *           Optional. Marks this as an optional/required field.
+     *           Optional. Marks this field as optional or required.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Marks this as an optional/required field.
+     * Optional. Marks this field as optional or required.
      *
      * Generated from protobuf field <code>bool required = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -49,7 +49,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Marks this as an optional/required field.
+     * Optional. Marks this field as optional or required.
      *
      * Generated from protobuf field <code>bool required = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

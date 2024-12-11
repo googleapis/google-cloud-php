@@ -66,6 +66,7 @@ use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources
@@ -78,30 +79,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAutonomousDatabaseAsync(CreateAutonomousDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCloudExadataInfrastructureAsync(CreateCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCloudVmClusterAsync(CreateCloudVmClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAutonomousDatabaseAsync(DeleteAutonomousDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCloudExadataInfrastructureAsync(DeleteCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCloudVmClusterAsync(DeleteCloudVmClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAutonomousDatabaseWalletAsync(GenerateAutonomousDatabaseWalletRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAutonomousDatabaseAsync(GetAutonomousDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCloudExadataInfrastructureAsync(GetCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCloudVmClusterAsync(GetCloudVmClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutonomousDatabaseBackupsAsync(ListAutonomousDatabaseBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutonomousDatabaseCharacterSetsAsync(ListAutonomousDatabaseCharacterSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutonomousDatabasesAsync(ListAutonomousDatabasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAutonomousDbVersionsAsync(ListAutonomousDbVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCloudExadataInfrastructuresAsync(ListCloudExadataInfrastructuresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCloudVmClustersAsync(ListCloudVmClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDbNodesAsync(ListDbNodesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDbServersAsync(ListDbServersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDbSystemShapesAsync(ListDbSystemShapesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGiVersionsAsync(ListGiVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAutonomousDatabaseAsync(CreateAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCloudExadataInfrastructureAsync(CreateCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCloudVmClusterAsync(CreateCloudVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAutonomousDatabaseAsync(DeleteAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCloudExadataInfrastructureAsync(DeleteCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCloudVmClusterAsync(DeleteCloudVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAutonomousDatabaseWalletResponse> generateAutonomousDatabaseWalletAsync(GenerateAutonomousDatabaseWalletRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutonomousDatabase> getAutonomousDatabaseAsync(GetAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CloudExadataInfrastructure> getCloudExadataInfrastructureAsync(GetCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CloudVmCluster> getCloudVmClusterAsync(GetCloudVmClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutonomousDatabaseBackupsAsync(ListAutonomousDatabaseBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutonomousDatabaseCharacterSetsAsync(ListAutonomousDatabaseCharacterSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutonomousDatabasesAsync(ListAutonomousDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAutonomousDbVersionsAsync(ListAutonomousDbVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCloudExadataInfrastructuresAsync(ListCloudExadataInfrastructuresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCloudVmClustersAsync(ListCloudVmClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDbNodesAsync(ListDbNodesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDbServersAsync(ListDbServersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDbSystemShapesAsync(ListDbSystemShapesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntitlementsAsync(ListEntitlementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGiVersionsAsync(ListGiVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class OracleDatabaseClient
 {
@@ -323,14 +324,14 @@ final class OracleDatabaseClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -382,6 +383,9 @@ final class OracleDatabaseClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

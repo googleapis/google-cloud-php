@@ -9,16 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to validate an Event Threat Detection custom module.
+ * Request message for
+ * [SecurityCenterManagement.ValidateEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ValidateEventThreatDetectionCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleRequest</code>
  */
 class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent to validate the Custom Module under.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}`.
+     * Required. Resource name of the parent to validate the custom modules under,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +32,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
      */
     protected $raw_text = '';
     /**
-     * Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
+     * Required. The type of the module. For example, `CONFIGURABLE_BAD_IP`.
      *
      * Generated from protobuf field <code>string type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,14 +45,14 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent to validate the Custom Module under.
-     *           Its format is:
-     *             * `organizations/{organization}/locations/{location}`.
+     *           Required. Resource name of the parent to validate the custom modules under,
+     *           in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}`
      *     @type string $raw_text
      *           Required. The raw text of the module's contents. Used to generate error
      *           messages.
      *     @type string $type
-     *           Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
+     *           Required. The type of the module. For example, `CONFIGURABLE_BAD_IP`.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,9 +61,9 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. Resource name of the parent to validate the Custom Module under.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}`.
+     * Required. Resource name of the parent to validate the custom modules under,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,9 +74,9 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. Resource name of the parent to validate the Custom Module under.
-     * Its format is:
-     *   * `organizations/{organization}/locations/{location}`.
+     * Required. Resource name of the parent to validate the custom modules under,
+     * in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -118,7 +119,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
+     * Required. The type of the module. For example, `CONFIGURABLE_BAD_IP`.
      *
      * Generated from protobuf field <code>string type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -129,7 +130,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. The type of the module (e.g. CONFIGURABLE_BAD_IP).
+     * Required. The type of the module. For example, `CONFIGURABLE_BAD_IP`.
      *
      * Generated from protobuf field <code>string type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

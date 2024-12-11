@@ -74,7 +74,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings $ios_settings
      *           Settings for keys that can be used by iOS apps.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings $express_settings
-     *           Settings specific to keys that can be used for reCAPTCHA Express.
+     *           Settings for keys that can be used by reCAPTCHA Express.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. See [Creating and managing labels]
      *           (https://cloud.google.com/recaptcha/docs/labels).
@@ -239,7 +239,7 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings specific to keys that can be used for reCAPTCHA Express.
+     * Settings for keys that can be used by reCAPTCHA Express.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ExpressKeySettings express_settings = 11;</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings|null
@@ -255,7 +255,7 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings specific to keys that can be used for reCAPTCHA Express.
+     * Settings for keys that can be used by reCAPTCHA Express.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ExpressKeySettings express_settings = 11;</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings $var

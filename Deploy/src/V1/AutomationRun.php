@@ -60,9 +60,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      */
     protected $automation_snapshot = null;
     /**
-     * Output only. The ID of the target that represents the promotion stage that
-     * initiates the `AutomationRun`. The value of this field is the last segment
-     * of a target name.
+     * Output only. The ID of the source target that initiates the
+     * `AutomationRun`. The value of this field is the last segment of a target
+     * name.
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -140,9 +140,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *           Output only. Snapshot of the Automation taken at AutomationRun creation
      *           time.
      *     @type string $target_id
-     *           Output only. The ID of the target that represents the promotion stage that
-     *           initiates the `AutomationRun`. The value of this field is the last segment
-     *           of a target name.
+     *           Output only. The ID of the source target that initiates the
+     *           `AutomationRun`. The value of this field is the last segment of a target
+     *           name.
      *     @type int $state
      *           Output only. Current state of the `AutomationRun`.
      *     @type string $state_description
@@ -164,6 +164,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
      *           Output only. Advances a rollout to the next phase.
      *     @type \Google\Cloud\Deploy\V1\RepairRolloutOperation $repair_rollout_operation
      *           Output only. Repairs a failed 'Rollout'.
+     *     @type \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation $timed_promote_release_operation
+     *           Output only. Promotes a release to a specified 'Target' as defined in a
+     *           Timed Promote Release rule.
      *     @type \Google\Protobuf\Timestamp $wait_until_time
      *           Output only. Earliest time the `AutomationRun` will attempt to resume.
      *           Wait-time is configured by `wait` in automation rule.
@@ -373,9 +376,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the target that represents the promotion stage that
-     * initiates the `AutomationRun`. The value of this field is the last segment
-     * of a target name.
+     * Output only. The ID of the source target that initiates the
+     * `AutomationRun`. The value of this field is the last segment of a target
+     * name.
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -386,9 +389,9 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the target that represents the promotion stage that
-     * initiates the `AutomationRun`. The value of this field is the last segment
-     * of a target name.
+     * Output only. The ID of the source target that initiates the
+     * `AutomationRun`. The value of this field is the last segment of a target
+     * name.
      *
      * Generated from protobuf field <code>string target_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -673,6 +676,39 @@ class AutomationRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\RepairRolloutOperation::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Promotes a release to a specified 'Target' as defined in a
+     * Timed Promote Release rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseOperation timed_promote_release_operation = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation|null
+     */
+    public function getTimedPromoteReleaseOperation()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasTimedPromoteReleaseOperation()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Output only. Promotes a release to a specified 'Target' as defined in a
+     * Timed Promote Release rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.TimedPromoteReleaseOperation timed_promote_release_operation = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation $var
+     * @return $this
+     */
+    public function setTimedPromoteReleaseOperation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\TimedPromoteReleaseOperation::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

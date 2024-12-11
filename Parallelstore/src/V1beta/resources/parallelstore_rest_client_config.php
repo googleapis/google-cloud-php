@@ -140,7 +140,6 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/operations/*}:cancel',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

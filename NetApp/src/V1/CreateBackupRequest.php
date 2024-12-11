@@ -25,8 +25,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backup.
      * The ID must be unique within the specified backupVault.
-     * Must contain only letters, numbers, underscore and hyphen, with the first
-     * character a letter or underscore, the last a letter or underscore or a
+     * Must contain only letters, numbers and hyphen, with the first
+     * character a letter, the last a letter or a
      * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -46,8 +46,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\NetApp\V1\Backup $backup   Required. A backup resource
      * @param string                         $backupId Required. The ID to use for the backup.
      *                                                 The ID must be unique within the specified backupVault.
-     *                                                 Must contain only letters, numbers, underscore and hyphen, with the first
-     *                                                 character a letter or underscore, the last a letter or underscore or a
+     *                                                 Must contain only letters, numbers and hyphen, with the first
+     *                                                 character a letter, the last a letter or a
      *                                                 number, and a 63 character maximum.
      *
      * @return \Google\Cloud\NetApp\V1\CreateBackupRequest
@@ -74,8 +74,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $backup_id
      *           Required. The ID to use for the backup.
      *           The ID must be unique within the specified backupVault.
-     *           Must contain only letters, numbers, underscore and hyphen, with the first
-     *           character a letter or underscore, the last a letter or underscore or a
+     *           Must contain only letters, numbers and hyphen, with the first
+     *           character a letter, the last a letter or a
      *           number, and a 63 character maximum.
      *     @type \Google\Cloud\NetApp\V1\Backup $backup
      *           Required. A backup resource
@@ -117,8 +117,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backup.
      * The ID must be unique within the specified backupVault.
-     * Must contain only letters, numbers, underscore and hyphen, with the first
-     * character a letter or underscore, the last a letter or underscore or a
+     * Must contain only letters, numbers and hyphen, with the first
+     * character a letter, the last a letter or a
      * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -132,8 +132,8 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the backup.
      * The ID must be unique within the specified backupVault.
-     * Must contain only letters, numbers, underscore and hyphen, with the first
-     * character a letter or underscore, the last a letter or underscore or a
+     * Must contain only letters, numbers and hyphen, with the first
+     * character a letter, the last a letter or a
      * number, and a 63 character maximum.
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

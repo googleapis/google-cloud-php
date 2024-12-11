@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class EnablementState
 {
     /**
-     * Unspecified enablement state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>ENABLEMENT_STATE_UNSPECIFIED = 0;</code>
      */

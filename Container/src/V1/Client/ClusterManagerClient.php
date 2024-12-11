@@ -77,6 +77,7 @@ use Google\Cloud\Container\V1\UpdateClusterRequest;
 use Google\Cloud\Container\V1\UpdateMasterRequest;
 use Google\Cloud\Container\V1\UpdateNodePoolRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Kubernetes Engine Cluster Manager v1
@@ -89,40 +90,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface completeNodePoolUpgradeAsync(CompleteNodePoolUpgradeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createNodePoolAsync(CreateNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodePoolAsync(DeleteNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getJSONWebKeysAsync(GetJSONWebKeysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodePoolAsync(GetNodePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServerConfigAsync(GetServerConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodePoolsAsync(ListNodePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUsableSubnetworksAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackNodePoolUpgradeAsync(RollbackNodePoolUpgradeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setAddonsConfigAsync(SetAddonsConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLegacyAbacAsync(SetLegacyAbacRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLocationsAsync(SetLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLoggingServiceAsync(SetLoggingServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMaintenancePolicyAsync(SetMaintenancePolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMasterAuthAsync(SetMasterAuthRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setMonitoringServiceAsync(SetMonitoringServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNetworkPolicyAsync(SetNetworkPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodePoolAutoscalingAsync(SetNodePoolAutoscalingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodePoolManagementAsync(SetNodePoolManagementRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setNodePoolSizeAsync(SetNodePoolSizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startIPRotationAsync(StartIPRotationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMasterAsync(UpdateMasterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNodePoolAsync(UpdateNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckAutopilotCompatibilityResponse> checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> completeNodePoolUpgradeAsync(CompleteNodePoolUpgradeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> createNodePoolAsync(CreateNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteNodePoolAsync(DeleteNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetJSONWebKeysResponse> getJSONWebKeysAsync(GetJSONWebKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NodePool> getNodePoolAsync(GetNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServerConfig> getServerConfigAsync(GetServerConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListClustersResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListNodePoolsResponse> listNodePoolsAsync(ListNodePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ListOperationsResponse> listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableSubnetworksAsync(ListUsableSubnetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rollbackNodePoolUpgradeAsync(RollbackNodePoolUpgradeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setAddonsConfigAsync(SetAddonsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLabelsAsync(SetLabelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLegacyAbacAsync(SetLegacyAbacRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLocationsAsync(SetLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setLoggingServiceAsync(SetLoggingServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setMaintenancePolicyAsync(SetMaintenancePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setMasterAuthAsync(SetMasterAuthRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setMonitoringServiceAsync(SetMonitoringServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNetworkPolicyAsync(SetNetworkPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNodePoolAutoscalingAsync(SetNodePoolAutoscalingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNodePoolManagementAsync(SetNodePoolManagementRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> setNodePoolSizeAsync(SetNodePoolSizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startIPRotationAsync(StartIPRotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateMasterAsync(UpdateMasterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateNodePoolAsync(UpdateNodePoolRequest $request, array $optionalArgs = [])
  */
 final class ClusterManagerClient
 {
@@ -248,14 +249,14 @@ final class ClusterManagerClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -310,6 +311,9 @@ final class ClusterManagerClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

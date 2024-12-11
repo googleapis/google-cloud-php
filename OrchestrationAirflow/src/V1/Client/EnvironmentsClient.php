@@ -68,6 +68,7 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Managed Apache Airflow Environments.
@@ -80,30 +81,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface checkUpgradeAsync(CheckUpgradeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createUserWorkloadsConfigMapAsync(CreateUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createUserWorkloadsSecretAsync(CreateUserWorkloadsSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface databaseFailoverAsync(DatabaseFailoverRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteUserWorkloadsConfigMapAsync(DeleteUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteUserWorkloadsSecretAsync(DeleteUserWorkloadsSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface executeAirflowCommandAsync(ExecuteAirflowCommandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface fetchDatabasePropertiesAsync(FetchDatabasePropertiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getUserWorkloadsConfigMapAsync(GetUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getUserWorkloadsSecretAsync(GetUserWorkloadsSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUserWorkloadsConfigMapsAsync(ListUserWorkloadsConfigMapsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listUserWorkloadsSecretsAsync(ListUserWorkloadsSecretsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface loadSnapshotAsync(LoadSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface pollAirflowCommandAsync(PollAirflowCommandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface saveSnapshotAsync(SaveSnapshotRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopAirflowCommandAsync(StopAirflowCommandRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateUserWorkloadsConfigMapAsync(UpdateUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateUserWorkloadsSecretAsync(UpdateUserWorkloadsSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> checkUpgradeAsync(CheckUpgradeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserWorkloadsConfigMap> createUserWorkloadsConfigMapAsync(CreateUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserWorkloadsSecret> createUserWorkloadsSecretAsync(CreateUserWorkloadsSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> databaseFailoverAsync(DatabaseFailoverRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserWorkloadsConfigMapAsync(DeleteUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteUserWorkloadsSecretAsync(DeleteUserWorkloadsSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteAirflowCommandResponse> executeAirflowCommandAsync(ExecuteAirflowCommandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FetchDatabasePropertiesResponse> fetchDatabasePropertiesAsync(FetchDatabasePropertiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Environment> getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserWorkloadsConfigMap> getUserWorkloadsConfigMapAsync(GetUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserWorkloadsSecret> getUserWorkloadsSecretAsync(GetUserWorkloadsSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUserWorkloadsConfigMapsAsync(ListUserWorkloadsConfigMapsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUserWorkloadsSecretsAsync(ListUserWorkloadsSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listWorkloadsAsync(ListWorkloadsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> loadSnapshotAsync(LoadSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PollAirflowCommandResponse> pollAirflowCommandAsync(PollAirflowCommandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> saveSnapshotAsync(SaveSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StopAirflowCommandResponse> stopAirflowCommandAsync(StopAirflowCommandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserWorkloadsConfigMap> updateUserWorkloadsConfigMapAsync(UpdateUserWorkloadsConfigMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserWorkloadsSecret> updateUserWorkloadsSecretAsync(UpdateUserWorkloadsSecretRequest $request, array $optionalArgs = [])
  */
 final class EnvironmentsClient
 {
@@ -286,14 +287,14 @@ final class EnvironmentsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -348,6 +349,9 @@ final class EnvironmentsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

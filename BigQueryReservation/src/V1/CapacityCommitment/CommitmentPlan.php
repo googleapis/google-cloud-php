@@ -42,7 +42,7 @@ class CommitmentPlan
      * `renewal_plan`. Default `renewal_plan` for Trial commitment is Flex so
      * that it can be deleted right after committed period ends.
      *
-     * Generated from protobuf enum <code>TRIAL = 5;</code>
+     * Generated from protobuf enum <code>TRIAL = 5 [deprecated = true];</code>
      */
     const TRIAL = 5;
     /**

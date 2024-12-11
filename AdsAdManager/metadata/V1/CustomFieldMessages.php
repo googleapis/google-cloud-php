@@ -19,7 +19,7 @@ class CustomFieldMessages
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-È
+å
 3google/ads/admanager/v1/custom_field_messages.protogoogle.ads.admanager.v1google/api/field_behavior.protogoogle/api/resource.proto"¬
 CustomField
 name (	BàA
@@ -36,8 +36,8 @@ visibility	 (2H.google.ads.admanager.v1.CustomFieldVisibilityEnum.CustomField
 $admanager.googleapis.com/CustomField3networks/{network_code}/customFields/{custom_field}*customFields2customField"S
 CustomFieldOption#
 custom_field_option_id (BàA
-display_name (	BàAB¯
-com.google.ads.admanager.v1BCustomFieldMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1bproto3'
+display_name (	BàABÌ
+com.google.ads.admanager.v1BCustomFieldMessagesProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

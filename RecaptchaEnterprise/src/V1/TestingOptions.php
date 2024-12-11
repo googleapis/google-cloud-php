@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class TestingOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. All assessments for this Key will return this score. Must be
-     * between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key return this score. Must be between 0
+     * (likely not legitimate) and 1 (likely legitimate) inclusive.
      *
      * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $testing_score = 0.0;
     /**
      * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
-     * challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     * challenge requests for this site return nocaptcha if NOCAPTCHA, or an
      * unsolvable challenge if CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -38,11 +38,11 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $testing_score
-     *           Optional. All assessments for this Key will return this score. Must be
-     *           between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
+     *           Optional. All assessments for this Key return this score. Must be between 0
+     *           (likely not legitimate) and 1 (likely legitimate) inclusive.
      *     @type int $testing_challenge
      *           Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
-     *           challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     *           challenge requests for this site return nocaptcha if NOCAPTCHA, or an
      *           unsolvable challenge if CHALLENGE.
      * }
      */
@@ -52,8 +52,8 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. All assessments for this Key will return this score. Must be
-     * between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key return this score. Must be between 0
+     * (likely not legitimate) and 1 (likely legitimate) inclusive.
      *
      * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -64,8 +64,8 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. All assessments for this Key will return this score. Must be
-     * between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key return this score. Must be between 0
+     * (likely not legitimate) and 1 (likely legitimate) inclusive.
      *
      * Generated from protobuf field <code>float testing_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -81,7 +81,7 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
-     * challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     * challenge requests for this site return nocaptcha if NOCAPTCHA, or an
      * unsolvable challenge if CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -94,7 +94,7 @@ class TestingOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all
-     * challenge requests for this site will return nocaptcha if NOCAPTCHA, or an
+     * challenge requests for this site return nocaptcha if NOCAPTCHA, or an
      * unsolvable challenge if CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge testing_challenge = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

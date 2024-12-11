@@ -61,6 +61,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Google Analytics reporting data service.
@@ -75,17 +76,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runReportAsync(RunReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRunPivotReportsResponse> batchRunPivotReportsAsync(BatchRunPivotReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRunReportsResponse> batchRunReportsAsync(BatchRunReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CheckCompatibilityResponse> checkCompatibilityAsync(CheckCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAudienceExportAsync(CreateAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceExport> getAudienceExportAsync(GetAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Metadata> getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAudienceExportsAsync(ListAudienceExportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryAudienceExportResponse> queryAudienceExportAsync(QueryAudienceExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunPivotReportResponse> runPivotReportAsync(RunPivotReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunRealtimeReportResponse> runRealtimeReportAsync(RunRealtimeReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunReportResponse> runReportAsync(RunReportRequest $request, array $optionalArgs = [])
  */
 final class BetaAnalyticsDataClient
 {
@@ -238,8 +239,8 @@ final class BetaAnalyticsDataClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -247,7 +248,7 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -302,6 +303,9 @@ final class BetaAnalyticsDataClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -328,7 +332,7 @@ final class BetaAnalyticsDataClient
 
     /**
      * Returns multiple pivot reports in a batch. All reports must be for the same
-     * GA4 Property.
+     * Google Analytics property.
      *
      * The async variant is {@see BetaAnalyticsDataClient::batchRunPivotReportsAsync()}
      * .
@@ -358,7 +362,7 @@ final class BetaAnalyticsDataClient
 
     /**
      * Returns multiple reports in a batch. All reports must be for the same
-     * GA4 Property.
+     * Google Analytics property.
      *
      * The async variant is {@see BetaAnalyticsDataClient::batchRunReportsAsync()} .
      *
@@ -517,7 +521,7 @@ final class BetaAnalyticsDataClient
     /**
      * Returns metadata for dimensions and metrics available in reporting methods.
      * Used to explore the dimensions and metrics. In this method, a Google
-     * Analytics GA4 Property Identifier is specified in the request, and
+     * Analytics property identifier is specified in the request, and
      * the metadata response includes Custom dimensions and metrics as well as
      * Universal metadata.
      *

@@ -66,6 +66,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The `AnalyticsHubService` API facilitates data sharing within and across
@@ -83,28 +84,28 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getListingAsync(GetListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSharedResourceSubscriptionsAsync(ListSharedResourceSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface refreshSubscriptionAsync(RefreshSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface revokeSubscriptionAsync(RevokeSubscriptionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface subscribeDataExchangeAsync(SubscribeDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> createDataExchangeAsync(CreateDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> createListingAsync(CreateListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataExchangeAsync(DeleteDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteListingAsync(DeleteListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteSubscriptionAsync(DeleteSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> getDataExchangeAsync(GetDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> getListingAsync(GetListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Subscription> getSubscriptionAsync(GetSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataExchangesAsync(ListDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listListingsAsync(ListListingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOrgDataExchangesAsync(ListOrgDataExchangesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSharedResourceSubscriptionsAsync(ListSharedResourceSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubscriptionsAsync(ListSubscriptionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> refreshSubscriptionAsync(RefreshSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RevokeSubscriptionResponse> revokeSubscriptionAsync(RevokeSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> subscribeDataExchangeAsync(SubscribeDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SubscribeListingResponse> subscribeListingAsync(SubscribeListingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataExchange> updateDataExchangeAsync(UpdateDataExchangeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Listing> updateListingAsync(UpdateListingRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsHubServiceClient
 {
@@ -336,14 +337,14 @@ final class AnalyticsHubServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -398,6 +399,9 @@ final class AnalyticsHubServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

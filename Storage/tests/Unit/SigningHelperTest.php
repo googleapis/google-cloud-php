@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -398,7 +399,7 @@ class SigningHelperTest extends TestCase
 
         $this->helper->createV4CanonicalRequest = function ($request) use ($saveAsName) {
             parse_str($request[2], $query);
-            $expectedDisposition = 'attachment; filename="' . $saveAsName .'"';
+            $expectedDisposition = 'attachment; filename="' . $saveAsName . '"';
             $this->assertEquals($expectedDisposition, $query['response-content-disposition']);
         };
 
@@ -788,6 +789,67 @@ class SigningHelperTest extends TestCase
         $conn->requestWrapper()->willReturn($rw->reveal());
 
         return $conn->reveal();
+    }
+
+    public function testRetrySignBlobSuccessFirstAttempt()
+    {
+        $signBlobFn = function () {
+            return 'signature';
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn
+        ]);
+
+        $this->assertEquals('signature', $res);
+    }
+
+    public function testRetrySignBlobSuccessAfterRetries()
+    {
+        $attempt = 0;
+        $signBlobFn = function () use (&$attempt) {
+            if (++$attempt < 3) {
+                throw new ServiceException('Transient error', 503);
+            }
+            return 'signature';
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn
+        ]);
+
+        $this->assertEquals('signature', $res);
+        $this->assertEquals(3, $attempt);
+    }
+
+    public function testRetrySignBlobNonRetryableError()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionMessage('Non-retryable error');
+
+        $signBlobFn = function () {
+            throw new ServiceException('Non-retryable error', 400);
+        };
+
+        $res = $this->helper->proxyPrivateMethodCall('retrySignBlob', [
+            $signBlobFn
+        ]);
+    }
+
+    public function testRetrySignBlobThrowsExceptionAfterThreeAttempts()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionMessage('Transient error (5 attempts)');
+
+        $attempt = 0;
+        $signBlobFn = function () use (&$attempt) {
+            throw new ServiceException(
+                sprintf('Transient error (%s attempts)', ++$attempt),
+                503
+            );
+        };
+
+        $this->helper->proxyPrivateMethodCall('retrySignBlob', [$signBlobFn]);
     }
 }
 

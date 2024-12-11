@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * AccessControlEntry is used to control who can do some operation.
+ * `AccessControlEntry` is used to control who can do some operation.
  *
  * Generated from protobuf message <code>google.cloud.privilegedaccessmanager.v1.AccessControlEntry</code>
  */

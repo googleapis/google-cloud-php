@@ -15,14 +15,34 @@
                                 "batchDeleteVersions"
                             ]
                         },
+                        "CreateAttachment": {
+                            "methods": [
+                                "createAttachment"
+                            ]
+                        },
                         "CreateRepository": {
                             "methods": [
                                 "createRepository"
                             ]
                         },
+                        "CreateRule": {
+                            "methods": [
+                                "createRule"
+                            ]
+                        },
                         "CreateTag": {
                             "methods": [
                                 "createTag"
+                            ]
+                        },
+                        "DeleteAttachment": {
+                            "methods": [
+                                "deleteAttachment"
+                            ]
+                        },
+                        "DeleteFile": {
+                            "methods": [
+                                "deleteFile"
                             ]
                         },
                         "DeletePackage": {
@@ -35,6 +55,11 @@
                                 "deleteRepository"
                             ]
                         },
+                        "DeleteRule": {
+                            "methods": [
+                                "deleteRule"
+                            ]
+                        },
                         "DeleteTag": {
                             "methods": [
                                 "deleteTag"
@@ -43,6 +68,11 @@
                         "DeleteVersion": {
                             "methods": [
                                 "deleteVersion"
+                            ]
+                        },
+                        "GetAttachment": {
+                            "methods": [
+                                "getAttachment"
                             ]
                         },
                         "GetDockerImage": {
@@ -90,6 +120,11 @@
                                 "getRepository"
                             ]
                         },
+                        "GetRule": {
+                            "methods": [
+                                "getRule"
+                            ]
+                        },
                         "GetTag": {
                             "methods": [
                                 "getTag"
@@ -113,6 +148,11 @@
                         "ImportYumArtifacts": {
                             "methods": [
                                 "importYumArtifacts"
+                            ]
+                        },
+                        "ListAttachments": {
+                            "methods": [
+                                "listAttachments"
                             ]
                         },
                         "ListDockerImages": {
@@ -150,6 +190,11 @@
                                 "listRepositories"
                             ]
                         },
+                        "ListRules": {
+                            "methods": [
+                                "listRules"
+                            ]
+                        },
                         "ListTags": {
                             "methods": [
                                 "listTags"
@@ -170,6 +215,16 @@
                                 "testIamPermissions"
                             ]
                         },
+                        "UpdateFile": {
+                            "methods": [
+                                "updateFile"
+                            ]
+                        },
+                        "UpdatePackage": {
+                            "methods": [
+                                "updatePackage"
+                            ]
+                        },
                         "UpdateProjectSettings": {
                             "methods": [
                                 "updateProjectSettings"
@@ -180,6 +235,11 @@
                                 "updateRepository"
                             ]
                         },
+                        "UpdateRule": {
+                            "methods": [
+                                "updateRule"
+                            ]
+                        },
                         "UpdateTag": {
                             "methods": [
                                 "updateTag"
@@ -188,6 +248,11 @@
                         "UpdateVPCSCConfig": {
                             "methods": [
                                 "updateVPCSCConfig"
+                            ]
+                        },
+                        "UpdateVersion": {
+                            "methods": [
+                                "updateVersion"
                             ]
                         },
                         "GetLocation": {

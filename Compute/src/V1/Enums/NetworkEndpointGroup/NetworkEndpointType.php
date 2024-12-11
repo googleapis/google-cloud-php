@@ -37,6 +37,8 @@ class NetworkEndpointType
 
     const GCE_VM_IP_PORT = 'GCE_VM_IP_PORT';
 
+    const GCE_VM_IP_PORTMAP = 'GCE_VM_IP_PORTMAP';
+
     const INTERNET_FQDN_PORT = 'INTERNET_FQDN_PORT';
 
     const INTERNET_IP_PORT = 'INTERNET_IP_PORT';

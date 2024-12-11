@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionCommitments_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionCommitmentsClient;
 use Google\Cloud\Compute\V1\Commitment;
-use Google\Cloud\Compute\V1\RegionCommitmentsClient;
+use Google\Cloud\Compute\V1\UpdateRegionCommitmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,18 @@ function update_sample(string $commitment, string $project, string $region): voi
     // Create a client.
     $regionCommitmentsClient = new RegionCommitmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $commitmentResource = new Commitment();
+    $request = (new UpdateRegionCommitmentRequest())
+        ->setCommitment($commitment)
+        ->setCommitmentResource($commitmentResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionCommitmentsClient->update($commitment, $commitmentResource, $project, $region);
+        $response = $regionCommitmentsClient->update($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

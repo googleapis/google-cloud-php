@@ -42,6 +42,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetLabelsVpnTunnelRequest;
 use Google\Cloud\Compute\V1\VpnTunnel;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The VpnTunnels API.
@@ -49,12 +50,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListVpnTunnelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteVpnTunnelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetVpnTunnelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertVpnTunnelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListVpnTunnelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setLabelsAsync(SetLabelsVpnTunnelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListVpnTunnelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteVpnTunnelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VpnTunnel> getAsync(GetVpnTunnelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertVpnTunnelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListVpnTunnelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsVpnTunnelRequest $request, array $optionalArgs = [])
  */
 final class VpnTunnelsClient
 {
@@ -219,6 +220,9 @@ final class VpnTunnelsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -246,6 +250,8 @@ final class VpnTunnelsClient
      *
      * The async variant is {@see VpnTunnelsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/VpnTunnelsClient/aggregated_list.php
+     *
      * @param AggregatedListVpnTunnelsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -269,6 +275,8 @@ final class VpnTunnelsClient
      * Deletes the specified VpnTunnel resource.
      *
      * The async variant is {@see VpnTunnelsClient::deleteAsync()} .
+     *
+     * @example samples/V1/VpnTunnelsClient/delete.php
      *
      * @param DeleteVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -294,6 +302,8 @@ final class VpnTunnelsClient
      *
      * The async variant is {@see VpnTunnelsClient::getAsync()} .
      *
+     * @example samples/V1/VpnTunnelsClient/get.php
+     *
      * @param GetVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -317,6 +327,8 @@ final class VpnTunnelsClient
      * Creates a VpnTunnel resource in the specified project and region using the data included in the request.
      *
      * The async variant is {@see VpnTunnelsClient::insertAsync()} .
+     *
+     * @example samples/V1/VpnTunnelsClient/insert.php
      *
      * @param InsertVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -342,6 +354,8 @@ final class VpnTunnelsClient
      *
      * The async variant is {@see VpnTunnelsClient::listAsync()} .
      *
+     * @example samples/V1/VpnTunnelsClient/list.php
+     *
      * @param ListVpnTunnelsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -365,6 +379,8 @@ final class VpnTunnelsClient
      * Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see VpnTunnelsClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/VpnTunnelsClient/set_labels.php
      *
      * @param SetLabelsVpnTunnelRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

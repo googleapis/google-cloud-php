@@ -18,7 +18,7 @@ class ListFlowsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent containing the flows.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class ListFlowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent containing the flows.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                       {@see FlowsClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListFlowsRequest
@@ -76,7 +76,7 @@ class ListFlowsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent containing the flows.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type int $page_size
      *           The maximum number of items to return in a single page. By default 100 and
      *           at most 1000.
@@ -103,7 +103,7 @@ class ListFlowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent containing the flows.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -115,7 +115,7 @@ class ListFlowsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent containing the flows.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
