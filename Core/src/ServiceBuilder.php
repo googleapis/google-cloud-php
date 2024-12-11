@@ -49,6 +49,8 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Please note that unless otherwise noted the examples below take advantage of
  * [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
+ *
+ * @deprecated
  */
 class ServiceBuilder
 {
