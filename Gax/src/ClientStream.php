@@ -31,27 +31,37 @@
  */
 namespace Google\ApiCore;
 
+use Google\Auth\Logging\LoggingTrait;
+use Google\Auth\Logging\RpcLogEvent;
+use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
 use Grpc\ClientStreamingCall;
+use Psr\Log\LoggerInterface;
 
 /**
  * ClientStream is the response object from a gRPC client streaming API call.
  */
 class ClientStream
 {
+    use LoggingTrait;
+
     private $call;
+    private null|LoggerInterface $logger;
 
     /**
      * ClientStream constructor.
      *
      * @param ClientStreamingCall $clientStreamingCall The gRPC client streaming call object
      * @param array $streamingDescriptor
+     * @param null|LoggerInterface $logger A PSR-3 compliant logger.
      */
     public function __construct(// @phpstan-ignore-line
         ClientStreamingCall $clientStreamingCall,
-        array $streamingDescriptor = []
+        array $streamingDescriptor = [],
+        null|LoggerInterface $logger = null,
     ) {
         $this->call = $clientStreamingCall;
+        $this->logger = $logger;
     }
 
     /**
@@ -61,6 +71,17 @@ class ClientStream
      */
     public function write($request)
     {
+        // In some cases, $request can be a string
+        if ($this->logger && $request instanceof Message) {
+            $requestEvent = new RpcLogEvent();
+
+            $requestEvent->payload = $request->serializeToJsonString();
+            $requestEvent->processId = (int) getmypid();
+            $requestEvent->requestId = crc32((string) spl_object_id($this) . getmypid());
+
+            $this->logRequest($requestEvent);
+        }
+
         $this->call->write($request);
     }
 
@@ -74,6 +95,21 @@ class ClientStream
     {
         list($response, $status) = $this->call->wait();
         if ($status->code == Code::OK) {
+            if ($this->logger) {
+                $responseEvent = new RpcLogEvent();
+
+                $responseEvent->headers = $status->metadata;
+                $responseEvent->status = $status->code;
+                $responseEvent->processId = (int) getmypid();
+                $responseEvent->requestId = crc32((string) spl_object_id($this) . getmypid());
+
+                if ($response instanceof Message) {
+                    $response->serializeToJsonString();
+                }
+
+                $this->logResponse($responseEvent);
+            }
+
             return $response;
         } else {
             throw ApiException::createFromStdClass($status);

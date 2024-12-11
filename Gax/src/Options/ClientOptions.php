@@ -38,6 +38,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
+use Psr\Log\LoggerInterface;
 
 /**
  * The ClientOptions class adds typing to the associative array of options
@@ -95,6 +96,8 @@ class ClientOptions implements ArrayAccess
     private ?string $universeDomain;
 
     private ?string $apiKey;
+
+    private null|false|LoggerInterface $logger;
 
     /**
      * @param array $options {
@@ -154,8 +157,10 @@ class ClientOptions implements ArrayAccess
      *           A callable which returns the client cert as a string.
      *     @type string $universeDomain
      *           The default service domain for a given Cloud universe.
-     *    @type string $apiKey
+     *     @type string $apiKey
      *          The API key to be used for the client.
+     *     @type null|false|LoggerInterface
+     *           A PSR-3 compliant logger.
      * }
      */
     public function __construct(array $options)
@@ -186,6 +191,7 @@ class ClientOptions implements ArrayAccess
         $this->setClientCertSource($arr['clientCertSource'] ?? null);
         $this->setUniverseDomain($arr['universeDomain'] ?? null);
         $this->setApiKey($arr['apiKey'] ?? null);
+        $this->setLogger($arr['logger'] ?? null);
     }
 
     /**
@@ -327,5 +333,13 @@ class ClientOptions implements ArrayAccess
     public function setApiKey(?string $apiKey)
     {
         $this->apiKey = $apiKey;
+    }
+
+    /**
+     * @param null|false|LoggerInterface $logger
+     */
+    public function setLogger(null|false|LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 }

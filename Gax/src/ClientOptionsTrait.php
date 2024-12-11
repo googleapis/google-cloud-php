@@ -32,11 +32,15 @@
 
 namespace Google\ApiCore;
 
+use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Grpc\Gcp\ApiConfig;
 use Grpc\Gcp\Config;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  * Common functions used to work with various clients.
@@ -98,6 +102,7 @@ trait ClientOptionsTrait
             'apiEndpoint' => null,
             'clientCertSource' => null,
             'universeDomain' => null,
+            'logger' => null,
         ];
 
         $supportedTransports = $this->supportedTransports();
@@ -115,18 +120,51 @@ trait ClientOptionsTrait
         // Keep track of the API Endpoint
         $apiEndpoint = $options['apiEndpoint'] ?? null;
 
+        // Keep track of the original user supplied options for logging the configuration
+        $clientSuppliedOptions = $options;
+
         // Merge defaults into $options starting from top level
         // variables, then going into deeper nesting, so that
         // we will not encounter missing keys
         $options += $defaultOptions;
+
+        // If logger is explicitly set to false, logging is disabled
+        if (is_null($options['logger'])) {
+            $options['logger'] = ApplicationDefaultCredentials::getDefaultLogger();
+        }
+
+        if (
+            $options['logger'] !== null
+            && $options['logger'] !== false
+            && !$options['logger'] instanceof LoggerInterface
+        ) {
+            throw new ValidationException(
+                'The "logger" option in the options array should be PSR-3 LoggerInterface compatible'
+            );
+        }
+
+        // Log the user supplied configuration.
+        $this->logConfiguration($options['logger'], $clientSuppliedOptions);
+
+        if (isset($options['logger'])) {
+            $options['credentialsConfig']['authHttpHandler'] = HttpHandlerFactory::build(
+                logger: $options['logger']
+            );
+        }
+
         $options['credentialsConfig'] += $defaultOptions['credentialsConfig'];
         $options['transportConfig'] += $defaultOptions['transportConfig'];  // @phpstan-ignore-line
         if (isset($options['transportConfig']['grpc'])) {
             $options['transportConfig']['grpc'] += $defaultOptions['transportConfig']['grpc'];
             $options['transportConfig']['grpc']['stubOpts'] += $defaultOptions['transportConfig']['grpc']['stubOpts'];
+            $options['transportConfig']['grpc']['logger'] = $options['logger'] ?? null;
         }
         if (isset($options['transportConfig']['rest'])) {
             $options['transportConfig']['rest'] += $defaultOptions['transportConfig']['rest'];
+            $options['transportConfig']['rest']['logger'] = $options['logger'] ?? null;
+        }
+        if (isset($options['transportConfig']['grpc-fallback'])) {
+            $options['transportConfig']['grpc-fallback']['logger'] = $options['logger'] ?? null;
         }
 
         // These calls do not apply to "New Surface" clients.
@@ -316,5 +354,28 @@ trait ClientOptionsTrait
     private function isBackwardsCompatibilityMode(): bool
     {
         return false;
+    }
+
+    /**
+     * @param null|false|LoggerInterface $logger
+     * @param string $options
+     */
+    private function logConfiguration(null|false|LoggerInterface $logger, array $options): void
+    {
+        if (!$logger) {
+            return;
+        }
+
+        $configurationLog = [
+            'timestamp' => date(DATE_RFC3339),
+            'severity' => strtoupper(LogLevel::DEBUG),
+            'processId' => getmypid(),
+            'jsonPayload' => [
+                'serviceName' => self::SERVICE_NAME, // @phpstan-ignore-line
+                'clientConfiguration' => $options,
+            ]
+        ];
+
+        $logger->debug(json_encode($configurationLog));
     }
 }

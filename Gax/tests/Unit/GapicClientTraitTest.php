@@ -61,6 +61,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Log\LogLevel;
 
 class GapicClientTraitTest extends TestCase
 {
