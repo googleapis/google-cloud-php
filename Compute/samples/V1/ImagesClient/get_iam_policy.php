@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Images_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\ImagesClient;
+use Google\Cloud\Compute\V1\Client\ImagesClient;
+use Google\Cloud\Compute\V1\GetIamPolicyImageRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
@@ -38,10 +39,15 @@ function get_iam_policy_sample(string $project, string $resource): void
     // Create a client.
     $imagesClient = new ImagesClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyImageRequest())
+        ->setProject($project)
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $imagesClient->getIamPolicy($project, $resource);
+        $response = $imagesClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

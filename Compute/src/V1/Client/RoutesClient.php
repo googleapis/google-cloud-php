@@ -245,6 +245,8 @@ final class RoutesClient
      *
      * The async variant is {@see RoutesClient::deleteAsync()} .
      *
+     * @example samples/V1/RoutesClient/delete.php
+     *
      * @param DeleteRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -268,6 +270,8 @@ final class RoutesClient
      * Returns the specified Route resource.
      *
      * The async variant is {@see RoutesClient::getAsync()} .
+     *
+     * @example samples/V1/RoutesClient/get.php
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -293,6 +297,8 @@ final class RoutesClient
      *
      * The async variant is {@see RoutesClient::insertAsync()} .
      *
+     * @example samples/V1/RoutesClient/insert.php
+     *
      * @param InsertRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -316,6 +322,8 @@ final class RoutesClient
      * Retrieves the list of Route resources available to the specified project.
      *
      * The async variant is {@see RoutesClient::listAsync()} .
+     *
+     * @example samples/V1/RoutesClient/list.php
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

@@ -259,6 +259,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/aggregated_list.php
+     *
      * @param AggregatedListTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -282,6 +284,8 @@ final class TargetHttpsProxiesClient
      * Deletes the specified TargetHttpsProxy resource.
      *
      * The async variant is {@see TargetHttpsProxiesClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/delete.php
      *
      * @param DeleteTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -307,6 +311,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::getAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/get.php
+     *
      * @param GetTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -330,6 +336,8 @@ final class TargetHttpsProxiesClient
      * Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
      *
      * The async variant is {@see TargetHttpsProxiesClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/insert.php
      *
      * @param InsertTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -355,6 +363,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::listAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/list.php
+     *
      * @param ListTargetHttpsProxiesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -378,6 +388,8 @@ final class TargetHttpsProxiesClient
      * Patches the specified TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see TargetHttpsProxiesClient::patchAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/patch.php
      *
      * @param PatchTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -403,6 +415,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::setCertificateMapAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/set_certificate_map.php
+     *
      * @param SetCertificateMapTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -426,6 +440,8 @@ final class TargetHttpsProxiesClient
      * Sets the QUIC override policy for TargetHttpsProxy.
      *
      * The async variant is {@see TargetHttpsProxiesClient::setQuicOverrideAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/set_quic_override.php
      *
      * @param SetQuicOverrideTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -452,6 +468,8 @@ final class TargetHttpsProxiesClient
      * The async variant is {@see TargetHttpsProxiesClient::setSslCertificatesAsync()}
      * .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/set_ssl_certificates.php
+     *
      * @param SetSslCertificatesTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -476,6 +494,8 @@ final class TargetHttpsProxiesClient
      *
      * The async variant is {@see TargetHttpsProxiesClient::setSslPolicyAsync()} .
      *
+     * @example samples/V1/TargetHttpsProxiesClient/set_ssl_policy.php
+     *
      * @param SetSslPolicyTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -499,6 +519,8 @@ final class TargetHttpsProxiesClient
      * Changes the URL map for TargetHttpsProxy.
      *
      * The async variant is {@see TargetHttpsProxiesClient::setUrlMapAsync()} .
+     *
+     * @example samples/V1/TargetHttpsProxiesClient/set_url_map.php
      *
      * @param SetUrlMapTargetHttpsProxyRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

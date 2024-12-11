@@ -250,6 +250,8 @@ final class RegionAutoscalersClient
      *
      * The async variant is {@see RegionAutoscalersClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionAutoscalersClient/delete.php
+     *
      * @param DeleteRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -273,6 +275,8 @@ final class RegionAutoscalersClient
      * Returns the specified autoscaler.
      *
      * The async variant is {@see RegionAutoscalersClient::getAsync()} .
+     *
+     * @example samples/V1/RegionAutoscalersClient/get.php
      *
      * @param GetRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -298,6 +302,8 @@ final class RegionAutoscalersClient
      *
      * The async variant is {@see RegionAutoscalersClient::insertAsync()} .
      *
+     * @example samples/V1/RegionAutoscalersClient/insert.php
+     *
      * @param InsertRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -321,6 +327,8 @@ final class RegionAutoscalersClient
      * Retrieves a list of autoscalers contained within the specified region.
      *
      * The async variant is {@see RegionAutoscalersClient::listAsync()} .
+     *
+     * @example samples/V1/RegionAutoscalersClient/list.php
      *
      * @param ListRegionAutoscalersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -346,6 +354,8 @@ final class RegionAutoscalersClient
      *
      * The async variant is {@see RegionAutoscalersClient::patchAsync()} .
      *
+     * @example samples/V1/RegionAutoscalersClient/patch.php
+     *
      * @param PatchRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -369,6 +379,8 @@ final class RegionAutoscalersClient
      * Updates an autoscaler in the specified project using the data included in the request.
      *
      * The async variant is {@see RegionAutoscalersClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionAutoscalersClient/update.php
      *
      * @param UpdateRegionAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

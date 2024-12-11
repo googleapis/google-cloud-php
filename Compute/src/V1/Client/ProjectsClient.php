@@ -265,6 +265,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::disableXpnHostAsync()} .
      *
+     * @example samples/V1/ProjectsClient/disable_xpn_host.php
+     *
      * @param DisableXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -288,6 +290,8 @@ final class ProjectsClient
      * Disable a service resource (also known as service project) associated with this host project.
      *
      * The async variant is {@see ProjectsClient::disableXpnResourceAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/disable_xpn_resource.php
      *
      * @param DisableXpnResourceProjectRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -313,6 +317,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::enableXpnHostAsync()} .
      *
+     * @example samples/V1/ProjectsClient/enable_xpn_host.php
+     *
      * @param EnableXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -336,6 +342,8 @@ final class ProjectsClient
      * Enable service resource (a.k.a service project) for a host project, so that subnets in the host project can be used by instances in the service project.
      *
      * The async variant is {@see ProjectsClient::enableXpnResourceAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/enable_xpn_resource.php
      *
      * @param EnableXpnResourceProjectRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -361,6 +369,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::getAsync()} .
      *
+     * @example samples/V1/ProjectsClient/get.php
+     *
      * @param GetProjectRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -384,6 +394,8 @@ final class ProjectsClient
      * Gets the shared VPC host project that this project links to. May be empty if no link exists.
      *
      * The async variant is {@see ProjectsClient::getXpnHostAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/get_xpn_host.php
      *
      * @param GetXpnHostProjectRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -409,6 +421,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::getXpnResourcesAsync()} .
      *
+     * @example samples/V1/ProjectsClient/get_xpn_resources.php
+     *
      * @param GetXpnResourcesProjectsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -432,6 +446,8 @@ final class ProjectsClient
      * Lists all shared VPC host projects visible to the user in an organization.
      *
      * The async variant is {@see ProjectsClient::listXpnHostsAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/list_xpn_hosts.php
      *
      * @param ListXpnHostsProjectsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -457,6 +473,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::moveDiskAsync()} .
      *
+     * @example samples/V1/ProjectsClient/move_disk.php
+     *
      * @param MoveDiskProjectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -480,6 +498,8 @@ final class ProjectsClient
      * Moves an instance and its attached persistent disks from one zone to another. *Note*: Moving VMs or disks by using this method might cause unexpected behavior. For more information, see the [known issue](/compute/docs/troubleshooting/known-issues#moving_vms_or_disks_using_the_moveinstance_api_or_the_causes_unexpected_behavior). [Deprecated] This method is deprecated. See [moving instance across zones](https://cloud.google.com/compute/docs/instances/moving-instance-across-zones) instead.
      *
      * The async variant is {@see ProjectsClient::moveInstanceAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/move_instance.php
      *
      * @param MoveInstanceProjectRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -505,6 +525,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::setCloudArmorTierAsync()} .
      *
+     * @example samples/V1/ProjectsClient/set_cloud_armor_tier.php
+     *
      * @param SetCloudArmorTierProjectRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -528,6 +550,8 @@ final class ProjectsClient
      * Sets metadata common to all instances within the specified project using the data included in the request.
      *
      * The async variant is {@see ProjectsClient::setCommonInstanceMetadataAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/set_common_instance_metadata.php
      *
      * @param SetCommonInstanceMetadataProjectRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -553,6 +577,8 @@ final class ProjectsClient
      *
      * The async variant is {@see ProjectsClient::setDefaultNetworkTierAsync()} .
      *
+     * @example samples/V1/ProjectsClient/set_default_network_tier.php
+     *
      * @param SetDefaultNetworkTierProjectRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -576,6 +602,8 @@ final class ProjectsClient
      * Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
      *
      * The async variant is {@see ProjectsClient::setUsageExportBucketAsync()} .
+     *
+     * @example samples/V1/ProjectsClient/set_usage_export_bucket.php
      *
      * @param SetUsageExportBucketProjectRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

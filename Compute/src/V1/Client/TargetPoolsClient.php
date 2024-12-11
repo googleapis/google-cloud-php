@@ -263,6 +263,8 @@ final class TargetPoolsClient
      *
      * The async variant is {@see TargetPoolsClient::addHealthCheckAsync()} .
      *
+     * @example samples/V1/TargetPoolsClient/add_health_check.php
+     *
      * @param AddHealthCheckTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -286,6 +288,8 @@ final class TargetPoolsClient
      * Adds an instance to a target pool.
      *
      * The async variant is {@see TargetPoolsClient::addInstanceAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/add_instance.php
      *
      * @param AddInstanceTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -311,6 +315,8 @@ final class TargetPoolsClient
      *
      * The async variant is {@see TargetPoolsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetPoolsClient/aggregated_list.php
+     *
      * @param AggregatedListTargetPoolsRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -334,6 +340,8 @@ final class TargetPoolsClient
      * Deletes the specified target pool.
      *
      * The async variant is {@see TargetPoolsClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/delete.php
      *
      * @param DeleteTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -359,6 +367,8 @@ final class TargetPoolsClient
      *
      * The async variant is {@see TargetPoolsClient::getAsync()} .
      *
+     * @example samples/V1/TargetPoolsClient/get.php
+     *
      * @param GetTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -382,6 +392,8 @@ final class TargetPoolsClient
      * Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
      *
      * The async variant is {@see TargetPoolsClient::getHealthAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/get_health.php
      *
      * @param GetHealthTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -407,6 +419,8 @@ final class TargetPoolsClient
      *
      * The async variant is {@see TargetPoolsClient::insertAsync()} .
      *
+     * @example samples/V1/TargetPoolsClient/insert.php
+     *
      * @param InsertTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -430,6 +444,8 @@ final class TargetPoolsClient
      * Retrieves a list of target pools available to the specified project and region.
      *
      * The async variant is {@see TargetPoolsClient::listAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/list.php
      *
      * @param ListTargetPoolsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -455,6 +471,8 @@ final class TargetPoolsClient
      *
      * The async variant is {@see TargetPoolsClient::removeHealthCheckAsync()} .
      *
+     * @example samples/V1/TargetPoolsClient/remove_health_check.php
+     *
      * @param RemoveHealthCheckTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -478,6 +496,8 @@ final class TargetPoolsClient
      * Removes instance URL from a target pool.
      *
      * The async variant is {@see TargetPoolsClient::removeInstanceAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/remove_instance.php
      *
      * @param RemoveInstanceTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -503,6 +523,8 @@ final class TargetPoolsClient
      *
      * The async variant is {@see TargetPoolsClient::setBackupAsync()} .
      *
+     * @example samples/V1/TargetPoolsClient/set_backup.php
+     *
      * @param SetBackupTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -526,6 +548,8 @@ final class TargetPoolsClient
      * Sets the Google Cloud Armor security policy for the specified target pool. For more information, see Google Cloud Armor Overview
      *
      * The async variant is {@see TargetPoolsClient::setSecurityPolicyAsync()} .
+     *
+     * @example samples/V1/TargetPoolsClient/set_security_policy.php
      *
      * @param SetSecurityPolicyTargetPoolRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

@@ -274,6 +274,8 @@ final class NetworkFirewallPoliciesClient
      * The async variant is {@see NetworkFirewallPoliciesClient::addAssociationAsync()}
      * .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/add_association.php
+     *
      * @param AddAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -297,6 +299,8 @@ final class NetworkFirewallPoliciesClient
      * Inserts a rule into a firewall policy.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::addRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/add_rule.php
      *
      * @param AddRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -322,6 +326,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::cloneRulesAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/clone_rules.php
+     *
      * @param CloneRulesNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -346,6 +352,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::deleteAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/delete.php
+     *
      * @param DeleteNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -369,6 +377,8 @@ final class NetworkFirewallPoliciesClient
      * Returns the specified network firewall policy.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get.php
      *
      * @param GetNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -395,6 +405,8 @@ final class NetworkFirewallPoliciesClient
      * The async variant is {@see NetworkFirewallPoliciesClient::getAssociationAsync()}
      * .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_association.php
+     *
      * @param GetAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -418,6 +430,8 @@ final class NetworkFirewallPoliciesClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_iam_policy.php
      *
      * @param GetIamPolicyNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -443,6 +457,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getRuleAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/get_rule.php
+     *
      * @param GetRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -466,6 +482,8 @@ final class NetworkFirewallPoliciesClient
      * Creates a new policy in the specified project using the data included in the request.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/insert.php
      *
      * @param InsertNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -491,6 +509,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::listAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/list.php
+     *
      * @param ListNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -515,6 +535,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::patchAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/patch.php
+     *
      * @param PatchNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -538,6 +560,8 @@ final class NetworkFirewallPoliciesClient
      * Patches a rule of the specified priority.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::patchRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/patch_rule.php
      *
      * @param PatchRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -564,6 +588,8 @@ final class NetworkFirewallPoliciesClient
      * The async variant is
      * {@see NetworkFirewallPoliciesClient::removeAssociationAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/remove_association.php
+     *
      * @param RemoveAssociationNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -587,6 +613,8 @@ final class NetworkFirewallPoliciesClient
      * Deletes a rule of the specified priority.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::removeRuleAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/remove_rule.php
      *
      * @param RemoveRuleNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -612,6 +640,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/NetworkFirewallPoliciesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -636,6 +666,8 @@ final class NetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see NetworkFirewallPoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {

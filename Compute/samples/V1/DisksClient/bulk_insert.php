@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Disks_BulkInsert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\BulkInsertDiskRequest;
 use Google\Cloud\Compute\V1\BulkInsertDiskResource;
-use Google\Cloud\Compute\V1\DisksClient;
+use Google\Cloud\Compute\V1\Client\DisksClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function bulk_insert_sample(string $project, string $zone): void
     // Create a client.
     $disksClient = new DisksClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $bulkInsertDiskResourceResource = new BulkInsertDiskResource();
+    $request = (new BulkInsertDiskRequest())
+        ->setBulkInsertDiskResourceResource($bulkInsertDiskResourceResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $disksClient->bulkInsert($bulkInsertDiskResourceResource, $project, $zone);
+        $response = $disksClient->bulkInsert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

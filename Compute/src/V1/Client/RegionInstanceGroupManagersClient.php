@@ -285,6 +285,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::abandonInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/abandon_instances.php
+     *
      * @param AbandonInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
      *     Optional.
@@ -309,6 +311,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::applyUpdatesToInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/apply_updates_to_instances.php
      *
      * @param ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
@@ -335,6 +339,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::createInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/create_instances.php
+     *
      * @param CreateInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -358,6 +364,8 @@ final class RegionInstanceGroupManagersClient
      * Deletes the specified managed instance group and all of the instances in that group.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/delete.php
      *
      * @param DeleteRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -384,6 +392,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::deleteInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/delete_instances.php
+     *
      * @param DeleteInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -409,6 +419,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::deletePerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/delete_per_instance_configs.php
+     *
      * @param DeletePerInstanceConfigsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                     $callOptions {
      *     Optional.
@@ -432,6 +444,8 @@ final class RegionInstanceGroupManagersClient
      * Returns all of the details about the specified managed instance group.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::getAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/get.php
      *
      * @param GetRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -457,6 +471,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::insertAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/insert.php
+     *
      * @param InsertRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -480,6 +496,8 @@ final class RegionInstanceGroupManagersClient
      * Retrieves the list of managed instance groups that are contained within the specified region.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::listAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list.php
      *
      * @param ListRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -506,6 +524,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is {@see RegionInstanceGroupManagersClient::listErrorsAsync()}
      * .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list_errors.php
+     *
      * @param ListErrorsRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -530,6 +550,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::listManagedInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list_managed_instances.php
      *
      * @param ListManagedInstancesRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
@@ -556,6 +578,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::listPerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/list_per_instance_configs.php
+     *
      * @param ListPerInstanceConfigsRegionInstanceGroupManagersRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
      *     Optional.
@@ -579,6 +603,8 @@ final class RegionInstanceGroupManagersClient
      * Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. If you update your group to specify a new template or instance configuration, it's possible that your intended specification for each VM in the group is different from the current state of that VM. To learn how to apply an updated configuration to the VMs in a MIG, see Updating instances in a MIG.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/patch.php
      *
      * @param PatchRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -605,6 +631,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::patchPerInstanceConfigsAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/patch_per_instance_configs.php
+     *
      * @param PatchPerInstanceConfigsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
      *     Optional.
@@ -630,6 +658,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::recreateInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/recreate_instances.php
+     *
      * @param RecreateInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                              $callOptions {
      *     Optional.
@@ -653,6 +683,8 @@ final class RegionInstanceGroupManagersClient
      * Changes the intended size of the managed instance group. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances. The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      *
      * The async variant is {@see RegionInstanceGroupManagersClient::resizeAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/resize.php
      *
      * @param ResizeRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -679,6 +711,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::resumeInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/resume_instances.php
+     *
      * @param ResumeInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -703,6 +737,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::setInstanceTemplateAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/set_instance_template.php
      *
      * @param SetInstanceTemplateRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                $callOptions {
@@ -729,6 +765,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::setTargetPoolsAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/set_target_pools.php
+     *
      * @param SetTargetPoolsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                           $callOptions {
      *     Optional.
@@ -753,6 +791,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::startInstancesAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/start_instances.php
      *
      * @param StartInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                           $callOptions {
@@ -779,6 +819,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::stopInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/stop_instances.php
+     *
      * @param StopInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
      *     Optional.
@@ -804,6 +846,8 @@ final class RegionInstanceGroupManagersClient
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::suspendInstancesAsync()} .
      *
+     * @example samples/V1/RegionInstanceGroupManagersClient/suspend_instances.php
+     *
      * @param SuspendInstancesRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                             $callOptions {
      *     Optional.
@@ -828,6 +872,8 @@ final class RegionInstanceGroupManagersClient
      *
      * The async variant is
      * {@see RegionInstanceGroupManagersClient::updatePerInstanceConfigsAsync()} .
+     *
+     * @example samples/V1/RegionInstanceGroupManagersClient/update_per_instance_configs.php
      *
      * @param UpdatePerInstanceConfigsRegionInstanceGroupManagerRequest $request     A request to house fields associated with the call.
      * @param array                                                     $callOptions {

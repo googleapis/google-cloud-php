@@ -278,6 +278,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::addAssociationAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/add_association.php
+     *
      * @param AddAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -302,6 +304,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::addRuleAsync()}
      * .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/add_rule.php
      *
      * @param AddRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -328,6 +332,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::cloneRulesAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/clone_rules.php
+     *
      * @param CloneRulesRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -352,6 +358,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/delete.php
+     *
      * @param DeleteRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -375,6 +383,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Returns the specified network firewall policy.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get.php
      *
      * @param GetRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -401,6 +411,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getAssociationAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_association.php
+     *
      * @param GetAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -425,6 +437,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getEffectiveFirewallsAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_effective_firewalls.php
      *
      * @param GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                   $callOptions {
@@ -451,6 +465,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
      *     Optional.
@@ -476,6 +492,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::getRuleAsync()}
      * .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/get_rule.php
+     *
      * @param GetRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -499,6 +517,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Creates a new network firewall policy in the specified project and region.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/insert.php
      *
      * @param InsertRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
@@ -524,6 +544,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::listAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/list.php
+     *
      * @param ListRegionNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -547,6 +569,8 @@ final class RegionNetworkFirewallPoliciesClient
      * Patches the specified network firewall policy.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/patch.php
      *
      * @param PatchRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -573,6 +597,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::patchRuleAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/patch_rule.php
+     *
      * @param PatchRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -597,6 +623,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::removeAssociationAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/remove_association.php
      *
      * @param RemoveAssociationRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                               $callOptions {
@@ -623,6 +651,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::removeRuleAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/remove_rule.php
+     *
      * @param RemoveRuleRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -648,6 +678,8 @@ final class RegionNetworkFirewallPoliciesClient
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
      *     Optional.
@@ -672,6 +704,8 @@ final class RegionNetworkFirewallPoliciesClient
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegionNetworkFirewallPoliciesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRegionNetworkFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                $callOptions {

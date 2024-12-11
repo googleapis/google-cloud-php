@@ -250,6 +250,8 @@ final class RegionHealthChecksClient
      *
      * The async variant is {@see RegionHealthChecksClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionHealthChecksClient/delete.php
+     *
      * @param DeleteRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -273,6 +275,8 @@ final class RegionHealthChecksClient
      * Returns the specified HealthCheck resource.
      *
      * The async variant is {@see RegionHealthChecksClient::getAsync()} .
+     *
+     * @example samples/V1/RegionHealthChecksClient/get.php
      *
      * @param GetRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -298,6 +302,8 @@ final class RegionHealthChecksClient
      *
      * The async variant is {@see RegionHealthChecksClient::insertAsync()} .
      *
+     * @example samples/V1/RegionHealthChecksClient/insert.php
+     *
      * @param InsertRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -321,6 +327,8 @@ final class RegionHealthChecksClient
      * Retrieves the list of HealthCheck resources available to the specified project.
      *
      * The async variant is {@see RegionHealthChecksClient::listAsync()} .
+     *
+     * @example samples/V1/RegionHealthChecksClient/list.php
      *
      * @param ListRegionHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -346,6 +354,8 @@ final class RegionHealthChecksClient
      *
      * The async variant is {@see RegionHealthChecksClient::patchAsync()} .
      *
+     * @example samples/V1/RegionHealthChecksClient/patch.php
+     *
      * @param PatchRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -369,6 +379,8 @@ final class RegionHealthChecksClient
      * Updates a HealthCheck resource in the specified project using the data included in the request.
      *
      * The async variant is {@see RegionHealthChecksClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionHealthChecksClient/update.php
      *
      * @param UpdateRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

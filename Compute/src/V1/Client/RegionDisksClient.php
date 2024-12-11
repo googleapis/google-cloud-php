@@ -274,6 +274,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::addResourcePoliciesAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/add_resource_policies.php
+     *
      * @param AddResourcePoliciesRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -297,6 +299,8 @@ final class RegionDisksClient
      * Bulk create a set of disks.
      *
      * The async variant is {@see RegionDisksClient::bulkInsertAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/bulk_insert.php
      *
      * @param BulkInsertRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -322,6 +326,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::createSnapshotAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/create_snapshot.php
+     *
      * @param CreateSnapshotRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -345,6 +351,8 @@ final class RegionDisksClient
      * Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
      *
      * The async variant is {@see RegionDisksClient::deleteAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/delete.php
      *
      * @param DeleteRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -370,6 +378,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::getAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/get.php
+     *
      * @param GetRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -393,6 +403,8 @@ final class RegionDisksClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see RegionDisksClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/get_iam_policy.php
      *
      * @param GetIamPolicyRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -418,6 +430,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::insertAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/insert.php
+     *
      * @param InsertRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -441,6 +455,8 @@ final class RegionDisksClient
      * Retrieves the list of persistent disks contained within the specified region.
      *
      * The async variant is {@see RegionDisksClient::listAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/list.php
      *
      * @param ListRegionDisksRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -466,6 +482,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::removeResourcePoliciesAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/remove_resource_policies.php
+     *
      * @param RemoveResourcePoliciesRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -489,6 +507,8 @@ final class RegionDisksClient
      * Resizes the specified regional persistent disk.
      *
      * The async variant is {@see RegionDisksClient::resizeAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/resize.php
      *
      * @param ResizeRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -514,6 +534,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -537,6 +559,8 @@ final class RegionDisksClient
      * Sets the labels on the target regional disk.
      *
      * The async variant is {@see RegionDisksClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/set_labels.php
      *
      * @param SetLabelsRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -562,6 +586,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::startAsyncReplicationAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/start_async_replication.php
+     *
      * @param StartAsyncReplicationRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -585,6 +611,8 @@ final class RegionDisksClient
      * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
      *
      * The async variant is {@see RegionDisksClient::stopAsyncReplicationAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/stop_async_replication.php
      *
      * @param StopAsyncReplicationRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -611,6 +639,8 @@ final class RegionDisksClient
      * The async variant is {@see RegionDisksClient::stopGroupAsyncReplicationAsync()}
      * .
      *
+     * @example samples/V1/RegionDisksClient/stop_group_async_replication.php
+     *
      * @param StopGroupAsyncReplicationRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                                      $callOptions {
      *     Optional.
@@ -635,6 +665,8 @@ final class RegionDisksClient
      *
      * The async variant is {@see RegionDisksClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/RegionDisksClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -658,6 +690,8 @@ final class RegionDisksClient
      * Update the specified disk with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
      *
      * The async variant is {@see RegionDisksClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/update.php
      *
      * @param UpdateRegionDiskRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

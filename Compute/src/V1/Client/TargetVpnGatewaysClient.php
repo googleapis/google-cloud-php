@@ -250,6 +250,8 @@ final class TargetVpnGatewaysClient
      *
      * The async variant is {@see TargetVpnGatewaysClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/TargetVpnGatewaysClient/aggregated_list.php
+     *
      * @param AggregatedListTargetVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -273,6 +275,8 @@ final class TargetVpnGatewaysClient
      * Deletes the specified target VPN gateway.
      *
      * The async variant is {@see TargetVpnGatewaysClient::deleteAsync()} .
+     *
+     * @example samples/V1/TargetVpnGatewaysClient/delete.php
      *
      * @param DeleteTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -298,6 +302,8 @@ final class TargetVpnGatewaysClient
      *
      * The async variant is {@see TargetVpnGatewaysClient::getAsync()} .
      *
+     * @example samples/V1/TargetVpnGatewaysClient/get.php
+     *
      * @param GetTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -321,6 +327,8 @@ final class TargetVpnGatewaysClient
      * Creates a target VPN gateway in the specified project and region using the data included in the request.
      *
      * The async variant is {@see TargetVpnGatewaysClient::insertAsync()} .
+     *
+     * @example samples/V1/TargetVpnGatewaysClient/insert.php
      *
      * @param InsertTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -346,6 +354,8 @@ final class TargetVpnGatewaysClient
      *
      * The async variant is {@see TargetVpnGatewaysClient::listAsync()} .
      *
+     * @example samples/V1/TargetVpnGatewaysClient/list.php
+     *
      * @param ListTargetVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -369,6 +379,8 @@ final class TargetVpnGatewaysClient
      * Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see TargetVpnGatewaysClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/TargetVpnGatewaysClient/set_labels.php
      *
      * @param SetLabelsTargetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

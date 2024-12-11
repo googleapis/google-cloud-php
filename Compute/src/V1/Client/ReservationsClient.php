@@ -260,6 +260,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/ReservationsClient/aggregated_list.php
+     *
      * @param AggregatedListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -283,6 +285,8 @@ final class ReservationsClient
      * Deletes the specified reservation.
      *
      * The async variant is {@see ReservationsClient::deleteAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/delete.php
      *
      * @param DeleteReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -308,6 +312,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::getAsync()} .
      *
+     * @example samples/V1/ReservationsClient/get.php
+     *
      * @param GetReservationRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -331,6 +337,8 @@ final class ReservationsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see ReservationsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/get_iam_policy.php
      *
      * @param GetIamPolicyReservationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -356,6 +364,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::insertAsync()} .
      *
+     * @example samples/V1/ReservationsClient/insert.php
+     *
      * @param InsertReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -379,6 +389,8 @@ final class ReservationsClient
      * A list of all the reservations that have been configured for the specified project in specified zone.
      *
      * The async variant is {@see ReservationsClient::listAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/list.php
      *
      * @param ListReservationsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -404,6 +416,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::resizeAsync()} .
      *
+     * @example samples/V1/ReservationsClient/resize.php
+     *
      * @param ResizeReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -427,6 +441,8 @@ final class ReservationsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see ReservationsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/set_iam_policy.php
      *
      * @param SetIamPolicyReservationRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -452,6 +468,8 @@ final class ReservationsClient
      *
      * The async variant is {@see ReservationsClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/ReservationsClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsReservationRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -475,6 +493,8 @@ final class ReservationsClient
      * Update share settings of the reservation.
      *
      * The async variant is {@see ReservationsClient::updateAsync()} .
+     *
+     * @example samples/V1/ReservationsClient/update.php
      *
      * @param UpdateReservationRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

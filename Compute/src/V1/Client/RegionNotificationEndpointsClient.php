@@ -246,6 +246,8 @@ final class RegionNotificationEndpointsClient
      *
      * The async variant is {@see RegionNotificationEndpointsClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionNotificationEndpointsClient/delete.php
+     *
      * @param DeleteRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -269,6 +271,8 @@ final class RegionNotificationEndpointsClient
      * Returns the specified NotificationEndpoint resource in the given region.
      *
      * The async variant is {@see RegionNotificationEndpointsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionNotificationEndpointsClient/get.php
      *
      * @param GetRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -294,6 +298,8 @@ final class RegionNotificationEndpointsClient
      *
      * The async variant is {@see RegionNotificationEndpointsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionNotificationEndpointsClient/insert.php
+     *
      * @param InsertRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -317,6 +323,8 @@ final class RegionNotificationEndpointsClient
      * Lists the NotificationEndpoints for a project in the given region.
      *
      * The async variant is {@see RegionNotificationEndpointsClient::listAsync()} .
+     *
+     * @example samples/V1/RegionNotificationEndpointsClient/list.php
      *
      * @param ListRegionNotificationEndpointsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

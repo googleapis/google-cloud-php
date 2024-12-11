@@ -249,6 +249,8 @@ final class InstanceGroupManagerResizeRequestsClient
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::cancelAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagerResizeRequestsClient/cancel.php
+     *
      * @param CancelInstanceGroupManagerResizeRequestRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
      *     Optional.
@@ -273,6 +275,8 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::deleteAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagerResizeRequestsClient/delete.php
      *
      * @param DeleteInstanceGroupManagerResizeRequestRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
@@ -299,6 +303,8 @@ final class InstanceGroupManagerResizeRequestsClient
      * The async variant is {@see InstanceGroupManagerResizeRequestsClient::getAsync()}
      * .
      *
+     * @example samples/V1/InstanceGroupManagerResizeRequestsClient/get.php
+     *
      * @param GetInstanceGroupManagerResizeRequestRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -324,6 +330,8 @@ final class InstanceGroupManagerResizeRequestsClient
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::insertAsync()} .
      *
+     * @example samples/V1/InstanceGroupManagerResizeRequestsClient/insert.php
+     *
      * @param InsertInstanceGroupManagerResizeRequestRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
      *     Optional.
@@ -348,6 +356,8 @@ final class InstanceGroupManagerResizeRequestsClient
      *
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::listAsync()} .
+     *
+     * @example samples/V1/InstanceGroupManagerResizeRequestsClient/list.php
      *
      * @param ListInstanceGroupManagerResizeRequestsRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {

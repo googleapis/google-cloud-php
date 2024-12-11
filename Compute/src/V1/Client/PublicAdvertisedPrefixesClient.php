@@ -251,6 +251,8 @@ final class PublicAdvertisedPrefixesClient
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::announceAsync()} .
      *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/announce.php
+     *
      * @param AnnouncePublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -274,6 +276,8 @@ final class PublicAdvertisedPrefixesClient
      * Deletes the specified PublicAdvertisedPrefix
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::deleteAsync()} .
+     *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/delete.php
      *
      * @param DeletePublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -299,6 +303,8 @@ final class PublicAdvertisedPrefixesClient
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::getAsync()} .
      *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/get.php
+     *
      * @param GetPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -322,6 +328,8 @@ final class PublicAdvertisedPrefixesClient
      * Creates a PublicAdvertisedPrefix in the specified project using the parameters that are included in the request.
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::insertAsync()} .
+     *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/insert.php
      *
      * @param InsertPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -347,6 +355,8 @@ final class PublicAdvertisedPrefixesClient
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::listAsync()} .
      *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/list.php
+     *
      * @param ListPublicAdvertisedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -371,6 +381,8 @@ final class PublicAdvertisedPrefixesClient
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::patchAsync()} .
      *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/patch.php
+     *
      * @param PatchPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -394,6 +406,8 @@ final class PublicAdvertisedPrefixesClient
      * Withdraws the specified PublicAdvertisedPrefix
      *
      * The async variant is {@see PublicAdvertisedPrefixesClient::withdrawAsync()} .
+     *
+     * @example samples/V1/PublicAdvertisedPrefixesClient/withdraw.php
      *
      * @param WithdrawPublicAdvertisedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

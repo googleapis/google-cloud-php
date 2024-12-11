@@ -253,6 +253,8 @@ final class InterconnectAttachmentsClient
      * The async variant is {@see InterconnectAttachmentsClient::aggregatedListAsync()}
      * .
      *
+     * @example samples/V1/InterconnectAttachmentsClient/aggregated_list.php
+     *
      * @param AggregatedListInterconnectAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -276,6 +278,8 @@ final class InterconnectAttachmentsClient
      * Deletes the specified interconnect attachment.
      *
      * The async variant is {@see InterconnectAttachmentsClient::deleteAsync()} .
+     *
+     * @example samples/V1/InterconnectAttachmentsClient/delete.php
      *
      * @param DeleteInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -301,6 +305,8 @@ final class InterconnectAttachmentsClient
      *
      * The async variant is {@see InterconnectAttachmentsClient::getAsync()} .
      *
+     * @example samples/V1/InterconnectAttachmentsClient/get.php
+     *
      * @param GetInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -324,6 +330,8 @@ final class InterconnectAttachmentsClient
      * Creates an InterconnectAttachment in the specified project using the data included in the request.
      *
      * The async variant is {@see InterconnectAttachmentsClient::insertAsync()} .
+     *
+     * @example samples/V1/InterconnectAttachmentsClient/insert.php
      *
      * @param InsertInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -349,6 +357,8 @@ final class InterconnectAttachmentsClient
      *
      * The async variant is {@see InterconnectAttachmentsClient::listAsync()} .
      *
+     * @example samples/V1/InterconnectAttachmentsClient/list.php
+     *
      * @param ListInterconnectAttachmentsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -373,6 +383,8 @@ final class InterconnectAttachmentsClient
      *
      * The async variant is {@see InterconnectAttachmentsClient::patchAsync()} .
      *
+     * @example samples/V1/InterconnectAttachmentsClient/patch.php
+     *
      * @param PatchInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -396,6 +408,8 @@ final class InterconnectAttachmentsClient
      * Sets the labels on an InterconnectAttachment. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see InterconnectAttachmentsClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/InterconnectAttachmentsClient/set_labels.php
      *
      * @param SetLabelsInterconnectAttachmentRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

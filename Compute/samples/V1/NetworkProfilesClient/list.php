@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NetworkProfiles_List_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\NetworkProfilesClient;
+use Google\Cloud\Compute\V1\Client\NetworkProfilesClient;
+use Google\Cloud\Compute\V1\ListNetworkProfilesRequest;
 use Google\Cloud\Compute\V1\NetworkProfilesListResponse;
 
 /**
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $networkProfilesClient = new NetworkProfilesClient();
 
+    // Prepare the request message.
+    $request = (new ListNetworkProfilesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var NetworkProfilesListResponse $response */
-        $response = $networkProfilesClient->list($project);
+        $response = $networkProfilesClient->list($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

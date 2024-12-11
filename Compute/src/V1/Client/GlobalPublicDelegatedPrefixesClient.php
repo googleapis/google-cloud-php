@@ -247,6 +247,8 @@ final class GlobalPublicDelegatedPrefixesClient
      *
      * The async variant is {@see GlobalPublicDelegatedPrefixesClient::deleteAsync()} .
      *
+     * @example samples/V1/GlobalPublicDelegatedPrefixesClient/delete.php
+     *
      * @param DeleteGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -270,6 +272,8 @@ final class GlobalPublicDelegatedPrefixesClient
      * Returns the specified global PublicDelegatedPrefix resource.
      *
      * The async variant is {@see GlobalPublicDelegatedPrefixesClient::getAsync()} .
+     *
+     * @example samples/V1/GlobalPublicDelegatedPrefixesClient/get.php
      *
      * @param GetGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
@@ -295,6 +299,8 @@ final class GlobalPublicDelegatedPrefixesClient
      *
      * The async variant is {@see GlobalPublicDelegatedPrefixesClient::insertAsync()} .
      *
+     * @example samples/V1/GlobalPublicDelegatedPrefixesClient/insert.php
+     *
      * @param InsertGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -319,6 +325,8 @@ final class GlobalPublicDelegatedPrefixesClient
      *
      * The async variant is {@see GlobalPublicDelegatedPrefixesClient::listAsync()} .
      *
+     * @example samples/V1/GlobalPublicDelegatedPrefixesClient/list.php
+     *
      * @param ListGlobalPublicDelegatedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -342,6 +350,8 @@ final class GlobalPublicDelegatedPrefixesClient
      * Patches the specified global PublicDelegatedPrefix resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see GlobalPublicDelegatedPrefixesClient::patchAsync()} .
+     *
+     * @example samples/V1/GlobalPublicDelegatedPrefixesClient/patch.php
      *
      * @param PatchGlobalPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

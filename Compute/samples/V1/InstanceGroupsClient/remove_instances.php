@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroups_RemoveInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
 use Google\Cloud\Compute\V1\InstanceGroupsRemoveInstancesRequest;
+use Google\Cloud\Compute\V1\RemoveInstancesInstanceGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function remove_instances_sample(string $instanceGroup, string $project, string 
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupsRemoveInstancesRequestResource = new InstanceGroupsRemoveInstancesRequest();
+    $request = (new RemoveInstancesInstanceGroupRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setInstanceGroupsRemoveInstancesRequestResource($instanceGroupsRemoveInstancesRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupsClient->removeInstances(
-            $instanceGroup,
-            $instanceGroupsRemoveInstancesRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupsClient->removeInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

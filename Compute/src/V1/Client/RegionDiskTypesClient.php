@@ -186,6 +186,8 @@ final class RegionDiskTypesClient
      *
      * The async variant is {@see RegionDiskTypesClient::getAsync()} .
      *
+     * @example samples/V1/RegionDiskTypesClient/get.php
+     *
      * @param GetRegionDiskTypeRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -209,6 +211,8 @@ final class RegionDiskTypesClient
      * Retrieves a list of regional disk types available to the specified project.
      *
      * The async variant is {@see RegionDiskTypesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionDiskTypesClient/list.php
      *
      * @param ListRegionDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

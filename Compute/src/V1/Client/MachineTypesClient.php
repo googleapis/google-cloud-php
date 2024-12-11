@@ -188,6 +188,8 @@ final class MachineTypesClient
      *
      * The async variant is {@see MachineTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/MachineTypesClient/aggregated_list.php
+     *
      * @param AggregatedListMachineTypesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -212,6 +214,8 @@ final class MachineTypesClient
      *
      * The async variant is {@see MachineTypesClient::getAsync()} .
      *
+     * @example samples/V1/MachineTypesClient/get.php
+     *
      * @param GetMachineTypeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -235,6 +239,8 @@ final class MachineTypesClient
      * Retrieves a list of machine types available to the specified project.
      *
      * The async variant is {@see MachineTypesClient::listAsync()} .
+     *
+     * @example samples/V1/MachineTypesClient/list.php
      *
      * @param ListMachineTypesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

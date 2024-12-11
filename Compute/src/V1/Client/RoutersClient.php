@@ -263,6 +263,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/RoutersClient/aggregated_list.php
+     *
      * @param AggregatedListRoutersRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -286,6 +288,8 @@ final class RoutersClient
      * Deletes the specified Router resource.
      *
      * The async variant is {@see RoutersClient::deleteAsync()} .
+     *
+     * @example samples/V1/RoutersClient/delete.php
      *
      * @param DeleteRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -311,6 +315,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::getAsync()} .
      *
+     * @example samples/V1/RoutersClient/get.php
+     *
      * @param GetRouterRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -334,6 +340,8 @@ final class RoutersClient
      * Retrieves runtime NAT IP information.
      *
      * The async variant is {@see RoutersClient::getNatIpInfoAsync()} .
+     *
+     * @example samples/V1/RoutersClient/get_nat_ip_info.php
      *
      * @param GetNatIpInfoRouterRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -359,6 +367,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::getNatMappingInfoAsync()} .
      *
+     * @example samples/V1/RoutersClient/get_nat_mapping_info.php
+     *
      * @param GetNatMappingInfoRoutersRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -382,6 +392,8 @@ final class RoutersClient
      * Retrieves runtime information of the specified router.
      *
      * The async variant is {@see RoutersClient::getRouterStatusAsync()} .
+     *
+     * @example samples/V1/RoutersClient/get_router_status.php
      *
      * @param GetRouterStatusRouterRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -407,6 +419,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::insertAsync()} .
      *
+     * @example samples/V1/RoutersClient/insert.php
+     *
      * @param InsertRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -430,6 +444,8 @@ final class RoutersClient
      * Retrieves a list of Router resources available to the specified project.
      *
      * The async variant is {@see RoutersClient::listAsync()} .
+     *
+     * @example samples/V1/RoutersClient/list.php
      *
      * @param ListRoutersRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -455,6 +471,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::patchAsync()} .
      *
+     * @example samples/V1/RoutersClient/patch.php
+     *
      * @param PatchRouterRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -479,6 +497,8 @@ final class RoutersClient
      *
      * The async variant is {@see RoutersClient::previewAsync()} .
      *
+     * @example samples/V1/RoutersClient/preview.php
+     *
      * @param PreviewRouterRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -502,6 +522,8 @@ final class RoutersClient
      * Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
      *
      * The async variant is {@see RoutersClient::updateAsync()} .
+     *
+     * @example samples/V1/RoutersClient/update.php
      *
      * @param UpdateRouterRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

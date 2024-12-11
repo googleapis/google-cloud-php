@@ -264,6 +264,8 @@ final class SubnetworksClient
      *
      * The async variant is {@see SubnetworksClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/SubnetworksClient/aggregated_list.php
+     *
      * @param AggregatedListSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -287,6 +289,8 @@ final class SubnetworksClient
      * Deletes the specified subnetwork.
      *
      * The async variant is {@see SubnetworksClient::deleteAsync()} .
+     *
+     * @example samples/V1/SubnetworksClient/delete.php
      *
      * @param DeleteSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -312,6 +316,8 @@ final class SubnetworksClient
      *
      * The async variant is {@see SubnetworksClient::expandIpCidrRangeAsync()} .
      *
+     * @example samples/V1/SubnetworksClient/expand_ip_cidr_range.php
+     *
      * @param ExpandIpCidrRangeSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -335,6 +341,8 @@ final class SubnetworksClient
      * Returns the specified subnetwork.
      *
      * The async variant is {@see SubnetworksClient::getAsync()} .
+     *
+     * @example samples/V1/SubnetworksClient/get.php
      *
      * @param GetSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -360,6 +368,8 @@ final class SubnetworksClient
      *
      * The async variant is {@see SubnetworksClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/SubnetworksClient/get_iam_policy.php
+     *
      * @param GetIamPolicySubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -383,6 +393,8 @@ final class SubnetworksClient
      * Creates a subnetwork in the specified project using the data included in the request.
      *
      * The async variant is {@see SubnetworksClient::insertAsync()} .
+     *
+     * @example samples/V1/SubnetworksClient/insert.php
      *
      * @param InsertSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -408,6 +420,8 @@ final class SubnetworksClient
      *
      * The async variant is {@see SubnetworksClient::listAsync()} .
      *
+     * @example samples/V1/SubnetworksClient/list.php
+     *
      * @param ListSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -431,6 +445,8 @@ final class SubnetworksClient
      * Retrieves an aggregated list of all usable subnetworks in the project.
      *
      * The async variant is {@see SubnetworksClient::listUsableAsync()} .
+     *
+     * @example samples/V1/SubnetworksClient/list_usable.php
      *
      * @param ListUsableSubnetworksRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -456,6 +472,8 @@ final class SubnetworksClient
      *
      * The async variant is {@see SubnetworksClient::patchAsync()} .
      *
+     * @example samples/V1/SubnetworksClient/patch.php
+     *
      * @param PatchSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -479,6 +497,8 @@ final class SubnetworksClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see SubnetworksClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SubnetworksClient/set_iam_policy.php
      *
      * @param SetIamPolicySubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -504,6 +524,8 @@ final class SubnetworksClient
      *
      * The async variant is {@see SubnetworksClient::setPrivateIpGoogleAccessAsync()} .
      *
+     * @example samples/V1/SubnetworksClient/set_private_ip_google_access.php
+     *
      * @param SetPrivateIpGoogleAccessSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -527,6 +549,8 @@ final class SubnetworksClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see SubnetworksClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SubnetworksClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsSubnetworkRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

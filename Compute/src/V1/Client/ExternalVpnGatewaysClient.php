@@ -250,6 +250,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::deleteAsync()} .
      *
+     * @example samples/V1/ExternalVpnGatewaysClient/delete.php
+     *
      * @param DeleteExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -273,6 +275,8 @@ final class ExternalVpnGatewaysClient
      * Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::getAsync()} .
+     *
+     * @example samples/V1/ExternalVpnGatewaysClient/get.php
      *
      * @param GetExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -298,6 +302,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::insertAsync()} .
      *
+     * @example samples/V1/ExternalVpnGatewaysClient/insert.php
+     *
      * @param InsertExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -321,6 +327,8 @@ final class ExternalVpnGatewaysClient
      * Retrieves the list of ExternalVpnGateway available to the specified project.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::listAsync()} .
+     *
+     * @example samples/V1/ExternalVpnGatewaysClient/list.php
      *
      * @param ListExternalVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -346,6 +354,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ExternalVpnGatewaysClient/set_labels.php
+     *
      * @param SetLabelsExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -370,6 +380,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/ExternalVpnGatewaysClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {

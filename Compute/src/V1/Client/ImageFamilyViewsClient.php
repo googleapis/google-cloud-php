@@ -183,6 +183,8 @@ final class ImageFamilyViewsClient
      *
      * The async variant is {@see ImageFamilyViewsClient::getAsync()} .
      *
+     * @example samples/V1/ImageFamilyViewsClient/get.php
+     *
      * @param GetImageFamilyViewRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.

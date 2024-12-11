@@ -252,6 +252,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/AddressesClient/aggregated_list.php
+     *
      * @param AggregatedListAddressesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -275,6 +277,8 @@ final class AddressesClient
      * Deletes the specified address resource.
      *
      * The async variant is {@see AddressesClient::deleteAsync()} .
+     *
+     * @example samples/V1/AddressesClient/delete.php
      *
      * @param DeleteAddressRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -300,6 +304,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::getAsync()} .
      *
+     * @example samples/V1/AddressesClient/get.php
+     *
      * @param GetAddressRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -323,6 +329,8 @@ final class AddressesClient
      * Creates an address resource in the specified project by using the data included in the request.
      *
      * The async variant is {@see AddressesClient::insertAsync()} .
+     *
+     * @example samples/V1/AddressesClient/insert.php
      *
      * @param InsertAddressRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -348,6 +356,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::listAsync()} .
      *
+     * @example samples/V1/AddressesClient/list.php
+     *
      * @param ListAddressesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -372,6 +382,8 @@ final class AddressesClient
      *
      * The async variant is {@see AddressesClient::moveAsync()} .
      *
+     * @example samples/V1/AddressesClient/move.php
+     *
      * @param MoveAddressRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -395,6 +407,8 @@ final class AddressesClient
      * Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
      *
      * The async variant is {@see AddressesClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/AddressesClient/set_labels.php
      *
      * @param SetLabelsAddressRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

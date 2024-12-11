@@ -248,6 +248,8 @@ final class RegionCommitmentsClient
      *
      * The async variant is {@see RegionCommitmentsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/RegionCommitmentsClient/aggregated_list.php
+     *
      * @param AggregatedListRegionCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -271,6 +273,8 @@ final class RegionCommitmentsClient
      * Returns the specified commitment resource.
      *
      * The async variant is {@see RegionCommitmentsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionCommitmentsClient/get.php
      *
      * @param GetRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -296,6 +300,8 @@ final class RegionCommitmentsClient
      *
      * The async variant is {@see RegionCommitmentsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionCommitmentsClient/insert.php
+     *
      * @param InsertRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -320,6 +326,8 @@ final class RegionCommitmentsClient
      *
      * The async variant is {@see RegionCommitmentsClient::listAsync()} .
      *
+     * @example samples/V1/RegionCommitmentsClient/list.php
+     *
      * @param ListRegionCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -343,6 +351,8 @@ final class RegionCommitmentsClient
      * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: auto_renew.
      *
      * The async variant is {@see RegionCommitmentsClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionCommitmentsClient/update.php
      *
      * @param UpdateRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

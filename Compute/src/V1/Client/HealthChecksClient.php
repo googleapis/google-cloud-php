@@ -251,6 +251,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/aggregated_list.php
+     *
      * @param AggregatedListHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -274,6 +276,8 @@ final class HealthChecksClient
      * Deletes the specified HealthCheck resource.
      *
      * The async variant is {@see HealthChecksClient::deleteAsync()} .
+     *
+     * @example samples/V1/HealthChecksClient/delete.php
      *
      * @param DeleteHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -299,6 +303,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::getAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/get.php
+     *
      * @param GetHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -322,6 +328,8 @@ final class HealthChecksClient
      * Creates a HealthCheck resource in the specified project using the data included in the request.
      *
      * The async variant is {@see HealthChecksClient::insertAsync()} .
+     *
+     * @example samples/V1/HealthChecksClient/insert.php
      *
      * @param InsertHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -347,6 +355,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::listAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/list.php
+     *
      * @param ListHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -371,6 +381,8 @@ final class HealthChecksClient
      *
      * The async variant is {@see HealthChecksClient::patchAsync()} .
      *
+     * @example samples/V1/HealthChecksClient/patch.php
+     *
      * @param PatchHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -394,6 +406,8 @@ final class HealthChecksClient
      * Updates a HealthCheck resource in the specified project using the data included in the request.
      *
      * The async variant is {@see HealthChecksClient::updateAsync()} .
+     *
+     * @example samples/V1/HealthChecksClient/update.php
      *
      * @param UpdateHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

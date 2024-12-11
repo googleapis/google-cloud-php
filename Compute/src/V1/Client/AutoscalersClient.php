@@ -252,6 +252,8 @@ final class AutoscalersClient
      *
      * The async variant is {@see AutoscalersClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/AutoscalersClient/aggregated_list.php
+     *
      * @param AggregatedListAutoscalersRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -275,6 +277,8 @@ final class AutoscalersClient
      * Deletes the specified autoscaler.
      *
      * The async variant is {@see AutoscalersClient::deleteAsync()} .
+     *
+     * @example samples/V1/AutoscalersClient/delete.php
      *
      * @param DeleteAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -300,6 +304,8 @@ final class AutoscalersClient
      *
      * The async variant is {@see AutoscalersClient::getAsync()} .
      *
+     * @example samples/V1/AutoscalersClient/get.php
+     *
      * @param GetAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -323,6 +329,8 @@ final class AutoscalersClient
      * Creates an autoscaler in the specified project using the data included in the request.
      *
      * The async variant is {@see AutoscalersClient::insertAsync()} .
+     *
+     * @example samples/V1/AutoscalersClient/insert.php
      *
      * @param InsertAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -348,6 +356,8 @@ final class AutoscalersClient
      *
      * The async variant is {@see AutoscalersClient::listAsync()} .
      *
+     * @example samples/V1/AutoscalersClient/list.php
+     *
      * @param ListAutoscalersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -372,6 +382,8 @@ final class AutoscalersClient
      *
      * The async variant is {@see AutoscalersClient::patchAsync()} .
      *
+     * @example samples/V1/AutoscalersClient/patch.php
+     *
      * @param PatchAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -395,6 +407,8 @@ final class AutoscalersClient
      * Updates an autoscaler in the specified project using the data included in the request.
      *
      * The async variant is {@see AutoscalersClient::updateAsync()} .
+     *
+     * @example samples/V1/AutoscalersClient/update.php
      *
      * @param UpdateAutoscalerRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

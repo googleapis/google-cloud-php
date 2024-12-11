@@ -254,6 +254,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/aggregated_list.php
+     *
      * @param AggregatedListForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -277,6 +279,8 @@ final class ForwardingRulesClient
      * Deletes the specified ForwardingRule resource.
      *
      * The async variant is {@see ForwardingRulesClient::deleteAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/delete.php
      *
      * @param DeleteForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -302,6 +306,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::getAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/get.php
+     *
      * @param GetForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -325,6 +331,8 @@ final class ForwardingRulesClient
      * Creates a ForwardingRule resource in the specified project and region using the data included in the request.
      *
      * The async variant is {@see ForwardingRulesClient::insertAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/insert.php
      *
      * @param InsertForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -350,6 +358,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::listAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/list.php
+     *
      * @param ListForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -373,6 +383,8 @@ final class ForwardingRulesClient
      * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
      *
      * The async variant is {@see ForwardingRulesClient::patchAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/patch.php
      *
      * @param PatchForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -398,6 +410,8 @@ final class ForwardingRulesClient
      *
      * The async variant is {@see ForwardingRulesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ForwardingRulesClient/set_labels.php
+     *
      * @param SetLabelsForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -421,6 +435,8 @@ final class ForwardingRulesClient
      * Changes target URL for forwarding rule. The new target should be of the same type as the old target.
      *
      * The async variant is {@see ForwardingRulesClient::setTargetAsync()} .
+     *
+     * @example samples/V1/ForwardingRulesClient/set_target.php
      *
      * @param SetTargetForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

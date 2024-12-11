@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_SetCommonInstanceMetadata_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
 use Google\Cloud\Compute\V1\Metadata;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\SetCommonInstanceMetadataProjectRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function set_common_instance_metadata_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metadataResource = new Metadata();
+    $request = (new SetCommonInstanceMetadataProjectRequest())
+        ->setMetadataResource($metadataResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->setCommonInstanceMetadata($metadataResource, $project);
+        $response = $projectsClient->setCommonInstanceMetadata($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

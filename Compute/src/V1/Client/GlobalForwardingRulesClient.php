@@ -251,6 +251,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::deleteAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/delete.php
+     *
      * @param DeleteGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -274,6 +276,8 @@ final class GlobalForwardingRulesClient
      * Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
      *
      * The async variant is {@see GlobalForwardingRulesClient::getAsync()} .
+     *
+     * @example samples/V1/GlobalForwardingRulesClient/get.php
      *
      * @param GetGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -299,6 +303,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::insertAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/insert.php
+     *
      * @param InsertGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -322,6 +328,8 @@ final class GlobalForwardingRulesClient
      * Retrieves a list of GlobalForwardingRule resources available to the specified project.
      *
      * The async variant is {@see GlobalForwardingRulesClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalForwardingRulesClient/list.php
      *
      * @param ListGlobalForwardingRulesRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -347,6 +355,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::patchAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/patch.php
+     *
      * @param PatchGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -371,6 +381,8 @@ final class GlobalForwardingRulesClient
      *
      * The async variant is {@see GlobalForwardingRulesClient::setLabelsAsync()} .
      *
+     * @example samples/V1/GlobalForwardingRulesClient/set_labels.php
+     *
      * @param SetLabelsGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -394,6 +406,8 @@ final class GlobalForwardingRulesClient
      * Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      *
      * The async variant is {@see GlobalForwardingRulesClient::setTargetAsync()} .
+     *
+     * @example samples/V1/GlobalForwardingRulesClient/set_target.php
      *
      * @param SetTargetGlobalForwardingRuleRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

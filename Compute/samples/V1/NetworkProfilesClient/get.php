@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_NetworkProfiles_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\NetworkProfilesClient;
+use Google\Cloud\Compute\V1\GetNetworkProfileRequest;
 use Google\Cloud\Compute\V1\NetworkProfile;
-use Google\Cloud\Compute\V1\NetworkProfilesClient;
 
 /**
  * Returns the specified network profile.
@@ -38,10 +39,15 @@ function get_sample(string $networkProfile, string $project): void
     // Create a client.
     $networkProfilesClient = new NetworkProfilesClient();
 
+    // Prepare the request message.
+    $request = (new GetNetworkProfileRequest())
+        ->setNetworkProfile($networkProfile)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var NetworkProfile $response */
-        $response = $networkProfilesClient->get($networkProfile, $project);
+        $response = $networkProfilesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
