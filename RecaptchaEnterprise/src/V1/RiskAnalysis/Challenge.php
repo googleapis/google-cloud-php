@@ -7,7 +7,7 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis;
 use UnexpectedValueException;
 
 /**
- * Challenge information for SCORE_AND_CHALLENGE keys
+ * Challenge information for SCORE_AND_CHALLENGE and INVISIBLE keys
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge</code>
  */

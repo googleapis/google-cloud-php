@@ -37,6 +37,7 @@ use Google\Cloud\Compute\V1\InstanceSettings;
 use Google\Cloud\Compute\V1\PatchInstanceSettingRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The InstanceSettings API.
@@ -210,6 +211,9 @@ final class InstanceSettingsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -237,6 +241,8 @@ final class InstanceSettingsServiceClient
      *
      * The async variant is {@see InstanceSettingsServiceClient::getAsync()} .
      *
+     * @example samples/V1/InstanceSettingsServiceClient/get.php
+     *
      * @param GetInstanceSettingRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -260,6 +266,8 @@ final class InstanceSettingsServiceClient
      * Patch Instance settings
      *
      * The async variant is {@see InstanceSettingsServiceClient::patchAsync()} .
+     *
+     * @example samples/V1/InstanceSettingsServiceClient/patch.php
      *
      * @param PatchInstanceSettingRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

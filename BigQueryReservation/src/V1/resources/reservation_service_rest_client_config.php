@@ -92,6 +92,18 @@ return [
                     ],
                 ],
             ],
+            'FailoverReservation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}:failoverReservation',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBiReservation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/biReservation}',

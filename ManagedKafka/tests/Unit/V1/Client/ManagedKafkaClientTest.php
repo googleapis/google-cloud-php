@@ -115,8 +115,12 @@ class ManagedKafkaClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -602,8 +606,12 @@ class ManagedKafkaClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -1026,8 +1034,12 @@ class ManagedKafkaClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1456,8 +1468,12 @@ class ManagedKafkaClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

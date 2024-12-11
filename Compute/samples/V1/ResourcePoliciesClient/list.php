@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ResourcePolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\Client\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\ListResourcePoliciesRequest;
 
 /**
  * A list all the resource policies that have been configured for the specified project in specified region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $resourcePoliciesClient = new ResourcePoliciesClient();
 
+    // Prepare the request message.
+    $request = (new ListResourcePoliciesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $resourcePoliciesClient->list($project, $region);
+        $response = $resourcePoliciesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

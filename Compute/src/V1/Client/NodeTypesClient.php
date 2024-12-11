@@ -37,6 +37,7 @@ use Google\Cloud\Compute\V1\GetNodeTypeRequest;
 use Google\Cloud\Compute\V1\ListNodeTypesRequest;
 use Google\Cloud\Compute\V1\NodeType;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The NodeTypes API.
@@ -158,6 +159,9 @@ final class NodeTypesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -184,6 +188,8 @@ final class NodeTypesClient
      *
      * The async variant is {@see NodeTypesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NodeTypesClient/aggregated_list.php
+     *
      * @param AggregatedListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -208,6 +214,8 @@ final class NodeTypesClient
      *
      * The async variant is {@see NodeTypesClient::getAsync()} .
      *
+     * @example samples/V1/NodeTypesClient/get.php
+     *
      * @param GetNodeTypeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -231,6 +239,8 @@ final class NodeTypesClient
      * Retrieves a list of node types available to the specified project.
      *
      * The async variant is {@see NodeTypesClient::listAsync()} .
+     *
+     * @example samples/V1/NodeTypesClient/list.php
      *
      * @param ListNodeTypesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

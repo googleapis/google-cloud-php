@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Control over the rate of notifications sent to this alert policy's
+ * Control over the rate of notifications sent to this alerting policy's
  * notification channels.
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationRateLimit</code>

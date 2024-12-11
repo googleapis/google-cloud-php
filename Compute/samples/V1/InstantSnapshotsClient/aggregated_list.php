@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstantSnapshots_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstantSnapshotsClient;
+use Google\Cloud\Compute\V1\AggregatedListInstantSnapshotsRequest;
+use Google\Cloud\Compute\V1\Client\InstantSnapshotsClient;
 
 /**
  * Retrieves an aggregated list of instantSnapshots. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $instantSnapshotsClient = new InstantSnapshotsClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListInstantSnapshotsRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $instantSnapshotsClient->aggregatedList($project);
+        $response = $instantSnapshotsClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

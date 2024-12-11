@@ -36,6 +36,7 @@ use Google\Cloud\Compute\V1\DiskType;
 use Google\Cloud\Compute\V1\GetRegionDiskTypeRequest;
 use Google\Cloud\Compute\V1\ListRegionDiskTypesRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionDiskTypes API.
@@ -156,6 +157,9 @@ final class RegionDiskTypesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -182,6 +186,8 @@ final class RegionDiskTypesClient
      *
      * The async variant is {@see RegionDiskTypesClient::getAsync()} .
      *
+     * @example samples/V1/RegionDiskTypesClient/get.php
+     *
      * @param GetRegionDiskTypeRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -205,6 +211,8 @@ final class RegionDiskTypesClient
      * Retrieves a list of regional disk types available to the specified project.
      *
      * The async variant is {@see RegionDiskTypesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionDiskTypesClient/list.php
      *
      * @param ListRegionDiskTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

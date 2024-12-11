@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NodeGroupsClient;
+use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
+use Google\Cloud\Compute\V1\ListNodeGroupsRequest;
 
 /**
  * Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
+    // Prepare the request message.
+    $request = (new ListNodeGroupsRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $nodeGroupsClient->list($project, $zone);
+        $response = $nodeGroupsClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

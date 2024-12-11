@@ -83,9 +83,17 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * The name of the kernel to use during notebook execution. If unset, the
+     * default kernel is used.
+     *
+     * Generated from protobuf field <code>string kernel_name = 20;</code>
+     */
+    protected $kernel_name = '';
+    /**
      * Customer-managed encryption key spec for the notebook execution job.
      * This field is auto-populated if the
-     * [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     * [NotebookRuntimeTemplate][google.cloud.aiplatform.v1.NotebookRuntimeTemplate]
+     * has an encryption spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 22;</code>
      */
@@ -94,6 +102,7 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     protected $environment_spec;
     protected $execution_sink;
     protected $execution_identity;
+    protected $runtime_environment;
 
     /**
      * Constructor.
@@ -119,6 +128,8 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      *           The user email to run the execution as. Only supported by Colab runtimes.
      *     @type string $service_account
      *           The service account to run the execution as.
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\WorkbenchRuntime $workbench_runtime
+     *           The Workbench runtime configuration to use for the notebook execution.
      *     @type string $name
      *           Output only. The resource name of this NotebookExecutionJob. Format:
      *           `projects/{project_id}/locations/{location}/notebookExecutionJobs/{job_id}`
@@ -150,10 +161,14 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *           System reserved label keys are prefixed with "aiplatform.googleapis.com/"
      *           and are immutable.
+     *     @type string $kernel_name
+     *           The name of the kernel to use during notebook execution. If unset, the
+     *           default kernel is used.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for the notebook execution job.
      *           This field is auto-populated if the
-     *           [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     *           [NotebookRuntimeTemplate][google.cloud.aiplatform.v1.NotebookRuntimeTemplate]
+     *           has an encryption spec.
      * }
      */
     public function __construct($data = NULL) {
@@ -409,6 +424,37 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * The Workbench runtime configuration to use for the notebook execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookExecutionJob.WorkbenchRuntime workbench_runtime = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\WorkbenchRuntime|null
+     */
+    public function getWorkbenchRuntime()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasWorkbenchRuntime()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * The Workbench runtime configuration to use for the notebook execution.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.NotebookExecutionJob.WorkbenchRuntime workbench_runtime = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\WorkbenchRuntime $var
+     * @return $this
+     */
+    public function setWorkbenchRuntime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\NotebookExecutionJob\WorkbenchRuntime::class);
+        $this->writeOneof(23, $var);
 
         return $this;
     }
@@ -714,9 +760,38 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The name of the kernel to use during notebook execution. If unset, the
+     * default kernel is used.
+     *
+     * Generated from protobuf field <code>string kernel_name = 20;</code>
+     * @return string
+     */
+    public function getKernelName()
+    {
+        return $this->kernel_name;
+    }
+
+    /**
+     * The name of the kernel to use during notebook execution. If unset, the
+     * default kernel is used.
+     *
+     * Generated from protobuf field <code>string kernel_name = 20;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKernelName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kernel_name = $var;
+
+        return $this;
+    }
+
+    /**
      * Customer-managed encryption key spec for the notebook execution job.
      * This field is auto-populated if the
-     * [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     * [NotebookRuntimeTemplate][google.cloud.aiplatform.v1.NotebookRuntimeTemplate]
+     * has an encryption spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 22;</code>
      * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
@@ -739,7 +814,8 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     /**
      * Customer-managed encryption key spec for the notebook execution job.
      * This field is auto-populated if the
-     * [NotebookService.NotebookRuntimeTemplate][] has an encryption spec.
+     * [NotebookRuntimeTemplate][google.cloud.aiplatform.v1.NotebookRuntimeTemplate]
+     * has an encryption spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 22;</code>
      * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
@@ -783,6 +859,14 @@ class NotebookExecutionJob extends \Google\Protobuf\Internal\Message
     public function getExecutionIdentity()
     {
         return $this->whichOneof("execution_identity");
+    }
+
+    /**
+     * @return string
+     */
+    public function getRuntimeEnvironment()
+    {
+        return $this->whichOneof("runtime_environment");
     }
 
 }

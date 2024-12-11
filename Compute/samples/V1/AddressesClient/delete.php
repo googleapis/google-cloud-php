@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Addresses_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\AddressesClient;
+use Google\Cloud\Compute\V1\Client\AddressesClient;
+use Google\Cloud\Compute\V1\DeleteAddressRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $address, string $project, string $region): void
     // Create a client.
     $addressesClient = new AddressesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAddressRequest())
+        ->setAddress($address)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $addressesClient->delete($address, $project, $region);
+        $response = $addressesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

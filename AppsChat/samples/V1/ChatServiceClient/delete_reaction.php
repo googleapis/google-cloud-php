@@ -32,6 +32,7 @@ use Google\Apps\Chat\V1\DeleteReactionRequest;
  * For an example, see
  * [Delete a
  * reaction](https://developers.google.com/workspace/chat/delete-reactions).
+ *
  * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *

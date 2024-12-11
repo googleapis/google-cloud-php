@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The removeIpOverride request message.
+ * The RemoveIpOverride request message.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.RemoveIpOverrideRequest</code>
  */

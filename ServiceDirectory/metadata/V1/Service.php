@@ -19,7 +19,7 @@ class Service
         \GPBMetadata\Google\Cloud\Servicedirectory\V1\Endpoint::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†
+ù
 .google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"˝
 Service
 name (	B‡AT
@@ -29,8 +29,8 @@ class Service
 AnnotationsEntry
 key (	
 value (	:8:ÍA|
-\'servicedirectory.googleapis.com/ServiceQprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}B˜
-$com.google.cloud.servicedirectory.v1BServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb¯™ Google.Cloud.ServiceDirectory.V1  Google\\Cloud\\ServiceDirectory\\V1Í#Google::Cloud::ServiceDirectory::V1bproto3'
+\'servicedirectory.googleapis.com/ServiceQprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}BÙ
+$com.google.cloud.servicedirectory.v1BServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb™ Google.Cloud.ServiceDirectory.V1  Google\\Cloud\\ServiceDirectory\\V1Í#Google::Cloud::ServiceDirectory::V1bproto3'
         , true);
 
         static::$is_initialized = true;

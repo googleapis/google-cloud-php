@@ -50,6 +50,7 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing
@@ -540,14 +541,14 @@ final class ConversationProfilesClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -602,6 +603,9 @@ final class ConversationProfilesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -664,7 +668,9 @@ final class ConversationProfilesClient
     /**
      * Creates a conversation profile in the specified project.
      *
-     * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
+     * [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+     * and
+     * [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
      * aren't populated in the response. You can retrieve them via
      * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
      * API.
@@ -819,7 +825,9 @@ final class ConversationProfilesClient
     /**
      * Updates the specified conversation profile.
      *
-     * [ConversationProfile.CreateTime][] and [ConversationProfile.UpdateTime][]
+     * [ConversationProfile.create_time][google.cloud.dialogflow.v2.ConversationProfile.create_time]
+     * and
+     * [ConversationProfile.update_time][google.cloud.dialogflow.v2.ConversationProfile.update_time]
      * aren't populated in the response. You can retrieve them via
      * [GetConversationProfile][google.cloud.dialogflow.v2.ConversationProfiles.GetConversationProfile]
      * API.

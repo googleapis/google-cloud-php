@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_BackendBuckets_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\BackendBucketsClient;
+use Google\Cloud\Compute\V1\Client\BackendBucketsClient;
+use Google\Cloud\Compute\V1\TestIamPermissionsBackendBucketRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 
@@ -39,17 +40,17 @@ function test_iam_permissions_sample(string $project, string $resource): void
     // Create a client.
     $backendBucketsClient = new BackendBucketsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $testPermissionsRequestResource = new TestPermissionsRequest();
+    $request = (new TestIamPermissionsBackendBucketRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setTestPermissionsRequestResource($testPermissionsRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestPermissionsResponse $response */
-        $response = $backendBucketsClient->testIamPermissions(
-            $project,
-            $resource,
-            $testPermissionsRequestResource
-        );
+        $response = $backendBucketsClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetInstances_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetInstancesClient;
+use Google\Cloud\Compute\V1\Client\TargetInstancesClient;
+use Google\Cloud\Compute\V1\ListTargetInstancesRequest;
 
 /**
  * Retrieves a list of TargetInstance resources available to the specified project and zone.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $zone): void
     // Create a client.
     $targetInstancesClient = new TargetInstancesClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetInstancesRequest())
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetInstancesClient->list($project, $zone);
+        $response = $targetInstancesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

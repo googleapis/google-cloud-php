@@ -60,15 +60,18 @@ use Google\Cloud\NetworkConnectivity\V1\ListHubsRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListRouteTablesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
+use Google\Cloud\NetworkConnectivity\V1\QueryHubStatusRequest;
 use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\Route;
 use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
+use Google\Cloud\NetworkConnectivity\V1\UpdateGroupRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Network Connectivity Center is a hub-and-spoke abstraction for network
@@ -99,7 +102,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface<PagedListResponse> listRouteTablesAsync(ListRouteTablesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRoutesAsync(ListRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSpokesAsync(ListSpokesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryHubStatusAsync(QueryHubStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> rejectHubSpokeAsync(RejectHubSpokeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGroupAsync(UpdateGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateHubAsync(UpdateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateSpokeAsync(UpdateSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -413,14 +418,14 @@ final class HubServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -475,6 +480,9 @@ final class HubServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -839,7 +847,7 @@ final class HubServiceClient
     }
 
     /**
-     * Lists route tables in a given project.
+     * Lists route tables in a given hub.
      *
      * The async variant is {@see HubServiceClient::listRouteTablesAsync()} .
      *
@@ -865,7 +873,7 @@ final class HubServiceClient
     }
 
     /**
-     * Lists routes in a given project.
+     * Lists routes in a given route table.
      *
      * The async variant is {@see HubServiceClient::listRoutesAsync()} .
      *
@@ -918,6 +926,33 @@ final class HubServiceClient
     }
 
     /**
+     * Query the Private Service Connect propagation status of a Network
+     * Connectivity Center hub.
+     *
+     * The async variant is {@see HubServiceClient::queryHubStatusAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/query_hub_status.php
+     *
+     * @param QueryHubStatusRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function queryHubStatus(QueryHubStatusRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('QueryHubStatus', $request, $callOptions);
+    }
+
+    /**
      * Rejects a Network Connectivity Center spoke from being attached to a hub.
      * If the spoke was previously in the `ACTIVE` state, it
      * transitions to the `INACTIVE` state and is no longer able to
@@ -944,6 +979,32 @@ final class HubServiceClient
     public function rejectHubSpoke(RejectHubSpokeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('RejectHubSpoke', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a Network Connectivity Center group.
+     *
+     * The async variant is {@see HubServiceClient::updateGroupAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/update_group.php
+     *
+     * @param UpdateGroupRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateGroup(UpdateGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateGroup', $request, $callOptions)->wait();
     }
 
     /**

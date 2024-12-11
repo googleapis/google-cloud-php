@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionSslCertificates_Get_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionSslCertificatesClient;
+use Google\Cloud\Compute\V1\Client\RegionSslCertificatesClient;
+use Google\Cloud\Compute\V1\GetRegionSslCertificateRequest;
 use Google\Cloud\Compute\V1\SslCertificate;
 
 /**
@@ -39,10 +40,16 @@ function get_sample(string $project, string $region, string $sslCertificate): vo
     // Create a client.
     $regionSslCertificatesClient = new RegionSslCertificatesClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionSslCertificateRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setSslCertificate($sslCertificate);
+
     // Call the API and handle any network failures.
     try {
         /** @var SslCertificate $response */
-        $response = $regionSslCertificatesClient->get($project, $region, $sslCertificate);
+        $response = $regionSslCertificatesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

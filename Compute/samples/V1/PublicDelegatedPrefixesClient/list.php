@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_PublicDelegatedPrefixes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\Client\PublicDelegatedPrefixesClient;
+use Google\Cloud\Compute\V1\ListPublicDelegatedPrefixesRequest;
 
 /**
  * Lists the PublicDelegatedPrefixes for a project in the given region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $publicDelegatedPrefixesClient = new PublicDelegatedPrefixesClient();
 
+    // Prepare the request message.
+    $request = (new ListPublicDelegatedPrefixesRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $publicDelegatedPrefixesClient->list($project, $region);
+        $response = $publicDelegatedPrefixesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

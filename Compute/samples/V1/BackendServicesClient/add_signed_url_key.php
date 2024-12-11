@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_BackendServices_AddSignedUrlKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\AddSignedUrlKeyBackendServiceRequest;
+use Google\Cloud\Compute\V1\Client\BackendServicesClient;
 use Google\Cloud\Compute\V1\SignedUrlKey;
 use Google\Rpc\Status;
 
@@ -40,17 +41,17 @@ function add_signed_url_key_sample(string $backendService, string $project): voi
     // Create a client.
     $backendServicesClient = new BackendServicesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $signedUrlKeyResource = new SignedUrlKey();
+    $request = (new AddSignedUrlKeyBackendServiceRequest())
+        ->setBackendService($backendService)
+        ->setProject($project)
+        ->setSignedUrlKeyResource($signedUrlKeyResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backendServicesClient->addSignedUrlKey(
-            $backendService,
-            $project,
-            $signedUrlKeyResource
-        );
+        $response = $backendServicesClient->addSignedUrlKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

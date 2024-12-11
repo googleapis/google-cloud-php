@@ -34,7 +34,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      * - `accessory_widgets`  (Requires [app
      * authentication](/chat/api/guides/auth/service-accounts).)
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $update_mask = null;
     /**
@@ -159,7 +159,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      * - `accessory_widgets`  (Requires [app
      * authentication](/chat/api/guides/auth/service-accounts).)
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -190,7 +190,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      * - `accessory_widgets`  (Requires [app
      * authentication](/chat/api/guides/auth/service-accounts).)
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

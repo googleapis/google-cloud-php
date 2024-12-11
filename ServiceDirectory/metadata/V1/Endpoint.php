@@ -18,7 +18,7 @@ class Endpoint
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–
+“
 /google/cloud/servicedirectory/v1/endpoint.proto google.cloud.servicedirectory.v1google/api/resource.proto"¾
 Endpoint
 name (	BàA
@@ -31,8 +31,8 @@ class Endpoint
 AnnotationsEntry
 key (	
 value (	:8:–êA’
-(servicedirectory.googleapis.com/Endpointfprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}BÜ
-$com.google.cloud.servicedirectory.v1BEndpointProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbøª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1êAa
+(servicedirectory.googleapis.com/Endpointfprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}BÙ
+$com.google.cloud.servicedirectory.v1BEndpointProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1êAa
 \'servicedirectory.googleapis.com/Network6projects/{project}/locations/global/networks/{network}bproto3'
         , true);
 

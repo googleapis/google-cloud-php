@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetVpnGateways_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\InsertTargetVpnGatewayRequest;
 use Google\Cloud\Compute\V1\TargetVpnGateway;
-use Google\Cloud\Compute\V1\TargetVpnGatewaysClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $targetVpnGatewaysClient = new TargetVpnGatewaysClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetVpnGatewayResource = new TargetVpnGateway();
+    $request = (new InsertTargetVpnGatewayRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetVpnGatewayResource($targetVpnGatewayResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetVpnGatewaysClient->insert($project, $region, $targetVpnGatewayResource);
+        $response = $targetVpnGatewaysClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

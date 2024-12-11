@@ -23,7 +23,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -31,7 +31,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
      * Requires the `chat.admin.delete` [OAuth 2.0
      * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *
-     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_admin_access = false;
 
@@ -61,7 +61,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
      *           Required. Resource name of the space to delete.
      *           Format: `spaces/{space}`
      *     @type bool $use_admin_access
-     *           When `true`, the method runs using the user's Google Workspace
+     *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
      *           The calling user must be a Google Workspace administrator with the
      *           [manage chat and spaces conversations
@@ -104,7 +104,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -112,7 +112,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
      * Requires the `chat.admin.delete` [OAuth 2.0
      * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *
-     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseAdminAccess()
@@ -121,7 +121,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -129,7 +129,7 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
      * Requires the `chat.admin.delete` [OAuth 2.0
      * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
      *
-     * Generated from protobuf field <code>bool use_admin_access = 2;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

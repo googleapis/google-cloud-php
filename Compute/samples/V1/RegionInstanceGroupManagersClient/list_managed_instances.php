@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_ListManagedInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\ListManagedInstancesRegionInstanceGroupManagersRequest;
 
 /**
  * Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances. The orderBy query parameter is not supported. The `pageToken` query parameter is supported only if the group's `listManagedInstancesResults` field is set to `PAGINATED`.
@@ -42,14 +43,16 @@ function list_managed_instances_sample(
     // Create a client.
     $regionInstanceGroupManagersClient = new RegionInstanceGroupManagersClient();
 
+    // Prepare the request message.
+    $request = (new ListManagedInstancesRegionInstanceGroupManagersRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $regionInstanceGroupManagersClient->listManagedInstances(
-            $instanceGroupManager,
-            $project,
-            $region
-        );
+        $response = $regionInstanceGroupManagersClient->listManagedInstances($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

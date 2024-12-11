@@ -123,6 +123,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DirectoryStripeLevel directory_stripe_level = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $directory_stripe_level = 0;
+    /**
+     * Optional. The deployment type of the instance. Allowed values are:
+     * * `SCRATCH`: the instance is a scratch instance.
+     * * `PERSISTENT`: the instance is a persistent instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DeploymentType deployment_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deployment_type = 0;
 
     /**
      * Constructor.
@@ -182,6 +190,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *             involving a mix of small and large directories.
      *           * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large
      *             number of files.
+     *     @type int $deployment_type
+     *           Optional. The deployment type of the instance. Allowed values are:
+     *           * `SCRATCH`: the instance is a scratch instance.
+     *           * `PERSISTENT`: the instance is a persistent instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -617,6 +629,36 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\DirectoryStripeLevel::class);
         $this->directory_stripe_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deployment type of the instance. Allowed values are:
+     * * `SCRATCH`: the instance is a scratch instance.
+     * * `PERSISTENT`: the instance is a persistent instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DeploymentType deployment_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDeploymentType()
+    {
+        return $this->deployment_type;
+    }
+
+    /**
+     * Optional. The deployment type of the instance. Allowed values are:
+     * * `SCRATCH`: the instance is a scratch instance.
+     * * `PERSISTENT`: the instance is a persistent instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DeploymentType deployment_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeploymentType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Parallelstore\V1beta\DeploymentType::class);
+        $this->deployment_type = $var;
 
         return $this;
     }

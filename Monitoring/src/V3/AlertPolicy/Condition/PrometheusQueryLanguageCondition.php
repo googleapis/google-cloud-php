@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A condition type that allows alert policies to be defined using
+ * A condition type that allows alerting policies to be defined using
  * [Prometheus Query Language
  * (PromQL)](https://prometheus.io/docs/prometheus/latest/querying/basics/).
  * The PrometheusQueryLanguageCondition message contains information
@@ -75,7 +75,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      * Label names [must be
      * valid](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels).
      * Label values can be [templatized by using
-     * variables](https://cloud.google.com/monitoring/alerts/doc-variables).
+     * variables](https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars).
      * The only available variable names are the names of the labels in the
      * PromQL result, including "__name__" and "value". "labels" may be empty.
      *
@@ -143,7 +143,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *           Label names [must be
      *           valid](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels).
      *           Label values can be [templatized by using
-     *           variables](https://cloud.google.com/monitoring/alerts/doc-variables).
+     *           variables](https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars).
      *           The only available variable names are the names of the labels in the
      *           PromQL result, including "__name__" and "value". "labels" may be empty.
      *     @type string $rule_group
@@ -303,7 +303,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      * Label names [must be
      * valid](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels).
      * Label values can be [templatized by using
-     * variables](https://cloud.google.com/monitoring/alerts/doc-variables).
+     * variables](https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars).
      * The only available variable names are the names of the labels in the
      * PromQL result, including "__name__" and "value". "labels" may be empty.
      *
@@ -320,7 +320,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      * Label names [must be
      * valid](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels).
      * Label values can be [templatized by using
-     * variables](https://cloud.google.com/monitoring/alerts/doc-variables).
+     * variables](https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars).
      * The only available variable names are the names of the labels in the
      * PromQL result, including "__name__" and "value". "labels" may be empty.
      *

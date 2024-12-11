@@ -36,6 +36,7 @@ use Google\Cloud\Compute\V1\LicenseCode;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseCodeRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The LicenseCodes API.
@@ -156,6 +157,9 @@ final class LicenseCodesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -182,6 +186,8 @@ final class LicenseCodesClient
      *
      * The async variant is {@see LicenseCodesClient::getAsync()} .
      *
+     * @example samples/V1/LicenseCodesClient/get.php
+     *
      * @param GetLicenseCodeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -205,6 +211,8 @@ final class LicenseCodesClient
      * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicenseCodesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/LicenseCodesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsLicenseCodeRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
