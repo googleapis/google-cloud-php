@@ -35,11 +35,15 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\Testing\MockClientStreamingCall;
 use Google\ApiCore\Testing\MockStatus;
+use Google\Auth\Logging\StdOutLogger;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class ClientStreamTest extends TestCase
 {
+    use ProphecyTrait;
     use TestTrait;
 
     public function testNoWritesSuccess()
@@ -158,5 +162,40 @@ class ClientStreamTest extends TestCase
             $this->assertSame($call, $stream->getClientStreamingCall());
             $this->assertEquals($requests, $call->popReceivedCalls());
         }
+    }
+
+    public function testWriteCallsLogger()
+    {
+        $logger = $this->prophesize(StdOutLogger::class);
+        $logger->debug(Argument::cetera())
+            ->shouldBeCalledTimes(2);
+
+        $requests = [
+            $this->createStatus(Code::OK, 'request1'),
+            $this->createStatus(Code::OK, 'request2')
+        ];
+        $response = $this->createStatus(Code::OK, 'response');
+        $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
+        $stream = new ClientStream($call, logger: $logger->reveal());
+
+        $stream->write($requests[0]);
+        $stream->write($requests[1]);
+    }
+
+    public function testReadCallsLogger()
+    {
+        $logger = $this->prophesize(StdOutLogger::class);
+        $logger->debug(Argument::cetera())
+            ->shouldBeCalledTimes(2);
+
+        $requests = [
+            $this->createStatus(Code::OK, 'request1'),
+        ];
+        $response = $this->createStatus(Code::OK, 'response');
+        $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
+        $stream = new ClientStream($call, logger: $logger->reveal());
+
+        $stream->write($requests[0]);
+        $stream->readResponse();
     }
 }

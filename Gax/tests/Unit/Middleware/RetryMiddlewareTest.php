@@ -35,6 +35,7 @@ namespace Google\ApiCore\Tests\Unit\Middleware;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
+use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Middleware\RetryMiddleware;
 use Google\ApiCore\RetrySettings;
 use Google\Rpc\Code;
@@ -382,6 +383,43 @@ class RetryMiddlewareTest extends TestCase
         $this->expectExceptionMessage('Call Count: ' . ($maxRetries + 1));
 
         $middleware($call->reveal(), [])->wait();
+    }
+
+    public function testRetriesAreIncludedInTheOptionsArray()
+    {
+        $call = $this->prophesize(Call::class)->reveal();
+
+        $maxRetries = 1;
+        $reportedRetries = 0;
+        $retrySettings = RetrySettings::constructDefault()
+            ->with([
+                'retriesEnabled' => true,
+                'retryableCodes' => [ApiStatus::CANCELLED],
+                'maxRetries' => $maxRetries
+            ]);
+
+        $callCount = 0;
+        $handler = function(Call $call, $options) use (&$callCount, &$reportedRetries) {
+            $promise = new Promise(function () use (&$callCount, &$reportedRetries, $options, &$promise) {
+                if ($callCount === 0) {
+                    ++$callCount;
+                    throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
+                }
+
+                if (array_key_exists('retryAttempt', $options)) {
+                    $reportedRetries = $options['retryAttempt'];
+                }
+
+                $promise->resolve(null);
+            });
+
+            return $promise;
+        };
+
+        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware($call, [])->wait();
+
+        $this->assertEquals($callCount, $reportedRetries);
     }
 
     /**

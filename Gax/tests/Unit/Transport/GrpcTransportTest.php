@@ -40,6 +40,7 @@ use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\ValidationException;
+use Google\Auth\Logging\StdOutLogger;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
@@ -51,11 +52,13 @@ use Grpc\ChannelCredentials;
 use Grpc\ClientStreamingCall;
 use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
+use GuzzleHttp\Promise\Promise;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use stdClass;
 use TypeError;
+use Psr\Log\LoggerInterface;
 
 class GrpcTransportTest extends TestCase
 {

@@ -95,12 +95,13 @@ class RestTransport implements TransportInterface
             'httpHandler'  => null,
             'clientCertSource' => null,
             'hasEmulator' => false,
+            'logger' => null,
         ];
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
-        $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync();
+        $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);
         $transport = new RestTransport($requestBuilder, $httpHandler);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
@@ -114,6 +115,9 @@ class RestTransport implements TransportInterface
     public function startUnaryCall(Call $call, array $options)
     {
         $headers = self::buildCommonHeaders($options);
+
+        // Add the $call object ID for logging
+        $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
         // call the HTTP handler
         $httpHandler = $this->httpHandler;
@@ -264,6 +268,14 @@ class RestTransport implements TransportInterface
             list($cert, $key) = self::loadClientCertSource($this->clientCertSource);
             $callOptions['cert'] = $cert;
             $callOptions['key'] = $key;
+        }
+
+        if (isset($options['retryAttempt'])) {
+            $callOptions['retryAttempt'] = $options['retryAttempt'];
+        }
+
+        if (isset($options['requestId'])) {
+            $callOptions['requestId'] = $options['requestId'];
         }
 
         return $callOptions;
