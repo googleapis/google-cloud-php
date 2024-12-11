@@ -364,7 +364,7 @@ class ServiceBuilder
     public function translate(array $config = [])
     {
         if (class_exists(DeprecatedTranslateClient::class)) {
-            return $this->createClient(TranslateClient::class, 'translate', $config);
+            return $this->createClient(DeprecatedTranslateClient::class, 'translate', $config);
         }
         throw new \BadMethodCallException(sprintf(
             'This method is no longer supported, create %s directly instead.'.
