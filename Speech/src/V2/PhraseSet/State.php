@@ -60,6 +60,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Speech\V2\PhraseSet_State::class);
 

@@ -54,6 +54,4 @@ class ProcessingStrategy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProcessingStrategy::class, \Google\Cloud\Speech\V2\BatchRecognizeRequest_ProcessingStrategy::class);
 

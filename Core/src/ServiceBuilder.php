@@ -26,7 +26,8 @@ use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Speech\SpeechClient;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\SpeechClient as DeprecatedSpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\V2\TranslateClient;
@@ -270,32 +271,19 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Speech enables easy integration of Google speech recognition
-     * technologies into developer applications. Send audio and receive a text
-     * transcription from the Cloud Speech API service. Find more information at
-     * the [Google Cloud Speech API docs](https://cloud.google.com/speech/docs/).
-     *
-     * Example:
-     * ```
-     * $speech = $cloud->speech([
-     *     'languageCode' => 'en-US'
-     * ]);
-     * ```
-     *
-     * @param array $config [optional] {
-     *     Configuration options. See
-     *     {@see \Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
-     *
-     *     @type string $languageCode The language of the content to
-     *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
-     *           language codes are accepted. See
-     *           [Language Support](https://cloud.google.com/speech/docs/languages)
-     *           for a list of the currently supported language codes.
-     * @return SpeechClient
+     * @deprecated
+     * @see SpeechClient
+     * @throws \BadMethodCallException
      */
     public function speech(array $config = [])
     {
-        return $this->createClient(SpeechClient::class, 'speech', $config);
+        if (class_exists(DeprecatedSpeechClient::class)) {
+            return $this->createClient(DeprecatedSpeechClient::class, 'speech', $config);
+        }
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            SpeechClient::class
+        ));
     }
 
     /**

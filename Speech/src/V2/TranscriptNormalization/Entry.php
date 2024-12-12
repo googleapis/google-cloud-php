@@ -20,19 +20,19 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string search = 1;</code>
      */
-    private $search = '';
+    protected $search = '';
     /**
      * What to replace with. Max length is 100 characters.
      *
      * Generated from protobuf field <code>string replace = 2;</code>
      */
-    private $replace = '';
+    protected $replace = '';
     /**
      * Whether the search is case sensitive.
      *
      * Generated from protobuf field <code>bool case_sensitive = 3;</code>
      */
-    private $case_sensitive = false;
+    protected $case_sensitive = false;
 
     /**
      * Constructor.
@@ -133,6 +133,4 @@ class Entry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Entry::class, \Google\Cloud\Speech\V2\TranscriptNormalization_Entry::class);
 

@@ -110,6 +110,4 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AdaptationPhraseSet::class, \Google\Cloud\Speech\V2\SpeechAdaptation_AdaptationPhraseSet::class);
 

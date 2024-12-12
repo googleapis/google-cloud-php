@@ -20,7 +20,7 @@ class ClassItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class ClassItem extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClassItem::class, \Google\Cloud\Speech\V2\CustomClass_ClassItem::class);
 

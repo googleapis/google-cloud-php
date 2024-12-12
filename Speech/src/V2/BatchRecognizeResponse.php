@@ -28,7 +28,7 @@ class BatchRecognizeResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration total_billed_duration = 2;</code>
      */
-    private $total_billed_duration = null;
+    protected $total_billed_duration = null;
 
     /**
      * Constructor.

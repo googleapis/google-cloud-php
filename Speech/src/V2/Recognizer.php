@@ -21,20 +21,20 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. System-assigned unique identifier for the Recognizer.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uid = '';
+    protected $uid = '';
     /**
      * User-settable, human-readable name for the Recognizer. Must be 63
      * characters or less.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. This field is now deprecated. Prefer the
      * [`model`][google.cloud.speech.v2.RecognitionConfig.model] field in the
@@ -80,7 +80,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionConfig default_recognition_config = 6;</code>
      */
-    private $default_recognition_config = null;
+    protected $default_recognition_config = null;
     /**
      * Allows users to store small amounts of arbitrary data.
      * Both the key and the value must be 63 characters or less each.
@@ -94,31 +94,31 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.Recognizer.State state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. Creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The most recent time this Recognizer was modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. The time at which this Recognizer was requested for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. The time at which this Recognizer will be purged.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * Output only. This checksum is computed by the server based on the value of
      * other fields. This may be sent on update, undelete, and delete requests to
@@ -126,14 +126,14 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. Whether or not this Recognizer is in the process of being
      * updated.
      *
      * Generated from protobuf field <code>bool reconciling = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $reconciling = false;
+    protected $reconciling = false;
     /**
      * Output only. The [KMS key
      * name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which
@@ -142,7 +142,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Output only. The [KMS key version
      * name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions)
@@ -151,7 +151,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_version_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
 
     /**
      * Constructor.

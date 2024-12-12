@@ -20,7 +20,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.ExplicitDecodingConfig.AudioEncoding encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $encoding = 0;
+    protected $encoding = 0;
     /**
      * Sample rate in Hertz of the audio data sent for recognition. Valid
      * values are: 8000-48000. 16000 is optimal. For best results, set the
@@ -33,7 +33,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * Number of channels present in the audio data sent for recognition.
      * Supported for the following encodings:
@@ -44,7 +44,7 @@ class ExplicitDecodingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 audio_channel_count = 3;</code>
      */
-    private $audio_channel_count = 0;
+    protected $audio_channel_count = 0;
 
     /**
      * Constructor.

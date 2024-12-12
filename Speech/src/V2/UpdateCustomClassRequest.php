@@ -24,21 +24,21 @@ class UpdateCustomClassRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.CustomClass custom_class = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_class = null;
+    protected $custom_class = null;
     /**
      * The list of fields to be updated. If empty, all fields are considered for
      * update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If set, validate the request and preview the updated CustomClass, but do
      * not actually update it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
 
     /**
      * @param \Google\Cloud\Speech\V2\CustomClass $customClass Required. The CustomClass to update.

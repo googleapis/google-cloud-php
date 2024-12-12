@@ -27,7 +27,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recognizer = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $recognizer = '';
+    protected $recognizer = '';
     /**
      * Features and audio metadata to use for the Automatic Speech Recognition.
      * This field in combination with the
@@ -38,7 +38,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionConfig config = 1;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The list of fields in
      * [config][google.cloud.speech.v2.RecognizeRequest.config] that override the
@@ -56,7 +56,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask config_mask = 8;</code>
      */
-    private $config_mask = null;
+    protected $config_mask = null;
     protected $audio_source;
 
     /**

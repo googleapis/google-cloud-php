@@ -20,21 +20,21 @@ class CloudStorageResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The Cloud Storage URI to which recognition results were written as VTT
      * formatted captions. This is populated only when `VTT` output is requested.
      *
      * Generated from protobuf field <code>string vtt_format_uri = 2;</code>
      */
-    private $vtt_format_uri = '';
+    protected $vtt_format_uri = '';
     /**
      * The Cloud Storage URI to which recognition results were written as SRT
      * formatted captions. This is populated only when `SRT` output is requested.
      *
      * Generated from protobuf field <code>string srt_format_uri = 3;</code>
      */
-    private $srt_format_uri = '';
+    protected $srt_format_uri = '';
 
     /**
      * Constructor.

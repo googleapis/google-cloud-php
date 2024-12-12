@@ -20,11 +20,11 @@ class BatchRecognizeFileResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 2;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * Generated from protobuf field <code>.google.cloud.speech.v2.RecognitionResponseMetadata metadata = 3;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Deprecated. Use `cloud_storage_result.native_format_uri` instead.
      *
