@@ -5,8 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
-        "google/cloud-core": "^1.52.7",
-        "google/gax": "^1.34.0"
+        "google/cloud-core": "^1.57",
+        "google/gax": "^1.36.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
