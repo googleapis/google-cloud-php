@@ -18,7 +18,10 @@
 namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Report\CloudRunMetadataProvider;
+use Google\Cloud\Core\Compute\Metadata;
+use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
+use Google\Cloud\Core\Report\CloudRunJobMetadataProvider;
+use Google\Cloud\Core\Report\CloudRunServiceMetadataProvider;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
 use Google\Cloud\Logging\Connection\Rest;
 use Google\Cloud\Logging\Entry;
@@ -29,6 +32,8 @@ use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+
+use function str_repeat;
 
 /**
  * @group logging
@@ -121,13 +126,18 @@ class PsrLoggerBatchTest extends TestCase
             'my-project'
         );
 
+        $reader = self::createStub(ReaderInterface::class);
+        $reader->method('read')
+            ->willReturn('');
+        $metadata = new Metadata($reader);
+
         $psrBatchLogger = new PsrLogger(
             $logger,
             null,
             [
                 'batchEnabled' => true,
                 'batchRunner' => $this->runner->reveal(),
-                'metadataProvider' => new $metadataProviderClass($server)
+                'metadataProvider' => new $metadataProviderClass($server, $metadata)
             ]
         );
 
@@ -201,7 +211,13 @@ class PsrLoggerBatchTest extends TestCase
             ],
             [
                 str_repeat('x', 32),
-                CloudRunMetadataProvider::class,
+                CloudRunServiceMetadataProvider::class,
+                [],
+                ['run.googleapis.com/trace_id' => str_repeat('x', 32)]
+            ],
+            [
+                str_repeat('x', 32),
+                CloudRunJobMetadataProvider::class,
                 [],
                 ['run.googleapis.com/trace_id' => str_repeat('x', 32)]
             ],
