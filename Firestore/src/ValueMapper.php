@@ -241,14 +241,14 @@ class ValueMapper
                 return ['nullValue' => NullValue::NULL_VALUE];
                 break;
 
-            // @codeCoverageIgnoreStart
+                // @codeCoverageIgnoreStart
             default:
                 throw new \RuntimeException(sprintf(
                     'Invalid value type %s',
                     $type
                 ));
                 break;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
         }
     }
 
@@ -296,7 +296,7 @@ class ValueMapper
             return [
                 'timestampValue' => [
                     'seconds' => $value->format('U'),
-                    'nanos' => (int)($value->format('u') * 1000)
+                    'nanos' => (int) ($value->format('u') * 1000)
                 ]
             ];
         }

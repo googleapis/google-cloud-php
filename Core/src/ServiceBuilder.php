@@ -317,7 +317,6 @@ class ServiceBuilder
         return $this->createClient(StorageClient::class, 'storage', $config);
     }
 
-
     /**
      * Google Stackdriver Trace allows you to collect latency data from your applications
      * and display it in the Google Cloud Platform Console. Find more information at

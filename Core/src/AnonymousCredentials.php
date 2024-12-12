@@ -18,8 +18,8 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Auth\UpdateMetadataInterface;
 use Google\Auth\GetQuotaProjectInterface;
+use Google\Auth\UpdateMetadataInterface;
 
 /**
  * Provides an anonymous set of credentials, which is useful for APIs which do

@@ -20,10 +20,10 @@ namespace Google\Cloud\Storage;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\Connection\RetryTrait;
 
 /**
@@ -54,7 +54,7 @@ class SigningHelper
     {
         static $helper;
         if (!$helper) {
-            $helper = new static;
+            $helper = new static();
         }
 
         return $helper;
@@ -343,7 +343,7 @@ class SigningHelper
         ]);
 
         $signature = bin2hex(base64_decode($this->retrySignBlob(
-            fn() => $credentials->signBlob($stringToSign, [
+            fn () => $credentials->signBlob($stringToSign, [
                 'forceOpenssl' => $options['forceOpenssl']
             ])
         )));

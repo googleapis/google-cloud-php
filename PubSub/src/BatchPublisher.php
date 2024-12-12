@@ -17,9 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
-use Google\Cloud\PubSub\Topic;
 
 /**
  * Publishes messages to Google Cloud Pub\Sub with background batching.

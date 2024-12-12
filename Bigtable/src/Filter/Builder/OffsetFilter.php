@@ -49,7 +49,7 @@ class OffsetFilter
     public function cellsPerRow($count)
     {
         return new SimpleFilter(
-            (new RowFilter)->setCellsPerRowOffsetFilter($count)
+            (new RowFilter())->setCellsPerRowOffsetFilter($count)
         );
     }
 }
