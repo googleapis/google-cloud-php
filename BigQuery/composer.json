@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
-        "google/cloud-core": "^1.55",
+        "google/cloud-core": "^1.57",
         "ramsey/uuid": "^3.0|^4.0"
     },
     "require-dev": {
