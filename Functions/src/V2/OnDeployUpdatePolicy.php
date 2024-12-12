@@ -21,7 +21,7 @@ class OnDeployUpdatePolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string runtime_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $runtime_version = '';
+    protected $runtime_version = '';
 
     /**
      * Constructor.

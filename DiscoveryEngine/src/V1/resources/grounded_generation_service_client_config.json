@@ -32,6 +32,14 @@
                     "timeout_millis": 5000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "GenerateGroundedContent": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "StreamGenerateGroundedContent": {
+                    "timeout_millis": 5000
                 }
             }
         }

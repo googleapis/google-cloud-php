@@ -42,6 +42,7 @@ use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\Database\EncryptionConfig;
 use Google\Cloud\Firestore\Admin\V1\DeleteBackupRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
@@ -196,6 +197,8 @@ class FirestoreAdminGapicClient
 
     private static $locationNameTemplate;
 
+    private static $operationNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $pathTemplateMap;
@@ -284,6 +287,15 @@ class FirestoreAdminGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getOperationNameTemplate()
+    {
+        if (self::$operationNameTemplate == null) {
+            self::$operationNameTemplate = new PathTemplate('projects/{project}/databases/{database}/operations/{operation}');
+        }
+
+        return self::$operationNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -304,6 +316,7 @@ class FirestoreAdminGapicClient
                 'field' => self::getFieldNameTemplate(),
                 'index' => self::getIndexNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'operation' => self::getOperationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
@@ -445,6 +458,25 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a operation
+     * resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $operation
+     *
+     * @return string The formatted operation resource.
+     */
+    public static function operationName($project, $database, $operation)
+    {
+        return self::getOperationNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'operation' => $operation,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -470,6 +502,7 @@ class FirestoreAdminGapicClient
      * - field: projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}
      * - index: projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}
      * - location: projects/{project}/locations/{location}
+     * - operation: projects/{project}/databases/{database}/operations/{operation}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -790,7 +823,7 @@ class FirestoreAdminGapicClient
      *                               with first character a letter and the last a letter or a number. Must not
      *                               be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                               "(default)" database id is also valid.
+     *                               "(default)" database ID is also valid.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -1134,8 +1167,8 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to export. Unspecified means all collections. Each
-     *           collection id in this list must be unique.
+     *           Which collection IDs to export. Unspecified means all collections. Each
+     *           collection ID in this list must be unique.
      *     @type string $outputUriPrefix
      *           The output URI. Currently only supports Google Cloud Storage URIs of the
      *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
@@ -1447,8 +1480,8 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to import. Unspecified means all collections included
-     *           in the import. Each collection id in this list must be unique.
+     *           Which collection IDs to import. Unspecified means all collections included
+     *           in the import. Each collection ID in this list must be unique.
      *     @type string $inputUriPrefix
      *           Location of the exported files.
      *           This must match the output_uri_prefix of an ExportDocumentsResponse from
@@ -1850,21 +1883,30 @@ class FirestoreAdminGapicClient
      * @param string $parent       Required. The project to restore the database in. Format is
      *                             `projects/{project_id}`.
      * @param string $databaseId   Required. The ID to use for the database, which will become the final
-     *                             component of the database's resource name. This database id must not be
+     *                             component of the database's resource name. This database ID must not be
      *                             associated with an existing database.
      *
      *                             This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      *                             with first character a letter and the last a letter or a number. Must not
      *                             be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                             "(default)" database id is also valid.
+     *                             "(default)" database ID is also valid.
      * @param string $backup       Required. Backup to restore from. Must be from the same project as the
      *                             parent.
+     *
+     *                             The restored database will be created in the same location as the source
+     *                             backup.
      *
      *                             Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type EncryptionConfig $encryptionConfig
+     *           Optional. Encryption configuration for the restored database.
+     *
+     *           If this field is not specified, the restored database will use
+     *           the same encryption configuration as the backup, namely
+     *           [use_source_encryption][google.firestore.admin.v1.Database.EncryptionConfig.use_source_encryption].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1883,6 +1925,10 @@ class FirestoreAdminGapicClient
         $request->setDatabaseId($databaseId);
         $request->setBackup($backup);
         $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['encryptionConfig'])) {
+            $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RestoreDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();

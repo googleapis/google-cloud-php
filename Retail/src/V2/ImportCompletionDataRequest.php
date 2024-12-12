@@ -21,13 +21,13 @@ class ImportCompletionDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The desired input location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDataInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
      * when the import is finished, a notification is sent to
@@ -37,7 +37,7 @@ class ImportCompletionDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 3;</code>
      */
-    private $notification_pubsub_topic = '';
+    protected $notification_pubsub_topic = '';
 
     /**
      * Constructor.

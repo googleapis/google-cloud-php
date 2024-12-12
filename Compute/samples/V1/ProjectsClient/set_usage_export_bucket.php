@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_SetUsageExportBucket_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
+use Google\Cloud\Compute\V1\SetUsageExportBucketProjectRequest;
 use Google\Cloud\Compute\V1\UsageExportLocation;
 use Google\Rpc\Status;
 
@@ -39,13 +40,16 @@ function set_usage_export_bucket_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $usageExportLocationResource = new UsageExportLocation();
+    $request = (new SetUsageExportBucketProjectRequest())
+        ->setProject($project)
+        ->setUsageExportLocationResource($usageExportLocationResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $projectsClient->setUsageExportBucket($project, $usageExportLocationResource);
+        $response = $projectsClient->setUsageExportBucket($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

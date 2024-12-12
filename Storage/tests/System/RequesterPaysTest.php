@@ -48,11 +48,17 @@ class RequesterPaysTest extends StorageTestCase
     private static $topic;
     private static $notificationId;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        if (!$requesterKeyFilePath) {
+            self::markTestSkipped('Set GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH to run this test');
+        }
         $ownerKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$requesterKeyFile = json_decode(file_get_contents($requesterKeyFilePath), true);
         self::$requesterEmail = self::$requesterKeyFile['client_email'];

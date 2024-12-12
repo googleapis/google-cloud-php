@@ -75,6 +75,4 @@ class EventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EventType::class, \Google\Cloud\Dlp\V2\DataProfileAction_EventType::class);
 

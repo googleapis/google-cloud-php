@@ -34,6 +34,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\GetImageFamilyViewRequest;
 use Google\Cloud\Compute\V1\ImageFamilyView;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The ImageFamilyViews API.
@@ -41,7 +42,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetImageFamilyViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImageFamilyView> getAsync(GetImageFamilyViewRequest $request, array $optionalArgs = [])
  */
 final class ImageFamilyViewsClient
 {
@@ -153,6 +154,9 @@ final class ImageFamilyViewsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -178,6 +182,8 @@ final class ImageFamilyViewsClient
      * Returns the latest image that is part of an image family, is not deprecated and is rolled out in the specified zone.
      *
      * The async variant is {@see ImageFamilyViewsClient::getAsync()} .
+     *
+     * @example samples/V1/ImageFamilyViewsClient/get.php
      *
      * @param GetImageFamilyViewRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

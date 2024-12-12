@@ -31,6 +31,13 @@ class ProjectSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.ProjectSettings.RedirectionState legacy_redirection_state = 2;</code>
      */
     protected $legacy_redirection_state = 0;
+    /**
+     * The percentage of pull traffic to redirect from GCR to AR when using
+     * partial redirection.
+     *
+     * Generated from protobuf field <code>int32 pull_percent = 3;</code>
+     */
+    protected $pull_percent = 0;
 
     /**
      * Constructor.
@@ -46,6 +53,9 @@ class ProjectSettings extends \Google\Protobuf\Internal\Message
      *           In response: always set
      *     @type int $legacy_redirection_state
      *           The redirection state of the legacy repositories in this project.
+     *     @type int $pull_percent
+     *           The percentage of pull traffic to redirect from GCR to AR when using
+     *           partial redirection.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +119,34 @@ class ProjectSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ArtifactRegistry\V1\ProjectSettings\RedirectionState::class);
         $this->legacy_redirection_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * The percentage of pull traffic to redirect from GCR to AR when using
+     * partial redirection.
+     *
+     * Generated from protobuf field <code>int32 pull_percent = 3;</code>
+     * @return int
+     */
+    public function getPullPercent()
+    {
+        return $this->pull_percent;
+    }
+
+    /**
+     * The percentage of pull traffic to redirect from GCR to AR when using
+     * partial redirection.
+     *
+     * Generated from protobuf field <code>int32 pull_percent = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPullPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->pull_percent = $var;
 
         return $this;
     }

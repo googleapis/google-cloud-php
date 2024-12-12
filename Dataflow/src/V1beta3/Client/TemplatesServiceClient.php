@@ -40,6 +40,7 @@ use Google\Cloud\Dataflow\V1beta3\Job;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides a method to create Cloud Dataflow jobs from templates.
@@ -49,9 +50,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createJobFromTemplateAsync(CreateJobFromTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface launchTemplateAsync(LaunchTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Job> createJobFromTemplateAsync(CreateJobFromTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetTemplateResponse> getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LaunchTemplateResponse> launchTemplateAsync(LaunchTemplateRequest $request, array $optionalArgs = [])
  */
 final class TemplatesServiceClient
 {
@@ -153,6 +154,9 @@ final class TemplatesServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

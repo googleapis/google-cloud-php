@@ -17,7 +17,7 @@ class AzureManagementGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The UUID of the Azure management group, for example,
-     * "20000000-0001-0000-0000-000000000000".
+     * `20000000-0001-0000-0000-000000000000`.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
@@ -37,7 +37,7 @@ class AzureManagementGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           The UUID of the Azure management group, for example,
-     *           "20000000-0001-0000-0000-000000000000".
+     *           `20000000-0001-0000-0000-000000000000`.
      *     @type string $display_name
      *           The display name of the Azure management group.
      * }
@@ -49,7 +49,7 @@ class AzureManagementGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The UUID of the Azure management group, for example,
-     * "20000000-0001-0000-0000-000000000000".
+     * `20000000-0001-0000-0000-000000000000`.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @return string
@@ -61,7 +61,7 @@ class AzureManagementGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The UUID of the Azure management group, for example,
-     * "20000000-0001-0000-0000-000000000000".
+     * `20000000-0001-0000-0000-000000000000`.
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @param string $var

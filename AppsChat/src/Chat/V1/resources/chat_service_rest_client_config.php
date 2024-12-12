@@ -252,6 +252,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces',
             ],
+            'SearchSpaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces:search',
+            ],
             'SetUpSpace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/spaces:setup',
@@ -282,6 +286,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',
                         'body' => 'message',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -291,6 +298,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSpace' => [
@@ -304,6 +314,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSpaceReadState' => [

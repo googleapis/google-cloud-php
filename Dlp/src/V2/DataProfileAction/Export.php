@@ -29,7 +29,7 @@ class Export extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable profile_table = 1;</code>
      */
-    private $profile_table = null;
+    protected $profile_table = null;
 
     /**
      * Constructor.
@@ -108,6 +108,4 @@ class Export extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Export::class, \Google\Cloud\Dlp\V2\DataProfileAction_Export::class);
 

@@ -40,6 +40,7 @@ use Google\Cloud\AppEngine\V1\UpdateApplicationRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages App Engine applications.
@@ -47,10 +48,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createApplicationAsync(CreateApplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApplicationAsync(GetApplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface repairApplicationAsync(RepairApplicationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApplicationAsync(UpdateApplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createApplicationAsync(CreateApplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Application> getApplicationAsync(GetApplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> repairApplicationAsync(RepairApplicationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateApplicationAsync(UpdateApplicationRequest $request, array $optionalArgs = [])
  */
 final class ApplicationsClient
 {
@@ -203,6 +204,9 @@ final class ApplicationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

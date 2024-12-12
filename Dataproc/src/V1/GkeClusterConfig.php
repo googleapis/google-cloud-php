@@ -23,7 +23,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gke_cluster_target = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $gke_cluster_target = '';
+    protected $gke_cluster_target = '';
     /**
      * Optional. GKE node pools where workloads will be scheduled. At least one
      * node pool must be assigned the `DEFAULT`

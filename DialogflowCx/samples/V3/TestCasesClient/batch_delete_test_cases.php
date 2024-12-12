@@ -31,10 +31,10 @@ use Google\Cloud\Dialogflow\Cx\V3\Client\TestCasesClient;
  * Batch deletes test cases.
  *
  * @param string $formattedParent       The agent to delete test cases from.
- *                                      Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                      Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                      {@see TestCasesClient::agentName()} for help formatting this field.
- * @param string $formattedNamesElement Format of test case names: `projects/<Project ID>/locations/
- *                                      <Location ID>/agents/<AgentID>/testCases/<TestCase ID>`. Please see
+ * @param string $formattedNamesElement Format of test case names:
+ *                                      `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`. Please see
  *                                      {@see TestCasesClient::testCaseName()} for help formatting this field.
  */
 function batch_delete_test_cases_sample(

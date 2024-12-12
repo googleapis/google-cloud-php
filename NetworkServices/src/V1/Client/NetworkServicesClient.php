@@ -92,6 +92,7 @@ use Google\Cloud\NetworkServices\V1\UpdateTlsRouteRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service describing handlers for resources.
@@ -104,50 +105,50 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEndpointPolicyAsync(CreateEndpointPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGatewayAsync(CreateGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGrpcRouteAsync(CreateGrpcRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createHttpRouteAsync(CreateHttpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMeshAsync(CreateMeshRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createServiceBindingAsync(CreateServiceBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTcpRouteAsync(CreateTcpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTlsRouteAsync(CreateTlsRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEndpointPolicyAsync(DeleteEndpointPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGatewayAsync(DeleteGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGrpcRouteAsync(DeleteGrpcRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteHttpRouteAsync(DeleteHttpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMeshAsync(DeleteMeshRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteServiceBindingAsync(DeleteServiceBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTcpRouteAsync(DeleteTcpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTlsRouteAsync(DeleteTlsRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEndpointPolicyAsync(GetEndpointPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGrpcRouteAsync(GetGrpcRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getHttpRouteAsync(GetHttpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMeshAsync(GetMeshRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getServiceBindingAsync(GetServiceBindingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTcpRouteAsync(GetTcpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTlsRouteAsync(GetTlsRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEndpointPoliciesAsync(ListEndpointPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGrpcRoutesAsync(ListGrpcRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listHttpRoutesAsync(ListHttpRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMeshesAsync(ListMeshesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServiceBindingsAsync(ListServiceBindingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTcpRoutesAsync(ListTcpRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTlsRoutesAsync(ListTlsRoutesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEndpointPolicyAsync(UpdateEndpointPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGatewayAsync(UpdateGatewayRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGrpcRouteAsync(UpdateGrpcRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateHttpRouteAsync(UpdateHttpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMeshAsync(UpdateMeshRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTcpRouteAsync(UpdateTcpRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTlsRouteAsync(UpdateTlsRouteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEndpointPolicyAsync(CreateEndpointPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGatewayAsync(CreateGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGrpcRouteAsync(CreateGrpcRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createHttpRouteAsync(CreateHttpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMeshAsync(CreateMeshRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createServiceBindingAsync(CreateServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTcpRouteAsync(CreateTcpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTlsRouteAsync(CreateTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEndpointPolicyAsync(DeleteEndpointPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGatewayAsync(DeleteGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGrpcRouteAsync(DeleteGrpcRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteHttpRouteAsync(DeleteHttpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteMeshAsync(DeleteMeshRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteServiceBindingAsync(DeleteServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTcpRouteAsync(DeleteTcpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTlsRouteAsync(DeleteTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EndpointPolicy> getEndpointPolicyAsync(GetEndpointPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Gateway> getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GrpcRoute> getGrpcRouteAsync(GetGrpcRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HttpRoute> getHttpRouteAsync(GetHttpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Mesh> getMeshAsync(GetMeshRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ServiceBinding> getServiceBindingAsync(GetServiceBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TcpRoute> getTcpRouteAsync(GetTcpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TlsRoute> getTlsRouteAsync(GetTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEndpointPoliciesAsync(ListEndpointPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGrpcRoutesAsync(ListGrpcRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHttpRoutesAsync(ListHttpRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMeshesAsync(ListMeshesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listServiceBindingsAsync(ListServiceBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTcpRoutesAsync(ListTcpRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTlsRoutesAsync(ListTlsRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEndpointPolicyAsync(UpdateEndpointPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGatewayAsync(UpdateGatewayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGrpcRouteAsync(UpdateGrpcRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateHttpRouteAsync(UpdateHttpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMeshAsync(UpdateMeshRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTcpRouteAsync(UpdateTcpRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTlsRouteAsync(UpdateTlsRouteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class NetworkServicesClient
 {
@@ -519,14 +520,14 @@ final class NetworkServicesClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -581,6 +582,9 @@ final class NetworkServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

@@ -69,6 +69,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The service that handles CRUD and List for resources for Featurestore.
@@ -81,32 +82,32 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateFeaturesAsync(BatchCreateFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchReadFeatureValuesAsync(BatchReadFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFeaturestoreAsync(CreateFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeatureValuesAsync(DeleteFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFeaturestoreAsync(DeleteFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportFeatureValuesAsync(ExportFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getFeaturestoreAsync(GetFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importFeatureValuesAsync(ImportFeatureValuesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFeaturestoresAsync(ListFeaturestoresRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchFeaturesAsync(SearchFeaturesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateFeaturestoreAsync(UpdateFeaturestoreRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchCreateFeaturesAsync(BatchCreateFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchReadFeatureValuesAsync(BatchReadFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFeaturestoreAsync(CreateFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeatureValuesAsync(DeleteFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFeaturestoreAsync(DeleteFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportFeatureValuesAsync(ExportFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feature> getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Featurestore> getFeaturestoreAsync(GetFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importFeatureValuesAsync(ImportFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFeaturestoresAsync(ListFeaturestoresRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchFeaturesAsync(SearchFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntityType> updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Feature> updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFeaturestoreAsync(UpdateFeaturestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class FeaturestoreServiceClient
 {
@@ -385,14 +386,14 @@ final class FeaturestoreServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -447,6 +448,9 @@ final class FeaturestoreServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

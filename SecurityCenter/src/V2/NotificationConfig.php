@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotificationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The relative resource name of this notification config. See:
+     * Identifier. The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * The following list shows some examples:
      * +
@@ -28,7 +28,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/locations/{location_id}/notificationConfigs/notify_public_bucket`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -60,7 +60,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The relative resource name of this notification config. See:
+     *           Identifier. The relative resource name of this notification config. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           The following list shows some examples:
      *           +
@@ -87,7 +87,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of this notification config. See:
+     * Identifier. The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * The following list shows some examples:
      * +
@@ -97,7 +97,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/locations/{location_id}/notificationConfigs/notify_public_bucket`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -106,7 +106,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The relative resource name of this notification config. See:
+     * Identifier. The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * The following list shows some examples:
      * +
@@ -116,7 +116,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * +
      * `projects/{project_id}/locations/{location_id}/notificationConfigs/notify_public_bucket`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

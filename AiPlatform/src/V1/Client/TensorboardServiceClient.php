@@ -88,6 +88,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: TensorboardService
@@ -100,40 +101,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchCreateTensorboardRunsAsync(BatchCreateTensorboardRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchCreateTensorboardTimeSeriesAsync(BatchCreateTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface batchReadTensorboardTimeSeriesDataAsync(BatchReadTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTensorboardAsync(CreateTensorboardRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTensorboardExperimentAsync(CreateTensorboardExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTensorboardRunAsync(CreateTensorboardRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createTensorboardTimeSeriesAsync(CreateTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTensorboardAsync(DeleteTensorboardRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTensorboardExperimentAsync(DeleteTensorboardExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTensorboardRunAsync(DeleteTensorboardRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTensorboardTimeSeriesAsync(DeleteTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportTensorboardTimeSeriesDataAsync(ExportTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTensorboardAsync(GetTensorboardRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTensorboardExperimentAsync(GetTensorboardExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTensorboardRunAsync(GetTensorboardRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTensorboardTimeSeriesAsync(GetTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTensorboardExperimentsAsync(ListTensorboardExperimentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTensorboardRunsAsync(ListTensorboardRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTensorboardTimeSeriesAsync(ListTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTensorboardsAsync(ListTensorboardsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readTensorboardSizeAsync(ReadTensorboardSizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readTensorboardTimeSeriesDataAsync(ReadTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface readTensorboardUsageAsync(ReadTensorboardUsageRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTensorboardAsync(UpdateTensorboardRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTensorboardExperimentAsync(UpdateTensorboardExperimentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTensorboardRunAsync(UpdateTensorboardRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTensorboardTimeSeriesAsync(UpdateTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeTensorboardExperimentDataAsync(WriteTensorboardExperimentDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface writeTensorboardRunDataAsync(WriteTensorboardRunDataRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateTensorboardRunsResponse> batchCreateTensorboardRunsAsync(BatchCreateTensorboardRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateTensorboardTimeSeriesResponse> batchCreateTensorboardTimeSeriesAsync(BatchCreateTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchReadTensorboardTimeSeriesDataResponse> batchReadTensorboardTimeSeriesDataAsync(BatchReadTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTensorboardAsync(CreateTensorboardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardExperiment> createTensorboardExperimentAsync(CreateTensorboardExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardRun> createTensorboardRunAsync(CreateTensorboardRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardTimeSeries> createTensorboardTimeSeriesAsync(CreateTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTensorboardAsync(DeleteTensorboardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTensorboardExperimentAsync(DeleteTensorboardExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTensorboardRunAsync(DeleteTensorboardRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTensorboardTimeSeriesAsync(DeleteTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> exportTensorboardTimeSeriesDataAsync(ExportTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tensorboard> getTensorboardAsync(GetTensorboardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardExperiment> getTensorboardExperimentAsync(GetTensorboardExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardRun> getTensorboardRunAsync(GetTensorboardRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardTimeSeries> getTensorboardTimeSeriesAsync(GetTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTensorboardExperimentsAsync(ListTensorboardExperimentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTensorboardRunsAsync(ListTensorboardRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTensorboardTimeSeriesAsync(ListTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTensorboardsAsync(ListTensorboardsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadTensorboardSizeResponse> readTensorboardSizeAsync(ReadTensorboardSizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadTensorboardTimeSeriesDataResponse> readTensorboardTimeSeriesDataAsync(ReadTensorboardTimeSeriesDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReadTensorboardUsageResponse> readTensorboardUsageAsync(ReadTensorboardUsageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTensorboardAsync(UpdateTensorboardRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardExperiment> updateTensorboardExperimentAsync(UpdateTensorboardExperimentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardRun> updateTensorboardRunAsync(UpdateTensorboardRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TensorboardTimeSeries> updateTensorboardTimeSeriesAsync(UpdateTensorboardTimeSeriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteTensorboardExperimentDataResponse> writeTensorboardExperimentDataAsync(WriteTensorboardExperimentDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteTensorboardRunDataResponse> writeTensorboardRunDataAsync(WriteTensorboardRunDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class TensorboardServiceClient
 {
@@ -372,14 +373,14 @@ final class TensorboardServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -434,6 +435,9 @@ final class TensorboardServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

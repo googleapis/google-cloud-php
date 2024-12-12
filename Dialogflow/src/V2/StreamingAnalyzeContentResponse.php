@@ -60,9 +60,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      */
     private $reply_audio = null;
     /**
-     * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      * instead.
@@ -130,9 +130,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           response structure. In these cases, only the top-most-level audio output
      *           has content.
      *     @type \Google\Cloud\Dialogflow\V2\AutomatedAgentReply $automated_agent_reply
-     *           Only set if a Dialogflow automated agent has responded.
-     *           Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     *           and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     *           Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     *           [Sessions.DetectIntentResponse.output_audio][]
+     *           and [Sessions.DetectIntentResponse.output_audio_config][]
      *           are always empty, use
      *           [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      *           instead.
@@ -277,9 +277,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      * instead.
@@ -303,9 +303,9 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only set if a Dialogflow automated agent has responded.
-     * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
-     * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
+     * Note that in [AutomatedAgentReply.DetectIntentResponse][],
+     * [Sessions.DetectIntentResponse.output_audio][]
+     * and [Sessions.DetectIntentResponse.output_audio_config][]
      * are always empty, use
      * [reply_audio][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.reply_audio]
      * instead.

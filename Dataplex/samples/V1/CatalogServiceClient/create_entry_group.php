@@ -31,7 +31,7 @@ use Google\Cloud\Dataplex\V1\EntryGroup;
 use Google\Rpc\Status;
 
 /**
- * Creates an EntryGroup
+ * Creates an EntryGroup.
  *
  * @param string $formattedParent The resource name of the entryGroup, of the form:
  *                                projects/{project_number}/locations/{location_id}

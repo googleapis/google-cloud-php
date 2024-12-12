@@ -23,7 +23,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The data used previously as a
      * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
@@ -31,7 +31,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data = '';
+    protected $data = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data]. If
@@ -54,13 +54,13 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_crc32c = null;
+    protected $data_crc32c = null;
     /**
      * Required. The signature to verify.
      *
      * Generated from protobuf field <code>bytes mac = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mac = '';
+    protected $mac = '';
     /**
      * Optional. An optional CRC32C checksum of the
      * [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac]. If
@@ -81,7 +81,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mac_crc32c = null;
+    protected $mac_crc32c = null;
 
     /**
      * @param string $name Required. The resource name of the
@@ -287,7 +287,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getDataCrc32CValue()
+    public function getDataCrc32CUnwrapped()
     {
         return $this->readWrapperValue("data_crc32c");
     }
@@ -350,7 +350,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setDataCrc32CValue($var)
+    public function setDataCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("data_crc32c", $var);
         return $this;}
@@ -440,7 +440,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getMacCrc32CValue()
+    public function getMacCrc32CUnwrapped()
     {
         return $this->readWrapperValue("mac_crc32c");
     }
@@ -499,7 +499,7 @@ class MacVerifyRequest extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setMacCrc32CValue($var)
+    public function setMacCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("mac_crc32c", $var);
         return $this;}

@@ -20,14 +20,14 @@ class HybridInspectStatistics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 processed_count = 1;</code>
      */
-    private $processed_count = 0;
+    protected $processed_count = 0;
     /**
      * The number of hybrid inspection requests aborted because the job ran
      * out of quota or was ended before they could be processed.
      *
      * Generated from protobuf field <code>int64 aborted_count = 2;</code>
      */
-    private $aborted_count = 0;
+    protected $aborted_count = 0;
     /**
      * The number of hybrid requests currently being processed. Only populated
      * when called via method `getDlpJob`.
@@ -37,7 +37,7 @@ class HybridInspectStatistics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 pending_count = 3;</code>
      */
-    private $pending_count = 0;
+    protected $pending_count = 0;
 
     /**
      * Constructor.

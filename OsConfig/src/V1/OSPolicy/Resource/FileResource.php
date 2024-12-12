@@ -20,13 +20,13 @@ class FileResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Required. Desired state of the file.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.FileResource.DesiredState state = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Consists of three octal digits which represent, in
      * order, the permissions of the owner, group, and other users for the
@@ -43,7 +43,7 @@ class FileResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string permissions = 5;</code>
      */
-    private $permissions = '';
+    protected $permissions = '';
     protected $source;
 
     /**

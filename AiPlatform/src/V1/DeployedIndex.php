@@ -151,6 +151,14 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string deployment_group = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $deployment_group = '';
+    /**
+     * Optional. If set for PSC deployed index, PSC connection will be
+     * automatically created after deployment is done and the endpoint information
+     * is populated in private_endpoints.psc_automated_endpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $psc_automation_configs;
 
     /**
      * Constructor.
@@ -246,6 +254,10 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           has been used with reserved_ip_ranges: [a, b, c], using it with [a, b] or
      *           [d, e] is disallowed.
      *           Note: we only support up to 5 deployment groups(not including 'default').
+     *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
+     *           Optional. If set for PSC deployed index, PSC connection will be
+     *           automatically created after deployment is done and the endpoint information
+     *           is populated in private_endpoints.psc_automated_endpoints.
      * }
      */
     public function __construct($data = NULL) {
@@ -749,6 +761,36 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployment_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set for PSC deployed index, PSC connection will be
+     * automatically created after deployment is done and the endpoint information
+     * is populated in private_endpoints.psc_automated_endpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPscAutomationConfigs()
+    {
+        return $this->psc_automation_configs;
+    }
+
+    /**
+     * Optional. If set for PSC deployed index, PSC connection will be
+     * automatically created after deployment is done and the endpoint information
+     * is populated in private_endpoints.psc_automated_endpoints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPscAutomationConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PSCAutomationConfig::class);
+        $this->psc_automation_configs = $arr;
 
         return $this;
     }

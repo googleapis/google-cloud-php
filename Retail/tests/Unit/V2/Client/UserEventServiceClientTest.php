@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Retail\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Api\HttpBody;
@@ -40,6 +39,7 @@ use Google\Cloud\Retail\V2\UserEvent;
 use Google\Cloud\Retail\V2\UserEventInlineSource;
 use Google\Cloud\Retail\V2\UserEventInputConfig;
 use Google\Cloud\Retail\V2\WriteUserEventRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -62,7 +62,9 @@ class UserEventServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return UserEventServiceClient */
@@ -92,9 +94,7 @@ class UserEventServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $userEvent = 'userEvent1921940774';
-        $request = (new CollectUserEventRequest())
-            ->setParent($parent)
-            ->setUserEvent($userEvent);
+        $request = (new CollectUserEventRequest())->setParent($parent)->setUserEvent($userEvent);
         $response = $gapicClient->collectUserEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -120,19 +120,20 @@ class UserEventServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $userEvent = 'userEvent1921940774';
-        $request = (new CollectUserEventRequest())
-            ->setParent($parent)
-            ->setUserEvent($userEvent);
+        $request = (new CollectUserEventRequest())->setParent($parent)->setUserEvent($userEvent);
         try {
             $gapicClient->collectUserEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -182,9 +183,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $userEventInlineSourceUserEvents = [];
         $inputConfigUserEventInlineSource->setUserEvents($userEventInlineSourceUserEvents);
         $inputConfig->setUserEventInlineSource($inputConfigUserEventInlineSource);
-        $request = (new ImportUserEventsRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportUserEventsRequest())->setParent($formattedParent)->setInputConfig($inputConfig);
         $response = $gapicClient->importUserEvents($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -242,12 +241,15 @@ class UserEventServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
@@ -256,9 +258,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $userEventInlineSourceUserEvents = [];
         $inputConfigUserEventInlineSource->setUserEvents($userEventInlineSourceUserEvents);
         $inputConfig->setUserEventInlineSource($inputConfigUserEventInlineSource);
-        $request = (new ImportUserEventsRequest())
-            ->setParent($formattedParent)
-            ->setInputConfig($inputConfig);
+        $request = (new ImportUserEventsRequest())->setParent($formattedParent)->setInputConfig($inputConfig);
         $response = $gapicClient->importUserEvents($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -315,9 +315,7 @@ class UserEventServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeUserEventsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeUserEventsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeUserEvents($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -375,19 +373,20 @@ class UserEventServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $filter = 'filter-1274492040';
-        $request = (new PurgeUserEventsRequest())
-            ->setParent($formattedParent)
-            ->setFilter($filter);
+        $request = (new PurgeUserEventsRequest())->setParent($formattedParent)->setFilter($filter);
         $response = $gapicClient->purgeUserEvents($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -443,8 +442,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new RejoinUserEventsRequest())
-            ->setParent($parent);
+        $request = (new RejoinUserEventsRequest())->setParent($parent);
         $response = $gapicClient->rejoinUserEvents($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -500,17 +498,19 @@ class UserEventServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new RejoinUserEventsRequest())
-            ->setParent($parent);
+        $request = (new RejoinUserEventsRequest())->setParent($parent);
         $response = $gapicClient->rejoinUserEvents($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -577,9 +577,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $userEvent->setEventType($userEventEventType);
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new WriteUserEventRequest())
-            ->setParent($parent)
-            ->setUserEvent($userEvent);
+        $request = (new WriteUserEventRequest())->setParent($parent)->setUserEvent($userEvent);
         $response = $gapicClient->writeUserEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -605,12 +603,15 @@ class UserEventServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -619,9 +620,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $userEvent->setEventType($userEventEventType);
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
-        $request = (new WriteUserEventRequest())
-            ->setParent($parent)
-            ->setUserEvent($userEvent);
+        $request = (new WriteUserEventRequest())->setParent($parent)->setUserEvent($userEvent);
         try {
             $gapicClient->writeUserEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -653,9 +652,7 @@ class UserEventServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $userEvent = 'userEvent1921940774';
-        $request = (new CollectUserEventRequest())
-            ->setParent($parent)
-            ->setUserEvent($userEvent);
+        $request = (new CollectUserEventRequest())->setParent($parent)->setUserEvent($userEvent);
         $response = $gapicClient->collectUserEventAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

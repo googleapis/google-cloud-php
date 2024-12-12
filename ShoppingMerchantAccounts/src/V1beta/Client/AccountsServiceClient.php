@@ -43,6 +43,7 @@ use Google\Shopping\Merchant\Accounts\V1beta\ListAccountsRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\ListSubAccountsRequest;
 use Google\Shopping\Merchant\Accounts\V1beta\UpdateAccountRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to support Accounts API.
@@ -57,12 +58,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSubAccountsAsync(ListSubAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSubAccountsAsync(ListSubAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
  */
 final class AccountsServiceClient
 {
@@ -177,8 +178,8 @@ final class AccountsServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -186,7 +187,7 @@ final class AccountsServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -241,6 +242,9 @@ final class AccountsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -300,6 +304,9 @@ final class AccountsServiceClient
      * Deletes the specified account regardless of its type: standalone, MCA or
      * sub-account. Deleting an MCA leads to the deletion of all of its
      * sub-accounts. Executing this method requires admin access.
+     * The deletion succeeds only if the account does not provide services
+     * to any other account and has no processed offers. You can use the `force`
+     * parameter to override this.
      *
      * The async variant is {@see AccountsServiceClient::deleteAccountAsync()} .
      *
@@ -359,7 +366,8 @@ final class AccountsServiceClient
      * constraints of the request such as page size or filters.
      * This is not just listing the sub-accounts of an MCA, but all accounts the
      * calling user has access to including other MCAs, linked accounts,
-     * standalone accounts and so on.
+     * standalone accounts and so on. If no filter is provided, then it returns
+     * accounts the user is directly added to.
      *
      * The async variant is {@see AccountsServiceClient::listAccountsAsync()} .
      *

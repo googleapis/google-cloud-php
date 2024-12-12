@@ -33,8 +33,8 @@ use Google\Cloud\Dialogflow\Cx\V3\GetFlowValidationResultRequest;
  * when ValidateFlow is called.
  *
  * @param string $formattedName The flow name.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/flows/<Flow ID>/validationResult`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/validationResult`. Please see
  *                              {@see FlowsClient::flowValidationResultName()} for help formatting this field.
  */
 function get_flow_validation_result_sample(string $formattedName): void

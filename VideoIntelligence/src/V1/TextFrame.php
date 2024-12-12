@@ -22,13 +22,13 @@ class TextFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedBoundingPoly rotated_bounding_box = 1;</code>
      */
-    private $rotated_bounding_box = null;
+    protected $rotated_bounding_box = null;
     /**
      * Timestamp of this frame.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
 
     /**
      * Constructor.

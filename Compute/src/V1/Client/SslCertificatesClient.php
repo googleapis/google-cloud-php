@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\InsertSslCertificateRequest;
 use Google\Cloud\Compute\V1\ListSslCertificatesRequest;
 use Google\Cloud\Compute\V1\SslCertificate;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The SslCertificates API.
@@ -48,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListSslCertificatesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteSslCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetSslCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertSslCertificateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListSslCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListSslCertificatesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteSslCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCertificate> getAsync(GetSslCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertSslCertificateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListSslCertificatesRequest $request, array $optionalArgs = [])
  */
 final class SslCertificatesClient
 {
@@ -216,6 +217,9 @@ final class SslCertificatesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -243,6 +247,8 @@ final class SslCertificatesClient
      *
      * The async variant is {@see SslCertificatesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/SslCertificatesClient/aggregated_list.php
+     *
      * @param AggregatedListSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -266,6 +272,8 @@ final class SslCertificatesClient
      * Deletes the specified SslCertificate resource.
      *
      * The async variant is {@see SslCertificatesClient::deleteAsync()} .
+     *
+     * @example samples/V1/SslCertificatesClient/delete.php
      *
      * @param DeleteSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -291,6 +299,8 @@ final class SslCertificatesClient
      *
      * The async variant is {@see SslCertificatesClient::getAsync()} .
      *
+     * @example samples/V1/SslCertificatesClient/get.php
+     *
      * @param GetSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -315,6 +325,8 @@ final class SslCertificatesClient
      *
      * The async variant is {@see SslCertificatesClient::insertAsync()} .
      *
+     * @example samples/V1/SslCertificatesClient/insert.php
+     *
      * @param InsertSslCertificateRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -338,6 +350,8 @@ final class SslCertificatesClient
      * Retrieves the list of SslCertificate resources available to the specified project.
      *
      * The async variant is {@see SslCertificatesClient::listAsync()} .
+     *
+     * @example samples/V1/SslCertificatesClient/list.php
      *
      * @param ListSslCertificatesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

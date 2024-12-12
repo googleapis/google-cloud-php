@@ -26,6 +26,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\CheckUpgradeResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsConfigMapRequest;
@@ -104,6 +106,137 @@ class EnvironmentsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function checkUpgradeTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/checkUpgradeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $buildLogUri = 'buildLogUri2127590688';
+        $pypiConflictBuildLogExtract = 'pypiConflictBuildLogExtract-575404123';
+        $imageVersion2 = 'imageVersion2-1876344665';
+        $expectedResponse = new CheckUpgradeResponse();
+        $expectedResponse->setBuildLogUri($buildLogUri);
+        $expectedResponse->setPypiConflictBuildLogExtract($pypiConflictBuildLogExtract);
+        $expectedResponse->setImageVersion($imageVersion2);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/checkUpgradeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $environment = 'environment-85904877';
+        $request = (new CheckUpgradeRequest())->setEnvironment($environment);
+        $response = $gapicClient->checkUpgrade($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.orchestration.airflow.service.v1.Environments/CheckUpgrade',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/checkUpgradeTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function checkUpgradeExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/checkUpgradeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $environment = 'environment-85904877';
+        $request = (new CheckUpgradeRequest())->setEnvironment($environment);
+        $response = $gapicClient->checkUpgrade($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/checkUpgradeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -127,10 +260,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $name = 'name3373707';
         $uuid = 'uuid3601339';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Environment();
         $expectedResponse->setName($name);
         $expectedResponse->setUuid($uuid);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -920,10 +1055,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $uuid = 'uuid3601339';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Environment();
         $expectedResponse->setName($name2);
         $expectedResponse->setUuid($uuid);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         $request = new GetEnvironmentRequest();
         $response = $gapicClient->getEnvironment($request);
@@ -1805,10 +1942,12 @@ class EnvironmentsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $uuid = 'uuid3601339';
         $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Environment();
         $expectedResponse->setName($name2);
         $expectedResponse->setUuid($uuid);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2031,7 +2170,7 @@ class EnvironmentsClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createEnvironmentAsyncTest()
+    public function checkUpgradeAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -2048,25 +2187,27 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createEnvironmentTest');
+        $incompleteOperation->setName('operations/checkUpgradeTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $uuid = 'uuid3601339';
-        $satisfiesPzs = false;
-        $expectedResponse = new Environment();
-        $expectedResponse->setName($name);
-        $expectedResponse->setUuid($uuid);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $buildLogUri = 'buildLogUri2127590688';
+        $pypiConflictBuildLogExtract = 'pypiConflictBuildLogExtract-575404123';
+        $imageVersion2 = 'imageVersion2-1876344665';
+        $expectedResponse = new CheckUpgradeResponse();
+        $expectedResponse->setBuildLogUri($buildLogUri);
+        $expectedResponse->setPypiConflictBuildLogExtract($pypiConflictBuildLogExtract);
+        $expectedResponse->setImageVersion($imageVersion2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createEnvironmentTest');
+        $completeOperation->setName('operations/checkUpgradeTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateEnvironmentRequest();
-        $response = $gapicClient->createEnvironmentAsync($request)->wait();
+        // Mock request
+        $environment = 'environment-85904877';
+        $request = (new CheckUpgradeRequest())->setEnvironment($environment);
+        $response = $gapicClient->checkUpgradeAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2076,11 +2217,13 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.orchestration.airflow.service.v1.Environments/CreateEnvironment',
+            '/google.cloud.orchestration.airflow.service.v1.Environments/CheckUpgrade',
             $actualApiFuncCall
         );
+        $actualValue = $actualApiRequestObject->getEnvironment();
+        $this->assertProtobufEquals($environment, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createEnvironmentTest');
+        $expectedOperationsRequestObject->setName('operations/checkUpgradeTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

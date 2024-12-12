@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SslCertificates_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\SslCertificatesClient;
+use Google\Cloud\Compute\V1\Client\SslCertificatesClient;
+use Google\Cloud\Compute\V1\DeleteSslCertificateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $project, string $sslCertificate): void
     // Create a client.
     $sslCertificatesClient = new SslCertificatesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSslCertificateRequest())
+        ->setProject($project)
+        ->setSslCertificate($sslCertificate);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $sslCertificatesClient->delete($project, $sslCertificate);
+        $response = $sslCertificatesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

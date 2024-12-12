@@ -20,7 +20,7 @@ class PubSubExpressions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubExpressions.PubSubLogicalOperator logical_operator = 1;</code>
      */
-    private $logical_operator = 0;
+    protected $logical_operator = 0;
     /**
      * Conditions to apply to the expression.
      *
@@ -99,6 +99,4 @@ class PubSubExpressions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PubSubExpressions::class, \Google\Cloud\Dlp\V2\DataProfilePubSubCondition_PubSubExpressions::class);
 

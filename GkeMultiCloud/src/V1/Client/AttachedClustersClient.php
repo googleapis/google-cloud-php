@@ -50,6 +50,7 @@ use Google\Cloud\GkeMultiCloud\V1\UpdateAttachedClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The AttachedClusters API provides a single centrally managed service
@@ -64,15 +65,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAttachedClusterAsync(CreateAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAttachedClusterAsync(DeleteAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAttachedClusterAgentTokenAsync(GenerateAttachedClusterAgentTokenRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateAttachedClusterInstallManifestAsync(GenerateAttachedClusterInstallManifestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttachedClusterAsync(GetAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttachedServerConfigAsync(GetAttachedServerConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importAttachedClusterAsync(ImportAttachedClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAttachedClustersAsync(ListAttachedClustersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttachedClusterAsync(UpdateAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAttachedClusterAsync(CreateAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAttachedClusterAsync(DeleteAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAttachedClusterAgentTokenResponse> generateAttachedClusterAgentTokenAsync(GenerateAttachedClusterAgentTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateAttachedClusterInstallManifestResponse> generateAttachedClusterInstallManifestAsync(GenerateAttachedClusterInstallManifestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttachedCluster> getAttachedClusterAsync(GetAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AttachedServerConfig> getAttachedServerConfigAsync(GetAttachedServerConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importAttachedClusterAsync(ImportAttachedClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAttachedClustersAsync(ListAttachedClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAttachedClusterAsync(UpdateAttachedClusterRequest $request, array $optionalArgs = [])
  */
 final class AttachedClustersClient
 {
@@ -239,14 +240,14 @@ final class AttachedClustersClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -301,6 +302,9 @@ final class AttachedClustersClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

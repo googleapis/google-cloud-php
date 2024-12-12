@@ -23,26 +23,30 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     private $code = 0;
     /**
-     * If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     * is the type of the array elements.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     * type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     private $array_element_type = null;
     /**
-     * If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     * provides type information for the struct's fields.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     * type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
     private $struct_type = null;
     /**
-     * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that disambiguates SQL type that Spanner will
-     * use to represent values of this type during query processing. This is
-     * necessary for some type codes because a single [TypeCode][google.spanner.v1.TypeCode] can be mapped
-     * to different SQL types depending on the SQL dialect. [type_annotation][google.spanner.v1.Type.type_annotation]
-     * typically is not needed to process the content of a value (it doesn't
-     * affect serialization) and clients can ignore it on the read path.
+     * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that
+     * disambiguates SQL type that Spanner will use to represent values of this
+     * type during query processing. This is necessary for some type codes because
+     * a single [TypeCode][google.spanner.v1.TypeCode] can be mapped to different
+     * SQL types depending on the SQL dialect.
+     * [type_annotation][google.spanner.v1.Type.type_annotation] typically is not
+     * needed to process the content of a value (it doesn't affect serialization)
+     * and clients can ignore it on the read path.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TypeAnnotationCode type_annotation = 4;</code>
      */
@@ -67,18 +71,22 @@ class Type extends \Google\Protobuf\Internal\Message
      *     @type int $code
      *           Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      *     @type \Google\Cloud\Spanner\V1\Type $array_element_type
-     *           If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     *           is the type of the array elements.
+     *           If [code][google.spanner.v1.Type.code] ==
+     *           [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     *           type of the array elements.
      *     @type \Google\Cloud\Spanner\V1\StructType $struct_type
-     *           If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     *           provides type information for the struct's fields.
+     *           If [code][google.spanner.v1.Type.code] ==
+     *           [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     *           type information for the struct's fields.
      *     @type int $type_annotation
-     *           The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that disambiguates SQL type that Spanner will
-     *           use to represent values of this type during query processing. This is
-     *           necessary for some type codes because a single [TypeCode][google.spanner.v1.TypeCode] can be mapped
-     *           to different SQL types depending on the SQL dialect. [type_annotation][google.spanner.v1.Type.type_annotation]
-     *           typically is not needed to process the content of a value (it doesn't
-     *           affect serialization) and clients can ignore it on the read path.
+     *           The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that
+     *           disambiguates SQL type that Spanner will use to represent values of this
+     *           type during query processing. This is necessary for some type codes because
+     *           a single [TypeCode][google.spanner.v1.TypeCode] can be mapped to different
+     *           SQL types depending on the SQL dialect.
+     *           [type_annotation][google.spanner.v1.Type.type_annotation] typically is not
+     *           needed to process the content of a value (it doesn't affect serialization)
+     *           and clients can ignore it on the read path.
      *     @type string $proto_type_fqn
      *           If [code][google.spanner.v1.Type.code] ==
      *           [PROTO][google.spanner.v1.TypeCode.PROTO] or
@@ -119,8 +127,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     * is the type of the array elements.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     * type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      * @return \Google\Cloud\Spanner\V1\Type|null
@@ -141,8 +150,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     * is the type of the array elements.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     * type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      * @param \Google\Cloud\Spanner\V1\Type $var
@@ -157,8 +167,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     * provides type information for the struct's fields.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     * type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      * @return \Google\Cloud\Spanner\V1\StructType|null
@@ -179,8 +190,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     * provides type information for the struct's fields.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     * type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      * @param \Google\Cloud\Spanner\V1\StructType $var
@@ -195,12 +207,14 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that disambiguates SQL type that Spanner will
-     * use to represent values of this type during query processing. This is
-     * necessary for some type codes because a single [TypeCode][google.spanner.v1.TypeCode] can be mapped
-     * to different SQL types depending on the SQL dialect. [type_annotation][google.spanner.v1.Type.type_annotation]
-     * typically is not needed to process the content of a value (it doesn't
-     * affect serialization) and clients can ignore it on the read path.
+     * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that
+     * disambiguates SQL type that Spanner will use to represent values of this
+     * type during query processing. This is necessary for some type codes because
+     * a single [TypeCode][google.spanner.v1.TypeCode] can be mapped to different
+     * SQL types depending on the SQL dialect.
+     * [type_annotation][google.spanner.v1.Type.type_annotation] typically is not
+     * needed to process the content of a value (it doesn't affect serialization)
+     * and clients can ignore it on the read path.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TypeAnnotationCode type_annotation = 4;</code>
      * @return int
@@ -211,12 +225,14 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that disambiguates SQL type that Spanner will
-     * use to represent values of this type during query processing. This is
-     * necessary for some type codes because a single [TypeCode][google.spanner.v1.TypeCode] can be mapped
-     * to different SQL types depending on the SQL dialect. [type_annotation][google.spanner.v1.Type.type_annotation]
-     * typically is not needed to process the content of a value (it doesn't
-     * affect serialization) and clients can ignore it on the read path.
+     * The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that
+     * disambiguates SQL type that Spanner will use to represent values of this
+     * type during query processing. This is necessary for some type codes because
+     * a single [TypeCode][google.spanner.v1.TypeCode] can be mapped to different
+     * SQL types depending on the SQL dialect.
+     * [type_annotation][google.spanner.v1.Type.type_annotation] typically is not
+     * needed to process the content of a value (it doesn't affect serialization)
+     * and clients can ignore it on the read path.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TypeAnnotationCode type_annotation = 4;</code>
      * @param int $var

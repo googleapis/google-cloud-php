@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class SslMode
 {
     /**
-     * SSL mode not specified. Defaults to ENCRYPTED_ONLY.
+     * SSL mode is not specified. Defaults to ENCRYPTED_ONLY.
      *
      * Generated from protobuf enum <code>SSL_MODE_UNSPECIFIED = 0;</code>
      */
@@ -35,7 +35,7 @@ class SslMode
     const SSL_MODE_REQUIRE = 2;
     /**
      * SSL connections are required. CA verification enforced.
-     * Clients must have certificates signed by a Cluster CA, e.g. via
+     * Clients must have certificates signed by a Cluster CA, for example, using
      * GenerateClientCertificate.
      *
      * Generated from protobuf enum <code>SSL_MODE_VERIFY_CA = 3 [deprecated = true];</code>

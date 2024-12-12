@@ -22,7 +22,7 @@ class PurgeProductsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 purge_count = 1;</code>
      */
-    private $purge_count = 0;
+    protected $purge_count = 0;
     /**
      * A sample of the product names that will be deleted.
      * Only populated if `force` is set to false. A max of 100 names will be

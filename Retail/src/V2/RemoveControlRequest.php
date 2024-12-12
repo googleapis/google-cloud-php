@@ -21,14 +21,14 @@ class RemoveControlRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $serving_config = '';
+    protected $serving_config = '';
     /**
      * Required. The id of the control to apply. Assumed to be in the same catalog
      * as the serving config.
      *
      * Generated from protobuf field <code>string control_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $control_id = '';
+    protected $control_id = '';
 
     /**
      * @param string $servingConfig Required. The source ServingConfig resource name . Format:

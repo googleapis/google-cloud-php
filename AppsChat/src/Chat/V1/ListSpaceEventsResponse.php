@@ -17,6 +17,8 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Results are returned in chronological order (oldest event first).
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.SpaceEvent space_events = 1;</code>
      */
@@ -37,6 +39,8 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Apps\Chat\V1\SpaceEvent>|\Google\Protobuf\Internal\RepeatedField $space_events
      *           Results are returned in chronological order (oldest event first).
+     *           Note: The `permissionSettings` field is not returned in the Space
+     *           object for list requests.
      *     @type string $next_page_token
      *           Continuation token used to fetch more events.
      *           If this field is omitted, there are no subsequent pages.
@@ -49,6 +53,8 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Results are returned in chronological order (oldest event first).
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.SpaceEvent space_events = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -60,6 +66,8 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Results are returned in chronological order (oldest event first).
+     * Note: The `permissionSettings` field is not returned in the Space
+     * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.SpaceEvent space_events = 1;</code>
      * @param array<\Google\Apps\Chat\V1\SpaceEvent>|\Google\Protobuf\Internal\RepeatedField $var

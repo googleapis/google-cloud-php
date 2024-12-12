@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecommendRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Full resource name of a [ServingConfig][]:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      * One default serving config is created along with your recommendation engine
@@ -153,7 +154,8 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $serving_config
-     *           Required. Full resource name of a [ServingConfig][]:
+     *           Required. Full resource name of a
+     *           [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      *           One default serving config is created along with your recommendation engine
@@ -262,7 +264,8 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Full resource name of a [ServingConfig][]:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      * One default serving config is created along with your recommendation engine
@@ -283,7 +286,8 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Full resource name of a [ServingConfig][]:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
      * One default serving config is created along with your recommendation engine

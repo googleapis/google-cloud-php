@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Defines the type of technology used by the confidential instance.
+     * Check the ConfidentialInstanceType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_instance_type = 43484717;</code>
+     */
+    private $confidential_instance_type = null;
+    /**
      * Defines whether the instance should have confidential compute enabled.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -28,6 +35,9 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $confidential_instance_type
+     *           Defines the type of technology used by the confidential instance.
+     *           Check the ConfidentialInstanceType enum for the list of possible values.
      *     @type bool $enable_confidential_compute
      *           Defines whether the instance should have confidential compute enabled.
      * }
@@ -35,6 +45,44 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Defines the type of technology used by the confidential instance.
+     * Check the ConfidentialInstanceType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_instance_type = 43484717;</code>
+     * @return string
+     */
+    public function getConfidentialInstanceType()
+    {
+        return isset($this->confidential_instance_type) ? $this->confidential_instance_type : '';
+    }
+
+    public function hasConfidentialInstanceType()
+    {
+        return isset($this->confidential_instance_type);
+    }
+
+    public function clearConfidentialInstanceType()
+    {
+        unset($this->confidential_instance_type);
+    }
+
+    /**
+     * Defines the type of technology used by the confidential instance.
+     * Check the ConfidentialInstanceType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_instance_type = 43484717;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConfidentialInstanceType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->confidential_instance_type = $var;
+
+        return $this;
     }
 
     /**

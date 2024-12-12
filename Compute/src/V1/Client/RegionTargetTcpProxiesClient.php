@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\ListRegionTargetTcpProxiesRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\TargetTcpProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionTargetTcpProxies API.
@@ -47,10 +48,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionTargetTcpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionTargetTcpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetTcpProxy> getAsync(GetRegionTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionTargetTcpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionTargetTcpProxiesRequest $request, array $optionalArgs = [])
  */
 final class RegionTargetTcpProxiesClient
 {
@@ -215,6 +216,9 @@ final class RegionTargetTcpProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -242,6 +246,8 @@ final class RegionTargetTcpProxiesClient
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionTargetTcpProxiesClient/delete.php
+     *
      * @param DeleteRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -265,6 +271,8 @@ final class RegionTargetTcpProxiesClient
      * Returns the specified TargetTcpProxy resource.
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionTargetTcpProxiesClient/get.php
      *
      * @param GetRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -290,6 +298,8 @@ final class RegionTargetTcpProxiesClient
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionTargetTcpProxiesClient/insert.php
+     *
      * @param InsertRegionTargetTcpProxyRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -313,6 +323,8 @@ final class RegionTargetTcpProxiesClient
      * Retrieves a list of TargetTcpProxy resources available to the specified project in a given region.
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionTargetTcpProxiesClient/list.php
      *
      * @param ListRegionTargetTcpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

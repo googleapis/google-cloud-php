@@ -22,6 +22,12 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
+     * Represents the port number to which PSC consumer sends packets. Only valid for network endpoint groups created with GCE_VM_IP_PORTMAP endpoint type.
+     *
+     * Generated from protobuf field <code>optional int32 client_destination_port = 123765766;</code>
+     */
+    private $client_destination_port = null;
+    /**
      * Optional fully qualified domain name of network endpoint. This can only be specified when NetworkEndpointGroup.network_endpoint_type is NON_GCP_FQDN_PORT.
      *
      * Generated from protobuf field <code>optional string fqdn = 3150485;</code>
@@ -40,6 +46,12 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      */
     private $ip_address = null;
     /**
+     * Optional IPv6 address of network endpoint.
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     */
+    private $ipv6_address = null;
+    /**
      * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used. This field can not be set for network endpoints of type GCE_VM_IP.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
@@ -54,12 +66,16 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Metadata defined as annotations on the network endpoint.
+     *     @type int $client_destination_port
+     *           Represents the port number to which PSC consumer sends packets. Only valid for network endpoint groups created with GCE_VM_IP_PORTMAP endpoint type.
      *     @type string $fqdn
      *           Optional fully qualified domain name of network endpoint. This can only be specified when NetworkEndpointGroup.network_endpoint_type is NON_GCP_FQDN_PORT.
      *     @type string $instance
      *           The name or a URL of VM instance of this network endpoint. This field is required for network endpoints of type GCE_VM_IP and GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group (for zonal NEGs) or in the zone within the region of the NEG (for regional NEGs). If the ipAddress is specified, it must belongs to the VM instance. The name must be 1-63 characters long, and comply with RFC1035 or be a valid URL pointing to an existing instance.
      *     @type string $ip_address
      *           Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used. This field is redundant and need not be set for network endpoints of type GCE_VM_IP. If set, it must be set to the primary internal IP address of the attached VM instance that matches the subnetwork of the NEG. The primary internal IP address from any NIC of a multi-NIC VM instance can be added to a NEG as long as it matches the NEG subnetwork.
+     *     @type string $ipv6_address
+     *           Optional IPv6 address of network endpoint.
      *     @type int $port
      *           Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used. This field can not be set for network endpoints of type GCE_VM_IP.
      * }
@@ -91,6 +107,42 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Represents the port number to which PSC consumer sends packets. Only valid for network endpoint groups created with GCE_VM_IP_PORTMAP endpoint type.
+     *
+     * Generated from protobuf field <code>optional int32 client_destination_port = 123765766;</code>
+     * @return int
+     */
+    public function getClientDestinationPort()
+    {
+        return isset($this->client_destination_port) ? $this->client_destination_port : 0;
+    }
+
+    public function hasClientDestinationPort()
+    {
+        return isset($this->client_destination_port);
+    }
+
+    public function clearClientDestinationPort()
+    {
+        unset($this->client_destination_port);
+    }
+
+    /**
+     * Represents the port number to which PSC consumer sends packets. Only valid for network endpoint groups created with GCE_VM_IP_PORTMAP endpoint type.
+     *
+     * Generated from protobuf field <code>optional int32 client_destination_port = 123765766;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClientDestinationPort($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->client_destination_port = $var;
 
         return $this;
     }
@@ -199,6 +251,42 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional IPv6 address of network endpoint.
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     * @return string
+     */
+    public function getIpv6Address()
+    {
+        return isset($this->ipv6_address) ? $this->ipv6_address : '';
+    }
+
+    public function hasIpv6Address()
+    {
+        return isset($this->ipv6_address);
+    }
+
+    public function clearIpv6Address()
+    {
+        unset($this->ipv6_address);
+    }
+
+    /**
+     * Optional IPv6 address of network endpoint.
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_address = $var;
 
         return $this;
     }

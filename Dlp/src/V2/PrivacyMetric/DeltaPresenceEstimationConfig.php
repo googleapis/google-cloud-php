@@ -32,7 +32,7 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      */
-    private $region_code = '';
+    protected $region_code = '';
     /**
      * Several auxiliary tables can be used in the analysis. Each custom_tag
      * used to tag a quasi-identifiers field must appear in exactly one
@@ -156,6 +156,4 @@ class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeltaPresenceEstimationConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_DeltaPresenceEstimationConfig::class);
 

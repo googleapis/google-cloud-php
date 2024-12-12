@@ -32,7 +32,8 @@ use Google\Cloud\DiscoveryEngine\V1\UserEvent;
 /**
  * Makes a recommendation, which requires a contextual user event.
  *
- * @param string $formattedServingConfig Full resource name of a [ServingConfig][]:
+ * @param string $formattedServingConfig Full resource name of a
+ *                                       [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
  *                                       `projects/&#42;/locations/global/collections/&#42;/engines/&#42;/servingConfigs/*`, or
  *                                       `projects/&#42;/locations/global/collections/&#42;/dataStores/&#42;/servingConfigs/*`
  *

@@ -30,13 +30,13 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.HttpMethod http_method = 1;</code>
      */
-    private $http_method = 0;
+    protected $http_method = 0;
     /**
      * App Engine Routing setting for the job.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.AppEngineRouting app_engine_routing = 2;</code>
      */
-    private $app_engine_routing = null;
+    protected $app_engine_routing = null;
     /**
      * The relative URI.
      * The relative URL must begin with "/" and must be a valid HTTP relative URL.
@@ -46,7 +46,7 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string relative_uri = 3;</code>
      */
-    private $relative_uri = '';
+    protected $relative_uri = '';
     /**
      * HTTP request headers.
      * This map contains the header field names and values. Headers can be set
@@ -90,7 +90,7 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      */
-    private $body = '';
+    protected $body = '';
 
     /**
      * Constructor.

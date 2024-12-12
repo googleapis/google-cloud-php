@@ -22,13 +22,13 @@ class CustomGenAiModelInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.GenAiModelInfo.CustomGenAiModelInfo.CustomModelType custom_model_type = 1;</code>
      */
-    private $custom_model_type = 0;
+    protected $custom_model_type = 0;
     /**
      * The base processor version ID for the custom model.
      *
      * Generated from protobuf field <code>string base_processor_version_id = 2;</code>
      */
-    private $base_processor_version_id = '';
+    protected $base_processor_version_id = '';
 
     /**
      * Constructor.

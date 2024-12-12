@@ -19,8 +19,7 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the
      * [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/deployments/<Deployment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,8 +28,7 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the
      *                     [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     *                     `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *                     ID>/environments/<Environment ID>/deployments/<Deployment ID>`. Please see
+     *                     `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`. Please see
      *                     {@see DeploymentsClient::deploymentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\GetDeploymentRequest
@@ -52,8 +50,7 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the
      *           [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     *           `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>/deployments/<Deployment ID>`.
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,8 +61,7 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the
      * [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/deployments/<Deployment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,8 +74,7 @@ class GetDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the
      * [Deployment][google.cloud.dialogflow.cx.v3.Deployment]. Format:
-     * `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/deployments/<Deployment ID>`.
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

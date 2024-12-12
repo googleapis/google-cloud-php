@@ -97,7 +97,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * form: `projects/{project}/global/networks/{network_id}`. This is required
      * to create a cluster. Deprecated, use network_config.network instead.
      *
      * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -193,6 +193,56 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.PrimaryConfig primary_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $primary_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.PscConfig psc_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $psc_config = null;
+    /**
+     * Optional. The maintenance update policy determines when to allow or deny
+     * updates.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.MaintenanceUpdatePolicy maintenance_update_policy = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $maintenance_update_policy = null;
+    /**
+     * Output only. The maintenance schedule for the cluster, generated for a
+     * specific rollout if a maintenance window is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.MaintenanceSchedule maintenance_schedule = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $maintenance_schedule = null;
+    /**
+     * Optional. Subscription type of the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SubscriptionType subscription_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $subscription_type = 0;
+    /**
+     * Output only. Metadata for free trial clusters
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.TrialMetadata trial_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $trial_metadata = null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * ```
+     * "123/environment": "production",
+     * "123/costCenter": "marketing"
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 41 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
     protected $source;
 
     /**
@@ -242,7 +292,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Required. The resource link for the VPC network in which cluster resources
      *           are created and from which they are accessible via Private IP. The network
      *           must belong to the same project as the cluster. It is specified in the
-     *           form: "projects/{project}/global/networks/{network_id}". This is required
+     *           form: `projects/{project}/global/networks/{network_id}`. This is required
      *           to create a cluster. Deprecated, use network_config.network instead.
      *     @type string $etag
      *           For Resource freshness validation (https://google.aip.dev/154)
@@ -284,6 +334,28 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Cross Region replication config specific to SECONDARY cluster.
      *     @type \Google\Cloud\AlloyDb\V1\Cluster\PrimaryConfig $primary_config
      *           Output only. Cross Region replication config specific to PRIMARY cluster.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\AlloyDb\V1\Cluster\PscConfig $psc_config
+     *           Optional. The configuration for Private Service Connect (PSC) for the
+     *           cluster.
+     *     @type \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy $maintenance_update_policy
+     *           Optional. The maintenance update policy determines when to allow or deny
+     *           updates.
+     *     @type \Google\Cloud\AlloyDb\V1\MaintenanceSchedule $maintenance_schedule
+     *           Output only. The maintenance schedule for the cluster, generated for a
+     *           specific rollout if a maintenance window is set.
+     *     @type int $subscription_type
+     *           Optional. Subscription type of the cluster.
+     *     @type \Google\Cloud\AlloyDb\V1\Cluster\TrialMetadata $trial_metadata
+     *           Output only. Metadata for free trial clusters
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys/values directly bound to this
+     *           resource. For example:
+     *           ```
+     *           "123/environment": "production",
+     *           "123/costCenter": "marketing"
+     *           ```
      * }
      */
     public function __construct($data = NULL) {
@@ -703,7 +775,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * form: `projects/{project}/global/networks/{network_id}`. This is required
      * to create a cluster. Deprecated, use network_config.network instead.
      *
      * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -720,7 +792,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * form: `projects/{project}/global/networks/{network_id}`. This is required
      * to create a cluster. Deprecated, use network_config.network instead.
      *
      * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -1173,6 +1245,244 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Cluster\PrimaryConfig::class);
         $this->primary_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.PscConfig psc_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Cluster\PscConfig|null
+     */
+    public function getPscConfig()
+    {
+        return $this->psc_config;
+    }
+
+    public function hasPscConfig()
+    {
+        return isset($this->psc_config);
+    }
+
+    public function clearPscConfig()
+    {
+        unset($this->psc_config);
+    }
+
+    /**
+     * Optional. The configuration for Private Service Connect (PSC) for the
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.PscConfig psc_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Cluster\PscConfig $var
+     * @return $this
+     */
+    public function setPscConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Cluster\PscConfig::class);
+        $this->psc_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maintenance update policy determines when to allow or deny
+     * updates.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.MaintenanceUpdatePolicy maintenance_update_policy = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy|null
+     */
+    public function getMaintenanceUpdatePolicy()
+    {
+        return $this->maintenance_update_policy;
+    }
+
+    public function hasMaintenanceUpdatePolicy()
+    {
+        return isset($this->maintenance_update_policy);
+    }
+
+    public function clearMaintenanceUpdatePolicy()
+    {
+        unset($this->maintenance_update_policy);
+    }
+
+    /**
+     * Optional. The maintenance update policy determines when to allow or deny
+     * updates.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.MaintenanceUpdatePolicy maintenance_update_policy = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy $var
+     * @return $this
+     */
+    public function setMaintenanceUpdatePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy::class);
+        $this->maintenance_update_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The maintenance schedule for the cluster, generated for a
+     * specific rollout if a maintenance window is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.MaintenanceSchedule maintenance_schedule = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\MaintenanceSchedule|null
+     */
+    public function getMaintenanceSchedule()
+    {
+        return $this->maintenance_schedule;
+    }
+
+    public function hasMaintenanceSchedule()
+    {
+        return isset($this->maintenance_schedule);
+    }
+
+    public function clearMaintenanceSchedule()
+    {
+        unset($this->maintenance_schedule);
+    }
+
+    /**
+     * Output only. The maintenance schedule for the cluster, generated for a
+     * specific rollout if a maintenance window is set.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.MaintenanceSchedule maintenance_schedule = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\MaintenanceSchedule $var
+     * @return $this
+     */
+    public function setMaintenanceSchedule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\MaintenanceSchedule::class);
+        $this->maintenance_schedule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Subscription type of the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SubscriptionType subscription_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSubscriptionType()
+    {
+        return $this->subscription_type;
+    }
+
+    /**
+     * Optional. Subscription type of the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.SubscriptionType subscription_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSubscriptionType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\SubscriptionType::class);
+        $this->subscription_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata for free trial clusters
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.TrialMetadata trial_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Cluster\TrialMetadata|null
+     */
+    public function getTrialMetadata()
+    {
+        return $this->trial_metadata;
+    }
+
+    public function hasTrialMetadata()
+    {
+        return isset($this->trial_metadata);
+    }
+
+    public function clearTrialMetadata()
+    {
+        unset($this->trial_metadata);
+    }
+
+    /**
+     * Output only. Metadata for free trial clusters
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.TrialMetadata trial_metadata = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Cluster\TrialMetadata $var
+     * @return $this
+     */
+    public function setTrialMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Cluster\TrialMetadata::class);
+        $this->trial_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * ```
+     * "123/environment": "production",
+     * "123/costCenter": "marketing"
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 41 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this
+     * resource. For example:
+     * ```
+     * "123/environment": "production",
+     * "123/costCenter": "marketing"
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 41 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

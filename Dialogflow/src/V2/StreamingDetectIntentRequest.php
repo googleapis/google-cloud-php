@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The top-level message sent by the client to the
- * [Sessions.StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]
- * method.
+ * [StreamingDetectIntent][] method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain
  * [session][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.session],

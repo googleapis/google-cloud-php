@@ -78,6 +78,13 @@ class Packagist
         return $this->apiToken;
     }
 
+    public function getDownloads(string $packageName): int
+    {
+        $response = $this->client->get("https://packagist.org/packages/$packageName/stats.json");
+        $data = json_decode($response->getBody()->getContents(), true);
+        return $data['downloads']['total'] ?? 0;
+    }
+
     /**
      * Log an exception
      *

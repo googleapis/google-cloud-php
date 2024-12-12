@@ -28,7 +28,7 @@ class UpdateCompletionConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionConfig completion_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $completion_config = null;
+    protected $completion_config = null;
     /**
      * Indicates which fields in the provided
      * [CompletionConfig][google.cloud.retail.v2.CompletionConfig] to update. The
@@ -41,7 +41,7 @@ class UpdateCompletionConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Retail\V2\CompletionConfig $completionConfig Required. The [CompletionConfig][google.cloud.retail.v2.CompletionConfig]

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,9 @@ class CloudSchedulerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CloudSchedulerClient */
@@ -96,9 +98,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -124,19 +124,20 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         try {
             $gapicClient->createJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -163,8 +164,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteJobRequest())->setName($formattedName);
         $gapicClient->deleteJob($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -187,17 +187,19 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new DeleteJobRequest())
-            ->setName($formattedName);
+        $request = (new DeleteJobRequest())->setName($formattedName);
         try {
             $gapicClient->deleteJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -232,8 +234,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = (new GetJobRequest())->setName($formattedName);
         $response = $gapicClient->getJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -257,17 +258,19 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new GetJobRequest())
-            ->setName($formattedName);
+        $request = (new GetJobRequest())->setName($formattedName);
         try {
             $gapicClient->getJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -292,17 +295,14 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $jobsElement = new Job();
-        $jobs = [
-            $jobsElement,
-        ];
+        $jobs = [$jobsElement];
         $expectedResponse = new ListJobsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobsRequest())->setParent($formattedParent);
         $response = $gapicClient->listJobs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -329,17 +329,19 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListJobsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListJobsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listJobs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -374,8 +376,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new PauseJobRequest())
-            ->setName($formattedName);
+        $request = (new PauseJobRequest())->setName($formattedName);
         $response = $gapicClient->pauseJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -399,17 +400,19 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new PauseJobRequest())
-            ->setName($formattedName);
+        $request = (new PauseJobRequest())->setName($formattedName);
         try {
             $gapicClient->pauseJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -444,8 +447,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new ResumeJobRequest())
-            ->setName($formattedName);
+        $request = (new ResumeJobRequest())->setName($formattedName);
         $response = $gapicClient->resumeJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -469,17 +471,19 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new ResumeJobRequest())
-            ->setName($formattedName);
+        $request = (new ResumeJobRequest())->setName($formattedName);
         try {
             $gapicClient->resumeJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -514,8 +518,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new RunJobRequest())
-            ->setName($formattedName);
+        $request = (new RunJobRequest())->setName($formattedName);
         $response = $gapicClient->runJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -539,17 +542,19 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $request = (new RunJobRequest())
-            ->setName($formattedName);
+        $request = (new RunJobRequest())->setName($formattedName);
         try {
             $gapicClient->runJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -585,9 +590,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock request
         $job = new Job();
         $updateMask = new FieldMask();
-        $request = (new UpdateJobRequest())
-            ->setJob($job)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateJobRequest())->setJob($job)->setUpdateMask($updateMask);
         $response = $gapicClient->updateJob($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -613,19 +616,20 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $job = new Job();
         $updateMask = new FieldMask();
-        $request = (new UpdateJobRequest())
-            ->setJob($job)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateJobRequest())->setJob($job)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateJob($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -678,12 +682,15 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -710,9 +717,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -742,12 +747,15 @@ class CloudSchedulerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -785,9 +793,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $request = (new CreateJobRequest())
-            ->setParent($formattedParent)
-            ->setJob($job);
+        $request = (new CreateJobRequest())->setParent($formattedParent)->setJob($job);
         $response = $gapicClient->createJobAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

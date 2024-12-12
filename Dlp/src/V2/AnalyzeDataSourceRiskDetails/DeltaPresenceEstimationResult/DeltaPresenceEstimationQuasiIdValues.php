@@ -33,7 +33,7 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>double estimated_probability = 2;</code>
      */
-    private $estimated_probability = 0.0;
+    protected $estimated_probability = 0.0;
 
     /**
      * Constructor.
@@ -127,6 +127,4 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeltaPresenceEstimationQuasiIdValues::class, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails_DeltaPresenceEstimationResult_DeltaPresenceEstimationQuasiIdValues::class);
 

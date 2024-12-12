@@ -23,7 +23,7 @@ class Control extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The human readable control display name. Used in Retail UI.
      * This field must be a UTF-8 encoded string with a length limit of 128
@@ -31,7 +31,7 @@ class Control extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. List of [serving config][google.cloud.retail.v2.ServingConfig]
      * ids that are associated with this control in the same

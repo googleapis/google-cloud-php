@@ -138,6 +138,19 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      */
     private $data_boost_enabled = false;
+    /**
+     * Optional. If set to true, this statement marks the end of the transaction.
+     * The transaction should be committed or aborted after this statement
+     * executes, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * For DML statements, setting this option may cause some error reporting to
+     * be deferred until commit time (e.g. validation of unique constraints).
+     * Given this, successful execution of a DML statement should not be assumed
+     * until a subsequent Commit call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $last_statement = false;
 
     /**
      * Constructor.
@@ -215,6 +228,15 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           request is executed with Spanner Data Boost independent compute resources.
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
+     *     @type bool $last_statement
+     *           Optional. If set to true, this statement marks the end of the transaction.
+     *           The transaction should be committed or aborted after this statement
+     *           executes, and attempts to execute any other requests against this
+     *           transaction (including reads and queries) will be rejected.
+     *           For DML statements, setting this option may cause some error reporting to
+     *           be deferred until commit time (e.g. validation of unique constraints).
+     *           Given this, successful execution of a DML statement should not be assumed
+     *           until a subsequent Commit call completes successfully.
      * }
      */
     public function __construct($data = NULL) {
@@ -694,6 +716,46 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->data_boost_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, this statement marks the end of the transaction.
+     * The transaction should be committed or aborted after this statement
+     * executes, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * For DML statements, setting this option may cause some error reporting to
+     * be deferred until commit time (e.g. validation of unique constraints).
+     * Given this, successful execution of a DML statement should not be assumed
+     * until a subsequent Commit call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLastStatement()
+    {
+        return $this->last_statement;
+    }
+
+    /**
+     * Optional. If set to true, this statement marks the end of the transaction.
+     * The transaction should be committed or aborted after this statement
+     * executes, and attempts to execute any other requests against this
+     * transaction (including reads and queries) will be rejected.
+     * For DML statements, setting this option may cause some error reporting to
+     * be deferred until commit time (e.g. validation of unique constraints).
+     * Given this, successful execution of a DML statement should not be assumed
+     * until a subsequent Commit call completes successfully.
+     *
+     * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLastStatement($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->last_statement = $var;
 
         return $this;
     }

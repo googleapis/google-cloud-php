@@ -36,7 +36,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optionally caller-specified in
      * [CreateJob][google.cloud.scheduler.v1.CloudScheduler.CreateJob] or
@@ -46,7 +46,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required, except when used with
      * [UpdateJob][google.cloud.scheduler.v1.CloudScheduler.UpdateJob].
@@ -70,7 +70,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      */
-    private $schedule = '';
+    protected $schedule = '';
     /**
      * Specifies the time zone to be used in interpreting
      * [schedule][google.cloud.scheduler.v1.Job.schedule]. The value of this field
@@ -84,25 +84,25 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 21;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Output only. The creation time of the job.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9;</code>
      */
-    private $user_update_time = null;
+    protected $user_update_time = null;
     /**
      * Output only. State of the job.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The response from the target for the last attempted execution.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Output only. The next time the job is scheduled. Note that this may be a
      * retry of a previously failed attempt or the next execution time
@@ -110,19 +110,19 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17;</code>
      */
-    private $schedule_time = null;
+    protected $schedule_time = null;
     /**
      * Output only. The time the last job attempt started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18;</code>
      */
-    private $last_attempt_time = null;
+    protected $last_attempt_time = null;
     /**
      * Settings that determine the retry behavior.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.RetryConfig retry_config = 19;</code>
      */
-    private $retry_config = null;
+    protected $retry_config = null;
     /**
      * The deadline for job attempts. If the request handler does not respond by
      * this deadline then the request is cancelled and the attempt is marked as a
@@ -145,7 +145,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
      */
-    private $attempt_deadline = null;
+    protected $attempt_deadline = null;
     protected $target;
 
     /**

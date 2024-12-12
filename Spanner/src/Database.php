@@ -28,16 +28,14 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Rpc\Code;
@@ -218,7 +216,7 @@ class Database
         array $lroCallables,
         $projectId,
         $name,
-        SessionPoolInterface $sessionPool = null,
+        ?SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
         $databaseRole = ''
@@ -294,7 +292,7 @@ class Database
      */
     public function backups(array $options = [])
     {
-        $filter = "database:" . $this->name();
+        $filter = 'database:' . $this->name();
 
         if (isset($options['filter'])) {
             $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
@@ -917,7 +915,7 @@ class Database
         ];
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = $this->configureTransactionOptions();
+        $options['transactionOptions'] = $this->configureTransactionOptions($options['transactionOptions'] ?? []);
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READWRITE,
@@ -1556,7 +1554,7 @@ class Database
      * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
+     *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
@@ -1573,7 +1571,7 @@ class Database
      * use Google\Cloud\Spanner\Session\SessionPoolInterface;
      *
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
-     *      'parameters' => [
+     *     'parameters' => [
      *         'postId' => 1337
      *     ],
      *     'begin' => true,
@@ -1593,11 +1591,10 @@ class Database
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration Options.
-     *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
-     *     for detailed description of available transaction options. Please
-     *     note that only one of `$strong`, `$minReadTimestamp`,
-     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
-     *     a request.
+     *     See {@see V1\TransactionOptions\PBReadOnly} for detailed description of
+     *     available transaction options. Please note that only one of
+     *     `$strong`, `$minReadTimestamp`, `$maxStaleness`, `$readTimestamp` or
+     *     `$exactStaleness` may be set in a request.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
@@ -1899,11 +1896,16 @@ class Database
         unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
-        $transaction = $this->operation->transaction($session, [
+        $beginTransactionOptions = [
             'transactionOptions' => [
-                'partitionedDml' => []
+                'partitionedDml' => [],
             ]
-        ]);
+        ];
+        if (isset($options['transactionOptions']['excludeTxnFromChangeStreams'])) {
+            $beginTransactionOptions['transactionOptions']['excludeTxnFromChangeStreams'] =
+                $options['transactionOptions']['excludeTxnFromChangeStreams'];
+        }
+        $transaction = $this->operation->transaction($session, $beginTransactionOptions);
 
         $options = $this->addLarHeader($options);
 
@@ -2107,9 +2109,10 @@ class Database
     {
         try {
             $this->close();
-        //@codingStandardsIgnoreStart
-        //@codeCoverageIgnoreStart
-        } catch (\Exception $ex) {}
+            //@codingStandardsIgnoreStart
+            //@codeCoverageIgnoreStart
+        } catch (\Exception $ex) {
+        }
         //@codeCoverageIgnoreEnd
         //@codingStandardsIgnoreStart
     }
@@ -2264,7 +2267,7 @@ class Database
                 $instance,
                 $name
             );
-        //@codeCoverageIgnoreStart
+            //@codeCoverageIgnoreStart
         } catch (ValidationException $e) {
             return $name;
         }

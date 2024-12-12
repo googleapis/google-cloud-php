@@ -22,7 +22,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * All video segments where OCR detected text appears.
      *
@@ -34,7 +34,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 3;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

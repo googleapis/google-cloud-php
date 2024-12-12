@@ -122,6 +122,12 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_automatic_punctuation = false;
     /**
+     * A collection of phrase set resources to use for speech adaptation.
+     *
+     * Generated from protobuf field <code>repeated string phrase_sets = 20 [(.google.api.resource_reference) = {</code>
+     */
+    private $phrase_sets;
+    /**
      * If `true`, the request will opt out for STT conformer model migration.
      * This field will be deprecated once force migration takes place in June
      * 2024. Please refer to [Dialogflow ES Speech model
@@ -198,6 +204,8 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
      *     @type bool $enable_automatic_punctuation
      *           Enable automatic punctuation option at the speech backend.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *           A collection of phrase set resources to use for speech adaptation.
      *     @type bool $opt_out_conformer_model_migration
      *           If `true`, the request will opt out for STT conformer model migration.
      *           This field will be deprecated once force migration takes place in June
@@ -574,6 +582,32 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_automatic_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * A collection of phrase set resources to use for speech adaptation.
+     *
+     * Generated from protobuf field <code>repeated string phrase_sets = 20 [(.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPhraseSets()
+    {
+        return $this->phrase_sets;
+    }
+
+    /**
+     * A collection of phrase set resources to use for speech adaptation.
+     *
+     * Generated from protobuf field <code>repeated string phrase_sets = 20 [(.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPhraseSets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->phrase_sets = $arr;
 
         return $this;
     }

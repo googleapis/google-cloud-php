@@ -23,17 +23,17 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket_name = '';
+    protected $bucket_name = '';
     /**
      * Input only. AWS access key used to sign the API requests to the AWS S3
      * bucket. Permissions on the bucket must be granted to the access ID of the
      * AWS access key.
      * For information on our data retention policy for user credentials, see
-     * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
+     * [User credentials](/storage-transfer/docs/data-retention#user-credentials).
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AwsAccessKey aws_access_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $aws_access_key = null;
+    protected $aws_access_key = null;
     /**
      * Root path to transfer objects.
      * Must be an empty string or full path name that ends with a '/'. This field
@@ -42,7 +42,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 3;</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * The Amazon Resource Name (ARN) of the role to support temporary
      * credentials via `AssumeRoleWithWebIdentity`. For more information about
@@ -56,7 +56,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role_arn = 4;</code>
      */
-    private $role_arn = '';
+    protected $role_arn = '';
     /**
      * Optional. The CloudFront distribution domain name pointing to this bucket,
      * to use when fetching.
@@ -69,7 +69,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cloudfront_domain = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cloudfront_domain = '';
+    protected $cloudfront_domain = '';
     /**
      * Optional. The Resource name of a secret in Secret Manager.
      * AWS credentials must be stored in Secret Manager in JSON format:
@@ -89,7 +89,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string credentials_secret = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $credentials_secret = '';
+    protected $credentials_secret = '';
     protected $private_network;
 
     /**
@@ -107,7 +107,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      *           bucket. Permissions on the bucket must be granted to the access ID of the
      *           AWS access key.
      *           For information on our data retention policy for user credentials, see
-     *           [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
+     *           [User credentials](/storage-transfer/docs/data-retention#user-credentials).
      *     @type string $path
      *           Root path to transfer objects.
      *           Must be an empty string or full path name that ends with a '/'. This field
@@ -193,7 +193,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      * bucket. Permissions on the bucket must be granted to the access ID of the
      * AWS access key.
      * For information on our data retention policy for user credentials, see
-     * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
+     * [User credentials](/storage-transfer/docs/data-retention#user-credentials).
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AwsAccessKey aws_access_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Cloud\StorageTransfer\V1\AwsAccessKey|null
@@ -218,7 +218,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      * bucket. Permissions on the bucket must be granted to the access ID of the
      * AWS access key.
      * For information on our data retention policy for user credentials, see
-     * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
+     * [User credentials](/storage-transfer/docs/data-retention#user-credentials).
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AwsAccessKey aws_access_key = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Cloud\StorageTransfer\V1\AwsAccessKey $var

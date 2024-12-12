@@ -57,6 +57,20 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language_code = 19;</code>
      */
     private $language_code = '';
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation
+     * status of the model.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status
+     * of the model.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzi = null;
     protected $model_metadata;
 
     /**
@@ -87,6 +101,12 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      *           Metadata for article suggestion models.
      *     @type \Google\Cloud\Dialogflow\V2\SmartReplyModelMetadata $smart_reply_model_metadata
      *           Metadata for smart reply models.
+     *     @type bool $satisfies_pzs
+     *           Output only. A read only boolean field reflecting Zone Separation
+     *           status of the model.
+     *     @type bool $satisfies_pzi
+     *           Output only. A read only boolean field reflecting Zone Isolation status
+     *           of the model.
      * }
      */
     public function __construct($data = NULL) {
@@ -330,6 +350,82 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SmartReplyModelMetadata::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation
+     * status of the model.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation
+     * status of the model.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status
+     * of the model.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status
+     * of the model.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

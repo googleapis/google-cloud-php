@@ -109,6 +109,24 @@ class Replication extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string source_volume = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $source_volume = '';
+    /**
+     * Output only. Hybrid peering details.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridPeeringDetails hybrid_peering_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hybrid_peering_details = null;
+    /**
+     * Optional. Location of the user cluster.
+     *
+     * Generated from protobuf field <code>string cluster_location = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cluster_location = '';
+    /**
+     * Output only. Type of the hybrid replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Replication.HybridReplicationType hybrid_replication_type = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hybrid_replication_type = 0;
 
     /**
      * Constructor.
@@ -152,6 +170,12 @@ class Replication extends \Google\Protobuf\Internal\Message
      *     @type string $source_volume
      *           Output only. Full name of source volume resource.
      *           Example : "projects/{project}/locations/{location}/volumes/{volume_id}"
+     *     @type \Google\Cloud\NetApp\V1\HybridPeeringDetails $hybrid_peering_details
+     *           Output only. Hybrid peering details.
+     *     @type string $cluster_location
+     *           Optional. Location of the user cluster.
+     *     @type int $hybrid_replication_type
+     *           Output only. Type of the hybrid replication.
      * }
      */
     public function __construct($data = NULL) {
@@ -585,6 +609,94 @@ class Replication extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_volume = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Hybrid peering details.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridPeeringDetails hybrid_peering_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetApp\V1\HybridPeeringDetails|null
+     */
+    public function getHybridPeeringDetails()
+    {
+        return $this->hybrid_peering_details;
+    }
+
+    public function hasHybridPeeringDetails()
+    {
+        return isset($this->hybrid_peering_details);
+    }
+
+    public function clearHybridPeeringDetails()
+    {
+        unset($this->hybrid_peering_details);
+    }
+
+    /**
+     * Output only. Hybrid peering details.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.HybridPeeringDetails hybrid_peering_details = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetApp\V1\HybridPeeringDetails $var
+     * @return $this
+     */
+    public function setHybridPeeringDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\HybridPeeringDetails::class);
+        $this->hybrid_peering_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Location of the user cluster.
+     *
+     * Generated from protobuf field <code>string cluster_location = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClusterLocation()
+    {
+        return $this->cluster_location;
+    }
+
+    /**
+     * Optional. Location of the user cluster.
+     *
+     * Generated from protobuf field <code>string cluster_location = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClusterLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cluster_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Type of the hybrid replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Replication.HybridReplicationType hybrid_replication_type = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getHybridReplicationType()
+    {
+        return $this->hybrid_replication_type;
+    }
+
+    /**
+     * Output only. Type of the hybrid replication.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Replication.HybridReplicationType hybrid_replication_type = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHybridReplicationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\Replication\HybridReplicationType::class);
+        $this->hybrid_replication_type = $var;
 
         return $this;
     }

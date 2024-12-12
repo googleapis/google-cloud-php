@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\ListTargetGrpcProxiesRequest;
 use Google\Cloud\Compute\V1\PatchTargetGrpcProxyRequest;
 use Google\Cloud\Compute\V1\TargetGrpcProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The TargetGrpcProxies API.
@@ -48,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteTargetGrpcProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetTargetGrpcProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertTargetGrpcProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListTargetGrpcProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetGrpcProxy> getAsync(GetTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertTargetGrpcProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListTargetGrpcProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchTargetGrpcProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetGrpcProxiesClient
 {
@@ -216,6 +217,9 @@ final class TargetGrpcProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -243,6 +247,8 @@ final class TargetGrpcProxiesClient
      *
      * The async variant is {@see TargetGrpcProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/TargetGrpcProxiesClient/delete.php
+     *
      * @param DeleteTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -266,6 +272,8 @@ final class TargetGrpcProxiesClient
      * Returns the specified TargetGrpcProxy resource in the given scope.
      *
      * The async variant is {@see TargetGrpcProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/TargetGrpcProxiesClient/get.php
      *
      * @param GetTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -291,6 +299,8 @@ final class TargetGrpcProxiesClient
      *
      * The async variant is {@see TargetGrpcProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/TargetGrpcProxiesClient/insert.php
+     *
      * @param InsertTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -315,6 +325,8 @@ final class TargetGrpcProxiesClient
      *
      * The async variant is {@see TargetGrpcProxiesClient::listAsync()} .
      *
+     * @example samples/V1/TargetGrpcProxiesClient/list.php
+     *
      * @param ListTargetGrpcProxiesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -338,6 +350,8 @@ final class TargetGrpcProxiesClient
      * Patches the specified TargetGrpcProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
      *
      * The async variant is {@see TargetGrpcProxiesClient::patchAsync()} .
+     *
+     * @example samples/V1/TargetGrpcProxiesClient/patch.php
      *
      * @param PatchTargetGrpcProxyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

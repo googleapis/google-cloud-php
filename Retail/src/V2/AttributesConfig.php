@@ -21,7 +21,7 @@ class AttributesConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Enable attribute(s) config at catalog level.
      * For example, indexable, dynamic_facetable, or searchable for each
@@ -41,7 +41,7 @@ class AttributesConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.AttributeConfigLevel attribute_config_level = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $attribute_config_level = 0;
+    protected $attribute_config_level = 0;
 
     /**
      * Constructor.

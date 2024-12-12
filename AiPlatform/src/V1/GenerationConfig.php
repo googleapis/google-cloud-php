@@ -52,6 +52,18 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     private $stop_sequences;
     /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_logprobs = null;
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $logprobs = null;
+    /**
      * Optional. Positive penalties.
      *
      * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -118,6 +130,10 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of output tokens to generate per message.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stop_sequences
      *           Optional. Stop sequences.
+     *     @type bool $response_logprobs
+     *           Optional. If true, export the logprobs results in response.
+     *     @type int $logprobs
+     *           Optional. Logit probabilities.
      *     @type float $presence_penalty
      *           Optional. Positive penalties.
      *     @type float $frequency_penalty
@@ -351,6 +367,78 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->stop_sequences = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getResponseLogprobs()
+    {
+        return isset($this->response_logprobs) ? $this->response_logprobs : false;
+    }
+
+    public function hasResponseLogprobs()
+    {
+        return isset($this->response_logprobs);
+    }
+
+    public function clearResponseLogprobs()
+    {
+        unset($this->response_logprobs);
+    }
+
+    /**
+     * Optional. If true, export the logprobs results in response.
+     *
+     * Generated from protobuf field <code>optional bool response_logprobs = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setResponseLogprobs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->response_logprobs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getLogprobs()
+    {
+        return isset($this->logprobs) ? $this->logprobs : 0;
+    }
+
+    public function hasLogprobs()
+    {
+        return isset($this->logprobs);
+    }
+
+    public function clearLogprobs()
+    {
+        unset($this->logprobs);
+    }
+
+    /**
+     * Optional. Logit probabilities.
+     *
+     * Generated from protobuf field <code>optional int32 logprobs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLogprobs($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->logprobs = $var;
 
         return $this;
     }

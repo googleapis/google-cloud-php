@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Dataproc\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Client\NodeGroupControllerClient;
@@ -37,6 +36,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -59,7 +59,9 @@ class NodeGroupControllerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NodeGroupControllerClient */
@@ -107,9 +109,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $nodeGroup = new NodeGroup();
         $nodeGroupRoles = [];
         $nodeGroup->setRoles($nodeGroupRoles);
-        $request = (new CreateNodeGroupRequest())
-            ->setParent($formattedParent)
-            ->setNodeGroup($nodeGroup);
+        $request = (new CreateNodeGroupRequest())->setParent($formattedParent)->setNodeGroup($nodeGroup);
         $response = $gapicClient->createNodeGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -167,21 +167,22 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->clusterRegionName('[PROJECT]', '[REGION]', '[CLUSTER]');
         $nodeGroup = new NodeGroup();
         $nodeGroupRoles = [];
         $nodeGroup->setRoles($nodeGroupRoles);
-        $request = (new CreateNodeGroupRequest())
-            ->setParent($formattedParent)
-            ->setNodeGroup($nodeGroup);
+        $request = (new CreateNodeGroupRequest())->setParent($formattedParent)->setNodeGroup($nodeGroup);
         $response = $gapicClient->createNodeGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -219,8 +220,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeGroupName('[PROJECT]', '[REGION]', '[CLUSTER]', '[NODE_GROUP]');
-        $request = (new GetNodeGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeGroupRequest())->setName($formattedName);
         $response = $gapicClient->getNodeGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -244,17 +244,19 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeGroupName('[PROJECT]', '[REGION]', '[CLUSTER]', '[NODE_GROUP]');
-        $request = (new GetNodeGroupRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeGroupRequest())->setName($formattedName);
         try {
             $gapicClient->getNodeGroup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -302,9 +304,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $size = 3530753;
-        $request = (new ResizeNodeGroupRequest())
-            ->setName($name)
-            ->setSize($size);
+        $request = (new ResizeNodeGroupRequest())->setName($name)->setSize($size);
         $response = $gapicClient->resizeNodeGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -362,19 +362,20 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $size = 3530753;
-        $request = (new ResizeNodeGroupRequest())
-            ->setName($name)
-            ->setSize($size);
+        $request = (new ResizeNodeGroupRequest())->setName($name)->setSize($size);
         $response = $gapicClient->resizeNodeGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -414,8 +415,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -439,17 +439,19 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -481,9 +483,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -509,19 +509,20 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -549,9 +550,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -577,19 +576,20 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -639,9 +639,7 @@ class NodeGroupControllerClientTest extends GeneratedTest
         $nodeGroup = new NodeGroup();
         $nodeGroupRoles = [];
         $nodeGroup->setRoles($nodeGroupRoles);
-        $request = (new CreateNodeGroupRequest())
-            ->setParent($formattedParent)
-            ->setNodeGroup($nodeGroup);
+        $request = (new CreateNodeGroupRequest())->setParent($formattedParent)->setNodeGroup($nodeGroup);
         $response = $gapicClient->createNodeGroupAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

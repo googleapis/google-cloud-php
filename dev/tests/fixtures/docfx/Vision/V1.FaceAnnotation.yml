@@ -66,15 +66,15 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ bounding_poly'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: 'The bounding polygon around the face. The coordinates of the bounding box are in the original image''s scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.'
         -
           id: '↳ fd_bounding_poly'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: 'The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the <code>fd</code> (face detection) prefix.'
         -
           id: '↳ landmarks'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">Google\Cloud\Vision\V1\FaceAnnotation\Landmark</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">FaceAnnotation\Landmark</xref>&gt;'
           description: 'Detected face landmarks.'
         -
           id: '↳ roll_angle'
@@ -144,7 +144,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -182,7 +182,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -
@@ -205,7 +205,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::hasFdBoundingPoly()'
     name: hasFdBoundingPoly
@@ -241,7 +241,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>'
           description: ''
       returns:
         -
@@ -272,7 +272,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">Google\Cloud\Vision\V1\FaceAnnotation\Landmark</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">FaceAnnotation\Landmark</xref>&gt;'
           description: ''
       returns:
         -

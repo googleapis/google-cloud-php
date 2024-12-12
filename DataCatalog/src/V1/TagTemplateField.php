@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TagTemplateField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the tag template field in URL format.
+     * Identifier. The resource name of the tag template field in URL format.
      * Example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE}/fields/{FIELD}`
      * Note: The tag template field itself might not be stored in the location
@@ -25,7 +25,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
      * or underscores (_), and must start with a letter or underscore.
      * The maximum length is 64 characters.
      *
-     * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -73,7 +73,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the tag template field in URL format.
+     *           Identifier. The resource name of the tag template field in URL format.
      *           Example:
      *           `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE}/fields/{FIELD}`
      *           Note: The tag template field itself might not be stored in the location
@@ -106,7 +106,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the tag template field in URL format.
+     * Identifier. The resource name of the tag template field in URL format.
      * Example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE}/fields/{FIELD}`
      * Note: The tag template field itself might not be stored in the location
@@ -115,7 +115,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
      * or underscores (_), and must start with a letter or underscore.
      * The maximum length is 64 characters.
      *
-     * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -124,7 +124,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the tag template field in URL format.
+     * Identifier. The resource name of the tag template field in URL format.
      * Example:
      * `projects/{PROJECT_ID}/locations/{LOCATION}/tagTemplates/{TAG_TEMPLATE}/fields/{FIELD}`
      * Note: The tag template field itself might not be stored in the location
@@ -133,7 +133,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
      * or underscores (_), and must start with a letter or underscore.
      * The maximum length is 64 characters.
      *
-     * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 6 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

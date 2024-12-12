@@ -74,6 +74,4 @@ class ImportJobState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ImportJobState::class, \Google\Cloud\Kms\V1\ImportJob_ImportJobState::class);
 

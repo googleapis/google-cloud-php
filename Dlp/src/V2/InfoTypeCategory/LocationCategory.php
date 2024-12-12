@@ -401,6 +401,4 @@ class LocationCategory
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LocationCategory::class, \Google\Cloud\Dlp\V2\InfoTypeCategory_LocationCategory::class);
 

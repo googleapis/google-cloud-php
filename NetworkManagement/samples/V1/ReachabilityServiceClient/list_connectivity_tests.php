@@ -32,17 +32,18 @@ use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsRequest;
 /**
  * Lists all Connectivity Tests owned by a project.
  *
- * @param string $parent The parent resource of the Connectivity Tests:
- *                       `projects/{project_id}/locations/global`
+ * @param string $formattedParent The parent resource of the Connectivity Tests:
+ *                                `projects/{project_id}/locations/global`
+ *                                Please see {@see ReachabilityServiceClient::projectName()} for help formatting this field.
  */
-function list_connectivity_tests_sample(string $parent): void
+function list_connectivity_tests_sample(string $formattedParent): void
 {
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
     // Prepare the request message.
     $request = (new ListConnectivityTestsRequest())
-        ->setParent($parent);
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -69,8 +70,8 @@ function list_connectivity_tests_sample(string $parent): void
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
+    $formattedParent = ReachabilityServiceClient::projectName('[PROJECT]');
 
-    list_connectivity_tests_sample($parent);
+    list_connectivity_tests_sample($formattedParent);
 }
 // [END networkmanagement_v1_generated_ReachabilityService_ListConnectivityTests_sync]

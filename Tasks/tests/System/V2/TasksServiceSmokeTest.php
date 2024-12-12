@@ -18,7 +18,10 @@ namespace Google\Cloud\Tasks\Tests\System\V2;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
-use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
+use Google\Cloud\Tasks\V2\CreateQueueRequest;
+use Google\Cloud\Tasks\V2\DeleteQueueRequest;
+use Google\Cloud\Tasks\V2\ListQueuesRequest;
 use Google\Cloud\Tasks\V2\Queue;
 use Google\Cloud\Tasks\V2\Task;
 
@@ -32,10 +35,10 @@ class TasksServiceSmokeTest extends SystemTestCase
     {
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($client, $locationName, $queue) {
-            $client->createQueue($locationName, $queue);
+            $client->createQueue(CreateQueueRequest::build($locationName, $queue));
         });
         self::$deletionQueue->add(function () use ($client, $queue) {
-            $client->deleteQueue($queue->getName());
+            $client->deleteQueue(DeleteQueueRequest::build($queue->getName()));
         });
     }
 
@@ -58,7 +61,7 @@ class TasksServiceSmokeTest extends SystemTestCase
         ]);
         $this->createQueue($client, $locationName, $queue);
 
-        $resp = $client->listQueues($locationName);
+        $resp = $client->listQueues(ListQueuesRequest::build($locationName));
         $found = false;
         foreach ($resp->iterateAllElements() as $q) {
             if ($queueName === $q->getName()) {

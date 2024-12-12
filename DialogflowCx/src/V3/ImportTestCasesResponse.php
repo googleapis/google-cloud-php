@@ -18,8 +18,8 @@ class ImportTestCasesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifiers of the new test cases.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/testCases/<TestCase ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string names = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -33,8 +33,8 @@ class ImportTestCasesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           The unique identifiers of the new test cases.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/testCases/<TestCase ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,8 +44,8 @@ class ImportTestCasesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifiers of the new test cases.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/testCases/<TestCase ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string names = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,8 +57,8 @@ class ImportTestCasesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifiers of the new test cases.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/testCases/<TestCase ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string names = 1 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -37,6 +37,7 @@ use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\PatchSnapshotSettingRequest;
 use Google\Cloud\Compute\V1\SnapshotSettings;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The SnapshotSettings API.
@@ -44,8 +45,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface getAsync(GetSnapshotSettingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchSnapshotSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SnapshotSettings> getAsync(GetSnapshotSettingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchSnapshotSettingRequest $request, array $optionalArgs = [])
  */
 final class SnapshotSettingsServiceClient
 {
@@ -209,6 +210,9 @@ final class SnapshotSettingsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -236,6 +240,8 @@ final class SnapshotSettingsServiceClient
      *
      * The async variant is {@see SnapshotSettingsServiceClient::getAsync()} .
      *
+     * @example samples/V1/SnapshotSettingsServiceClient/get.php
+     *
      * @param GetSnapshotSettingRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -259,6 +265,8 @@ final class SnapshotSettingsServiceClient
      * Patch snapshot settings.
      *
      * The async variant is {@see SnapshotSettingsServiceClient::patchAsync()} .
+     *
+     * @example samples/V1/SnapshotSettingsServiceClient/patch.php
      *
      * @param PatchSnapshotSettingRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {

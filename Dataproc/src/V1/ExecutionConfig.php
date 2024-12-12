@@ -20,7 +20,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     /**
      * Optional. Tags used for network traffic control.
      *
@@ -32,7 +32,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
     /**
      * Optional. Applies to sessions only. The duration to keep the session alive
      * while it's idling. Exceeding this threshold causes the session to
@@ -47,7 +47,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_ttl = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $idle_ttl = null;
+    protected $idle_ttl = null;
     /**
      * Optional. The duration after which the workload will be terminated,
      * specified as the JSON representation for
@@ -66,7 +66,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
     /**
      * Optional. A Cloud Storage bucket used to stage workload dependencies,
      * config files, and store workload output and other ephemeral data, such as
@@ -79,7 +79,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string staging_bucket = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $staging_bucket = '';
+    protected $staging_bucket = '';
     protected $network;
 
     /**

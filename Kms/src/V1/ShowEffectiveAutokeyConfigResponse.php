@@ -22,7 +22,7 @@ class ShowEffectiveAutokeyConfigResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string key_project = 1;</code>
      */
-    private $key_project = '';
+    protected $key_project = '';
 
     /**
      * Constructor.

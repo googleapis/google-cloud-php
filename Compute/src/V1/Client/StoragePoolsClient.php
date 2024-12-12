@@ -50,6 +50,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateStoragePoolRequest;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The StoragePools API.
@@ -57,16 +58,16 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDisksAsync(ListDisksStoragePoolsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsStoragePoolRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePool> getAsync(GetStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePoolList> listAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StoragePoolListDisks> listDisksAsync(ListDisksStoragePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsStoragePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
  */
 final class StoragePoolsClient
 {
@@ -231,6 +232,9 @@ final class StoragePoolsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -258,6 +262,8 @@ final class StoragePoolsClient
      *
      * The async variant is {@see StoragePoolsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/StoragePoolsClient/aggregated_list.php
+     *
      * @param AggregatedListStoragePoolsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -281,6 +287,8 @@ final class StoragePoolsClient
      * Deletes the specified storage pool. Deleting a storagePool removes its data permanently and is irreversible. However, deleting a storagePool does not delete any snapshots previously made from the storagePool. You must separately delete snapshots.
      *
      * The async variant is {@see StoragePoolsClient::deleteAsync()} .
+     *
+     * @example samples/V1/StoragePoolsClient/delete.php
      *
      * @param DeleteStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -306,6 +314,8 @@ final class StoragePoolsClient
      *
      * The async variant is {@see StoragePoolsClient::getAsync()} .
      *
+     * @example samples/V1/StoragePoolsClient/get.php
+     *
      * @param GetStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -329,6 +339,8 @@ final class StoragePoolsClient
      * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      *
      * The async variant is {@see StoragePoolsClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/StoragePoolsClient/get_iam_policy.php
      *
      * @param GetIamPolicyStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -354,6 +366,8 @@ final class StoragePoolsClient
      *
      * The async variant is {@see StoragePoolsClient::insertAsync()} .
      *
+     * @example samples/V1/StoragePoolsClient/insert.php
+     *
      * @param InsertStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -377,6 +391,8 @@ final class StoragePoolsClient
      * Retrieves a list of storage pools contained within the specified zone.
      *
      * The async variant is {@see StoragePoolsClient::listAsync()} .
+     *
+     * @example samples/V1/StoragePoolsClient/list.php
      *
      * @param ListStoragePoolsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -402,6 +418,8 @@ final class StoragePoolsClient
      *
      * The async variant is {@see StoragePoolsClient::listDisksAsync()} .
      *
+     * @example samples/V1/StoragePoolsClient/list_disks.php
+     *
      * @param ListDisksStoragePoolsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -425,6 +443,8 @@ final class StoragePoolsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see StoragePoolsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/StoragePoolsClient/set_iam_policy.php
      *
      * @param SetIamPolicyStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -450,6 +470,8 @@ final class StoragePoolsClient
      *
      * The async variant is {@see StoragePoolsClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/StoragePoolsClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -470,9 +492,11 @@ final class StoragePoolsClient
     }
 
     /**
-     * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: size_tb and provisioned_iops.
+     * Updates the specified storagePool with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: pool_provisioned_capacity_gb, pool_provisioned_iops and pool_provisioned_throughput.
      *
      * The async variant is {@see StoragePoolsClient::updateAsync()} .
+     *
+     * @example samples/V1/StoragePoolsClient/update.php
      *
      * @param UpdateStoragePoolRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apihub_v1_generated_ApiHub_ListAttributes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ApiHub\V1\Attribute;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
 use Google\Cloud\ApiHub\V1\ListAttributesRequest;
 
@@ -50,7 +49,6 @@ function list_attributes_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $apiHubClient->listAttributes($request);
 
-        /** @var Attribute $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

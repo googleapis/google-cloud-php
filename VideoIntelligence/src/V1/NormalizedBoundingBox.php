@@ -22,25 +22,25 @@ class NormalizedBoundingBox extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float left = 1;</code>
      */
-    private $left = 0.0;
+    protected $left = 0.0;
     /**
      * Top Y coordinate.
      *
      * Generated from protobuf field <code>float top = 2;</code>
      */
-    private $top = 0.0;
+    protected $top = 0.0;
     /**
      * Right X coordinate.
      *
      * Generated from protobuf field <code>float right = 3;</code>
      */
-    private $right = 0.0;
+    protected $right = 0.0;
     /**
      * Bottom Y coordinate.
      *
      * Generated from protobuf field <code>float bottom = 4;</code>
      */
-    private $bottom = 0.0;
+    protected $bottom = 0.0;
 
     /**
      * Constructor.

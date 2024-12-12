@@ -15,6 +15,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * associated with the user id corresponding to the authorization info.
  * Otherwise, the transfer configuration will be associated with the calling
  * user.
+ * When using a cross project service account for creating a transfer config,
+ * you must enable cross project service account usage. For more information,
+ * see [Disable attachment of service accounts to resources in other
+ * projects](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_cross_project_service_accounts).
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.CreateTransferConfigRequest</code>
  */
@@ -29,13 +33,13 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Data transfer configuration to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_config = null;
+    protected $transfer_config = null;
     /**
      * Deprecated: Authorization code was required when
      * `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used
@@ -76,7 +80,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_info = 5;</code>
      */
-    private $version_info = '';
+    protected $version_info = '';
     /**
      * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
@@ -89,7 +93,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_name = 6;</code>
      */
-    private $service_account_name = '';
+    protected $service_account_name = '';
 
     /**
      * @param string                                                $parent         Required. The BigQuery project id where the transfer configuration should

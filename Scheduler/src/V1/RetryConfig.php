@@ -35,7 +35,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 retry_count = 1;</code>
      */
-    private $retry_count = 0;
+    protected $retry_count = 0;
     /**
      * The time limit for retrying a failed job, measured from time when an
      * execution was first attempted. If specified with
@@ -46,7 +46,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_retry_duration = 2;</code>
      */
-    private $max_retry_duration = null;
+    protected $max_retry_duration = null;
     /**
      * The minimum amount of time to wait before retrying a job after
      * it fails.
@@ -54,7 +54,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_backoff_duration = 3;</code>
      */
-    private $min_backoff_duration = null;
+    protected $min_backoff_duration = null;
     /**
      * The maximum amount of time to wait before retrying a job after
      * it fails.
@@ -62,7 +62,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_backoff_duration = 4;</code>
      */
-    private $max_backoff_duration = null;
+    protected $max_backoff_duration = null;
     /**
      * The time between retries will double `max_doublings` times.
      * A job's retry interval starts at
@@ -88,7 +88,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_doublings = 5;</code>
      */
-    private $max_doublings = 0;
+    protected $max_doublings = 0;
 
     /**
      * Constructor.

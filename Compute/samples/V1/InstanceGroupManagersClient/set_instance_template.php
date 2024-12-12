@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroupManagers_SetInstanceTemplate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstanceGroupManagersSetInstanceTemplateRequest;
+use Google\Cloud\Compute\V1\SetInstanceTemplateInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,18 +45,20 @@ function set_instance_template_sample(
     // Create a client.
     $instanceGroupManagersClient = new InstanceGroupManagersClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupManagersSetInstanceTemplateRequestResource = new InstanceGroupManagersSetInstanceTemplateRequest();
+    $request = (new SetInstanceTemplateInstanceGroupManagerRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setInstanceGroupManagersSetInstanceTemplateRequestResource(
+            $instanceGroupManagersSetInstanceTemplateRequestResource
+        )
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupManagersClient->setInstanceTemplate(
-            $instanceGroupManager,
-            $instanceGroupManagersSetInstanceTemplateRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupManagersClient->setInstanceTemplate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

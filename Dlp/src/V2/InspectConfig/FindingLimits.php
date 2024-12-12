@@ -33,7 +33,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
      */
-    private $max_findings_per_item = 0;
+    protected $max_findings_per_item = 0;
     /**
      * Max number of findings that are returned per request or job.
      * If you set this field in an
@@ -47,7 +47,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
      */
-    private $max_findings_per_request = 0;
+    protected $max_findings_per_request = 0;
     /**
      * Configuration of findings limit given for specified infoTypes.
      *
@@ -199,6 +199,4 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FindingLimits::class, \Google\Cloud\Dlp\V2\InspectConfig_FindingLimits::class);
 

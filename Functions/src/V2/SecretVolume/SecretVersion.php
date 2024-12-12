@@ -22,7 +22,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Relative path of the file under the mount path where the secret value for
      * this version will be fetched and made available. For example, setting the
@@ -31,7 +31,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

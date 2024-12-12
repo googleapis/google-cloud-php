@@ -39,6 +39,7 @@ use Google\Shopping\Css\V1\DeleteAccountLabelRequest;
 use Google\Shopping\Css\V1\ListAccountLabelsRequest;
 use Google\Shopping\Css\V1\UpdateAccountLabelRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages Merchant Center and CSS accounts labels.
@@ -51,10 +52,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createAccountLabelAsync(CreateAccountLabelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountLabelAsync(DeleteAccountLabelRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountLabelsAsync(ListAccountLabelsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountLabelAsync(UpdateAccountLabelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountLabel> createAccountLabelAsync(CreateAccountLabelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountLabelAsync(DeleteAccountLabelRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountLabelsAsync(ListAccountLabelsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AccountLabel> updateAccountLabelAsync(UpdateAccountLabelRequest $request, array $optionalArgs = [])
  */
 final class AccountLabelsServiceClient
 {
@@ -147,14 +148,14 @@ final class AccountLabelsServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -209,6 +210,9 @@ final class AccountLabelsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -283,7 +287,7 @@ final class AccountLabelsServiceClient
     }
 
     /**
-     * Lists the labels assigned to an account.
+     * Lists the labels owned by an account.
      *
      * The async variant is {@see AccountLabelsServiceClient::listAccountLabelsAsync()}
      * .

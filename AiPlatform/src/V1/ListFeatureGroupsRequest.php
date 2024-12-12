@@ -54,11 +54,11 @@ class ListFeatureGroupsRequest extends \Google\Protobuf\Internal\Message
     protected $page_size = 0;
     /**
      * A page token, received from a previous
-     * [FeatureGroupAdminService.ListFeatureGroups][] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeatureGroupAdminService.ListFeatureGroups][] must
-     * match the call that provided the page token.
+     * [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -122,11 +122,11 @@ class ListFeatureGroupsRequest extends \Google\Protobuf\Internal\Message
      *           coerced to 100.
      *     @type string $page_token
      *           A page token, received from a previous
-     *           [FeatureGroupAdminService.ListFeatureGroups][] call.
-     *           Provide this to retrieve the subsequent page.
+     *           [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to
-     *           [FeatureGroupAdminService.ListFeatureGroups][] must
-     *           match the call that provided the page token.
+     *           [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     *           must match the call that provided the page token.
      *     @type string $order_by
      *           A comma-separated list of fields to order by, sorted in ascending order.
      *           Use "desc" after a field name for descending.
@@ -256,11 +256,11 @@ class ListFeatureGroupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeatureGroupAdminService.ListFeatureGroups][] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeatureGroupAdminService.ListFeatureGroups][] must
-     * match the call that provided the page token.
+     * [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -272,11 +272,11 @@ class ListFeatureGroupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A page token, received from a previous
-     * [FeatureGroupAdminService.ListFeatureGroups][] call.
-     * Provide this to retrieve the subsequent page.
+     * [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to
-     * [FeatureGroupAdminService.ListFeatureGroups][] must
-     * match the call that provided the page token.
+     * [FeatureRegistryService.ListFeatureGroups][google.cloud.aiplatform.v1.FeatureRegistryService.ListFeatureGroups]
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

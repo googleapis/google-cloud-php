@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Message for requesting list of organization events.
+ *
  * Generated from protobuf message <code>google.cloud.servicehealth.v1.ListOrganizationEventsRequest</code>
  */
 class ListOrganizationEventsRequest extends \Google\Protobuf\Internal\Message
@@ -52,7 +54,7 @@ class ListOrganizationEventsRequest extends \Google\Protobuf\Internal\Message
      * response. The expression takes the following forms:
      * *   field=value for `category` and `state`
      * *   field &lt;, >, &lt;=, or >= value for `update_time`
-     * Examples: `category=INCIDENT`, `update_time>=2000-01-01T11:30:00-04:00`
+     * Examples: `category=INCIDENT`, `update_time>="2000-01-01T11:30:00-04:00"`
      * Multiple filter queries are space-separated. Example:
      * `category=INCIDENT state=ACTIVE`.
      * By default, each expression is an AND expression. However, you can include
@@ -126,7 +128,7 @@ class ListOrganizationEventsRequest extends \Google\Protobuf\Internal\Message
      *           response. The expression takes the following forms:
      *           *   field=value for `category` and `state`
      *           *   field &lt;, >, &lt;=, or >= value for `update_time`
-     *           Examples: `category=INCIDENT`, `update_time>=2000-01-01T11:30:00-04:00`
+     *           Examples: `category=INCIDENT`, `update_time>="2000-01-01T11:30:00-04:00"`
      *           Multiple filter queries are space-separated. Example:
      *           `category=INCIDENT state=ACTIVE`.
      *           By default, each expression is an AND expression. However, you can include
@@ -257,7 +259,7 @@ class ListOrganizationEventsRequest extends \Google\Protobuf\Internal\Message
      * response. The expression takes the following forms:
      * *   field=value for `category` and `state`
      * *   field &lt;, >, &lt;=, or >= value for `update_time`
-     * Examples: `category=INCIDENT`, `update_time>=2000-01-01T11:30:00-04:00`
+     * Examples: `category=INCIDENT`, `update_time>="2000-01-01T11:30:00-04:00"`
      * Multiple filter queries are space-separated. Example:
      * `category=INCIDENT state=ACTIVE`.
      * By default, each expression is an AND expression. However, you can include
@@ -278,7 +280,7 @@ class ListOrganizationEventsRequest extends \Google\Protobuf\Internal\Message
      * response. The expression takes the following forms:
      * *   field=value for `category` and `state`
      * *   field &lt;, >, &lt;=, or >= value for `update_time`
-     * Examples: `category=INCIDENT`, `update_time>=2000-01-01T11:30:00-04:00`
+     * Examples: `category=INCIDENT`, `update_time>="2000-01-01T11:30:00-04:00"`
      * Multiple filter queries are space-separated. Example:
      * `category=INCIDENT state=ACTIVE`.
      * By default, each expression is an AND expression. However, you can include

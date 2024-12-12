@@ -49,6 +49,7 @@ use Google\Cloud\NetworkConnectivity\V1\GetRouteTableRequest;
 use Google\Cloud\NetworkConnectivity\V1\GetSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\Group;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
+use Google\Cloud\NetworkConnectivity\V1\HubStatusEntry;
 use Google\Cloud\NetworkConnectivity\V1\ListGroupsRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListGroupsResponse;
 use Google\Cloud\NetworkConnectivity\V1\ListHubSpokesRequest;
@@ -61,11 +62,14 @@ use Google\Cloud\NetworkConnectivity\V1\ListRoutesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListRoutesResponse;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesResponse;
+use Google\Cloud\NetworkConnectivity\V1\QueryHubStatusRequest;
+use Google\Cloud\NetworkConnectivity\V1\QueryHubStatusResponse;
 use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\RejectHubSpokeResponse;
 use Google\Cloud\NetworkConnectivity\V1\Route;
 use Google\Cloud\NetworkConnectivity\V1\RouteTable;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
+use Google\Cloud\NetworkConnectivity\V1\UpdateGroupRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest;
 use Google\LongRunning\Client\OperationsClient;
@@ -256,10 +260,12 @@ class HubServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $uniqueId = 'uniqueId-538310583';
+        $exportPsc = false;
         $expectedResponse = new Hub();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUniqueId($uniqueId);
+        $expectedResponse->setExportPsc($exportPsc);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -776,10 +782,12 @@ class HubServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $uid = 'uid115792';
+        $routeTable = 'routeTable-1769949608';
         $expectedResponse = new Group();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUid($uid);
+        $expectedResponse->setRouteTable($routeTable);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->groupName('[PROJECT]', '[HUB]', '[GROUP]');
@@ -845,10 +853,12 @@ class HubServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $uniqueId = 'uniqueId-538310583';
+        $exportPsc = false;
         $expectedResponse = new Hub();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUniqueId($uniqueId);
+        $expectedResponse->setExportPsc($exportPsc);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
@@ -917,6 +927,7 @@ class HubServiceClientTest extends GeneratedTest
         $uid = 'uid115792';
         $spoke = 'spoke109651596';
         $location = 'location1901043637';
+        $priority = 1165461084;
         $expectedResponse = new Route();
         $expectedResponse->setName($name2);
         $expectedResponse->setIpCidrRange($ipCidrRange);
@@ -924,6 +935,7 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setSpoke($spoke);
         $expectedResponse->setLocation($location);
+        $expectedResponse->setPriority($priority);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->hubRouteName('[PROJECT]', '[HUB]', '[ROUTE_TABLE]', '[ROUTE]');
@@ -1546,6 +1558,77 @@ class HubServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function queryHubStatusTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $hubStatusEntriesElement = new HubStatusEntry();
+        $hubStatusEntries = [$hubStatusEntriesElement];
+        $expectedResponse = new QueryHubStatusResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setHubStatusEntries($hubStatusEntries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
+        $request = (new QueryHubStatusRequest())->setName($formattedName);
+        $response = $gapicClient->queryHubStatus($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getHubStatusEntries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/QueryHubStatus', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryHubStatusExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
+        $request = (new QueryHubStatusRequest())->setName($formattedName);
+        try {
+            $gapicClient->queryHubStatus($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function rejectHubSpokeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1672,6 +1755,136 @@ class HubServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateGroupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $uid = 'uid115792';
+        $routeTable = 'routeTable-1769949608';
+        $expectedResponse = new Group();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setRouteTable($routeTable);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateGroupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $group = new Group();
+        $request = (new UpdateGroupRequest())->setGroup($group);
+        $response = $gapicClient->updateGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/UpdateGroup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGroup();
+        $this->assertProtobufEquals($group, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateGroupTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateGroupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $group = new Group();
+        $request = (new UpdateGroupRequest())->setGroup($group);
+        $response = $gapicClient->updateGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateGroupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateHubTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1695,10 +1908,12 @@ class HubServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $uniqueId = 'uniqueId-538310583';
+        $exportPsc = false;
         $expectedResponse = new Hub();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setUniqueId($uniqueId);
+        $expectedResponse->setExportPsc($exportPsc);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

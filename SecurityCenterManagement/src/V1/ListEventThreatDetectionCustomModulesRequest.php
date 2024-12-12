@@ -9,48 +9,48 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing Event Threat Detection custom modules.
+ * Request message for
+ * [SecurityCenterManagement.ListEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEventThreatDetectionCustomModules].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListEventThreatDetectionCustomModulesRequest</code>
  */
 class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list custom modules, in one of the following
+     * formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Optional. The maximum number of modules to return. The service may return
-     * fewer than this value. If unspecified, at most 10 configs will be returned.
+     * fewer than this value. If unspecified, at most 10 modules will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. A page token, received from a previous
-     * `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the
-     * subsequent page.
-     * When paginating, all other parameters provided to
-     * `ListEventThreatDetectionCustomModules` must match the call that provided
-     * the page token.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent to list custom modules. Its format is
-     *                       `organizations/{organization}/locations/{location}`,
-     *                       `folders/{folder}/locations/{location}`,
-     *                       or
-     *                       `projects/{project}/locations/{location}`
+     * @param string $parent Required. Name of parent to list custom modules, in one of the following
+     *                       formats:
+     *
+     *                       * `organizations/{organization}/locations/{location}`
+     *                       * `folders/{folder}/locations/{location}`
+     *                       * `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListEventThreatDetectionCustomModulesRequest
@@ -70,22 +70,20 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent to list custom modules. Its format is
-     *           `organizations/{organization}/locations/{location}`,
-     *           `folders/{folder}/locations/{location}`,
-     *           or
-     *           `projects/{project}/locations/{location}`
+     *           Required. Name of parent to list custom modules, in one of the following
+     *           formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of modules to return. The service may return
-     *           fewer than this value. If unspecified, at most 10 configs will be returned.
+     *           fewer than this value. If unspecified, at most 10 modules will be returned.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous
-     *           `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the
-     *           subsequent page.
-     *           When paginating, all other parameters provided to
-     *           `ListEventThreatDetectionCustomModules` must match the call that provided
-     *           the page token.
+     *           Optional. A pagination token returned from a previous request. Provide this
+     *           token to retrieve the next page of results.
+     *           When paginating, the rest of the request must match the request that
+     *           generated the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,11 +92,11 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list custom modules, in one of the following
+     * formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -109,11 +107,11 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * `organizations/{organization}/locations/{location}`,
-     * `folders/{folder}/locations/{location}`,
-     * or
-     * `projects/{project}/locations/{location}`
+     * Required. Name of parent to list custom modules, in one of the following
+     * formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -129,7 +127,7 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
 
     /**
      * Optional. The maximum number of modules to return. The service may return
-     * fewer than this value. If unspecified, at most 10 configs will be returned.
+     * fewer than this value. If unspecified, at most 10 modules will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -142,7 +140,7 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
 
     /**
      * Optional. The maximum number of modules to return. The service may return
-     * fewer than this value. If unspecified, at most 10 configs will be returned.
+     * fewer than this value. If unspecified, at most 10 modules will be returned.
      * The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -158,12 +156,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Optional. A page token, received from a previous
-     * `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the
-     * subsequent page.
-     * When paginating, all other parameters provided to
-     * `ListEventThreatDetectionCustomModules` must match the call that provided
-     * the page token.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -174,12 +170,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Optional. A page token, received from a previous
-     * `ListEventThreatDetectionCustomModules` call. Provide this to retrieve the
-     * subsequent page.
-     * When paginating, all other parameters provided to
-     * `ListEventThreatDetectionCustomModules` must match the call that provided
-     * the page token.
+     * Optional. A pagination token returned from a previous request. Provide this
+     * token to retrieve the next page of results.
+     * When paginating, the rest of the request must match the request that
+     * generated the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

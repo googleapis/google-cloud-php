@@ -31,11 +31,18 @@ class StackType
      * Generated from protobuf enum <code>IPV4_ONLY = 22373798;</code>
      */
     const IPV4_ONLY = 22373798;
+    /**
+     * New VMs in this subnet will only be assigned IPv6 addresses.
+     *
+     * Generated from protobuf enum <code>IPV6_ONLY = 79632100;</code>
+     */
+    const IPV6_ONLY = 79632100;
 
     private static $valueToName = [
         self::UNDEFINED_STACK_TYPE => 'UNDEFINED_STACK_TYPE',
         self::IPV4_IPV6 => 'IPV4_IPV6',
         self::IPV4_ONLY => 'IPV4_ONLY',
+        self::IPV6_ONLY => 'IPV6_ONLY',
     ];
 
     public static function name($value)

@@ -55,7 +55,15 @@ return [
                 ],
             ],
             'ListKeyHandles' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getKeyHandles',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\ListKeyHandlesResponse',
                 'headerParams' => [
                     [

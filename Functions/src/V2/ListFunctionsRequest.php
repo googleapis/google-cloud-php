@@ -25,7 +25,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Maximum number of functions to return per call. The largest allowed
      * page_size is 1,000, if the page_size is omitted or specified as greater
@@ -34,7 +34,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * The value returned by the last
      * `ListFunctionsResponse`; indicates that
@@ -43,14 +43,14 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * The filter for Functions that match the filter expression,
      * following the syntax outlined in https://google.aip.dev/160.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The sorting order of the resources returned. Value should be a comma
      * separated list of fields. The default sorting oder is ascending.
@@ -58,7 +58,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
 
     /**
      * @param string $parent Required. The project and location from which the function should be

@@ -159,6 +159,4 @@ class BytesType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BytesType::class, \Google\Cloud\Dlp\V2\ByteContentItem_BytesType::class);
 

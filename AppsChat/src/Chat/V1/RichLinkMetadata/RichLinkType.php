@@ -25,10 +25,17 @@ class RichLinkType
      * Generated from protobuf enum <code>DRIVE_FILE = 1;</code>
      */
     const DRIVE_FILE = 1;
+    /**
+     * A Chat space rich link type. For example, a space smart chip.
+     *
+     * Generated from protobuf enum <code>CHAT_SPACE = 2;</code>
+     */
+    const CHAT_SPACE = 2;
 
     private static $valueToName = [
         self::RICH_LINK_TYPE_UNSPECIFIED => 'RICH_LINK_TYPE_UNSPECIFIED',
         self::DRIVE_FILE => 'DRIVE_FILE',
+        self::CHAT_SPACE => 'CHAT_SPACE',
     ];
 
     public static function name($value)

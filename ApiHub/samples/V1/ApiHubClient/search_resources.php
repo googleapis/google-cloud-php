@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
 use Google\Cloud\ApiHub\V1\SearchResourcesRequest;
-use Google\Cloud\ApiHub\V1\SearchResult;
 
 /**
  * Search across API-Hub resources.
@@ -55,7 +54,6 @@ function search_resources_sample(string $formattedLocation, string $query): void
         /** @var PagedListResponse $response */
         $response = $apiHubClient->searchResources($request);
 
-        /** @var SearchResult $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

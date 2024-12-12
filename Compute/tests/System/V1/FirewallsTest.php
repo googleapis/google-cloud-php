@@ -31,7 +31,10 @@ class FirewallsTest extends SystemTestCase
     protected static $name;
     protected static $globalClient;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::$projectId = getenv('PROJECT_ID');
         if (self::$projectId === false) {
@@ -40,8 +43,10 @@ class FirewallsTest extends SystemTestCase
         self::$client = new FirewallsClient();
         self::$name = 'gapicphp' . strval(rand(100000, 999999));
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::$client->close();
     }

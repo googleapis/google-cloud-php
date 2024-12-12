@@ -22,7 +22,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The number of running instances for the node group to maintain.
      * The group adds or removes instances to maintain the number of instances
@@ -30,7 +30,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 size = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $size = 0;
+    protected $size = 0;
     /**
      * Optional. A unique ID used to identify the request. If the server receives
      * two
@@ -45,7 +45,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Optional. Timeout for graceful YARN decommissioning. [Graceful
      * decommissioning]
@@ -61,7 +61,7 @@ class ResizeNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $graceful_decommission_timeout = null;
+    protected $graceful_decommission_timeout = null;
 
     /**
      * @param string $name Required. The name of the node group to resize.

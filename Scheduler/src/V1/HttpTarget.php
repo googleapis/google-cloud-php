@@ -31,13 +31,13 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Which HTTP method to use for the request.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.HttpMethod http_method = 2;</code>
      */
-    private $http_method = 0;
+    protected $http_method = 0;
     /**
      * The user can specify HTTP request headers to send with the job's
      * HTTP request. This map contains the header field names and
@@ -69,7 +69,7 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      */
-    private $body = '';
+    protected $body = '';
     protected $authorization_header;
 
     /**

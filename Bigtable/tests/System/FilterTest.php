@@ -28,9 +28,12 @@ class FilterTest extends BigtableTestCase
 {
     protected static $rowMutations = [];
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
         self::$table->mutateRows(self::$rowMutations);
     }
 
@@ -448,10 +451,5 @@ class FilterTest extends BigtableTestCase
             )->readAll()
         );
         $this->assertGreaterThan(0, count($rows));
-    }
-
-    public function testLabel()
-    {
-        //TODO Implement label test
     }
 }

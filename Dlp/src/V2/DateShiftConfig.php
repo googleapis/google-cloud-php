@@ -26,14 +26,14 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 upper_bound_days = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $upper_bound_days = 0;
+    protected $upper_bound_days = 0;
     /**
      * Required. For example, -5 means shift date to at most 5 days back in the
      * past.
      *
      * Generated from protobuf field <code>int32 lower_bound_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $lower_bound_days = 0;
+    protected $lower_bound_days = 0;
     /**
      * Points to the field that contains the context, for example, an entity id.
      * If set, must also set cryptoKey. If set, shift will be consistent for the
@@ -41,7 +41,7 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
      */
-    private $context = null;
+    protected $context = null;
     protected $method;
 
     /**

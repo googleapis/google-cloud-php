@@ -21,7 +21,7 @@ class SummarySkippedReason
     const SUMMARY_SKIPPED_REASON_UNSPECIFIED = 0;
     /**
      * The adversarial query ignored case.
-     * Only populated when
+     * Only used when
      * [SummarySpec.ignore_adversarial_query][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.ignore_adversarial_query]
      * is set to `true`.
      *
@@ -30,7 +30,8 @@ class SummarySkippedReason
     const ADVERSARIAL_QUERY_IGNORED = 1;
     /**
      * The non-summary seeking query ignored case.
-     * Only populated when
+     * Google skips the summary if the query is chit chat.
+     * Only used when
      * [SummarySpec.ignore_non_summary_seeking_query][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.ignore_non_summary_seeking_query]
      * is set to `true`.
      *
@@ -61,6 +62,42 @@ class SummarySkippedReason
      * Generated from protobuf enum <code>LLM_ADDON_NOT_ENABLED = 5;</code>
      */
     const LLM_ADDON_NOT_ENABLED = 5;
+    /**
+     * The no relevant content case.
+     * Google skips the summary if there is no relevant content in the
+     * retrieved search results.
+     *
+     * Generated from protobuf enum <code>NO_RELEVANT_CONTENT = 6;</code>
+     */
+    const NO_RELEVANT_CONTENT = 6;
+    /**
+     * The jail-breaking query ignored case.
+     * For example, "Reply in the tone of a competing company's CEO".
+     * Only used when
+     * [SearchRequest.ContentSearchSpec.SummarySpec.ignore_jail_breaking_query]
+     * is set to `true`.
+     *
+     * Generated from protobuf enum <code>JAIL_BREAKING_QUERY_IGNORED = 7;</code>
+     */
+    const JAIL_BREAKING_QUERY_IGNORED = 7;
+    /**
+     * The customer policy violation case.
+     * Google skips the summary if there is a customer policy violation
+     * detected. The policy is defined by the customer.
+     *
+     * Generated from protobuf enum <code>CUSTOMER_POLICY_VIOLATION = 8;</code>
+     */
+    const CUSTOMER_POLICY_VIOLATION = 8;
+    /**
+     * The non-answer seeking query ignored case.
+     * Google skips the summary if the query doesn't have clear intent.
+     * Only used when
+     * [SearchRequest.ContentSearchSpec.SummarySpec.ignore_non_answer_seeking_query]
+     * is set to `true`.
+     *
+     * Generated from protobuf enum <code>NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 = 9;</code>
+     */
+    const NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 = 9;
 
     private static $valueToName = [
         self::SUMMARY_SKIPPED_REASON_UNSPECIFIED => 'SUMMARY_SKIPPED_REASON_UNSPECIFIED',
@@ -69,6 +106,10 @@ class SummarySkippedReason
         self::OUT_OF_DOMAIN_QUERY_IGNORED => 'OUT_OF_DOMAIN_QUERY_IGNORED',
         self::POTENTIAL_POLICY_VIOLATION => 'POTENTIAL_POLICY_VIOLATION',
         self::LLM_ADDON_NOT_ENABLED => 'LLM_ADDON_NOT_ENABLED',
+        self::NO_RELEVANT_CONTENT => 'NO_RELEVANT_CONTENT',
+        self::JAIL_BREAKING_QUERY_IGNORED => 'JAIL_BREAKING_QUERY_IGNORED',
+        self::CUSTOMER_POLICY_VIOLATION => 'CUSTOMER_POLICY_VIOLATION',
+        self::NON_SUMMARY_SEEKING_QUERY_IGNORED_V2 => 'NON_SUMMARY_SEEKING_QUERY_IGNORED_V2',
     ];
 
     public static function name($value)

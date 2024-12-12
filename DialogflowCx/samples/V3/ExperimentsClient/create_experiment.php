@@ -34,8 +34,7 @@ use Google\Cloud\Dialogflow\Cx\V3\Experiment;
  *
  * @param string $formattedParent       The [Agent][google.cloud.dialogflow.cx.v3.Agent] to create an
  *                                      [Environment][google.cloud.dialogflow.cx.v3.Environment] for. Format:
- *                                      `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                      ID>/environments/<Environment ID>`. Please see
+ *                                      `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`. Please see
  *                                      {@see ExperimentsClient::environmentName()} for help formatting this field.
  * @param string $experimentDisplayName The human-readable name of the experiment (unique in an
  *                                      environment). Limit of 64 characters.

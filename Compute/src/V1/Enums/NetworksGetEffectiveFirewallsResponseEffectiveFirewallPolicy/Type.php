@@ -37,5 +37,7 @@ class Type
 
     const NETWORK = 'NETWORK';
 
+    const SYSTEM = 'SYSTEM';
+
     const UNSPECIFIED = 'UNSPECIFIED';
 }

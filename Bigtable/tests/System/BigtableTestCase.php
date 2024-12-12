@@ -49,7 +49,10 @@ class BigtableTestCase extends SystemTestCase
     protected static $instanceId;
     protected static $clusterId;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::setUsingEmulator(getenv('BIGTABLE_EMULATOR_HOST'));
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
@@ -73,8 +76,10 @@ class BigtableTestCase extends SystemTestCase
         }
         self::createTable();
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         self::deleteTable();
         if (!self::isEmulatorUsed()) {

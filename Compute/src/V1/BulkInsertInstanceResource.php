@@ -28,7 +28,7 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      */
     private $instance_properties = null;
     /**
-     * Policy for chosing target zone. For more information, see Create VMs in bulk .
+     * Policy for choosing target zone. For more information, see Create VMs in bulk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicy location_policy = 465689852;</code>
      */
@@ -69,7 +69,7 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InstanceProperties $instance_properties
      *           The instance properties defining the VM instances to be created. Required if sourceInstanceTemplate is not provided.
      *     @type \Google\Cloud\Compute\V1\LocationPolicy $location_policy
-     *           Policy for chosing target zone. For more information, see Create VMs in bulk .
+     *           Policy for choosing target zone. For more information, see Create VMs in bulk.
      *     @type int|string $min_count
      *           The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.
      *     @type string $name_pattern
@@ -158,7 +158,7 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy for chosing target zone. For more information, see Create VMs in bulk .
+     * Policy for choosing target zone. For more information, see Create VMs in bulk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicy location_policy = 465689852;</code>
      * @return \Google\Cloud\Compute\V1\LocationPolicy|null
@@ -179,7 +179,7 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy for chosing target zone. For more information, see Create VMs in bulk .
+     * Policy for choosing target zone. For more information, see Create VMs in bulk.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicy location_policy = 465689852;</code>
      * @param \Google\Cloud\Compute\V1\LocationPolicy $var

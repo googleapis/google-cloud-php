@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Shopping\Merchant\Reports\V1beta\SearchRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for retrieving reports and insights about your products, their
@@ -46,7 +47,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface searchAsync(SearchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchAsync(SearchRequest $request, array $optionalArgs = [])
  */
 final class ReportServiceClient
 {
@@ -143,6 +144,9 @@ final class ReportServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

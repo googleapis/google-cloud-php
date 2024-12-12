@@ -18,8 +18,8 @@ class IntentInfo extends \Google\Protobuf\Internal\Message
     /**
      * Always present. The unique identifier of the last matched
      * [intent][google.cloud.dialogflow.cx.v3.Intent].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string last_matched_intent = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -57,8 +57,8 @@ class IntentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $last_matched_intent
      *           Always present. The unique identifier of the last matched
      *           [intent][google.cloud.dialogflow.cx.v3.Intent].
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $display_name
      *           Always present. The display name of the last matched
      *           [intent][google.cloud.dialogflow.cx.v3.Intent].
@@ -80,8 +80,8 @@ class IntentInfo extends \Google\Protobuf\Internal\Message
     /**
      * Always present. The unique identifier of the last matched
      * [intent][google.cloud.dialogflow.cx.v3.Intent].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string last_matched_intent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -94,8 +94,8 @@ class IntentInfo extends \Google\Protobuf\Internal\Message
     /**
      * Always present. The unique identifier of the last matched
      * [intent][google.cloud.dialogflow.cx.v3.Intent].
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>string last_matched_intent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

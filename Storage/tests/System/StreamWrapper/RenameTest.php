@@ -27,9 +27,12 @@ class RenameTest extends StreamWrapperTestCase
     const TEST_FILE = 'some_folder/foo.txt';
     const NEW_TEST_FILE = 'some_folder/bar.txt';
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         // create file in folder
         self::$bucket->upload('somedata', ['name' => self::TEST_FILE]);

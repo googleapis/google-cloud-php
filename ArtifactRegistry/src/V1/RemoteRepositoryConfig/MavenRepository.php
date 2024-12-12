@@ -26,6 +26,8 @@ class MavenRepository extends \Google\Protobuf\Internal\Message
      *     @type int $public_repository
      *           One of the publicly available Maven repositories supported by Artifact
      *           Registry.
+     *     @type \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\MavenRepository\CustomRepository $custom_repository
+     *           Customer-specified remote repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +64,37 @@ class MavenRepository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\MavenRepository\PublicRepository::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Customer-specified remote repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.MavenRepository.CustomRepository custom_repository = 3;</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\MavenRepository\CustomRepository|null
+     */
+    public function getCustomRepository()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasCustomRepository()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Customer-specified remote repository.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.MavenRepository.CustomRepository custom_repository = 3;</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\MavenRepository\CustomRepository $var
+     * @return $this
+     */
+    public function setCustomRepository($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\MavenRepository\CustomRepository::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

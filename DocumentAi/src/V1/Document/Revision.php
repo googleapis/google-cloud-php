@@ -21,7 +21,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The revisions that this revision is based on.  This can include one or
      * more parent (when documents are merged.)  This field represents the
@@ -45,13 +45,13 @@ class Revision extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Human Review information of this revision.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Revision.HumanReview human_review = 6;</code>
      */
-    private $human_review = null;
+    protected $human_review = null;
     protected $source;
 
     /**

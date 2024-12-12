@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class AlloyDbSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project ID that the AlloyDB source is in
-     * with a length limit of 128 characters. If not specified, inherits the
+     * The project ID that contains the AlloyDB source.
+     * Has a length limit of 128 characters. If not specified, inherits the
      * project ID from the parent request.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
@@ -69,8 +69,8 @@ class AlloyDbSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The project ID that the AlloyDB source is in
-     *           with a length limit of 128 characters. If not specified, inherits the
+     *           The project ID that contains the AlloyDB source.
+     *           Has a length limit of 128 characters. If not specified, inherits the
      *           project ID from the parent request.
      *     @type string $location_id
      *           Required. The AlloyDB location to copy the data from with a length limit of
@@ -98,8 +98,8 @@ class AlloyDbSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID that the AlloyDB source is in
-     * with a length limit of 128 characters. If not specified, inherits the
+     * The project ID that contains the AlloyDB source.
+     * Has a length limit of 128 characters. If not specified, inherits the
      * project ID from the parent request.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
@@ -111,8 +111,8 @@ class AlloyDbSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID that the AlloyDB source is in
-     * with a length limit of 128 characters. If not specified, inherits the
+     * The project ID that contains the AlloyDB source.
+     * Has a length limit of 128 characters. If not specified, inherits the
      * project ID from the parent request.
      *
      * Generated from protobuf field <code>string project_id = 1;</code>

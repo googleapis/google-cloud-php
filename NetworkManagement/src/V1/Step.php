@@ -94,6 +94,10 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Google Kubernetes Engine cluster master.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo $cloud_sql_instance
      *           Display information of a Cloud SQL instance.
+     *     @type \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo $redis_instance
+     *           Display information of a Redis Instance.
+     *     @type \Google\Cloud\NetworkManagement\V1\RedisClusterInfo $redis_cluster
+     *           Display information of a Redis Cluster.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudFunctionInfo $cloud_function
      *           Display information of a Cloud Function.
      *     @type \Google\Cloud\NetworkManagement\V1\AppEngineVersionInfo $app_engine_version
@@ -108,6 +112,9 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a specific load balancer backend.
      *     @type \Google\Cloud\NetworkManagement\V1\StorageBucketInfo $storage_bucket
      *           Display information of a Storage Bucket. Used only for return traces.
+     *     @type \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo $serverless_neg
+     *           Display information of a Serverless network endpoint group backend. Used
+     *           only for return traces.
      * }
      */
     public function __construct($data = NULL) {
@@ -760,6 +767,68 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a Redis Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisInstanceInfo redis_instance = 30;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo|null
+     */
+    public function getRedisInstance()
+    {
+        return $this->readOneof(30);
+    }
+
+    public function hasRedisInstance()
+    {
+        return $this->hasOneof(30);
+    }
+
+    /**
+     * Display information of a Redis Instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisInstanceInfo redis_instance = 30;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo $var
+     * @return $this
+     */
+    public function setRedisInstance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo::class);
+        $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Redis Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisClusterInfo redis_cluster = 31;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\RedisClusterInfo|null
+     */
+    public function getRedisCluster()
+    {
+        return $this->readOneof(31);
+    }
+
+    public function hasRedisCluster()
+    {
+        return $this->hasOneof(31);
+    }
+
+    /**
+     * Display information of a Redis Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.RedisClusterInfo redis_cluster = 31;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\RedisClusterInfo $var
+     * @return $this
+     */
+    public function setRedisCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\RedisClusterInfo::class);
+        $this->writeOneof(31, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of a Cloud Function.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudFunctionInfo cloud_function = 20;</code>
@@ -972,6 +1041,39 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\StorageBucketInfo::class);
         $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Serverless network endpoint group backend. Used
+     * only for return traces.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessNegInfo serverless_neg = 29;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo|null
+     */
+    public function getServerlessNeg()
+    {
+        return $this->readOneof(29);
+    }
+
+    public function hasServerlessNeg()
+    {
+        return $this->hasOneof(29);
+    }
+
+    /**
+     * Display information of a Serverless network endpoint group backend. Used
+     * only for return traces.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ServerlessNegInfo serverless_neg = 29;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo $var
+     * @return $this
+     */
+    public function setServerlessNeg($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo::class);
+        $this->writeOneof(29, $var);
 
         return $this;
     }

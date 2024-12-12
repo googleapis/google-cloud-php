@@ -26,7 +26,7 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_key_uri = 1;</code>
      */
-    private $external_key_uri = '';
+    protected $external_key_uri = '';
     /**
      * The path to the external key material on the EKM when using
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] e.g., "v0/my/key". Set
@@ -35,7 +35,7 @@ class ExternalProtectionLevelOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ekm_connection_key_path = 2;</code>
      */
-    private $ekm_connection_key_path = '';
+    protected $ekm_connection_key_path = '';
 
     /**
      * Constructor.

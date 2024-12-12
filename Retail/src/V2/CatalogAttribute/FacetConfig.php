@@ -59,7 +59,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacet merged_facet = 4;</code>
      */
-    private $merged_facet = null;
+    protected $merged_facet = null;
     /**
      * Set this field only if you want to rerank based on facet values engaged
      * by the user for the current key. This option is only possible for custom
@@ -67,7 +67,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.FacetConfig.RerankConfig rerank_config = 5;</code>
      */
-    private $rerank_config = null;
+    protected $rerank_config = null;
 
     /**
      * Constructor.

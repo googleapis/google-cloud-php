@@ -23,8 +23,9 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
     private $notebook_execution_jobs;
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListNotebookExecutionJobs.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListNotebookExecutionJobsRequest.page_token][google.cloud.aiplatform.v1.ListNotebookExecutionJobsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +41,9 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
      *           List of NotebookExecutionJobs in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
-     *           Pass to [ListNotebookExecutionJobs.page_token][] to obtain that
-     *           page.
+     *           Pass to
+     *           [ListNotebookExecutionJobsRequest.page_token][google.cloud.aiplatform.v1.ListNotebookExecutionJobsRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +79,9 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListNotebookExecutionJobs.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListNotebookExecutionJobsRequest.page_token][google.cloud.aiplatform.v1.ListNotebookExecutionJobsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +93,9 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListNotebookExecutionJobs.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListNotebookExecutionJobsRequest.page_token][google.cloud.aiplatform.v1.ListNotebookExecutionJobsRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

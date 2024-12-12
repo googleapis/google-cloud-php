@@ -174,6 +174,9 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *           when calling AppendRows for the '_default' stream.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ProtoData $proto_rows
      *           Rows in proto format.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData $arrow_rows
+     *           Rows in arrow format. This is an experimental feature only selected for
+     *           allowlisted customers.
      *     @type string $trace_id
      *           Id set by client to annotate its identity. Only initial request setting is
      *           respected.
@@ -373,6 +376,39 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ProtoData::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Rows in arrow format. This is an experimental feature only selected for
+     * allowlisted customers.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData arrow_rows = 5;</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData|null
+     */
+    public function getArrowRows()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasArrowRows()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Rows in arrow format. This is an experimental feature only selected for
+     * allowlisted customers.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData arrow_rows = 5;</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData $var
+     * @return $this
+     */
+    public function setArrowRows($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

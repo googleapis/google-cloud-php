@@ -28,8 +28,8 @@ class Flow extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -87,11 +87,11 @@ class Flow extends \Google\Protobuf\Internal\Message
      * *   They are inherited by every page's [transition
      * route groups][Page.transition_route_groups]. Transition route groups
      * defined in the page have higher priority than those defined in the flow.
-     * Format:`projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/transitionRouteGroups/<TransitionRouteGroup ID>`
-     * or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/transitionRouteGroups/<TransitionRouteGroup ID>` for agent-level
-     * groups.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 15 [(.google.api.resource_reference) = {</code>
      */
@@ -137,8 +137,8 @@ class Flow extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The unique identifier of the flow.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the flow.
      *     @type string $description
@@ -176,11 +176,11 @@ class Flow extends \Google\Protobuf\Internal\Message
      *           *   They are inherited by every page's [transition
      *           route groups][Page.transition_route_groups]. Transition route groups
      *           defined in the page have higher priority than those defined in the flow.
-     *           Format:`projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/transitionRouteGroups/<TransitionRouteGroup ID>`
-     *           or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/transitionRouteGroups/<TransitionRouteGroup ID>` for agent-level
-     *           groups.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     *           or
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     *           for agent-level groups.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\NluSettings $nlu_settings
      *           NLU related settings of the flow.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings $advanced_settings
@@ -202,8 +202,8 @@ class Flow extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -215,8 +215,8 @@ class Flow extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the flow.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -385,11 +385,11 @@ class Flow extends \Google\Protobuf\Internal\Message
      * *   They are inherited by every page's [transition
      * route groups][Page.transition_route_groups]. Transition route groups
      * defined in the page have higher priority than those defined in the flow.
-     * Format:`projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/transitionRouteGroups/<TransitionRouteGroup ID>`
-     * or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/transitionRouteGroups/<TransitionRouteGroup ID>` for agent-level
-     * groups.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 15 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -406,11 +406,11 @@ class Flow extends \Google\Protobuf\Internal\Message
      * *   They are inherited by every page's [transition
      * route groups][Page.transition_route_groups]. Transition route groups
      * defined in the page have higher priority than those defined in the flow.
-     * Format:`projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/transitionRouteGroups/<TransitionRouteGroup ID>`
-     * or `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/transitionRouteGroups/<TransitionRouteGroup ID>` for agent-level
-     * groups.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * or
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`
+     * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 15 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -49,7 +49,7 @@ class TagResources extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool lower_data_risk_to_low = 3;</code>
      */
-    private $lower_data_risk_to_low = false;
+    protected $lower_data_risk_to_low = false;
 
     /**
      * Constructor.
@@ -186,6 +186,4 @@ class TagResources extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TagResources::class, \Google\Cloud\Dlp\V2\DataProfileAction_TagResources::class);
 

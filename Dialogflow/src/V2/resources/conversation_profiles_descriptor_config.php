@@ -173,6 +173,7 @@ return [
                 'generator' => 'projects/{project}/locations/{location}/generators/{generator}',
                 'knowledgeBase' => 'projects/{project}/knowledgeBases/{knowledge_base}',
                 'location' => 'projects/{project}/locations/{location}',
+                'phraseSet' => 'projects/{project}/locations/{location}/phraseSets/{phrase_set}',
                 'project' => 'projects/{project}',
                 'projectAgent' => 'projects/{project}/agent',
                 'projectConversationModel' => 'projects/{project}/conversationModels/{conversation_model}',

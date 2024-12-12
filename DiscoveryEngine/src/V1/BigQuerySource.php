@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQuerySource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project ID (can be project # or ID) that the BigQuery source is in with
+     * The project ID or the project number that contains the BigQuery source. Has
      * a length limit of 128 characters. If not specified, inherits the project
      * ID from the parent request.
      *
@@ -76,7 +76,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Date $partition_date
      *           BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
      *     @type string $project_id
-     *           The project ID (can be project # or ID) that the BigQuery source is in with
+     *           The project ID or the project number that contains the BigQuery source. Has
      *           a length limit of 128 characters. If not specified, inherits the project
      *           ID from the parent request.
      *     @type string $dataset_id
@@ -144,7 +144,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID (can be project # or ID) that the BigQuery source is in with
+     * The project ID or the project number that contains the BigQuery source. Has
      * a length limit of 128 characters. If not specified, inherits the project
      * ID from the parent request.
      *
@@ -157,7 +157,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID (can be project # or ID) that the BigQuery source is in with
+     * The project ID or the project number that contains the BigQuery source. Has
      * a length limit of 128 characters. If not specified, inherits the project
      * ID from the parent request.
      *

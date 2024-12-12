@@ -20,7 +20,7 @@ class InventoryFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string os_short_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $os_short_name = '';
+    protected $os_short_name = '';
     /**
      * The OS version
      * Prefix matches are supported if asterisk(*) is provided as the
@@ -30,7 +30,7 @@ class InventoryFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string os_version = 2;</code>
      */
-    private $os_version = '';
+    protected $os_version = '';
 
     /**
      * Constructor.

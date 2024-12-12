@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\PredictRequest;
 use Google\Cloud\Retail\V2\PredictResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for making recommendation prediction.
@@ -47,7 +48,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface predictAsync(PredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PredictResponse> predictAsync(PredictRequest $request, array $optionalArgs = [])
  */
 final class PredictionServiceClient
 {
@@ -74,9 +75,7 @@ final class PredictionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -109,8 +108,13 @@ final class PredictionServiceClient
      *
      * @return string The formatted product resource.
      */
-    public static function productName(string $project, string $location, string $catalog, string $branch, string $product): string
-    {
+    public static function productName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $branch,
+        string $product
+    ): string {
         return self::getPathTemplate('product')->render([
             'project' => $project,
             'location' => $location,
@@ -132,14 +136,14 @@ final class PredictionServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -194,6 +198,9 @@ final class PredictionServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

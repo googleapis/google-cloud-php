@@ -24,13 +24,13 @@ namespace Google\Cloud\Retail\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\Client\AnalyticsServiceClient;
 use Google\Cloud\Retail\V2\ExportAnalyticsMetricsRequest;
 use Google\Cloud\Retail\V2\ExportAnalyticsMetricsResponse;
 use Google\Cloud\Retail\V2\OutputConfig;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -53,7 +53,9 @@ class AnalyticsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AnalyticsServiceClient */
@@ -97,9 +99,7 @@ class AnalyticsServiceClientTest extends GeneratedTest
         // Mock request
         $catalog = 'catalog555704345';
         $outputConfig = new OutputConfig();
-        $request = (new ExportAnalyticsMetricsRequest())
-            ->setCatalog($catalog)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportAnalyticsMetricsRequest())->setCatalog($catalog)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAnalyticsMetrics($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -157,19 +157,20 @@ class AnalyticsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $catalog = 'catalog555704345';
         $outputConfig = new OutputConfig();
-        $request = (new ExportAnalyticsMetricsRequest())
-            ->setCatalog($catalog)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportAnalyticsMetricsRequest())->setCatalog($catalog)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAnalyticsMetrics($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -224,9 +225,7 @@ class AnalyticsServiceClientTest extends GeneratedTest
         // Mock request
         $catalog = 'catalog555704345';
         $outputConfig = new OutputConfig();
-        $request = (new ExportAnalyticsMetricsRequest())
-            ->setCatalog($catalog)
-            ->setOutputConfig($outputConfig);
+        $request = (new ExportAnalyticsMetricsRequest())->setCatalog($catalog)->setOutputConfig($outputConfig);
         $response = $gapicClient->exportAnalyticsMetricsAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

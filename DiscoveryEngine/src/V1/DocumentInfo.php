@@ -33,6 +33,13 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string promotion_ids = 4;</code>
      */
     private $promotion_ids;
+    /**
+     * Output only. Whether the referenced Document can be found in the data
+     * store.
+     *
+     * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $joined = false;
     protected $document_descriptor;
 
     /**
@@ -46,7 +53,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The [Document][google.cloud.discoveryengine.v1.Document] resource full
      *           name, of the form:
-     *           `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
      *     @type string $uri
      *           The [Document][google.cloud.discoveryengine.v1.Document] URI - only
      *           allowed for website data stores.
@@ -60,6 +67,9 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
      *           The promotion IDs associated with this Document.
      *           Currently, this field is restricted to at most one ID.
+     *     @type bool $joined
+     *           Output only. Whether the referenced Document can be found in the data
+     *           store.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,7 +111,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The [Document][google.cloud.discoveryengine.v1.Document] resource full
      * name, of the form:
-     * `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -119,7 +129,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The [Document][google.cloud.discoveryengine.v1.Document] resource full
      * name, of the form:
-     * `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -236,6 +246,34 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->promotion_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the referenced Document can be found in the data
+     * store.
+     *
+     * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getJoined()
+    {
+        return $this->joined;
+    }
+
+    /**
+     * Output only. Whether the referenced Document can be found in the data
+     * store.
+     *
+     * Generated from protobuf field <code>bool joined = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setJoined($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->joined = $var;
 
         return $this;
     }

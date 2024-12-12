@@ -16,14 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class Provider extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. In `projects/{project}/locations/{location}/providers/{provider_id}`
-     * format.
+     * Output only. In
+     * `projects/{project}/locations/{location}/providers/{provider_id}` format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
-     * Output only. Human friendly name for the Provider. For example "Cloud Storage".
+     * Output only. Human friendly name for the Provider. For example "Cloud
+     * Storage".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -42,10 +43,11 @@ class Provider extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. In `projects/{project}/locations/{location}/providers/{provider_id}`
-     *           format.
+     *           Output only. In
+     *           `projects/{project}/locations/{location}/providers/{provider_id}` format.
      *     @type string $display_name
-     *           Output only. Human friendly name for the Provider. For example "Cloud Storage".
+     *           Output only. Human friendly name for the Provider. For example "Cloud
+     *           Storage".
      *     @type array<\Google\Cloud\Eventarc\V1\EventType>|\Google\Protobuf\Internal\RepeatedField $event_types
      *           Output only. Event types for this provider.
      * }
@@ -56,8 +58,8 @@ class Provider extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. In `projects/{project}/locations/{location}/providers/{provider_id}`
-     * format.
+     * Output only. In
+     * `projects/{project}/locations/{location}/providers/{provider_id}` format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -68,8 +70,8 @@ class Provider extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. In `projects/{project}/locations/{location}/providers/{provider_id}`
-     * format.
+     * Output only. In
+     * `projects/{project}/locations/{location}/providers/{provider_id}` format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -84,7 +86,8 @@ class Provider extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human friendly name for the Provider. For example "Cloud Storage".
+     * Output only. Human friendly name for the Provider. For example "Cloud
+     * Storage".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -95,7 +98,8 @@ class Provider extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Human friendly name for the Provider. For example "Cloud Storage".
+     * Output only. Human friendly name for the Provider. For example "Cloud
+     * Storage".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

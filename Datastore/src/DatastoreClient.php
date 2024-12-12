@@ -30,7 +30,6 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -92,7 +91,7 @@ class DatastoreClient
     use ClientTrait;
     use DatastoreTrait;
 
-    const VERSION = '1.29.2';
+    const VERSION = '1.32.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 

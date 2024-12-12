@@ -22,20 +22,20 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool document_splitter = 1;</code>
      */
-    private $document_splitter = false;
+    protected $document_splitter = false;
     /**
      * If true, on a given page, there can be multiple `document` annotations
      * covering it.
      *
      * Generated from protobuf field <code>bool document_allow_multiple_labels = 2;</code>
      */
-    private $document_allow_multiple_labels = false;
+    protected $document_allow_multiple_labels = false;
     /**
      * If set, all the nested entities must be prefixed with the parents.
      *
      * Generated from protobuf field <code>bool prefixed_naming_on_properties = 6;</code>
      */
-    private $prefixed_naming_on_properties = false;
+    protected $prefixed_naming_on_properties = false;
     /**
      * If set, we will skip the naming format validation in the schema. So the
      * string values in `DocumentSchema.EntityType.name` and
@@ -43,7 +43,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_naming_validation = 7;</code>
      */
-    private $skip_naming_validation = false;
+    protected $skip_naming_validation = false;
 
     /**
      * Constructor.

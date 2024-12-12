@@ -29,6 +29,8 @@ class DiscoverConnectionProfileResponse extends \Google\Protobuf\Internal\Messag
      *           Enriched MySQL RDBMS object.
      *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $postgresql_rdbms
      *           Enriched PostgreSQL RDBMS object.
+     *     @type \Google\Cloud\Datastream\V1\SqlServerRdbms $sql_server_rdbms
+     *           Enriched SQLServer RDBMS object.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +127,37 @@ class DiscoverConnectionProfileResponse extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlRdbms::class);
         $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enriched SQLServer RDBMS object.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103;</code>
+     * @return \Google\Cloud\Datastream\V1\SqlServerRdbms|null
+     */
+    public function getSqlServerRdbms()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasSqlServerRdbms()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * Enriched SQLServer RDBMS object.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SqlServerRdbms sql_server_rdbms = 103;</code>
+     * @param \Google\Cloud\Datastream\V1\SqlServerRdbms $var
+     * @return $this
+     */
+    public function setSqlServerRdbms($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SqlServerRdbms::class);
+        $this->writeOneof(103, $var);
 
         return $this;
     }

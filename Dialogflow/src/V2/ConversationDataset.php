@@ -63,6 +63,20 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 conversation_count = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $conversation_count = 0;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of
+     * the dataset.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzi = null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of
+     * the dataset.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = null;
 
     /**
      * Constructor.
@@ -87,6 +101,12 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
      *     @type int|string $conversation_count
      *           Output only. The number of conversations this conversation dataset
      *           contains.
+     *     @type bool $satisfies_pzi
+     *           Output only. A read only boolean field reflecting Zone Isolation status of
+     *           the dataset.
+     *     @type bool $satisfies_pzs
+     *           Output only. A read only boolean field reflecting Zone Separation status of
+     *           the dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +328,82 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->conversation_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of
+     * the dataset.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of
+     * the dataset.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of
+     * the dataset.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of
+     * the dataset.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

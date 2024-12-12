@@ -11,6 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A request to update a transfer configuration. To update the user id of the
  * transfer configuration, authorization info needs to be provided.
+ * When using a cross project service account for updating a transfer config,
+ * you must enable cross project service account usage. For more information,
+ * see [Disable attachment of service accounts to resources in other
+ * projects](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-service-accounts#disable_cross_project_service_accounts).
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.UpdateTransferConfigRequest</code>
  */
@@ -21,7 +25,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $transfer_config = null;
+    protected $transfer_config = null;
     /**
      * Deprecated: Authorization code was required when
      * `transferConfig.dataSourceId` is 'youtube_channel' but it is no longer used
@@ -49,7 +53,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Optional version info. This parameter replaces `authorization_code` which
      * is no longer used in any data sources. This is required only if
@@ -68,7 +72,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version_info = 5;</code>
      */
-    private $version_info = '';
+    protected $version_info = '';
     /**
      * Optional service account email. If this field is set, the transfer config
      * will be created with this service account's credentials. It requires that
@@ -81,7 +85,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_name = 6;</code>
      */
-    private $service_account_name = '';
+    protected $service_account_name = '';
 
     /**
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig Required. Data transfer configuration to create.

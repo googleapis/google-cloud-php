@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Definition of Enumvalue (to be used by enum fields)
+ * Definition of Enumvalue, to be used for enum fields.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue</code>
  */
 class EnumValue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Index for the enum. Cannot be modified.
+     * Required. Index for the enum value. It can't be modified.
      *
      * Generated from protobuf field <code>int32 index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $index = 0;
     /**
      * Required. Name of the enumvalue. This is the actual value that the
-     * aspect will contain.
+     * aspect can contain.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $name = '';
     /**
-     * Optional. Optional deprecation message to be set if an enum value needs
-     * to be deprecated.
+     * Optional. You can set this message if you need to deprecate an enum
+     * value.
      *
      * Generated from protobuf field <code>string deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -43,13 +43,13 @@ class EnumValue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $index
-     *           Required. Index for the enum. Cannot be modified.
+     *           Required. Index for the enum value. It can't be modified.
      *     @type string $name
      *           Required. Name of the enumvalue. This is the actual value that the
-     *           aspect will contain.
+     *           aspect can contain.
      *     @type string $deprecated
-     *           Optional. Optional deprecation message to be set if an enum value needs
-     *           to be deprecated.
+     *           Optional. You can set this message if you need to deprecate an enum
+     *           value.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +58,7 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Index for the enum. Cannot be modified.
+     * Required. Index for the enum value. It can't be modified.
      *
      * Generated from protobuf field <code>int32 index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -69,7 +69,7 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Index for the enum. Cannot be modified.
+     * Required. Index for the enum value. It can't be modified.
      *
      * Generated from protobuf field <code>int32 index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -85,7 +85,7 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the enumvalue. This is the actual value that the
-     * aspect will contain.
+     * aspect can contain.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -97,7 +97,7 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the enumvalue. This is the actual value that the
-     * aspect will contain.
+     * aspect can contain.
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -112,8 +112,8 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional deprecation message to be set if an enum value needs
-     * to be deprecated.
+     * Optional. You can set this message if you need to deprecate an enum
+     * value.
      *
      * Generated from protobuf field <code>string deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -124,8 +124,8 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional deprecation message to be set if an enum value needs
-     * to be deprecated.
+     * Optional. You can set this message if you need to deprecate an enum
+     * value.
      *
      * Generated from protobuf field <code>string deprecated = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

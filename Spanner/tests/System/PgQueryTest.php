@@ -40,9 +40,12 @@ class PgQueryTest extends SpannerPgTestCase
 
     public static $timestampVal;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -678,7 +681,7 @@ class PgQueryTest extends SpannerPgTestCase
     /**
      * @dataProvider arrayTypesProvider
      */
-    public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
+    public function testBindArrayOfType($value, $result = null, $resultType = null, ?callable $filter = null)
     {
         if (!$filter) {
             $filter = function ($val) {

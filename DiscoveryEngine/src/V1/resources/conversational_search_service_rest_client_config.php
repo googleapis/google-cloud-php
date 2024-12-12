@@ -396,6 +396,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/identityMappingStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
                     ],
                     [
@@ -462,6 +466,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/dataStores/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/identityMappingStores/*}/operations',
                     ],
                     [
                         'method' => 'get',

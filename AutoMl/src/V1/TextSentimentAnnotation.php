@@ -31,7 +31,7 @@ class TextSentimentAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sentiment = 1;</code>
      */
-    private $sentiment = 0;
+    protected $sentiment = 0;
 
     /**
      * Constructor.

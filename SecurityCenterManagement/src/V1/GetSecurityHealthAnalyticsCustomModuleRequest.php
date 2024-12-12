@@ -9,22 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for getting a SecurityHealthAnalyticsCustomModule
+ * Request message for
+ * [SecurityCenterManagement.GetSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.GetSecurityHealthAnalyticsCustomModule].
  *
  * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.GetSecurityHealthAnalyticsCustomModuleRequest</code>
  */
 class GetSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the resource
+     * Required. Name of the resource, in the format
+     * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. Name of the resource
-     *                     Please see {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
+     * @param string $name Required. Name of the resource, in the format
+     *                     `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`. Please see
+     *                     {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\GetSecurityHealthAnalyticsCustomModuleRequest
      *
@@ -43,7 +46,8 @@ class GetSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the resource
+     *           Required. Name of the resource, in the format
+     *           `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +56,8 @@ class GetSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. Name of the resource
+     * Required. Name of the resource, in the format
+     * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +68,8 @@ class GetSecurityHealthAnalyticsCustomModuleRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Required. Name of the resource
+     * Required. Name of the resource, in the format
+     * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{custom_module}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

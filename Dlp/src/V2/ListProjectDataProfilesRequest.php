@@ -20,20 +20,20 @@ class ListProjectDataProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Page token to continue retrieval.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Size of the page. This value can be limited by the server. If zero, server
      * returns a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Comma-separated list of fields to order by, followed by `asc` or `desc`
      * postfix. This list is case insensitive. The default sorting order is
@@ -51,7 +51,7 @@ class ListProjectDataProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Allows filtering.
      * Supported syntax:
@@ -72,7 +72,7 @@ class ListProjectDataProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. organizations/{org_id}/locations/{loc_id}

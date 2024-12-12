@@ -19,9 +19,9 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
+use Google\Cloud\Debugger\Connection\Firebase;
 use Google\Cloud\Debugger\Connection\Grpc;
 use Google\Cloud\Debugger\Connection\Rest;
-use Google\Cloud\Debugger\Connection\Firebase;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -40,7 +40,7 @@ class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '1.8.8';
+    const VERSION = '1.9.3';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';

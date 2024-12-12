@@ -44,7 +44,7 @@ class ExecResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.ExecResource.Exec validate = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $validate = null;
+    protected $validate = null;
     /**
      * What to run to bring this resource into the desired state.
      * An exit code of 100 indicates "success", any other exit code indicates
@@ -52,7 +52,7 @@ class ExecResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.ExecResource.Exec enforce = 2;</code>
      */
-    private $enforce = null;
+    protected $enforce = null;
 
     /**
      * Constructor.

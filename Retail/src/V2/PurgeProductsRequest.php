@@ -22,7 +22,7 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The filter string to specify the products to be deleted with a
      * length limit of 5,000 characters.
@@ -56,7 +56,7 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Actually perform the purge.
      * If `force` is set to false, the method will return the expected purge count
@@ -64,7 +64,7 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * Constructor.

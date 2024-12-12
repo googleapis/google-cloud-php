@@ -20,7 +20,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string address = 1;</code>
      */
-    private $address = '';
+    protected $address = '';
     /**
      * CLDR region code of the country/region. This field may be used in two ways:
      * 1) If telecommute preference is not set, this field is used address
@@ -37,14 +37,14 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      */
-    private $region_code = '';
+    protected $region_code = '';
     /**
      * The latitude and longitude of the geographic center to search from. This
      * field is ignored if `address` is provided.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
      */
-    private $lat_lng = null;
+    protected $lat_lng = null;
     /**
      * The distance_in_miles is applied when the location being searched for is
      * identified as a city or smaller. This field is ignored if the location
@@ -52,7 +52,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double distance_in_miles = 4;</code>
      */
-    private $distance_in_miles = 0.0;
+    protected $distance_in_miles = 0.0;
     /**
      * Allows the client to return jobs without a
      * set location, specifically, telecommuting jobs (telecommuting is considered
@@ -80,7 +80,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.LocationFilter.TelecommutePreference telecommute_preference = 5;</code>
      */
-    private $telecommute_preference = 0;
+    protected $telecommute_preference = 0;
 
     /**
      * Constructor.

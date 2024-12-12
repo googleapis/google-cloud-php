@@ -85,6 +85,4 @@ class KeyManagementMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyManagementMode::class, \Google\Cloud\Kms\V1\EkmConnection_KeyManagementMode::class);
 

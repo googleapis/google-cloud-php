@@ -42,6 +42,7 @@ use Google\Cloud\Compute\V1\PatchRegionHealthCheckRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\UpdateRegionHealthCheckRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionHealthChecks API.
@@ -49,12 +50,12 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchRegionHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(UpdateRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HealthCheck> getAsync(GetRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionHealthChecksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionHealthCheckRequest $request, array $optionalArgs = [])
  */
 final class RegionHealthChecksClient
 {
@@ -219,6 +220,9 @@ final class RegionHealthChecksClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -246,6 +250,8 @@ final class RegionHealthChecksClient
      *
      * The async variant is {@see RegionHealthChecksClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionHealthChecksClient/delete.php
+     *
      * @param DeleteRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -269,6 +275,8 @@ final class RegionHealthChecksClient
      * Returns the specified HealthCheck resource.
      *
      * The async variant is {@see RegionHealthChecksClient::getAsync()} .
+     *
+     * @example samples/V1/RegionHealthChecksClient/get.php
      *
      * @param GetRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -294,6 +302,8 @@ final class RegionHealthChecksClient
      *
      * The async variant is {@see RegionHealthChecksClient::insertAsync()} .
      *
+     * @example samples/V1/RegionHealthChecksClient/insert.php
+     *
      * @param InsertRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -317,6 +327,8 @@ final class RegionHealthChecksClient
      * Retrieves the list of HealthCheck resources available to the specified project.
      *
      * The async variant is {@see RegionHealthChecksClient::listAsync()} .
+     *
+     * @example samples/V1/RegionHealthChecksClient/list.php
      *
      * @param ListRegionHealthChecksRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -342,6 +354,8 @@ final class RegionHealthChecksClient
      *
      * The async variant is {@see RegionHealthChecksClient::patchAsync()} .
      *
+     * @example samples/V1/RegionHealthChecksClient/patch.php
+     *
      * @param PatchRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -365,6 +379,8 @@ final class RegionHealthChecksClient
      * Updates a HealthCheck resource in the specified project using the data included in the request.
      *
      * The async variant is {@see RegionHealthChecksClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionHealthChecksClient/update.php
      *
      * @param UpdateRegionHealthCheckRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {

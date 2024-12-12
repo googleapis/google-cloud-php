@@ -401,6 +401,7 @@ return [
                 'field' => 'projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}',
                 'index' => 'projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}',
                 'location' => 'projects/{project}/locations/{location}',
+                'operation' => 'projects/{project}/databases/{database}/operations/{operation}',
                 'project' => 'projects/{project}',
             ],
         ],

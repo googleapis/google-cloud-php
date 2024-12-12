@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,9 @@ class SearchServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SearchServiceClient */
@@ -76,9 +78,7 @@ class SearchServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $redirectUri = 'redirectUri951230089';
         $resultsElement = new SearchResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new SearchResponse();
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setCorrectedQuery($correctedQuery);
@@ -90,9 +90,7 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock request
         $placement = 'placement1792938725';
         $visitorId = 'visitorId-1832599924';
-        $request = (new SearchRequest())
-            ->setPlacement($placement)
-            ->setVisitorId($visitorId);
+        $request = (new SearchRequest())->setPlacement($placement)->setVisitorId($visitorId);
         $response = $gapicClient->search($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -121,19 +119,20 @@ class SearchServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $placement = 'placement1792938725';
         $visitorId = 'visitorId-1832599924';
-        $request = (new SearchRequest())
-            ->setPlacement($placement)
-            ->setVisitorId($visitorId);
+        $request = (new SearchRequest())->setPlacement($placement)->setVisitorId($visitorId);
         try {
             $gapicClient->search($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -162,9 +161,7 @@ class SearchServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $redirectUri = 'redirectUri951230089';
         $resultsElement = new SearchResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new SearchResponse();
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setCorrectedQuery($correctedQuery);
@@ -176,9 +173,7 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock request
         $placement = 'placement1792938725';
         $visitorId = 'visitorId-1832599924';
-        $request = (new SearchRequest())
-            ->setPlacement($placement)
-            ->setVisitorId($visitorId);
+        $request = (new SearchRequest())->setPlacement($placement)->setVisitorId($visitorId);
         $response = $gapicClient->searchAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

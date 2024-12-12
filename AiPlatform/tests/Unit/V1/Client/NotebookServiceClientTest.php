@@ -47,6 +47,8 @@ use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeResponse;
+use Google\Cloud\AIPlatform\V1\StopNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\StopNotebookRuntimeResponse;
 use Google\Cloud\AIPlatform\V1\UpdateNotebookRuntimeTemplateRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeResponse;
@@ -297,6 +299,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $scheduleResourceName = 'scheduleResourceName-627484556';
+        $kernelName = 'kernelName-497416883';
         $expectedResponse = new NotebookExecutionJob();
         $expectedResponse->setNotebookRuntimeTemplateResourceName($notebookRuntimeTemplateResourceName);
         $expectedResponse->setGcsOutputUri($gcsOutputUri);
@@ -304,6 +307,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setScheduleResourceName($scheduleResourceName);
+        $expectedResponse->setKernelName($kernelName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -953,6 +957,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $scheduleResourceName = 'scheduleResourceName-627484556';
+        $kernelName = 'kernelName-497416883';
         $expectedResponse = new NotebookExecutionJob();
         $expectedResponse->setNotebookRuntimeTemplateResourceName($notebookRuntimeTemplateResourceName);
         $expectedResponse->setGcsOutputUri($gcsOutputUri);
@@ -960,6 +965,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setScheduleResourceName($scheduleResourceName);
+        $expectedResponse->setKernelName($kernelName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notebookExecutionJobName('[PROJECT]', '[LOCATION]', '[NOTEBOOK_EXECUTION_JOB]');
@@ -1497,6 +1503,128 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/startNotebookRuntimeTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopNotebookRuntimeTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/stopNotebookRuntimeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new StopNotebookRuntimeResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/stopNotebookRuntimeTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->notebookRuntimeName('[PROJECT]', '[LOCATION]', '[NOTEBOOK_RUNTIME]');
+        $request = (new StopNotebookRuntimeRequest())->setName($formattedName);
+        $response = $gapicClient->stopNotebookRuntime($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.NotebookService/StopNotebookRuntime', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/stopNotebookRuntimeTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function stopNotebookRuntimeExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/stopNotebookRuntimeTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->notebookRuntimeName('[PROJECT]', '[LOCATION]', '[NOTEBOOK_RUNTIME]');
+        $request = (new StopNotebookRuntimeRequest())->setName($formattedName);
+        $response = $gapicClient->stopNotebookRuntime($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/stopNotebookRuntimeTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

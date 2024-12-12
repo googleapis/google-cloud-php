@@ -22,14 +22,14 @@ class CompletionDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string completion_attribution_token = 1;</code>
      */
-    private $completion_attribution_token = '';
+    protected $completion_attribution_token = '';
     /**
      * End user selected
      * [CompleteQueryResponse.CompletionResult.suggestion][google.cloud.retail.v2.CompleteQueryResponse.CompletionResult.suggestion].
      *
      * Generated from protobuf field <code>string selected_suggestion = 2;</code>
      */
-    private $selected_suggestion = '';
+    protected $selected_suggestion = '';
     /**
      * End user selected
      * [CompleteQueryResponse.CompletionResult.suggestion][google.cloud.retail.v2.CompleteQueryResponse.CompletionResult.suggestion]
@@ -37,7 +37,7 @@ class CompletionDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 selected_position = 3;</code>
      */
-    private $selected_position = 0;
+    protected $selected_position = 0;
 
     /**
      * Constructor.

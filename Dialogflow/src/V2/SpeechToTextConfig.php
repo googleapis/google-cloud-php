@@ -56,6 +56,12 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
+     * List of names of Cloud Speech phrase sets that are used for transcription.
+     *
+     * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
+     */
+    private $phrase_sets;
+    /**
      * Audio encoding of the audio content to process.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AudioEncoding audio_encoding = 6;</code>
@@ -136,6 +142,8 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           [Agent Speech
      *           settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
      *           for model selection.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *           List of names of Cloud Speech phrase sets that are used for transcription.
      *     @type int $audio_encoding
      *           Audio encoding of the audio content to process.
      *     @type int $sample_rate_hertz
@@ -268,6 +276,32 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of names of Cloud Speech phrase sets that are used for transcription.
+     *
+     * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPhraseSets()
+    {
+        return $this->phrase_sets;
+    }
+
+    /**
+     * List of names of Cloud Speech phrase sets that are used for transcription.
+     *
+     * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPhraseSets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->phrase_sets = $arr;
 
         return $this;
     }

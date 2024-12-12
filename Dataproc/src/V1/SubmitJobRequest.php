@@ -21,19 +21,19 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Required. The job resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two
@@ -48,7 +48,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * @param string                        $projectId Required. The ID of the Google Cloud Platform project that the job

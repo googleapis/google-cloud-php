@@ -47,6 +47,30 @@ return [
                     ],
                 ],
             ],
+            'BulkDownloadFeedbackLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:bulkDownloadFeedbackLabels',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BulkUploadFeedbackLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:bulkUploadFeedbackLabels',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CalculateIssueModelStats' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{issue_model=projects/*/locations/*/issueModels/*}:calculateIssueModelStats',
@@ -81,10 +105,34 @@ return [
                     ],
                 ],
             ],
+            'CreateAnalysisRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/analysisRules',
+                'body' => 'analysis_rule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations',
                 'body' => 'conversation',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateFeedbackLabel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/conversations/*}/feedbackLabels',
+                'body' => 'feedback_label',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -117,6 +165,42 @@ return [
                     ],
                 ],
             ],
+            'CreateQaQuestion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/qaScorecards/*/revisions/*}/qaQuestions',
+                'body' => 'qa_question',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateQaScorecard' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/qaScorecards',
+                'body' => 'qa_scorecard',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateQaScorecardRevision' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/qaScorecards/*}/revisions',
+                'body' => 'qa_scorecard_revision',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateView' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/views',
@@ -140,9 +224,31 @@ return [
                     ],
                 ],
             ],
+            'DeleteAnalysisRule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/analysisRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteConversation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFeedbackLabel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*/feedbackLabels/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -184,6 +290,39 @@ return [
                     ],
                 ],
             ],
+            'DeleteQaQuestion' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*/revisions/*/qaQuestions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQaScorecard' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQaScorecardRevision' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteView' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/views/*}',
@@ -207,6 +346,18 @@ return [
                     ],
                 ],
             ],
+            'DeployQaScorecardRevision' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*/revisions/*}:deploy',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ExportInsightsData' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/insightsdata:export',
@@ -215,6 +366,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportIssueModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/issueModels/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -230,9 +393,42 @@ return [
                     ],
                 ],
             ],
+            'GetAnalysisRule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/analysisRules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEncryptionSpec' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/encryptionSpec}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFeedbackLabel' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*/feedbackLabels/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -274,6 +470,39 @@ return [
                     ],
                 ],
             ],
+            'GetQaQuestion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*/revisions/*/qaQuestions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetQaScorecard' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetQaScorecardRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/settings}',
@@ -296,10 +525,46 @@ return [
                     ],
                 ],
             ],
+            'ImportIssueModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/issueModels:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'IngestConversations' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations:ingest',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'InitializeEncryptionSpec' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{encryption_spec.name=projects/*/locations/*/encryptionSpec}:initialize',
+                'body' => '*',
+                'placeholders' => [
+                    'encryption_spec.name' => [
+                        'getters' => [
+                            'getEncryptionSpec',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAllFeedbackLabels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:listAllFeedbackLabels',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -319,9 +584,31 @@ return [
                     ],
                 ],
             ],
+            'ListAnalysisRules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/analysisRules',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListConversations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/conversations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFeedbackLabels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/conversations/*}/feedbackLabels',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -363,9 +650,66 @@ return [
                     ],
                 ],
             ],
+            'ListQaQuestions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/qaScorecards/*/revisions/*}/qaQuestions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQaScorecardRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/qaScorecards/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQaScorecards' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/qaScorecards',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListViews' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/views',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryMetrics' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{location=projects/*/locations/*}:queryMetrics',
+                'body' => '*',
+                'placeholders' => [
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
+            'TuneQaScorecardRevision' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/qaScorecards/*/revisions/*}:tuneQaScorecardRevision',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -386,6 +730,31 @@ return [
                     ],
                 ],
             ],
+            'UndeployQaScorecardRevision' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/qaScorecards/*/revisions/*}:undeploy',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAnalysisRule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{analysis_rule.name=projects/*/locations/*/analysisRules/*}',
+                'body' => 'analysis_rule',
+                'placeholders' => [
+                    'analysis_rule.name' => [
+                        'getters' => [
+                            'getAnalysisRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConversation' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{conversation.name=projects/*/locations/*/conversations/*}',
@@ -397,6 +766,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateFeedbackLabel' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{feedback_label.name=projects/*/locations/*/conversations/*/feedbackLabels/*}',
+                'body' => 'feedback_label',
+                'placeholders' => [
+                    'feedback_label.name' => [
+                        'getters' => [
+                            'getFeedbackLabel',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateIssue' => [
@@ -436,6 +821,38 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateQaQuestion' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{qa_question.name=projects/*/locations/*/qaScorecards/*/revisions/*/qaQuestions/*}',
+                'body' => 'qa_question',
+                'placeholders' => [
+                    'qa_question.name' => [
+                        'getters' => [
+                            'getQaQuestion',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateQaScorecard' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{qa_scorecard.name=projects/*/locations/*/qaScorecards/*}',
+                'body' => 'qa_scorecard',
+                'placeholders' => [
+                    'qa_scorecard.name' => [
+                        'getters' => [
+                            'getQaScorecard',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateSettings' => [

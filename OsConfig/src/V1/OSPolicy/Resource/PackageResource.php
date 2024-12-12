@@ -20,7 +20,7 @@ class PackageResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.DesiredState desired_state = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $desired_state = 0;
+    protected $desired_state = 0;
     protected $system_package;
 
     /**

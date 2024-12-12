@@ -69,6 +69,7 @@ trait RetryTrait
         'objects.get',
         'objects.list',
         'serviceaccount.get',
+        'signBlob.execute'
     ];
 
     /**
@@ -134,7 +135,9 @@ trait RetryTrait
             StorageClient::RETRY_IDEMPOTENT;
 
         return function (
-            \Exception $exception
+            \Exception $exception,
+            $currentAttempt = 0,
+            $maxRetries = null
         ) use (
             $isOpIdempotent,
             $preconditionNeeded,
@@ -146,7 +149,9 @@ trait RetryTrait
                 $isOpIdempotent,
                 $preconditionNeeded,
                 $preconditionSupplied,
-                $retryStrategy
+                $retryStrategy,
+                $currentAttempt,
+                $maxRetries
             );
         };
     }
@@ -187,7 +192,8 @@ trait RetryTrait
      * @param bool $isIdempotent
      * @param bool $preconditionNeeded
      * @param bool $preconditionSupplied
-     * @param int $maxRetries
+     * @param int|null $maxRetries The maximum number of retries allowd.
+     * Null for no limit.
      * @return bool
      */
     private function retryDeciderFunction(
@@ -195,8 +201,15 @@ trait RetryTrait
         $isIdempotent,
         $preconditionNeeded,
         $preconditionSupplied,
-        $retryStrategy
+        $retryStrategy,
+        $currentAttempt = 0,
+        $maxRetries = null
     ) {
+        // If maxRetries is specified, ensure we don't exceed it
+        if ($maxRetries !== null && $currentAttempt >= $maxRetries) {
+            return false;
+        }
+
         if ($retryStrategy == StorageClient::RETRY_NEVER) {
             return false;
         }

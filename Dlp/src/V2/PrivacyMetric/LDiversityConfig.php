@@ -28,7 +28,7 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId sensitive_attribute = 2;</code>
      */
-    private $sensitive_attribute = null;
+    protected $sensitive_attribute = null;
 
     /**
      * Constructor.
@@ -117,6 +117,4 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LDiversityConfig::class, \Google\Cloud\Dlp\V2\PrivacyMetric_LDiversityConfig::class);
 

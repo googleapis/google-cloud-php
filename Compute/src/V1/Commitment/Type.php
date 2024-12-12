@@ -56,6 +56,14 @@ class Type
      */
     const GENERAL_PURPOSE = 299793543;
     /**
+     * Generated from protobuf enum <code>GENERAL_PURPOSE_C4 = 301911817;</code>
+     */
+    const GENERAL_PURPOSE_C4 = 301911817;
+    /**
+     * Generated from protobuf enum <code>GENERAL_PURPOSE_C4A = 232460888;</code>
+     */
+    const GENERAL_PURPOSE_C4A = 232460888;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE_E2 = 301911877;</code>
      */
     const GENERAL_PURPOSE_E2 = 301911877;
@@ -88,6 +96,18 @@ class Type
      */
     const MEMORY_OPTIMIZED_M3 = 276301372;
     /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_16TB = 183089120;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_16TB = 183089120;
+    /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_24TB = 183116989;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_24TB = 183116989;
+    /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_32TB = 183144858;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_32TB = 183144858;
+    /**
      * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
      */
     const STORAGE_OPTIMIZED_Z3 = 316796085;
@@ -107,6 +127,8 @@ class Type
         self::COMPUTE_OPTIMIZED_C3D => 'COMPUTE_OPTIMIZED_C3D',
         self::COMPUTE_OPTIMIZED_H3 => 'COMPUTE_OPTIMIZED_H3',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
+        self::GENERAL_PURPOSE_C4 => 'GENERAL_PURPOSE_C4',
+        self::GENERAL_PURPOSE_C4A => 'GENERAL_PURPOSE_C4A',
         self::GENERAL_PURPOSE_E2 => 'GENERAL_PURPOSE_E2',
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
@@ -115,6 +137,9 @@ class Type
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
+        self::MEMORY_OPTIMIZED_X4_16TB => 'MEMORY_OPTIMIZED_X4_16TB',
+        self::MEMORY_OPTIMIZED_X4_24TB => 'MEMORY_OPTIMIZED_X4_24TB',
+        self::MEMORY_OPTIMIZED_X4_32TB => 'MEMORY_OPTIMIZED_X4_32TB',
         self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];

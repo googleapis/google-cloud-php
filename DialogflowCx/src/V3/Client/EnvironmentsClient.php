@@ -55,6 +55,7 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Struct;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing
@@ -68,17 +69,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deployFlowAsync(DeployFlowRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listContinuousTestResultsAsync(ListContinuousTestResultsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupEnvironmentHistoryAsync(LookupEnvironmentHistoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runContinuousTestAsync(RunContinuousTestRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deployFlowAsync(DeployFlowRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Environment> getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listContinuousTestResultsAsync(ListContinuousTestResultsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> lookupEnvironmentHistoryAsync(LookupEnvironmentHistoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> runContinuousTestAsync(RunContinuousTestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class EnvironmentsClient
 {
@@ -333,14 +334,14 @@ final class EnvironmentsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -395,6 +396,9 @@ final class EnvironmentsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

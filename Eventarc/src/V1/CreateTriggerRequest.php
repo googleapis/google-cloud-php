@@ -34,10 +34,10 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     protected $trigger_id = '';
     /**
-     * Required. If set, validate the request and preview the review, but do not
+     * Optional. If set, validate the request and preview the review, but do not
      * post it.
      *
-     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $validate_only = false;
 
@@ -72,7 +72,7 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_id
      *           Required. The user-provided ID to be assigned to the trigger.
      *     @type bool $validate_only
-     *           Required. If set, validate the request and preview the review, but do not
+     *           Optional. If set, validate the request and preview the review, but do not
      *           post it.
      * }
      */
@@ -170,10 +170,10 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If set, validate the request and preview the review, but do not
+     * Optional. If set, validate the request and preview the review, but do not
      * post it.
      *
-     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getValidateOnly()
@@ -182,10 +182,10 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If set, validate the request and preview the review, but do not
+     * Optional. If set, validate the request and preview the review, but do not
      * post it.
      *
-     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

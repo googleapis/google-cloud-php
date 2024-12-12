@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the metadata of the long-running operation.
+ * Long-running operation metadata.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.OperationMetadata</code>
  */

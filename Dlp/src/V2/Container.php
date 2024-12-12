@@ -21,14 +21,14 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Project where the finding was found.
      * Can be different from the project that owns the finding.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * A string representation of the full container name.
      * Examples:
@@ -37,7 +37,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_path = 3;</code>
      */
-    private $full_path = '';
+    protected $full_path = '';
     /**
      * The root of the container.
      * Examples:
@@ -48,7 +48,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string root_path = 4;</code>
      */
-    private $root_path = '';
+    protected $root_path = '';
     /**
      * The rest of the path after the root.
      * Examples:
@@ -59,7 +59,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string relative_path = 5;</code>
      */
-    private $relative_path = '';
+    protected $relative_path = '';
     /**
      * Findings container modification timestamp, if applicable. For Cloud
      * Storage, this field contains the last file modification timestamp. For a
@@ -68,14 +68,14 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Findings container version, if available
      * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string version = 7;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

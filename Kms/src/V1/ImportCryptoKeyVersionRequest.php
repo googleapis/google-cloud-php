@@ -24,7 +24,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
      * an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
@@ -48,7 +48,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string crypto_key_version = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $crypto_key_version = '';
+    protected $crypto_key_version = '';
     /**
      * Required. The
      * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
@@ -58,7 +58,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
      * [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
@@ -66,7 +66,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $import_job = '';
+    protected $import_job = '';
     /**
      * Optional. The wrapped key material to import.
      * Before wrapping, key material must be formatted. If importing symmetric key
@@ -104,7 +104,7 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes wrapped_key = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $wrapped_key = '';
+    protected $wrapped_key = '';
     protected $wrapped_key_material;
 
     /**

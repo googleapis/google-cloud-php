@@ -20,13 +20,13 @@ class BigQueryOutputResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id = 1;</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * The ID of a BigQuery Table.
      *
      * Generated from protobuf field <code>string table_id = 2;</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
 
     /**
      * Constructor.

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for deleting a Instance
+ * Delete an instance.
  *
  * Generated from protobuf message <code>google.cloud.parallelstore.v1beta.DeleteInstanceRequest</code>
  */

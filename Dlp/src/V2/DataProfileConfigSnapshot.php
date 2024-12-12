@@ -21,7 +21,7 @@ class DataProfileConfigSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
      */
-    private $inspect_config = null;
+    protected $inspect_config = null;
     /**
      * A copy of the configuration used to generate this profile. This is
      * deprecated, and the DiscoveryConfig field is preferred moving forward.
@@ -38,19 +38,19 @@ class DataProfileConfigSnapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig discovery_config = 4;</code>
      */
-    private $discovery_config = null;
+    protected $discovery_config = null;
     /**
      * Name of the inspection template used to generate this profile
      *
      * Generated from protobuf field <code>string inspect_template_name = 5;</code>
      */
-    private $inspect_template_name = '';
+    protected $inspect_template_name = '';
     /**
      * Timestamp when the template was modified
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp inspect_template_modified_time = 6;</code>
      */
-    private $inspect_template_modified_time = null;
+    protected $inspect_template_modified_time = null;
 
     /**
      * Constructor.

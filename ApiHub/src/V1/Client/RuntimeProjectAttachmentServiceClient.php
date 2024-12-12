@@ -44,6 +44,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: This service is used for managing the runtime project attachments.
@@ -56,13 +57,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createRuntimeProjectAttachmentAsync(CreateRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRuntimeProjectAttachmentAsync(DeleteRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeProjectAttachmentAsync(GetRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimeProjectAttachmentsAsync(ListRuntimeProjectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface lookupRuntimeProjectAttachmentAsync(LookupRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeProjectAttachment> createRuntimeProjectAttachmentAsync(CreateRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteRuntimeProjectAttachmentAsync(DeleteRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeProjectAttachment> getRuntimeProjectAttachmentAsync(GetRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimeProjectAttachmentsAsync(ListRuntimeProjectAttachmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupRuntimeProjectAttachmentResponse> lookupRuntimeProjectAttachmentAsync(LookupRuntimeProjectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class RuntimeProjectAttachmentServiceClient
 {
@@ -99,9 +100,9 @@ final class RuntimeProjectAttachmentServiceClient
             'clientConfig' => __DIR__ . '/../resources/runtime_project_attachment_service_client_config.json',
             'descriptorsConfigPath' =>
                 __DIR__ . '/../resources/runtime_project_attachment_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/runtime_project_attachment_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -110,6 +111,18 @@ final class RuntimeProjectAttachmentServiceClient
                 ],
             ],
         ];
+    }
+
+    /** Implements GapicClientTrait::defaultTransport. */
+    private static function defaultTransport()
+    {
+        return 'rest';
+    }
+
+    /** Implements ClientOptionsTrait::supportedTransports. */
+    private static function supportedTransports()
+    {
+        return ['rest'];
     }
 
     /**
@@ -180,14 +193,14 @@ final class RuntimeProjectAttachmentServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -222,9 +235,8 @@ final class RuntimeProjectAttachmentServiceClient
      *           default this settings points to the default client config file, which is
      *           provided in the resources folder.
      *     @type string|TransportInterface $transport
-     *           The transport used for executing network requests. May be either the string
-     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
-     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           The transport used for executing network requests. At the moment, supports only
+     *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
      *           $apiEndpoint setting, will be ignored.
@@ -233,15 +245,16 @@ final class RuntimeProjectAttachmentServiceClient
      *           each supported transport type should be passed in a key for that transport. For
      *           example:
      *           $transportConfig = [
-     *               'grpc' => [...],
      *               'rest' => [...],
      *           ];
-     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
-     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
      *           supported options.
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

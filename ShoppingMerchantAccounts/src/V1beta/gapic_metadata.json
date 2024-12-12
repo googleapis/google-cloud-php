@@ -116,6 +116,25 @@
                 }
             }
         },
+        "AutofeedSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutofeedSettingsServiceGapicClient",
+                    "rpcs": {
+                        "GetAutofeedSettings": {
+                            "methods": [
+                                "getAutofeedSettings"
+                            ]
+                        },
+                        "UpdateAutofeedSettings": {
+                            "methods": [
+                                "updateAutofeedSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "BusinessIdentityService": {
             "clients": {
                 "grpc": {

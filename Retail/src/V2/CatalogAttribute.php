@@ -30,7 +30,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Output only. Indicates whether this attribute has been used by any
      * products. `True` if at least one [Product][google.cloud.retail.v2.Product]
@@ -55,14 +55,14 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool in_use = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $in_use = false;
+    protected $in_use = false;
     /**
      * Output only. The type of this attribute. This is derived from the attribute
      * in [Product.attributes][google.cloud.retail.v2.Product.attributes].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.AttributeType type = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * When
      * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
@@ -75,7 +75,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.IndexableOption indexable_option = 5;</code>
      */
-    private $indexable_option = 0;
+    protected $indexable_option = 0;
     /**
      * If DYNAMIC_FACETABLE_ENABLED, attribute values are available for dynamic
      * facet. Could only be DYNAMIC_FACETABLE_DISABLED if
@@ -85,7 +85,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.DynamicFacetableOption dynamic_facetable_option = 6;</code>
      */
-    private $dynamic_facetable_option = 0;
+    protected $dynamic_facetable_option = 0;
     /**
      * When
      * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
@@ -102,7 +102,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.SearchableOption searchable_option = 7;</code>
      */
-    private $searchable_option = 0;
+    protected $searchable_option = 0;
     /**
      * If EXACT_SEARCHABLE_ENABLED, attribute values will be exact searchable.
      * This property only applies to textual custom attributes and requires
@@ -112,7 +112,7 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.ExactSearchableOption exact_searchable_option = 11;</code>
      */
-    private $exact_searchable_option = 0;
+    protected $exact_searchable_option = 0;
     /**
      * If RETRIEVABLE_ENABLED, attribute values are retrievable in the search
      * results. If unset, the server behavior defaults to
@@ -120,13 +120,13 @@ class CatalogAttribute extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.RetrievableOption retrievable_option = 12;</code>
      */
-    private $retrievable_option = 0;
+    protected $retrievable_option = 0;
     /**
      * Contains facet options.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute.FacetConfig facet_config = 13;</code>
      */
-    private $facet_config = null;
+    protected $facet_config = null;
 
     /**
      * Constructor.

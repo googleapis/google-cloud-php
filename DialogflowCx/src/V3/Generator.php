@@ -23,8 +23,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Must be set for the
      * [Generators.UpdateGenerator][google.cloud.dialogflow.cx.v3.Generators.UpdateGenerator]
      * method. [Generators.CreateGenerate][] populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -50,6 +50,12 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Generator.Placeholder placeholders = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $placeholders;
+    /**
+     * Parameters passed to the LLM to configure its behavior.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Generator.ModelParameter model_parameter = 8;</code>
+     */
+    protected $model_parameter = null;
 
     /**
      * Constructor.
@@ -62,8 +68,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           Must be set for the
      *           [Generators.UpdateGenerator][google.cloud.dialogflow.cx.v3.Generators.UpdateGenerator]
      *           method. [Generators.CreateGenerate][] populates the name automatically.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/generators/<Generator ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the generator, unique within the
      *           agent. The prompt contains pre-defined parameters such as $conversation,
@@ -73,6 +79,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           Required. Prompt for the LLM model.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder>|\Google\Protobuf\Internal\RepeatedField $placeholders
      *           Optional. List of custom placeholders in the prompt text.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Generator\ModelParameter $model_parameter
+     *           Parameters passed to the LLM to configure its behavior.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,8 +93,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Must be set for the
      * [Generators.UpdateGenerator][google.cloud.dialogflow.cx.v3.Generators.UpdateGenerator]
      * method. [Generators.CreateGenerate][] populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -101,8 +109,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Must be set for the
      * [Generators.UpdateGenerator][google.cloud.dialogflow.cx.v3.Generators.UpdateGenerator]
      * method. [Generators.CreateGenerate][] populates the name automatically.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/generators/<Generator ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generators/<GeneratorID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -206,6 +214,42 @@ class Generator extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder::class);
         $this->placeholders = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Parameters passed to the LLM to configure its behavior.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Generator.ModelParameter model_parameter = 8;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Generator\ModelParameter|null
+     */
+    public function getModelParameter()
+    {
+        return $this->model_parameter;
+    }
+
+    public function hasModelParameter()
+    {
+        return isset($this->model_parameter);
+    }
+
+    public function clearModelParameter()
+    {
+        unset($this->model_parameter);
+    }
+
+    /**
+     * Parameters passed to the LLM to configure its behavior.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Generator.ModelParameter model_parameter = 8;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Generator\ModelParameter $var
+     * @return $this
+     */
+    public function setModelParameter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Generator\ModelParameter::class);
+        $this->model_parameter = $var;
 
         return $this;
     }

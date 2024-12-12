@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpannerSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project ID that the Spanner source is in with a length limit of 128
+     * The project ID that contains the Spanner source. Has a length limit of 128
      * characters. If not specified, inherits the project ID from the parent
      * request.
      *
@@ -57,7 +57,7 @@ class SpannerSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The project ID that the Spanner source is in with a length limit of 128
+     *           The project ID that contains the Spanner source. Has a length limit of 128
      *           characters. If not specified, inherits the project ID from the parent
      *           request.
      *     @type string $instance_id
@@ -78,7 +78,7 @@ class SpannerSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID that the Spanner source is in with a length limit of 128
+     * The project ID that contains the Spanner source. Has a length limit of 128
      * characters. If not specified, inherits the project ID from the parent
      * request.
      *
@@ -91,7 +91,7 @@ class SpannerSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID that the Spanner source is in with a length limit of 128
+     * The project ID that contains the Spanner source. Has a length limit of 128
      * characters. If not specified, inherits the project ID from the parent
      * request.
      *

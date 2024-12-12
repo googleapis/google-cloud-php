@@ -289,6 +289,25 @@ return [
                     ],
                 ],
             ],
+            'SwitchoverCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Cluster',
+                    'metadataReturnType' => '\Google\Cloud\AlloyDb\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AlloyDb\V1\Backup',
@@ -369,6 +388,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteSql' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\ExecuteSqlResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
                         ],
                     ],
                 ],
@@ -476,6 +507,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\AlloyDb\V1\ListClustersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabases',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AlloyDb\V1\ListDatabasesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',

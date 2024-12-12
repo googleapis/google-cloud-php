@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * List Entries request.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.ListEntriesRequest</code>
  */
 class ListEntriesRequest extends \Google\Protobuf\Internal\Message
@@ -21,30 +23,37 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
+     * Optional. Number of items to return per page. If there are remaining
+     * results, the service returns a next_page_token. If unspecified, the service
+     * returns at most 10 Entries. The maximum value is 100; values above 100 will
+     * be coerced to 100.
+     *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. The pagination token returned by a previous request.
+     * Optional. Page token received from a previous `ListEntries` call. Provide
+     * this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Optional. A filter on the entries to return.
-     * Filters are case-sensitive.
-     * The request can be filtered by the following fields:
-     * entry_type, entry_source.display_name.
-     * The comparison operators are =, !=, <, >, <=, >= (strings are compared
-     * according to lexical order)
-     * The logical operators AND, OR, NOT can be used
-     * in the filter. Wildcard "*" can be used, but for entry_type the full
-     * project id or number needs to be provided. Example filter expressions:
-     * "entry_source.display_name=AnExampleDisplayName"
-     * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
-     * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     *  entry_type=projects/another-project/locations/&#42;"
-     * "NOT entry_source.display_name=AnotherExampleDisplayName"
+     * Optional. A filter on the entries to return. Filters are case-sensitive.
+     * You can filter the request by the following fields:
+     * * entry_type
+     * * entry_source.display_name
+     * The comparison operators are =, !=, <, >, <=, >=. The service compares
+     * strings according to lexical order.
+     * You can use the logical operators AND, OR, NOT in the filter.
+     * You can use Wildcard "*", but for entry_type you need to provide the
+     * full project id or number.
+     * Example filter expressions:
+     * * "entry_source.display_name=AnExampleDisplayName"
+     * * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
+     * * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
+     * entry_type=projects/another-project/locations/&#42;"
+     * * "NOT entry_source.display_name=AnotherExampleDisplayName"
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,23 +84,29 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent Entry Group:
      *           `projects/{project}/locations/{location}/entryGroups/{entry_group}`.
      *     @type int $page_size
+     *           Optional. Number of items to return per page. If there are remaining
+     *           results, the service returns a next_page_token. If unspecified, the service
+     *           returns at most 10 Entries. The maximum value is 100; values above 100 will
+     *           be coerced to 100.
      *     @type string $page_token
-     *           Optional. The pagination token returned by a previous request.
+     *           Optional. Page token received from a previous `ListEntries` call. Provide
+     *           this to retrieve the subsequent page.
      *     @type string $filter
-     *           Optional. A filter on the entries to return.
-     *           Filters are case-sensitive.
-     *           The request can be filtered by the following fields:
-     *           entry_type, entry_source.display_name.
-     *           The comparison operators are =, !=, <, >, <=, >= (strings are compared
-     *           according to lexical order)
-     *           The logical operators AND, OR, NOT can be used
-     *           in the filter. Wildcard "*" can be used, but for entry_type the full
-     *           project id or number needs to be provided. Example filter expressions:
-     *           "entry_source.display_name=AnExampleDisplayName"
-     *           "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
-     *           "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     *            entry_type=projects/another-project/locations/&#42;"
-     *           "NOT entry_source.display_name=AnotherExampleDisplayName"
+     *           Optional. A filter on the entries to return. Filters are case-sensitive.
+     *           You can filter the request by the following fields:
+     *           * entry_type
+     *           * entry_source.display_name
+     *           The comparison operators are =, !=, <, >, <=, >=. The service compares
+     *           strings according to lexical order.
+     *           You can use the logical operators AND, OR, NOT in the filter.
+     *           You can use Wildcard "*", but for entry_type you need to provide the
+     *           full project id or number.
+     *           Example filter expressions:
+     *           * "entry_source.display_name=AnExampleDisplayName"
+     *           * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
+     *           * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
+     *           entry_type=projects/another-project/locations/&#42;"
+     *           * "NOT entry_source.display_name=AnotherExampleDisplayName"
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +143,11 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Number of items to return per page. If there are remaining
+     * results, the service returns a next_page_token. If unspecified, the service
+     * returns at most 10 Entries. The maximum value is 100; values above 100 will
+     * be coerced to 100.
+     *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
@@ -137,6 +157,11 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Number of items to return per page. If there are remaining
+     * results, the service returns a next_page_token. If unspecified, the service
+     * returns at most 10 Entries. The maximum value is 100; values above 100 will
+     * be coerced to 100.
+     *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
@@ -150,7 +175,8 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pagination token returned by a previous request.
+     * Optional. Page token received from a previous `ListEntries` call. Provide
+     * this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +187,8 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pagination token returned by a previous request.
+     * Optional. Page token received from a previous `ListEntries` call. Provide
+     * this to retrieve the subsequent page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -176,20 +203,21 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter on the entries to return.
-     * Filters are case-sensitive.
-     * The request can be filtered by the following fields:
-     * entry_type, entry_source.display_name.
-     * The comparison operators are =, !=, <, >, <=, >= (strings are compared
-     * according to lexical order)
-     * The logical operators AND, OR, NOT can be used
-     * in the filter. Wildcard "*" can be used, but for entry_type the full
-     * project id or number needs to be provided. Example filter expressions:
-     * "entry_source.display_name=AnExampleDisplayName"
-     * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
-     * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     *  entry_type=projects/another-project/locations/&#42;"
-     * "NOT entry_source.display_name=AnotherExampleDisplayName"
+     * Optional. A filter on the entries to return. Filters are case-sensitive.
+     * You can filter the request by the following fields:
+     * * entry_type
+     * * entry_source.display_name
+     * The comparison operators are =, !=, <, >, <=, >=. The service compares
+     * strings according to lexical order.
+     * You can use the logical operators AND, OR, NOT in the filter.
+     * You can use Wildcard "*", but for entry_type you need to provide the
+     * full project id or number.
+     * Example filter expressions:
+     * * "entry_source.display_name=AnExampleDisplayName"
+     * * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
+     * * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
+     * entry_type=projects/another-project/locations/&#42;"
+     * * "NOT entry_source.display_name=AnotherExampleDisplayName"
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -200,20 +228,21 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A filter on the entries to return.
-     * Filters are case-sensitive.
-     * The request can be filtered by the following fields:
-     * entry_type, entry_source.display_name.
-     * The comparison operators are =, !=, <, >, <=, >= (strings are compared
-     * according to lexical order)
-     * The logical operators AND, OR, NOT can be used
-     * in the filter. Wildcard "*" can be used, but for entry_type the full
-     * project id or number needs to be provided. Example filter expressions:
-     * "entry_source.display_name=AnExampleDisplayName"
-     * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
-     * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     *  entry_type=projects/another-project/locations/&#42;"
-     * "NOT entry_source.display_name=AnotherExampleDisplayName"
+     * Optional. A filter on the entries to return. Filters are case-sensitive.
+     * You can filter the request by the following fields:
+     * * entry_type
+     * * entry_source.display_name
+     * The comparison operators are =, !=, <, >, <=, >=. The service compares
+     * strings according to lexical order.
+     * You can use the logical operators AND, OR, NOT in the filter.
+     * You can use Wildcard "*", but for entry_type you need to provide the
+     * full project id or number.
+     * Example filter expressions:
+     * * "entry_source.display_name=AnExampleDisplayName"
+     * * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
+     * * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
+     * entry_type=projects/another-project/locations/&#42;"
+     * * "NOT entry_source.display_name=AnotherExampleDisplayName"
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

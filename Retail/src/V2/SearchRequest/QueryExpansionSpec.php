@@ -22,7 +22,7 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition condition = 1;</code>
      */
-    private $condition = 0;
+    protected $condition = 0;
     /**
      * Whether to pin unexpanded results. If this field is set to true,
      * unexpanded products are always at the top of the search results, followed
@@ -30,7 +30,7 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool pin_unexpanded_results = 2;</code>
      */
-    private $pin_unexpanded_results = false;
+    protected $pin_unexpanded_results = false;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User event to write.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_event = null;
+    protected $user_event = null;
     /**
      * If set to true, the user event will be written asynchronously after
      * validation, and the API will respond without waiting for the write.
@@ -36,7 +36,7 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool write_async = 3;</code>
      */
-    private $write_async = false;
+    protected $write_async = false;
 
     /**
      * Constructor.

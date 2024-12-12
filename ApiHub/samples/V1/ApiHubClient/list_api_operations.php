@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apihub_v1_generated_ApiHub_ListApiOperations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ApiHub\V1\ApiOperation;
 use Google\Cloud\ApiHub\V1\Client\ApiHubClient;
 use Google\Cloud\ApiHub\V1\ListApiOperationsRequest;
 
@@ -51,7 +50,6 @@ function list_api_operations_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $apiHubClient->listApiOperations($request);
 
-        /** @var ApiOperation $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

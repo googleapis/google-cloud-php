@@ -209,6 +209,11 @@
                 "grpc": {
                     "libraryClient": "CatalogServiceGapicClient",
                     "rpcs": {
+                        "CancelMetadataJob": {
+                            "methods": [
+                                "cancelMetadataJob"
+                            ]
+                        },
                         "CreateAspectType": {
                             "methods": [
                                 "createAspectType"
@@ -227,6 +232,11 @@
                         "CreateEntryType": {
                             "methods": [
                                 "createEntryType"
+                            ]
+                        },
+                        "CreateMetadataJob": {
+                            "methods": [
+                                "createMetadataJob"
                             ]
                         },
                         "DeleteAspectType": {
@@ -269,6 +279,11 @@
                                 "getEntryType"
                             ]
                         },
+                        "GetMetadataJob": {
+                            "methods": [
+                                "getMetadataJob"
+                            ]
+                        },
                         "ListAspectTypes": {
                             "methods": [
                                 "listAspectTypes"
@@ -287,6 +302,11 @@
                         "ListEntryTypes": {
                             "methods": [
                                 "listEntryTypes"
+                            ]
+                        },
+                        "ListMetadataJobs": {
+                            "methods": [
+                                "listMetadataJobs"
                             ]
                         },
                         "LookupEntry": {

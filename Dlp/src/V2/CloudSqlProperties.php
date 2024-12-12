@@ -28,21 +28,21 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string connection_name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $connection_name = '';
+    protected $connection_name = '';
     /**
      * Required. DLP will limit its connections to max_connections.
      * Must be 2 or greater.
      *
      * Generated from protobuf field <code>int32 max_connections = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_connections = 0;
+    protected $max_connections = 0;
     /**
      * Required. The database engine used by the Cloud SQL instance that this
      * connection configures.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudSqlProperties.DatabaseEngine database_engine = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $database_engine = 0;
+    protected $database_engine = 0;
     protected $credential;
 
     /**

@@ -21,13 +21,13 @@ class ObjectTrackingFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedBoundingBox normalized_bounding_box = 1;</code>
      */
-    private $normalized_bounding_box = null;
+    protected $normalized_bounding_box = null;
     /**
      * The timestamp of the frame in microseconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
      */
-    private $time_offset = null;
+    protected $time_offset = null;
 
     /**
      * Constructor.

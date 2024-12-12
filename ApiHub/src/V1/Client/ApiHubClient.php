@@ -81,6 +81,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: This service provides all methods related to the API hub.
@@ -93,43 +94,43 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createAttributeAsync(CreateAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createExternalApiAsync(CreateExternalApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createSpecAsync(CreateSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createVersionAsync(CreateVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAttributeAsync(DeleteAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteExternalApiAsync(DeleteExternalApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSpecAsync(DeleteSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiAsync(GetApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getApiOperationAsync(GetApiOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAttributeAsync(GetAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDefinitionAsync(GetDefinitionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getExternalApiAsync(GetExternalApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpecAsync(GetSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSpecContentsAsync(GetSpecContentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getVersionAsync(GetVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApiOperationsAsync(ListApiOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listApisAsync(ListApisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAttributesAsync(ListAttributesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listExternalApisAsync(ListExternalApisRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listSpecsAsync(ListSpecsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listVersionsAsync(ListVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchResourcesAsync(SearchResourcesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAttributeAsync(UpdateAttributeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateExternalApiAsync(UpdateExternalApiRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSpecAsync(UpdateSpecRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateVersionAsync(UpdateVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attribute> createAttributeAsync(CreateAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> createDeploymentAsync(CreateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalApi> createExternalApiAsync(CreateExternalApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Spec> createSpecAsync(CreateSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Version> createVersionAsync(CreateVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteApiAsync(DeleteApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAttributeAsync(DeleteAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDeploymentAsync(DeleteDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteExternalApiAsync(DeleteExternalApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSpecAsync(DeleteSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> getApiAsync(GetApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ApiOperation> getApiOperationAsync(GetApiOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attribute> getAttributeAsync(GetAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Definition> getDefinitionAsync(GetDefinitionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalApi> getExternalApiAsync(GetExternalApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Spec> getSpecAsync(GetSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SpecContents> getSpecContentsAsync(GetSpecContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Version> getVersionAsync(GetVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApiOperationsAsync(ListApiOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listApisAsync(ListApisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAttributesAsync(ListAttributesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listExternalApisAsync(ListExternalApisRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSpecsAsync(ListSpecsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listVersionsAsync(ListVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchResourcesAsync(SearchResourcesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Api> updateApiAsync(UpdateApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Attribute> updateAttributeAsync(UpdateAttributeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Deployment> updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExternalApi> updateExternalApiAsync(UpdateExternalApiRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Spec> updateSpecAsync(UpdateSpecRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Version> updateVersionAsync(UpdateVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ApiHubClient
 {
@@ -165,9 +166,9 @@ final class ApiHubClient
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/api_hub_client_config.json',
             'descriptorsConfigPath' => __DIR__ . '/../resources/api_hub_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/api_hub_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -175,6 +176,18 @@ final class ApiHubClient
                 ],
             ],
         ];
+    }
+
+    /** Implements GapicClientTrait::defaultTransport. */
+    private static function defaultTransport()
+    {
+        return 'rest';
+    }
+
+    /** Implements ClientOptionsTrait::supportedTransports. */
+    private static function supportedTransports()
+    {
+        return ['rest'];
     }
 
     /**
@@ -395,14 +408,14 @@ final class ApiHubClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -437,9 +450,8 @@ final class ApiHubClient
      *           default this settings points to the default client config file, which is
      *           provided in the resources folder.
      *     @type string|TransportInterface $transport
-     *           The transport used for executing network requests. May be either the string
-     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
-     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           The transport used for executing network requests. At the moment, supports only
+     *           `rest`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
      *           $apiEndpoint setting, will be ignored.
@@ -448,15 +460,16 @@ final class ApiHubClient
      *           each supported transport type should be passed in a key for that transport. For
      *           example:
      *           $transportConfig = [
-     *               'grpc' => [...],
      *               'rest' => [...],
      *           ];
-     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
-     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
      *           supported options.
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

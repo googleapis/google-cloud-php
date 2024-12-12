@@ -92,13 +92,40 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     protected $spoke = '';
     /**
-     * Output only. The location of the route.
+     * Output only. The origin location of the route.
      * Uses the following form: "projects/{project}/locations/{location}"
      * Example: projects/1234/locations/us-central1
      *
      * Generated from protobuf field <code>string location = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $location = '';
+    /**
+     * Output only. The priority of this route. Priority is used to break ties in
+     * cases where a destination matches more than one route. In these cases the
+     * route with the lowest-numbered priority value wins.
+     *
+     * Generated from protobuf field <code>int64 priority = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $priority = 0;
+    /**
+     * Immutable. The next-hop VPN tunnel for packets on this route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopVPNTunnel next_hop_vpn_tunnel = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $next_hop_vpn_tunnel = null;
+    /**
+     * Immutable. The next-hop Router appliance instance for packets on this
+     * route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopRouterApplianceInstance next_hop_router_appliance_instance = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $next_hop_router_appliance_instance = null;
+    /**
+     * Immutable. The next-hop VLAN attachment for packets on this route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopInterconnectAttachment next_hop_interconnect_attachment = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $next_hop_interconnect_attachment = null;
 
     /**
      * Constructor.
@@ -138,9 +165,20 @@ class Route extends \Google\Protobuf\Internal\Message
      *           Immutable. The spoke that this route leads to.
      *           Example: projects/12345/locations/global/spokes/SPOKE
      *     @type string $location
-     *           Output only. The location of the route.
+     *           Output only. The origin location of the route.
      *           Uses the following form: "projects/{project}/locations/{location}"
      *           Example: projects/1234/locations/us-central1
+     *     @type int|string $priority
+     *           Output only. The priority of this route. Priority is used to break ties in
+     *           cases where a destination matches more than one route. In these cases the
+     *           route with the lowest-numbered priority value wins.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\NextHopVPNTunnel $next_hop_vpn_tunnel
+     *           Immutable. The next-hop VPN tunnel for packets on this route.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\NextHopRouterApplianceInstance $next_hop_router_appliance_instance
+     *           Immutable. The next-hop Router appliance instance for packets on this
+     *           route.
+     *     @type \Google\Cloud\NetworkConnectivity\V1\NextHopInterconnectAttachment $next_hop_interconnect_attachment
+     *           Immutable. The next-hop VLAN attachment for packets on this route.
      * }
      */
     public function __construct($data = NULL) {
@@ -483,7 +521,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The location of the route.
+     * Output only. The origin location of the route.
      * Uses the following form: "projects/{project}/locations/{location}"
      * Example: projects/1234/locations/us-central1
      *
@@ -496,7 +534,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The location of the route.
+     * Output only. The origin location of the route.
      * Uses the following form: "projects/{project}/locations/{location}"
      * Example: projects/1234/locations/us-central1
      *
@@ -508,6 +546,146 @@ class Route extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The priority of this route. Priority is used to break ties in
+     * cases where a destination matches more than one route. In these cases the
+     * route with the lowest-numbered priority value wins.
+     *
+     * Generated from protobuf field <code>int64 priority = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * Output only. The priority of this route. Priority is used to break ties in
+     * cases where a destination matches more than one route. In these cases the
+     * route with the lowest-numbered priority value wins.
+     *
+     * Generated from protobuf field <code>int64 priority = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The next-hop VPN tunnel for packets on this route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopVPNTunnel next_hop_vpn_tunnel = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\NextHopVPNTunnel|null
+     */
+    public function getNextHopVpnTunnel()
+    {
+        return $this->next_hop_vpn_tunnel;
+    }
+
+    public function hasNextHopVpnTunnel()
+    {
+        return isset($this->next_hop_vpn_tunnel);
+    }
+
+    public function clearNextHopVpnTunnel()
+    {
+        unset($this->next_hop_vpn_tunnel);
+    }
+
+    /**
+     * Immutable. The next-hop VPN tunnel for packets on this route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopVPNTunnel next_hop_vpn_tunnel = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\NextHopVPNTunnel $var
+     * @return $this
+     */
+    public function setNextHopVpnTunnel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\NextHopVPNTunnel::class);
+        $this->next_hop_vpn_tunnel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The next-hop Router appliance instance for packets on this
+     * route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopRouterApplianceInstance next_hop_router_appliance_instance = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\NextHopRouterApplianceInstance|null
+     */
+    public function getNextHopRouterApplianceInstance()
+    {
+        return $this->next_hop_router_appliance_instance;
+    }
+
+    public function hasNextHopRouterApplianceInstance()
+    {
+        return isset($this->next_hop_router_appliance_instance);
+    }
+
+    public function clearNextHopRouterApplianceInstance()
+    {
+        unset($this->next_hop_router_appliance_instance);
+    }
+
+    /**
+     * Immutable. The next-hop Router appliance instance for packets on this
+     * route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopRouterApplianceInstance next_hop_router_appliance_instance = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\NextHopRouterApplianceInstance $var
+     * @return $this
+     */
+    public function setNextHopRouterApplianceInstance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\NextHopRouterApplianceInstance::class);
+        $this->next_hop_router_appliance_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The next-hop VLAN attachment for packets on this route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopInterconnectAttachment next_hop_interconnect_attachment = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\NetworkConnectivity\V1\NextHopInterconnectAttachment|null
+     */
+    public function getNextHopInterconnectAttachment()
+    {
+        return $this->next_hop_interconnect_attachment;
+    }
+
+    public function hasNextHopInterconnectAttachment()
+    {
+        return isset($this->next_hop_interconnect_attachment);
+    }
+
+    public function clearNextHopInterconnectAttachment()
+    {
+        unset($this->next_hop_interconnect_attachment);
+    }
+
+    /**
+     * Immutable. The next-hop VLAN attachment for packets on this route.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkconnectivity.v1.NextHopInterconnectAttachment next_hop_interconnect_attachment = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\NetworkConnectivity\V1\NextHopInterconnectAttachment $var
+     * @return $this
+     */
+    public function setNextHopInterconnectAttachment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkConnectivity\V1\NextHopInterconnectAttachment::class);
+        $this->next_hop_interconnect_attachment = $var;
 
         return $this;
     }

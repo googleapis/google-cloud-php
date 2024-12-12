@@ -21,14 +21,14 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. URL encoded UserEvent proto with a length limit of 2,000,000
      * characters.
      *
      * Generated from protobuf field <code>string user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_event = '';
+    protected $user_event = '';
     /**
      * The URL including cgi-parameters but excluding the hash fragment with a
      * length limit of 5,000 characters. This is often more useful than the
@@ -37,7 +37,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The event timestamp in milliseconds. This prevents browser caching of
      * otherwise identical get requests. The name is abbreviated to reduce the
@@ -45,7 +45,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 ets = 4;</code>
      */
-    private $ets = 0;
+    protected $ets = 0;
     /**
      * An arbitrary serialized JSON string that contains necessary information
      * that can comprise a user event. When this field is specified, the
@@ -54,7 +54,7 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string raw_json = 5;</code>
      */
-    private $raw_json = '';
+    protected $raw_json = '';
     protected $conversion_rule;
 
     /**

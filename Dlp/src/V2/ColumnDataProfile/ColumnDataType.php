@@ -172,6 +172,4 @@ class ColumnDataType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ColumnDataType::class, \Google\Cloud\Dlp\V2\ColumnDataProfile_ColumnDataType::class);
 

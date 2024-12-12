@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\NetworkEdgeSecurityService;
 use Google\Cloud\Compute\V1\PatchNetworkEdgeSecurityServiceRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The NetworkEdgeSecurityServices API.
@@ -48,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListNetworkEdgeSecurityServicesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeleteNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkEdgeSecurityServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<NetworkEdgeSecurityService> getAsync(GetNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchNetworkEdgeSecurityServiceRequest $request, array $optionalArgs = [])
  */
 final class NetworkEdgeSecurityServicesClient
 {
@@ -217,6 +218,9 @@ final class NetworkEdgeSecurityServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -245,6 +249,8 @@ final class NetworkEdgeSecurityServicesClient
      * The async variant is
      * {@see NetworkEdgeSecurityServicesClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/aggregated_list.php
+     *
      * @param AggregatedListNetworkEdgeSecurityServicesRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -268,6 +274,8 @@ final class NetworkEdgeSecurityServicesClient
      * Deletes the specified service.
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::deleteAsync()} .
+     *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/delete.php
      *
      * @param DeleteNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -293,6 +301,8 @@ final class NetworkEdgeSecurityServicesClient
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::getAsync()} .
      *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/get.php
+     *
      * @param GetNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -317,6 +327,8 @@ final class NetworkEdgeSecurityServicesClient
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::insertAsync()} .
      *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/insert.php
+     *
      * @param InsertNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -340,6 +352,8 @@ final class NetworkEdgeSecurityServicesClient
      * Patches the specified policy with the data included in the request.
      *
      * The async variant is {@see NetworkEdgeSecurityServicesClient::patchAsync()} .
+     *
+     * @example samples/V1/NetworkEdgeSecurityServicesClient/patch.php
      *
      * @param PatchNetworkEdgeSecurityServiceRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

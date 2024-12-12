@@ -85,8 +85,6 @@ class SnoozeServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->workspaceName('[PROJECT]');
         $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
         $snoozeCriteria = new Criteria();
         $snooze->setCriteria($snoozeCriteria);
         $snoozeInterval = new TimeInterval();
@@ -131,8 +129,6 @@ class SnoozeServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->workspaceName('[PROJECT]');
         $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
         $snoozeCriteria = new Criteria();
         $snooze->setCriteria($snoozeCriteria);
         $snoozeInterval = new TimeInterval();
@@ -310,8 +306,6 @@ class SnoozeServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
         $snoozeCriteria = new Criteria();
         $snooze->setCriteria($snoozeCriteria);
         $snoozeInterval = new TimeInterval();
@@ -356,8 +350,6 @@ class SnoozeServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
         $snoozeCriteria = new Criteria();
         $snooze->setCriteria($snoozeCriteria);
         $snoozeInterval = new TimeInterval();
@@ -399,8 +391,6 @@ class SnoozeServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->workspaceName('[PROJECT]');
         $snooze = new Snooze();
-        $snoozeName = 'snoozeName1119820177';
-        $snooze->setName($snoozeName);
         $snoozeCriteria = new Criteria();
         $snooze->setCriteria($snoozeCriteria);
         $snoozeInterval = new TimeInterval();

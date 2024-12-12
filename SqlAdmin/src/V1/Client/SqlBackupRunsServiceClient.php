@@ -39,6 +39,7 @@ use Google\Cloud\Sql\V1\SqlBackupRunsGetRequest;
 use Google\Cloud\Sql\V1\SqlBackupRunsInsertRequest;
 use Google\Cloud\Sql\V1\SqlBackupRunsListRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing database backups.
@@ -46,10 +47,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlBackupRunsListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlBackupRunsDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupRun> getAsync(SqlBackupRunsGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> insertAsync(SqlBackupRunsInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupRunsListResponse> listAsync(SqlBackupRunsListRequest $request, array $optionalArgs = [])
  */
 final class SqlBackupRunsServiceClient
 {
@@ -149,6 +150,9 @@ final class SqlBackupRunsServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

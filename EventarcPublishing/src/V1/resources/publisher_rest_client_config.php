@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.cloud.eventarc.publishing.v1.Publisher' => [
+            'Publish' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{message_bus=projects/*/locations/*/messageBuses/*}:publish',
+                'body' => '*',
+                'placeholders' => [
+                    'message_bus' => [
+                        'getters' => [
+                            'getMessageBus',
+                        ],
+                    ],
+                ],
+            ],
             'PublishChannelConnectionEvents' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{channel_connection=projects/*/locations/*/channelConnections/*}:publishEvents',

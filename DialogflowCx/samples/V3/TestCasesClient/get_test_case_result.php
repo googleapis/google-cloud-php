@@ -32,8 +32,8 @@ use Google\Cloud\Dialogflow\Cx\V3\TestCaseResult;
  * Gets a test case result.
  *
  * @param string $formattedName The name of the testcase.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/testCases/<TestCase ID>/results/<TestCaseResult ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>/results/<TestCaseResultID>`. Please see
  *                              {@see TestCasesClient::testCaseResultName()} for help formatting this field.
  */
 function get_test_case_result_sample(string $formattedName): void

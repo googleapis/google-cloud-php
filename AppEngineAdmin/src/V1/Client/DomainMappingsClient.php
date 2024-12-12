@@ -42,6 +42,7 @@ use Google\Cloud\AppEngine\V1\UpdateDomainMappingRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages domains serving an application.
@@ -49,11 +50,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface createDomainMappingAsync(CreateDomainMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDomainMappingAsync(DeleteDomainMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDomainMappingAsync(GetDomainMappingRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDomainMappingsAsync(ListDomainMappingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDomainMappingAsync(UpdateDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDomainMappingAsync(CreateDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDomainMappingAsync(DeleteDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DomainMapping> getDomainMappingAsync(GetDomainMappingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDomainMappingsAsync(ListDomainMappingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDomainMappingAsync(UpdateDomainMappingRequest $request, array $optionalArgs = [])
  */
 final class DomainMappingsClient
 {
@@ -206,6 +207,9 @@ final class DomainMappingsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

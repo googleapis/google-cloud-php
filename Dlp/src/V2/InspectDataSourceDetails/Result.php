@@ -20,13 +20,13 @@ class Result extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 processed_bytes = 1;</code>
      */
-    private $processed_bytes = 0;
+    protected $processed_bytes = 0;
     /**
      * Estimate of the number of bytes to process.
      *
      * Generated from protobuf field <code>int64 total_estimated_bytes = 2;</code>
      */
-    private $total_estimated_bytes = 0;
+    protected $total_estimated_bytes = 0;
     /**
      * Statistics of how many instances of each info type were found during
      * inspect job.
@@ -40,13 +40,13 @@ class Result extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 num_rows_processed = 5;</code>
      */
-    private $num_rows_processed = 0;
+    protected $num_rows_processed = 0;
     /**
      * Statistics related to the processing of hybrid inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
      */
-    private $hybrid_stats = null;
+    protected $hybrid_stats = null;
 
     /**
      * Constructor.
@@ -219,6 +219,4 @@ class Result extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Result::class, \Google\Cloud\Dlp\V2\InspectDataSourceDetails_Result::class);
 

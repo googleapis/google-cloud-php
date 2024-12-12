@@ -21,54 +21,54 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Description of the patch job. Length of the description is limited
      * to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Instances to patch, either explicitly or filtered by some
      * criteria such as zone or labels.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_filter = null;
+    protected $instance_filter = null;
     /**
      * Patch configuration being applied. If omitted, instances are
      * patched using the default configurations.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig patch_config = 4;</code>
      */
-    private $patch_config = null;
+    protected $patch_config = null;
     /**
      * Duration of the patch job. After the duration ends, the patch job
      * times out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5;</code>
      */
-    private $duration = null;
+    protected $duration = null;
     /**
      * If this patch is a dry-run only, instances are contacted but
      * will do nothing.
      *
      * Generated from protobuf field <code>bool dry_run = 6;</code>
      */
-    private $dry_run = false;
+    protected $dry_run = false;
     /**
      * Display name for this patch job. This does not have to be unique.
      *
      * Generated from protobuf field <code>string display_name = 8;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Rollout strategy of the patch job.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 9;</code>
      */
-    private $rollout = null;
+    protected $rollout = null;
 
     /**
      * Constructor.

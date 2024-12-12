@@ -28,14 +28,14 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    private $type = '';
+    protected $type = '';
     /**
      * Confidence of detected defect. Range `[0, 1]` where `1` indicates
      * strong confidence that the defect exists.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
 
     /**
      * Constructor.

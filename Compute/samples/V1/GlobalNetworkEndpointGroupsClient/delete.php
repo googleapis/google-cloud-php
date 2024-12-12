@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalNetworkEndpointGroups_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\Client\GlobalNetworkEndpointGroupsClient;
+use Google\Cloud\Compute\V1\DeleteGlobalNetworkEndpointGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $networkEndpointGroup, string $project): void
     // Create a client.
     $globalNetworkEndpointGroupsClient = new GlobalNetworkEndpointGroupsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteGlobalNetworkEndpointGroupRequest())
+        ->setNetworkEndpointGroup($networkEndpointGroup)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $globalNetworkEndpointGroupsClient->delete($networkEndpointGroup, $project);
+        $response = $globalNetworkEndpointGroupsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

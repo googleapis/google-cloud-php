@@ -31,8 +31,10 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\GPBEmpty $account_aggregation
-     *           The provider is an aggregator for the account.
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\AccountAggregation $account_aggregation
+     *           The provider is an
+     *           [aggregator](https://support.google.com/merchants/answer/188487) for
+     *           the account. Payload for service type Account Aggregation.
      *     @type string $provider
      *           Optional. The provider of the service.
      *           Format: `accounts/{account}`
@@ -44,32 +46,36 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The provider is an aggregator for the account.
+     * The provider is an
+     * [aggregator](https://support.google.com/merchants/answer/188487) for
+     * the account. Payload for service type Account Aggregation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Empty account_aggregation = 2;</code>
-     * @return \Google\Protobuf\GPBEmpty|null
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.AccountAggregation account_aggregation = 103;</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1beta\AccountAggregation|null
      */
     public function getAccountAggregation()
     {
-        return $this->readOneof(2);
+        return $this->readOneof(103);
     }
 
     public function hasAccountAggregation()
     {
-        return $this->hasOneof(2);
+        return $this->hasOneof(103);
     }
 
     /**
-     * The provider is an aggregator for the account.
+     * The provider is an
+     * [aggregator](https://support.google.com/merchants/answer/188487) for
+     * the account. Payload for service type Account Aggregation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Empty account_aggregation = 2;</code>
-     * @param \Google\Protobuf\GPBEmpty $var
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1beta.AccountAggregation account_aggregation = 103;</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\AccountAggregation $var
      * @return $this
      */
     public function setAccountAggregation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Protobuf\GPBEmpty::class);
-        $this->writeOneof(2, $var);
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1beta\AccountAggregation::class);
+        $this->writeOneof(103, $var);
 
         return $this;
     }

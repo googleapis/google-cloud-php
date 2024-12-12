@@ -335,6 +335,19 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string custom_label_4 = 50;</code>
      */
     protected $custom_label_4 = null;
+    /**
+     * Number and amount of installments to pay for an item.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferInstallment headline_offer_installment = 51;</code>
+     */
+    protected $headline_offer_installment = null;
+    /**
+     * Number of periods (months or years) and amount of payment per period
+     * for an item with an associated subscription contract.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
+     */
+    protected $headline_offer_subscription_cost = null;
 
     /**
      * Constructor.
@@ -470,6 +483,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Custom label 3 for custom grouping of items in a Shopping campaign.
      *     @type string $custom_label_4
      *           Custom label 4 for custom grouping of items in a Shopping campaign.
+     *     @type \Google\Shopping\Css\V1\HeadlineOfferInstallment $headline_offer_installment
+     *           Number and amount of installments to pay for an item.
+     *     @type \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost $headline_offer_subscription_cost
+     *           Number of periods (months or years) and amount of payment per period
+     *           for an item with an associated subscription contract.
      * }
      */
     public function __construct($data = NULL) {
@@ -2185,6 +2203,80 @@ class Attributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->custom_label_4 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number and amount of installments to pay for an item.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferInstallment headline_offer_installment = 51;</code>
+     * @return \Google\Shopping\Css\V1\HeadlineOfferInstallment|null
+     */
+    public function getHeadlineOfferInstallment()
+    {
+        return $this->headline_offer_installment;
+    }
+
+    public function hasHeadlineOfferInstallment()
+    {
+        return isset($this->headline_offer_installment);
+    }
+
+    public function clearHeadlineOfferInstallment()
+    {
+        unset($this->headline_offer_installment);
+    }
+
+    /**
+     * Number and amount of installments to pay for an item.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferInstallment headline_offer_installment = 51;</code>
+     * @param \Google\Shopping\Css\V1\HeadlineOfferInstallment $var
+     * @return $this
+     */
+    public function setHeadlineOfferInstallment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Css\V1\HeadlineOfferInstallment::class);
+        $this->headline_offer_installment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of periods (months or years) and amount of payment per period
+     * for an item with an associated subscription contract.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
+     * @return \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost|null
+     */
+    public function getHeadlineOfferSubscriptionCost()
+    {
+        return $this->headline_offer_subscription_cost;
+    }
+
+    public function hasHeadlineOfferSubscriptionCost()
+    {
+        return isset($this->headline_offer_subscription_cost);
+    }
+
+    public function clearHeadlineOfferSubscriptionCost()
+    {
+        unset($this->headline_offer_subscription_cost);
+    }
+
+    /**
+     * Number of periods (months or years) and amount of payment per period
+     * for an item with an associated subscription contract.
+     *
+     * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
+     * @param \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost $var
+     * @return $this
+     */
+    public function setHeadlineOfferSubscriptionCost($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost::class);
+        $this->headline_offer_subscription_cost = $var;
 
         return $this;
     }

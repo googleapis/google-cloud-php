@@ -24,7 +24,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_directory_service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $service_directory_service = '';
+    protected $service_directory_service = '';
     /**
      * Optional. The filter applied to the endpoints of the resolved service. If
      * no filter is specified, all endpoints will be considered. An endpoint
@@ -34,13 +34,13 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $endpoint_filter = '';
+    protected $endpoint_filter = '';
     /**
      * Required. The hostname of the EKM replica used at TLS and HTTP layers.
      *
      * Generated from protobuf field <code>string hostname = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Required. A list of leaf server certificates used to authenticate HTTPS
      * connections to the EKM replica. Currently, a maximum of 10
@@ -201,6 +201,4 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServiceResolver::class, \Google\Cloud\Kms\V1\EkmConnection_ServiceResolver::class);
 

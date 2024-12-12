@@ -34,7 +34,10 @@ class OperationsTest extends SpannerTestCase
     private static $name2;
     private static $isSetup = false;
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         if (self::$isSetup) {
             return;
@@ -44,7 +47,7 @@ class OperationsTest extends SpannerTestCase
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
-        parent::setUpBeforeClass();
+        parent::setUpTestFixtures();
 
         self::$database->insert(self::TEST_TABLE_NAME, [
             'id' => self::$id1,

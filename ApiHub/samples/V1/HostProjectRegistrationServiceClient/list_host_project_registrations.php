@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ApiHub\V1\Client\HostProjectRegistrationServiceClient;
-use Google\Cloud\ApiHub\V1\HostProjectRegistration;
 use Google\Cloud\ApiHub\V1\ListHostProjectRegistrationsRequest;
 
 /**
@@ -50,7 +49,6 @@ function list_host_project_registrations_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $hostProjectRegistrationServiceClient->listHostProjectRegistrations($request);
 
-        /** @var HostProjectRegistration $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

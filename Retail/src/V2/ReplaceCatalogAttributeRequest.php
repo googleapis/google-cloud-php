@@ -23,14 +23,14 @@ class ReplaceCatalogAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string attributes_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $attributes_config = '';
+    protected $attributes_config = '';
     /**
      * Required. The updated
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CatalogAttribute catalog_attribute = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $catalog_attribute = null;
+    protected $catalog_attribute = null;
     /**
      * Indicates which fields in the provided
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to update. The
@@ -40,7 +40,7 @@ class ReplaceCatalogAttributeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

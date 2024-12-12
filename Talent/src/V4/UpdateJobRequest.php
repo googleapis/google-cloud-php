@@ -20,7 +20,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * Strongly recommended for the best service experience.
      * If [update_mask][google.cloud.talent.v4.UpdateJobRequest.update_mask] is
@@ -32,7 +32,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Talent\V4\Job $job        Required. The Job to be updated.

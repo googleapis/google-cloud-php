@@ -21,19 +21,19 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The user facing name, eg 'Go 1.13', 'Node.js 12', etc.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The stage of life this runtime is in, e.g., BETA, GA, etc.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.ListRuntimesResponse.RuntimeStage stage = 2;</code>
      */
-    private $stage = 0;
+    protected $stage = 0;
     /**
      * Warning messages, e.g., a deprecation warning.
      *
@@ -45,19 +45,19 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Environment environment = 4;</code>
      */
-    private $environment = 0;
+    protected $environment = 0;
     /**
      * Deprecation date for the runtime.
      *
      * Generated from protobuf field <code>.google.type.Date deprecation_date = 6;</code>
      */
-    private $deprecation_date = null;
+    protected $deprecation_date = null;
     /**
      * Decommission date for the runtime.
      *
      * Generated from protobuf field <code>.google.type.Date decommission_date = 7;</code>
      */
-    private $decommission_date = null;
+    protected $decommission_date = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class UpdateServingConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ServingConfig serving_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $serving_config = null;
+    protected $serving_config = null;
     /**
      * Indicates which fields in the provided
      * [ServingConfig][google.cloud.retail.v2.ServingConfig] to update. The
@@ -30,7 +30,7 @@ class UpdateServingConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Retail\V2\ServingConfig $servingConfig Required. The ServingConfig to update.

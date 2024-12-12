@@ -23,7 +23,7 @@ class ClusterSelector extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Required. The cluster labels. Cluster must have all labels
      * to match.

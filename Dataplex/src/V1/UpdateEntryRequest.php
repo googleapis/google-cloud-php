@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Update Entry request.
+ *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.UpdateEntryRequest</code>
  */
 class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
@@ -22,38 +24,43 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Mask of fields to update. To update Aspects, the update_mask must
      * contain the value "aspects".
-     * If the update_mask is empty, all modifiable fields present in the request
-     * will be updated.
+     * If the update_mask is empty, the service will update all modifiable fields
+     * present in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * Optional. If set to true and the entry does not exist, it will be created.
+     * Optional. If set to true and the entry doesn't exist, the service will
+     * create it.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
     /**
-     * Optional. If set to true and the aspect_keys specify aspect ranges, any
-     * existing aspects from that range not provided in the request will be
-     * deleted.
+     * Optional. If set to true and the aspect_keys specify aspect ranges, the
+     * service deletes any existing aspects from that range that weren't provided
+     * in the request.
      *
      * Generated from protobuf field <code>bool delete_missing_aspects = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $delete_missing_aspects = false;
     /**
-     * Optional. The map keys of the Aspects which should be modified. Supports
-     * the following syntaxes:
-     * * <aspect_type_reference> - matches aspect on given type and empty path
-     * * <aspect_type_reference>&#64;path - matches aspect on given type and specified
-     * path
-     * * <aspect_type_reference>* - matches aspects on given type for all paths
-     * * *&#64;path - matches aspects of all types on the given path
-     * Existing aspects matching the syntax will not be removed unless
+     * Optional. The map keys of the Aspects which the service should modify. It
+     * supports the following syntaxes:
+     * * `<aspect_type_reference>` - matches an aspect of the given type and empty
+     * path.
+     * * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     * specified path. For example, to attach an aspect to a field that is
+     * specified by the `schema` aspect, the path should have the format
+     * `Schema.<field_name>`.
+     * * `<aspect_type_reference>*` - matches aspects of the given type for all
+     * paths.
+     * * `*&#64;path` - matches aspects of all types on the given path.
+     * The service will not remove existing aspects matching the syntax unless
      * `delete_missing_aspects` is set to true.
-     * If this field is left empty, it will be treated as specifying exactly those
-     * Aspects present in the request.
+     * If this field is left empty, the service treats it as specifying
+     * exactly those Aspects present in the request.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,8 +71,8 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Protobuf\FieldMask      $updateMask Optional. Mask of fields to update. To update Aspects, the update_mask must
      *                                                    contain the value "aspects".
      *
-     *                                                    If the update_mask is empty, all modifiable fields present in the request
-     *                                                    will be updated.
+     *                                                    If the update_mask is empty, the service will update all modifiable fields
+     *                                                    present in the request.
      *
      * @return \Google\Cloud\Dataplex\V1\UpdateEntryRequest
      *
@@ -89,26 +96,31 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Mask of fields to update. To update Aspects, the update_mask must
      *           contain the value "aspects".
-     *           If the update_mask is empty, all modifiable fields present in the request
-     *           will be updated.
+     *           If the update_mask is empty, the service will update all modifiable fields
+     *           present in the request.
      *     @type bool $allow_missing
-     *           Optional. If set to true and the entry does not exist, it will be created.
+     *           Optional. If set to true and the entry doesn't exist, the service will
+     *           create it.
      *     @type bool $delete_missing_aspects
-     *           Optional. If set to true and the aspect_keys specify aspect ranges, any
-     *           existing aspects from that range not provided in the request will be
-     *           deleted.
+     *           Optional. If set to true and the aspect_keys specify aspect ranges, the
+     *           service deletes any existing aspects from that range that weren't provided
+     *           in the request.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_keys
-     *           Optional. The map keys of the Aspects which should be modified. Supports
-     *           the following syntaxes:
-     *           * <aspect_type_reference> - matches aspect on given type and empty path
-     *           * <aspect_type_reference>&#64;path - matches aspect on given type and specified
-     *           path
-     *           * <aspect_type_reference>* - matches aspects on given type for all paths
-     *           * *&#64;path - matches aspects of all types on the given path
-     *           Existing aspects matching the syntax will not be removed unless
+     *           Optional. The map keys of the Aspects which the service should modify. It
+     *           supports the following syntaxes:
+     *           * `<aspect_type_reference>` - matches an aspect of the given type and empty
+     *           path.
+     *           * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     *           specified path. For example, to attach an aspect to a field that is
+     *           specified by the `schema` aspect, the path should have the format
+     *           `Schema.<field_name>`.
+     *           * `<aspect_type_reference>*` - matches aspects of the given type for all
+     *           paths.
+     *           * `*&#64;path` - matches aspects of all types on the given path.
+     *           The service will not remove existing aspects matching the syntax unless
      *           `delete_missing_aspects` is set to true.
-     *           If this field is left empty, it will be treated as specifying exactly those
-     *           Aspects present in the request.
+     *           If this field is left empty, the service treats it as specifying
+     *           exactly those Aspects present in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,8 +167,8 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Mask of fields to update. To update Aspects, the update_mask must
      * contain the value "aspects".
-     * If the update_mask is empty, all modifiable fields present in the request
-     * will be updated.
+     * If the update_mask is empty, the service will update all modifiable fields
+     * present in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -179,8 +191,8 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Mask of fields to update. To update Aspects, the update_mask must
      * contain the value "aspects".
-     * If the update_mask is empty, all modifiable fields present in the request
-     * will be updated.
+     * If the update_mask is empty, the service will update all modifiable fields
+     * present in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -195,7 +207,8 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true and the entry does not exist, it will be created.
+     * Optional. If set to true and the entry doesn't exist, the service will
+     * create it.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -206,7 +219,8 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true and the entry does not exist, it will be created.
+     * Optional. If set to true and the entry doesn't exist, the service will
+     * create it.
      *
      * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -221,9 +235,9 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true and the aspect_keys specify aspect ranges, any
-     * existing aspects from that range not provided in the request will be
-     * deleted.
+     * Optional. If set to true and the aspect_keys specify aspect ranges, the
+     * service deletes any existing aspects from that range that weren't provided
+     * in the request.
      *
      * Generated from protobuf field <code>bool delete_missing_aspects = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -234,9 +248,9 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to true and the aspect_keys specify aspect ranges, any
-     * existing aspects from that range not provided in the request will be
-     * deleted.
+     * Optional. If set to true and the aspect_keys specify aspect ranges, the
+     * service deletes any existing aspects from that range that weren't provided
+     * in the request.
      *
      * Generated from protobuf field <code>bool delete_missing_aspects = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -251,17 +265,21 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The map keys of the Aspects which should be modified. Supports
-     * the following syntaxes:
-     * * <aspect_type_reference> - matches aspect on given type and empty path
-     * * <aspect_type_reference>&#64;path - matches aspect on given type and specified
-     * path
-     * * <aspect_type_reference>* - matches aspects on given type for all paths
-     * * *&#64;path - matches aspects of all types on the given path
-     * Existing aspects matching the syntax will not be removed unless
+     * Optional. The map keys of the Aspects which the service should modify. It
+     * supports the following syntaxes:
+     * * `<aspect_type_reference>` - matches an aspect of the given type and empty
+     * path.
+     * * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     * specified path. For example, to attach an aspect to a field that is
+     * specified by the `schema` aspect, the path should have the format
+     * `Schema.<field_name>`.
+     * * `<aspect_type_reference>*` - matches aspects of the given type for all
+     * paths.
+     * * `*&#64;path` - matches aspects of all types on the given path.
+     * The service will not remove existing aspects matching the syntax unless
      * `delete_missing_aspects` is set to true.
-     * If this field is left empty, it will be treated as specifying exactly those
-     * Aspects present in the request.
+     * If this field is left empty, the service treats it as specifying
+     * exactly those Aspects present in the request.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -272,17 +290,21 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The map keys of the Aspects which should be modified. Supports
-     * the following syntaxes:
-     * * <aspect_type_reference> - matches aspect on given type and empty path
-     * * <aspect_type_reference>&#64;path - matches aspect on given type and specified
-     * path
-     * * <aspect_type_reference>* - matches aspects on given type for all paths
-     * * *&#64;path - matches aspects of all types on the given path
-     * Existing aspects matching the syntax will not be removed unless
+     * Optional. The map keys of the Aspects which the service should modify. It
+     * supports the following syntaxes:
+     * * `<aspect_type_reference>` - matches an aspect of the given type and empty
+     * path.
+     * * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     * specified path. For example, to attach an aspect to a field that is
+     * specified by the `schema` aspect, the path should have the format
+     * `Schema.<field_name>`.
+     * * `<aspect_type_reference>*` - matches aspects of the given type for all
+     * paths.
+     * * `*&#64;path` - matches aspects of all types on the given path.
+     * The service will not remove existing aspects matching the syntax unless
      * `delete_missing_aspects` is set to true.
-     * If this field is left empty, it will be treated as specifying exactly those
-     * Aspects present in the request.
+     * If this field is left empty, the service treats it as specifying
+     * exactly those Aspects present in the request.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

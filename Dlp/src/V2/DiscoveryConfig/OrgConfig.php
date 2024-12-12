@@ -20,7 +20,7 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryStartingLocation location = 1;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * The project that will run the scan. The DLP service
      * account that exists within this project must have access to all resources
@@ -28,7 +28,7 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.
@@ -117,6 +117,4 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrgConfig::class, \Google\Cloud\Dlp\V2\DiscoveryConfig_OrgConfig::class);
 

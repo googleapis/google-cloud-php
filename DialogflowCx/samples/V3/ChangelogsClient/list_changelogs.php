@@ -33,7 +33,7 @@ use Google\Cloud\Dialogflow\Cx\V3\ListChangelogsRequest;
  * Returns the list of Changelogs.
  *
  * @param string $formattedParent The agent containing the changelogs.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                                Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                                {@see ChangelogsClient::agentName()} for help formatting this field.
  */
 function list_changelogs_sample(string $formattedParent): void

@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetUrlMapRegionTargetHttpProxyRequest;
 use Google\Cloud\Compute\V1\TargetHttpProxy;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionTargetHttpProxies API.
@@ -48,11 +49,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListRegionTargetHttpProxiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setUrlMapAsync(SetUrlMapRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetHttpProxy> getAsync(GetRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionTargetHttpProxiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setUrlMapAsync(SetUrlMapRegionTargetHttpProxyRequest $request, array $optionalArgs = [])
  */
 final class RegionTargetHttpProxiesClient
 {
@@ -217,6 +218,9 @@ final class RegionTargetHttpProxiesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -244,6 +248,8 @@ final class RegionTargetHttpProxiesClient
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpProxiesClient/delete.php
+     *
      * @param DeleteRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -267,6 +273,8 @@ final class RegionTargetHttpProxiesClient
      * Returns the specified TargetHttpProxy resource in the specified region.
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpProxiesClient/get.php
      *
      * @param GetRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -292,6 +300,8 @@ final class RegionTargetHttpProxiesClient
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpProxiesClient/insert.php
+     *
      * @param InsertRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -316,6 +326,8 @@ final class RegionTargetHttpProxiesClient
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::listAsync()} .
      *
+     * @example samples/V1/RegionTargetHttpProxiesClient/list.php
+     *
      * @param ListRegionTargetHttpProxiesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -339,6 +351,8 @@ final class RegionTargetHttpProxiesClient
      * Changes the URL map for TargetHttpProxy.
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::setUrlMapAsync()} .
+     *
+     * @example samples/V1/RegionTargetHttpProxiesClient/set_url_map.php
      *
      * @param SetUrlMapRegionTargetHttpProxyRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

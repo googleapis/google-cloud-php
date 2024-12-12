@@ -27,7 +27,7 @@ class LayoutListBlock extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
-    private $type = '';
+    protected $type = '';
 
     /**
      * Constructor.

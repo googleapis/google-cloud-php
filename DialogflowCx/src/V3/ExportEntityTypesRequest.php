@@ -18,16 +18,15 @@ class ExportEntityTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the parent agent to export entity types.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
      * Required. The name of the entity types to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<EntityType ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,12 +63,11 @@ class ExportEntityTypesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The name of the parent agent to export entity types.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_types
      *           Required. The name of the entity types to export.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/entityTypes/<EntityType ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *     @type string $entity_types_uri
      *           Optional. The [Google Cloud
      *           Storage](https://cloud.google.com/storage/docs/) URI to export the entity
@@ -105,8 +103,7 @@ class ExportEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the parent agent to export entity types.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -118,8 +115,7 @@ class ExportEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the parent agent to export entity types.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -135,8 +131,8 @@ class ExportEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the entity types to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<EntityType ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -148,8 +144,8 @@ class ExportEntityTypesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the entity types to export.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/entityTypes/<EntityType ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

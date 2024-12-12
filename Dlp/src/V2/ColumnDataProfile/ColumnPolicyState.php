@@ -52,6 +52,4 @@ class ColumnPolicyState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ColumnPolicyState::class, \Google\Cloud\Dlp\V2\ColumnDataProfile_ColumnPolicyState::class);
 

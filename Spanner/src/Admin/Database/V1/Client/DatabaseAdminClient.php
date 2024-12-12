@@ -76,6 +76,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\LongRunning\Operation;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Cloud Spanner Database Admin API
@@ -94,31 +95,31 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteBackupScheduleAsync(DeleteBackupScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface dropDatabaseAsync(DropDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getBackupScheduleAsync(GetBackupScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDatabaseDdlAsync(GetDatabaseDdlRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupOperationsAsync(ListBackupOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupSchedulesAsync(ListBackupSchedulesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabaseOperationsAsync(ListDatabaseOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabaseRolesAsync(ListDatabaseRolesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreDatabaseAsync(RestoreDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateBackupScheduleAsync(UpdateBackupScheduleRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatabaseAsync(UpdateDatabaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDatabaseDdlAsync(UpdateDatabaseDdlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupSchedule> createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteBackupScheduleAsync(DeleteBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> dropDatabaseAsync(DropDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupSchedule> getBackupScheduleAsync(GetBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetDatabaseDdlResponse> getDatabaseDdlAsync(GetDatabaseDdlRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupOperationsAsync(ListBackupOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupSchedulesAsync(ListBackupSchedulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabaseOperationsAsync(ListDatabaseOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabaseRolesAsync(ListDatabaseRolesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreDatabaseAsync(RestoreDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupSchedule> updateBackupScheduleAsync(UpdateBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDatabaseAsync(UpdateDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateDatabaseDdlAsync(UpdateDatabaseDdlRequest $request, array $optionalArgs = [])
  */
 final class DatabaseAdminClient
 {
@@ -337,14 +338,14 @@ final class DatabaseAdminClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -403,6 +404,9 @@ final class DatabaseAdminClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

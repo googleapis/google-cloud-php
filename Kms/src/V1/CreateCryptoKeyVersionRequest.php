@@ -23,14 +23,14 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
      * initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $crypto_key_version = null;
+    protected $crypto_key_version = null;
 
     /**
      * @param string                                $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the

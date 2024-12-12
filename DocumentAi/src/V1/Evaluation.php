@@ -22,25 +22,25 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The time that the evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Counters for the documents used in the evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Evaluation.Counters document_counters = 5;</code>
      */
-    private $document_counters = null;
+    protected $document_counters = null;
     /**
      * Metrics for all the entities in aggregate.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Evaluation.MultiConfidenceMetrics all_entities_metrics = 3;</code>
      */
-    private $all_entities_metrics = null;
+    protected $all_entities_metrics = null;
     /**
      * Metrics across confidence levels, for different entities.
      *
@@ -52,13 +52,13 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 6;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * The KMS key version with which data is encrypted.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 7;</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
 
     /**
      * Constructor.

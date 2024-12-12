@@ -76,6 +76,7 @@ use Google\Cloud\Sql\V1\SqlInstancesVerifyExternalSyncSettingsRequest;
 use Google\Cloud\Sql\V1\SqlInstancesVerifyExternalSyncSettingsResponse;
 use Google\Cloud\Sql\V1\SslCert;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service to manage Cloud SQL instances.
@@ -83,40 +84,40 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface acquireSsrsLeaseAsync(SqlInstancesAcquireSsrsLeaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface addServerCaAsync(SqlInstancesAddServerCaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(SqlInstancesDeleteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDiskShrinkConfigAsync(SqlInstancesGetDiskShrinkConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLatestRecoveryTimeAsync(SqlInstancesGetLatestRecoveryTimeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listServerCasAsync(SqlInstancesListServerCasRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(SqlInstancesPatchRequest $request, array $optionalArgs = [])
- * @method PromiseInterface performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
- * @method PromiseInterface releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetReplicaSizeAsync(SqlInstancesResetReplicaSizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restartAsync(SqlInstancesRestartRequest $request, array $optionalArgs = [])
- * @method PromiseInterface restoreBackupAsync(SqlInstancesRestoreBackupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rotateServerCaAsync(SqlInstancesRotateServerCaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
- * @method PromiseInterface switchoverAsync(SqlInstancesSwitchoverRequest $request, array $optionalArgs = [])
- * @method PromiseInterface truncateLogAsync(SqlInstancesTruncateLogRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAsync(SqlInstancesUpdateRequest $request, array $optionalArgs = [])
- * @method PromiseInterface verifyExternalSyncSettingsAsync(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesAcquireSsrsLeaseResponse> acquireSsrsLeaseAsync(SqlInstancesAcquireSsrsLeaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> addServerCaAsync(SqlInstancesAddServerCaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SslCert> createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> deleteAsync(SqlInstancesDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DatabaseInstance> getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesGetDiskShrinkConfigResponse> getDiskShrinkConfigAsync(SqlInstancesGetDiskShrinkConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesGetLatestRecoveryTimeResponse> getLatestRecoveryTimeAsync(SqlInstancesGetLatestRecoveryTimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesListResponse> listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesListServerCasResponse> listServerCasAsync(SqlInstancesListServerCasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> patchAsync(SqlInstancesPatchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesReleaseSsrsLeaseResponse> releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> resetReplicaSizeAsync(SqlInstancesResetReplicaSizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> restartAsync(SqlInstancesRestartRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> restoreBackupAsync(SqlInstancesRestoreBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rotateServerCaAsync(SqlInstancesRotateServerCaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> switchoverAsync(SqlInstancesSwitchoverRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> truncateLogAsync(SqlInstancesTruncateLogRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> updateAsync(SqlInstancesUpdateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesVerifyExternalSyncSettingsResponse> verifyExternalSyncSettingsAsync(SqlInstancesVerifyExternalSyncSettingsRequest $request, array $optionalArgs = [])
  */
 final class SqlInstancesServiceClient
 {
@@ -216,6 +217,9 @@ final class SqlInstancesServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

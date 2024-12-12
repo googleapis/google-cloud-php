@@ -50,7 +50,7 @@ class HttpData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string list_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $list_url = '';
+    protected $list_url = '';
 
     /**
      * Constructor.

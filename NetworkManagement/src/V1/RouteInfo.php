@@ -40,14 +40,17 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * URI of a route.
-     * Dynamic, peering static and peering dynamic routes do not have an URI.
-     * Advertised route from Google Cloud VPC to on-premises network also does
-     * not have an URI.
+     * URI of a route (if applicable).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
     protected $uri = '';
+    /**
+     * Region of the route (if applicable).
+     *
+     * Generated from protobuf field <code>string region = 19;</code>
+     */
+    protected $region = '';
     /**
      * Destination IP range of the route.
      *
@@ -114,6 +117,22 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string ncc_spoke_uri = 16;</code>
      */
     protected $ncc_spoke_uri = null;
+    /**
+     * For advertised dynamic routes, the URI of the Cloud Router that advertised
+     * the corresponding IP prefix.
+     *
+     * Generated from protobuf field <code>optional string advertised_route_source_router_uri = 17;</code>
+     */
+    protected $advertised_route_source_router_uri = null;
+    /**
+     * For advertised routes, the URI of their next hop, i.e. the URI of the
+     * hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance)
+     * the advertised prefix is advertised through, or URI of the source peered
+     * network.
+     *
+     * Generated from protobuf field <code>optional string advertised_route_next_hop_uri = 18;</code>
+     */
+    protected $advertised_route_next_hop_uri = null;
 
     /**
      * Constructor.
@@ -130,10 +149,9 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Name of a route.
      *     @type string $uri
-     *           URI of a route.
-     *           Dynamic, peering static and peering dynamic routes do not have an URI.
-     *           Advertised route from Google Cloud VPC to on-premises network also does
-     *           not have an URI.
+     *           URI of a route (if applicable).
+     *     @type string $region
+     *           Region of the route (if applicable).
      *     @type string $dest_ip_range
      *           Destination IP range of the route.
      *     @type string $next_hop
@@ -156,6 +174,14 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *           URI of a NCC Hub. NCC_HUB routes only.
      *     @type string $ncc_spoke_uri
      *           URI of a NCC Spoke. NCC_HUB routes only.
+     *     @type string $advertised_route_source_router_uri
+     *           For advertised dynamic routes, the URI of the Cloud Router that advertised
+     *           the corresponding IP prefix.
+     *     @type string $advertised_route_next_hop_uri
+     *           For advertised routes, the URI of their next hop, i.e. the URI of the
+     *           hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance)
+     *           the advertised prefix is advertised through, or URI of the source peered
+     *           network.
      * }
      */
     public function __construct($data = NULL) {
@@ -268,10 +294,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a route.
-     * Dynamic, peering static and peering dynamic routes do not have an URI.
-     * Advertised route from Google Cloud VPC to on-premises network also does
-     * not have an URI.
+     * URI of a route (if applicable).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -282,10 +305,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of a route.
-     * Dynamic, peering static and peering dynamic routes do not have an URI.
-     * Advertised route from Google Cloud VPC to on-premises network also does
-     * not have an URI.
+     * URI of a route (if applicable).
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
@@ -295,6 +315,32 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Region of the route (if applicable).
+     *
+     * Generated from protobuf field <code>string region = 19;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Region of the route (if applicable).
+     *
+     * Generated from protobuf field <code>string region = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }
@@ -601,6 +647,86 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ncc_spoke_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * For advertised dynamic routes, the URI of the Cloud Router that advertised
+     * the corresponding IP prefix.
+     *
+     * Generated from protobuf field <code>optional string advertised_route_source_router_uri = 17;</code>
+     * @return string
+     */
+    public function getAdvertisedRouteSourceRouterUri()
+    {
+        return isset($this->advertised_route_source_router_uri) ? $this->advertised_route_source_router_uri : '';
+    }
+
+    public function hasAdvertisedRouteSourceRouterUri()
+    {
+        return isset($this->advertised_route_source_router_uri);
+    }
+
+    public function clearAdvertisedRouteSourceRouterUri()
+    {
+        unset($this->advertised_route_source_router_uri);
+    }
+
+    /**
+     * For advertised dynamic routes, the URI of the Cloud Router that advertised
+     * the corresponding IP prefix.
+     *
+     * Generated from protobuf field <code>optional string advertised_route_source_router_uri = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdvertisedRouteSourceRouterUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->advertised_route_source_router_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * For advertised routes, the URI of their next hop, i.e. the URI of the
+     * hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance)
+     * the advertised prefix is advertised through, or URI of the source peered
+     * network.
+     *
+     * Generated from protobuf field <code>optional string advertised_route_next_hop_uri = 18;</code>
+     * @return string
+     */
+    public function getAdvertisedRouteNextHopUri()
+    {
+        return isset($this->advertised_route_next_hop_uri) ? $this->advertised_route_next_hop_uri : '';
+    }
+
+    public function hasAdvertisedRouteNextHopUri()
+    {
+        return isset($this->advertised_route_next_hop_uri);
+    }
+
+    public function clearAdvertisedRouteNextHopUri()
+    {
+        unset($this->advertised_route_next_hop_uri);
+    }
+
+    /**
+     * For advertised routes, the URI of their next hop, i.e. the URI of the
+     * hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance)
+     * the advertised prefix is advertised through, or URI of the source peered
+     * network.
+     *
+     * Generated from protobuf field <code>optional string advertised_route_next_hop_uri = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdvertisedRouteNextHopUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->advertised_route_next_hop_uri = $var;
 
         return $this;
     }

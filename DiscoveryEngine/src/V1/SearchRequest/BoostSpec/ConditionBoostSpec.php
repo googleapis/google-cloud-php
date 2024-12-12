@@ -49,6 +49,13 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float boost = 2;</code>
      */
     protected $boost = 0.0;
+    /**
+     * Complex specification for custom ranking based on customer defined
+     * attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 3;</code>
+     */
+    protected $boost_control_spec = null;
 
     /**
      * Constructor.
@@ -82,6 +89,9 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *           ignored. Only one of the (condition, boost) combination or the
      *           boost_control_spec below are set. If both are set then the global boost
      *           is ignored and the more fine-grained boost_control_spec is applied.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec $boost_control_spec
+     *           Complex specification for custom ranking based on customer defined
+     *           attribute value.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +191,44 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->boost = $var;
+
+        return $this;
+    }
+
+    /**
+     * Complex specification for custom ranking based on customer defined
+     * attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 3;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec|null
+     */
+    public function getBoostControlSpec()
+    {
+        return $this->boost_control_spec;
+    }
+
+    public function hasBoostControlSpec()
+    {
+        return isset($this->boost_control_spec);
+    }
+
+    public function clearBoostControlSpec()
+    {
+        unset($this->boost_control_spec);
+    }
+
+    /**
+     * Complex specification for custom ranking based on customer defined
+     * attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 3;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec $var
+     * @return $this
+     */
+    public function setBoostControlSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec::class);
+        $this->boost_control_spec = $var;
 
         return $this;
     }

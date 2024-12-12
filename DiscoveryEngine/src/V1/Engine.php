@@ -21,7 +21,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      * Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
+     * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * engine should be 1-63 characters, and valid characters are
      * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -89,6 +89,13 @@ class Engine extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Engine.CommonConfig common_config = 15;</code>
      */
     protected $common_config = null;
+    /**
+     * Optional. Whether to disable analytics for searches performed on this
+     * engine.
+     *
+     * Generated from protobuf field <code>bool disable_analytics = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_analytics = false;
     protected $engine_config;
     protected $engine_metadata;
 
@@ -116,7 +123,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           This field must be a UTF-8 encoded string with a length limit of 1024
      *           characters.
      *           Format:
-     *           `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
+     *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      *           engine should be 1-63 characters, and valid characters are
      *           /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string $display_name
@@ -152,6 +159,9 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           DataStore linked to the engine.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Engine\CommonConfig $common_config
      *           Common config spec that specifies the metadata of the engine.
+     *     @type bool $disable_analytics
+     *           Optional. Whether to disable analytics for searches performed on this
+     *           engine.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,7 +281,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      * Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
+     * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * engine should be 1-63 characters, and valid characters are
      * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -288,7 +298,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * This field must be a UTF-8 encoded string with a length limit of 1024
      * characters.
      * Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
+     * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * engine should be 1-63 characters, and valid characters are
      * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -550,6 +560,34 @@ class Engine extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\Engine\CommonConfig::class);
         $this->common_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to disable analytics for searches performed on this
+     * engine.
+     *
+     * Generated from protobuf field <code>bool disable_analytics = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableAnalytics()
+    {
+        return $this->disable_analytics;
+    }
+
+    /**
+     * Optional. Whether to disable analytics for searches performed on this
+     * engine.
+     *
+     * Generated from protobuf field <code>bool disable_analytics = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableAnalytics($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_analytics = $var;
 
         return $this;
     }

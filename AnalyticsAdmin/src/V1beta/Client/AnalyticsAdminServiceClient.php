@@ -105,6 +105,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service Interface for the Analytics Admin API (GA4).
@@ -119,60 +120,60 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @experimental
  *
- * @method PromiseInterface acknowledgeUserDataCollectionAsync(AcknowledgeUserDataCollectionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveCustomDimensionAsync(ArchiveCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface archiveCustomMetricAsync(ArchiveCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDataStreamAsync(CreateDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createFirebaseLinkAsync(CreateFirebaseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createGoogleAdsLinkAsync(CreateGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createKeyEventAsync(CreateKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteFirebaseLinkAsync(DeleteFirebaseLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteGoogleAdsLinkAsync(DeleteGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteKeyEventAsync(DeleteKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomMetricAsync(GetCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataRetentionSettingsAsync(GetDataRetentionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataSharingSettingsAsync(GetDataSharingSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDataStreamAsync(GetDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getKeyEventAsync(GetKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDataStreamsAsync(ListDataStreamsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listFirebaseLinksAsync(ListFirebaseLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listGoogleAdsLinksAsync(ListGoogleAdsLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listKeyEventsAsync(ListKeyEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
- * @method PromiseInterface runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDataStreamAsync(UpdateDataStreamRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateGoogleAdsLinkAsync(UpdateGoogleAdsLinkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateKeyEventAsync(UpdateKeyEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcknowledgeUserDataCollectionResponse> acknowledgeUserDataCollectionAsync(AcknowledgeUserDataCollectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveCustomDimensionAsync(ArchiveCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> archiveCustomMetricAsync(ArchiveCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> createConversionEventAsync(CreateConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> createCustomDimensionAsync(CreateCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> createCustomMetricAsync(CreateCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> createDataStreamAsync(CreateDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FirebaseLink> createFirebaseLinkAsync(CreateFirebaseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleAdsLink> createGoogleAdsLinkAsync(CreateGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> createKeyEventAsync(CreateKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> createMeasurementProtocolSecretAsync(CreateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> createPropertyAsync(CreatePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversionEventAsync(DeleteConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataStreamAsync(DeleteDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFirebaseLinkAsync(DeleteFirebaseLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteGoogleAdsLinkAsync(DeleteGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteKeyEventAsync(DeleteKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMeasurementProtocolSecretAsync(DeleteMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> deletePropertyAsync(DeletePropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> getConversionEventAsync(GetConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> getCustomDimensionAsync(GetCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> getCustomMetricAsync(GetCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRetentionSettings> getDataRetentionSettingsAsync(GetDataRetentionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataSharingSettings> getDataSharingSettingsAsync(GetDataSharingSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> getDataStreamAsync(GetDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> getKeyEventAsync(GetKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> getMeasurementProtocolSecretAsync(GetMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> getPropertyAsync(GetPropertyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listConversionEventsAsync(ListConversionEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomDimensionsAsync(ListCustomDimensionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomMetricsAsync(ListCustomMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDataStreamsAsync(ListDataStreamsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFirebaseLinksAsync(ListFirebaseLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGoogleAdsLinksAsync(ListGoogleAdsLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listKeyEventsAsync(ListKeyEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMeasurementProtocolSecretsAsync(ListMeasurementProtocolSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPropertiesAsync(ListPropertiesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProvisionAccountTicketResponse> provisionAccountTicketAsync(ProvisionAccountTicketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunAccessReportResponse> runAccessReportAsync(RunAccessReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchChangeHistoryEventsAsync(SearchChangeHistoryEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> updateAccountAsync(UpdateAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConversionEvent> updateConversionEventAsync(UpdateConversionEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomDimension> updateCustomDimensionAsync(UpdateCustomDimensionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomMetric> updateCustomMetricAsync(UpdateCustomMetricRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataRetentionSettings> updateDataRetentionSettingsAsync(UpdateDataRetentionSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataStream> updateDataStreamAsync(UpdateDataStreamRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GoogleAdsLink> updateGoogleAdsLinkAsync(UpdateGoogleAdsLinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<KeyEvent> updateKeyEventAsync(UpdateKeyEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MeasurementProtocolSecret> updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Property> updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
  */
 final class AnalyticsAdminServiceClient
 {
@@ -486,8 +487,8 @@ final class AnalyticsAdminServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -495,7 +496,7 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -550,6 +551,9 @@ final class AnalyticsAdminServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkAttachments_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\NetworkAttachmentsClient;
+use Google\Cloud\Compute\V1\InsertNetworkAttachmentRequest;
 use Google\Cloud\Compute\V1\NetworkAttachment;
-use Google\Cloud\Compute\V1\NetworkAttachmentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $networkAttachmentsClient = new NetworkAttachmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $networkAttachmentResource = new NetworkAttachment();
+    $request = (new InsertNetworkAttachmentRequest())
+        ->setNetworkAttachmentResource($networkAttachmentResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $networkAttachmentsClient->insert($networkAttachmentResource, $project, $region);
+        $response = $networkAttachmentsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

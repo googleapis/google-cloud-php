@@ -31,7 +31,7 @@ use Google\Cloud\Parallelstore\V1beta\ImportDataResponse;
 use Google\Rpc\Status;
 
 /**
- * ImportData copies data from Cloud Storage to Parallelstore.
+ * Copies data from Cloud Storage to Parallelstore.
  *
  * @param string $formattedName Name of the resource. Please see
  *                              {@see ParallelstoreClient::instanceName()} for help formatting this field.

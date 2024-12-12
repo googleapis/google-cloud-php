@@ -21,7 +21,7 @@ class Changelog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
+’
 -google/cloud/dialogflow/cx/v3/changelog.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"‹
 ListChangelogsRequest;
 parent (	B+àAúA%#dialogflow.googleapis.com/Changelog
@@ -50,8 +50,8 @@ user_email (	
 
 ChangelogsÇ
 ListChangelogs4.google.cloud.dialogflow.cx.v3.ListChangelogsRequest5.google.cloud.dialogflow.cx.v3.ListChangelogsResponse"HÚAparent‚Óä“97/v3/{parent=projects/*/locations/*/agents/*}/changelogs´
-GetChangelog2.google.cloud.dialogflow.cx.v3.GetChangelogRequest(.google.cloud.dialogflow.cx.v3.Changelog"FÚAname‚Óä“97/v3/{name=projects/*/locations/*/agents/*/changelogs/*}xÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB´
-!com.google.cloud.dialogflow.cx.v3BChangelogProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpbø¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
+GetChangelog2.google.cloud.dialogflow.cx.v3.GetChangelogRequest(.google.cloud.dialogflow.cx.v3.Changelog"FÚAname‚Óä“97/v3/{name=projects/*/locations/*/agents/*/changelogs/*}xÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB±
+!com.google.cloud.dialogflow.cx.v3BChangelogProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 
         static::$is_initialized = true;

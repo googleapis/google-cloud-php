@@ -48,6 +48,12 @@ class Issue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string sample_utterances = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $sample_utterances;
+    /**
+     * Representative description of the issue.
+     *
+     * Generated from protobuf field <code>string display_description = 14;</code>
+     */
+    protected $display_description = '';
 
     /**
      * Constructor.
@@ -68,6 +74,8 @@ class Issue extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sample_utterances
      *           Output only. Resource names of the sample representative utterances that
      *           match to this issue.
+     *     @type string $display_description
+     *           Representative description of the issue.
      * }
      */
     public function __construct($data = NULL) {
@@ -227,6 +235,32 @@ class Issue extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->sample_utterances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Representative description of the issue.
+     *
+     * Generated from protobuf field <code>string display_description = 14;</code>
+     * @return string
+     */
+    public function getDisplayDescription()
+    {
+        return $this->display_description;
+    }
+
+    /**
+     * Representative description of the issue.
+     *
+     * Generated from protobuf field <code>string display_description = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_description = $var;
 
         return $this;
     }

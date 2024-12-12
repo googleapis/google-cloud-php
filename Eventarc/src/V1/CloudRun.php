@@ -25,7 +25,8 @@ class CloudRun extends \Google\Protobuf\Internal\Message
      */
     protected $service = '';
     /**
-     * Optional. The relative path on the Cloud Run service the events should be sent to.
+     * Optional. The relative path on the Cloud Run service the events should be
+     * sent to.
      * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
@@ -51,7 +52,8 @@ class CloudRun extends \Google\Protobuf\Internal\Message
      *           Only services located in the same project as the trigger object
      *           can be addressed.
      *     @type string $path
-     *           Optional. The relative path on the Cloud Run service the events should be sent to.
+     *           Optional. The relative path on the Cloud Run service the events should be
+     *           sent to.
      *           The value must conform to the definition of a URI path segment (section 3.3
      *           of RFC2396). Examples: "/route", "route", "route/subroute".
      *     @type string $region
@@ -96,7 +98,8 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The relative path on the Cloud Run service the events should be sent to.
+     * Optional. The relative path on the Cloud Run service the events should be
+     * sent to.
      * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
@@ -109,7 +112,8 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The relative path on the Cloud Run service the events should be sent to.
+     * Optional. The relative path on the Cloud Run service the events should be
+     * sent to.
      * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *

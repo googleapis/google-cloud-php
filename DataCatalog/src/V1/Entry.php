@@ -24,11 +24,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Entry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of an entry in URL format.
+     * Output only. Identifier. The resource name of an entry in URL format.
      * Note: The entry itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
@@ -142,7 +142,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of an entry in URL format.
+     *           Output only. Identifier. The resource name of an entry in URL format.
      *           Note: The entry itself and its child resources might not be
      *           stored in the location specified in its name.
      *     @type string $linked_resource
@@ -228,6 +228,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           Specification that applies to a Service resource.
      *     @type \Google\Cloud\DataCatalog\V1\ModelSpec $model_spec
      *           Model specification.
+     *     @type \Google\Cloud\DataCatalog\V1\FeatureOnlineStoreSpec $feature_online_store_spec
+     *           FeatureonlineStore spec for Vertex AI Feature Store.
      *     @type string $display_name
      *           Display name of an entry.
      *           The maximum size is 500 bytes when encoded in UTF-8.
@@ -270,11 +272,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of an entry in URL format.
+     * Output only. Identifier. The resource name of an entry in URL format.
      * Note: The entry itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -283,11 +285,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of an entry in URL format.
+     * Output only. Identifier. The resource name of an entry in URL format.
      * Note: The entry itself and its child resources might not be
      * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -964,6 +966,37 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\ModelSpec::class);
         $this->writeOneof(43, $var);
+
+        return $this;
+    }
+
+    /**
+     * FeatureonlineStore spec for Vertex AI Feature Store.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FeatureOnlineStoreSpec feature_online_store_spec = 45;</code>
+     * @return \Google\Cloud\DataCatalog\V1\FeatureOnlineStoreSpec|null
+     */
+    public function getFeatureOnlineStoreSpec()
+    {
+        return $this->readOneof(45);
+    }
+
+    public function hasFeatureOnlineStoreSpec()
+    {
+        return $this->hasOneof(45);
+    }
+
+    /**
+     * FeatureonlineStore spec for Vertex AI Feature Store.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FeatureOnlineStoreSpec feature_online_store_spec = 45;</code>
+     * @param \Google\Cloud\DataCatalog\V1\FeatureOnlineStoreSpec $var
+     * @return $this
+     */
+    public function setFeatureOnlineStoreSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FeatureOnlineStoreSpec::class);
+        $this->writeOneof(45, $var);
 
         return $this;
     }

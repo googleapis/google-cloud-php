@@ -10,6 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Configuration for resources used by Airflow DAG processors.
+ * This field is supported for Cloud Composer environments in versions
+ * composer-3.*.*-airflow-*.*.* and newer.
  *
  * Generated from protobuf message <code>google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource</code>
  */

@@ -74,6 +74,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query_understanding_spec = null;
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -83,7 +85,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
+     * @deprecated
      */
     protected $asynchronous_mode = false;
     /**
@@ -150,6 +153,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\QueryUnderstandingSpec $query_understanding_spec
      *           Query understanding specification.
      *     @type bool $asynchronous_mode
+     *           Deprecated: This field is deprecated. Streaming Answer API will be
+     *           supported.
      *           Asynchronous mode control.
      *           If enabled, the response will be returned with answer/session resource
      *           name without final answer. The API users need to do the polling to get
@@ -474,6 +479,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -483,15 +490,19 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getAsynchronousMode()
     {
+        @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
         return $this->asynchronous_mode;
     }
 
     /**
+     * Deprecated: This field is deprecated. Streaming Answer API will be
+     * supported.
      * Asynchronous mode control.
      * If enabled, the response will be returned with answer/session resource
      * name without final answer. The API users need to do the polling to get
@@ -501,12 +512,14 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      * [ConversationalSearchService.GetSession][google.cloud.discoveryengine.v1.ConversationalSearchService.GetSession]
      * method.
      *
-     * Generated from protobuf field <code>bool asynchronous_mode = 10;</code>
+     * Generated from protobuf field <code>bool asynchronous_mode = 10 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setAsynchronousMode($var)
     {
+        @trigger_error('asynchronous_mode is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->asynchronous_mode = $var;
 

@@ -18,8 +18,8 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique identifier of the imported intents.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -41,8 +41,8 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $intents
      *           The unique identifier of the imported intents.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/intents/<Intent ID>`.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\ImportIntentsResponse\ConflictingResources $conflicting_resources
      *           Info which resources have conflicts when
      *           [REPORT_CONFLICT][ImportIntentsResponse.REPORT_CONFLICT] merge_option is
@@ -56,8 +56,8 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the imported intents.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 1 [(.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,8 +69,8 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The unique identifier of the imported intents.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/intents/<Intent ID>`.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 1 [(.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

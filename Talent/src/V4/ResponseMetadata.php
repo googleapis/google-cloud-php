@@ -21,7 +21,7 @@ class ResponseMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 1;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
 
     /**
      * Constructor.

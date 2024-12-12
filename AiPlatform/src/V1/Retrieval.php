@@ -32,6 +32,9 @@ class Retrieval extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\VertexAISearch $vertex_ai_search
      *           Set to use data source powered by Vertex AI Search.
+     *     @type \Google\Cloud\AIPlatform\V1\VertexRagStore $vertex_rag_store
+     *           Set to use data source powered by Vertex RAG store.
+     *           User data is uploaded via the VertexRagDataService.
      *     @type bool $disable_attribution
      *           Optional. Deprecated. This option is no longer supported.
      * }
@@ -68,6 +71,39 @@ class Retrieval extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VertexAISearch::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Set to use data source powered by Vertex RAG store.
+     * User data is uploaded via the VertexRagDataService.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexRagStore vertex_rag_store = 4;</code>
+     * @return \Google\Cloud\AIPlatform\V1\VertexRagStore|null
+     */
+    public function getVertexRagStore()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasVertexRagStore()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Set to use data source powered by Vertex RAG store.
+     * User data is uploaded via the VertexRagDataService.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexRagStore vertex_rag_store = 4;</code>
+     * @param \Google\Cloud\AIPlatform\V1\VertexRagStore $var
+     * @return $this
+     */
+    public function setVertexRagStore($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VertexRagStore::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

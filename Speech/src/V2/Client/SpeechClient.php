@@ -68,6 +68,7 @@ use Google\Cloud\Speech\V2\UpdatePhraseSetRequest;
 use Google\Cloud\Speech\V2\UpdateRecognizerRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Enables speech transcription and resource management.
@@ -80,30 +81,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchRecognizeAsync(BatchRecognizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createCustomClassAsync(CreateCustomClassRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createPhraseSetAsync(CreatePhraseSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRecognizerAsync(CreateRecognizerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteCustomClassAsync(DeleteCustomClassRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePhraseSetAsync(DeletePhraseSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRecognizerAsync(DeleteRecognizerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getCustomClassAsync(GetCustomClassRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getPhraseSetAsync(GetPhraseSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecognizerAsync(GetRecognizerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCustomClassesAsync(ListCustomClassesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listPhraseSetsAsync(ListPhraseSetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecognizersAsync(ListRecognizersRequest $request, array $optionalArgs = [])
- * @method PromiseInterface recognizeAsync(RecognizeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteCustomClassAsync(UndeleteCustomClassRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeletePhraseSetAsync(UndeletePhraseSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface undeleteRecognizerAsync(UndeleteRecognizerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateConfigAsync(UpdateConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateCustomClassAsync(UpdateCustomClassRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updatePhraseSetAsync(UpdatePhraseSetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRecognizerAsync(UpdateRecognizerRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> batchRecognizeAsync(BatchRecognizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createCustomClassAsync(CreateCustomClassRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createPhraseSetAsync(CreatePhraseSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createRecognizerAsync(CreateRecognizerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCustomClassAsync(DeleteCustomClassRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deletePhraseSetAsync(DeletePhraseSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRecognizerAsync(DeleteRecognizerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Config> getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomClass> getCustomClassAsync(GetCustomClassRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PhraseSet> getPhraseSetAsync(GetPhraseSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recognizer> getRecognizerAsync(GetRecognizerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCustomClassesAsync(ListCustomClassesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPhraseSetsAsync(ListPhraseSetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecognizersAsync(ListRecognizersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecognizeResponse> recognizeAsync(RecognizeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteCustomClassAsync(UndeleteCustomClassRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeletePhraseSetAsync(UndeletePhraseSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> undeleteRecognizerAsync(UndeleteRecognizerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Config> updateConfigAsync(UpdateConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateCustomClassAsync(UpdateCustomClassRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updatePhraseSetAsync(UpdatePhraseSetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateRecognizerAsync(UpdateRecognizerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class SpeechClient
 {
@@ -337,14 +338,14 @@ final class SpeechClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -399,6 +400,9 @@ final class SpeechClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

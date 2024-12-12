@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NodeGroups_SetNodeTemplate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\NodeGroupsClient;
+use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
 use Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest;
+use Google\Cloud\Compute\V1\SetNodeTemplateNodeGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_node_template_sample(string $nodeGroup, string $project, string $zo
     // Create a client.
     $nodeGroupsClient = new NodeGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $nodeGroupsSetNodeTemplateRequestResource = new NodeGroupsSetNodeTemplateRequest();
+    $request = (new SetNodeTemplateNodeGroupRequest())
+        ->setNodeGroup($nodeGroup)
+        ->setNodeGroupsSetNodeTemplateRequestResource($nodeGroupsSetNodeTemplateRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupsClient->setNodeTemplate(
-            $nodeGroup,
-            $nodeGroupsSetNodeTemplateRequestResource,
-            $project,
-            $zone
-        );
+        $response = $nodeGroupsClient->setNodeTemplate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

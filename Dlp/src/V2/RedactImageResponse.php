@@ -20,7 +20,7 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes redacted_image = 1;</code>
      */
-    private $redacted_image = '';
+    protected $redacted_image = '';
     /**
      * If an image was being inspected and the InspectConfig's include_quote was
      * set to true, then this field will include all text, if any, that was found
@@ -28,13 +28,13 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string extracted_text = 2;</code>
      */
-    private $extracted_text = '';
+    protected $extracted_text = '';
     /**
      * The findings. Populated when include_findings in the request is true.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectResult inspect_result = 3;</code>
      */
-    private $inspect_result = null;
+    protected $inspect_result = null;
 
     /**
      * Constructor.

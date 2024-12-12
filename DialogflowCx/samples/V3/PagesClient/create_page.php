@@ -36,8 +36,8 @@ use Google\Cloud\Dialogflow\Cx\V3\Page;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedParent The flow to create a page for.
- *                                Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                                ID>/flows/<Flow ID>`. Please see
+ *                                Format:
+ *                                `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`. Please see
  *                                {@see PagesClient::flowName()} for help formatting this field.
  * @param string $pageDisplayName The human-readable name of the page, unique within the flow.
  */

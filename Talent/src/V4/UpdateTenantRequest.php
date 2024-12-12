@@ -21,7 +21,7 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Tenant tenant = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $tenant = null;
+    protected $tenant = null;
     /**
      * Strongly recommended for the best service experience.
      * If [update_mask][google.cloud.talent.v4.UpdateTenantRequest.update_mask] is
@@ -33,7 +33,7 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Talent\V4\Tenant $tenant     Required. The tenant resource to replace the current resource in the

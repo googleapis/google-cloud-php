@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * For display only. Metadata associated with a Compute Engine network.
+ * Next ID: 7
  *
  * Generated from protobuf message <code>google.cloud.networkmanagement.v1.NetworkInfo</code>
  */
@@ -28,11 +29,23 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
      */
     protected $uri = '';
     /**
-     * The IP range that matches the test.
+     * URI of the subnet matching the source IP address of the test.
+     *
+     * Generated from protobuf field <code>string matched_subnet_uri = 5;</code>
+     */
+    protected $matched_subnet_uri = '';
+    /**
+     * The IP range of the subnet matching the source IP address of the test.
      *
      * Generated from protobuf field <code>string matched_ip_range = 4;</code>
      */
     protected $matched_ip_range = '';
+    /**
+     * The region of the subnet matching the source IP address of the test.
+     *
+     * Generated from protobuf field <code>string region = 6;</code>
+     */
+    protected $region = '';
 
     /**
      * Constructor.
@@ -44,8 +57,12 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
      *           Name of a Compute Engine network.
      *     @type string $uri
      *           URI of a Compute Engine network.
+     *     @type string $matched_subnet_uri
+     *           URI of the subnet matching the source IP address of the test.
      *     @type string $matched_ip_range
-     *           The IP range that matches the test.
+     *           The IP range of the subnet matching the source IP address of the test.
+     *     @type string $region
+     *           The region of the subnet matching the source IP address of the test.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,7 +123,33 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IP range that matches the test.
+     * URI of the subnet matching the source IP address of the test.
+     *
+     * Generated from protobuf field <code>string matched_subnet_uri = 5;</code>
+     * @return string
+     */
+    public function getMatchedSubnetUri()
+    {
+        return $this->matched_subnet_uri;
+    }
+
+    /**
+     * URI of the subnet matching the source IP address of the test.
+     *
+     * Generated from protobuf field <code>string matched_subnet_uri = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMatchedSubnetUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->matched_subnet_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The IP range of the subnet matching the source IP address of the test.
      *
      * Generated from protobuf field <code>string matched_ip_range = 4;</code>
      * @return string
@@ -117,7 +160,7 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IP range that matches the test.
+     * The IP range of the subnet matching the source IP address of the test.
      *
      * Generated from protobuf field <code>string matched_ip_range = 4;</code>
      * @param string $var
@@ -127,6 +170,32 @@ class NetworkInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->matched_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * The region of the subnet matching the source IP address of the test.
+     *
+     * Generated from protobuf field <code>string region = 6;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * The region of the subnet matching the source IP address of the test.
+     *
+     * Generated from protobuf field <code>string region = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }

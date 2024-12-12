@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [AWS Security
  * Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)).
  * For information on our data retention policy for user credentials, see
- * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
+ * [User credentials](/storage-transfer/docs/data-retention#user-credentials).
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.AwsAccessKey</code>
  */
@@ -24,14 +24,14 @@ class AwsAccessKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string access_key_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $access_key_id = '';
+    protected $access_key_id = '';
     /**
      * Required. AWS secret access key. This field is not returned in RPC
      * responses.
      *
      * Generated from protobuf field <code>string secret_access_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $secret_access_key = '';
+    protected $secret_access_key = '';
 
     /**
      * Constructor.

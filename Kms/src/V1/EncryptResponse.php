@@ -24,13 +24,13 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The encrypted data.
      *
      * Generated from protobuf field <code>bytes ciphertext = 2;</code>
      */
-    private $ciphertext = '';
+    protected $ciphertext = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
@@ -48,7 +48,7 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      */
-    private $ciphertext_crc32c = null;
+    protected $ciphertext_crc32c = null;
     /**
      * Integrity verification field. A flag indicating whether
      * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c]
@@ -67,7 +67,7 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_plaintext_crc32c = 5;</code>
      */
-    private $verified_plaintext_crc32c = false;
+    protected $verified_plaintext_crc32c = false;
     /**
      * Integrity verification field. A flag indicating whether
      * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c]
@@ -86,7 +86,7 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool verified_additional_authenticated_data_crc32c = 6;</code>
      */
-    private $verified_additional_authenticated_data_crc32c = false;
+    protected $verified_additional_authenticated_data_crc32c = false;
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
@@ -94,7 +94,7 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.
@@ -275,7 +275,7 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      * @return int|string|null
      */
-    public function getCiphertextCrc32CValue()
+    public function getCiphertextCrc32CUnwrapped()
     {
         return $this->readWrapperValue("ciphertext_crc32c");
     }
@@ -328,7 +328,7 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setCiphertextCrc32CValue($var)
+    public function setCiphertextCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("ciphertext_crc32c", $var);
         return $this;}

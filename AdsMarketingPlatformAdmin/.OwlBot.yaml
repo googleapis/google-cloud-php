@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/marketingplatform/admin/(v1alpha)/.*-php/(.*)
+      dest: /owl-bot-staging/AdsMarketingPlatformAdmin/$1/$2
+api-name: AdsMarketingPlatformAdmin

@@ -28,6 +28,7 @@ use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetPropertyQuotasSnapshotRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
@@ -36,6 +37,7 @@ use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsResponse;
 use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
 use Google\Analytics\Data\V1alpha\ListReportTasksResponse;
+use Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
 use Google\Analytics\Data\V1alpha\QueryReportTaskRequest;
@@ -516,6 +518,70 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getAudienceList($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPropertyQuotasSnapshotTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new PropertyQuotasSnapshot();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->propertyQuotasSnapshotName('[PROPERTY]');
+        $request = (new GetPropertyQuotasSnapshotRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getPropertyQuotasSnapshot($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/GetPropertyQuotasSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPropertyQuotasSnapshotExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->propertyQuotasSnapshotName('[PROPERTY]');
+        $request = (new GetPropertyQuotasSnapshotRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getPropertyQuotasSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

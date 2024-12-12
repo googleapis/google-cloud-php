@@ -22,21 +22,21 @@ class SourceProvenance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.StorageSource resolved_storage_source = 1;</code>
      */
-    private $resolved_storage_source = null;
+    protected $resolved_storage_source = null;
     /**
      * A copy of the build's `source.repo_source`, if exists, with any
      * revisions resolved.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.RepoSource resolved_repo_source = 2;</code>
      */
-    private $resolved_repo_source = null;
+    protected $resolved_repo_source = null;
     /**
      * A copy of the build's `source.git_uri`, if exists, with any commits
      * resolved.
      *
      * Generated from protobuf field <code>string git_uri = 3;</code>
      */
-    private $git_uri = '';
+    protected $git_uri = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      */
-    private $common_metadata = null;
+    protected $common_metadata = null;
     /**
      * The Crowd Compute question ID.
      *
      * Generated from protobuf field <code>string question_id = 6;</code>
      */
-    private $question_id = '';
+    protected $question_id = '';
 
     /**
      * Constructor.

@@ -1567,7 +1567,7 @@ class QueryTest extends TestCase
         ], $this->collectionGroupQuery);
     }
 
-    private function runAndAssert(callable $filters, $assertion, Query $query = null)
+    private function runAndAssert(callable $filters, $assertion, ?Query $query = null)
     {
         if (is_array($assertion)) {
             $this->connection->runQuery(

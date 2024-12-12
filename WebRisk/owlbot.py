@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,63 +32,25 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-
-# Fix class references in gapic samples
-for version in ['V1', 'V1beta1']:
-    if version == 'V1beta1':
-        clientName = 'WebRiskServiceV1Beta1'
-    else:
-        clientName = 'WebRiskService'
-    pathExpr = 'src/' + version + '/Gapic/' + clientName + 'GapicClient.php'
-
-    types = {
-        'new Constraints': r'new Google\\Cloud\\WebRisk\\' + version + r'\\ComputeThreatListDiffRequest\\Constraints',
-        '= ThreatType::': r'= Google\\Cloud\\WebRisk\\' + version + r'\\ThreatType::',
-        '= new ' + clientName + 'Client': r'= new Google\\Cloud\\WebRisk\\' + version + r'\\' + clientName + 'Client'
-    }
-
-    for search, replace in types.items():
-        s.replace(
-            pathExpr,
-            search,
-            replace
-)
-
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
+# remove class_alias code
 s.replace(
-    "src/**/V*/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
-### [END] protoc backwards compatibility fixes
-
-# fix relative cloud.google.com links
-s.replace(
-    "src/**/V*/**/*.php",
-    r"(.{0,})\]\((/.{0,})\)",
-    r"\1](https://cloud.google.com\2)"
-)
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # format generated clients
 subprocess.run([
-    'npx',
-    '-y',
-    '-p',
-    '@prettier/plugin-php@^0.16',
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
     'prettier',
-    '**/Gapic/*',
+    '**/Client/*',
     '--write',
     '--parser=php',
     '--single-quote',
-    '--print-width=80'])
+    '--print-width=120'])

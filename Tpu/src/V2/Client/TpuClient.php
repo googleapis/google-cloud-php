@@ -58,6 +58,7 @@ use Google\Cloud\Tpu\V2\UpdateNodeRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Manages TPU nodes and other resources
@@ -72,21 +73,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createNodeAsync(CreateNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteNodeAsync(DeleteNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface generateServiceIdentityAsync(GenerateServiceIdentityRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAcceleratorTypeAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getGuestAttributesAsync(GetGuestAttributesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRuntimeVersionAsync(GetRuntimeVersionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAcceleratorTypesAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRuntimeVersionsAsync(ListRuntimeVersionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface startNodeAsync(StartNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface stopNodeAsync(StopNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateNodeAsync(UpdateNodeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createNodeAsync(CreateNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNodeAsync(DeleteNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateServiceIdentityResponse> generateServiceIdentityAsync(GenerateServiceIdentityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AcceleratorType> getAcceleratorTypeAsync(GetAcceleratorTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GetGuestAttributesResponse> getGuestAttributesAsync(GetGuestAttributesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Node> getNodeAsync(GetNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RuntimeVersion> getRuntimeVersionAsync(GetRuntimeVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAcceleratorTypesAsync(ListAcceleratorTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNodesAsync(ListNodesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRuntimeVersionsAsync(ListRuntimeVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startNodeAsync(StartNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> stopNodeAsync(StopNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNodeAsync(UpdateNodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class TpuClient
 {
@@ -275,14 +276,14 @@ final class TpuClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -337,6 +338,9 @@ final class TpuClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

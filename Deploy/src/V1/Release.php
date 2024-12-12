@@ -136,12 +136,12 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
-     * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     * of versions.
+     * Optional. The Skaffold version to use when operating on this release, such
+     * as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     * set of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
-     * Generated from protobuf field <code>string skaffold_version = 19;</code>
+     * Generated from protobuf field <code>string skaffold_version = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $skaffold_version = '';
     /**
@@ -228,9 +228,9 @@ class Release extends \Google\Protobuf\Internal\Message
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type string $skaffold_version
-     *           The Skaffold version to use when operating on this release, such as
-     *           "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     *           of versions.
+     *           Optional. The Skaffold version to use when operating on this release, such
+     *           as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     *           set of versions.
      *           If unset, the most recent supported Skaffold version will be used.
      *     @type array|\Google\Protobuf\Internal\MapField $target_artifacts
      *           Output only. Map from target ID to the target artifacts created
@@ -764,12 +764,12 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     * of versions.
+     * Optional. The Skaffold version to use when operating on this release, such
+     * as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     * set of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
-     * Generated from protobuf field <code>string skaffold_version = 19;</code>
+     * Generated from protobuf field <code>string skaffold_version = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSkaffoldVersion()
@@ -778,12 +778,12 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Skaffold version to use when operating on this release, such as
-     * "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set
-     * of versions.
+     * Optional. The Skaffold version to use when operating on this release, such
+     * as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific
+     * set of versions.
      * If unset, the most recent supported Skaffold version will be used.
      *
-     * Generated from protobuf field <code>string skaffold_version = 19;</code>
+     * Generated from protobuf field <code>string skaffold_version = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

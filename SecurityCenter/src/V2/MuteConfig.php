@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MuteConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This field will be ignored if provided on config creation. The following
-     * list shows some examples of the format:
+     * Identifier. This field will be ignored if provided on config creation. The
+     * following list shows some examples of the format:
      * + `organizations/{organization}/muteConfigs/{mute_config}`
      * +
      * `organizations/{organization}locations/{location}//muteConfigs/{mute_config}`
@@ -27,7 +27,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      * + `projects/{project}/muteConfigs/{mute_config}`
      * + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -90,6 +90,14 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.MuteConfig.MuteConfigType type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $type = 0;
+    /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic
+     * configs. If the expiry is set, when the config expires, it is removed from
+     * all findings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $expiry_time = null;
 
     /**
      * Constructor.
@@ -98,8 +106,8 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           This field will be ignored if provided on config creation. The following
-     *           list shows some examples of the format:
+     *           Identifier. This field will be ignored if provided on config creation. The
+     *           following list shows some examples of the format:
      *           + `organizations/{organization}/muteConfigs/{mute_config}`
      *           +
      *           `organizations/{organization}locations/{location}//muteConfigs/{mute_config}`
@@ -143,6 +151,10 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. The type of the mute config, which determines what type of mute
      *           state the config affects. Immutable after creation.
+     *     @type \Google\Protobuf\Timestamp $expiry_time
+     *           Optional. The expiry of the mute config. Only applicable for dynamic
+     *           configs. If the expiry is set, when the config expires, it is removed from
+     *           all findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,8 +163,8 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be ignored if provided on config creation. The following
-     * list shows some examples of the format:
+     * Identifier. This field will be ignored if provided on config creation. The
+     * following list shows some examples of the format:
      * + `organizations/{organization}/muteConfigs/{mute_config}`
      * +
      * `organizations/{organization}locations/{location}//muteConfigs/{mute_config}`
@@ -161,7 +173,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      * + `projects/{project}/muteConfigs/{mute_config}`
      * + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -170,8 +182,8 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be ignored if provided on config creation. The following
-     * list shows some examples of the format:
+     * Identifier. This field will be ignored if provided on config creation. The
+     * following list shows some examples of the format:
      * + `organizations/{organization}/muteConfigs/{mute_config}`
      * +
      * `organizations/{organization}locations/{location}//muteConfigs/{mute_config}`
@@ -180,7 +192,7 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
      * + `projects/{project}/muteConfigs/{mute_config}`
      * + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -412,6 +424,46 @@ class MuteConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V2\MuteConfig\MuteConfigType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic
+     * configs. If the expiry is set, when the config expires, it is removed from
+     * all findings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExpiryTime()
+    {
+        return $this->expiry_time;
+    }
+
+    public function hasExpiryTime()
+    {
+        return isset($this->expiry_time);
+    }
+
+    public function clearExpiryTime()
+    {
+        unset($this->expiry_time);
+    }
+
+    /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic
+     * configs. If the expiry is set, when the config expires, it is removed from
+     * all findings.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExpiryTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->expiry_time = $var;
 
         return $this;
     }

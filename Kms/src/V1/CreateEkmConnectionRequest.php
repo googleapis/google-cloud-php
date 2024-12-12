@@ -23,21 +23,21 @@ class CreateEkmConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. It must be unique within a location and match the regular
      * expression `[a-zA-Z0-9_-]{1,63}`.
      *
      * Generated from protobuf field <code>string ekm_connection_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ekm_connection_id = '';
+    protected $ekm_connection_id = '';
     /**
      * Required. An [EkmConnection][google.cloud.kms.v1.EkmConnection] with
      * initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.EkmConnection ekm_connection = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ekm_connection = null;
+    protected $ekm_connection = null;
 
     /**
      * @param string                             $parent          Required. The resource name of the location associated with the

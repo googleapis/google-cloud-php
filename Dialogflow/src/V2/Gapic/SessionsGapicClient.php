@@ -105,6 +105,8 @@ class SessionsGapicClient
 
     private static $contextNameTemplate;
 
+    private static $phraseSetNameTemplate;
+
     private static $projectEnvironmentUserSessionNameTemplate;
 
     private static $projectEnvironmentUserSessionContextNameTemplate;
@@ -161,6 +163,15 @@ class SessionsGapicClient
         }
 
         return self::$contextNameTemplate;
+    }
+
+    private static function getPhraseSetNameTemplate()
+    {
+        if (self::$phraseSetNameTemplate == null) {
+            self::$phraseSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/phraseSets/{phrase_set}');
+        }
+
+        return self::$phraseSetNameTemplate;
     }
 
     private static function getProjectEnvironmentUserSessionNameTemplate()
@@ -294,6 +305,7 @@ class SessionsGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'context' => self::getContextNameTemplate(),
+                'phraseSet' => self::getPhraseSetNameTemplate(),
                 'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
                 'projectEnvironmentUserSessionContext' => self::getProjectEnvironmentUserSessionContextNameTemplate(),
                 'projectEnvironmentUserSessionEntityType' => self::getProjectEnvironmentUserSessionEntityTypeNameTemplate(),
@@ -330,6 +342,25 @@ class SessionsGapicClient
             'project' => $project,
             'session' => $session,
             'context' => $context,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a phrase_set
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $phraseSet
+     *
+     * @return string The formatted phrase_set resource.
+     */
+    public static function phraseSetName($project, $location, $phraseSet)
+    {
+        return self::getPhraseSetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'phrase_set' => $phraseSet,
         ]);
     }
 
@@ -630,6 +661,7 @@ class SessionsGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - phraseSet: projects/{project}/locations/{location}/phraseSets/{phrase_set}
      * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
      * - projectEnvironmentUserSessionContext: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/contexts/{context}
      * - projectEnvironmentUserSessionEntityType: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}/entityTypes/{entity_type}

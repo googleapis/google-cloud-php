@@ -46,6 +46,12 @@ class DiscoveryEvent extends \Google\Protobuf\Internal\Message
      */
     protected $data_location = '';
     /**
+     * The id of the associated datascan for standalone discovery.
+     *
+     * Generated from protobuf field <code>string datascan_id = 6;</code>
+     */
+    protected $datascan_id = '';
+    /**
      * The type of the event being logged.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.EventType type = 10;</code>
@@ -69,6 +75,8 @@ class DiscoveryEvent extends \Google\Protobuf\Internal\Message
      *           The id of the associated asset.
      *     @type string $data_location
      *           The data location associated with the event.
+     *     @type string $datascan_id
+     *           The id of the associated datascan for standalone discovery.
      *     @type int $type
      *           The type of the event being logged.
      *     @type \Google\Cloud\Dataplex\V1\DiscoveryEvent\ConfigDetails $config
@@ -79,6 +87,8 @@ class DiscoveryEvent extends \Google\Protobuf\Internal\Message
      *           Details about the partition associated with the event.
      *     @type \Google\Cloud\Dataplex\V1\DiscoveryEvent\ActionDetails $action
      *           Details about the action associated with the event.
+     *     @type \Google\Cloud\Dataplex\V1\DiscoveryEvent\TableDetails $table
+     *           Details about the BigQuery table publishing associated with the event.
      * }
      */
     public function __construct($data = NULL) {
@@ -212,6 +222,32 @@ class DiscoveryEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->data_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * The id of the associated datascan for standalone discovery.
+     *
+     * Generated from protobuf field <code>string datascan_id = 6;</code>
+     * @return string
+     */
+    public function getDatascanId()
+    {
+        return $this->datascan_id;
+    }
+
+    /**
+     * The id of the associated datascan for standalone discovery.
+     *
+     * Generated from protobuf field <code>string datascan_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatascanId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->datascan_id = $var;
 
         return $this;
     }
@@ -362,6 +398,37 @@ class DiscoveryEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DiscoveryEvent\ActionDetails::class);
         $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details about the BigQuery table publishing associated with the event.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.TableDetails table = 24;</code>
+     * @return \Google\Cloud\Dataplex\V1\DiscoveryEvent\TableDetails|null
+     */
+    public function getTable()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasTable()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Details about the BigQuery table publishing associated with the event.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DiscoveryEvent.TableDetails table = 24;</code>
+     * @param \Google\Cloud\Dataplex\V1\DiscoveryEvent\TableDetails $var
+     * @return $this
+     */
+    public function setTable($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DiscoveryEvent\TableDetails::class);
+        $this->writeOneof(24, $var);
 
         return $this;
     }

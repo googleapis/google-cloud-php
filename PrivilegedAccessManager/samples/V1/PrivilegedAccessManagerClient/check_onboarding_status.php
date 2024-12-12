@@ -29,7 +29,7 @@ use Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse;
 use Google\Cloud\PrivilegedAccessManager\V1\Client\PrivilegedAccessManagerClient;
 
 /**
- * CheckOnboardingStatus reports the onboarding status for a
+ * `CheckOnboardingStatus` reports the onboarding status for a
  * project/folder/organization. Any findings reported by this API need to be
  * fixed before PAM can be used on the resource.
  *

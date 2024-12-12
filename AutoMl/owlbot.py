@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,69 +20,26 @@ import subprocess
 
 import synthtool as s
 from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
 src = Path(f"../{php.STAGING_DIR}/AutoMl").resolve()
 dest = Path().resolve()
 
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
 php.owlbot_main(src=src, dest=dest)
 
-
-# Fix class references in gapic samples
-versions = ['V1', 'V1beta1']
-for version in versions:
-    pathExprs = [
-        'src/' + version + '/Gapic/AutoMlGapicClient.php',
-        'src/' + version + '/Gapic/PredictionServiceGapicClient.php'
-    ]
-
-    for pathExpr in pathExprs:
-        types = {
-            'new AutoMlClient': r'new Google\\Cloud\\AutoMl\\' + version + r'\\AutoMlClient',
-            'new PredictionServiceClient': r'new Google\\Cloud\\AutoMl\\' + version + r'\\PredictionServiceClient',
-            '= AudioEncoding::': r'= Google\\Cloud\\Speech\\' + version + r'\\RecognitionConfig\\AudioEncoding::',
-            'new Dataset': r'new Google\\Cloud\\AutoMl\\' + version + r'\\Dataset',
-            '= new ModelExportOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ModelExportOutputConfig',
-            '= new ExportEvaluatedExamplesOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ExportEvaluatedExamplesOutputConfig',
-            '= new ExportEvaluatedExamplesOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ExportEvaluatedExamplesOutputConfig',
-            '= new TableSpec': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\TableSpec',
-            '= new ColumnSpec': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ColumnSpec',
-            '= new BatchPredictInputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\BatchPredictInputConfig',
-            '= new BatchPredictOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\BatchPredictOutputConfig',
-        }
-
-        for search, replace in types.items():
-            s.replace(
-                pathExpr,
-                search,
-                replace)
-
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
+# remove class_alias code
 s.replace(
-    "src/**/V*/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
-### [END] protoc backwards compatibility fixes
-
-# fix relative cloud.google.com links
-s.replace(
-    "src/**/V*/**/*.php",
-    r"(.{0,})\]\((/.{0,})\)",
-    r"\1](https://cloud.google.com\2)"
-)
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # format generated clients
 subprocess.run([
@@ -92,8 +49,8 @@ subprocess.run([
     '--package=@prettier/plugin-php@^0.16',
     '--',
     'prettier',
-    '**/Gapic/*',
+    '**/Client/*',
     '--write',
     '--parser=php',
     '--single-quote',
-    '--print-width=80'])
+    '--print-width=120'])

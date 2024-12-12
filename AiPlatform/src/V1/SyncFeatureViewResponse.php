@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Respose message for
+ * Response message for
  * [FeatureOnlineStoreAdminService.SyncFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.SyncFeatureView].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SyncFeatureViewResponse</code>

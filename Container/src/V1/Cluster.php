@@ -199,8 +199,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $ip_allocation_policy = null;
     /**
      * The configuration options for master authorized networks feature.
+     * Deprecated: Use
+     * [ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
+     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22 [deprecated = true];</code>
+     * @deprecated
      */
     protected $master_authorized_networks_config = null;
     /**
@@ -532,6 +536,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $security_posture_config = null;
     /**
+     * Configuration for all cluster's control plane endpoints.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEndpointsConfig control_plane_endpoints_config = 146;</code>
+     */
+    protected $control_plane_endpoints_config = null;
+    /**
      * Beta APIs Config
      *
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
@@ -544,6 +554,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $enterprise_config = null;
     /**
+     * Secret CSI driver configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretManagerConfig secret_manager_config = 150;</code>
+     */
+    protected $secret_manager_config = null;
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151;</code>
+     */
+    protected $compliance_posture_config = null;
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 152 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -555,6 +577,19 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzi = 153 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = null;
+    /**
+     * The Custom keys configuration for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.UserManagedKeysConfig user_managed_keys_config = 154;</code>
+     */
+    protected $user_managed_keys_config = null;
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     * RoleBindings that can be created.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig rbac_binding_config = 156;</code>
+     */
+    protected $rbac_binding_config = null;
 
     /**
      * Constructor.
@@ -668,6 +703,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Configuration for cluster IP allocation.
      *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $master_authorized_networks_config
      *           The configuration options for master authorized networks feature.
+     *           Deprecated: Use
+     *           [ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config]
+     *           instead.
      *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
      *           Configure the maintenance policy for this cluster.
      *     @type \Google\Cloud\Container\V1\BinaryAuthorization $binary_authorization
@@ -811,14 +849,25 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Fleet information for the cluster.
      *     @type \Google\Cloud\Container\V1\SecurityPostureConfig $security_posture_config
      *           Enable/Disable Security Posture API features for the cluster.
+     *     @type \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig $control_plane_endpoints_config
+     *           Configuration for all cluster's control plane endpoints.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
      *           Beta APIs Config
      *     @type \Google\Cloud\Container\V1\EnterpriseConfig $enterprise_config
      *           GKE Enterprise Configuration.
+     *     @type \Google\Cloud\Container\V1\SecretManagerConfig $secret_manager_config
+     *           Secret CSI driver configuration.
+     *     @type \Google\Cloud\Container\V1\CompliancePostureConfig $compliance_posture_config
+     *           Enable/Disable Compliance Posture features for the cluster.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\Container\V1\UserManagedKeysConfig $user_managed_keys_config
+     *           The Custom keys configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\RBACBindingConfig $rbac_binding_config
+     *           RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     *           RoleBindings that can be created.
      * }
      */
     public function __construct($data = NULL) {
@@ -1524,34 +1573,46 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The configuration options for master authorized networks feature.
+     * Deprecated: Use
+     * [ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
+     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig|null
+     * @deprecated
      */
     public function getMasterAuthorizedNetworksConfig()
     {
+        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         return $this->master_authorized_networks_config;
     }
 
     public function hasMasterAuthorizedNetworksConfig()
     {
+        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->master_authorized_networks_config);
     }
 
     public function clearMasterAuthorizedNetworksConfig()
     {
+        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         unset($this->master_authorized_networks_config);
     }
 
     /**
      * The configuration options for master authorized networks feature.
+     * Deprecated: Use
+     * [ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config]
+     * instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
+     * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $var
      * @return $this
+     * @deprecated
      */
     public function setMasterAuthorizedNetworksConfig($var)
     {
+        @trigger_error('master_authorized_networks_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig::class);
         $this->master_authorized_networks_config = $var;
 
@@ -3105,6 +3166,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for all cluster's control plane endpoints.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEndpointsConfig control_plane_endpoints_config = 146;</code>
+     * @return \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig|null
+     */
+    public function getControlPlaneEndpointsConfig()
+    {
+        return $this->control_plane_endpoints_config;
+    }
+
+    public function hasControlPlaneEndpointsConfig()
+    {
+        return isset($this->control_plane_endpoints_config);
+    }
+
+    public function clearControlPlaneEndpointsConfig()
+    {
+        unset($this->control_plane_endpoints_config);
+    }
+
+    /**
+     * Configuration for all cluster's control plane endpoints.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEndpointsConfig control_plane_endpoints_config = 146;</code>
+     * @param \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig $var
+     * @return $this
+     */
+    public function setControlPlaneEndpointsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig::class);
+        $this->control_plane_endpoints_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Beta APIs Config
      *
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
@@ -3177,6 +3274,78 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Secret CSI driver configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretManagerConfig secret_manager_config = 150;</code>
+     * @return \Google\Cloud\Container\V1\SecretManagerConfig|null
+     */
+    public function getSecretManagerConfig()
+    {
+        return $this->secret_manager_config;
+    }
+
+    public function hasSecretManagerConfig()
+    {
+        return isset($this->secret_manager_config);
+    }
+
+    public function clearSecretManagerConfig()
+    {
+        unset($this->secret_manager_config);
+    }
+
+    /**
+     * Secret CSI driver configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretManagerConfig secret_manager_config = 150;</code>
+     * @param \Google\Cloud\Container\V1\SecretManagerConfig $var
+     * @return $this
+     */
+    public function setSecretManagerConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecretManagerConfig::class);
+        $this->secret_manager_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151;</code>
+     * @return \Google\Cloud\Container\V1\CompliancePostureConfig|null
+     */
+    public function getCompliancePostureConfig()
+    {
+        return $this->compliance_posture_config;
+    }
+
+    public function hasCompliancePostureConfig()
+    {
+        return isset($this->compliance_posture_config);
+    }
+
+    public function clearCompliancePostureConfig()
+    {
+        unset($this->compliance_posture_config);
+    }
+
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151;</code>
+     * @param \Google\Cloud\Container\V1\CompliancePostureConfig $var
+     * @return $this
+     */
+    public function setCompliancePostureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CompliancePostureConfig::class);
+        $this->compliance_posture_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 152 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -3244,6 +3413,80 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Custom keys configuration for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.UserManagedKeysConfig user_managed_keys_config = 154;</code>
+     * @return \Google\Cloud\Container\V1\UserManagedKeysConfig|null
+     */
+    public function getUserManagedKeysConfig()
+    {
+        return $this->user_managed_keys_config;
+    }
+
+    public function hasUserManagedKeysConfig()
+    {
+        return isset($this->user_managed_keys_config);
+    }
+
+    public function clearUserManagedKeysConfig()
+    {
+        unset($this->user_managed_keys_config);
+    }
+
+    /**
+     * The Custom keys configuration for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.UserManagedKeysConfig user_managed_keys_config = 154;</code>
+     * @param \Google\Cloud\Container\V1\UserManagedKeysConfig $var
+     * @return $this
+     */
+    public function setUserManagedKeysConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\UserManagedKeysConfig::class);
+        $this->user_managed_keys_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     * RoleBindings that can be created.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig rbac_binding_config = 156;</code>
+     * @return \Google\Cloud\Container\V1\RBACBindingConfig|null
+     */
+    public function getRbacBindingConfig()
+    {
+        return $this->rbac_binding_config;
+    }
+
+    public function hasRbacBindingConfig()
+    {
+        return isset($this->rbac_binding_config);
+    }
+
+    public function clearRbacBindingConfig()
+    {
+        unset($this->rbac_binding_config);
+    }
+
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an
+     * RoleBindings that can be created.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.RBACBindingConfig rbac_binding_config = 156;</code>
+     * @param \Google\Cloud\Container\V1\RBACBindingConfig $var
+     * @return $this
+     */
+    public function setRbacBindingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RBACBindingConfig::class);
+        $this->rbac_binding_config = $var;
 
         return $this;
     }

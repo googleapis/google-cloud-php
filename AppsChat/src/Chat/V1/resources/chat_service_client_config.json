@@ -138,6 +138,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "SearchSpaces": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "SetUpSpace": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",

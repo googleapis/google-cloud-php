@@ -33,6 +33,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\ListVoicesRequest;
 use Google\Cloud\TextToSpeech\V1\ListVoicesResponse;
@@ -407,6 +408,8 @@ class TextToSpeechGapicClient
      * @param array                $optionalArgs {
      *     Optional.
      *
+     *     @type AdvancedVoiceOptions $advancedVoiceOptions
+     *           Advanced voice options.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -427,6 +430,12 @@ class TextToSpeechGapicClient
         $request->setInput($input);
         $request->setVoice($voice);
         $request->setAudioConfig($audioConfig);
+        if (isset($optionalArgs['advancedVoiceOptions'])) {
+            $request->setAdvancedVoiceOptions(
+                $optionalArgs['advancedVoiceOptions']
+            );
+        }
+
         return $this->startCall(
             'SynthesizeSpeech',
             SynthesizeSpeechResponse::class,

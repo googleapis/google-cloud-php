@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ use Google\Cloud\Talent\V4\ListTenantsRequest;
 use Google\Cloud\Talent\V4\Tenant;
 use Google\Cloud\Talent\V4\UpdateTenantRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: A service that handles tenant management, including CRUD and enumeration.
@@ -52,11 +53,11 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createTenantAsync(CreateTenantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteTenantAsync(DeleteTenantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getTenantAsync(GetTenantRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTenantsAsync(ListTenantsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateTenantAsync(UpdateTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tenant> createTenantAsync(CreateTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTenantAsync(DeleteTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tenant> getTenantAsync(GetTenantRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTenantsAsync(ListTenantsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Tenant> updateTenantAsync(UpdateTenantRequest $request, array $optionalArgs = [])
  */
 final class TenantServiceClient
 {
@@ -152,14 +153,14 @@ final class TenantServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -214,6 +215,9 @@ final class TenantServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

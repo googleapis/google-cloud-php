@@ -49,7 +49,7 @@ use Google\Rpc\Status;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedName The name of the agent to restore into.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+ *                              Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
  *                              {@see AgentsClient::agentName()} for help formatting this field.
  */
 function restore_agent_sample(string $formattedName): void

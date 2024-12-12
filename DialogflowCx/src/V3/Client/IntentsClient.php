@@ -52,6 +52,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for managing [Intents][google.cloud.dialogflow.cx.v3.Intent].
@@ -64,15 +65,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createIntentAsync(CreateIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteIntentAsync(DeleteIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface exportIntentsAsync(ExportIntentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIntentAsync(GetIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importIntentsAsync(ImportIntentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listIntentsAsync(ListIntentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateIntentAsync(UpdateIntentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Intent> createIntentAsync(CreateIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteIntentAsync(DeleteIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportIntentsAsync(ExportIntentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Intent> getIntentAsync(GetIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> importIntentsAsync(ImportIntentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIntentsAsync(ListIntentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Intent> updateIntentAsync(UpdateIntentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class IntentsClient
 {
@@ -250,14 +251,14 @@ final class IntentsClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -312,6 +313,9 @@ final class IntentsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

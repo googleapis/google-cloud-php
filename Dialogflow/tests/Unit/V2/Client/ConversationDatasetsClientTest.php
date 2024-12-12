@@ -101,11 +101,15 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $conversationCount = 1994187347;
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new ConversationDataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setConversationCount($conversationCount);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -349,11 +353,15 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $conversationCount = 1994187347;
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new ConversationDataset();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setConversationCount($conversationCount);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationDatasetName('[PROJECT]', '[LOCATION]', '[CONVERSATION_DATASET]');
@@ -758,11 +766,15 @@ class ConversationDatasetsClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $conversationCount = 1994187347;
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new ConversationDataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setConversationCount($conversationCount);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

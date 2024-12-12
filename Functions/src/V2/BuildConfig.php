@@ -22,7 +22,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $build = '';
+    protected $build = '';
     /**
      * The runtime in which to run the function. Required when deploying a new
      * function, optional when updating an existing function. For a complete
@@ -32,7 +32,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string runtime = 2;</code>
      */
-    private $runtime = '';
+    protected $runtime = '';
     /**
      * The name of the function (as defined in source code) that will be
      * executed. Defaults to the resource name suffix, if not specified. For
@@ -43,19 +43,19 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entry_point = 3;</code>
      */
-    private $entry_point = '';
+    protected $entry_point = '';
     /**
      * The location of the function source code.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.Source source = 4;</code>
      */
-    private $source = null;
+    protected $source = null;
     /**
      * Output only. A permanent fixed identifier for source.
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.SourceProvenance source_provenance = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_provenance = null;
+    protected $source_provenance = null;
     /**
      * Name of the Cloud Build Custom Worker Pool that should be used to build the
      * function. The format of this field is
@@ -71,7 +71,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_pool = 5 [(.google.api.resource_reference) = {</code>
      */
-    private $worker_pool = '';
+    protected $worker_pool = '';
     /**
      * User-provided build-time environment variables for the function
      *
@@ -88,7 +88,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.functions.v2.BuildConfig.DockerRegistry docker_registry = 10;</code>
      */
-    private $docker_registry = 0;
+    protected $docker_registry = 0;
     /**
      * Repository in Artifact Registry to which the function docker image will be
      * pushed after it is built by Cloud Build. If specified by user, it is
@@ -103,14 +103,14 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string docker_repository = 7 [(.google.api.resource_reference) = {</code>
      */
-    private $docker_repository = '';
+    protected $docker_repository = '';
     /**
      * Service account to be used for building the container. The format of this
      * field is `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.
      *
      * Generated from protobuf field <code>string service_account = 27;</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
     protected $runtime_update_policy;
 
     /**

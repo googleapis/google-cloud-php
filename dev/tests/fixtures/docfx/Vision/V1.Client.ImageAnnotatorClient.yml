@@ -17,9 +17,6 @@ items:
       assist with these names, this class includes a format method for each type of
       name, and additionally a parseName method to extract the individual identifiers
       contained within formatted names that are returned by the API.
-
-      This class is currently experimental and may be subject to changes. See <xref uid="\Google\Cloud\Vision\V1\ImageAnnotatorClient">Google\Cloud\Vision\V1\ImageAnnotatorClient</xref> for the stable implementation
-    status: beta
     type: class
     namespace: 'Google \ Cloud \ Vision \ V1 \ Client'
     langs:
@@ -60,11 +57,11 @@ items:
         -
           id: '↳ credentials'
           var_type: string|array|FetchAuthTokenInterface|CredentialsWrapper
-          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <a href="https://googleapis.github.io/google-auth-library-php/main/Google/Auth/FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</a> object or <a href="https://googleapis.github.io/gax-php#Google/ApiCore/CredentialsWrapper">Google\ApiCore\CredentialsWrapper</a> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
+          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <a href="https://googleapis.github.io/google-auth-library-php/main/Google/Auth/FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</a> object or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
         -
           id: '↳ credentialsConfig'
           var_type: array
-          description: 'Options used to configure credentials, including auth token caching, for the client. For a full list of supporting configuration options, see <a href="https://googleapis.github.io/gax-php#Google/ApiCore/CredentialsWrapper#method_build">Google\ApiCore\CredentialsWrapper::build()</a> .'
+          description: 'Options used to configure credentials, including auth token caching, for the client. For a full list of supporting configuration options, see <xref uid="\Google\ApiCore\CredentialsWrapper::build()">Google\ApiCore\CredentialsWrapper::build()</xref> .'
         -
           id: '↳ disableRetries'
           var_type: bool
@@ -76,11 +73,11 @@ items:
         -
           id: '↳ transport'
           var_type: string|TransportInterface
-          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
+          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <xref uid="\Google\ApiCore\Transport\TransportInterface">Google\ApiCore\Transport\TransportInterface</xref> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
         -
           id: '↳ transportConfig'
           var_type: array
-          description: 'Configuration options that will be used to construct the transport. Options for each supported transport type should be passed in a key for that transport. For example: $transportConfig = [ ''grpc'' => [...], ''rest'' => [...], ]; See the <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/GrpcTransport#method_build">Google\ApiCore\Transport\GrpcTransport::build()</a> and <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/RestTransport#method_build">Google\ApiCore\Transport\RestTransport::build()</a> methods for the supported options.'
+          description: 'Configuration options that will be used to construct the transport. Options for each supported transport type should be passed in a key for that transport. For example: $transportConfig = [ ''grpc'' => [...], ''rest'' => [...], ]; See the <xref uid="\Google\ApiCore\Transport\GrpcTransport::build()">Google\ApiCore\Transport\GrpcTransport::build()</xref> and <xref uid="\Google\ApiCore\Transport\RestTransport::build()">Google\ApiCore\Transport\RestTransport::build()</xref> methods for the supported options.'
         -
           id: '↳ clientCertSource'
           var_type: callable
@@ -98,12 +95,57 @@ items:
       `Operation.metadata` contains `OperationMetadata` (metadata).
       `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()</xref>
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()">ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()</xref>
       .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Rpc\Status;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AsyncAnnotateFileRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateFiles($requests);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateFilesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -117,10 +159,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImages()'
     name: asyncBatchAnnotateImages
@@ -137,11 +179,58 @@ items:
       GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
 
       The async variant is
-      <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()</xref> .
+      <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()">ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+        use Google\Cloud\Vision\V1\OutputConfig;
+        use Google\Rpc\Status;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function async_batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+            $outputConfig = new OutputConfig();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var AsyncBatchAnnotateImagesResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -155,10 +244,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFiles()'
     name: batchAnnotateFiles
@@ -173,11 +262,44 @@ items:
       file provided and perform detection and annotation for each image
       extracted.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()">ImageAnnotatorClient::batchAnnotateFilesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateFileRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_files_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateFileRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateFilesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -191,7 +313,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse">Google\Cloud\Vision\V1\BatchAnnotateFilesResponse</xref>'
@@ -202,11 +324,44 @@ items:
     summary: |-
       Run image detection and annotation for a batch of images.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()">Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()">ImageAnnotatorClient::batchAnnotateImagesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ImageAnnotatorClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\AnnotateImageRequest;
+        use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
+        use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function batch_annotate_images_sample(): void
+        {
+            // Create a client.
+            $imageAnnotatorClient = new ImageAnnotatorClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $requests = [new AnnotateImageRequest()];
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var BatchAnnotateImagesResponse $response */
+                $response = $imageAnnotatorClient->batchAnnotateImages($requests);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -220,7 +375,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>'
@@ -239,12 +394,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()'
     name: asyncBatchAnnotateImagesAsync
@@ -260,12 +415,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateFilesAsync()'
     name: batchAnnotateFilesAsync
@@ -281,12 +436,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest">Google\Cloud\Vision\V1\BatchAnnotateFilesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse">Google\Cloud\Vision\V1\BatchAnnotateFilesResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::batchAnnotateImagesAsync()'
     name: batchAnnotateImagesAsync
@@ -302,12 +457,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest">Google\Cloud\Vision\V1\BatchAnnotateImagesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::getOperationsClient()'
     name: getOperationsClient
@@ -320,7 +475,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
+          var_type: '<xref uid="\Google\ApiCore\LongRunning\OperationsClient">Google\ApiCore\LongRunning\OperationsClient</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::resumeOperation()'
     name: resumeOperation
@@ -346,7 +501,7 @@ items:
           description: 'The name of the method used to start the operation'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ImageAnnotatorClient::productSetName()'
     name: 'static::productSetName'

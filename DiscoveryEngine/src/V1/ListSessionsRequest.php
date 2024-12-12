@@ -17,7 +17,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The data store resource name. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,7 +62,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The data store resource name. Format:
-     *                       `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     *                       `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *                       Please see {@see ConversationalSearchServiceClient::dataStoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1\ListSessionsRequest
@@ -83,7 +83,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The data store resource name. Format:
-     *           `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *     @type int $page_size
      *           Maximum number of results to return. If unspecified, defaults
      *           to 50. Max allowed value is 1000.
@@ -114,7 +114,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The data store resource name. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -126,7 +126,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The data store resource name. Format:
-     * `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`
+     * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -38,7 +38,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
 {
     /**
      * Each instance corresponds to a force return attribute for the given
-     * condition. There can't be more 3 instances here.
+     * condition. There can't be more 15 instances here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment facet_position_adjustments = 1;</code>
      */
@@ -52,7 +52,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment>|\Google\Protobuf\Internal\RepeatedField $facet_position_adjustments
      *           Each instance corresponds to a force return attribute for the given
-     *           condition. There can't be more 3 instances here.
+     *           condition. There can't be more 15 instances here.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +62,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Each instance corresponds to a force return attribute for the given
-     * condition. There can't be more 3 instances here.
+     * condition. There can't be more 15 instances here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment facet_position_adjustments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -74,7 +74,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Each instance corresponds to a force return attribute for the given
-     * condition. There can't be more 3 instances here.
+     * condition. There can't be more 15 instances here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment facet_position_adjustments = 1;</code>
      * @param array<\Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment>|\Google\Protobuf\Internal\RepeatedField $var

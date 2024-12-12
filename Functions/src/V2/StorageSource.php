@@ -22,7 +22,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      */
-    private $bucket = '';
+    protected $bucket = '';
     /**
      * Google Cloud Storage object containing the source.
      * This object must be a gzipped archive file (`.tar.gz`) containing source to
@@ -30,14 +30,14 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string object = 2;</code>
      */
-    private $object = '';
+    protected $object = '';
     /**
      * Google Cloud Storage generation for the object. If the generation is
      * omitted, the latest generation will be used.
      *
      * Generated from protobuf field <code>int64 generation = 3;</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * When the specified storage bucket is a 1st gen function uploard url bucket,
      * this field should be set as the generated upload url for 1st gen
@@ -45,7 +45,7 @@ class StorageSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_upload_url = 4;</code>
      */
-    private $source_upload_url = '';
+    protected $source_upload_url = '';
 
     /**
      * Constructor.

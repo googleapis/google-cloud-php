@@ -27,37 +27,37 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Display name (max 256 chars).
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Short description (max 256 chars).
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The creation timestamp of an inspectTemplate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of an inspectTemplate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * The core content of the template. Configuration of the scanning process.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 6;</code>
      */
-    private $inspect_config = null;
+    protected $inspect_config = null;
 
     /**
      * Constructor.

@@ -40,11 +40,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ min_lat_lng'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>'
           description: 'Min lat/long pair.'
         -
           id: '↳ max_lat_lng'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>'
           description: 'Max lat/long pair.'
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::getMinLatLng()'
@@ -58,7 +58,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>|null'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::hasMinLatLng()'
     name: hasMinLatLng
@@ -88,7 +88,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>'
           description: ''
       returns:
         -
@@ -105,7 +105,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>|null'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::hasMaxLatLng()'
     name: hasMaxLatLng
@@ -135,7 +135,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
+          var_type: '<xref uid="\Google\Type\LatLng">Google\Type\LatLng</xref>'
           description: ''
       returns:
         -

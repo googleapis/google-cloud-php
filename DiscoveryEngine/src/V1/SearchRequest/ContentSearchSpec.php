@@ -38,11 +38,7 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
     protected $extractive_content_spec = null;
     /**
      * Specifies the search result mode. If unspecified, the
-     * search result mode is based on
-     * [DataStore.DocumentProcessingConfig.chunking_config][]:
-     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is specified,
-     *   it defaults to `CHUNKS`.
-     * * Otherwise, it defaults to `DOCUMENTS`.
+     * search result mode defaults to `DOCUMENTS`.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 4;</code>
      */
@@ -75,11 +71,7 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
      *           extractive answer in the search response.
      *     @type int $search_result_mode
      *           Specifies the search result mode. If unspecified, the
-     *           search result mode is based on
-     *           [DataStore.DocumentProcessingConfig.chunking_config][]:
-     *           * If [DataStore.DocumentProcessingConfig.chunking_config][] is specified,
-     *             it defaults to `CHUNKS`.
-     *           * Otherwise, it defaults to `DOCUMENTS`.
+     *           search result mode defaults to `DOCUMENTS`.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\ChunkSpec $chunk_spec
      *           Specifies the chunk spec to be returned from the search response.
      *           Only available if the
@@ -209,11 +201,7 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the search result mode. If unspecified, the
-     * search result mode is based on
-     * [DataStore.DocumentProcessingConfig.chunking_config][]:
-     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is specified,
-     *   it defaults to `CHUNKS`.
-     * * Otherwise, it defaults to `DOCUMENTS`.
+     * search result mode defaults to `DOCUMENTS`.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 4;</code>
      * @return int
@@ -225,11 +213,7 @@ class ContentSearchSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the search result mode. If unspecified, the
-     * search result mode is based on
-     * [DataStore.DocumentProcessingConfig.chunking_config][]:
-     * * If [DataStore.DocumentProcessingConfig.chunking_config][] is specified,
-     *   it defaults to `CHUNKS`.
-     * * Otherwise, it defaults to `DOCUMENTS`.
+     * search result mode defaults to `DOCUMENTS`.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode search_result_mode = 4;</code>
      * @param int $var

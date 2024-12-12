@@ -22,6 +22,12 @@ class ActionDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string type = 1;</code>
      */
     protected $type = '';
+    /**
+     * The human readable issue associated with the action.
+     *
+     * Generated from protobuf field <code>string issue = 2;</code>
+     */
+    protected $issue = '';
 
     /**
      * Constructor.
@@ -32,6 +38,8 @@ class ActionDetails extends \Google\Protobuf\Internal\Message
      *     @type string $type
      *           The type of action.
      *           Eg. IncompatibleDataSchema, InvalidDataFormat
+     *     @type string $issue
+     *           The human readable issue associated with the action.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +71,32 @@ class ActionDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The human readable issue associated with the action.
+     *
+     * Generated from protobuf field <code>string issue = 2;</code>
+     * @return string
+     */
+    public function getIssue()
+    {
+        return $this->issue;
+    }
+
+    /**
+     * The human readable issue associated with the action.
+     *
+     * Generated from protobuf field <code>string issue = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIssue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->issue = $var;
 
         return $this;
     }

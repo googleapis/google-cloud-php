@@ -43,6 +43,7 @@ use Google\Cloud\OsLogin\V1\ImportSshPublicKeyResponse;
 use Google\Cloud\OsLogin\V1\LoginProfile;
 use Google\Cloud\OsLogin\V1\UpdateSshPublicKeyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Cloud OS Login API
@@ -58,13 +59,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface createSshPublicKeyAsync(CreateSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deletePosixAccountAsync(DeletePosixAccountRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteSshPublicKeyAsync(DeleteSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLoginProfileAsync(GetLoginProfileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getSshPublicKeyAsync(GetSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface importSshPublicKeyAsync(ImportSshPublicKeyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateSshPublicKeyAsync(UpdateSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SshPublicKey> createSshPublicKeyAsync(CreateSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deletePosixAccountAsync(DeletePosixAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSshPublicKeyAsync(DeleteSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LoginProfile> getLoginProfileAsync(GetLoginProfileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SshPublicKey> getSshPublicKeyAsync(GetSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ImportSshPublicKeyResponse> importSshPublicKeyAsync(ImportSshPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SshPublicKey> updateSshPublicKeyAsync(UpdateSshPublicKeyRequest $request, array $optionalArgs = [])
  */
 final class OsLoginServiceClient
 {
@@ -180,14 +181,14 @@ final class OsLoginServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -242,6 +243,9 @@ final class OsLoginServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

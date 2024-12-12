@@ -32,59 +32,59 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * all languages.  Only the representation corresponding to "dtype" can
      * be set.  The values hold the flattened representation of the tensor in
      * row major order.
-     * [BOOL][google.aiplatform.master.Tensor.DataType.BOOL]
+     * [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
      *
      * Generated from protobuf field <code>repeated bool bool_val = 3;</code>
      */
     private $bool_val;
     /**
-     * [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated string string_val = 14;</code>
      */
     private $string_val;
     /**
-     * [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated bytes bytes_val = 15;</code>
      */
     private $bytes_val;
     /**
-     * [FLOAT][google.aiplatform.master.Tensor.DataType.FLOAT]
+     * [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
      *
      * Generated from protobuf field <code>repeated float float_val = 5;</code>
      */
     private $float_val;
     /**
-     * [DOUBLE][google.aiplatform.master.Tensor.DataType.DOUBLE]
+     * [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
      *
      * Generated from protobuf field <code>repeated double double_val = 6;</code>
      */
     private $double_val;
     /**
-     * [INT_8][google.aiplatform.master.Tensor.DataType.INT8]
-     * [INT_16][google.aiplatform.master.Tensor.DataType.INT16]
-     * [INT_32][google.aiplatform.master.Tensor.DataType.INT32]
+     * [INT_8][google.cloud.aiplatform.v1.Tensor.DataType.INT8]
+     * [INT_16][google.cloud.aiplatform.v1.Tensor.DataType.INT16]
+     * [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
      *
      * Generated from protobuf field <code>repeated int32 int_val = 7;</code>
      */
     private $int_val;
     /**
-     * [INT64][google.aiplatform.master.Tensor.DataType.INT64]
+     * [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
      *
      * Generated from protobuf field <code>repeated int64 int64_val = 8;</code>
      */
     private $int64_val;
     /**
-     * [UINT8][google.aiplatform.master.Tensor.DataType.UINT8]
-     * [UINT16][google.aiplatform.master.Tensor.DataType.UINT16]
-     * [UINT32][google.aiplatform.master.Tensor.DataType.UINT32]
+     * [UINT8][google.cloud.aiplatform.v1.Tensor.DataType.UINT8]
+     * [UINT16][google.cloud.aiplatform.v1.Tensor.DataType.UINT16]
+     * [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
      *
      * Generated from protobuf field <code>repeated uint32 uint_val = 9;</code>
      */
     private $uint_val;
     /**
-     * [UINT64][google.aiplatform.master.Tensor.DataType.UINT64]
+     * [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
      *
      * Generated from protobuf field <code>repeated uint64 uint64_val = 10;</code>
      */
@@ -123,27 +123,27 @@ class Tensor extends \Google\Protobuf\Internal\Message
      *           all languages.  Only the representation corresponding to "dtype" can
      *           be set.  The values hold the flattened representation of the tensor in
      *           row major order.
-     *           [BOOL][google.aiplatform.master.Tensor.DataType.BOOL]
+     *           [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $string_val
-     *           [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     *           [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $bytes_val
-     *           [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     *           [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $float_val
-     *           [FLOAT][google.aiplatform.master.Tensor.DataType.FLOAT]
+     *           [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
      *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $double_val
-     *           [DOUBLE][google.aiplatform.master.Tensor.DataType.DOUBLE]
+     *           [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $int_val
-     *           [INT_8][google.aiplatform.master.Tensor.DataType.INT8]
-     *           [INT_16][google.aiplatform.master.Tensor.DataType.INT16]
-     *           [INT_32][google.aiplatform.master.Tensor.DataType.INT32]
+     *           [INT_8][google.cloud.aiplatform.v1.Tensor.DataType.INT8]
+     *           [INT_16][google.cloud.aiplatform.v1.Tensor.DataType.INT16]
+     *           [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $int64_val
-     *           [INT64][google.aiplatform.master.Tensor.DataType.INT64]
+     *           [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $uint_val
-     *           [UINT8][google.aiplatform.master.Tensor.DataType.UINT8]
-     *           [UINT16][google.aiplatform.master.Tensor.DataType.UINT16]
-     *           [UINT32][google.aiplatform.master.Tensor.DataType.UINT32]
+     *           [UINT8][google.cloud.aiplatform.v1.Tensor.DataType.UINT8]
+     *           [UINT16][google.cloud.aiplatform.v1.Tensor.DataType.UINT16]
+     *           [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $uint64_val
-     *           [UINT64][google.aiplatform.master.Tensor.DataType.UINT64]
+     *           [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
      *     @type array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $list_val
      *           A list of tensor values.
      *     @type array|\Google\Protobuf\Internal\MapField $struct_val
@@ -214,7 +214,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * all languages.  Only the representation corresponding to "dtype" can
      * be set.  The values hold the flattened representation of the tensor in
      * row major order.
-     * [BOOL][google.aiplatform.master.Tensor.DataType.BOOL]
+     * [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
      *
      * Generated from protobuf field <code>repeated bool bool_val = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -229,7 +229,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * all languages.  Only the representation corresponding to "dtype" can
      * be set.  The values hold the flattened representation of the tensor in
      * row major order.
-     * [BOOL][google.aiplatform.master.Tensor.DataType.BOOL]
+     * [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
      *
      * Generated from protobuf field <code>repeated bool bool_val = 3;</code>
      * @param array<bool>|\Google\Protobuf\Internal\RepeatedField $var
@@ -244,7 +244,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated string string_val = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -255,7 +255,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated string string_val = 14;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -270,7 +270,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated bytes bytes_val = 15;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -281,7 +281,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [STRING][google.aiplatform.master.Tensor.DataType.STRING]
+     * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated bytes bytes_val = 15;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -296,7 +296,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [FLOAT][google.aiplatform.master.Tensor.DataType.FLOAT]
+     * [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
      *
      * Generated from protobuf field <code>repeated float float_val = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -307,7 +307,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [FLOAT][google.aiplatform.master.Tensor.DataType.FLOAT]
+     * [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
      *
      * Generated from protobuf field <code>repeated float float_val = 5;</code>
      * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
@@ -322,7 +322,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [DOUBLE][google.aiplatform.master.Tensor.DataType.DOUBLE]
+     * [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
      *
      * Generated from protobuf field <code>repeated double double_val = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -333,7 +333,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [DOUBLE][google.aiplatform.master.Tensor.DataType.DOUBLE]
+     * [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
      *
      * Generated from protobuf field <code>repeated double double_val = 6;</code>
      * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
@@ -348,9 +348,9 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [INT_8][google.aiplatform.master.Tensor.DataType.INT8]
-     * [INT_16][google.aiplatform.master.Tensor.DataType.INT16]
-     * [INT_32][google.aiplatform.master.Tensor.DataType.INT32]
+     * [INT_8][google.cloud.aiplatform.v1.Tensor.DataType.INT8]
+     * [INT_16][google.cloud.aiplatform.v1.Tensor.DataType.INT16]
+     * [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
      *
      * Generated from protobuf field <code>repeated int32 int_val = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -361,9 +361,9 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [INT_8][google.aiplatform.master.Tensor.DataType.INT8]
-     * [INT_16][google.aiplatform.master.Tensor.DataType.INT16]
-     * [INT_32][google.aiplatform.master.Tensor.DataType.INT32]
+     * [INT_8][google.cloud.aiplatform.v1.Tensor.DataType.INT8]
+     * [INT_16][google.cloud.aiplatform.v1.Tensor.DataType.INT16]
+     * [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
      *
      * Generated from protobuf field <code>repeated int32 int_val = 7;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -378,7 +378,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [INT64][google.aiplatform.master.Tensor.DataType.INT64]
+     * [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
      *
      * Generated from protobuf field <code>repeated int64 int64_val = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -389,7 +389,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [INT64][google.aiplatform.master.Tensor.DataType.INT64]
+     * [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
      *
      * Generated from protobuf field <code>repeated int64 int64_val = 8;</code>
      * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -404,9 +404,9 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [UINT8][google.aiplatform.master.Tensor.DataType.UINT8]
-     * [UINT16][google.aiplatform.master.Tensor.DataType.UINT16]
-     * [UINT32][google.aiplatform.master.Tensor.DataType.UINT32]
+     * [UINT8][google.cloud.aiplatform.v1.Tensor.DataType.UINT8]
+     * [UINT16][google.cloud.aiplatform.v1.Tensor.DataType.UINT16]
+     * [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
      *
      * Generated from protobuf field <code>repeated uint32 uint_val = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -417,9 +417,9 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [UINT8][google.aiplatform.master.Tensor.DataType.UINT8]
-     * [UINT16][google.aiplatform.master.Tensor.DataType.UINT16]
-     * [UINT32][google.aiplatform.master.Tensor.DataType.UINT32]
+     * [UINT8][google.cloud.aiplatform.v1.Tensor.DataType.UINT8]
+     * [UINT16][google.cloud.aiplatform.v1.Tensor.DataType.UINT16]
+     * [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
      *
      * Generated from protobuf field <code>repeated uint32 uint_val = 9;</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -434,7 +434,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [UINT64][google.aiplatform.master.Tensor.DataType.UINT64]
+     * [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
      *
      * Generated from protobuf field <code>repeated uint64 uint64_val = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -445,7 +445,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [UINT64][google.aiplatform.master.Tensor.DataType.UINT64]
+     * [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
      *
      * Generated from protobuf field <code>repeated uint64 uint64_val = 10;</code>
      * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var

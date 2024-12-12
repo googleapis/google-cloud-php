@@ -21,7 +21,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodeConfig config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Optional. The list of Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available) where
@@ -42,7 +42,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAutoscalingConfig autoscaling = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $autoscaling = null;
+    protected $autoscaling = null;
 
     /**
      * Constructor.

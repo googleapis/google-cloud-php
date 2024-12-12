@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * GcpIamAccess represents IAM based access control on a Google Cloud
+ * `GcpIamAccess` represents IAM based access control on a Google Cloud
  * resource. Refer to https://cloud.google.com/iam/docs to understand more
  * about IAM.
  *

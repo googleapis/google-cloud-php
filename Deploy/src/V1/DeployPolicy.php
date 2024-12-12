@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A `DeployPolicy` resource in the Cloud Deploy API.
- * A `DeployPolicy` inhibits manual or automation driven actions within a
+ * A `DeployPolicy` inhibits manual or automation-driven actions within a
  * Delivery Pipeline or Target.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.DeployPolicy</code>

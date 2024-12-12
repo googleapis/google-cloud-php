@@ -21,45 +21,45 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.TimeZone time_zone = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $time_zone = null;
+    protected $time_zone = null;
     /**
      * Optional. The time that the recurring schedule becomes effective.
      * Defaults to `create_time` of the patch deployment.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Optional. The end time at which a recurring patch deployment schedule is no
      * longer active.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Required. Time of the day to run a recurring deployment.
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay time_of_day = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $time_of_day = null;
+    protected $time_of_day = null;
     /**
      * Required. The frequency unit of this recurring schedule.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.RecurringSchedule.Frequency frequency = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $frequency = 0;
+    protected $frequency = 0;
     /**
      * Output only. The time the last patch job ran successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_execute_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_execute_time = null;
+    protected $last_execute_time = null;
     /**
      * Output only. The time the next patch job is scheduled to run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_execute_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $next_execute_time = null;
+    protected $next_execute_time = null;
     protected $schedule_config;
 
     /**

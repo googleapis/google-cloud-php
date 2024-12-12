@@ -28,7 +28,7 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $text = '';
+    protected $text = '';
     protected $structured_value;
 
     /**

@@ -20,7 +20,7 @@ class GcsPrefix extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_uri_prefix = 1;</code>
      */
-    private $gcs_uri_prefix = '';
+    protected $gcs_uri_prefix = '';
 
     /**
      * Constructor.

@@ -44,6 +44,7 @@ use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\TestIamPermissionsPacketMirroringRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The PacketMirrorings API.
@@ -51,13 +52,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface aggregatedListAsync(AggregatedListPacketMirroringsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteAsync(DeletePacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetPacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface insertAsync(InsertPacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListPacketMirroringsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface patchAsync(PatchPacketMirroringRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListPacketMirroringsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeletePacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PacketMirroring> getAsync(GetPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListPacketMirroringsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchPacketMirroringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsPacketMirroringRequest $request, array $optionalArgs = [])
  */
 final class PacketMirroringsClient
 {
@@ -222,6 +223,9 @@ final class PacketMirroringsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -249,6 +253,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/aggregated_list.php
+     *
      * @param AggregatedListPacketMirroringsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -272,6 +278,8 @@ final class PacketMirroringsClient
      * Deletes the specified PacketMirroring resource.
      *
      * The async variant is {@see PacketMirroringsClient::deleteAsync()} .
+     *
+     * @example samples/V1/PacketMirroringsClient/delete.php
      *
      * @param DeletePacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -297,6 +305,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::getAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/get.php
+     *
      * @param GetPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -320,6 +330,8 @@ final class PacketMirroringsClient
      * Creates a PacketMirroring resource in the specified project and region using the data included in the request.
      *
      * The async variant is {@see PacketMirroringsClient::insertAsync()} .
+     *
+     * @example samples/V1/PacketMirroringsClient/insert.php
      *
      * @param InsertPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -345,6 +357,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::listAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/list.php
+     *
      * @param ListPacketMirroringsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -369,6 +383,8 @@ final class PacketMirroringsClient
      *
      * The async variant is {@see PacketMirroringsClient::patchAsync()} .
      *
+     * @example samples/V1/PacketMirroringsClient/patch.php
+     *
      * @param PatchPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -392,6 +408,8 @@ final class PacketMirroringsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see PacketMirroringsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PacketMirroringsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsPacketMirroringRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {

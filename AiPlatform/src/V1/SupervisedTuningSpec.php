@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Tuning Spec for Supervised Tuning.
+ * Tuning Spec for Supervised Tuning for first party models.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.SupervisedTuningSpec</code>
  */

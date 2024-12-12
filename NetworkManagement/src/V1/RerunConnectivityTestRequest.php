@@ -19,7 +19,7 @@ class RerunConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      * Required. Connectivity Test resource name using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
@@ -43,7 +43,7 @@ class RerunConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      * Required. Connectivity Test resource name using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -55,7 +55,7 @@ class RerunConnectivityTestRequest extends \Google\Protobuf\Internal\Message
      * Required. Connectivity Test resource name using the form:
      *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

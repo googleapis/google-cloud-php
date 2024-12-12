@@ -21,7 +21,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      */
-    private $text_anchor = null;
+    protected $text_anchor = null;
     /**
      * Confidence of the current
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] within
@@ -31,21 +31,21 @@ class Layout extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * The bounding polygon for the
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 3;</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * Detected orientation for the
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout.Orientation orientation = 4;</code>
      */
-    private $orientation = 0;
+    protected $orientation = 0;
 
     /**
      * Constructor.

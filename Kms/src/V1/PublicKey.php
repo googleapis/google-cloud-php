@@ -26,7 +26,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      */
-    private $pem = '';
+    protected $pem = '';
     /**
      * The
      * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
@@ -34,7 +34,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      */
-    private $algorithm = 0;
+    protected $algorithm = 0;
     /**
      * Integrity verification field. A CRC32C checksum of the returned
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
@@ -52,7 +52,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
      */
-    private $pem_crc32c = null;
+    protected $pem_crc32c = null;
     /**
      * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
@@ -61,14 +61,14 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      */
-    private $protection_level = 0;
+    protected $protection_level = 0;
 
     /**
      * Constructor.
@@ -232,7 +232,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
      * @return int|string|null
      */
-    public function getPemCrc32CValue()
+    public function getPemCrc32CUnwrapped()
     {
         return $this->readWrapperValue("pem_crc32c");
     }
@@ -285,7 +285,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setPemCrc32CValue($var)
+    public function setPemCrc32CUnwrapped($var)
     {
         $this->writeWrapperValue("pem_crc32c", $var);
         return $this;}

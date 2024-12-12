@@ -37,6 +37,7 @@ use Google\Cloud\Run\V2\GetTaskRequest;
 use Google\Cloud\Run\V2\ListTasksRequest;
 use Google\Cloud\Run\V2\Task;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Cloud Run Task Control Plane API.
@@ -49,8 +50,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
  */
 final class TasksClient
 {
@@ -160,14 +161,14 @@ final class TasksClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -222,6 +223,9 @@ final class TasksClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

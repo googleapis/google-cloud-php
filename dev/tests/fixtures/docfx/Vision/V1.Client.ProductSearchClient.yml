@@ -9,16 +9,18 @@ items:
       Service Description: Manages Products and ProductSets of reference images for use in product
       search. It uses the following resource model:
 
-      - The API has a collection of <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> resources, named
-      `projects/*/locations/*/productSets/*`, which acts as a way to put different
-      products into groups to limit identification.
+      - The API has a collection of <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref>
+      resources, named `projects/*/locations/*/productSets/*`, which acts as a way
+      to put different products into groups to limit identification.
 
       In parallel,
 
-      - The API has a collection of <xref uid="\Google\Cloud\Vision\V1\Product">Product</xref> resources, named
+      - The API has a collection of <xref uid="\Google\Cloud\Vision\V1\Product">Product</xref>
+      resources, named
       `projects/*/locations/*/products/*`
 
-      - Each <xref uid="\Google\Cloud\Vision\V1\Product">Product</xref> has a collection of <xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref> resources, named
+      - Each <xref uid="\Google\Cloud\Vision\V1\Product">Product</xref> has a collection of
+      <xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref> resources, named
       `projects/*/locations/*/products/*/referenceImages/*`
 
       This class provides the ability to make remote calls to the backing service through method
@@ -28,9 +30,6 @@ items:
       assist with these names, this class includes a format method for each type of
       name, and additionally a parseName method to extract the individual identifiers
       contained within formatted names that are returned by the API.
-
-      This class is currently experimental and may be subject to changes. See <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient">Google\Cloud\Vision\V1\ProductSearchClient</xref> for the stable implementation
-    status: beta
     type: class
     namespace: 'Google \ Cloud \ Vision \ V1 \ Client'
     langs:
@@ -104,11 +103,11 @@ items:
         -
           id: '↳ credentials'
           var_type: string|array|FetchAuthTokenInterface|CredentialsWrapper
-          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <a href="https://googleapis.github.io/google-auth-library-php/main/Google/Auth/FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</a> object or <a href="https://googleapis.github.io/gax-php#Google/ApiCore/CredentialsWrapper">Google\ApiCore\CredentialsWrapper</a> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
+          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <a href="https://googleapis.github.io/google-auth-library-php/main/Google/Auth/FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</a> object or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
         -
           id: '↳ credentialsConfig'
           var_type: array
-          description: 'Options used to configure credentials, including auth token caching, for the client. For a full list of supporting configuration options, see <a href="https://googleapis.github.io/gax-php#Google/ApiCore/CredentialsWrapper#method_build">Google\ApiCore\CredentialsWrapper::build()</a> .'
+          description: 'Options used to configure credentials, including auth token caching, for the client. For a full list of supporting configuration options, see <xref uid="\Google\ApiCore\CredentialsWrapper::build()">Google\ApiCore\CredentialsWrapper::build()</xref> .'
         -
           id: '↳ disableRetries'
           var_type: bool
@@ -120,11 +119,11 @@ items:
         -
           id: '↳ transport'
           var_type: string|TransportInterface
-          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/TransportInterface">Google\ApiCore\Transport\TransportInterface</a> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
+          description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <xref uid="\Google\ApiCore\Transport\TransportInterface">Google\ApiCore\Transport\TransportInterface</xref> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
         -
           id: '↳ transportConfig'
           var_type: array
-          description: 'Configuration options that will be used to construct the transport. Options for each supported transport type should be passed in a key for that transport. For example: $transportConfig = [ ''grpc'' => [...], ''rest'' => [...], ]; See the <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/GrpcTransport#method_build">Google\ApiCore\Transport\GrpcTransport::build()</a> and <a href="https://googleapis.github.io/gax-php#Google/ApiCore/Transport/RestTransport#method_build">Google\ApiCore\Transport\RestTransport::build()</a> methods for the supported options.'
+          description: 'Configuration options that will be used to construct the transport. Options for each supported transport type should be passed in a key for that transport. For example: $transportConfig = [ ''grpc'' => [...], ''rest'' => [...], ]; See the <xref uid="\Google\ApiCore\Transport\GrpcTransport::build()">Google\ApiCore\Transport\GrpcTransport::build()</xref> and <xref uid="\Google\ApiCore\Transport\RestTransport::build()">Google\ApiCore\Transport\RestTransport::build()</xref> methods for the supported options.'
         -
           id: '↳ clientCertSource'
           var_type: callable
@@ -143,11 +142,60 @@ items:
 
       * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSetAsync()">ProductSearchClient::addProductToProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName    The resource name for the ProductSet to modify.
+         *
+         *                                 Format is:
+         *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+         *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+         * @param string $formattedProduct The resource name for the Product to be added to this ProductSet.
+         *
+         *                                 Format is:
+         *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+         *                                 Please see {@see ProductSearchClient::productName()} for help formatting this field.
+         */
+        function add_product_to_product_set_sample(string $formattedName, string $formattedProduct): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
+                printf('Call completed successfully.' . PHP_EOL);
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+            $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+
+            add_product_to_product_set_sample($formattedName, $formattedProduct);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -161,7 +209,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProduct()'
     name: createProduct
@@ -176,11 +224,59 @@ items:
       * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
       * Returns INVALID_ARGUMENT if product_category is missing or invalid.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()">ProductSearchClient::createProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\Product;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedParent The project in which the Product should be created.
+         *
+         *                                Format is
+         *                                `projects/PROJECT_ID/locations/LOC_ID`. Please see
+         *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+         */
+        function create_product_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $product = new Product();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var Product $response */
+                $response = $productSearchClient->createProduct($formattedParent, $product);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+            create_product_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -194,7 +290,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
@@ -210,11 +306,58 @@ items:
       * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
       4096 characters.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()">ProductSearchClient::createProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ProductSet;
+
+        /**
+         * @param string $formattedParent The project in which the ProductSet should be created.
+         *
+         *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+         *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+         */
+        function create_product_set_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $productSet = new ProductSet();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var ProductSet $response */
+                $response = $productSearchClient->createProductSet($formattedParent, $productSet);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+            create_product_set_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -228,7 +371,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
@@ -257,11 +400,64 @@ items:
       compatible with the parent product's product_category is detected.
       * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()">ProductSearchClient::createReferenceImageAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ReferenceImage;
+
+        /**
+         * @param string $formattedParent   Resource name of the product in which to create the reference image.
+         *
+         *                                  Format is
+         *                                  `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+         *                                  {@see ProductSearchClient::productName()} for help formatting this field.
+         * @param string $referenceImageUri The Google Cloud Storage URI of the reference image.
+         *
+         *                                  The URI must start with `gs://`.
+         */
+        function create_reference_image_sample(string $formattedParent, string $referenceImageUri): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $referenceImage = (new ReferenceImage())
+                ->setUri($referenceImageUri);
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var ReferenceImage $response */
+                $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+            $referenceImageUri = '[URI]';
+
+            create_reference_image_sample($formattedParent, $referenceImageUri);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -275,7 +471,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
@@ -290,11 +486,54 @@ items:
       search queries against ProductSets containing the product may still work
       until all related caches are refreshed.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()">ProductSearchClient::deleteProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName Resource name of product to delete.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+         *                              Please see {@see ProductSearchClient::productName()} for help formatting this field.
+         */
+        function delete_product_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                $productSearchClient->deleteProduct($formattedName);
+                printf('Call completed successfully.' . PHP_EOL);
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+
+            delete_product_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -308,7 +547,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSet()'
     name: deleteProductSet
@@ -319,11 +558,54 @@ items:
 
       The actual image files are not deleted from Google Cloud Storage.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()">ProductSearchClient::deleteProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName Resource name of the ProductSet to delete.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+         *                              Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+         */
+        function delete_product_set_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                $productSearchClient->deleteProductSet($formattedName);
+                printf('Call completed successfully.' . PHP_EOL);
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+
+            delete_product_set_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -337,7 +619,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImage()'
     name: deleteReferenceImage
@@ -351,11 +633,59 @@ items:
 
       The actual image files are not deleted from Google Cloud Storage.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()">ProductSearchClient::deleteReferenceImageAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName The resource name of the reference image to delete.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+         *                              Please see {@see ProductSearchClient::referenceImageName()} for help formatting this field.
+         */
+        function delete_reference_image_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                $productSearchClient->deleteReferenceImage($formattedName);
+                printf('Call completed successfully.' . PHP_EOL);
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::referenceImageName(
+                '[PROJECT]',
+                '[LOCATION]',
+                '[PRODUCT]',
+                '[REFERENCE_IMAGE]'
+            );
+
+            delete_reference_image_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -369,7 +699,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProduct()'
     name: getProduct
@@ -381,11 +711,56 @@ items:
 
       * Returns NOT_FOUND if the Product does not exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()">ProductSearchClient::getProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\Product;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName Resource name of the Product to get.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+         *                              Please see {@see ProductSearchClient::productName()} for help formatting this field.
+         */
+        function get_product_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var Product $response */
+                $response = $productSearchClient->getProduct($formattedName);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+
+            get_product_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -399,7 +774,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
@@ -414,11 +789,56 @@ items:
 
       * Returns NOT_FOUND if the ProductSet does not exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()">ProductSearchClient::getProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ProductSet;
+
+        /**
+         * @param string $formattedName Resource name of the ProductSet to get.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+         *                              Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+         */
+        function get_product_set_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var ProductSet $response */
+                $response = $productSearchClient->getProductSet($formattedName);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+
+            get_product_set_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -432,7 +852,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
@@ -447,11 +867,61 @@ items:
 
       * Returns NOT_FOUND if the specified image does not exist.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()">ProductSearchClient::getReferenceImageAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ReferenceImage;
+
+        /**
+         * @param string $formattedName The resource name of the ReferenceImage to get.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`. Please see
+         *                              {@see ProductSearchClient::referenceImageName()} for help formatting this field.
+         */
+        function get_reference_image_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var ReferenceImage $response */
+                $response = $productSearchClient->getReferenceImage($formattedName);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::referenceImageName(
+                '[PROJECT]',
+                '[LOCATION]',
+                '[PRODUCT]',
+                '[REFERENCE_IMAGE]'
+            );
+
+            get_reference_image_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -465,7 +935,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
@@ -477,8 +947,8 @@ items:
       Asynchronous API that imports a list of reference images to specified
       product sets based on a list of image information.
 
-      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
-      progress and results of the request.
+      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be
+      used to keep track of the progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
       `Operation.response` contains `ImportProductSetsResponse`. (results)
 
@@ -486,11 +956,71 @@ items:
       For the format of the csv file please see
       <xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource::getCsvFileUri()">ImportProductSetsGcsSource.csv_file_uri</xref>.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()">ProductSearchClient::importProductSetsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\ImportProductSetsInputConfig;
+        use Google\Cloud\Vision\V1\ImportProductSetsResponse;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Rpc\Status;
+
+        /**
+         * @param string $formattedParent The project in which the ProductSets should be imported.
+         *
+         *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+         *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+         */
+        function import_product_sets_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $inputConfig = new ImportProductSetsInputConfig();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $productSearchClient->importProductSets($formattedParent, $inputConfig);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    /** @var ImportProductSetsResponse $result */
+                    $result = $response->getResult();
+                    printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+            import_product_sets_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -504,10 +1034,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSets()'
     name: listProductSets
@@ -520,11 +1050,60 @@ items:
       * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
       than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()">ProductSearchClient::listProductSetsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\PagedListResponse;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ProductSet;
+
+        /**
+         * @param string $formattedParent The project from which ProductSets should be listed.
+         *
+         *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+         *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+         */
+        function list_product_sets_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var PagedListResponse $response */
+                $response = $productSearchClient->listProductSets($formattedParent);
+
+                /** @var ProductSet $element */
+                foreach ($response as $element) {
+                    printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+            list_product_sets_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -538,10 +1117,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProducts()'
     name: listProducts
@@ -553,11 +1132,61 @@ items:
 
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()">ProductSearchClient::listProductsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\PagedListResponse;
+        use Google\Cloud\Vision\V1\Product;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedParent The project OR ProductSet from which Products should be listed.
+         *
+         *                                Format:
+         *                                `projects/PROJECT_ID/locations/LOC_ID`
+         *                                Please see {@see ProductSearchClient::locationName()} for help formatting this field.
+         */
+        function list_products_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var PagedListResponse $response */
+                $response = $productSearchClient->listProducts($formattedParent);
+
+                /** @var Product $element */
+                foreach ($response as $element) {
+                    printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+            list_products_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -571,10 +1200,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSet()'
     name: listProductsInProductSet
@@ -588,12 +1217,62 @@ items:
 
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()</xref>
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()">ProductSearchClient::listProductsInProductSetAsync()</xref>
       .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\PagedListResponse;
+        use Google\Cloud\Vision\V1\Product;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName The ProductSet resource for which to retrieve Products.
+         *
+         *                              Format is:
+         *                              `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+         *                              Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+         */
+        function list_products_in_product_set_sample(string $formattedName): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var PagedListResponse $response */
+                $response = $productSearchClient->listProductsInProductSet($formattedName);
+
+                /** @var Product $element */
+                foreach ($response as $element) {
+                    printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+
+            list_products_in_product_set_sample($formattedName);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -607,10 +1286,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImages()'
     name: listReferenceImages
@@ -624,11 +1303,61 @@ items:
       * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
       than 1.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()">ProductSearchClient::listReferenceImagesAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\PagedListResponse;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ReferenceImage;
+
+        /**
+         * @param string $formattedParent Resource name of the product containing the reference images.
+         *
+         *                                Format is
+         *                                `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+         *                                {@see ProductSearchClient::productName()} for help formatting this field.
+         */
+        function list_reference_images_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var PagedListResponse $response */
+                $response = $productSearchClient->listReferenceImages($formattedParent);
+
+                /** @var ReferenceImage $element */
+                foreach ($response as $element) {
+                    printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+
+            list_reference_images_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -642,10 +1371,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProducts()'
     name: purgeProducts
@@ -672,15 +1401,68 @@ items:
       ProductSet, you must wait until the PurgeProducts operation has finished
       for that ProductSet.
 
-      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
-      progress and results of the request.
+      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be
+      used to keep track of the progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()">ProductSearchClient::purgeProductsAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\ApiCore\OperationResponse;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Rpc\Status;
+
+        /**
+         * @param string $formattedParent The project and location in which the Products should be deleted.
+         *
+         *                                Format is `projects/PROJECT_ID/locations/LOC_ID`. Please see
+         *                                {@see ProductSearchClient::locationName()} for help formatting this field.
+         */
+        function purge_products_sample(string $formattedParent): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var OperationResponse $response */
+                $response = $productSearchClient->purgeProducts($formattedParent);
+                $response->pollUntilComplete();
+
+                if ($response->operationSucceeded()) {
+                    printf('Operation completed successfully.' . PHP_EOL);
+                } else {
+                    /** @var Status $error */
+                    $error = $response->getError();
+                    printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+                }
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedParent = ProductSearchClient::locationName('[PROJECT]', '[LOCATION]');
+
+            purge_products_sample($formattedParent);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -694,10 +1476,10 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSet()'
     name: removeProductFromProductSet
@@ -706,11 +1488,62 @@ items:
       Removes a Product from the specified ProductSet.
 
       The async variant is
-      <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()</xref> .
+      <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()">ProductSearchClient::removeProductFromProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * @param string $formattedName    The resource name for the ProductSet to modify.
+         *
+         *                                 Format is:
+         *                                 `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+         *                                 Please see {@see ProductSearchClient::productSetName()} for help formatting this field.
+         * @param string $formattedProduct The resource name for the Product to be removed from this ProductSet.
+         *
+         *                                 Format is:
+         *                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+         *                                 Please see {@see ProductSearchClient::productName()} for help formatting this field.
+         */
+        function remove_product_from_product_set_sample(
+            string $formattedName,
+            string $formattedProduct
+        ): void {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Call the API and handle any network failures.
+            try {
+                $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
+                printf('Call completed successfully.' . PHP_EOL);
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+
+        /**
+         * Helper to execute the sample.
+         *
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function callSample(): void
+        {
+            $formattedName = ProductSearchClient::productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+            $formattedProduct = ProductSearchClient::productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+
+            remove_product_from_product_set_sample($formattedName, $formattedProduct);
+        }
+        ```
     syntax:
       parameters:
         -
@@ -724,7 +1557,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProduct()'
     name: updateProduct
@@ -747,11 +1580,43 @@ items:
       longer than 4096 characters.
       * Returns INVALID_ARGUMENT if product_category is present in update_mask.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()">ProductSearchClient::updateProductAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\Product;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function update_product_sample(): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $product = new Product();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var Product $response */
+                $response = $productSearchClient->updateProduct($product);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -765,7 +1630,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
@@ -784,11 +1649,43 @@ items:
       * Returns INVALID_ARGUMENT if display_name is present in update_mask but
       missing from the request or longer than 4096 characters.
 
-      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()">Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()</xref> .
+      The async variant is <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()">ProductSearchClient::updateProductSetAsync()</xref> .
     parent: \Google\Cloud\Vision\V1\Client\ProductSearchClient
     type: method
     langs:
       - php
+    example:
+      - |-
+        ```php
+        use Google\ApiCore\ApiException;
+        use Google\Cloud\Vision\V1\ProductSearchClient;
+        use Google\Cloud\Vision\V1\ProductSet;
+
+        /**
+         * This sample has been automatically generated and should be regarded as a code
+         * template only. It will require modifications to work:
+         *  - It may require correct/in-range values for request initialization.
+         *  - It may require specifying regional endpoints when creating the service client,
+         *    please see the apiEndpoint client configuration option for more details.
+         */
+        function update_product_set_sample(): void
+        {
+            // Create a client.
+            $productSearchClient = new ProductSearchClient();
+
+            // Prepare any non-scalar elements to be passed along with the request.
+            $productSet = new ProductSet();
+
+            // Call the API and handle any network failures.
+            try {
+                /** @var ProductSet $response */
+                $response = $productSearchClient->updateProductSet($productSet);
+                printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+            } catch (ApiException $ex) {
+                printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+            }
+        }
+        ```
     syntax:
       parameters:
         -
@@ -802,7 +1699,7 @@ items:
         -
           id: '↳ retrySettings'
           var_type: RetrySettings|array
-          description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
+          description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
@@ -821,12 +1718,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\AddProductToProductSetRequest">Google\Cloud\Vision\V1\AddProductToProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="void">void</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductAsync()'
     name: createProductAsync
@@ -842,12 +1739,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductRequest">Google\Cloud\Vision\V1\CreateProductRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createProductSetAsync()'
     name: createProductSetAsync
@@ -863,12 +1760,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateProductSetRequest">Google\Cloud\Vision\V1\CreateProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::createReferenceImageAsync()'
     name: createReferenceImageAsync
@@ -884,12 +1781,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\CreateReferenceImageRequest">Google\Cloud\Vision\V1\CreateReferenceImageRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductAsync()'
     name: deleteProductAsync
@@ -905,12 +1802,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\DeleteProductRequest">Google\Cloud\Vision\V1\DeleteProductRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="void">void</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteProductSetAsync()'
     name: deleteProductSetAsync
@@ -926,12 +1823,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\DeleteProductSetRequest">Google\Cloud\Vision\V1\DeleteProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="void">void</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::deleteReferenceImageAsync()'
     name: deleteReferenceImageAsync
@@ -947,12 +1844,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\DeleteReferenceImageRequest">Google\Cloud\Vision\V1\DeleteReferenceImageRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="void">void</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductAsync()'
     name: getProductAsync
@@ -968,12 +1865,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\GetProductRequest">Google\Cloud\Vision\V1\GetProductRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getProductSetAsync()'
     name: getProductSetAsync
@@ -989,12 +1886,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\GetProductSetRequest">Google\Cloud\Vision\V1\GetProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getReferenceImageAsync()'
     name: getReferenceImageAsync
@@ -1010,12 +1907,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\GetReferenceImageRequest">Google\Cloud\Vision\V1\GetReferenceImageRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::importProductSetsAsync()'
     name: importProductSetsAsync
@@ -1031,12 +1928,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsRequest">Google\Cloud\Vision\V1\ImportProductSetsRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSetsAsync()'
     name: listProductSetsAsync
@@ -1052,12 +1949,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ListProductSetsRequest">Google\Cloud\Vision\V1\ListProductSetsRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsAsync()'
     name: listProductsAsync
@@ -1073,12 +1970,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ListProductsRequest">Google\Cloud\Vision\V1\ListProductsRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductsInProductSetAsync()'
     name: listProductsInProductSetAsync
@@ -1094,12 +1991,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ListProductsInProductSetRequest">Google\Cloud\Vision\V1\ListProductsInProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listReferenceImagesAsync()'
     name: listReferenceImagesAsync
@@ -1115,12 +2012,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ListReferenceImagesRequest">Google\Cloud\Vision\V1\ListReferenceImagesRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\PagedListResponse">Google\ApiCore\PagedListResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::purgeProductsAsync()'
     name: purgeProductsAsync
@@ -1136,12 +2033,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\PurgeProductsRequest">Google\Cloud\Vision\V1\PurgeProductsRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSetAsync()'
     name: removeProductFromProductSetAsync
@@ -1157,12 +2054,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest">Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="void">void</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductAsync()'
     name: updateProductAsync
@@ -1178,12 +2075,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\UpdateProductRequest">Google\Cloud\Vision\V1\UpdateProductRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::updateProductSetAsync()'
     name: updateProductSetAsync
@@ -1199,12 +2096,12 @@ items:
           var_type: '<xref uid="\Google\Cloud\Vision\V1\UpdateProductSetRequest">Google\Cloud\Vision\V1\UpdateProductSetRequest</xref>'
           description: ''
         -
-          id: 'optionalArgs = []'
+          id: optionalArgs
           var_type: array
           description: ''
       returns:
         -
-          var_type: '<xref uid="\GuzzleHttp\Promise\PromiseInterface">GuzzleHttp\Promise\PromiseInterface</xref>'
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::getOperationsClient()'
     name: getOperationsClient
@@ -1217,7 +2114,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
+          var_type: '<xref uid="\Google\ApiCore\LongRunning\OperationsClient">Google\ApiCore\LongRunning\OperationsClient</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::resumeOperation()'
     name: resumeOperation
@@ -1243,7 +2140,7 @@ items:
           description: 'The name of the method used to start the operation'
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::locationName()'
     name: 'static::locationName'

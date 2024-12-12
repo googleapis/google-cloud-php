@@ -126,6 +126,12 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      */
     protected $management = null;
     /**
+     * Optional. Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeKubeletConfig kubelet_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $kubelet_config = null;
+    /**
      * Optional. Update settings control the speed and disruption of the update.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.UpdateSettings update_settings = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -188,6 +194,8 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *           Output only. A set of errors found in the node pool.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement $management
      *           Optional. The Management configuration for this node pool.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig $kubelet_config
+     *           Optional. Node kubelet configs.
      *     @type \Google\Cloud\GkeMultiCloud\V1\UpdateSettings $update_settings
      *           Optional. Update settings control the speed and disruption of the update.
      * }
@@ -683,6 +691,42 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement::class);
         $this->management = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeKubeletConfig kubelet_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig|null
+     */
+    public function getKubeletConfig()
+    {
+        return $this->kubelet_config;
+    }
+
+    public function hasKubeletConfig()
+    {
+        return isset($this->kubelet_config);
+    }
+
+    public function clearKubeletConfig()
+    {
+        unset($this->kubelet_config);
+    }
+
+    /**
+     * Optional. Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.NodeKubeletConfig kubelet_config = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\NodeKubeletConfig::class);
+        $this->kubelet_config = $var;
 
         return $this;
     }

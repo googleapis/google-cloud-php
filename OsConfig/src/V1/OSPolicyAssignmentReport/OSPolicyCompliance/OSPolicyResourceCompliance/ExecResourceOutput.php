@@ -21,7 +21,7 @@ class ExecResourceOutput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes enforcement_output = 2;</code>
      */
-    private $enforcement_output = '';
+    protected $enforcement_output = '';
 
     /**
      * Constructor.

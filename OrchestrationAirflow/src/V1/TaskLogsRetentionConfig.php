@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TaskLogsRetentionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The mode of storage for Airflow workers task logs. For details,
-     * see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+     * Optional. The mode of storage for Airflow workers task logs.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig.TaskLogsStorageMode storage_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -30,8 +29,7 @@ class TaskLogsRetentionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $storage_mode
-     *           Optional. The mode of storage for Airflow workers task logs. For details,
-     *           see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+     *           Optional. The mode of storage for Airflow workers task logs.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +38,7 @@ class TaskLogsRetentionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mode of storage for Airflow workers task logs. For details,
-     * see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+     * Optional. The mode of storage for Airflow workers task logs.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig.TaskLogsStorageMode storage_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -52,8 +49,7 @@ class TaskLogsRetentionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mode of storage for Airflow workers task logs. For details,
-     * see go/composer-store-task-logs-in-cloud-logging-only-design-doc
+     * Optional. The mode of storage for Airflow workers task logs.
      *
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.TaskLogsRetentionConfig.TaskLogsStorageMode storage_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

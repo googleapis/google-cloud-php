@@ -34,6 +34,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1\SqlTiersListRequest;
 use Google\Cloud\Sql\V1\TiersListResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for providing machine types (tiers) for Cloud SQL instances.
@@ -41,7 +42,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface listAsync(SqlTiersListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TiersListResponse> listAsync(SqlTiersListRequest $request, array $optionalArgs = [])
  */
 final class SqlTiersServiceClient
 {
@@ -141,6 +142,9 @@ final class SqlTiersServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

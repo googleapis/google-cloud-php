@@ -54,6 +54,7 @@ use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
 use Google\Cloud\Firestore\V1\Write;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Cloud Firestore service.
@@ -68,17 +69,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface batchWriteAsync(BatchWriteRequest $request, array $optionalArgs = [])
- * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
- * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listCollectionIdsAsync(ListCollectionIdsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listDocumentsAsync(ListDocumentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface partitionQueryAsync(PartitionQueryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateDocumentAsync(UpdateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchWriteResponse> batchWriteAsync(BatchWriteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BeginTransactionResponse> beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CommitResponse> commitAsync(CommitRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> createDocumentAsync(CreateDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDocumentAsync(DeleteDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listCollectionIdsAsync(ListCollectionIdsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDocumentsAsync(ListDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> partitionQueryAsync(PartitionQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> rollbackAsync(RollbackRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Document> updateDocumentAsync(UpdateDocumentRequest $request, array $optionalArgs = [])
  */
 final class FirestoreClient
 {
@@ -178,6 +179,9 @@ final class FirestoreClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

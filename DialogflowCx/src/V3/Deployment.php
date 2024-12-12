@@ -20,16 +20,16 @@ class Deployment extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/deployments/<Deployment ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     protected $name = '';
     /**
      * The name of the flow version for this deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Verion ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VerionID>.
      *
      * Generated from protobuf field <code>string flow_version = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -67,12 +67,12 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the deployment.
-     *           Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/environments/<Environment ID>/deployments/<Deployment ID>.
+     *           Format:
+     *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>.
      *     @type string $flow_version
      *           The name of the flow version for this deployment.
-     *           Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     *           ID>/flows/<Flow ID>/versions/<Verion ID>.
+     *           Format:
+     *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VerionID>.
      *     @type int $state
      *           The current state of the deployment.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Deployment\Result $result
@@ -90,8 +90,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/deployments/<Deployment ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -103,8 +103,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/environments/<Environment ID>/deployments/<Deployment ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>/deployments/<DeploymentID>.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -120,8 +120,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flow version for this deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Verion ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VerionID>.
      *
      * Generated from protobuf field <code>string flow_version = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -133,8 +133,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flow version for this deployment.
-     * Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent
-     * ID>/flows/<Flow ID>/versions/<Verion ID>.
+     * Format:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VerionID>.
      *
      * Generated from protobuf field <code>string flow_version = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

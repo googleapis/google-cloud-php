@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Providing examples in the generator (i.e. building a few-shot generator)
  * helps convey the desired format of the LLM response.
- * NEXT_ID: 10
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.FewShotExample</code>
  */

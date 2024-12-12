@@ -120,6 +120,11 @@
                                 "listSpaces"
                             ]
                         },
+                        "SearchSpaces": {
+                            "methods": [
+                                "searchSpaces"
+                            ]
+                        },
                         "SetUpSpace": {
                             "methods": [
                                 "setUpSpace"

@@ -21,13 +21,13 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Required. The Dataproc region in which to handle the request.
      *
      * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $region = '';
+    protected $region = '';
     /**
      * Optional. A filter constraining the clusters to list. Filters are
      * case-sensitive and have the following syntax:
@@ -35,31 +35,31 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`,
      * and `[KEY]` is a label key. **value** can be `*` to match all values.
      * `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
-     * `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
-     * contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
-     * contains the `DELETING` and `ERROR` states.
-     * `clusterName` is the name of the cluster provided at creation time.
-     * Only the logical `AND` operator is supported; space-separated items are
-     * treated as having an implicit `AND` operator.
+     * `CREATING`, `RUNNING`, `ERROR`, `DELETING`, `UPDATING`, `STOPPING`, or
+     * `STOPPED`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING`
+     * states. `INACTIVE` contains the `DELETING`, `ERROR`, `STOPPING`, and
+     * `STOPPED` states. `clusterName` is the name of the cluster provided at
+     * creation time. Only the logical `AND` operator is supported;
+     * space-separated items are treated as having an implicit `AND` operator.
      * Example filter:
      * status.state = ACTIVE AND clusterName = mycluster
      * AND labels.env = staging AND labels.starred = *
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The standard List page size.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The standard List page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $projectId Required. The ID of the Google Cloud Platform project that the cluster
@@ -89,12 +89,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *                          where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`,
      *                          and `[KEY]` is a label key. **value** can be `*` to match all values.
      *                          `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
-     *                          `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
-     *                          contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
-     *                          contains the `DELETING` and `ERROR` states.
-     *                          `clusterName` is the name of the cluster provided at creation time.
-     *                          Only the logical `AND` operator is supported; space-separated items are
-     *                          treated as having an implicit `AND` operator.
+     *                          `CREATING`, `RUNNING`, `ERROR`, `DELETING`, `UPDATING`, `STOPPING`, or
+     *                          `STOPPED`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING`
+     *                          states. `INACTIVE` contains the `DELETING`, `ERROR`, `STOPPING`, and
+     *                          `STOPPED` states. `clusterName` is the name of the cluster provided at
+     *                          creation time. Only the logical `AND` operator is supported;
+     *                          space-separated items are treated as having an implicit `AND` operator.
      *
      *                          Example filter:
      *
@@ -131,12 +131,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *           where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`,
      *           and `[KEY]` is a label key. **value** can be `*` to match all values.
      *           `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
-     *           `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
-     *           contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
-     *           contains the `DELETING` and `ERROR` states.
-     *           `clusterName` is the name of the cluster provided at creation time.
-     *           Only the logical `AND` operator is supported; space-separated items are
-     *           treated as having an implicit `AND` operator.
+     *           `CREATING`, `RUNNING`, `ERROR`, `DELETING`, `UPDATING`, `STOPPING`, or
+     *           `STOPPED`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING`
+     *           states. `INACTIVE` contains the `DELETING`, `ERROR`, `STOPPING`, and
+     *           `STOPPED` states. `clusterName` is the name of the cluster provided at
+     *           creation time. Only the logical `AND` operator is supported;
+     *           space-separated items are treated as having an implicit `AND` operator.
      *           Example filter:
      *           status.state = ACTIVE AND clusterName = mycluster
      *           AND labels.env = staging AND labels.starred = *
@@ -212,12 +212,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`,
      * and `[KEY]` is a label key. **value** can be `*` to match all values.
      * `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
-     * `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
-     * contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
-     * contains the `DELETING` and `ERROR` states.
-     * `clusterName` is the name of the cluster provided at creation time.
-     * Only the logical `AND` operator is supported; space-separated items are
-     * treated as having an implicit `AND` operator.
+     * `CREATING`, `RUNNING`, `ERROR`, `DELETING`, `UPDATING`, `STOPPING`, or
+     * `STOPPED`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING`
+     * states. `INACTIVE` contains the `DELETING`, `ERROR`, `STOPPING`, and
+     * `STOPPED` states. `clusterName` is the name of the cluster provided at
+     * creation time. Only the logical `AND` operator is supported;
+     * space-separated items are treated as having an implicit `AND` operator.
      * Example filter:
      * status.state = ACTIVE AND clusterName = mycluster
      * AND labels.env = staging AND labels.starred = *
@@ -237,12 +237,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`,
      * and `[KEY]` is a label key. **value** can be `*` to match all values.
      * `status.state` can be one of the following: `ACTIVE`, `INACTIVE`,
-     * `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE`
-     * contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE`
-     * contains the `DELETING` and `ERROR` states.
-     * `clusterName` is the name of the cluster provided at creation time.
-     * Only the logical `AND` operator is supported; space-separated items are
-     * treated as having an implicit `AND` operator.
+     * `CREATING`, `RUNNING`, `ERROR`, `DELETING`, `UPDATING`, `STOPPING`, or
+     * `STOPPED`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING`
+     * states. `INACTIVE` contains the `DELETING`, `ERROR`, `STOPPING`, and
+     * `STOPPED` states. `clusterName` is the name of the cluster provided at
+     * creation time. Only the logical `AND` operator is supported;
+     * space-separated items are treated as having an implicit `AND` operator.
      * Example filter:
      * status.state = ACTIVE AND clusterName = mycluster
      * AND labels.env = staging AND labels.starred = *

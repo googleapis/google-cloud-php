@@ -27,10 +27,22 @@ class MuteConfigType
      * Generated from protobuf enum <code>STATIC = 1;</code>
      */
     const PBSTATIC = 1;
+    /**
+     * A dynamic mute config, which is applied to existing and future matching
+     * findings, setting their dynamic mute state to "muted". If the config is
+     * updated or deleted, or a matching finding is updated, such that the
+     * finding doesn't match the config, the config will be removed from the
+     * finding, and the finding's dynamic mute state may become "unmuted"
+     * (unless other configs still match).
+     *
+     * Generated from protobuf enum <code>DYNAMIC = 2;</code>
+     */
+    const DYNAMIC = 2;
 
     private static $valueToName = [
         self::MUTE_CONFIG_TYPE_UNSPECIFIED => 'MUTE_CONFIG_TYPE_UNSPECIFIED',
         self::PBSTATIC => 'STATIC',
+        self::DYNAMIC => 'DYNAMIC',
     ];
 
     public static function name($value)

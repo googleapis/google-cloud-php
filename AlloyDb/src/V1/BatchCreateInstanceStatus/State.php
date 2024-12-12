@@ -23,7 +23,7 @@ class State
     const STATE_UNSPECIFIED = 0;
     /**
      * Instance is pending creation and has not yet been picked up for
-     * processsing in the backend.
+     * processing in the backend.
      *
      * Generated from protobuf enum <code>PENDING_CREATE = 1;</code>
      */

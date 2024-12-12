@@ -47,9 +47,11 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Provides interfaces for managing Cloud KMS Autokey folder-level
+ * Service Description: Provides interfaces for managing [Cloud KMS
+ * Autokey](https://cloud.google.com/kms/help/autokey) folder-level
  * configurations. A configuration is inherited by all descendent projects. A
  * configuration at one folder overrides any other configurations in its
  * ancestry. Setting a configuration on a folder is a prerequisite for Cloud KMS
@@ -65,14 +67,14 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getAutokeyConfigAsync(GetAutokeyConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface showEffectiveAutokeyConfigAsync(ShowEffectiveAutokeyConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateAutokeyConfigAsync(UpdateAutokeyConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutokeyConfig> getAutokeyConfigAsync(GetAutokeyConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ShowEffectiveAutokeyConfigResponse> showEffectiveAutokeyConfigAsync(ShowEffectiveAutokeyConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutokeyConfig> updateAutokeyConfigAsync(UpdateAutokeyConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class AutokeyAdminClient
 {
@@ -166,14 +168,14 @@ final class AutokeyAdminClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -228,6 +230,9 @@ final class AutokeyAdminClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -298,8 +303,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function showEffectiveAutokeyConfig(ShowEffectiveAutokeyConfigRequest $request, array $callOptions = []): ShowEffectiveAutokeyConfigResponse
-    {
+    public function showEffectiveAutokeyConfig(
+        ShowEffectiveAutokeyConfigRequest $request,
+        array $callOptions = []
+    ): ShowEffectiveAutokeyConfigResponse {
         return $this->startApiCall('ShowEffectiveAutokeyConfig', $request, $callOptions)->wait();
     }
 
@@ -471,8 +478,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

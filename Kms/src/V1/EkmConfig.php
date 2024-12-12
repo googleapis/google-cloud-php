@@ -28,7 +28,7 @@ class EkmConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Resource name of the default
      * [EkmConnection][google.cloud.kms.v1.EkmConnection]. Setting this field to
@@ -36,7 +36,7 @@ class EkmConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_ekm_connection = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $default_ekm_connection = '';
+    protected $default_ekm_connection = '';
 
     /**
      * Constructor.

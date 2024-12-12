@@ -18,7 +18,7 @@ class ListResourceValueConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns the collection of resource value configs.
      * Its format is
-     * "organizations/[organization_id]"
+     * `organizations/[organization_id]`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class ListResourceValueConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent, which owns the collection of resource value configs.
      *                       Its format is
-     *                       "organizations/[organization_id]"
+     *                       `organizations/[organization_id]`
      *                       Please see {@see SecurityCenterClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenter\V2\ListResourceValueConfigsRequest
@@ -69,7 +69,7 @@ class ListResourceValueConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent, which owns the collection of resource value configs.
      *           Its format is
-     *           "organizations/[organization_id]"
+     *           `organizations/[organization_id]`
      *     @type int $page_size
      *           The maximum number of configs to return. The service may return fewer than
      *           this value.
@@ -92,7 +92,7 @@ class ListResourceValueConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns the collection of resource value configs.
      * Its format is
-     * "organizations/[organization_id]"
+     * `organizations/[organization_id]`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -105,7 +105,7 @@ class ListResourceValueConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns the collection of resource value configs.
      * Its format is
-     * "organizations/[organization_id]"
+     * `organizations/[organization_id]`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

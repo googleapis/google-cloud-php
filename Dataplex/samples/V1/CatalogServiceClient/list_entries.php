@@ -30,7 +30,7 @@ use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\ListEntriesRequest;
 
 /**
- * Lists entries within an entry group.
+ * Lists Entries within an EntryGroup.
  *
  * @param string $formattedParent The resource name of the parent Entry Group:
  *                                `projects/{project}/locations/{location}/entryGroups/{entry_group}`. Please see

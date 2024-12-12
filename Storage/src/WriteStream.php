@@ -18,8 +18,8 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Upload\AbstractUploader;
-use GuzzleHttp\Psr7\StreamDecoratorTrait;
 use GuzzleHttp\Psr7\BufferStream;
+use GuzzleHttp\Psr7\StreamDecoratorTrait;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -46,7 +46,7 @@ class WriteStream implements StreamInterface
      *            upload data
      * }
      */
-    public function __construct(AbstractUploader $uploader = null, $options = [])
+    public function __construct(?AbstractUploader $uploader = null, $options = [])
     {
         if ($uploader) {
             $this->setUploader($uploader);
@@ -78,7 +78,7 @@ class WriteStream implements StreamInterface
     public function write($data): int
     {
         if (!isset($this->uploader)) {
-            throw new \RuntimeException("No uploader set.");
+            throw new \RuntimeException('No uploader set.');
         }
 
         // Ensure we have a resume uri here because we need to create the streaming

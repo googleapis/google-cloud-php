@@ -22,7 +22,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_pool = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node_pool = '';
+    protected $node_pool = '';
     /**
      * Required. The roles associated with the GKE node pool.
      *
@@ -42,7 +42,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeNodePoolConfig node_pool_config = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $node_pool_config = null;
+    protected $node_pool_config = null;
 
     /**
      * Constructor.

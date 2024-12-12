@@ -35,8 +35,8 @@ use Google\Cloud\Dialogflow\Cx\V3\DeleteEntityTypeRequest;
  * documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
  *
  * @param string $formattedName The name of the entity type to delete.
- *                              Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
- *                              ID>/entityTypes/<Entity Type ID>`. Please see
+ *                              Format:
+ *                              `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entityTypes/<EntityTypeID>`. Please see
  *                              {@see EntityTypesClient::entityTypeName()} for help formatting this field.
  */
 function delete_entity_type_sample(string $formattedName): void

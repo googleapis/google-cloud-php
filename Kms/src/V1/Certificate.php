@@ -21,27 +21,27 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes raw_der = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $raw_der = '';
+    protected $raw_der = '';
     /**
      * Output only. True if the certificate was parsed successfully.
      *
      * Generated from protobuf field <code>bool parsed = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parsed = false;
+    protected $parsed = false;
     /**
      * Output only. The issuer distinguished name in RFC 2253 format. Only present
      * if [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *
      * Generated from protobuf field <code>string issuer = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $issuer = '';
+    protected $issuer = '';
     /**
      * Output only. The subject distinguished name in RFC 2253 format. Only
      * present if [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *
      * Generated from protobuf field <code>string subject = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $subject = '';
+    protected $subject = '';
     /**
      * Output only. The subject Alternative DNS names. Only present if
      * [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
@@ -55,28 +55,28 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_before_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $not_before_time = null;
+    protected $not_before_time = null;
     /**
      * Output only. The certificate is not valid after this time. Only present if
      * [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_after_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $not_after_time = null;
+    protected $not_after_time = null;
     /**
      * Output only. The certificate serial number as a hex string. Only present if
      * [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *
      * Generated from protobuf field <code>string serial_number = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $serial_number = '';
+    protected $serial_number = '';
     /**
      * Output only. The SHA-256 certificate fingerprint as a hex string. Only
      * present if [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *
      * Generated from protobuf field <code>string sha256_fingerprint = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sha256_fingerprint = '';
+    protected $sha256_fingerprint = '';
 
     /**
      * Constructor.

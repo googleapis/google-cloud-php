@@ -27,14 +27,14 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * When `true`, deleting a message also deletes its threaded replies. When
-     * `false`, if a message has threaded replies, deletion fails.
+     * Optional. When `true`, deleting a message also deletes its threaded
+     * replies. When `false`, if a message has threaded replies, deletion fails.
      * Only applies when [authenticating as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * Has no effect when [authenticating as a Chat app]
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
-     * Generated from protobuf field <code>bool force = 2;</code>
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $force = false;
 
@@ -73,8 +73,8 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      *           message]
      *           (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     @type bool $force
-     *           When `true`, deleting a message also deletes its threaded replies. When
-     *           `false`, if a message has threaded replies, deletion fails.
+     *           Optional. When `true`, deleting a message also deletes its threaded
+     *           replies. When `false`, if a message has threaded replies, deletion fails.
      *           Only applies when [authenticating as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *           Has no effect when [authenticating as a Chat app]
@@ -123,14 +123,14 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, deleting a message also deletes its threaded replies. When
-     * `false`, if a message has threaded replies, deletion fails.
+     * Optional. When `true`, deleting a message also deletes its threaded
+     * replies. When `false`, if a message has threaded replies, deletion fails.
      * Only applies when [authenticating as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * Has no effect when [authenticating as a Chat app]
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
-     * Generated from protobuf field <code>bool force = 2;</code>
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getForce()
@@ -139,14 +139,14 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, deleting a message also deletes its threaded replies. When
-     * `false`, if a message has threaded replies, deletion fails.
+     * Optional. When `true`, deleting a message also deletes its threaded
+     * replies. When `false`, if a message has threaded replies, deletion fails.
      * Only applies when [authenticating as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * Has no effect when [authenticating as a Chat app]
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
-     * Generated from protobuf field <code>bool force = 2;</code>
+     * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

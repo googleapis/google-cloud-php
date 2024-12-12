@@ -20,21 +20,21 @@ class OtherInfoTypeSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Approximate percentage of non-null rows that contained data detected by
      * this infotype.
      *
      * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
      */
-    private $estimated_prevalence = 0;
+    protected $estimated_prevalence = 0;
     /**
      * Whether this infoType was excluded from sensitivity and risk analysis due
      * to factors such as low prevalence (subject to change).
      *
      * Generated from protobuf field <code>bool excluded_from_analysis = 3;</code>
      */
-    private $excluded_from_analysis = false;
+    protected $excluded_from_analysis = false;
 
     /**
      * Constructor.

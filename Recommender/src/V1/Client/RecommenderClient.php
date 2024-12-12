@@ -51,6 +51,7 @@ use Google\Cloud\Recommender\V1\RecommenderConfig;
 use Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest;
 use Google\Cloud\Recommender\V1\UpdateRecommenderConfigRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides insights and recommendations for cloud customers for various
@@ -66,19 +67,19 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface getInsightAsync(GetInsightRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getInsightTypeConfigAsync(GetInsightTypeConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecommendationAsync(GetRecommendationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRecommenderConfigAsync(GetRecommenderConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listInsightsAsync(ListInsightsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
- * @method PromiseInterface markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRecommenderConfigAsync(UpdateRecommenderConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Insight> getInsightAsync(GetInsightRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InsightTypeConfig> getInsightTypeConfigAsync(GetInsightTypeConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> getRecommendationAsync(GetRecommendationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecommenderConfig> getRecommenderConfigAsync(GetRecommenderConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listInsightsAsync(ListInsightsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRecommendationsAsync(ListRecommendationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Insight> markInsightAcceptedAsync(MarkInsightAcceptedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationClaimedAsync(MarkRecommendationClaimedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationDismissedAsync(MarkRecommendationDismissedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationFailedAsync(MarkRecommendationFailedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Recommendation> markRecommendationSucceededAsync(MarkRecommendationSucceededRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InsightTypeConfig> updateInsightTypeConfigAsync(UpdateInsightTypeConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RecommenderConfig> updateRecommenderConfigAsync(UpdateRecommenderConfigRequest $request, array $optionalArgs = [])
  */
 final class RecommenderClient
 {
@@ -789,14 +790,14 @@ final class RecommenderClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -851,6 +852,9 @@ final class RecommenderClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

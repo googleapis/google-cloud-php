@@ -24,7 +24,7 @@ class DiscoveryCloudStorageGenerationCadence extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $refresh_frequency = 0;
+    protected $refresh_frequency = 0;
     /**
      * Optional. Governs when to update data profiles when the inspection rules
      * defined by the `InspectTemplate` change.
@@ -32,7 +32,7 @@ class DiscoveryCloudStorageGenerationCadence extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $inspect_template_modified_cadence = null;
+    protected $inspect_template_modified_cadence = null;
 
     /**
      * Constructor.

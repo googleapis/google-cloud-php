@@ -24,7 +24,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool hsm_available = 1;</code>
      */
-    private $hsm_available = false;
+    protected $hsm_available = false;
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
@@ -33,7 +33,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool ekm_available = 2;</code>
      */
-    private $ekm_available = false;
+    protected $ekm_available = false;
 
     /**
      * Constructor.

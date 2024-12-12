@@ -21,7 +21,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The product data snippet in the search response. Only
      * [Product.name][google.cloud.retail.v2.Product.name] is guaranteed to be
@@ -38,7 +38,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 2;</code>
      */
-    private $product = null;
+    protected $product = null;
     /**
      * The count of matched
      * [variant][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -46,7 +46,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 matching_variant_count = 3;</code>
      */
-    private $matching_variant_count = 0;
+    protected $matching_variant_count = 0;
     /**
      * If a [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product] matches the search query, this

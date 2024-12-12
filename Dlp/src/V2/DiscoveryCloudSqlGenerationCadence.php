@@ -22,7 +22,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence schema_modified_cadence = 1;</code>
      */
-    private $schema_modified_cadence = null;
+    protected $schema_modified_cadence = null;
     /**
      * Data changes (non-schema changes) in Cloud SQL tables can't trigger
      * reprofiling. If you set this field, profiles are refreshed at this
@@ -31,7 +31,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 2;</code>
      */
-    private $refresh_frequency = 0;
+    protected $refresh_frequency = 0;
     /**
      * Governs when to update data profiles when the inspection rules
      * defined by the `InspectTemplate` change.
@@ -39,7 +39,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryInspectTemplateModifiedCadence inspect_template_modified_cadence = 3;</code>
      */
-    private $inspect_template_modified_cadence = null;
+    protected $inspect_template_modified_cadence = null;
 
     /**
      * Constructor.

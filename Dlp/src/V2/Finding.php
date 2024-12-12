@@ -22,7 +22,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 14;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The content that was found. Even if the content is not textual, it
      * may be converted to a textual representation here.
@@ -32,32 +32,32 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string quote = 1;</code>
      */
-    private $quote = '';
+    protected $quote = '';
     /**
      * The type of content that might have been found.
      * Provided if `excluded_types` is false.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
      */
-    private $info_type = null;
+    protected $info_type = null;
     /**
      * Confidence of how likely it is that the `info_type` is correct.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood likelihood = 3;</code>
      */
-    private $likelihood = 0;
+    protected $likelihood = 0;
     /**
      * Where the content was found.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Location location = 4;</code>
      */
-    private $location = null;
+    protected $location = null;
     /**
      * Timestamp when finding was detected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Contains data parsed from quotes. Only populated if include_quote was set
      * to true and a supported infoType was requested. Currently supported
@@ -65,19 +65,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
      */
-    private $quote_info = null;
+    protected $quote_info = null;
     /**
      * The job that stored the finding.
      *
      * Generated from protobuf field <code>string resource_name = 8 [(.google.api.resource_reference) = {</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
     /**
      * Job trigger name, if applicable, for this finding.
      *
      * Generated from protobuf field <code>string trigger_name = 9 [(.google.api.resource_reference) = {</code>
      */
-    private $trigger_name = '';
+    protected $trigger_name = '';
     /**
      * The labels associated with this `Finding`.
      * Label keys must be between 1 and 63 characters long and must conform
@@ -97,19 +97,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_create_time = 11;</code>
      */
-    private $job_create_time = null;
+    protected $job_create_time = null;
     /**
      * The job that stored the finding.
      *
      * Generated from protobuf field <code>string job_name = 13 [(.google.api.resource_reference) = {</code>
      */
-    private $job_name = '';
+    protected $job_name = '';
     /**
      * The unique finding id.
      *
      * Generated from protobuf field <code>string finding_id = 15;</code>
      */
-    private $finding_id = '';
+    protected $finding_id = '';
 
     /**
      * Constructor.

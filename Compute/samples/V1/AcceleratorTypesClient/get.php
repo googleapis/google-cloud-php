@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_AcceleratorTypes_Get_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\AcceleratorType;
-use Google\Cloud\Compute\V1\AcceleratorTypesClient;
+use Google\Cloud\Compute\V1\Client\AcceleratorTypesClient;
+use Google\Cloud\Compute\V1\GetAcceleratorTypeRequest;
 
 /**
  * Returns the specified accelerator type.
@@ -39,10 +40,16 @@ function get_sample(string $acceleratorType, string $project, string $zone): voi
     // Create a client.
     $acceleratorTypesClient = new AcceleratorTypesClient();
 
+    // Prepare the request message.
+    $request = (new GetAcceleratorTypeRequest())
+        ->setAcceleratorType($acceleratorType)
+        ->setProject($project)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var AcceleratorType $response */
-        $response = $acceleratorTypesClient->get($acceleratorType, $project, $zone);
+        $response = $acceleratorTypesClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

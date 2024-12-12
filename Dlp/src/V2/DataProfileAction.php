@@ -27,6 +27,13 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
      *           Export data profiles into a provided location.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PubSubNotification $pub_sub_notification
      *           Publish a message into the Pub/Sub topic.
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PublishToChronicle $publish_to_chronicle
+     *           Publishes generated data profiles to Google Security Operations.
+     *           For more information, see [Use Sensitive Data Protection data in
+     *           context-aware
+     *           analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter $publish_to_scc
+     *           Publishes findings to SCC for each data profile.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources $tag_resources
      *           Tags the profiled resources with the specified tag values.
      * }
@@ -94,6 +101,74 @@ class DataProfileAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\PubSubNotification::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Publishes generated data profiles to Google Security Operations.
+     * For more information, see [Use Sensitive Data Protection data in
+     * context-aware
+     * analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToChronicle publish_to_chronicle = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\DataProfileAction\PublishToChronicle|null
+     */
+    public function getPublishToChronicle()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasPublishToChronicle()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Publishes generated data profiles to Google Security Operations.
+     * For more information, see [Use Sensitive Data Protection data in
+     * context-aware
+     * analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToChronicle publish_to_chronicle = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction\PublishToChronicle $var
+     * @return $this
+     */
+    public function setPublishToChronicle($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\PublishToChronicle::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Publishes findings to SCC for each data profile.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToSecurityCommandCenter publish_to_scc = 4;</code>
+     * @return \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter|null
+     */
+    public function getPublishToScc()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasPublishToScc()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Publishes findings to SCC for each data profile.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileAction.PublishToSecurityCommandCenter publish_to_scc = 4;</code>
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter $var
+     * @return $this
+     */
+    public function setPublishToScc($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileAction\PublishToSecurityCommandCenter::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

@@ -21,13 +21,13 @@ class InstanceSelectionResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string machine_type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $machine_type = null;
+    protected $machine_type = null;
     /**
      * Output only. Number of VM provisioned with the machine_type.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $vm_count = null;
+    protected $vm_count = null;
 
     /**
      * Constructor.
@@ -120,6 +120,4 @@ class InstanceSelectionResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstanceSelectionResult::class, \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy_InstanceSelectionResult::class);
 

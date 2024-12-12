@@ -25,7 +25,7 @@ class TableLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 row_index = 1;</code>
      */
-    private $row_index = 0;
+    protected $row_index = 0;
 
     /**
      * Constructor.

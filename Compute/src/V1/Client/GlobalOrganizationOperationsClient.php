@@ -38,6 +38,7 @@ use Google\Cloud\Compute\V1\GetGlobalOrganizationOperationRequest;
 use Google\Cloud\Compute\V1\ListGlobalOrganizationOperationsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The GlobalOrganizationOperations API.
@@ -45,9 +46,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface deleteAsync(DeleteGlobalOrganizationOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getAsync(GetGlobalOrganizationOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listAsync(ListGlobalOrganizationOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeleteGlobalOrganizationOperationResponse> deleteAsync(DeleteGlobalOrganizationOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getAsync(GetGlobalOrganizationOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalOrganizationOperationsRequest $request, array $optionalArgs = [])
  */
 final class GlobalOrganizationOperationsClient
 {
@@ -158,6 +159,9 @@ final class GlobalOrganizationOperationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -184,6 +188,8 @@ final class GlobalOrganizationOperationsClient
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::deleteAsync()} .
      *
+     * @example samples/V1/GlobalOrganizationOperationsClient/delete.php
+     *
      * @param DeleteGlobalOrganizationOperationRequest $request     A request to house fields associated with the call.
      * @param array                                    $callOptions {
      *     Optional.
@@ -208,6 +214,8 @@ final class GlobalOrganizationOperationsClient
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::getAsync()} .
      *
+     * @example samples/V1/GlobalOrganizationOperationsClient/get.php
+     *
      * @param GetGlobalOrganizationOperationRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -231,6 +239,8 @@ final class GlobalOrganizationOperationsClient
      * Retrieves a list of Operation resources contained within the specified organization.
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalOrganizationOperationsClient/list.php
      *
      * @param ListGlobalOrganizationOperationsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {

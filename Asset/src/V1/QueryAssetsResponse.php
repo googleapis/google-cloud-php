@@ -23,10 +23,12 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
     protected $job_reference = '';
     /**
      * The query response, which can be either an `error` or a valid `response`.
-     * If `done` == `false` and the query result is being saved in a output, the
+     * If `done` == `false` and the query result is being saved in an output, the
      * output_config field will be set.
      * If `done` == `true`, exactly one of
      * `error`, `query_result` or `output_config` will be set.
+     * [done] is unset unless the [QueryAssetsResponse] contains a
+     * [QueryAssetsResponse.job_reference].
      *
      * Generated from protobuf field <code>bool done = 2;</code>
      */
@@ -43,17 +45,20 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
      *           Reference to a query job.
      *     @type bool $done
      *           The query response, which can be either an `error` or a valid `response`.
-     *           If `done` == `false` and the query result is being saved in a output, the
+     *           If `done` == `false` and the query result is being saved in an output, the
      *           output_config field will be set.
      *           If `done` == `true`, exactly one of
      *           `error`, `query_result` or `output_config` will be set.
+     *           [done] is unset unless the [QueryAssetsResponse] contains a
+     *           [QueryAssetsResponse.job_reference].
      *     @type \Google\Rpc\Status $error
      *           Error status.
      *     @type \Google\Cloud\Asset\V1\QueryResult $query_result
      *           Result of the query.
      *     @type \Google\Cloud\Asset\V1\QueryAssetsOutputConfig $output_config
-     *           Output configuration which indicates instead of being returned in API
-     *           response on the fly, the query result will be saved in a specific output.
+     *           Output configuration, which indicates that instead of being returned in
+     *           an API response on the fly, the query result will be saved in a specific
+     *           output.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,10 +94,12 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The query response, which can be either an `error` or a valid `response`.
-     * If `done` == `false` and the query result is being saved in a output, the
+     * If `done` == `false` and the query result is being saved in an output, the
      * output_config field will be set.
      * If `done` == `true`, exactly one of
      * `error`, `query_result` or `output_config` will be set.
+     * [done] is unset unless the [QueryAssetsResponse] contains a
+     * [QueryAssetsResponse.job_reference].
      *
      * Generated from protobuf field <code>bool done = 2;</code>
      * @return bool
@@ -104,10 +111,12 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The query response, which can be either an `error` or a valid `response`.
-     * If `done` == `false` and the query result is being saved in a output, the
+     * If `done` == `false` and the query result is being saved in an output, the
      * output_config field will be set.
      * If `done` == `true`, exactly one of
      * `error`, `query_result` or `output_config` will be set.
+     * [done] is unset unless the [QueryAssetsResponse] contains a
+     * [QueryAssetsResponse.job_reference].
      *
      * Generated from protobuf field <code>bool done = 2;</code>
      * @param bool $var
@@ -184,8 +193,9 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output configuration which indicates instead of being returned in API
-     * response on the fly, the query result will be saved in a specific output.
+     * Output configuration, which indicates that instead of being returned in
+     * an API response on the fly, the query result will be saved in a specific
+     * output.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig output_config = 5;</code>
      * @return \Google\Cloud\Asset\V1\QueryAssetsOutputConfig|null
@@ -201,8 +211,9 @@ class QueryAssetsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output configuration which indicates instead of being returned in API
-     * response on the fly, the query result will be saved in a specific output.
+     * Output configuration, which indicates that instead of being returned in
+     * an API response on the fly, the query result will be saved in a specific
+     * output.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig output_config = 5;</code>
      * @param \Google\Cloud\Asset\V1\QueryAssetsOutputConfig $var

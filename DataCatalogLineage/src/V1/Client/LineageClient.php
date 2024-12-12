@@ -58,6 +58,7 @@ use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Lineage is used to track data flows between assets over time. You can
@@ -73,23 +74,23 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @method PromiseInterface batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface createRunAsync(CreateRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteLineageEventAsync(DeleteLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteProcessAsync(DeleteProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface deleteRunAsync(DeleteRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getLineageEventAsync(GetLineageEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getProcessAsync(GetProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getRunAsync(GetRunRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
- * @method PromiseInterface searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
- * @method PromiseInterface updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> batchSearchLinkProcessesAsync(BatchSearchLinkProcessesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineageEvent> createLineageEventAsync(CreateLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> createProcessAsync(CreateProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> createRunAsync(CreateRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteLineageEventAsync(DeleteLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteProcessAsync(DeleteProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRunAsync(DeleteRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LineageEvent> getLineageEventAsync(GetLineageEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> getProcessAsync(GetProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> getRunAsync(GetRunRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLineageEventsAsync(ListLineageEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listProcessesAsync(ListProcessesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRunsAsync(ListRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ProcessOpenLineageRunEventResponse> processOpenLineageRunEventAsync(ProcessOpenLineageRunEventRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchLinksAsync(SearchLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Process> updateProcessAsync(UpdateProcessRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Run> updateRunAsync(UpdateRunRequest $request, array $optionalArgs = [])
  */
 final class LineageClient
 {
@@ -289,14 +290,14 @@ final class LineageClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName(string $formattedName, string $template = null): array
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -351,6 +352,9 @@ final class LineageClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException

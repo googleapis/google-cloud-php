@@ -998,6 +998,8 @@ return [
                 ],
             ],
             'templateMap' => [
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'topic' => 'projects/{project}/topics/{topic}',
             ],
         ],

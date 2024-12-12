@@ -23,7 +23,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * The maximum number of conversations to return in the response. A valid page
-     * size ranges from 0 to 1,000 inclusive. If the page size is zero or
+     * size ranges from 0 to 100,000 inclusive. If the page size is zero or
      * unspecified, a default page size of 100 will be chosen. Note that a call
      * might return fewer results than the requested page size.
      *
@@ -45,6 +45,24 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4;</code>
      */
     protected $filter = '';
+    /**
+     * Optional. The attribute by which to order conversations in the response.
+     * If empty, conversations will be ordered by descending creation time.
+     * Supported values are one of the following:
+     * * create_time
+     * * customer_satisfaction_rating
+     * * duration
+     * * latest_analysis
+     * * start_time
+     * * turn_count
+     * The default sort order is ascending. To specify order, append `asc` or
+     * `desc` (`create_time desc`).
+     * For more details, see [Google AIPs
+     * Ordering](https://google.aip.dev/132#ordering).
+     *
+     * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $order_by = '';
     /**
      * The level of details of the conversation. Default is `BASIC`.
      *
@@ -76,7 +94,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource of the conversation.
      *     @type int $page_size
      *           The maximum number of conversations to return in the response. A valid page
-     *           size ranges from 0 to 1,000 inclusive. If the page size is zero or
+     *           size ranges from 0 to 100,000 inclusive. If the page size is zero or
      *           unspecified, a default page size of 100 will be chosen. Note that a call
      *           might return fewer results than the requested page size.
      *     @type string $page_token
@@ -86,6 +104,20 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           A filter to reduce results to a specific subset. Useful for querying
      *           conversations with specific properties.
+     *     @type string $order_by
+     *           Optional. The attribute by which to order conversations in the response.
+     *           If empty, conversations will be ordered by descending creation time.
+     *           Supported values are one of the following:
+     *           * create_time
+     *           * customer_satisfaction_rating
+     *           * duration
+     *           * latest_analysis
+     *           * start_time
+     *           * turn_count
+     *           The default sort order is ascending. To specify order, append `asc` or
+     *           `desc` (`create_time desc`).
+     *           For more details, see [Google AIPs
+     *           Ordering](https://google.aip.dev/132#ordering).
      *     @type int $view
      *           The level of details of the conversation. Default is `BASIC`.
      * }
@@ -123,7 +155,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of conversations to return in the response. A valid page
-     * size ranges from 0 to 1,000 inclusive. If the page size is zero or
+     * size ranges from 0 to 100,000 inclusive. If the page size is zero or
      * unspecified, a default page size of 100 will be chosen. Note that a call
      * might return fewer results than the requested page size.
      *
@@ -137,7 +169,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The maximum number of conversations to return in the response. A valid page
-     * size ranges from 0 to 1,000 inclusive. If the page size is zero or
+     * size ranges from 0 to 100,000 inclusive. If the page size is zero or
      * unspecified, a default page size of 100 will be chosen. Note that a call
      * might return fewer results than the requested page size.
      *
@@ -207,6 +239,56 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The attribute by which to order conversations in the response.
+     * If empty, conversations will be ordered by descending creation time.
+     * Supported values are one of the following:
+     * * create_time
+     * * customer_satisfaction_rating
+     * * duration
+     * * latest_analysis
+     * * start_time
+     * * turn_count
+     * The default sort order is ascending. To specify order, append `asc` or
+     * `desc` (`create_time desc`).
+     * For more details, see [Google AIPs
+     * Ordering](https://google.aip.dev/132#ordering).
+     *
+     * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. The attribute by which to order conversations in the response.
+     * If empty, conversations will be ordered by descending creation time.
+     * Supported values are one of the following:
+     * * create_time
+     * * customer_satisfaction_rating
+     * * duration
+     * * latest_analysis
+     * * start_time
+     * * turn_count
+     * The default sort order is ascending. To specify order, append `asc` or
+     * `desc` (`create_time desc`).
+     * For more details, see [Google AIPs
+     * Ordering](https://google.aip.dev/132#ordering).
+     *
+     * Generated from protobuf field <code>string order_by = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

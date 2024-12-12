@@ -7,7 +7,7 @@ namespace Google\Cloud\Parallelstore\V1beta\Instance;
 use UnexpectedValueException;
 
 /**
- * Represents the different states of a Parallelstore instance.
+ * The possible states of a Parallelstore instance.
  *
  * Protobuf type <code>google.cloud.parallelstore.v1beta.Instance.State</code>
  */
@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>FAILED = 4;</code>
      */
     const FAILED = 4;
+    /**
+     * The instance is being upgraded.
+     *
+     * Generated from protobuf enum <code>UPGRADING = 5;</code>
+     */
+    const UPGRADING = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::ACTIVE => 'ACTIVE',
         self::DELETING => 'DELETING',
         self::FAILED => 'FAILED',
+        self::UPGRADING => 'UPGRADING',
     ];
 
     public static function name($value)

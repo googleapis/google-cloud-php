@@ -20,13 +20,13 @@ class ConfidenceLevelMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence_level = 1;</code>
      */
-    private $confidence_level = 0.0;
+    protected $confidence_level = 0.0;
     /**
      * The metrics at the specific confidence level.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Evaluation.Metrics metrics = 2;</code>
      */
-    private $metrics = null;
+    protected $metrics = null;
 
     /**
      * Constructor.

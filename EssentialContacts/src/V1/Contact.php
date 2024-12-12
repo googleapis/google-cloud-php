@@ -46,10 +46,10 @@ class Contact extends \Google\Protobuf\Internal\Message
      */
     protected $language_tag = '';
     /**
-     * The validity of the contact. A contact is considered valid if it is the
-     * correct recipient for notifications for a particular resource.
+     * Output only. The validity of the contact. A contact is considered valid if
+     * it is the correct recipient for notifications for a particular resource.
      *
-     * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $validation_state = 0;
     /**
@@ -82,8 +82,8 @@ class Contact extends \Google\Protobuf\Internal\Message
      *           languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages)
      *           for a list of supported languages.
      *     @type int $validation_state
-     *           The validity of the contact. A contact is considered valid if it is the
-     *           correct recipient for notifications for a particular resource.
+     *           Output only. The validity of the contact. A contact is considered valid if
+     *           it is the correct recipient for notifications for a particular resource.
      *     @type \Google\Protobuf\Timestamp $validate_time
      *           The last time the validation_state was updated, either manually or
      *           automatically. A contact is considered stale if its validation state was
@@ -212,10 +212,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The validity of the contact. A contact is considered valid if it is the
-     * correct recipient for notifications for a particular resource.
+     * Output only. The validity of the contact. A contact is considered valid if
+     * it is the correct recipient for notifications for a particular resource.
      *
-     * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getValidationState()
@@ -224,10 +224,10 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The validity of the contact. A contact is considered valid if it is the
-     * correct recipient for notifications for a particular resource.
+     * Output only. The validity of the contact. A contact is considered valid if
+     * it is the correct recipient for notifications for a particular resource.
      *
-     * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.essentialcontacts.v1.ValidationState validation_state = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

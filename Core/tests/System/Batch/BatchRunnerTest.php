@@ -49,7 +49,10 @@ class BatchRunnerTest extends TestCase
         return rmdir($dir);
     }
 
-    public static function setUpBeforeClass(): void
+    /**
+     * @beforeClass
+     */
+    public static function setUpTestFixtures(): void
     {
         self::$testDir = sprintf(
             '%s/google-cloud-system-test-%d',
@@ -89,8 +92,10 @@ class BatchRunnerTest extends TestCase
             putenv('IS_BATCH_DAEMON_RUNNING');
         }
     }
-
-    public static function tearDownAfterClass(): void
+    /**
+     * @afterClass
+     */
+    public static function tearDownTestFixtures(): void
     {
         @proc_terminate(self::$daemon);
         @proc_close(self::$daemon);
@@ -167,7 +172,8 @@ class BatchRunnerTest extends TestCase
         }
         // sleep(1);
         usleep(500000);
-        $this->assertResultContains('BANANA');
-        $this->assertResultContains('LEMON' . PHP_EOL);
+        $result = $this->getResult();
+        $this->assertStringNotContainsString('BANANA', $result);
+        $this->assertStringContainsString('LEMON' . PHP_EOL, $result);
     }
 }

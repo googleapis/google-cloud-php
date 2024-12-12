@@ -27,6 +27,13 @@ class RemoteRepositoryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.UpstreamCredentials upstream_credentials = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $upstream_credentials = null;
+    /**
+     * Input only. A create/update remote repo option to avoid making a HEAD/GET
+     * request to validate a remote repo and any supplied upstream credentials.
+     *
+     * Generated from protobuf field <code>bool disable_upstream_validation = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $disable_upstream_validation = false;
     protected $remote_source;
 
     /**
@@ -47,10 +54,16 @@ class RemoteRepositoryConfig extends \Google\Protobuf\Internal\Message
      *           Specific settings for an Apt remote repository.
      *     @type \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\YumRepository $yum_repository
      *           Specific settings for a Yum remote repository.
+     *     @type \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\CommonRemoteRepository $common_repository
+     *           Common remote repository settings.
+     *           Used as the remote repository upstream URL.
      *     @type string $description
      *           The description of the remote source.
      *     @type \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\UpstreamCredentials $upstream_credentials
      *           Optional. The credentials used to access the remote repository.
+     *     @type bool $disable_upstream_validation
+     *           Input only. A create/update remote repo option to avoid making a HEAD/GET
+     *           request to validate a remote repo and any supplied upstream credentials.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,6 +258,39 @@ class RemoteRepositoryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Common remote repository settings.
+     * Used as the remote repository upstream URL.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.CommonRemoteRepository common_repository = 14;</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\CommonRemoteRepository|null
+     */
+    public function getCommonRepository()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasCommonRepository()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Common remote repository settings.
+     * Used as the remote repository upstream URL.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1.RemoteRepositoryConfig.CommonRemoteRepository common_repository = 14;</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\CommonRemoteRepository $var
+     * @return $this
+     */
+    public function setCommonRepository($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\CommonRemoteRepository::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
      * The description of the remote source.
      *
      * Generated from protobuf field <code>string description = 1;</code>
@@ -302,6 +348,34 @@ class RemoteRepositoryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\UpstreamCredentials::class);
         $this->upstream_credentials = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. A create/update remote repo option to avoid making a HEAD/GET
+     * request to validate a remote repo and any supplied upstream credentials.
+     *
+     * Generated from protobuf field <code>bool disable_upstream_validation = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getDisableUpstreamValidation()
+    {
+        return $this->disable_upstream_validation;
+    }
+
+    /**
+     * Input only. A create/update remote repo option to avoid making a HEAD/GET
+     * request to validate a remote repo and any supplied upstream credentials.
+     *
+     * Generated from protobuf field <code>bool disable_upstream_validation = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableUpstreamValidation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_upstream_validation = $var;
 
         return $this;
     }

@@ -21,7 +21,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $catalog = '';
+    protected $catalog = '';
     /**
      * The final component of the resource name of a branch.
      * This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
@@ -32,7 +32,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string branch_id = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $branch_id = '';
+    protected $branch_id = '';
     /**
      * Some note on this request, this can be retrieved by
      * [CatalogService.GetDefaultBranch][google.cloud.retail.v2.CatalogService.GetDefaultBranch]
@@ -42,7 +42,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string note = 3;</code>
      */
-    private $note = '';
+    protected $note = '';
     /**
      * If set to true, it permits switching to a branch with
      * [branch_id][google.cloud.retail.v2.SetDefaultBranchRequest.branch_id] even
@@ -50,7 +50,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 4;</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $catalog Full resource name of the catalog, such as

@@ -20,7 +20,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 font_size = 1;</code>
      */
-    private $font_size = 0;
+    protected $font_size = 0;
     /**
      * Font size in pixels, equal to _unrounded
      * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
@@ -28,19 +28,19 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      */
-    private $pixel_font_size = 0.0;
+    protected $pixel_font_size = 0.0;
     /**
      * Letter spacing in points.
      *
      * Generated from protobuf field <code>double letter_spacing = 3;</code>
      */
-    private $letter_spacing = 0.0;
+    protected $letter_spacing = 0.0;
     /**
      * Name or style of the font.
      *
      * Generated from protobuf field <code>string font_type = 4;</code>
      */
-    private $font_type = '';
+    protected $font_type = '';
     /**
      * Whether the text is bold (equivalent to
      * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
@@ -48,68 +48,68 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      */
-    private $bold = false;
+    protected $bold = false;
     /**
      * Whether the text is italic.
      *
      * Generated from protobuf field <code>bool italic = 6;</code>
      */
-    private $italic = false;
+    protected $italic = false;
     /**
      * Whether the text is underlined.
      *
      * Generated from protobuf field <code>bool underlined = 7;</code>
      */
-    private $underlined = false;
+    protected $underlined = false;
     /**
      * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      */
-    private $strikeout = false;
+    protected $strikeout = false;
     /**
      * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      */
-    private $subscript = false;
+    protected $subscript = false;
     /**
      * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      */
-    private $superscript = false;
+    protected $superscript = false;
     /**
      * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      */
-    private $smallcaps = false;
+    protected $smallcaps = false;
     /**
      * TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy).
      * Normal is `400`, bold is `700`.
      *
      * Generated from protobuf field <code>int32 font_weight = 12;</code>
      */
-    private $font_weight = 0;
+    protected $font_weight = 0;
     /**
      * Whether the text is handwritten.
      *
      * Generated from protobuf field <code>bool handwritten = 13;</code>
      */
-    private $handwritten = false;
+    protected $handwritten = false;
     /**
      * Color of the text.
      *
      * Generated from protobuf field <code>.google.type.Color text_color = 14;</code>
      */
-    private $text_color = null;
+    protected $text_color = null;
     /**
      * Color of the background.
      *
      * Generated from protobuf field <code>.google.type.Color background_color = 15;</code>
      */
-    private $background_color = null;
+    protected $background_color = null;
 
     /**
      * Constructor.

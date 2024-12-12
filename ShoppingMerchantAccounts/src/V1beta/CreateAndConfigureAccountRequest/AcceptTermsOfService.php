@@ -16,7 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class AcceptTermsOfService extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the terms of service version.
+     * Required. The resource name of the terms of service version in the format
+     * `termsOfService/{version}`. To retrieve the latest version, use the
+     * [termsOfService.retrieveLatest](/merchant/api/reference/rest/accounts_v1beta/termsOfService/retrieveLatest)
+     * method.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +40,10 @@ class AcceptTermsOfService extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the terms of service version.
+     *           Required. The resource name of the terms of service version in the format
+     *           `termsOfService/{version}`. To retrieve the latest version, use the
+     *           [termsOfService.retrieveLatest](/merchant/api/reference/rest/accounts_v1beta/termsOfService/retrieveLatest)
+     *           method.
      *     @type string $region_code
      *           Required. Region code as defined by [CLDR](https://cldr.unicode.org/).
      *           This is either a country when the ToS applies specifically to that
@@ -50,7 +56,10 @@ class AcceptTermsOfService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the terms of service version.
+     * Required. The resource name of the terms of service version in the format
+     * `termsOfService/{version}`. To retrieve the latest version, use the
+     * [termsOfService.retrieveLatest](/merchant/api/reference/rest/accounts_v1beta/termsOfService/retrieveLatest)
+     * method.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -61,7 +70,10 @@ class AcceptTermsOfService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the terms of service version.
+     * Required. The resource name of the terms of service version in the format
+     * `termsOfService/{version}`. To retrieve the latest version, use the
+     * [termsOfService.retrieveLatest](/merchant/api/reference/rest/accounts_v1beta/termsOfService/retrieveLatest)
+     * method.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

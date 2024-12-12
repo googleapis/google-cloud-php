@@ -20,25 +20,25 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Brief description of the template.
      *
      * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The time when the template was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The email address of the user who created the template.
      *
      * Generated from protobuf field <code>string creator = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creator = '';
+    protected $creator = '';
     /**
      * Optional. Labels to associate with sessions created using this template.
      * Label **keys** must contain 1 to 63 characters, and must conform to
@@ -56,26 +56,26 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.RuntimeConfig runtime_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $runtime_config = null;
+    protected $runtime_config = null;
     /**
      * Optional. Environment configuration for session execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EnvironmentConfig environment_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $environment_config = null;
+    protected $environment_config = null;
     /**
      * Output only. The time the template was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Output only. A session template UUID (Unique Universal Identifier). The
      * service generates this value when it creates the session template.
      *
      * Generated from protobuf field <code>string uuid = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uuid = '';
+    protected $uuid = '';
     protected $session_config;
 
     /**
@@ -92,6 +92,8 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the template was created.
      *     @type \Google\Cloud\Dataproc\V1\JupyterConfig $jupyter_session
      *           Optional. Jupyter session config.
+     *     @type \Google\Cloud\Dataproc\V1\SparkConnectConfig $spark_connect_session
+     *           Optional. Spark Connect session config.
      *     @type string $creator
      *           Output only. The email address of the user who created the template.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -233,6 +235,37 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\JupyterConfig::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Spark Connect session config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\SparkConnectConfig|null
+     */
+    public function getSparkConnectSession()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasSparkConnectSession()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Optional. Spark Connect session config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\SparkConnectConfig $var
+     * @return $this
+     */
+    public function setSparkConnectSession($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkConnectConfig::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }

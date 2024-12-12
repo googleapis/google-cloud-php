@@ -18,7 +18,7 @@ class ListGeneratorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to list all generators for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,7 +45,7 @@ class ListGeneratorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The agent to list all generators for.
-     *                       Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`. Please see
+     *                       Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`. Please see
      *                       {@see GeneratorsClient::agentName()} for help formatting this field.
      *
      * @return \Google\Cloud\Dialogflow\Cx\V3\ListGeneratorsRequest
@@ -66,7 +66,7 @@ class ListGeneratorsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to list all generators for.
-     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *     @type string $language_code
      *           The language to list generators for.
      *     @type int $page_size
@@ -83,7 +83,7 @@ class ListGeneratorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to list all generators for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +95,7 @@ class ListGeneratorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to list all generators for.
-     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>`.
+     * Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

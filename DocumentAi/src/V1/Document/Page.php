@@ -24,7 +24,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      */
-    private $page_number = 0;
+    protected $page_number = 0;
     /**
      * Rendered image for this page. This image is preprocessed to remove any
      * skew, rotation, and distortions such that the annotation bounding boxes
@@ -32,7 +32,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Image image = 13;</code>
      */
-    private $image = null;
+    protected $image = null;
     /**
      * Transformation matrices that were applied to the original document image
      * to produce [Page.image][google.cloud.documentai.v1.Document.Page.image].
@@ -45,13 +45,13 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Dimension dimension = 2;</code>
      */
-    private $dimension = null;
+    protected $dimension = null;
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the page.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 3;</code>
      */
-    private $layout = null;
+    protected $layout = null;
     /**
      * A list of detected languages together with confidence.
      *
@@ -122,7 +122,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
      */
-    private $image_quality_scores = null;
+    protected $image_quality_scores = null;
     /**
      * The history of this page.
      *

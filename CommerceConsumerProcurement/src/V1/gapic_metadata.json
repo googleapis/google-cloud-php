@@ -5,11 +5,50 @@
     "protoPackage": "google.cloud.commerce.consumer.procurement.v1",
     "libraryPackage": "Google\\Cloud\\Commerce\\Consumer\\Procurement\\V1",
     "services": {
+        "LicenseManagementService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LicenseManagementServiceGapicClient",
+                    "rpcs": {
+                        "Assign": {
+                            "methods": [
+                                "assign"
+                            ]
+                        },
+                        "EnumerateLicensedUsers": {
+                            "methods": [
+                                "enumerateLicensedUsers"
+                            ]
+                        },
+                        "GetLicensePool": {
+                            "methods": [
+                                "getLicensePool"
+                            ]
+                        },
+                        "Unassign": {
+                            "methods": [
+                                "unassign"
+                            ]
+                        },
+                        "UpdateLicensePool": {
+                            "methods": [
+                                "updateLicensePool"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ConsumerProcurementService": {
             "clients": {
                 "grpc": {
                     "libraryClient": "ConsumerProcurementServiceGapicClient",
                     "rpcs": {
+                        "CancelOrder": {
+                            "methods": [
+                                "cancelOrder"
+                            ]
+                        },
                         "GetOrder": {
                             "methods": [
                                 "getOrder"
@@ -18,6 +57,11 @@
                         "ListOrders": {
                             "methods": [
                                 "listOrders"
+                            ]
+                        },
+                        "ModifyOrder": {
+                            "methods": [
+                                "modifyOrder"
                             ]
                         },
                         "PlaceOrder": {

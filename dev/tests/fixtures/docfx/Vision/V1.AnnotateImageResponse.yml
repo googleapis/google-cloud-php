@@ -76,59 +76,59 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ face_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation">Google\Cloud\Vision\V1\FaceAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation">FaceAnnotation</xref>&gt;'
           description: 'If present, face detection has completed successfully.'
         -
           id: '↳ landmark_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: 'If present, landmark detection has completed successfully.'
         -
           id: '↳ logo_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: 'If present, logo detection has completed successfully.'
         -
           id: '↳ label_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: 'If present, label detection has completed successfully.'
         -
           id: '↳ localized_object_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocalizedObjectAnnotation">Google\Cloud\Vision\V1\LocalizedObjectAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocalizedObjectAnnotation">LocalizedObjectAnnotation</xref>&gt;'
           description: 'If present, localized object detection has completed successfully. This will be sorted descending by confidence score.'
         -
           id: '↳ text_annotations'
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: 'If present, text (OCR) detection has completed successfully.'
         -
           id: '↳ full_text_annotation'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">Google\Cloud\Vision\V1\TextAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">TextAnnotation</xref>'
           description: 'If present, text (OCR) detection or document (OCR) text detection has completed successfully. This annotation provides the structural hierarchy for the OCR detected text.'
         -
           id: '↳ safe_search_annotation'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">Google\Cloud\Vision\V1\SafeSearchAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">SafeSearchAnnotation</xref>'
           description: 'If present, safe-search annotation has completed successfully.'
         -
           id: '↳ image_properties_annotation'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">Google\Cloud\Vision\V1\ImageProperties</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">ImageProperties</xref>'
           description: 'If present, image properties were extracted successfully.'
         -
           id: '↳ crop_hints_annotation'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">Google\Cloud\Vision\V1\CropHintsAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">CropHintsAnnotation</xref>'
           description: 'If present, crop hints have completed successfully.'
         -
           id: '↳ web_detection'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">Google\Cloud\Vision\V1\WebDetection</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">WebDetection</xref>'
           description: 'If present, web detection has completed successfully.'
         -
           id: '↳ product_search_results'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">Google\Cloud\Vision\V1\ProductSearchResults</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">ProductSearchResults</xref>'
           description: 'If present, product search has completed successfully.'
         -
           id: '↳ error'
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>'
           description: 'If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set.'
         -
           id: '↳ context'
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">Google\Cloud\Vision\V1\ImageAnnotationContext</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">ImageAnnotationContext</xref>'
           description: 'If present, contextual information is needed to understand where this image comes from.'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getFaceAnnotations()'
@@ -156,7 +156,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation">Google\Cloud\Vision\V1\FaceAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation">FaceAnnotation</xref>&gt;'
           description: ''
       returns:
         -
@@ -187,7 +187,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: ''
       returns:
         -
@@ -218,7 +218,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: ''
       returns:
         -
@@ -249,7 +249,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: ''
       returns:
         -
@@ -286,7 +286,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocalizedObjectAnnotation">Google\Cloud\Vision\V1\LocalizedObjectAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocalizedObjectAnnotation">LocalizedObjectAnnotation</xref>&gt;'
           description: ''
       returns:
         -
@@ -317,7 +317,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
           description: ''
       returns:
         -
@@ -339,7 +339,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">Google\Cloud\Vision\V1\TextAnnotation</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">TextAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasFullTextAnnotation()'
     name: hasFullTextAnnotation
@@ -374,7 +374,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">Google\Cloud\Vision\V1\TextAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">TextAnnotation</xref>'
           description: ''
       returns:
         -
@@ -391,7 +391,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">Google\Cloud\Vision\V1\SafeSearchAnnotation</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">SafeSearchAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasSafeSearchAnnotation()'
     name: hasSafeSearchAnnotation
@@ -421,7 +421,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">Google\Cloud\Vision\V1\SafeSearchAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">SafeSearchAnnotation</xref>'
           description: ''
       returns:
         -
@@ -438,7 +438,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">Google\Cloud\Vision\V1\ImageProperties</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">ImageProperties</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasImagePropertiesAnnotation()'
     name: hasImagePropertiesAnnotation
@@ -468,7 +468,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">Google\Cloud\Vision\V1\ImageProperties</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">ImageProperties</xref>'
           description: ''
       returns:
         -
@@ -485,7 +485,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">Google\Cloud\Vision\V1\CropHintsAnnotation</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">CropHintsAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasCropHintsAnnotation()'
     name: hasCropHintsAnnotation
@@ -515,7 +515,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">Google\Cloud\Vision\V1\CropHintsAnnotation</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">CropHintsAnnotation</xref>'
           description: ''
       returns:
         -
@@ -532,7 +532,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">Google\Cloud\Vision\V1\WebDetection</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">WebDetection</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasWebDetection()'
     name: hasWebDetection
@@ -562,7 +562,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">Google\Cloud\Vision\V1\WebDetection</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">WebDetection</xref>'
           description: ''
       returns:
         -
@@ -579,7 +579,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">Google\Cloud\Vision\V1\ProductSearchResults</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">ProductSearchResults</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasProductSearchResults()'
     name: hasProductSearchResults
@@ -609,7 +609,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">Google\Cloud\Vision\V1\ProductSearchResults</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">ProductSearchResults</xref>'
           description: ''
       returns:
         -
@@ -630,7 +630,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasError()'
     name: hasError
@@ -664,7 +664,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
+          var_type: '<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>'
           description: ''
       returns:
         -
@@ -683,7 +683,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">Google\Cloud\Vision\V1\ImageAnnotationContext</xref>|null'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">ImageAnnotationContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasContext()'
     name: hasContext
@@ -715,7 +715,7 @@ items:
       parameters:
         -
           id: var
-          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">Google\Cloud\Vision\V1\ImageAnnotationContext</xref>'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">ImageAnnotationContext</xref>'
           description: ''
       returns:
         -

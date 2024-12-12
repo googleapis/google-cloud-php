@@ -17,7 +17,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Identifier. The report task resource name assigned during
-     * creation. Format: `properties/{property}/reportTasks/{report_task}`
+     * creation. Format: "properties/{property}/reportTasks/{report_task}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -49,7 +49,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Identifier. The report task resource name assigned during
-     *           creation. Format: `properties/{property}/reportTasks/{report_task}`
+     *           creation. Format: "properties/{property}/reportTasks/{report_task}"
      *     @type \Google\Analytics\Data\V1alpha\ReportTask\ReportDefinition $report_definition
      *           Optional. A report definition to fetch report data, which describes the
      *           structure of a report. It typically includes the fields that will be
@@ -69,7 +69,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The report task resource name assigned during
-     * creation. Format: `properties/{property}/reportTasks/{report_task}`
+     * creation. Format: "properties/{property}/reportTasks/{report_task}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -81,7 +81,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The report task resource name assigned during
-     * creation. Format: `properties/{property}/reportTasks/{report_task}`
+     * creation. Format: "properties/{property}/reportTasks/{report_task}"
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

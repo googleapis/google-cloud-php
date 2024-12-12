@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A result of Resource Search, containing information of a cloud resource.
- * Next ID: 34
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ResourceSearchResult</code>
  */
@@ -106,8 +105,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     protected $location = '';
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google
-     * Cloud
+     * User labels associated with this resource. See [Labelling and grouping
+     * Google Cloud
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
      * Protobuf contains it.
@@ -459,8 +458,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * Use a field query. Example: `location:us-west*`
      *           * Use a free text query. Example: `us-west*`
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Labels associated with this resource. See [Labelling and grouping Google
-     *           Cloud
+     *           User labels associated with this resource. See [Labelling and grouping
+     *           Google Cloud
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      *           for more information. This field is available only when the resource's
      *           Protobuf contains it.
@@ -965,8 +964,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google
-     * Cloud
+     * User labels associated with this resource. See [Labelling and grouping
+     * Google Cloud
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
      * Protobuf contains it.
@@ -986,8 +985,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels associated with this resource. See [Labelling and grouping Google
-     * Cloud
+     * User labels associated with this resource. See [Labelling and grouping
+     * Google Cloud
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
      * Protobuf contains it.

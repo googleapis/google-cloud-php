@@ -29,8 +29,7 @@ class DeleteEntitlementRequest extends \Google\Protobuf\Internal\Message
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
-     * clients from accidentally creating duplicate commitments.
+     * was received, and if so, ignores the second request.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
@@ -76,8 +75,7 @@ class DeleteEntitlementRequest extends \Google\Protobuf\Internal\Message
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request
      *           ID, the server can check if original operation with the same request ID
-     *           was received, and if so, ignores the second request. This prevents
-     *           clients from accidentally creating duplicate commitments.
+     *           was received, and if so, ignores the second request.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type bool $force
@@ -125,8 +123,7 @@ class DeleteEntitlementRequest extends \Google\Protobuf\Internal\Message
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
-     * clients from accidentally creating duplicate commitments.
+     * was received, and if so, ignores the second request.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
@@ -146,8 +143,7 @@ class DeleteEntitlementRequest extends \Google\Protobuf\Internal\Message
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request
      * ID, the server can check if original operation with the same request ID
-     * was received, and if so, ignores the second request. This prevents
-     * clients from accidentally creating duplicate commitments.
+     * was received, and if so, ignores the second request.
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *

@@ -20,13 +20,13 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
     /**
      * Required. The prefix of exported BigQuery tables.
      *
      * Generated from protobuf field <code>string table_id_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table_id_prefix = '';
+    protected $table_id_prefix = '';
     /**
      * Required. Describes the table type. The following values are supported:
      * * `table`: A BigQuery native table.
@@ -34,7 +34,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table_type = '';
+    protected $table_type = '';
 
     /**
      * Constructor.
