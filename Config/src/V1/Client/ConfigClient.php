@@ -932,7 +932,7 @@ final class ConfigClient
     }
 
     /**
-     * Lists [Resource][google.cloud.config.v1.Resource]s in a given revision.
+     * Lists [Resources][google.cloud.config.v1.Resource] in a given revision.
      *
      * The async variant is {@see ConfigClient::listResourcesAsync()} .
      *

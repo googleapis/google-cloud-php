@@ -31,12 +31,12 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_source
-     *           Required. URI of an object in Google Cloud Storage.
+     *           URI of an object in Google Cloud Storage.
      *           Format: `gs://{bucket}/{object}`
      *           URI may also specify an object version for zipped objects.
      *           Format: `gs://{bucket}/{object}#{version}`
      *     @type \Google\Cloud\Config\V1\GitSource $git_source
-     *           Required. URI of a public Git repo.
+     *           URI of a public Git repo.
      *     @type array|\Google\Protobuf\Internal\MapField $input_values
      *           Input variable values for the Terraform blueprint.
      * }
@@ -47,12 +47,12 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI of an object in Google Cloud Storage.
+     * URI of an object in Google Cloud Storage.
      * Format: `gs://{bucket}/{object}`
      * URI may also specify an object version for zipped objects.
      * Format: `gs://{bucket}/{object}#{version}`
      *
-     * Generated from protobuf field <code>string gcs_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string gcs_source = 1;</code>
      * @return string
      */
     public function getGcsSource()
@@ -66,12 +66,12 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI of an object in Google Cloud Storage.
+     * URI of an object in Google Cloud Storage.
      * Format: `gs://{bucket}/{object}`
      * URI may also specify an object version for zipped objects.
      * Format: `gs://{bucket}/{object}#{version}`
      *
-     * Generated from protobuf field <code>string gcs_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string gcs_source = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -84,9 +84,9 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI of a public Git repo.
+     * URI of a public Git repo.
      *
-     * Generated from protobuf field <code>.google.cloud.config.v1.GitSource git_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.config.v1.GitSource git_source = 2;</code>
      * @return \Google\Cloud\Config\V1\GitSource|null
      */
     public function getGitSource()
@@ -100,9 +100,9 @@ class TerraformBlueprint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI of a public Git repo.
+     * URI of a public Git repo.
      *
-     * Generated from protobuf field <code>.google.cloud.config.v1.GitSource git_source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.config.v1.GitSource git_source = 2;</code>
      * @param \Google\Cloud\Config\V1\GitSource $var
      * @return $this
      */
