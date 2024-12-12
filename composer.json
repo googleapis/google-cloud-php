@@ -262,6 +262,7 @@
         "google/shopping-merchant-promotions": "0.1.1",
         "google/shopping-merchant-quota": "0.1.4",
         "google/shopping-merchant-reports": "0.8.2",
+        "google/shopping-merchant-reviews": "0.0.0",
         "googleads/ad-manager": "0.1.1",
         "googleads/marketingplatform-admin": "0.1.2"
     },
@@ -480,6 +481,7 @@
             "GPBMetadata\\Google\\Shopping\\Merchant\\Promotions\\": "ShoppingMerchantPromotions/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Quota\\": "ShoppingMerchantQuota/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/metadata",
+            "GPBMetadata\\Google\\Shopping\\Merchant\\Reviews\\": "ShoppingMerchantReviews/metadata",
             "GPBMetadata\\Google\\Shopping\\Type\\": "ShoppingCommonProtos/metadata/Type",
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storage\\Control\\": "StorageControl/metadata",
@@ -692,6 +694,7 @@
             "Google\\Shopping\\Merchant\\Promotions\\": "ShoppingMerchantPromotions/src",
             "Google\\Shopping\\Merchant\\Quota\\": "ShoppingMerchantQuota/src",
             "Google\\Shopping\\Merchant\\Reports\\": "ShoppingMerchantReports/src",
+            "Google\\Shopping\\Merchant\\Reviews\\": "ShoppingMerchantReviews/src",
             "Google\\Shopping\\Type\\": "ShoppingCommonProtos/src/Type",
             "Google\\Type\\": "CommonProtos/src/Type",
             "Grafeas\\": "Grafeas/src"
