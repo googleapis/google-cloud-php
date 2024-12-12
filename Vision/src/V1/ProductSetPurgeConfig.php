@@ -22,7 +22,7 @@ class ProductSetPurgeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string product_set_id = 1;</code>
      */
-    private $product_set_id = '';
+    protected $product_set_id = '';
 
     /**
      * Constructor.

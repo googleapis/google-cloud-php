@@ -21,20 +21,20 @@ class CropHint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
-    private $bounding_poly = null;
+    protected $bounding_poly = null;
     /**
      * Confidence of this being a salient region.  Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * Fraction of importance of this salient region with respect to the original
      * image.
      *
      * Generated from protobuf field <code>float importance_fraction = 3;</code>
      */
-    private $importance_fraction = 0.0;
+    protected $importance_fraction = 0.0;
 
     /**
      * Constructor.

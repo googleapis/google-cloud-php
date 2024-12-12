@@ -20,7 +20,7 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
-    private $dominant_colors = null;
+    protected $dominant_colors = null;
 
     /**
      * Constructor.

@@ -24,7 +24,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
-    private $adult = 0;
+    protected $adult = 0;
     /**
      * Spoof likelihood. The likelihood that an modification
      * was made to the image's canonical version to make it appear
@@ -32,13 +32,13 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
-    private $spoof = 0;
+    protected $spoof = 0;
     /**
      * Likelihood that this is a medical image.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
-    private $medical = 0;
+    protected $medical = 0;
     /**
      * Likelihood that this image contains violent content. Violent content may
      * include death, serious harm, or injury to individuals or groups of
@@ -46,7 +46,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
-    private $violence = 0;
+    protected $violence = 0;
     /**
      * Likelihood that the request image contains racy content. Racy content may
      * include (but is not limited to) skimpy or sheer clothing, strategically
@@ -55,7 +55,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
      */
-    private $racy = 0;
+    protected $racy = 0;
 
     /**
      * Constructor.
@@ -235,186 +235,6 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
         $this->racy = $var;
 
         return $this;
-    }
-
-    /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float adult_confidence = 16 [deprecated = true];</code>
-     * @return float
-     * @deprecated
-     */
-    public function getAdultConfidence()
-    {
-        @trigger_error('adult_confidence is deprecated.', E_USER_DEPRECATED);
-        return 0.0;
-    }
-
-    /**
-     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float adult_confidence = 16 [deprecated = true];</code>
-     * @param float $var
-     * @return $this
-     * @deprecated
-     */
-    public function setAdultConfidence($var)
-    {
-        @trigger_error('adult_confidence is deprecated.', E_USER_DEPRECATED);
-        GPBUtil::checkFloat($var);
-        return $this;
-    }
-
-    /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float spoof_confidence = 18 [deprecated = true];</code>
-     * @return float
-     * @deprecated
-     */
-    public function getSpoofConfidence()
-    {
-        @trigger_error('spoof_confidence is deprecated.', E_USER_DEPRECATED);
-        return 0.0;
-    }
-
-    /**
-     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float spoof_confidence = 18 [deprecated = true];</code>
-     * @param float $var
-     * @return $this
-     * @deprecated
-     */
-    public function setSpoofConfidence($var)
-    {
-        @trigger_error('spoof_confidence is deprecated.', E_USER_DEPRECATED);
-        GPBUtil::checkFloat($var);
-        return $this;
-    }
-
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float medical_confidence = 20 [deprecated = true];</code>
-     * @return float
-     * @deprecated
-     */
-    public function getMedicalConfidence()
-    {
-        @trigger_error('medical_confidence is deprecated.', E_USER_DEPRECATED);
-        return 0.0;
-    }
-
-    /**
-     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float medical_confidence = 20 [deprecated = true];</code>
-     * @param float $var
-     * @return $this
-     * @deprecated
-     */
-    public function setMedicalConfidence($var)
-    {
-        @trigger_error('medical_confidence is deprecated.', E_USER_DEPRECATED);
-        GPBUtil::checkFloat($var);
-        return $this;
-    }
-
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float violence_confidence = 22 [deprecated = true];</code>
-     * @return float
-     * @deprecated
-     */
-    public function getViolenceConfidence()
-    {
-        @trigger_error('violence_confidence is deprecated.', E_USER_DEPRECATED);
-        return 0.0;
-    }
-
-    /**
-     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
-     * very confident.
-     *
-     * Generated from protobuf field <code>float violence_confidence = 22 [deprecated = true];</code>
-     * @param float $var
-     * @return $this
-     * @deprecated
-     */
-    public function setViolenceConfidence($var)
-    {
-        @trigger_error('violence_confidence is deprecated.', E_USER_DEPRECATED);
-        GPBUtil::checkFloat($var);
-        return $this;
-    }
-
-    /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
-     * confident.
-     *
-     * Generated from protobuf field <code>float racy_confidence = 24 [deprecated = true];</code>
-     * @return float
-     * @deprecated
-     */
-    public function getRacyConfidence()
-    {
-        @trigger_error('racy_confidence is deprecated.', E_USER_DEPRECATED);
-        GPBUtil::checkFloat($var);
-        return 0.0;
-    }
-
-    /**
-     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
-     * confident.
-     *
-     * Generated from protobuf field <code>float racy_confidence = 24 [deprecated = true];</code>
-     * @param float $var
-     * @return $this
-     * @deprecated
-     */
-    public function setRacyConfidence($var)
-    {
-        @trigger_error('racy_confidence is deprecated.', E_USER_DEPRECATED);
-        return $this;
-    }
-
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
-     * confident.
-     *
-     * Generated from protobuf field <code>float nsfw_confidence = 26 [deprecated = true];</code>
-     * @return float
-     * @deprecated
-     */
-    public function getNsfwConfidence()
-    {
-        @trigger_error('nsfw_confidence is deprecated.', E_USER_DEPRECATED);
-        return 0.0;
-    }
-
-    /**
-     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
-     * confident.
-     *
-     * Generated from protobuf field <code>float nsfw_confidence = 26 [deprecated = true];</code>
-     * @param float $var
-     * @return $this
-     * @deprecated
-     */
-    public function setNsfwConfidence($var)
-    {
-        @trigger_error('nsfw_confidence is deprecated.', E_USER_DEPRECATED);
-        GPBUtil::checkFloat($var);
-        return 0.0;
     }
 
 }

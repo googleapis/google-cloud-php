@@ -34,7 +34,7 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 3;</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The labels with user-defined metadata for the request.
      * Label keys and values can be no longer than 63 characters
