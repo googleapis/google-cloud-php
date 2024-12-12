@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.0",
         "ext-grpc": "*",
-        "google/cloud-core": "^1.52.7",
+        "google/cloud-core": "^1.57",
         "google/gax": "^1.36.0",
         "ramsey/uuid": "^3.0|^4.0"
     },
