@@ -21,7 +21,7 @@ class ReorderFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A list containing all policy names, in the new order. Each name
      * is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.

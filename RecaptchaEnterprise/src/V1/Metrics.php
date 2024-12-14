@@ -21,13 +21,13 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Inclusive start time aligned to a day (UTC).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Metrics are continuous and in order by dates, and in the granularity
      * of day. All Key types should have score-based data.

@@ -20,7 +20,7 @@ class TransactionEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent.TransactionEventType event_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_type = 0;
+    protected $event_type = 0;
     /**
      * Optional. The reason or standardized code that corresponds with this
      * transaction event, if one exists. For example, a CHARGEBACK event with code
@@ -28,7 +28,7 @@ class TransactionEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reason = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $reason = '';
+    protected $reason = '';
     /**
      * Optional. The value that corresponds with this transaction event, if one
      * exists. For example, a refund event where $5.00 was refunded. Currency is
@@ -36,14 +36,14 @@ class TransactionEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $value = 0.0;
+    protected $value = 0.0;
     /**
      * Optional. Timestamp when this transaction event occurred; otherwise assumed
      * to be the time of the API call.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
 
     /**
      * Constructor.

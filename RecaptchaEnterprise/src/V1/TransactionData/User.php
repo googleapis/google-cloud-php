@@ -22,39 +22,39 @@ class User extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $account_id = '';
+    protected $account_id = '';
     /**
      * Optional. The epoch milliseconds of the user's account creation.
      *
      * Generated from protobuf field <code>int64 creation_ms = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $creation_ms = 0;
+    protected $creation_ms = 0;
     /**
      * Optional. The email address of the user.
      *
      * Generated from protobuf field <code>string email = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * Optional. Whether the email has been verified to be accessible by the
      * user (OTP or similar).
      *
      * Generated from protobuf field <code>bool email_verified = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $email_verified = false;
+    protected $email_verified = false;
     /**
      * Optional. The phone number of the user, with country code.
      *
      * Generated from protobuf field <code>string phone_number = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $phone_number = '';
+    protected $phone_number = '';
     /**
      * Optional. Whether the phone number has been verified to be accessible by
      * the user (OTP or similar).
      *
      * Generated from protobuf field <code>bool phone_verified = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $phone_verified = false;
+    protected $phone_verified = false;
 
     /**
      * Constructor.
@@ -251,6 +251,4 @@ class User extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(User::class, \Google\Cloud\RecaptchaEnterprise\V1\TransactionData_User::class);
 

@@ -21,7 +21,7 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. If true, skips the billing check.
      * A reCAPTCHA Enterprise key or migrated key behaves differently than a
@@ -34,7 +34,7 @@ class MigrateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_billing_check = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $skip_billing_check = false;
+    protected $skip_billing_check = false;
 
     /**
      * Constructor.
