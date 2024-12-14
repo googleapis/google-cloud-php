@@ -21,13 +21,13 @@ class UpdateConversationProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile conversation_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation_profile = null;
+    protected $conversation_profile = null;
     /**
      * Required. The mask to control which fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\ConversationProfile $conversationProfile Required. The conversation profile to update.

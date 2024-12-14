@@ -21,7 +21,7 @@ class SimpleResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text_to_speech = 1;</code>
      */
-    private $text_to_speech = '';
+    protected $text_to_speech = '';
     /**
      * One of text_to_speech or ssml must be provided. Structured spoken
      * response to the user in the SSML format. Mutually exclusive with
@@ -29,13 +29,13 @@ class SimpleResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssml = 2;</code>
      */
-    private $ssml = '';
+    protected $ssml = '';
     /**
      * Optional. The text to display.
      *
      * Generated from protobuf field <code>string display_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_text = '';
+    protected $display_text = '';
 
     /**
      * Constructor.

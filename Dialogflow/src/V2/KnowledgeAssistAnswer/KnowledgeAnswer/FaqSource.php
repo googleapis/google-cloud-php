@@ -20,7 +20,7 @@ class FaqSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string question = 2;</code>
      */
-    private $question = '';
+    protected $question = '';
 
     /**
      * Constructor.

@@ -20,25 +20,25 @@ class Snippet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Text taken from that URI.
      *
      * Generated from protobuf field <code>string text = 3;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Title of the document.
      *
      * Generated from protobuf field <code>string title = 4;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Metadata of the document.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

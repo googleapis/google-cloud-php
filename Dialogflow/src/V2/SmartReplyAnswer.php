@@ -20,7 +20,7 @@ class SmartReplyAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string reply = 1;</code>
      */
-    private $reply = '';
+    protected $reply = '';
     /**
      * Smart reply confidence.
      * The system's confidence score that this reply is a good match for
@@ -29,7 +29,7 @@ class SmartReplyAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * The name of answer record, in the format of
      * "projects/<Project ID>/locations/<Location ID>/answerRecords/<Answer Record
@@ -37,7 +37,7 @@ class SmartReplyAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 3 [(.google.api.resource_reference) = {</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
 
     /**
      * Constructor.

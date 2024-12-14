@@ -21,13 +21,13 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $context = null;
+    protected $context = null;
     /**
      * Optional. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\Context $context    Required. The context to update.

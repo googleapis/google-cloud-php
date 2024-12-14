@@ -26,13 +26,13 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The session entity type to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session_entity_type = null;
+    protected $session_entity_type = null;
 
     /**
      * @param string                                        $parent            Required. The session to create a session entity type for.

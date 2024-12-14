@@ -24,28 +24,28 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 4;</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The unique identifier of the response. Contains the same value as
      * `[Streaming]DetectIntentResponse.response_id`.
      *
      * Generated from protobuf field <code>string response_id = 1;</code>
      */
-    private $response_id = '';
+    protected $response_id = '';
     /**
      * The result of the conversational query or event processing. Contains the
      * same value as `[Streaming]DetectIntentResponse.query_result`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 2;</code>
      */
-    private $query_result = null;
+    protected $query_result = null;
     /**
      * Optional. The contents of the original request that was passed to
      * `[Streaming]DetectIntent` call.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OriginalDetectIntentRequest original_detect_intent_request = 3;</code>
      */
-    private $original_detect_intent_request = null;
+    protected $original_detect_intent_request = null;
 
     /**
      * Constructor.

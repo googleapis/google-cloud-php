@@ -23,21 +23,21 @@ class ExportDocumentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * When enabled, export the full content of the document including empirical
      * probability.
      *
      * Generated from protobuf field <code>bool export_full_content = 3;</code>
      */
-    private $export_full_content = false;
+    protected $export_full_content = false;
     /**
      * When enabled, export the smart messaging allowlist document for partial
      * update.
      *
      * Generated from protobuf field <code>bool smart_messaging_partial_update = 5;</code>
      */
-    private $smart_messaging_partial_update = false;
+    protected $smart_messaging_partial_update = false;
     protected $destination;
 
     /**

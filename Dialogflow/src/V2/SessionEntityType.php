@@ -34,14 +34,14 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Indicates whether the additional data should override or
      * supplement the custom entity type definition.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $entity_override_mode = 0;
+    protected $entity_override_mode = 0;
     /**
      * Required. The collection of entities associated with this session entity
      * type.

@@ -32,7 +32,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Sentiment query_text_sentiment = 1;</code>
      */
-    private $query_text_sentiment = null;
+    protected $query_text_sentiment = null;
 
     /**
      * Constructor.

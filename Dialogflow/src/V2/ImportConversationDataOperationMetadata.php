@@ -24,7 +24,7 @@ class ImportConversationDataOperationMetadata extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string conversation_dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $conversation_dataset = '';
+    protected $conversation_dataset = '';
     /**
      * Partial failures are failures that don't fail the whole long running
      * operation, e.g. single files that couldn't be read.
@@ -38,7 +38,7 @@ class ImportConversationDataOperationMetadata extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

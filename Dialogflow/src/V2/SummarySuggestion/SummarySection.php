@@ -20,13 +20,13 @@ class SummarySection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string section = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $section = '';
+    protected $section = '';
     /**
      * Required. Summary text for the section.
      *
      * Generated from protobuf field <code>string summary = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $summary = '';
+    protected $summary = '';
 
     /**
      * Constructor.

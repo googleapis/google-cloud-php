@@ -26,7 +26,7 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool divider_after = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $divider_after = false;
+    protected $divider_after = false;
 
     /**
      * Constructor.

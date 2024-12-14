@@ -20,7 +20,7 @@ class MediaContent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.MediaContent.ResponseMediaType media_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $media_type = 0;
+    protected $media_type = 0;
     /**
      * Required. List of media objects.
      *

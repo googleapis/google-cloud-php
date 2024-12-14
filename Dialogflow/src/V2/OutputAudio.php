@@ -21,13 +21,13 @@ class OutputAudio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig config = 1;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * The natural language speech audio.
      *
      * Generated from protobuf field <code>bytes audio = 2;</code>
      */
-    private $audio = '';
+    protected $audio = '';
 
     /**
      * Constructor.

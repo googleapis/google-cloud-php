@@ -21,7 +21,7 @@ class GenerateStatelessSuggestionResponse extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GeneratorSuggestion generator_suggestion = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $generator_suggestion = null;
+    protected $generator_suggestion = null;
 
     /**
      * Constructor.

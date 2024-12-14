@@ -23,7 +23,7 @@ class EncryptionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of customer-managed encryption key that is used to
      * secure a resource and its sub-resources. If empty, the resource is secured
@@ -33,7 +33,7 @@ class EncryptionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $kms_key = '';
+    protected $kms_key = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_text_to_speech = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_text_to_speech = false;
+    protected $enable_text_to_speech = false;
     /**
      * Required. Audio encoding of the synthesized audio content.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioEncoding output_audio_encoding = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_audio_encoding = 0;
+    protected $output_audio_encoding = 0;
     /**
      * Optional. The synthesis sample rate (in hertz) for this audio. If not
      * provided, then the synthesizer will use the default sample rate based on
@@ -37,7 +37,7 @@ class TextToSpeechSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * Optional. Configuration of how speech should be synthesized, mapping from
      * language (https://cloud.google.com/dialogflow/docs/reference/language) to

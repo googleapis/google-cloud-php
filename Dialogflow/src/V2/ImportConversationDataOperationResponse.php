@@ -24,13 +24,13 @@ class ImportConversationDataOperationResponse extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string conversation_dataset = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $conversation_dataset = '';
+    protected $conversation_dataset = '';
     /**
      * Number of conversations imported successfully.
      *
      * Generated from protobuf field <code>int32 import_count = 3;</code>
      */
-    private $import_count = 0;
+    protected $import_count = 0;
 
     /**
      * Constructor.

@@ -25,58 +25,58 @@ class ConversationDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the dataset. Maximum of 64 bytes.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. The description of the dataset. Maximum of 10000 bytes.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Creation time of this dataset.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Input configurations set during conversation data import.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.InputConfig input_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Output only. Metadata set during conversation data import.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationInfo conversation_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $conversation_info = null;
+    protected $conversation_info = null;
     /**
      * Output only. The number of conversations this conversation dataset
      * contains.
      *
      * Generated from protobuf field <code>int64 conversation_count = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $conversation_count = 0;
+    protected $conversation_count = 0;
     /**
      * Output only. A read only boolean field reflecting Zone Isolation status of
      * the dataset.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzi = null;
+    protected $satisfies_pzi = null;
     /**
      * Output only. A read only boolean field reflecting Zone Separation status of
      * the dataset.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $satisfies_pzs = null;
+    protected $satisfies_pzs = null;
 
     /**
      * Constructor.

@@ -23,14 +23,14 @@ class DeleteKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Force deletes the knowledge base. When set to true, any documents
      * in the knowledge base are also deleted.
      *
      * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $name Required. The name of the knowledge base to delete.

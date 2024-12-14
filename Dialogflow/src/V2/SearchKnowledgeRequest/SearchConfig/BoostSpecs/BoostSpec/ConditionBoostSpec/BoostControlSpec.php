@@ -24,7 +24,7 @@ class BoostControlSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
     /**
      * Optional. The attribute type to be used to determine the boost
      * amount. The attribute value can be derived from the field value
@@ -35,14 +35,14 @@ class BoostControlSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.AttributeType attribute_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $attribute_type = 0;
+    protected $attribute_type = 0;
     /**
      * Optional. The interpolation type to be applied to connect the
      * control points listed below.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.InterpolationType interpolation_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $interpolation_type = 0;
+    protected $interpolation_type = 0;
     /**
      * Optional. The control points used to define the curve. The
      * monotonic function (defined through the interpolation_type above)

@@ -20,33 +20,33 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction open_uri_action = 1;</code>
      */
-    private $open_uri_action = null;
+    protected $open_uri_action = null;
     /**
      * Required. Title of the carousel item. Maximum of two lines of text.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. Description of the carousel item. Maximum of four lines of
      * text.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Hero image for the carousel item.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image = null;
+    protected $image = null;
     /**
      * Optional. Text that appears at the bottom of the Browse Carousel
      * Card. Maximum of one line of text.
      *
      * Generated from protobuf field <code>string footer = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $footer = '';
+    protected $footer = '';
 
     /**
      * Constructor.

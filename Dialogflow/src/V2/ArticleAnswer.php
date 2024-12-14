@@ -20,13 +20,13 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The article URI.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Article snippets.
      *
@@ -41,7 +41,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float confidence = 4;</code>
      */
-    private $confidence = 0.0;
+    protected $confidence = 0.0;
     /**
      * A map that contains metadata about the answer and the
      * document from which it originates.
@@ -56,7 +56,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_record = 6;</code>
      */
-    private $answer_record = '';
+    protected $answer_record = '';
 
     /**
      * Constructor.

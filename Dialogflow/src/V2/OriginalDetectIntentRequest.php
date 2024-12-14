@@ -22,14 +22,14 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Optional. The version of the protocol used for this request.
      * This field is AoG-specific.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * Optional. This field is set to the value of the `QueryParameters.payload`
      * field passed in the request. Some integrations that query a Dialogflow
@@ -47,7 +47,7 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 3;</code>
      */
-    private $payload = null;
+    protected $payload = null;
 
     /**
      * Constructor.

@@ -25,13 +25,13 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The current state of the Conversation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.LifecycleState lifecycle_state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $lifecycle_state = 0;
+    protected $lifecycle_state = 0;
     /**
      * Required. The Conversation Profile to be used to configure this
      * Conversation. This field cannot be updated.
@@ -40,26 +40,26 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation_profile = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversation_profile = '';
+    protected $conversation_profile = '';
     /**
      * Output only. It will not be empty if the conversation is to be connected
      * over telephony.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationPhoneNumber phone_number = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $phone_number = null;
+    protected $phone_number = null;
     /**
      * Output only. The time the conversation was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Output only. The time the conversation was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Optional. The stage of a conversation. It indicates whether the virtual
      * agent or a human agent is handling the conversation.
@@ -78,7 +78,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Conversation.ConversationStage conversation_stage = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $conversation_stage = 0;
+    protected $conversation_stage = 0;
 
     /**
      * Constructor.

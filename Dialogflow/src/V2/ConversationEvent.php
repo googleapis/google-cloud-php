@@ -23,20 +23,20 @@ class ConversationEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation = 1;</code>
      */
-    private $conversation = '';
+    protected $conversation = '';
     /**
      * The type of the event that this notification refers to.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationEvent.Type type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * More detailed information about an error. Only set for type
      * UNRECOVERABLE_ERROR_IN_PHONE_CALL.
      *
      * Generated from protobuf field <code>.google.rpc.Status error_status = 3;</code>
      */
-    private $error_status = null;
+    protected $error_status = null;
     protected $payload;
 
     /**
