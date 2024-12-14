@@ -30,7 +30,10 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\TimeSeriesData;
 
 /**
- * Queries time series using Monitoring Query Language.
+ * Queries time series by using Monitoring Query Language (MQL). We recommend
+ * using PromQL instead of MQL. For more information about the status of MQL,
+ * see the [MQL deprecation
+ * notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
  *
  * @param string $name  The
  *                      [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
