@@ -81,6 +81,20 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     private $new_message_event_notification_config = null;
     /**
+     * Optional. Configuration for publishing transcription intermediate results.
+     * Event will be sent in format of
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     * configured, the following information will be populated as
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     * message attributes:
+     * - "participant_id"
+     * - "participant_role"
+     * - "message_id"
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $new_recognition_result_notification_config = null;
+    /**
      * Settings for speech transcription.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechToTextConfig stt_config = 9;</code>
@@ -152,6 +166,16 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\NotificationConfig $new_message_event_notification_config
      *           Configuration for publishing new message events. Event will be sent in
      *           format of [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]
+     *     @type \Google\Cloud\Dialogflow\V2\NotificationConfig $new_recognition_result_notification_config
+     *           Optional. Configuration for publishing transcription intermediate results.
+     *           Event will be sent in format of
+     *           [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     *           configured, the following information will be populated as
+     *           [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     *           message attributes:
+     *           - "participant_id"
+     *           - "participant_role"
+     *           - "message_id"
      *     @type \Google\Cloud\Dialogflow\V2\SpeechToTextConfig $stt_config
      *           Settings for speech transcription.
      *     @type string $language_code
@@ -525,6 +549,58 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\NotificationConfig::class);
         $this->new_message_event_notification_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for publishing transcription intermediate results.
+     * Event will be sent in format of
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     * configured, the following information will be populated as
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     * message attributes:
+     * - "participant_id"
+     * - "participant_role"
+     * - "message_id"
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\NotificationConfig|null
+     */
+    public function getNewRecognitionResultNotificationConfig()
+    {
+        return $this->new_recognition_result_notification_config;
+    }
+
+    public function hasNewRecognitionResultNotificationConfig()
+    {
+        return isset($this->new_recognition_result_notification_config);
+    }
+
+    public function clearNewRecognitionResultNotificationConfig()
+    {
+        unset($this->new_recognition_result_notification_config);
+    }
+
+    /**
+     * Optional. Configuration for publishing transcription intermediate results.
+     * Event will be sent in format of
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
+     * configured, the following information will be populated as
+     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
+     * message attributes:
+     * - "participant_id"
+     * - "participant_role"
+     * - "message_id"
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\NotificationConfig $var
+     * @return $this
+     */
+    public function setNewRecognitionResultNotificationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\NotificationConfig::class);
+        $this->new_recognition_result_notification_config = $var;
 
         return $this;
     }
