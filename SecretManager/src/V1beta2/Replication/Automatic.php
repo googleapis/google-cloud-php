@@ -29,7 +29,7 @@ class Automatic extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1beta2.CustomerManagedEncryption customer_managed_encryption = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_managed_encryption = null;
+    protected $customer_managed_encryption = null;
 
     /**
      * Constructor.
@@ -105,6 +105,4 @@ class Automatic extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Automatic::class, \Google\Cloud\SecretManager\V1beta2\Replication_Automatic::class);
 
