@@ -186,6 +186,4 @@ class Reducer
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reducer::class, \Google\Cloud\Monitoring\V3\Aggregation_Reducer::class);
 

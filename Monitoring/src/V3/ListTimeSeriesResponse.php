@@ -28,7 +28,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Query execution errors that may have caused the time series data returned
      * to be incomplete.
@@ -46,7 +46,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unit = 5;</code>
      */
-    private $unit = '';
+    protected $unit = '';
 
     /**
      * Constructor.

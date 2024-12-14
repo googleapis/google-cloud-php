@@ -31,6 +31,4 @@ class AvailabilityCriteria extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AvailabilityCriteria::class, \Google\Cloud\Monitoring\V3\BasicSli_AvailabilityCriteria::class);
 

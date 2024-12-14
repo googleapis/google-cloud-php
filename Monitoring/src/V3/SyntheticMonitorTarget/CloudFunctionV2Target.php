@@ -22,7 +22,7 @@ class CloudFunctionV2Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The `cloud_run_revision` Monitored Resource associated with
      * the GCFv2. The Synthetic Monitor execution results (metrics, logs, and
@@ -31,7 +31,7 @@ class CloudFunctionV2Target extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource cloud_run_revision = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $cloud_run_revision = null;
+    protected $cloud_run_revision = null;
 
     /**
      * Constructor.
@@ -129,6 +129,4 @@ class CloudFunctionV2Target extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudFunctionV2Target::class, \Google\Cloud\Monitoring\V3\SyntheticMonitorTarget_CloudFunctionV2Target::class);
 

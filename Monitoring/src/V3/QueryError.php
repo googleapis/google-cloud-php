@@ -21,13 +21,13 @@ class QueryError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator locator = 1;</code>
      */
-    private $locator = null;
+    protected $locator = null;
     /**
      * The error message.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    private $message = '';
+    protected $message = '';
 
     /**
      * Constructor.

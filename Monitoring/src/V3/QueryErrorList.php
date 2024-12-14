@@ -27,7 +27,7 @@ class QueryErrorList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string error_summary = 2;</code>
      */
-    private $error_summary = '';
+    protected $error_summary = '';
 
     /**
      * Constructor.

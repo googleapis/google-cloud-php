@@ -33,7 +33,7 @@ class NotificationChannelStrategy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration renotify_interval = 2;</code>
      */
-    private $renotify_interval = null;
+    protected $renotify_interval = null;
 
     /**
      * Constructor.
@@ -134,6 +134,4 @@ class NotificationChannelStrategy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NotificationChannelStrategy::class, \Google\Cloud\Monitoring\V3\AlertPolicy_AlertStrategy_NotificationChannelStrategy::class);
 

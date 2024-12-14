@@ -63,6 +63,4 @@ class JsonPathMatcherOption
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(JsonPathMatcherOption::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher_JsonPathMatcher_JsonPathMatcherOption::class);
 

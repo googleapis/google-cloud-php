@@ -21,7 +21,7 @@ class PerformanceThreshold extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double threshold = 2;</code>
      */
-    private $threshold = 0.0;
+    protected $threshold = 0.0;
     protected $type;
 
     /**
@@ -141,6 +141,4 @@ class PerformanceThreshold extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PerformanceThreshold::class, \Google\Cloud\Monitoring\V3\WindowsBasedSli_PerformanceThreshold::class);
 

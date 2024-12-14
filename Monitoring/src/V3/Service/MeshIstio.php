@@ -22,21 +22,21 @@ class MeshIstio extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mesh_uid = 1;</code>
      */
-    private $mesh_uid = '';
+    protected $mesh_uid = '';
     /**
      * The namespace of the Istio service underlying this service. Corresponds
      * to the `destination_service_namespace` metric label in Istio metrics.
      *
      * Generated from protobuf field <code>string service_namespace = 3;</code>
      */
-    private $service_namespace = '';
+    protected $service_namespace = '';
     /**
      * The name of the Istio service underlying this service. Corresponds to the
      * `destination_service_name` metric label in Istio metrics.
      *
      * Generated from protobuf field <code>string service_name = 4;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
 
     /**
      * Constructor.
@@ -146,6 +146,4 @@ class MeshIstio extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MeshIstio::class, \Google\Cloud\Monitoring\V3\Service_MeshIstio::class);
 

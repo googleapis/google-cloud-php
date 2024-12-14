@@ -71,6 +71,4 @@ class EvaluationMissingData
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EvaluationMissingData::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_EvaluationMissingData::class);
 

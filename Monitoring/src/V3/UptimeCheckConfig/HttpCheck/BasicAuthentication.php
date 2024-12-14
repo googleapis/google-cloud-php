@@ -23,13 +23,13 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
-    private $username = '';
+    protected $username = '';
     /**
      * The password to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
-    private $password = '';
+    protected $password = '';
 
     /**
      * Constructor.
@@ -102,6 +102,4 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BasicAuthentication::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_BasicAuthentication::class);
 

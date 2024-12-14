@@ -25,7 +25,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The checker's human-readable name. The display name
      * should be unique within a Cloud Monitoring Metrics Scope in order to make
@@ -33,34 +33,34 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
      * internal resource lives (ex: "default").
      *
      * Generated from protobuf field <code>string network = 3;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The GCP zone the Uptime check should egress from. Only respected for
      * internal Uptime checks, where internal_network is specified.
      *
      * Generated from protobuf field <code>string gcp_zone = 4;</code>
      */
-    private $gcp_zone = '';
+    protected $gcp_zone = '';
     /**
      * The GCP project ID where the internal checker lives. Not necessary
      * the same as the Metrics Scope project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      */
-    private $peer_project_id = '';
+    protected $peer_project_id = '';
     /**
      * The current operational state of the internal checker.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
      */
-    private $state = 0;
+    protected $state = 0;
 
     /**
      * Constructor.

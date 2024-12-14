@@ -24,7 +24,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationRateLimit notification_rate_limit = 1;</code>
      */
-    private $notification_rate_limit = null;
+    protected $notification_rate_limit = null;
     /**
      * For log-based alert policies, the notification prompts is always
      * [OPENED]. For non log-based alert policies, the notification prompts can
@@ -39,7 +39,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration auto_close = 3;</code>
      */
-    private $auto_close = null;
+    protected $auto_close = null;
     /**
      * Control how notifications will be sent out, on a per-channel basis.
      *
@@ -212,6 +212,4 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AlertStrategy::class, \Google\Cloud\Monitoring\V3\AlertPolicy_AlertStrategy::class);
 

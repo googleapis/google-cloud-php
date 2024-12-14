@@ -20,13 +20,13 @@ class MutationRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp mutate_time = 1;</code>
      */
-    private $mutate_time = null;
+    protected $mutate_time = null;
     /**
      * The email address of the user making the change.
      *
      * Generated from protobuf field <code>string mutated_by = 2;</code>
      */
-    private $mutated_by = '';
+    protected $mutated_by = '';
 
     /**
      * Constructor.

@@ -40,19 +40,19 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * The position of the first byte within the text.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator.Position start_position = 2;</code>
      */
-    private $start_position = null;
+    protected $start_position = null;
     /**
      * The position of the last byte within the text.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator.Position end_position = 3;</code>
      */
-    private $end_position = null;
+    protected $end_position = null;
     /**
      * If `source`, `start_position`, and `end_position` describe a call on
      * some object (e.g. a macro in the time series query language text) and a
@@ -61,7 +61,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator nested_locator = 4;</code>
      */
-    private $nested_locator = null;
+    protected $nested_locator = null;
     /**
      * When `nested_locator` is set, this field gives the reason for the nesting.
      * Usually, the reason is a macro invocation. In that case, the macro name
@@ -72,7 +72,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string nesting_reason = 5;</code>
      */
-    private $nesting_reason = '';
+    protected $nesting_reason = '';
 
     /**
      * Constructor.

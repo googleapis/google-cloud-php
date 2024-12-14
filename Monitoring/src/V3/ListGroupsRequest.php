@@ -23,13 +23,13 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A positive number that is the maximum number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If this field is not empty then it must contain the `next_page_token` value
      * returned by a previous call to this method.  Using this field causes the
@@ -37,7 +37,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     protected $filter;
 
     /**

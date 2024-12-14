@@ -22,7 +22,7 @@ class CloudEndpoints extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1;</code>
      */
-    private $service = '';
+    protected $service = '';
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class CloudEndpoints extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudEndpoints::class, \Google\Cloud\Monitoring\V3\Service_CloudEndpoints::class);
 

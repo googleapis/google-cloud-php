@@ -20,7 +20,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. A description of the changes to be applied to the specified
      * notification channel. The description must provide a definition for
@@ -29,7 +29,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notification_channel = null;
+    protected $notification_channel = null;
 
     /**
      * @param \Google\Protobuf\FieldMask                      $updateMask          Optional. The fields to update.

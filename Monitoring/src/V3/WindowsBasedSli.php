@@ -23,7 +23,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration window_period = 4;</code>
      */
-    private $window_period = null;
+    protected $window_period = null;
     protected $window_criterion;
 
     /**

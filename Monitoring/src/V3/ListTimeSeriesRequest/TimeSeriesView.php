@@ -54,6 +54,4 @@ class TimeSeriesView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeSeriesView::class, \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView::class);
 
