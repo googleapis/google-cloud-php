@@ -24,7 +24,7 @@ class StackdriverLoggingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double sampling_ratio = 1;</code>
      */
-    private $sampling_ratio = 0.0;
+    protected $sampling_ratio = 0.0;
 
     /**
      * Constructor.
