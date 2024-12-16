@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,7 +77,9 @@ class TpuClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TpuClient */
@@ -141,9 +143,7 @@ class TpuClientTest extends GeneratedTest
         $node = new Node();
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
-        $request = (new CreateNodeRequest())
-            ->setParent($formattedParent)
-            ->setNode($node);
+        $request = (new CreateNodeRequest())->setParent($formattedParent)->setNode($node);
         $response = $gapicClient->createNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -201,21 +201,22 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $node = new Node();
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
-        $request = (new CreateNodeRequest())
-            ->setParent($formattedParent)
-            ->setNode($node);
+        $request = (new CreateNodeRequest())->setParent($formattedParent)->setNode($node);
         $response = $gapicClient->createNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -269,8 +270,7 @@ class TpuClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new DeleteNodeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNodeRequest())->setName($formattedName);
         $response = $gapicClient->deleteNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -326,17 +326,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new DeleteNodeRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNodeRequest())->setName($formattedName);
         $response = $gapicClient->deleteNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -372,8 +374,7 @@ class TpuClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new GenerateServiceIdentityRequest())
-            ->setParent($formattedParent);
+        $request = (new GenerateServiceIdentityRequest())->setParent($formattedParent);
         $response = $gapicClient->generateServiceIdentity($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -397,17 +398,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new GenerateServiceIdentityRequest())
-            ->setParent($formattedParent);
+        $request = (new GenerateServiceIdentityRequest())->setParent($formattedParent);
         try {
             $gapicClient->generateServiceIdentity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -438,8 +441,7 @@ class TpuClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
-        $request = (new GetAcceleratorTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetAcceleratorTypeRequest())->setName($formattedName);
         $response = $gapicClient->getAcceleratorType($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -463,17 +465,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->acceleratorTypeName('[PROJECT]', '[LOCATION]', '[ACCELERATOR_TYPE]');
-        $request = (new GetAcceleratorTypeRequest())
-            ->setName($formattedName);
+        $request = (new GetAcceleratorTypeRequest())->setName($formattedName);
         try {
             $gapicClient->getAcceleratorType($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -500,8 +504,7 @@ class TpuClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new GetGuestAttributesRequest())
-            ->setName($formattedName);
+        $request = (new GetGuestAttributesRequest())->setName($formattedName);
         $response = $gapicClient->getGuestAttributes($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -525,17 +528,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new GetGuestAttributesRequest())
-            ->setName($formattedName);
+        $request = (new GetGuestAttributesRequest())->setName($formattedName);
         try {
             $gapicClient->getGuestAttributes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -580,8 +585,7 @@ class TpuClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new GetNodeRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeRequest())->setName($formattedName);
         $response = $gapicClient->getNode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -605,17 +609,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new GetNodeRequest())
-            ->setName($formattedName);
+        $request = (new GetNodeRequest())->setName($formattedName);
         try {
             $gapicClient->getNode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -646,8 +652,7 @@ class TpuClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->runtimeVersionName('[PROJECT]', '[LOCATION]', '[RUNTIME_VERSION]');
-        $request = (new GetRuntimeVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetRuntimeVersionRequest())->setName($formattedName);
         $response = $gapicClient->getRuntimeVersion($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -671,17 +676,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->runtimeVersionName('[PROJECT]', '[LOCATION]', '[RUNTIME_VERSION]');
-        $request = (new GetRuntimeVersionRequest())
-            ->setName($formattedName);
+        $request = (new GetRuntimeVersionRequest())->setName($formattedName);
         try {
             $gapicClient->getRuntimeVersion($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -706,17 +713,14 @@ class TpuClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $acceleratorTypesElement = new AcceleratorType();
-        $acceleratorTypes = [
-            $acceleratorTypesElement,
-        ];
+        $acceleratorTypes = [$acceleratorTypesElement];
         $expectedResponse = new ListAcceleratorTypesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAcceleratorTypes($acceleratorTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAcceleratorTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAcceleratorTypesRequest())->setParent($formattedParent);
         $response = $gapicClient->listAcceleratorTypes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -743,17 +747,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListAcceleratorTypesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAcceleratorTypesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAcceleratorTypes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -778,17 +784,14 @@ class TpuClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $nodesElement = new Node();
-        $nodes = [
-            $nodesElement,
-        ];
+        $nodes = [$nodesElement];
         $expectedResponse = new ListNodesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setNodes($nodes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNodesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNodesRequest())->setParent($formattedParent);
         $response = $gapicClient->listNodes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -815,17 +818,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListNodesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListNodesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listNodes($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -850,17 +855,14 @@ class TpuClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $runtimeVersionsElement = new RuntimeVersion();
-        $runtimeVersions = [
-            $runtimeVersionsElement,
-        ];
+        $runtimeVersions = [$runtimeVersionsElement];
         $expectedResponse = new ListRuntimeVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRuntimeVersions($runtimeVersions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRuntimeVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuntimeVersionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRuntimeVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -887,17 +889,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListRuntimeVersionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuntimeVersionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRuntimeVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -960,8 +964,7 @@ class TpuClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new StartNodeRequest())
-            ->setName($formattedName);
+        $request = (new StartNodeRequest())->setName($formattedName);
         $response = $gapicClient->startNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1017,17 +1020,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new StartNodeRequest())
-            ->setName($formattedName);
+        $request = (new StartNodeRequest())->setName($formattedName);
         $response = $gapicClient->startNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1099,8 +1104,7 @@ class TpuClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new StopNodeRequest())
-            ->setName($formattedName);
+        $request = (new StopNodeRequest())->setName($formattedName);
         $response = $gapicClient->stopNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1156,17 +1160,19 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->nodeName('[PROJECT]', '[LOCATION]', '[NODE]');
-        $request = (new StopNodeRequest())
-            ->setName($formattedName);
+        $request = (new StopNodeRequest())->setName($formattedName);
         $response = $gapicClient->stopNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1241,9 +1247,7 @@ class TpuClientTest extends GeneratedTest
         $node = new Node();
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
-        $request = (new UpdateNodeRequest())
-            ->setUpdateMask($updateMask)
-            ->setNode($node);
+        $request = (new UpdateNodeRequest())->setUpdateMask($updateMask)->setNode($node);
         $response = $gapicClient->updateNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1301,21 +1305,22 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
         $node = new Node();
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
-        $request = (new UpdateNodeRequest())
-            ->setUpdateMask($updateMask)
-            ->setNode($node);
+        $request = (new UpdateNodeRequest())->setUpdateMask($updateMask)->setNode($node);
         $response = $gapicClient->updateNode($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1377,12 +1382,15 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1409,9 +1417,7 @@ class TpuClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1441,12 +1447,15 @@ class TpuClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1514,9 +1523,7 @@ class TpuClientTest extends GeneratedTest
         $node = new Node();
         $nodeRuntimeVersion = 'nodeRuntimeVersion-385109886';
         $node->setRuntimeVersion($nodeRuntimeVersion);
-        $request = (new CreateNodeRequest())
-            ->setParent($formattedParent)
-            ->setNode($node);
+        $request = (new CreateNodeRequest())->setParent($formattedParent)->setNode($node);
         $response = $gapicClient->createNodeAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
