@@ -66,7 +66,7 @@
     "AnalyticsData": {
         "language": "php",
         "distribution_name": "google/analytics-data",
-        "release_level": "preview",
+        "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/analytics-data/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "analyticsdata"

@@ -21,20 +21,20 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_name = 1;</code>
      */
-    private $api_name = '';
+    protected $api_name = '';
     /**
      * This metric's name within the Google Analytics user interface. For example,
      * `Event count`.
      *
      * Generated from protobuf field <code>string ui_name = 2;</code>
      */
-    private $ui_name = '';
+    protected $ui_name = '';
     /**
      * Description of how this metric is used and calculated.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Still usable but deprecated names for this metric. If populated, this
      * metric is available by either `apiName` or one of `deprecatedApiNames`
@@ -49,7 +49,7 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.MetricType type = 5;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The mathematical expression for this derived metric. Can be used in
      * [Metric](#Metric)'s `expression` field for equivalent reports. Most metrics
@@ -57,13 +57,13 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string expression = 6;</code>
      */
-    private $expression = '';
+    protected $expression = '';
     /**
      * True if the metric is a custom metric for this property.
      *
      * Generated from protobuf field <code>bool custom_definition = 7;</code>
      */
-    private $custom_definition = false;
+    protected $custom_definition = false;
     /**
      * If reasons are specified, your access is blocked to this metric for this
      * property. API requests from you to this property for this metric will
@@ -82,7 +82,7 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string category = 10;</code>
      */
-    private $category = '';
+    protected $category = '';
 
     /**
      * Constructor.

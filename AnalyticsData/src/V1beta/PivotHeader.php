@@ -29,7 +29,7 @@ class PivotHeader extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 2;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
 
     /**
      * Constructor.

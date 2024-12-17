@@ -21,20 +21,20 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_name = 1;</code>
      */
-    private $api_name = '';
+    protected $api_name = '';
     /**
      * This dimension's name within the Google Analytics user interface. For
      * example, `Event name`.
      *
      * Generated from protobuf field <code>string ui_name = 2;</code>
      */
-    private $ui_name = '';
+    protected $ui_name = '';
     /**
      * Description of how this dimension is used and calculated.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Still usable but deprecated names for this dimension. If populated, this
      * dimension is available by either `apiName` or one of `deprecatedApiNames`
@@ -53,14 +53,14 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool custom_definition = 5;</code>
      */
-    private $custom_definition = false;
+    protected $custom_definition = false;
     /**
      * The display name of the category that this dimension belongs to. Similar
      * dimensions and metrics are categorized together.
      *
      * Generated from protobuf field <code>string category = 7;</code>
      */
-    private $category = '';
+    protected $category = '';
 
     /**
      * Constructor.

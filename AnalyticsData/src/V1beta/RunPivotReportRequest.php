@@ -26,7 +26,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * The dimensions requested. All defined dimensions must be used by one of the
      * following: dimension_expression, dimension_filter, pivots, order_bys.
@@ -67,7 +67,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 6;</code>
      */
-    private $dimension_filter = null;
+    protected $dimension_filter = null;
     /**
      * The filter clause of metrics. Applied at post aggregation phase, similar to
      * SQL having-clause. Metrics must be requested to be used in this filter.
@@ -75,21 +75,21 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 7;</code>
      */
-    private $metric_filter = null;
+    protected $metric_filter = null;
     /**
      * A currency code in ISO4217 format, such as "AED", "USD", "JPY".
      * If the field is empty, the report uses the property's default currency.
      *
      * Generated from protobuf field <code>string currency_code = 8;</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Cohort group associated with this request. If there is a cohort group
      * in the request the 'cohort' dimension must be present.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.CohortSpec cohort_spec = 9;</code>
      */
-    private $cohort_spec = null;
+    protected $cohort_spec = null;
     /**
      * If false or unspecified, each row with all metrics equal to 0 will not be
      * returned. If true, these rows will be returned if they are not separately
@@ -102,14 +102,14 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool keep_empty_rows = 10;</code>
      */
-    private $keep_empty_rows = false;
+    protected $keep_empty_rows = false;
     /**
      * Toggles whether to return the current state of this Google Analytics
      * property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 11;</code>
      */
-    private $return_property_quota = false;
+    protected $return_property_quota = false;
     /**
      * Optional. The configuration of comparisons requested and displayed. The
      * request requires both a comparisons field and a comparisons dimension to

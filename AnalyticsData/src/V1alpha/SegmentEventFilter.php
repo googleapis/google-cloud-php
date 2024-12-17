@@ -24,7 +24,7 @@ class SegmentEventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string event_name = 1;</code>
      */
-    private $event_name = null;
+    protected $event_name = null;
     /**
      * If specified, this filter matches events that match both the single event
      * name and the parameter filter expressions.
@@ -33,7 +33,7 @@ class SegmentEventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.SegmentParameterFilterExpression segment_parameter_filter_expression = 2;</code>
      */
-    private $segment_parameter_filter_expression = null;
+    protected $segment_parameter_filter_expression = null;
 
     /**
      * Constructor.

@@ -31,7 +31,7 @@ class SegmentFilterScoping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool at_any_point_in_time = 1;</code>
      */
-    private $at_any_point_in_time = null;
+    protected $at_any_point_in_time = null;
 
     /**
      * Constructor.
