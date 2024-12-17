@@ -21,7 +21,7 @@ class EventMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_name = '';
+    protected $event_name = '';
     /**
      * At least one of the following four min/max values must be set. The
      * values set will be ANDed together to qualify an event.
@@ -30,14 +30,14 @@ class EventMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 min_event_count = 2;</code>
      */
-    private $min_event_count = null;
+    protected $min_event_count = null;
     /**
      * The maximum number of times the event occurred. If not set, maximum event
      * count won't be checked.
      *
      * Generated from protobuf field <code>optional int64 max_event_count = 3;</code>
      */
-    private $max_event_count = null;
+    protected $max_event_count = null;
     /**
      * The minimum revenue generated due to the event. Revenue currency will be
      * defined at the property level. If not set, minimum event value won't be
@@ -45,7 +45,7 @@ class EventMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double min_event_value = 4;</code>
      */
-    private $min_event_value = null;
+    protected $min_event_value = null;
     /**
      * The maximum revenue generated due to the event. Revenue currency will be
      * defined at the property level. If not set, maximum event value won't be
@@ -53,7 +53,7 @@ class EventMapping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional double max_event_value = 5;</code>
      */
-    private $max_event_value = null;
+    protected $max_event_value = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class DimensionOrderBy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dimension_name = 1;</code>
      */
-    private $dimension_name = '';
+    protected $dimension_name = '';
     /**
      * Controls the rule for dimension value ordering.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessOrderBy.DimensionOrderBy.OrderType order_type = 2;</code>
      */
-    private $order_type = 0;
+    protected $order_type = 0;
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class DimensionOrderBy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DimensionOrderBy::class, \Google\Analytics\Admin\V1beta\AccessOrderBy_DimensionOrderBy::class);
 

@@ -87,6 +87,4 @@ class MatchType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MatchType::class, \Google\Analytics\Admin\V1alpha\ChannelGroupFilter_StringFilter_MatchType::class);
 

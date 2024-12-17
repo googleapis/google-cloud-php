@@ -21,20 +21,20 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The length of time that event-level data is retained.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings.RetentionDuration event_data_retention = 2;</code>
      */
-    private $event_data_retention = 0;
+    protected $event_data_retention = 0;
     /**
      * If true, reset the retention period for the user identifier with every
      * event from that user.
      *
      * Generated from protobuf field <code>bool reset_user_data_on_new_activity = 3;</code>
      */
-    private $reset_user_data_on_new_activity = false;
+    protected $reset_user_data_on_new_activity = false;
 
     /**
      * Constructor.

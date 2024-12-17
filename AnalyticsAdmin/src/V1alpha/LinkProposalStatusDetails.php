@@ -20,19 +20,19 @@ class LinkProposalStatusDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.LinkProposalInitiatingProduct link_proposal_initiating_product = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $link_proposal_initiating_product = 0;
+    protected $link_proposal_initiating_product = 0;
     /**
      * Output only. The email address of the user that proposed this linkage.
      *
      * Generated from protobuf field <code>string requestor_email = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $requestor_email = '';
+    protected $requestor_email = '';
     /**
      * Output only. The state of this proposal.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.LinkProposalState link_proposal_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $link_proposal_state = 0;
+    protected $link_proposal_state = 0;
 
     /**
      * Constructor.
