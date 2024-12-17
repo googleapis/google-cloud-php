@@ -21,13 +21,13 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. User event to write.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_event = null;
+    protected $user_event = null;
 
     /**
      * @param string                                               $parent    Required. The parent eventStore resource name, such as

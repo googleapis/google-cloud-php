@@ -21,7 +21,7 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Unique identifier provided by client, within the ancestor
      * dataset scope. Ensures idempotency for expensive long running operations.
@@ -32,19 +32,19 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Required. The desired input location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Optional. The desired location of errors incurred during the Import.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ImportErrorsConfig errors_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $errors_config = null;
+    protected $errors_config = null;
 
     /**
      * @param string                                                        $parent       Required.
