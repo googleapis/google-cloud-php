@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
  * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] with a
  * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
- * [EXTERNAL_VPC][CryptoKeyVersion.ProtectionLevel.EXTERNAL_VPC] in a given
+ * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] in a given
  * project and location.
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.EkmConfig</code>
