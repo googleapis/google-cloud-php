@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
  * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] with a
  * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
- * [EXTERNAL_VPC][CryptoKeyVersion.ProtectionLevel.EXTERNAL_VPC], as well as
+ * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC], as well as
  * performing cryptographic operations using keys created within the
  * [EkmConnection][google.cloud.kms.v1.EkmConnection].
  *
