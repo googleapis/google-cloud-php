@@ -20,25 +20,25 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job to create.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.Job job = 2;</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * The level of information requested in response.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobView view = 3;</code>
      */
-    private $view = 0;
+    protected $view = 0;
     /**
      * Deprecated. This field is now in the Job message.
      *
      * Generated from protobuf field <code>string replace_job_id = 4;</code>
      */
-    private $replace_job_id = '';
+    protected $replace_job_id = '';
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -46,7 +46,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 5;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

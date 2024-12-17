@@ -22,14 +22,14 @@ class StructuredMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message_text = 1;</code>
      */
-    private $message_text = '';
+    protected $message_text = '';
     /**
      * Identifier for this message type.  Used by external systems to
      * internationalize or personalize message.
      *
      * Generated from protobuf field <code>string message_key = 2;</code>
      */
-    private $message_key = '';
+    protected $message_key = '';
     /**
      * The structured data associated with this message.
      *

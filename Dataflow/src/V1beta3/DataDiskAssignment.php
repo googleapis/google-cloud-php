@@ -21,7 +21,7 @@ class DataDiskAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string vm_instance = 1;</code>
      */
-    private $vm_instance = '';
+    protected $vm_instance = '';
     /**
      * Mounted data disks. The order is important a data disk's 0-based index in
      * this list defines which persistent directory the disk is mounted to, for
