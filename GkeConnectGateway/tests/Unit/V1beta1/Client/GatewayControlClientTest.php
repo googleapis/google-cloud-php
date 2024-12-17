@@ -48,7 +48,9 @@ class GatewayControlClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return GatewayControlClient */
@@ -77,15 +79,17 @@ class GatewayControlClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GenerateCredentialsRequest())
-            ->setName($name);
+        $request = (new GenerateCredentialsRequest())->setName($name);
         $response = $gapicClient->generateCredentials($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gkeconnect.gateway.v1beta1.GatewayControl/GenerateCredentials', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.gkeconnect.gateway.v1beta1.GatewayControl/GenerateCredentials',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -102,17 +106,19 @@ class GatewayControlClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GenerateCredentialsRequest())
-            ->setName($name);
+        $request = (new GenerateCredentialsRequest())->setName($name);
         try {
             $gapicClient->generateCredentials($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -143,15 +149,17 @@ class GatewayControlClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GenerateCredentialsRequest())
-            ->setName($name);
+        $request = (new GenerateCredentialsRequest())->setName($name);
         $response = $gapicClient->generateCredentialsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.gkeconnect.gateway.v1beta1.GatewayControl/GenerateCredentials', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.gkeconnect.gateway.v1beta1.GatewayControl/GenerateCredentials',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
