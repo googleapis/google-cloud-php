@@ -35,26 +35,26 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool transitive_dependencies_included = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $transitive_dependencies_included = false;
+    protected $transitive_dependencies_included = false;
     /**
      * Optional. When set to true, transitive dependents of included actions will
      * be executed.
      *
      * Generated from protobuf field <code>bool transitive_dependents_included = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $transitive_dependents_included = false;
+    protected $transitive_dependents_included = false;
     /**
      * Optional. When set to true, any incremental tables will be fully refreshed.
      *
      * Generated from protobuf field <code>bool fully_refresh_incremental_tables_enabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $fully_refresh_incremental_tables_enabled = false;
+    protected $fully_refresh_incremental_tables_enabled = false;
     /**
      * Optional. The service account to run workflow invocations under.
      *
      * Generated from protobuf field <code>string service_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
 
     /**
      * Constructor.

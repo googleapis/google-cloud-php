@@ -21,20 +21,20 @@ class CreateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The workflow config to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowConfig workflow_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workflow_config = null;
+    protected $workflow_config = null;
     /**
      * Required. The ID to use for the workflow config, which will become the
      * final component of the workflow config's resource name.
      *
      * Generated from protobuf field <code>string workflow_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workflow_config_id = '';
+    protected $workflow_config_id = '';
 
     /**
      * @param string                                        $parent           Required. The repository in which to create the workflow config. Must be in
