@@ -20,7 +20,7 @@ class GitSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string repo = 1;</code>
      */
-    private $repo = '';
+    protected $repo = '';
     /**
      * Directory, relative to the source root, in which to run the build.
      * This must be a relative path. If a step's `dir` is specified and is an
@@ -28,7 +28,7 @@ class GitSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dir = 2;</code>
      */
-    private $dir = '';
+    protected $dir = '';
     protected $ref;
 
     /**
