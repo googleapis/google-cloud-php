@@ -20,25 +20,25 @@ class Symptom extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Type of the Symptom.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.Symptom.SymptomType symptom_type = 2;</code>
      */
-    private $symptom_type = 0;
+    protected $symptom_type = 0;
     /**
      * Detailed information of the current Symptom.
      *
      * Generated from protobuf field <code>string details = 3;</code>
      */
-    private $details = '';
+    protected $details = '';
     /**
      * A string used to uniquely distinguish a worker within a TPU node.
      *
      * Generated from protobuf field <code>string worker_id = 4;</code>
      */
-    private $worker_id = '';
+    protected $worker_id = '';
 
     /**
      * Constructor.

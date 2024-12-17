@@ -20,19 +20,19 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * Key for the guest attribute entry.
      *
      * Generated from protobuf field <code>string key = 2;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Value for the guest attribute entry.
      *
      * Generated from protobuf field <code>string value = 3;</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.

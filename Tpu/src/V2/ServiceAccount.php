@@ -21,7 +21,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 1;</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * The list of scopes to be made available for this service account. If empty,
      * access to all Cloud APIs will be allowed.
