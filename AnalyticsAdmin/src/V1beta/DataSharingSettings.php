@@ -23,14 +23,14 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Allows Google support to access the data in order to help troubleshoot
      * issues.
      *
      * Generated from protobuf field <code>bool sharing_with_google_support_enabled = 2;</code>
      */
-    private $sharing_with_google_support_enabled = false;
+    protected $sharing_with_google_support_enabled = false;
     /**
      * Allows Google sales teams that are assigned to the customer to access the
      * data in order to suggest configuration changes to improve results.
@@ -38,26 +38,26 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool sharing_with_google_assigned_sales_enabled = 3;</code>
      */
-    private $sharing_with_google_assigned_sales_enabled = false;
+    protected $sharing_with_google_assigned_sales_enabled = false;
     /**
      * Allows any of Google sales to access the data in order to suggest
      * configuration changes to improve results.
      *
      * Generated from protobuf field <code>bool sharing_with_google_any_sales_enabled = 4;</code>
      */
-    private $sharing_with_google_any_sales_enabled = false;
+    protected $sharing_with_google_any_sales_enabled = false;
     /**
      * Allows Google to use the data to improve other Google products or services.
      *
      * Generated from protobuf field <code>bool sharing_with_google_products_enabled = 5;</code>
      */
-    private $sharing_with_google_products_enabled = false;
+    protected $sharing_with_google_products_enabled = false;
     /**
      * Allows Google to share the data anonymously in aggregate form with others.
      *
      * Generated from protobuf field <code>bool sharing_with_others_enabled = 6;</code>
      */
-    private $sharing_with_others_enabled = false;
+    protected $sharing_with_others_enabled = false;
 
     /**
      * Constructor.

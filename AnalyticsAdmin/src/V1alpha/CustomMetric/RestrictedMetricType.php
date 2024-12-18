@@ -60,6 +60,4 @@ class RestrictedMetricType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RestrictedMetricType::class, \Google\Analytics\Admin\V1alpha\CustomMetric_RestrictedMetricType::class);
 

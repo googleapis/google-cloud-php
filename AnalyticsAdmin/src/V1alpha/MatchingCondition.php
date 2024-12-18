@@ -25,13 +25,13 @@ class MatchingCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field = '';
+    protected $field = '';
     /**
      * Required. The type of comparison to be applied to the value.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MatchingCondition.ComparisonType comparison_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $comparison_type = 0;
+    protected $comparison_type = 0;
     /**
      * Required. The value being compared against for this condition.  The runtime
      * implementation may perform type coercion of this value to evaluate this
@@ -39,7 +39,7 @@ class MatchingCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Whether or not the result of the comparison should be negated. For example,
      * if `negated` is true, then 'equals' comparisons would function as 'not
@@ -47,7 +47,7 @@ class MatchingCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool negated = 4;</code>
      */
-    private $negated = false;
+    protected $negated = false;
 
     /**
      * Constructor.

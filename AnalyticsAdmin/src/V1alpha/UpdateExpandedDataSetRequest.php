@@ -22,7 +22,7 @@ class UpdateExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $expanded_data_set = null;
+    protected $expanded_data_set = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (e.g., "field_to_update"). Omitted fields will not be updated. To
@@ -31,7 +31,7 @@ class UpdateExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSet $expandedDataSet Required. The ExpandedDataSet to update.

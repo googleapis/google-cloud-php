@@ -23,13 +23,13 @@ class CreateConnectedSiteTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Required. The tag to add to the Universal Analytics property
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConnectedSiteTag connected_site_tag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $connected_site_tag = null;
+    protected $connected_site_tag = null;
 
     /**
      * Constructor.

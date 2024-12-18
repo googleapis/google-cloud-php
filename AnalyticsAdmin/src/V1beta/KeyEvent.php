@@ -21,26 +21,26 @@ class KeyEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The event name for this key event.
      * Examples: 'click', 'purchase'
      *
      * Generated from protobuf field <code>string event_name = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $event_name = '';
+    protected $event_name = '';
     /**
      * Output only. Time when this key event was created in the property.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. If set to true, this event can be deleted.
      *
      * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deletable = false;
+    protected $deletable = false;
     /**
      * Output only. If set to true, this key event refers to a custom event.  If
      * set to false, this key event refers to a default event in GA. Default
@@ -51,20 +51,20 @@ class KeyEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $custom = false;
+    protected $custom = false;
     /**
      * Required. The method by which Key Events will be counted across multiple
      * events within a session.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.KeyEvent.CountingMethod counting_method = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $counting_method = 0;
+    protected $counting_method = 0;
     /**
      * Optional. Defines a default value/currency for a key event.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.KeyEvent.DefaultValue default_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_value = null;
+    protected $default_value = null;
 
     /**
      * Constructor.

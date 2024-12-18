@@ -61,6 +61,4 @@ class AudienceExclusionDurationMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AudienceExclusionDurationMode::class, \Google\Analytics\Admin\V1alpha\Audience_AudienceExclusionDurationMode::class);
 

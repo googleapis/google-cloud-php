@@ -21,21 +21,21 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string measurement_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $measurement_id = '';
+    protected $measurement_id = '';
     /**
      * Output only. ID of the corresponding web app in Firebase, if any.
      * This ID can change if the web app is deleted and recreated.
      *
      * Generated from protobuf field <code>string firebase_app_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $firebase_app_id = '';
+    protected $firebase_app_id = '';
     /**
      * Domain name of the web app being measured, or empty.
      * Example: "http://www.google.com", "https://www.google.com"
      *
      * Generated from protobuf field <code>string default_uri = 3;</code>
      */
-    private $default_uri = '';
+    protected $default_uri = '';
 
     /**
      * Constructor.
@@ -145,6 +145,4 @@ class WebStreamData extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WebStreamData::class, \Google\Analytics\Admin\V1alpha\DataStream_WebStreamData::class);
 

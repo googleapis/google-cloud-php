@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/analytics/admin/(v1alpha|v1beta)/.*-php/(.*)
+    - source: /google/analytics/admin/(v1beta|v1alpha)/.*-php/(.*)
       dest: /owl-bot-staging/AnalyticsAdmin/$1/$2
 api-name: AnalyticsAdmin

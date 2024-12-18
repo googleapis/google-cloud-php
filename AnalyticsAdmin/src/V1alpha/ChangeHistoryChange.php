@@ -20,27 +20,27 @@ class ChangeHistoryChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The type of action that changed this resource.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ActionType action = 2;</code>
      */
-    private $action = 0;
+    protected $action = 0;
     /**
      * Resource contents from before the change was made. If this resource was
      * created in this change, this field will be missing.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChangeHistoryChange.ChangeHistoryResource resource_before_change = 3;</code>
      */
-    private $resource_before_change = null;
+    protected $resource_before_change = null;
     /**
      * Resource contents from after the change was made. If this resource was
      * deleted in this change, this field will be missing.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChangeHistoryChange.ChangeHistoryResource resource_after_change = 4;</code>
      */
-    private $resource_after_change = null;
+    protected $resource_after_change = null;
 
     /**
      * Constructor.

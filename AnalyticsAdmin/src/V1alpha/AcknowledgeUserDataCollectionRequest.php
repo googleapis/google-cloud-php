@@ -20,7 +20,7 @@ class AcknowledgeUserDataCollectionRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Required. An acknowledgement that the caller of this method understands the
      * terms of user data collection.
@@ -32,7 +32,7 @@ class AcknowledgeUserDataCollectionRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string acknowledgement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $acknowledgement = '';
+    protected $acknowledgement = '';
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ChannelGroupFilter.StringFilter.MatchType match_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $match_type = 0;
+    protected $match_type = 0;
     /**
      * Required. The string value to be matched against.
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
 
     /**
      * Constructor.
@@ -99,6 +99,4 @@ class StringFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StringFilter::class, \Google\Analytics\Admin\V1alpha\ChannelGroupFilter_StringFilter::class);
 

@@ -23,7 +23,7 @@ class FetchConnectedGa4PropertyResponse extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $property = '';
+    protected $property = '';
 
     /**
      * Constructor.

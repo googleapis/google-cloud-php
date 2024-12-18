@@ -48,14 +48,14 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 4;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * The quota state for this Analytics property including this request. This
      * field doesn't work with account-level requests.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.AccessQuota quota = 5;</code>
      */
-    private $quota = null;
+    protected $quota = null;
 
     /**
      * Constructor.

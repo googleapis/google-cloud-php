@@ -34,7 +34,7 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
@@ -43,7 +43,7 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListProperties` call.
      * Provide this to retrieve the subsequent page.
@@ -52,7 +52,7 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Whether to include soft-deleted (ie: "trashed") Properties in the
      * results. Properties can be inspected to determine whether they are deleted
@@ -60,7 +60,7 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool show_deleted = 4;</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * Constructor.

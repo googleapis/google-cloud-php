@@ -66,6 +66,4 @@ class DimensionScope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DimensionScope::class, \Google\Analytics\Admin\V1alpha\CustomDimension_DimensionScope::class);
 

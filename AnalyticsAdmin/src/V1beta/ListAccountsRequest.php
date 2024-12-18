@@ -23,7 +23,7 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 1;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * A page token, received from a previous `ListAccounts` call.
      * Provide this to retrieve the subsequent page.
@@ -32,7 +32,7 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Whether to include soft-deleted (ie: "trashed") Accounts in the
      * results. Accounts can be inspected to determine whether they are deleted or
@@ -40,7 +40,7 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool show_deleted = 3;</code>
      */
-    private $show_deleted = false;
+    protected $show_deleted = false;
 
     /**
      * Constructor.

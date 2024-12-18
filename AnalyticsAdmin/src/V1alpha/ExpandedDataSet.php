@@ -21,21 +21,21 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the ExpandedDataSet.
      * Max 200 chars.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. The description of the ExpandedDataSet.
      * Max 50 chars.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Immutable. The list of dimensions included in the ExpandedDataSet.
      * See the [API
@@ -61,14 +61,14 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSetFilterExpression dimension_filter_expression = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $dimension_filter_expression = null;
+    protected $dimension_filter_expression = null;
     /**
      * Output only. Time when expanded data set began (or will begin) collecing
      * data.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp data_collection_start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_collection_start_time = null;
+    protected $data_collection_start_time = null;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class UpdateDataRedactionSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRedactionSettings data_redaction_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_redaction_settings = null;
+    protected $data_redaction_settings = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (e.g., "field_to_update"). Omitted fields will not be updated. To
@@ -30,7 +30,7 @@ class UpdateDataRedactionSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\DataRedactionSettings $dataRedactionSettings Required. The settings to update.

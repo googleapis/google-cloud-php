@@ -25,7 +25,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
     /**
      * Optional. Indicates whether this filter needs dynamic evaluation or not. If
      * set to true, users join the Audience if they ever met the condition (static
@@ -36,7 +36,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool at_any_point_in_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $at_any_point_in_time = false;
+    protected $at_any_point_in_time = false;
     /**
      * Optional. If set, specifies the time window for which to evaluate data in
      * number of days. If not set, then audience data is evaluated against
@@ -49,7 +49,7 @@ class AudienceDimensionOrMetricFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 in_any_n_day_period = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $in_any_n_day_period = 0;
+    protected $in_any_n_day_period = 0;
     protected $one_filter;
 
     /**
