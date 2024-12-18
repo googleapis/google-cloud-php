@@ -1,5 +1,101 @@
 # Changelog
 
+## 0.271.0
+
+<details><summary>google/cloud-compute 1.22.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.3.0</summary>
+
+
+
+### Features
+
+* A new field `agent_type` is added to message `.google.cloud.contactcenterinsights.v1.Conversation` ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+* A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/analyses/{analysis}` added to the resource definition `contactcenterinsights.googleapis.com/Analysis` ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+* A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/feedbackLabels/{feedback_label}` added to the resource definition `contactcenterinsights.googleapis.com/FeedbackLabel` ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+* A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}` added to the resource definition `contactcenter... ([#7952](https://github.com/googleapis/google-cloud-php/issues/7952)) ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.2.2</summary>
+
+
+
+### Documentation
+
+* Fix markdown reference in `TagTemplate.is_publicly_readable` comment ([#7938](https://github.com/googleapis/google-cloud-php/issues/7938)) ([fd71e0f](https://github.com/googleapis/google-cloud-php/commit/fd71e0f81dd6acdc21588161d6bcdefe18aa113f))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.92.0</summary>
+
+
+
+### Features
+
+* Exposing FreeInstanceAvailability in InstanceConfig ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing FreeInstanceMetadata in Instance configuration (to define the metadata related to FREE instance type) ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing InstanceType in Instance configuration (to define PROVISIONED or FREE spanner instance) ([#7937](https://github.com/googleapis/google-cloud-php/issues/7937)) ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing QuorumType in InstanceConfig ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing storage_limit_per_processing_unit in InstanceConfig ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+
+
+### Documentation
+
+* A comment for enum `DefaultBackupScheduleType` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `AUTOMATIC` in enum `DefaultBackupScheduleType` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `GOOGLE_MANAGED` in enum `Type` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `NONE` in enum `DefaultBackupScheduleType` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `USER_MANAGED` in enum `Type` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `base_config` in message `.google.spanner.admin.instance.v1.InstanceConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `default_backup_schedule_type` in message `.google.spanner.admin.instance.v1.Instance` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `filter` in message `.google.spanner.admin.instance.v1.ListInstanceConfigOperationsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `filter` in message `.google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `instance_config` in message `.google.spanner.admin.instance.v1.CreateInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `instance_partition_deadline` in message `.google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `location` in message `.google.spanner.admin.instance.v1.ReplicaInfo` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `node_count` in message `.google.spanner.admin.instance.v1.Instance` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `node_count` in message `.google.spanner.admin.instance.v1.InstancePartition` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `operations` in message `.google.spanner.admin.instance.v1.ListInstanceConfigOperationsResponse` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `operations` in message `.google.spanner.admin.instance.v1.ListInstancePartitionOperationsResponse` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `optional_replicas` in message `.google.spanner.admin.instance.v1.InstanceConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `parent` in message `.google.spanner.admin.instance.v1.ListInstancePartitionsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `processing_units` in message `.google.spanner.admin.instance.v1.Instance` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `processing_units` in message `.google.spanner.admin.instance.v1.InstancePartition` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `referencing_backups` in message `.google.spanner.admin.instance.v1.InstancePartition` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `replicas` in message `.google.spanner.admin.instance.v1.InstanceConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `storage_utilization_percent` in message `.google.spanner.admin.instance.v1.AutoscalingConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `unreachable` in message `.google.spanner.admin.instance.v1.ListInstancePartitionsResponse` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for message `CreateInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for message `DeleteInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for message `UpdateInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `CreateInstance` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `CreateInstanceConfig` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `CreateInstancePartition` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `ListInstanceConfigOperations` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `ListInstanceConfigs` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `ListInstancePartitionOperations` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `MoveInstance` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `UpdateInstance` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `UpdateInstanceConfig` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `UpdateInstancePartition` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.1.0</summary>
+
+
+
+### Features
+
+* Support cross-bucket replication ([#7953](https://github.com/googleapis/google-cloud-php/issues/7953)) ([0890336](https://github.com/googleapis/google-cloud-php/commit/08903367cbe23ce116c2bc93e70c1a1fe4782f45))
+
+</details>
+
 ## 0.270.0
 
 <details><summary>google/cloud-access-approval 2.0.3</summary>
