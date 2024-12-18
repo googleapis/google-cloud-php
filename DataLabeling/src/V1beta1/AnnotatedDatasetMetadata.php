@@ -21,7 +21,7 @@ class AnnotatedDatasetMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.HumanAnnotationConfig human_annotation_config = 1;</code>
      */
-    private $human_annotation_config = null;
+    protected $human_annotation_config = null;
     protected $annotation_request_config;
 
     /**

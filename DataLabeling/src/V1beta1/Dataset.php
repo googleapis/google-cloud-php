@@ -22,26 +22,26 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of the dataset. Maximum of 64 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-provided description of the annotation specification set.
      * The description can be up to 10000 characters long.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Time the dataset is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. This is populated with the original input configs
      * where ImportData is called. It is available only after the clients
@@ -62,7 +62,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 data_item_count = 7;</code>
      */
-    private $data_item_count = 0;
+    protected $data_item_count = 0;
 
     /**
      * Constructor.

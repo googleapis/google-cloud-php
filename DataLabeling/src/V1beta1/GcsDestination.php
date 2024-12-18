@@ -21,7 +21,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_uri = 1;</code>
      */
-    private $output_uri = '';
+    protected $output_uri = '';
     /**
      * Required. The format of the gcs destination. Only "text/csv" and
      * "application/json"
@@ -29,7 +29,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
 
     /**
      * Constructor.

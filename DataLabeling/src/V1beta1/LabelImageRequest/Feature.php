@@ -89,6 +89,4 @@ class Feature
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Feature::class, \Google\Cloud\DataLabeling\V1beta1\LabelImageRequest_Feature::class);
 

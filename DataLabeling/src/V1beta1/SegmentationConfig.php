@@ -21,13 +21,13 @@ class SegmentationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Instruction message showed on labelers UI.
      *
      * Generated from protobuf field <code>string instruction_message = 2;</code>
      */
-    private $instruction_message = '';
+    protected $instruction_message = '';
 
     /**
      * Constructor.

@@ -24,15 +24,15 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * [EvaluationJob][google.cloud.datalabeling.v1beta1.EvaluationJob]. If you specify the URI of a table that already exists,
      * it must have the
      * [correct
-     * schema](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     * schema](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      * Provide the table URI in the following format:
      * "bq://<var>{your_project_id}</var>/<var>{your_dataset_name}</var>/<var>{your_table_name}</var>"
      * [Learn
-     * more](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     * more](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
 
     /**
      * Constructor.
@@ -47,11 +47,11 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *           [EvaluationJob][google.cloud.datalabeling.v1beta1.EvaluationJob]. If you specify the URI of a table that already exists,
      *           it must have the
      *           [correct
-     *           schema](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     *           schema](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      *           Provide the table URI in the following format:
      *           "bq://<var>{your_project_id}</var>/<var>{your_dataset_name}</var>/<var>{your_table_name}</var>"
      *           [Learn
-     *           more](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     *           more](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      * }
      */
     public function __construct($data = NULL) {
@@ -66,11 +66,11 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * [EvaluationJob][google.cloud.datalabeling.v1beta1.EvaluationJob]. If you specify the URI of a table that already exists,
      * it must have the
      * [correct
-     * schema](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     * schema](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      * Provide the table URI in the following format:
      * "bq://<var>{your_project_id}</var>/<var>{your_dataset_name}</var>/<var>{your_table_name}</var>"
      * [Learn
-     * more](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     * more](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      * @return string
@@ -87,11 +87,11 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * [EvaluationJob][google.cloud.datalabeling.v1beta1.EvaluationJob]. If you specify the URI of a table that already exists,
      * it must have the
      * [correct
-     * schema](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     * schema](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      * Provide the table URI in the following format:
      * "bq://<var>{your_project_id}</var>/<var>{your_dataset_name}</var>/<var>{your_table_name}</var>"
      * [Learn
-     * more](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#table-schema).
+     * more](/ml-engine/docs/continuous-evaluation/create-job#table-schema).
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      * @param string $var

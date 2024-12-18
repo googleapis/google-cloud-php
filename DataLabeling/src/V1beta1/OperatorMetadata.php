@@ -22,19 +22,19 @@ class OperatorMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float score = 1;</code>
      */
-    private $score = 0.0;
+    protected $score = 0.0;
     /**
      * The total number of contributors that answer this question.
      *
      * Generated from protobuf field <code>int32 total_votes = 2;</code>
      */
-    private $total_votes = 0;
+    protected $total_votes = 0;
     /**
      * The total number of contributors that choose this label.
      *
      * Generated from protobuf field <code>int32 label_votes = 3;</code>
      */
-    private $label_votes = 0;
+    protected $label_votes = 0;
     /**
      * Comments from contributors.
      *

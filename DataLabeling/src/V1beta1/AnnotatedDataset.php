@@ -24,7 +24,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The display name of the AnnotatedDataset. It is specified in
      * HumanAnnotationConfig when user starts a labeling task. Maximum of 64
@@ -32,7 +32,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The description of the AnnotatedDataset. It is specified in
      * HumanAnnotationConfig when user starts a labeling task. Maximum of 10000
@@ -40,51 +40,51 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 9;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Source of the annotation.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSource annotation_source = 3;</code>
      */
-    private $annotation_source = 0;
+    protected $annotation_source = 0;
     /**
      * Output only. Type of the annotation. It is specified when starting labeling
      * task.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationType annotation_type = 8;</code>
      */
-    private $annotation_type = 0;
+    protected $annotation_type = 0;
     /**
      * Output only. Number of examples in the annotated dataset.
      *
      * Generated from protobuf field <code>int64 example_count = 4;</code>
      */
-    private $example_count = 0;
+    protected $example_count = 0;
     /**
      * Output only. Number of examples that have annotation in the annotated
      * dataset.
      *
      * Generated from protobuf field <code>int64 completed_example_count = 5;</code>
      */
-    private $completed_example_count = 0;
+    protected $completed_example_count = 0;
     /**
      * Output only. Per label statistics.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.LabelStats label_stats = 6;</code>
      */
-    private $label_stats = null;
+    protected $label_stats = null;
     /**
      * Output only. Time the AnnotatedDataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Additional information about AnnotatedDataset.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotatedDatasetMetadata metadata = 10;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Output only. The names of any related resources that are blocking changes
      * to the annotated dataset.

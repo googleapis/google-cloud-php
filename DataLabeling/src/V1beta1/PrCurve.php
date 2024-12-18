@@ -20,14 +20,14 @@ class PrCurve extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_spec = 1;</code>
      */
-    private $annotation_spec = null;
+    protected $annotation_spec = null;
     /**
      * Area under the precision-recall curve. Not to be confused with area under
      * a receiver operating characteristic (ROC) curve.
      *
      * Generated from protobuf field <code>float area_under_curve = 2;</code>
      */
-    private $area_under_curve = 0.0;
+    protected $area_under_curve = 0.0;
     /**
      * Entries that make up the precision-recall graph. Each entry is a "point" on
      * the graph drawn for a different `confidence_threshold`.
@@ -40,7 +40,7 @@ class PrCurve extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float mean_average_precision = 4;</code>
      */
-    private $mean_average_precision = 0.0;
+    protected $mean_average_precision = 0.0;
 
     /**
      * Constructor.

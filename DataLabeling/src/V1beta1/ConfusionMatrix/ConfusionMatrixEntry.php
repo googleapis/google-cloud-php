@@ -18,14 +18,14 @@ class ConfusionMatrixEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_spec = 1;</code>
      */
-    private $annotation_spec = null;
+    protected $annotation_spec = null;
     /**
      * Number of items predicted to have this label. (The ground truth label for
      * these items is the `Row.annotationSpec` of this entry's parent.)
      *
      * Generated from protobuf field <code>int32 item_count = 2;</code>
      */
-    private $item_count = 0;
+    protected $item_count = 0;
 
     /**
      * Constructor.
@@ -111,6 +111,4 @@ class ConfusionMatrixEntry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfusionMatrixEntry::class, \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix_ConfusionMatrixEntry::class);
 

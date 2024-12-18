@@ -21,7 +21,7 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Annotated dataset resource name. DataItem in
      * Dataset and their annotations in specified annotated dataset will be
@@ -31,26 +31,26 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotated_dataset = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $annotated_dataset = '';
+    protected $annotated_dataset = '';
     /**
      * Optional. Filter is not supported at this moment.
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Required. Specify the output destination.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.OutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
     /**
      * Email of the user who started the export task and should be notified by
      * email. If empty no notification will be sent.
      *
      * Generated from protobuf field <code>string user_email_address = 5;</code>
      */
-    private $user_email_address = '';
+    protected $user_email_address = '';
 
     /**
      * @param string                                          $name             Required. Dataset resource name, format:

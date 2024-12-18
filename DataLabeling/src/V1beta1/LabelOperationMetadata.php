@@ -21,7 +21,7 @@ class LabelOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      */
-    private $progress_percent = 0;
+    protected $progress_percent = 0;
     /**
      * Output only. Partial failures encountered.
      * E.g. single files that couldn't be read.
@@ -35,7 +35,7 @@ class LabelOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 16;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     protected $details;
 
     /**

@@ -21,7 +21,7 @@ class EvaluationJobAlertConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 1;</code>
      */
-    private $email = '';
+    protected $email = '';
     /**
      * Required. A number between 0 and 1 that describes a minimum mean average
      * precision threshold. When the evaluation job runs, if it calculates that
@@ -31,7 +31,7 @@ class EvaluationJobAlertConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double min_acceptable_mean_average_precision = 2;</code>
      */
-    private $min_acceptable_mean_average_precision = 0.0;
+    protected $min_acceptable_mean_average_precision = 0.0;
 
     /**
      * Constructor.

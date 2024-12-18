@@ -21,13 +21,13 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
-    private $input_uri = '';
+    protected $input_uri = '';
     /**
      * Required. The format of the source file. Only "text/csv" is supported.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
 
     /**
      * Constructor.

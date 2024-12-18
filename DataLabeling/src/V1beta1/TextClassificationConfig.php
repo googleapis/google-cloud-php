@@ -21,19 +21,19 @@ class TextClassificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_multi_label = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_multi_label = false;
+    protected $allow_multi_label = false;
     /**
      * Required. Annotation spec set resource name.
      *
      * Generated from protobuf field <code>string annotation_spec_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Optional. Configs for sentiment selection.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.SentimentConfig sentiment_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sentiment_config = null;
+    protected $sentiment_config = null;
 
     /**
      * Constructor.

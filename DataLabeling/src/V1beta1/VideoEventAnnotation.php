@@ -20,13 +20,13 @@ class VideoEventAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_spec = 1;</code>
      */
-    private $annotation_spec = null;
+    protected $annotation_spec = null;
     /**
      * The time segment of the video to which the annotation applies.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.TimeSegment time_segment = 2;</code>
      */
-    private $time_segment = null;
+    protected $time_segment = null;
 
     /**
      * Constructor.

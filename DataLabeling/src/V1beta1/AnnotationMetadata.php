@@ -20,7 +20,7 @@ class AnnotationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.OperatorMetadata operator_metadata = 2;</code>
      */
-    private $operator_metadata = null;
+    protected $operator_metadata = null;
 
     /**
      * Constructor.

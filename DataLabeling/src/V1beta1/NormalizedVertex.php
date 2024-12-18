@@ -22,13 +22,13 @@ class NormalizedVertex extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float x = 1;</code>
      */
-    private $x = 0.0;
+    protected $x = 0.0;
     /**
      * Y coordinate.
      *
      * Generated from protobuf field <code>float y = 2;</code>
      */
-    private $y = 0.0;
+    protected $y = 0.0;
 
     /**
      * Constructor.

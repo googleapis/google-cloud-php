@@ -20,20 +20,20 @@ class ImageClassificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Optional. If allow_multi_label is true, contributors are able to choose
      * multiple labels for one image.
      *
      * Generated from protobuf field <code>bool allow_multi_label = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_multi_label = false;
+    protected $allow_multi_label = false;
     /**
      * Optional. The type of how to aggregate answers.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.StringAggregationType answer_aggregation_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $answer_aggregation_type = 0;
+    protected $answer_aggregation_type = 0;
 
     /**
      * Constructor.

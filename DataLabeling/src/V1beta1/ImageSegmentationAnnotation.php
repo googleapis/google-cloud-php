@@ -28,13 +28,13 @@ class ImageSegmentationAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * A byte string of a full image's color map.
      *
      * Generated from protobuf field <code>bytes image_bytes = 3;</code>
      */
-    private $image_bytes = '';
+    protected $image_bytes = '';
 
     /**
      * Constructor.
