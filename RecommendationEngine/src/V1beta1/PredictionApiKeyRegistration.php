@@ -20,7 +20,7 @@ class PredictionApiKeyRegistration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string api_key = 1;</code>
      */
-    private $api_key = '';
+    protected $api_key = '';
 
     /**
      * Constructor.

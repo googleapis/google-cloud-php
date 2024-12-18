@@ -20,14 +20,14 @@ class ExactPrice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float display_price = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_price = 0.0;
+    protected $display_price = 0.0;
     /**
      * Optional. Price of the product without any discount. If zero, by default
      * set to be the 'displayPrice'.
      *
      * Generated from protobuf field <code>float original_price = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $original_price = 0.0;
+    protected $original_price = 0.0;
 
     /**
      * Constructor.

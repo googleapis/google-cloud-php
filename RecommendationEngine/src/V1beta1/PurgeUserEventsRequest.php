@@ -22,7 +22,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The filter string to specify the events to be deleted. Empty
      * string filter is not allowed. This filter can also be used with
@@ -45,7 +45,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The default value is false. Override this flag to true to
      * actually perform the purge. If the field is not set to true, a sampling of
@@ -53,7 +53,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $force = false;
+    protected $force = false;
 
     /**
      * @param string $parent Required. The resource name of the event_store under which the events are

@@ -20,7 +20,7 @@ class PurchaseTransaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. Total revenue or grand total associated with the transaction.
      * This value include shipping, tax, or other adjustments to total revenue
@@ -29,7 +29,7 @@ class PurchaseTransaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float revenue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $revenue = 0.0;
+    protected $revenue = 0.0;
     /**
      * Optional. All the taxes associated with the transaction.
      *
@@ -56,7 +56,7 @@ class PurchaseTransaction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ class PredictionServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PredictionServiceClient */
@@ -76,9 +78,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $dryRun2 = true;
         $nextPageToken = '';
         $resultsElement = new PredictionResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new PredictResponse();
         $expectedResponse->setRecommendationToken($recommendationToken);
         $expectedResponse->setDryRun($dryRun2);
@@ -86,7 +86,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+        $formattedName = $gapicClient->placementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CATALOG]',
+            '[EVENT_STORE]',
+            '[PLACEMENT]'
+        );
         $userEvent = new UserEvent();
         $userEventEventType = 'userEventEventType341658661';
         $userEvent->setEventType($userEventEventType);
@@ -94,9 +100,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userInfoVisitorId = 'userInfoVisitorId-1297088752';
         $userEventUserInfo->setVisitorId($userInfoVisitorId);
         $userEvent->setUserInfo($userEventUserInfo);
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setUserEvent($userEvent);
+        $request = (new PredictRequest())->setName($formattedName)->setUserEvent($userEvent);
         $response = $gapicClient->predict($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -125,15 +129,24 @@ class PredictionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+        $formattedName = $gapicClient->placementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CATALOG]',
+            '[EVENT_STORE]',
+            '[PLACEMENT]'
+        );
         $userEvent = new UserEvent();
         $userEventEventType = 'userEventEventType341658661';
         $userEvent->setEventType($userEventEventType);
@@ -141,9 +154,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userInfoVisitorId = 'userInfoVisitorId-1297088752';
         $userEventUserInfo->setVisitorId($userInfoVisitorId);
         $userEvent->setUserInfo($userEventUserInfo);
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setUserEvent($userEvent);
+        $request = (new PredictRequest())->setName($formattedName)->setUserEvent($userEvent);
         try {
             $gapicClient->predict($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -170,9 +181,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $dryRun2 = true;
         $nextPageToken = '';
         $resultsElement = new PredictionResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new PredictResponse();
         $expectedResponse->setRecommendationToken($recommendationToken);
         $expectedResponse->setDryRun($dryRun2);
@@ -180,7 +189,13 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+        $formattedName = $gapicClient->placementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CATALOG]',
+            '[EVENT_STORE]',
+            '[PLACEMENT]'
+        );
         $userEvent = new UserEvent();
         $userEventEventType = 'userEventEventType341658661';
         $userEvent->setEventType($userEventEventType);
@@ -188,9 +203,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userInfoVisitorId = 'userInfoVisitorId-1297088752';
         $userEventUserInfo->setVisitorId($userInfoVisitorId);
         $userEvent->setUserInfo($userEventUserInfo);
-        $request = (new PredictRequest())
-            ->setName($formattedName)
-            ->setUserEvent($userEvent);
+        $request = (new PredictRequest())->setName($formattedName)->setUserEvent($userEvent);
         $response = $gapicClient->predictAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
