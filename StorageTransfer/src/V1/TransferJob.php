@@ -60,6 +60,12 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     protected $transfer_spec = null;
     /**
+     * Replication specification.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.ReplicationSpec replication_spec = 17;</code>
+     */
+    protected $replication_spec = null;
+    /**
      * Notification configuration.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.NotificationConfig notification_config = 11;</code>
@@ -159,6 +165,8 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *           The ID of the Google Cloud project that owns the job.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferSpec $transfer_spec
      *           Transfer specification.
+     *     @type \Google\Cloud\StorageTransfer\V1\ReplicationSpec $replication_spec
+     *           Replication specification.
      *     @type \Google\Cloud\StorageTransfer\V1\NotificationConfig $notification_config
      *           Notification configuration.
      *     @type \Google\Cloud\StorageTransfer\V1\LoggingConfig $logging_config
@@ -344,6 +352,42 @@ class TransferJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\TransferSpec::class);
         $this->transfer_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Replication specification.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.ReplicationSpec replication_spec = 17;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\ReplicationSpec|null
+     */
+    public function getReplicationSpec()
+    {
+        return $this->replication_spec;
+    }
+
+    public function hasReplicationSpec()
+    {
+        return isset($this->replication_spec);
+    }
+
+    public function clearReplicationSpec()
+    {
+        unset($this->replication_spec);
+    }
+
+    /**
+     * Replication specification.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.ReplicationSpec replication_spec = 17;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\ReplicationSpec $var
+     * @return $this
+     */
+    public function setReplicationSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\ReplicationSpec::class);
+        $this->replication_spec = $var;
 
         return $this;
     }
