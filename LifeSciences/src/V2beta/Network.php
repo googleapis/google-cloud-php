@@ -23,7 +23,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * If set to true, do not attach a public IP address to the VM. Note that
      * without a public IP address, additional configuration is required to
@@ -33,7 +33,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_private_address = 2;</code>
      */
-    private $use_private_address = false;
+    protected $use_private_address = false;
     /**
      * If the specified network is configured for custom subnet creation, the
      * name of the subnetwork to attach the instance to must be specified here.
@@ -45,7 +45,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 3;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
 
     /**
      * Constructor.

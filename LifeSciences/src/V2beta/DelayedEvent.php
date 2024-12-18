@@ -23,7 +23,7 @@ class DelayedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cause = 1;</code>
      */
-    private $cause = '';
+    protected $cause = '';
     /**
      * If the delay was caused by a resource shortage, this field lists the
      * Compute Engine metrics that are preventing this operation from running
