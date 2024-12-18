@@ -74,6 +74,4 @@ class SdkSupportStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SdkSupportStatus::class, \Google\Cloud\Dataflow\V1beta3\SdkVersion_SdkSupportStatus::class);
 

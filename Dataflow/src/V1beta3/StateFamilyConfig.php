@@ -20,13 +20,13 @@ class StateFamilyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string state_family = 1;</code>
      */
-    private $state_family = '';
+    protected $state_family = '';
     /**
      * If true, this family corresponds to a read operation.
      *
      * Generated from protobuf field <code>bool is_read = 2;</code>
      */
-    private $is_read = false;
+    protected $is_read = false;
 
     /**
      * Constructor.

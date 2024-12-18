@@ -20,20 +20,20 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job ID.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The updated job.
      * Only the job state is updatable; other fields will be ignored.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.Job job = 3;</code>
      */
-    private $job = null;
+    protected $job = null;
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -41,7 +41,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 4;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

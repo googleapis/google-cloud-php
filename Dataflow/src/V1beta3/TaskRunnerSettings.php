@@ -21,14 +21,14 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string task_user = 1;</code>
      */
-    private $task_user = '';
+    protected $task_user = '';
     /**
      * The UNIX group ID on the worker VM to use for tasks launched by
      * taskrunner; e.g. "wheel".
      *
      * Generated from protobuf field <code>string task_group = 2;</code>
      */
-    private $task_group = '';
+    protected $task_group = '';
     /**
      * The OAuth2 scopes to be requested by the taskrunner in order to
      * access the Cloud Dataflow API.
@@ -47,44 +47,44 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_url = 4;</code>
      */
-    private $base_url = '';
+    protected $base_url = '';
     /**
      * The API version of endpoint, e.g. "v1b3"
      *
      * Generated from protobuf field <code>string dataflow_api_version = 5;</code>
      */
-    private $dataflow_api_version = '';
+    protected $dataflow_api_version = '';
     /**
      * The settings to pass to the parallel worker harness.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerSettings parallel_worker_settings = 6;</code>
      */
-    private $parallel_worker_settings = null;
+    protected $parallel_worker_settings = null;
     /**
      * The location on the worker for task-specific subdirectories.
      *
      * Generated from protobuf field <code>string base_task_dir = 7;</code>
      */
-    private $base_task_dir = '';
+    protected $base_task_dir = '';
     /**
      * Whether to continue taskrunner if an exception is hit.
      *
      * Generated from protobuf field <code>bool continue_on_exception = 8;</code>
      */
-    private $continue_on_exception = false;
+    protected $continue_on_exception = false;
     /**
      * Whether to send taskrunner log info to Google Compute Engine VM serial
      * console.
      *
      * Generated from protobuf field <code>bool log_to_serialconsole = 9;</code>
      */
-    private $log_to_serialconsole = false;
+    protected $log_to_serialconsole = false;
     /**
      * Whether to also send taskrunner log info to stderr.
      *
      * Generated from protobuf field <code>bool alsologtostderr = 10;</code>
      */
-    private $alsologtostderr = false;
+    protected $alsologtostderr = false;
     /**
      * Indicates where to put logs.  If this is not specified, the logs
      * will not be uploaded.
@@ -95,13 +95,13 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string log_upload_location = 11;</code>
      */
-    private $log_upload_location = '';
+    protected $log_upload_location = '';
     /**
      * The directory on the VM to store logs.
      *
      * Generated from protobuf field <code>string log_dir = 12;</code>
      */
-    private $log_dir = '';
+    protected $log_dir = '';
     /**
      * The prefix of the resources the taskrunner should use for
      * temporary storage.
@@ -112,43 +112,43 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string temp_storage_prefix = 13;</code>
      */
-    private $temp_storage_prefix = '';
+    protected $temp_storage_prefix = '';
     /**
      * The command to launch the worker harness.
      *
      * Generated from protobuf field <code>string harness_command = 14;</code>
      */
-    private $harness_command = '';
+    protected $harness_command = '';
     /**
      * The file to store the workflow in.
      *
      * Generated from protobuf field <code>string workflow_file_name = 15;</code>
      */
-    private $workflow_file_name = '';
+    protected $workflow_file_name = '';
     /**
      * The file to store preprocessing commands in.
      *
      * Generated from protobuf field <code>string commandlines_file_name = 16;</code>
      */
-    private $commandlines_file_name = '';
+    protected $commandlines_file_name = '';
     /**
      * The ID string of the VM.
      *
      * Generated from protobuf field <code>string vm_id = 17;</code>
      */
-    private $vm_id = '';
+    protected $vm_id = '';
     /**
      * The suggested backend language.
      *
      * Generated from protobuf field <code>string language_hint = 18;</code>
      */
-    private $language_hint = '';
+    protected $language_hint = '';
     /**
      * The streaming worker main class name.
      *
      * Generated from protobuf field <code>string streaming_worker_main_class = 19;</code>
      */
-    private $streaming_worker_main_class = '';
+    protected $streaming_worker_main_class = '';
 
     /**
      * Constructor.

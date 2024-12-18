@@ -20,25 +20,25 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string image = 1;</code>
      */
-    private $image = '';
+    protected $image = '';
     /**
      * Metadata describing a template including description and validation rules.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.TemplateMetadata metadata = 2;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Required. SDK info of the Flex Template.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SDKInfo sdk_info = 3;</code>
      */
-    private $sdk_info = null;
+    protected $sdk_info = null;
     /**
      * Default runtime environment for the job.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexTemplateRuntimeEnvironment default_environment = 4;</code>
      */
-    private $default_environment = null;
+    protected $default_environment = null;
 
     /**
      * Constructor.

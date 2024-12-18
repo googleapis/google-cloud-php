@@ -59,6 +59,4 @@ class TemplateType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TemplateType::class, \Google\Cloud\Dataflow\V1beta3\GetTemplateResponse_TemplateType::class);
 

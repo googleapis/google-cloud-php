@@ -20,7 +20,7 @@ class FileIODetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string file_pattern = 1;</code>
      */
-    private $file_pattern = '';
+    protected $file_pattern = '';
 
     /**
      * Constructor.

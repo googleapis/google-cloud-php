@@ -20,13 +20,13 @@ class StreamingSideInputLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag = 1;</code>
      */
-    private $tag = '';
+    protected $tag = '';
     /**
      * Identifies the state family where this side input is stored.
      *
      * Generated from protobuf field <code>string state_family = 2;</code>
      */
-    private $state_family = '';
+    protected $state_family = '';
 
     /**
      * Constructor.

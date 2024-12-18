@@ -20,13 +20,13 @@ class GetJobExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job to get execution details for.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -34,7 +34,7 @@ class GetJobExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * If specified, determines the maximum number of stages to
      * return.  If unspecified, the service may choose an appropriate
@@ -42,7 +42,7 @@ class GetJobExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If supplied, this should be the value of next_page_token returned
      * by an earlier call. This will cause the next page of results to
@@ -50,7 +50,7 @@ class GetJobExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

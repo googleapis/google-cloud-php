@@ -25,7 +25,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
-    private $kind = '';
+    protected $kind = '';
     /**
      * Number of Google Compute Engine workers in this pool needed to
      * execute the job.  If zero or unspecified, the service will
@@ -33,7 +33,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_workers = 2;</code>
      */
-    private $num_workers = 0;
+    protected $num_workers = 0;
     /**
      * Packages to be installed on workers.
      *
@@ -47,14 +47,14 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.DefaultPackageSet default_package_set = 4;</code>
      */
-    private $default_package_set = 0;
+    protected $default_package_set = 0;
     /**
      * Machine type (e.g. "n1-standard-1").  If empty or unspecified, the
      * service will attempt to choose a reasonable default.
      *
      * Generated from protobuf field <code>string machine_type = 5;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Sets the policy for determining when to turndown worker pool.
      * Allowed values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and
@@ -73,34 +73,34 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.TeardownPolicy teardown_policy = 6;</code>
      */
-    private $teardown_policy = 0;
+    protected $teardown_policy = 0;
     /**
      * Size of root disk for VMs, in GB.  If zero or unspecified, the service will
      * attempt to choose a reasonable default.
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 7;</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * Type of root disk for VMs.  If empty or unspecified, the service will
      * attempt to choose a reasonable default.
      *
      * Generated from protobuf field <code>string disk_type = 16;</code>
      */
-    private $disk_type = '';
+    protected $disk_type = '';
     /**
      * Fully qualified source image for disks.
      *
      * Generated from protobuf field <code>string disk_source_image = 8;</code>
      */
-    private $disk_source_image = '';
+    protected $disk_source_image = '';
     /**
      * Zone to run the worker pools in.  If empty or unspecified, the service
      * will attempt to choose a reasonable default.
      *
      * Generated from protobuf field <code>string zone = 9;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Settings passed through to Google Compute Engine workers when
      * using the standard Dataflow task runner.  Users should ignore
@@ -108,14 +108,14 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.TaskRunnerSettings taskrunner_settings = 10;</code>
      */
-    private $taskrunner_settings = null;
+    protected $taskrunner_settings = null;
     /**
      * The action to take on host maintenance, as defined by the Google
      * Compute Engine API.
      *
      * Generated from protobuf field <code>string on_host_maintenance = 11;</code>
      */
-    private $on_host_maintenance = '';
+    protected $on_host_maintenance = '';
     /**
      * Data disks that are used by a VM in this workflow.
      *
@@ -133,27 +133,27 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingSettings autoscaling_settings = 14;</code>
      */
-    private $autoscaling_settings = null;
+    protected $autoscaling_settings = null;
     /**
      * Extra arguments for this worker pool.
      *
      * Generated from protobuf field <code>.google.protobuf.Any pool_args = 15;</code>
      */
-    private $pool_args = null;
+    protected $pool_args = null;
     /**
      * Network to which VMs will be assigned.  If empty or unspecified,
      * the service will use the network "default".
      *
      * Generated from protobuf field <code>string network = 17;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
      * the form "regions/REGION/subnetworks/SUBNETWORK".
      *
      * Generated from protobuf field <code>string subnetwork = 19;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Required. Docker container image that executes the Cloud Dataflow worker
      * harness, residing in Google Container Registry.
@@ -161,7 +161,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_harness_container_image = 18;</code>
      */
-    private $worker_harness_container_image = '';
+    protected $worker_harness_container_image = '';
     /**
      * The number of threads per worker harness. If empty or unspecified, the
      * service will choose a number of threads (according to the number of cores
@@ -169,13 +169,13 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_threads_per_worker = 20;</code>
      */
-    private $num_threads_per_worker = 0;
+    protected $num_threads_per_worker = 0;
     /**
      * Configuration for VM IPs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerIPAddressConfiguration ip_configuration = 21;</code>
      */
-    private $ip_configuration = 0;
+    protected $ip_configuration = 0;
     /**
      * Set of SDK harness containers needed to execute this pipeline. This will
      * only be set in the Fn API path. For non-cross-language pipelines this

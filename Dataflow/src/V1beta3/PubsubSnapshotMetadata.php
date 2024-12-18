@@ -20,19 +20,19 @@ class PubsubSnapshotMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic_name = 1;</code>
      */
-    private $topic_name = '';
+    protected $topic_name = '';
     /**
      * The name of the Pubsub snapshot.
      *
      * Generated from protobuf field <code>string snapshot_name = 2;</code>
      */
-    private $snapshot_name = '';
+    protected $snapshot_name = '';
     /**
      * The expire time of the Pubsub snapshot.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
 
     /**
      * Constructor.

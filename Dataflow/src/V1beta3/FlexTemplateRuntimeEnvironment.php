@@ -20,14 +20,14 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_workers = 1;</code>
      */
-    private $num_workers = 0;
+    protected $num_workers = 0;
     /**
      * The maximum number of Google Compute Engine instances to be made
      * available to your pipeline during execution, from 1 to 1000.
      *
      * Generated from protobuf field <code>int32 max_workers = 2;</code>
      */
-    private $max_workers = 0;
+    protected $max_workers = 0;
     /**
      * The Compute Engine [availability
      * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
@@ -36,27 +36,27 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 3;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The email address of the service account to run the job as.
      *
      * Generated from protobuf field <code>string service_account_email = 4;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * The Cloud Storage path to use for temporary files.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string temp_location = 5;</code>
      */
-    private $temp_location = '';
+    protected $temp_location = '';
     /**
      * The machine type to use for the job. Defaults to the value from the
      * template if not specified.
      *
      * Generated from protobuf field <code>string machine_type = 6;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Additional experiment flags for the job.
      *
@@ -69,7 +69,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 8;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Subnetwork to which VMs will be assigned, if desired. You can specify a
      * subnetwork using either a complete URL or an abbreviated path. Expected to
@@ -80,7 +80,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 9;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Additional user labels to be specified for the job.
      * Keys and values must follow the restrictions specified in the [labeling
@@ -99,13 +99,13 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 11;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Configuration for VM IPs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerIPAddressConfiguration ip_configuration = 12;</code>
      */
-    private $ip_configuration = 0;
+    protected $ip_configuration = 0;
     /**
      * The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
@@ -115,7 +115,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_region = 13;</code>
      */
-    private $worker_region = '';
+    protected $worker_region = '';
     /**
      * The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
@@ -126,27 +126,27 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_zone = 14;</code>
      */
-    private $worker_zone = '';
+    protected $worker_zone = '';
     /**
      * Whether to enable Streaming Engine for the job.
      *
      * Generated from protobuf field <code>bool enable_streaming_engine = 15;</code>
      */
-    private $enable_streaming_engine = false;
+    protected $enable_streaming_engine = false;
     /**
      * Set FlexRS goal for the job.
      * https://cloud.google.com/dataflow/docs/guides/flexrs
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flexrs_goal = 16;</code>
      */
-    private $flexrs_goal = 0;
+    protected $flexrs_goal = 0;
     /**
      * The Cloud Storage path for staging local files.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string staging_location = 17;</code>
      */
-    private $staging_location = '';
+    protected $staging_location = '';
     /**
      * Docker registry location of container image to use for the 'worker harness.
      * Default is the container for the version of the SDK. Note this field is
@@ -154,19 +154,19 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sdk_container_image = 18;</code>
      */
-    private $sdk_container_image = '';
+    protected $sdk_container_image = '';
     /**
      * Worker disk size, in gigabytes.
      *
      * Generated from protobuf field <code>int32 disk_size_gb = 20;</code>
      */
-    private $disk_size_gb = 0;
+    protected $disk_size_gb = 0;
     /**
      * The algorithm to use for autoscaling
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingAlgorithm autoscaling_algorithm = 21;</code>
      */
-    private $autoscaling_algorithm = 0;
+    protected $autoscaling_algorithm = 0;
     /**
      * If true, save a heap dump before killing a thread or process which is GC
      * thrashing or out of memory. The location of the heap file will either be
@@ -175,7 +175,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool dump_heap_on_oom = 22;</code>
      */
-    private $dump_heap_on_oom = false;
+    protected $dump_heap_on_oom = false;
     /**
      * Cloud Storage bucket (directory) to upload heap dumps to the given
      * location. Enabling this implies that heap dumps should be generated on OOM
@@ -183,14 +183,14 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string save_heap_dumps_to_gcs_path = 23;</code>
      */
-    private $save_heap_dumps_to_gcs_path = '';
+    protected $save_heap_dumps_to_gcs_path = '';
     /**
      * The machine type to use for launching the job. The default is
      * n1-standard-1.
      *
      * Generated from protobuf field <code>string launcher_machine_type = 24;</code>
      */
-    private $launcher_machine_type = '';
+    protected $launcher_machine_type = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The user-specified Cloud Dataflow job name.
      * Only one Job with a given name may exist in a project at any
@@ -40,19 +40,19 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The type of Cloud Dataflow job.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobType type = 4;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The environment for the job.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.Environment environment = 5;</code>
      */
-    private $environment = null;
+    protected $environment = null;
     /**
      * Exactly one of step or steps_location should be specified.
      * The top-level steps that constitute the entire job. Only retrieved with
@@ -66,7 +66,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string steps_location = 24;</code>
      */
-    private $steps_location = '';
+    protected $steps_location = '';
     /**
      * The current state of the job.
      * Jobs are created in the `JOB_STATE_STOPPED` state unless otherwise
@@ -79,13 +79,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState current_state = 7;</code>
      */
-    private $current_state = 0;
+    protected $current_state = 0;
     /**
      * The timestamp associated with the current state.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp current_state_time = 8;</code>
      */
-    private $current_state_time = null;
+    protected $current_state_time = null;
     /**
      * The job's requested state.
      * `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and
@@ -96,20 +96,20 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobState requested_state = 9;</code>
      */
-    private $requested_state = 0;
+    protected $requested_state = 0;
     /**
      * Deprecated.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobExecutionInfo execution_info = 10;</code>
      */
-    private $execution_info = null;
+    protected $execution_info = null;
     /**
      * The timestamp when the job was initially created. Immutable and set by the
      * Cloud Dataflow service.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * If this job is an update of an existing job, this field is the job ID
      * of the job it replaced.
@@ -119,7 +119,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string replace_job_id = 12;</code>
      */
-    private $replace_job_id = '';
+    protected $replace_job_id = '';
     /**
      * The map of transform name prefixes of the job to be replaced to the
      * corresponding name prefixes of the new job.
@@ -138,14 +138,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_request_id = 14;</code>
      */
-    private $client_request_id = '';
+    protected $client_request_id = '';
     /**
      * If another job is an update of this job (and thus, this job is in
      * `JOB_STATE_UPDATED`), this field contains the ID of that job.
      *
      * Generated from protobuf field <code>string replaced_by_job_id = 15;</code>
      */
-    private $replaced_by_job_id = '';
+    protected $replaced_by_job_id = '';
     /**
      * A set of files the system should be aware of that are used
      * for temporary storage. These temporary files will be
@@ -179,7 +179,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 18;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Preliminary field: The format of this data may change at any time.
      * A description of the user pipeline and stages through which it is executed.
@@ -188,7 +188,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.PipelineDescription pipeline_description = 19;</code>
      */
-    private $pipeline_description = null;
+    protected $pipeline_description = null;
     /**
      * This field may be mutated by the Cloud Dataflow service;
      * callers cannot mutate it.
@@ -203,7 +203,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobMetadata job_metadata = 21;</code>
      */
-    private $job_metadata = null;
+    protected $job_metadata = null;
     /**
      * The timestamp when the job was started (transitioned to JOB_STATE_PENDING).
      * Flexible resource scheduling jobs are started with some delay after job
@@ -214,21 +214,21 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 22;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * If this is specified, the job's initial state is populated from the given
      * snapshot.
      *
      * Generated from protobuf field <code>string created_from_snapshot_id = 23;</code>
      */
-    private $created_from_snapshot_id = '';
+    protected $created_from_snapshot_id = '';
     /**
      * Reserved for future use. This field is set only in responses from the
      * server; it is ignored if it is set in any requests.
      *
      * Generated from protobuf field <code>bool satisfies_pzs = 25;</code>
      */
-    private $satisfies_pzs = false;
+    protected $satisfies_pzs = false;
 
     /**
      * Constructor.

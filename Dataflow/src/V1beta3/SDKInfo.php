@@ -20,13 +20,13 @@ class SDKInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SDKInfo.Language language = 1;</code>
      */
-    private $language = 0;
+    protected $language = 0;
     /**
      * Optional. The SDK version.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.
