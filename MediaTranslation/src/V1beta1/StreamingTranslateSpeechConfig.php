@@ -20,7 +20,7 @@ class StreamingTranslateSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.mediatranslation.v1beta1.TranslateSpeechConfig audio_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio_config = null;
+    protected $audio_config = null;
     /**
      * Optional. If `false` or omitted, the system performs
      * continuous translation (continuing to wait for and process audio even if
@@ -38,7 +38,7 @@ class StreamingTranslateSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool single_utterance = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $single_utterance = false;
+    protected $single_utterance = false;
 
     /**
      * Constructor.
