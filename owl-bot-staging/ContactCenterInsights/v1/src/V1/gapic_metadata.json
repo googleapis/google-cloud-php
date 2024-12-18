@@ -1,0 +1,388 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.contactcenterinsights.v1",
+    "libraryPackage": "Google\\Cloud\\ContactCenterInsights\\V1",
+    "services": {
+        "ContactCenterInsights": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ContactCenterInsightsGapicClient",
+                    "rpcs": {
+                        "BulkAnalyzeConversations": {
+                            "methods": [
+                                "bulkAnalyzeConversations"
+                            ]
+                        },
+                        "BulkDeleteConversations": {
+                            "methods": [
+                                "bulkDeleteConversations"
+                            ]
+                        },
+                        "BulkDownloadFeedbackLabels": {
+                            "methods": [
+                                "bulkDownloadFeedbackLabels"
+                            ]
+                        },
+                        "BulkUploadFeedbackLabels": {
+                            "methods": [
+                                "bulkUploadFeedbackLabels"
+                            ]
+                        },
+                        "CalculateIssueModelStats": {
+                            "methods": [
+                                "calculateIssueModelStats"
+                            ]
+                        },
+                        "CalculateStats": {
+                            "methods": [
+                                "calculateStats"
+                            ]
+                        },
+                        "CreateAnalysis": {
+                            "methods": [
+                                "createAnalysis"
+                            ]
+                        },
+                        "CreateAnalysisRule": {
+                            "methods": [
+                                "createAnalysisRule"
+                            ]
+                        },
+                        "CreateConversation": {
+                            "methods": [
+                                "createConversation"
+                            ]
+                        },
+                        "CreateFeedbackLabel": {
+                            "methods": [
+                                "createFeedbackLabel"
+                            ]
+                        },
+                        "CreateIssueModel": {
+                            "methods": [
+                                "createIssueModel"
+                            ]
+                        },
+                        "CreatePhraseMatcher": {
+                            "methods": [
+                                "createPhraseMatcher"
+                            ]
+                        },
+                        "CreateQaQuestion": {
+                            "methods": [
+                                "createQaQuestion"
+                            ]
+                        },
+                        "CreateQaScorecard": {
+                            "methods": [
+                                "createQaScorecard"
+                            ]
+                        },
+                        "CreateQaScorecardRevision": {
+                            "methods": [
+                                "createQaScorecardRevision"
+                            ]
+                        },
+                        "CreateView": {
+                            "methods": [
+                                "createView"
+                            ]
+                        },
+                        "DeleteAnalysis": {
+                            "methods": [
+                                "deleteAnalysis"
+                            ]
+                        },
+                        "DeleteAnalysisRule": {
+                            "methods": [
+                                "deleteAnalysisRule"
+                            ]
+                        },
+                        "DeleteConversation": {
+                            "methods": [
+                                "deleteConversation"
+                            ]
+                        },
+                        "DeleteFeedbackLabel": {
+                            "methods": [
+                                "deleteFeedbackLabel"
+                            ]
+                        },
+                        "DeleteIssue": {
+                            "methods": [
+                                "deleteIssue"
+                            ]
+                        },
+                        "DeleteIssueModel": {
+                            "methods": [
+                                "deleteIssueModel"
+                            ]
+                        },
+                        "DeletePhraseMatcher": {
+                            "methods": [
+                                "deletePhraseMatcher"
+                            ]
+                        },
+                        "DeleteQaQuestion": {
+                            "methods": [
+                                "deleteQaQuestion"
+                            ]
+                        },
+                        "DeleteQaScorecard": {
+                            "methods": [
+                                "deleteQaScorecard"
+                            ]
+                        },
+                        "DeleteQaScorecardRevision": {
+                            "methods": [
+                                "deleteQaScorecardRevision"
+                            ]
+                        },
+                        "DeleteView": {
+                            "methods": [
+                                "deleteView"
+                            ]
+                        },
+                        "DeployIssueModel": {
+                            "methods": [
+                                "deployIssueModel"
+                            ]
+                        },
+                        "DeployQaScorecardRevision": {
+                            "methods": [
+                                "deployQaScorecardRevision"
+                            ]
+                        },
+                        "ExportInsightsData": {
+                            "methods": [
+                                "exportInsightsData"
+                            ]
+                        },
+                        "ExportIssueModel": {
+                            "methods": [
+                                "exportIssueModel"
+                            ]
+                        },
+                        "GetAnalysis": {
+                            "methods": [
+                                "getAnalysis"
+                            ]
+                        },
+                        "GetAnalysisRule": {
+                            "methods": [
+                                "getAnalysisRule"
+                            ]
+                        },
+                        "GetConversation": {
+                            "methods": [
+                                "getConversation"
+                            ]
+                        },
+                        "GetEncryptionSpec": {
+                            "methods": [
+                                "getEncryptionSpec"
+                            ]
+                        },
+                        "GetFeedbackLabel": {
+                            "methods": [
+                                "getFeedbackLabel"
+                            ]
+                        },
+                        "GetIssue": {
+                            "methods": [
+                                "getIssue"
+                            ]
+                        },
+                        "GetIssueModel": {
+                            "methods": [
+                                "getIssueModel"
+                            ]
+                        },
+                        "GetPhraseMatcher": {
+                            "methods": [
+                                "getPhraseMatcher"
+                            ]
+                        },
+                        "GetQaQuestion": {
+                            "methods": [
+                                "getQaQuestion"
+                            ]
+                        },
+                        "GetQaScorecard": {
+                            "methods": [
+                                "getQaScorecard"
+                            ]
+                        },
+                        "GetQaScorecardRevision": {
+                            "methods": [
+                                "getQaScorecardRevision"
+                            ]
+                        },
+                        "GetSettings": {
+                            "methods": [
+                                "getSettings"
+                            ]
+                        },
+                        "GetView": {
+                            "methods": [
+                                "getView"
+                            ]
+                        },
+                        "ImportIssueModel": {
+                            "methods": [
+                                "importIssueModel"
+                            ]
+                        },
+                        "IngestConversations": {
+                            "methods": [
+                                "ingestConversations"
+                            ]
+                        },
+                        "InitializeEncryptionSpec": {
+                            "methods": [
+                                "initializeEncryptionSpec"
+                            ]
+                        },
+                        "ListAllFeedbackLabels": {
+                            "methods": [
+                                "listAllFeedbackLabels"
+                            ]
+                        },
+                        "ListAnalyses": {
+                            "methods": [
+                                "listAnalyses"
+                            ]
+                        },
+                        "ListAnalysisRules": {
+                            "methods": [
+                                "listAnalysisRules"
+                            ]
+                        },
+                        "ListConversations": {
+                            "methods": [
+                                "listConversations"
+                            ]
+                        },
+                        "ListFeedbackLabels": {
+                            "methods": [
+                                "listFeedbackLabels"
+                            ]
+                        },
+                        "ListIssueModels": {
+                            "methods": [
+                                "listIssueModels"
+                            ]
+                        },
+                        "ListIssues": {
+                            "methods": [
+                                "listIssues"
+                            ]
+                        },
+                        "ListPhraseMatchers": {
+                            "methods": [
+                                "listPhraseMatchers"
+                            ]
+                        },
+                        "ListQaQuestions": {
+                            "methods": [
+                                "listQaQuestions"
+                            ]
+                        },
+                        "ListQaScorecardRevisions": {
+                            "methods": [
+                                "listQaScorecardRevisions"
+                            ]
+                        },
+                        "ListQaScorecards": {
+                            "methods": [
+                                "listQaScorecards"
+                            ]
+                        },
+                        "ListViews": {
+                            "methods": [
+                                "listViews"
+                            ]
+                        },
+                        "QueryMetrics": {
+                            "methods": [
+                                "queryMetrics"
+                            ]
+                        },
+                        "TuneQaScorecardRevision": {
+                            "methods": [
+                                "tuneQaScorecardRevision"
+                            ]
+                        },
+                        "UndeployIssueModel": {
+                            "methods": [
+                                "undeployIssueModel"
+                            ]
+                        },
+                        "UndeployQaScorecardRevision": {
+                            "methods": [
+                                "undeployQaScorecardRevision"
+                            ]
+                        },
+                        "UpdateAnalysisRule": {
+                            "methods": [
+                                "updateAnalysisRule"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
+                            ]
+                        },
+                        "UpdateFeedbackLabel": {
+                            "methods": [
+                                "updateFeedbackLabel"
+                            ]
+                        },
+                        "UpdateIssue": {
+                            "methods": [
+                                "updateIssue"
+                            ]
+                        },
+                        "UpdateIssueModel": {
+                            "methods": [
+                                "updateIssueModel"
+                            ]
+                        },
+                        "UpdatePhraseMatcher": {
+                            "methods": [
+                                "updatePhraseMatcher"
+                            ]
+                        },
+                        "UpdateQaQuestion": {
+                            "methods": [
+                                "updateQaQuestion"
+                            ]
+                        },
+                        "UpdateQaScorecard": {
+                            "methods": [
+                                "updateQaScorecard"
+                            ]
+                        },
+                        "UpdateSettings": {
+                            "methods": [
+                                "updateSettings"
+                            ]
+                        },
+                        "UpdateView": {
+                            "methods": [
+                                "updateView"
+                            ]
+                        },
+                        "UploadConversation": {
+                            "methods": [
+                                "uploadConversation"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
