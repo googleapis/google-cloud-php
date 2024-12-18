@@ -560,6 +560,172 @@ final class ContactCenterInsightsClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_authorized_view_set_authorized_view_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authorizedViewSet
+     * @param string $authorizedView
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_authorized_view_set_authorized_view_conversation resource.
+     */
+    public static function projectLocationAuthorizedViewSetAuthorizedViewConversationName(
+        string $project,
+        string $location,
+        string $authorizedViewSet,
+        string $authorizedView,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationAuthorizedViewSetAuthorizedViewConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'authorized_view_set' => $authorizedViewSet,
+            'authorized_view' => $authorizedView,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_authorized_view_set_authorized_view_conversation_analysis
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authorizedViewSet
+     * @param string $authorizedView
+     * @param string $conversation
+     * @param string $analysis
+     *
+     * @return string The formatted project_location_authorized_view_set_authorized_view_conversation_analysis resource.
+     */
+    public static function projectLocationAuthorizedViewSetAuthorizedViewConversationAnalysisName(
+        string $project,
+        string $location,
+        string $authorizedViewSet,
+        string $authorizedView,
+        string $conversation,
+        string $analysis
+    ): string {
+        return self::getPathTemplate('projectLocationAuthorizedViewSetAuthorizedViewConversationAnalysis')->render([
+            'project' => $project,
+            'location' => $location,
+            'authorized_view_set' => $authorizedViewSet,
+            'authorized_view' => $authorizedView,
+            'conversation' => $conversation,
+            'analysis' => $analysis,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_authorized_view_set_authorized_view_conversation_feedback_label
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authorizedViewSet
+     * @param string $authorizedView
+     * @param string $conversation
+     * @param string $feedbackLabel
+     *
+     * @return string The formatted project_location_authorized_view_set_authorized_view_conversation_feedback_label resource.
+     */
+    public static function projectLocationAuthorizedViewSetAuthorizedViewConversationFeedbackLabelName(
+        string $project,
+        string $location,
+        string $authorizedViewSet,
+        string $authorizedView,
+        string $conversation,
+        string $feedbackLabel
+    ): string {
+        return self::getPathTemplate('projectLocationAuthorizedViewSetAuthorizedViewConversationFeedbackLabel')->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'authorized_view_set' => $authorizedViewSet,
+                'authorized_view' => $authorizedView,
+                'conversation' => $conversation,
+                'feedback_label' => $feedbackLabel,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_conversation resource.
+     */
+    public static function projectLocationConversationName(
+        string $project,
+        string $location,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_analysis resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $analysis
+     *
+     * @return string The formatted project_location_conversation_analysis resource.
+     */
+    public static function projectLocationConversationAnalysisName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $analysis
+    ): string {
+        return self::getPathTemplate('projectLocationConversationAnalysis')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+            'analysis' => $analysis,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_conversation_feedback_label resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $conversation
+     * @param string $feedbackLabel
+     *
+     * @return string The formatted project_location_conversation_feedback_label resource.
+     */
+    public static function projectLocationConversationFeedbackLabelName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $feedbackLabel
+    ): string {
+        return self::getPathTemplate('projectLocationConversationFeedbackLabel')->render([
+            'project' => $project,
+            'location' => $location,
+            'conversation' => $conversation,
+            'feedback_label' => $feedbackLabel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_conversation_participant resource.
      *
      * @param string $project
@@ -745,6 +911,12 @@ final class ContactCenterInsightsClient
      * - participant: projects/{project}/conversations/{conversation}/participants/{participant}
      * - phraseMatcher: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      * - projectConversationParticipant: projects/{project}/conversations/{conversation}/participants/{participant}
+     * - projectLocationAuthorizedViewSetAuthorizedViewConversation: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}
+     * - projectLocationAuthorizedViewSetAuthorizedViewConversationAnalysis: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/analyses/{analysis}
+     * - projectLocationAuthorizedViewSetAuthorizedViewConversationFeedbackLabel: projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/feedbackLabels/{feedback_label}
+     * - projectLocationConversation: projects/{project}/locations/{location}/conversations/{conversation}
+     * - projectLocationConversationAnalysis: projects/{project}/locations/{location}/conversations/{conversation}/analyses/{analysis}
+     * - projectLocationConversationFeedbackLabel: projects/{project}/locations/{location}/conversations/{conversation}/feedbackLabels/{feedback_label}
      * - projectLocationConversationParticipant: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
      * - qaQuestion: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}/revisions/{revision}/qaQuestions/{qa_question}
      * - qaScorecard: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}
