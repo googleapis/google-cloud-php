@@ -21,13 +21,13 @@ class CreateAudienceListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The audience list to create.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.AudienceList audience_list = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audience_list = null;
+    protected $audience_list = null;
 
     /**
      * @param string                                      $parent       Required. The parent resource where this audience list will be created.

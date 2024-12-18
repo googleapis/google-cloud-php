@@ -21,7 +21,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A report definition to fetch report data, which describes the
      * structure of a report. It typically includes the fields that will be
@@ -30,7 +30,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.ReportTask.ReportDefinition report_definition = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $report_definition = null;
+    protected $report_definition = null;
     /**
      * Output only. The report metadata for a specific report task, which provides
      * information about a report.  It typically includes the following
@@ -39,7 +39,7 @@ class ReportTask extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.ReportTask.ReportMetadata report_metadata = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $report_metadata = null;
+    protected $report_metadata = null;
 
     /**
      * Constructor.

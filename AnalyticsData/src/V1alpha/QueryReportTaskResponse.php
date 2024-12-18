@@ -58,13 +58,13 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 7;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Metadata for the report.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.ResponseMetaData metadata = 8;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

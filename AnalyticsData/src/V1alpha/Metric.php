@@ -40,14 +40,14 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A mathematical expression for derived metrics. For example, the metric
      * Event count per user is `eventCount/totalUsers`.
      *
      * Generated from protobuf field <code>string expression = 2;</code>
      */
-    private $expression = '';
+    protected $expression = '';
     /**
      * Indicates if a metric is invisible in the report response. If a metric is
      * invisible, the metric will not produce a column in the response, but can be
@@ -55,7 +55,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool invisible = 3;</code>
      */
-    private $invisible = false;
+    protected $invisible = false;
 
     /**
      * Constructor.

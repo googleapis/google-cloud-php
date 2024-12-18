@@ -53,7 +53,7 @@ class WebhookNotification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $uri = null;
+    protected $uri = null;
     /**
      * Optional. The channel token is an arbitrary string value and must have a
      * maximum string length of 64 characters. Channel tokens allow you to verify
@@ -64,7 +64,7 @@ class WebhookNotification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string channel_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $channel_token = null;
+    protected $channel_token = null;
 
     /**
      * Constructor.

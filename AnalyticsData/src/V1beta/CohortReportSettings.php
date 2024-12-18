@@ -21,7 +21,7 @@ class CohortReportSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool accumulate = 1;</code>
      */
-    private $accumulate = false;
+    protected $accumulate = false;
 
     /**
      * Constructor.

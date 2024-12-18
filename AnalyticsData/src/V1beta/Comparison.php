@@ -23,7 +23,7 @@ class Comparison extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string name = 1;</code>
      */
-    private $name = null;
+    protected $name = null;
     protected $one_comparison;
 
     /**

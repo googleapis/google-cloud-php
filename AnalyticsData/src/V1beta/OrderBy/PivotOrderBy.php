@@ -21,7 +21,7 @@ class PivotOrderBy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_name = 1;</code>
      */
-    private $metric_name = '';
+    protected $metric_name = '';
     /**
      * Used to select a dimension name and value pivot. If multiple pivot
      * selections are given, the sort occurs on rows where all pivot selection

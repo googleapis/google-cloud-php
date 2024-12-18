@@ -20,14 +20,14 @@ class ReportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.ReportTask.ReportMetadata.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Output only. The time when `CreateReportTask` was called and the report
      * began the `CREATING` state.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp begin_creating_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $begin_creating_time = null;
+    protected $begin_creating_time = null;
     /**
      * Output only. The total quota tokens charged during creation of the
      * report. Because this token count is based on activity from the `CREATING`
@@ -36,7 +36,7 @@ class ReportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 creation_quota_tokens_charged = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_quota_tokens_charged = 0;
+    protected $creation_quota_tokens_charged = 0;
     /**
      * Output only. The total number of rows in the report result. This field
      * will be populated when the state is active. You can utilize
@@ -45,14 +45,14 @@ class ReportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 task_row_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $task_row_count = null;
+    protected $task_row_count = null;
     /**
      * Output only. Error message is populated if a report task fails during
      * creation.
      *
      * Generated from protobuf field <code>optional string error_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error_message = null;
+    protected $error_message = null;
     /**
      * Output only. The total number of rows in Google Analytics storage. If you
      * want to query additional data rows beyond the current report, they can
@@ -71,7 +71,7 @@ class ReportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 total_row_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $total_row_count = null;
+    protected $total_row_count = null;
 
     /**
      * Constructor.

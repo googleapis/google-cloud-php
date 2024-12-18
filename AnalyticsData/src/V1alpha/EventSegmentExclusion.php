@@ -22,14 +22,14 @@ class EventSegmentExclusion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.EventExclusionDuration event_exclusion_duration = 1;</code>
      */
-    private $event_exclusion_duration = 0;
+    protected $event_exclusion_duration = 0;
     /**
      * If an event meets this condition, the event is excluded from membership
      * in the segment for the `eventExclusionDuration`.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.EventSegmentCriteria event_exclusion_criteria = 2;</code>
      */
-    private $event_exclusion_criteria = null;
+    protected $event_exclusion_criteria = null;
 
     /**
      * Constructor.

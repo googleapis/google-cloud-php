@@ -28,7 +28,7 @@ class Funnel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_open_funnel = 1;</code>
      */
-    private $is_open_funnel = false;
+    protected $is_open_funnel = false;
     /**
      * The sequential steps of this funnel.
      *

@@ -26,7 +26,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Optional. Date ranges of data to read. If multiple date ranges are
      * requested, each response row will contain a zero based date range index. If
@@ -42,7 +42,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.Funnel funnel = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $funnel = null;
+    protected $funnel = null;
     /**
      * Optional. If specified, this breakdown adds a dimension to the funnel table
      * sub report response. This breakdown dimension expands each funnel step to
@@ -52,7 +52,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FunnelBreakdown funnel_breakdown = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $funnel_breakdown = null;
+    protected $funnel_breakdown = null;
     /**
      * Optional. If specified, next action adds a dimension to the funnel
      * visualization sub report response. This next action dimension expands each
@@ -64,7 +64,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FunnelNextAction funnel_next_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $funnel_next_action = null;
+    protected $funnel_next_action = null;
     /**
      * Optional. The funnel visualization type controls the dimensions present in
      * the funnel visualization sub report response. If not specified,
@@ -72,7 +72,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.RunFunnelReportRequest.FunnelVisualizationType funnel_visualization_type = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $funnel_visualization_type = 0;
+    protected $funnel_visualization_type = 0;
     /**
      * Optional. The configurations of segments. Segments are subsets of a
      * property's data. In a funnel report with segments, the funnel is evaluated
@@ -94,7 +94,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * Optional. Dimension filters allow you to ask for only specific dimension
      * values in the report. To learn more, see [Creating a Report: Dimension
@@ -103,14 +103,14 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression dimension_filter = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dimension_filter = null;
+    protected $dimension_filter = null;
     /**
      * Optional. Toggles whether to return the current state of this Analytics
      * Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $return_property_quota = false;
+    protected $return_property_quota = false;
 
     /**
      * Constructor.

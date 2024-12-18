@@ -22,7 +22,7 @@ class FunnelBreakdown extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.Dimension breakdown_dimension = 1;</code>
      */
-    private $breakdown_dimension = null;
+    protected $breakdown_dimension = null;
     /**
      * The maximum number of distinct values of the breakdown dimension to return
      * in the response. A `limit` of `5` is used if limit is not specified. Limit
@@ -30,7 +30,7 @@ class FunnelBreakdown extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 limit = 2;</code>
      */
-    private $limit = null;
+    protected $limit = null;
 
     /**
      * Constructor.

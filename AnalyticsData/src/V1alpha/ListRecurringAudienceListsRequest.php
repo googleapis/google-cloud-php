@@ -21,7 +21,7 @@ class ListRecurringAudienceListsRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The maximum number of recurring audience lists to return. The
      * service may return fewer than this value. If unspecified, at most 200
@@ -30,7 +30,7 @@ class ListRecurringAudienceListsRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * `ListRecurringAudienceLists` call. Provide this to retrieve the subsequent
@@ -41,7 +41,7 @@ class ListRecurringAudienceListsRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. All recurring audience lists for this property will be listed in
