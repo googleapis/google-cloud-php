@@ -21,20 +21,20 @@ class CreateWorkspaceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The workspace to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Workspace workspace = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workspace = null;
+    protected $workspace = null;
     /**
      * Required. The ID to use for the workspace, which will become the final
      * component of the workspace's resource name.
      *
      * Generated from protobuf field <code>string workspace_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workspace_id = '';
+    protected $workspace_id = '';
 
     /**
      * @param string                                   $parent      Required. The repository in which to create the workspace. Must be in the

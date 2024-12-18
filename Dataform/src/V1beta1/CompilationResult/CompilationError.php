@@ -20,27 +20,27 @@ class CompilationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $message = '';
+    protected $message = '';
     /**
      * Output only. The error's full stack trace.
      *
      * Generated from protobuf field <code>string stack = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $stack = '';
+    protected $stack = '';
     /**
      * Output only. The path of the file where this error occurred, if
      * available, relative to the project root.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Output only. The identifier of the action where this error occurred, if
      * available.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target action_target = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $action_target = null;
+    protected $action_target = null;
 
     /**
      * Constructor.

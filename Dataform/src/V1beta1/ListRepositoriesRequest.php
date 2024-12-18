@@ -21,7 +21,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Maximum number of repositories to return. The server may return
      * fewer items than requested. If unspecified, the server will pick an
@@ -29,7 +29,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token received from a previous `ListRepositories` call.
      * Provide this to retrieve the subsequent page.
@@ -38,7 +38,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. This field only supports ordering by `name`. If unspecified, the
      * server will choose the ordering. If specified, the default order is
@@ -46,13 +46,13 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Optional. Filter for the returned list.
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The location in which to list repositories. Must be in the format

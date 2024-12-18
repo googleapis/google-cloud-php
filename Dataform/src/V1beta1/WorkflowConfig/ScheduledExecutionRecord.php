@@ -21,7 +21,7 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execution_time = 1;</code>
      */
-    private $execution_time = null;
+    protected $execution_time = null;
     protected $result;
 
     /**

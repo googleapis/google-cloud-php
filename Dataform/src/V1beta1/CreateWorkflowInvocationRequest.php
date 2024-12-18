@@ -21,13 +21,13 @@ class CreateWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The workflow invocation resource to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocation workflow_invocation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workflow_invocation = null;
+    protected $workflow_invocation = null;
 
     /**
      * @param string                                            $parent             Required. The repository in which to create the workflow invocation. Must

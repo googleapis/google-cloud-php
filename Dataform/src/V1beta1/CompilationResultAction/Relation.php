@@ -26,7 +26,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 2;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Arbitrary, user-defined tags on this action.
      *
@@ -38,19 +38,19 @@ class Relation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.RelationDescriptor relation_descriptor = 4;</code>
      */
-    private $relation_descriptor = null;
+    protected $relation_descriptor = null;
     /**
      * The type of this relation.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.RelationType relation_type = 5;</code>
      */
-    private $relation_type = 0;
+    protected $relation_type = 0;
     /**
      * The SELECT query which returns rows which this relation should contain.
      *
      * Generated from protobuf field <code>string select_query = 6;</code>
      */
-    private $select_query = '';
+    protected $select_query = '';
     /**
      * SQL statements to be executed before creating the relation.
      *
@@ -69,13 +69,13 @@ class Relation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.IncrementalTableConfig incremental_table_config = 9;</code>
      */
-    private $incremental_table_config = null;
+    protected $incremental_table_config = null;
     /**
      * The SQL expression used to partition the relation.
      *
      * Generated from protobuf field <code>string partition_expression = 10;</code>
      */
-    private $partition_expression = '';
+    protected $partition_expression = '';
     /**
      * A list of columns or SQL expressions used to cluster the table.
      *
@@ -87,14 +87,14 @@ class Relation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 partition_expiration_days = 12;</code>
      */
-    private $partition_expiration_days = 0;
+    protected $partition_expiration_days = 0;
     /**
      * Specifies whether queries on this table must include a predicate filter
      * that filters on the partitioning column.
      *
      * Generated from protobuf field <code>bool require_partition_filter = 13;</code>
      */
-    private $require_partition_filter = false;
+    protected $require_partition_filter = false;
     /**
      * Additional options that will be provided as key/value pairs into the
      * options clause of a create table/view statement. See

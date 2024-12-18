@@ -20,13 +20,13 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_database = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_database = '';
+    protected $default_database = '';
     /**
      * Optional. The default schema (BigQuery dataset ID).
      *
      * Generated from protobuf field <code>string default_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_schema = '';
+    protected $default_schema = '';
     /**
      * Optional. The default BigQuery location to use. Defaults to "US".
      * See the BigQuery docs for a full list of locations:
@@ -34,13 +34,13 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_location = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_location = '';
+    protected $default_location = '';
     /**
      * Optional. The default schema (BigQuery dataset ID) for assertions.
      *
      * Generated from protobuf field <code>string assertion_schema = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $assertion_schema = '';
+    protected $assertion_schema = '';
     /**
      * Optional. User-defined variables that are made available to project code
      * during compilation.
@@ -54,20 +54,20 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_suffix = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $database_suffix = '';
+    protected $database_suffix = '';
     /**
      * Optional. The suffix that should be appended to all schema (BigQuery
      * dataset ID) names.
      *
      * Generated from protobuf field <code>string schema_suffix = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $schema_suffix = '';
+    protected $schema_suffix = '';
     /**
      * Optional. The prefix that should be prepended to all table names.
      *
      * Generated from protobuf field <code>string table_prefix = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $table_prefix = '';
+    protected $table_prefix = '';
 
     /**
      * Constructor.

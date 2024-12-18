@@ -20,19 +20,19 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The repository's user-friendly name.
      *
      * Generated from protobuf field <code>string display_name = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. If set, configures this repository to be linked to a Git remote.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings git_remote_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $git_remote_settings = null;
+    protected $git_remote_settings = null;
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
@@ -41,7 +41,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $npmrc_environment_variables_secret_version = '';
+    protected $npmrc_environment_variables_secret_version = '';
     /**
      * Optional. If set, fields of `workspace_compilation_overrides` override the
      * default compilation settings that are specified in dataform.json when
@@ -50,7 +50,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.WorkspaceCompilationOverrides workspace_compilation_overrides = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $workspace_compilation_overrides = null;
+    protected $workspace_compilation_overrides = null;
     /**
      * Optional. Repository user labels.
      *
@@ -65,13 +65,13 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool set_authenticated_user_admin = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $set_authenticated_user_admin = false;
+    protected $set_authenticated_user_admin = false;
     /**
      * Optional. The service account to run workflow invocations under.
      *
      * Generated from protobuf field <code>string service_account = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $service_account = '';
+    protected $service_account = '';
 
     /**
      * Constructor.

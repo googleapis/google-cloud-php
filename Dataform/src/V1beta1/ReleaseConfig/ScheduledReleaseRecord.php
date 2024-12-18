@@ -21,7 +21,7 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp release_time = 1;</code>
      */
-    private $release_time = null;
+    protected $release_time = null;
     protected $result;
 
     /**
