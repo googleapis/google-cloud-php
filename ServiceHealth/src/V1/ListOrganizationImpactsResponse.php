@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response to listing organization impacts.
+ * Response to request for listing projects under an organization affected by an
+ * event.
  *
  * Generated from protobuf message <code>google.cloud.servicehealth.v1.ListOrganizationImpactsResponse</code>
  */

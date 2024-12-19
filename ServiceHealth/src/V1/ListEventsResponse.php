@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response to listing events.
+ * Response to request for listing events.
  *
  * Generated from protobuf message <code>google.cloud.servicehealth.v1.ListEventsResponse</code>
  */
