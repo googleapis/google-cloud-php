@@ -23,7 +23,7 @@ class Merchantreviews
         \GPBMetadata\Google\Shopping\Type\Types::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë
+Í
 =google/shopping/merchant/reviews/v1beta/merchantreviews.proto\'google.shopping.merchant.reviews.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.protoDgoogle/shopping/merchant/reviews/v1beta/merchantreviews_common.proto google/shopping/type/types.proto"[
 GetMerchantReviewRequest?
 name (	B1àAúA+
@@ -56,8 +56,8 @@ attributes (2A.google.shopping.merchant.reviews.v1beta.MerchantReviewAttribu
 GetMerchantReviewA.google.shopping.merchant.reviews.v1beta.GetMerchantReviewRequest7.google.shopping.merchant.reviews.v1beta.MerchantReview"BÚAname‚Óä“53/reviews/v1beta/{name=accounts/*/merchantReviews/*}æ
 ListMerchantReviewsC.google.shopping.merchant.reviews.v1beta.ListMerchantReviewsRequestD.google.shopping.merchant.reviews.v1beta.ListMerchantReviewsResponse"DÚAparent‚Óä“53/reviews/v1beta/{parent=accounts/*}/merchantReviewsê
 InsertMerchantReviewD.google.shopping.merchant.reviews.v1beta.InsertMerchantReviewRequest7.google.shopping.merchant.reviews.v1beta.MerchantReview"S‚Óä“M":/reviews/v1beta/{parent=accounts/*}/merchantReviews:insert:merchant_review¸
-DeleteMerchantReviewD.google.shopping.merchant.reviews.v1beta.DeleteMerchantReviewRequest.google.protobuf.Empty"BÚAname‚Óä“5*3/reviews/v1beta/{name=accounts/*/merchantReviews/*}GÊAmerchantapi.googleapis.comÒA\'https://www.googleapis.com/auth/contentBÍ
-+com.google.shopping.merchant.reviews.v1betaBMerchantReviewsProtoPZKcloud.google.com/go/shopping/merchant/reviews/apiv1beta/reviewspb;reviewspbêA8
+DeleteMerchantReviewD.google.shopping.merchant.reviews.v1beta.DeleteMerchantReviewRequest.google.protobuf.Empty"BÚAname‚Óä“5*3/reviews/v1beta/{name=accounts/*/merchantReviews/*}GÊAmerchantapi.googleapis.comÒA\'https://www.googleapis.com/auth/contentBÏ
++com.google.shopping.merchant.reviews.v1betaBMerchantReviewsProtoPZKcloud.google.com/go/shopping/merchant/reviews/apiv1beta/reviewspb;reviewspbª\'Google.Shopping.Merchant.Reviews.V1BetaÊ\'Google\\Shopping\\Merchant\\Reviews\\V1betaê+Google::Shopping::Merchant::Reviews::V1betaêA8
 "merchantapi.googleapis.com/Accountaccounts/{account}bproto3'
         , true);
 
