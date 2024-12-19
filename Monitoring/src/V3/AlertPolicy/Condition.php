@@ -96,6 +96,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      *           alerts.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition $condition_prometheus_query_language
      *           A condition that uses the Prometheus query language to define alerts.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition $condition_sql
+     *           A condition that periodically evaluates a SQL query result.
      * }
      */
     public function __construct($data = NULL) {
@@ -354,6 +356,37 @@ class Condition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\PrometheusQueryLanguageCondition::class);
         $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * A condition that periodically evaluates a SQL query result.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.SqlCondition condition_sql = 22;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition|null
+     */
+    public function getConditionSql()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasConditionSql()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * A condition that periodically evaluates a SQL query result.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.SqlCondition condition_sql = 22;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition $var
+     * @return $this
+     */
+    public function setConditionSql($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition::class);
+        $this->writeOneof(22, $var);
 
         return $this;
     }

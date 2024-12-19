@@ -30,7 +30,7 @@ use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckIp;
 
 /**
- * Returns the list of IP addresses that checkers run from
+ * Returns the list of IP addresses that checkers run from.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

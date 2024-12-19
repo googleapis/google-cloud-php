@@ -9,10 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains information needed for generating an
+ * Contains information needed for generating either an
  * [OpenID Connect
- * token](https://developers.google.com/identity/protocols/OpenIDConnect).
- * The OIDC token will be generated for the Monitoring service agent service
+ * token](https://developers.google.com/identity/protocols/OpenIDConnect) or
+ * [OAuth token](https://developers.google.com/identity/protocols/oauth2).
+ * The token will be generated for the Monitoring service agent service
  * account.
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication</code>

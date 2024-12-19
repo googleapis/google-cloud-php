@@ -601,7 +601,7 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Returns the list of IP addresses that checkers run from
+     * Returns the list of IP addresses that checkers run from.
      *
      * Sample code:
      * ```

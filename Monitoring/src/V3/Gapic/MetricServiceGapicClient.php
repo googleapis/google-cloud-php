@@ -926,7 +926,7 @@ class MetricServiceGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           If this field is empty, all custom and
+     *           Optional. If this field is empty, all custom and
      *           system-defined metric descriptors are returned.
      *           Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
      *           specifies which metric descriptors are to be

@@ -43,7 +43,7 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
     private $service_level_indicator = null;
     /**
      * The fraction of service that must be good in order for this objective to be
-     * met. `0 < goal <= 0.999`.
+     * met. `0 < goal <= 0.9999`.
      *
      * Generated from protobuf field <code>double goal = 4;</code>
      */
@@ -78,7 +78,7 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      *           quality.
      *     @type float $goal
      *           The fraction of service that must be good in order for this objective to be
-     *           met. `0 < goal <= 0.999`.
+     *           met. `0 < goal <= 0.9999`.
      *     @type \Google\Protobuf\Duration $rolling_period
      *           A rolling time period, semantically "in the past `<rolling_period>`".
      *           Must be an integer multiple of 1 day no larger than 30 days.
@@ -196,7 +196,7 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
 
     /**
      * The fraction of service that must be good in order for this objective to be
-     * met. `0 < goal <= 0.999`.
+     * met. `0 < goal <= 0.9999`.
      *
      * Generated from protobuf field <code>double goal = 4;</code>
      * @return float
@@ -208,7 +208,7 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
 
     /**
      * The fraction of service that must be good in order for this objective to be
-     * met. `0 < goal <= 0.999`.
+     * met. `0 < goal <= 0.9999`.
      *
      * Generated from protobuf field <code>double goal = 4;</code>
      * @param float $var
