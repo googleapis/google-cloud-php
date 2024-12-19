@@ -29,13 +29,13 @@ class ReferenceSentenceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_language_code = 2;</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Target language code.
      *
      * Generated from protobuf field <code>string target_language_code = 3;</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
 
     /**
      * Constructor.
@@ -145,6 +145,4 @@ class ReferenceSentenceConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReferenceSentenceConfig::class, \Google\Cloud\Translate\V3\AdaptiveMtTranslateRequest_ReferenceSentenceConfig::class);
 

@@ -20,25 +20,25 @@ class DeleteModelMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.OperationState state = 1;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The creation time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The last update time of the operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Only populated when operation doesn't succeed.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.

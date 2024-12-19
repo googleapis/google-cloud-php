@@ -20,19 +20,19 @@ class FileInputSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Required. The file's byte contents.
      *
      * Generated from protobuf field <code>bytes content = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $content = '';
+    protected $content = '';
     /**
      * Required. The file's display name.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class CreateAdaptiveMtDatasetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The AdaptiveMtDataset to be created.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.AdaptiveMtDataset adaptive_mt_dataset = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $adaptive_mt_dataset = null;
+    protected $adaptive_mt_dataset = null;
 
     /**
      * @param string                                       $parent            Required. Name of the parent project. In form of

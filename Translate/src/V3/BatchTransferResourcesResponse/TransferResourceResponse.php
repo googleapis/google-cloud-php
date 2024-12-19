@@ -20,20 +20,20 @@ class TransferResourceResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 1;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Full name of the new resource successfully transferred from the source
      * hosted by Translation API. Target will be empty if the transfer failed.
      *
      * Generated from protobuf field <code>string target = 2;</code>
      */
-    private $target = '';
+    protected $target = '';
     /**
      * The error result in case of failure.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
      */
-    private $error = null;
+    protected $error = null;
 
     /**
      * Constructor.
@@ -147,6 +147,4 @@ class TransferResourceResponse extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TransferResourceResponse::class, \Google\Cloud\Translate\V3\BatchTransferResourcesResponse_TransferResourceResponse::class);
 

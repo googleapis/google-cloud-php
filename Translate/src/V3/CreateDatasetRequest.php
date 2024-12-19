@@ -20,13 +20,13 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Dataset to create.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Dataset dataset = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $dataset = null;
+    protected $dataset = null;
 
     /**
      * @param string                             $parent  Required. The project name. Please see

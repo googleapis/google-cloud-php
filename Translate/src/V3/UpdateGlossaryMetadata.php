@@ -22,20 +22,20 @@ class UpdateGlossaryMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Glossary glossary = 1;</code>
      */
-    private $glossary = null;
+    protected $glossary = null;
     /**
      * The current state of the glossary update operation. If the glossary input
      * file was not updated this will be completed immediately
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.UpdateGlossaryMetadata.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The time when the operation was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 3;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
 
     /**
      * Constructor.
