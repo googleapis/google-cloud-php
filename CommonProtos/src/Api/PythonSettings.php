@@ -21,6 +21,12 @@ class PythonSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.api.CommonLanguageSettings common = 1;</code>
      */
     protected $common = null;
+    /**
+     * Experimental features to be included during client library generation.
+     *
+     * Generated from protobuf field <code>.google.api.PythonSettings.ExperimentalFeatures experimental_features = 2;</code>
+     */
+    protected $experimental_features = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class PythonSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Api\CommonLanguageSettings $common
      *           Some settings.
+     *     @type \Google\Api\PythonSettings\ExperimentalFeatures $experimental_features
+     *           Experimental features to be included during client library generation.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class PythonSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Api\CommonLanguageSettings::class);
         $this->common = $var;
+
+        return $this;
+    }
+
+    /**
+     * Experimental features to be included during client library generation.
+     *
+     * Generated from protobuf field <code>.google.api.PythonSettings.ExperimentalFeatures experimental_features = 2;</code>
+     * @return \Google\Api\PythonSettings\ExperimentalFeatures|null
+     */
+    public function getExperimentalFeatures()
+    {
+        return $this->experimental_features;
+    }
+
+    public function hasExperimentalFeatures()
+    {
+        return isset($this->experimental_features);
+    }
+
+    public function clearExperimentalFeatures()
+    {
+        unset($this->experimental_features);
+    }
+
+    /**
+     * Experimental features to be included during client library generation.
+     *
+     * Generated from protobuf field <code>.google.api.PythonSettings.ExperimentalFeatures experimental_features = 2;</code>
+     * @param \Google\Api\PythonSettings\ExperimentalFeatures $var
+     * @return $this
+     */
+    public function setExperimentalFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Api\PythonSettings\ExperimentalFeatures::class);
+        $this->experimental_features = $var;
 
         return $this;
     }
