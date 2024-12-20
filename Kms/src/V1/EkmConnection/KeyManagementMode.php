@@ -51,7 +51,8 @@ class KeyManagementMode
      *   external key material.
      * * Destruction of external key material associated with this
      *   [EkmConnection][google.cloud.kms.v1.EkmConnection] can be requested by
-     *   calling [DestroyCryptoKeyVersion][EkmService.DestroyCryptoKeyVersion].
+     *   calling
+     *   [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
      * * Automatic rotation of key material is supported.
      *
      * Generated from protobuf enum <code>CLOUD_KMS = 2;</code>
