@@ -22,13 +22,13 @@ class UpdateDataExchangeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The data exchange to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.DataExchange data_exchange = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $data_exchange = null;
+    protected $data_exchange = null;
 
     /**
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange $dataExchange Required. The data exchange to update.

@@ -20,14 +20,14 @@ class DataProvider extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Email or URL of the data provider.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary_contact = '';
+    protected $primary_contact = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The listing to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing listing = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $listing = null;
+    protected $listing = null;
 
     /**
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing    Required. The listing to update.
