@@ -170,7 +170,10 @@ final class QueryServiceClient
     }
 
     /**
-     * Queries time series using Monitoring Query Language.
+     * Queries time series by using Monitoring Query Language (MQL). We recommend
+     * using PromQL instead of MQL. For more information about the status of MQL,
+     * see the [MQL deprecation
+     * notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
      *
      * The async variant is {@see QueryServiceClient::queryTimeSeriesAsync()} .
      *
@@ -189,6 +192,8 @@ final class QueryServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function queryTimeSeries(QueryTimeSeriesRequest $request, array $callOptions = []): PagedListResponse
     {
