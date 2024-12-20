@@ -17,7 +17,7 @@ class ErrorDetails
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
+³	
 google/rpc/error_details.proto
 google.rpc"“
 	ErrorInfo
@@ -44,13 +44,15 @@ violations (2).google.rpc.PreconditionFailure.Violation?
 	Violation
 type (	
 subject (	
-description (	"ƒ
+description (	"Ì
 
 BadRequest?
-field_violations (2%.google.rpc.BadRequest.FieldViolation4
+field_violations (2%.google.rpc.BadRequest.FieldViolation}
 FieldViolation
 field (	
-description (	"7
+description (	
+reason (	7
+localized_message (2.google.rpc.LocalizedMessage"7
 RequestInfo
 
 request_id (	

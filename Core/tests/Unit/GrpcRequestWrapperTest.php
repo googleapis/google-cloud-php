@@ -296,7 +296,7 @@ class GrpcRequestWrapperTest extends TestCase
             'field_violations' => [
                 new FieldViolation([
                     'field' => 'foo',
-                    'description' => 'bar'
+                    'description' => 'bar',
                 ])
             ]
         ]);
@@ -324,13 +324,15 @@ class GrpcRequestWrapperTest extends TestCase
 
             $this->assertFalse(true, 'Exception not thrown!');
         } catch (ServiceException $ex) {
-            $this->assertEquals(
-                json_decode($metadata->serializeToJsonString(), true),
-                $ex->getMetadata()[0]
-            );
-
+            $metadata = $ex->getMetadata();
             // Assert only whitelisted types are included.
-            $this->assertCount(1, $ex->getMetadata());
+            $this->assertCount(1, $metadata);
+
+            $this->assertArrayHasKey('fieldViolations', $metadata[0]);
+            $this->assertCount(1, $metadata[0]['fieldViolations']);
+            $fieldViolation = $metadata[0]['fieldViolations'][0];
+            $this->assertEquals('foo', $fieldViolation['field']);
+            $this->assertEquals('bar', $fieldViolation['description']);
         }
     }
 }

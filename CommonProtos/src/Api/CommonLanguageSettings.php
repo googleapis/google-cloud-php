@@ -29,6 +29,12 @@ class CommonLanguageSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.api.ClientLibraryDestination destinations = 2;</code>
      */
     private $destinations;
+    /**
+     * Configuration for which RPCs should be generated in the GAPIC client.
+     *
+     * Generated from protobuf field <code>.google.api.SelectiveGapicGeneration selective_gapic_generation = 3;</code>
+     */
+    protected $selective_gapic_generation = null;
 
     /**
      * Constructor.
@@ -41,6 +47,8 @@ class CommonLanguageSettings extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/nodejs/docs/reference/asset/latest
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $destinations
      *           The destination where API teams want this client library to be published.
+     *     @type \Google\Api\SelectiveGapicGeneration $selective_gapic_generation
+     *           Configuration for which RPCs should be generated in the GAPIC client.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +110,42 @@ class CommonLanguageSettings extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Api\ClientLibraryDestination::class);
         $this->destinations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for which RPCs should be generated in the GAPIC client.
+     *
+     * Generated from protobuf field <code>.google.api.SelectiveGapicGeneration selective_gapic_generation = 3;</code>
+     * @return \Google\Api\SelectiveGapicGeneration|null
+     */
+    public function getSelectiveGapicGeneration()
+    {
+        return $this->selective_gapic_generation;
+    }
+
+    public function hasSelectiveGapicGeneration()
+    {
+        return isset($this->selective_gapic_generation);
+    }
+
+    public function clearSelectiveGapicGeneration()
+    {
+        unset($this->selective_gapic_generation);
+    }
+
+    /**
+     * Configuration for which RPCs should be generated in the GAPIC client.
+     *
+     * Generated from protobuf field <code>.google.api.SelectiveGapicGeneration selective_gapic_generation = 3;</code>
+     * @param \Google\Api\SelectiveGapicGeneration $var
+     * @return $this
+     */
+    public function setSelectiveGapicGeneration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Api\SelectiveGapicGeneration::class);
+        $this->selective_gapic_generation = $var;
 
         return $this;
     }

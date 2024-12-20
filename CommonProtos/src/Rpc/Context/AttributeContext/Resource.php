@@ -70,7 +70,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Annotations is an unstructured key-value map stored with a resource that
      * may be set by external tools to store and retrieve arbitrary metadata.
      * They are not queryable and should be preserved when modifying objects.
-     * More info: https://kubernetes.io/docs/user-guide/annotations
+     * More info:
+     * https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
      */
@@ -163,7 +164,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           Annotations is an unstructured key-value map stored with a resource that
      *           may be set by external tools to store and retrieve arbitrary metadata.
      *           They are not queryable and should be preserved when modifying objects.
-     *           More info: https://kubernetes.io/docs/user-guide/annotations
+     *           More info:
+     *           https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
      *     @type string $display_name
      *           Mutable. The display name set by clients. Must be <= 63 characters.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -367,7 +369,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Annotations is an unstructured key-value map stored with a resource that
      * may be set by external tools to store and retrieve arbitrary metadata.
      * They are not queryable and should be preserved when modifying objects.
-     * More info: https://kubernetes.io/docs/user-guide/annotations
+     * More info:
+     * https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -381,7 +384,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Annotations is an unstructured key-value map stored with a resource that
      * may be set by external tools to store and retrieve arbitrary metadata.
      * They are not queryable and should be preserved when modifying objects.
-     * More info: https://kubernetes.io/docs/user-guide/annotations
+     * More info:
+     * https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
      *
      * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
