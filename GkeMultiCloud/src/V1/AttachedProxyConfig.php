@@ -19,6 +19,10 @@ class AttachedProxyConfig extends \Google\Protobuf\Internal\Message
      * The Kubernetes Secret resource that contains the HTTP(S) proxy
      * configuration. The secret must be a JSON encoded proxy configuration
      * as described in
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/eks/how-to/use-a-proxy#configure-proxy-support
+     * for EKS clusters and
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/aks/how-to/use-a-proxy#configure-proxy-support
+     * for AKS clusters.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.KubernetesSecret kubernetes_secret = 1;</code>
      */
@@ -34,6 +38,10 @@ class AttachedProxyConfig extends \Google\Protobuf\Internal\Message
      *           The Kubernetes Secret resource that contains the HTTP(S) proxy
      *           configuration. The secret must be a JSON encoded proxy configuration
      *           as described in
+     *           https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/eks/how-to/use-a-proxy#configure-proxy-support
+     *           for EKS clusters and
+     *           https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/aks/how-to/use-a-proxy#configure-proxy-support
+     *           for AKS clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,6 +53,10 @@ class AttachedProxyConfig extends \Google\Protobuf\Internal\Message
      * The Kubernetes Secret resource that contains the HTTP(S) proxy
      * configuration. The secret must be a JSON encoded proxy configuration
      * as described in
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/eks/how-to/use-a-proxy#configure-proxy-support
+     * for EKS clusters and
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/aks/how-to/use-a-proxy#configure-proxy-support
+     * for AKS clusters.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.KubernetesSecret kubernetes_secret = 1;</code>
      * @return \Google\Cloud\GkeMultiCloud\V1\KubernetesSecret|null
@@ -68,6 +80,10 @@ class AttachedProxyConfig extends \Google\Protobuf\Internal\Message
      * The Kubernetes Secret resource that contains the HTTP(S) proxy
      * configuration. The secret must be a JSON encoded proxy configuration
      * as described in
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/eks/how-to/use-a-proxy#configure-proxy-support
+     * for EKS clusters and
+     * https://cloud.google.com/kubernetes-engine/multi-cloud/docs/attached/aks/how-to/use-a-proxy#configure-proxy-support
+     * for AKS clusters.
      *
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.KubernetesSecret kubernetes_secret = 1;</code>
      * @param \Google\Cloud\GkeMultiCloud\V1\KubernetesSecret $var

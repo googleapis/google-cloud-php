@@ -21,6 +21,13 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.ManagedPrometheusConfig managed_prometheus_config = 2;</code>
      */
     protected $managed_prometheus_config = null;
+    /**
+     * Optionally enable GKE metrics.
+     * Only for Attached Clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.CloudMonitoringConfig cloud_monitoring_config = 4;</code>
+     */
+    protected $cloud_monitoring_config = null;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\GkeMultiCloud\V1\ManagedPrometheusConfig $managed_prometheus_config
      *           Enable Google Cloud Managed Service for Prometheus in the cluster.
+     *     @type \Google\Cloud\GkeMultiCloud\V1\CloudMonitoringConfig $cloud_monitoring_config
+     *           Optionally enable GKE metrics.
+     *           Only for Attached Clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +79,44 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\ManagedPrometheusConfig::class);
         $this->managed_prometheus_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optionally enable GKE metrics.
+     * Only for Attached Clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.CloudMonitoringConfig cloud_monitoring_config = 4;</code>
+     * @return \Google\Cloud\GkeMultiCloud\V1\CloudMonitoringConfig|null
+     */
+    public function getCloudMonitoringConfig()
+    {
+        return $this->cloud_monitoring_config;
+    }
+
+    public function hasCloudMonitoringConfig()
+    {
+        return isset($this->cloud_monitoring_config);
+    }
+
+    public function clearCloudMonitoringConfig()
+    {
+        unset($this->cloud_monitoring_config);
+    }
+
+    /**
+     * Optionally enable GKE metrics.
+     * Only for Attached Clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkemulticloud.v1.CloudMonitoringConfig cloud_monitoring_config = 4;</code>
+     * @param \Google\Cloud\GkeMultiCloud\V1\CloudMonitoringConfig $var
+     * @return $this
+     */
+    public function setCloudMonitoringConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeMultiCloud\V1\CloudMonitoringConfig::class);
+        $this->cloud_monitoring_config = $var;
 
         return $this;
     }
