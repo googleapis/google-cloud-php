@@ -20,19 +20,19 @@ class ImportDataOperationResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Output only. Total number of examples requested to import
      *
      * Generated from protobuf field <code>int32 total_count = 2;</code>
      */
-    private $total_count = 0;
+    protected $total_count = 0;
     /**
      * Output only. Number of examples imported successfully.
      *
      * Generated from protobuf field <code>int32 import_count = 3;</code>
      */
-    private $import_count = 0;
+    protected $import_count = 0;
 
     /**
      * Constructor.

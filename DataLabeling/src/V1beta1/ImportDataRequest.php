@@ -21,20 +21,20 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Specify the input source of the data.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.InputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Email of the user who started the import task and should be notified by
      * email. If empty no notification will be sent.
      *
      * Generated from protobuf field <code>string user_email_address = 3;</code>
      */
-    private $user_email_address = '';
+    protected $user_email_address = '';
 
     /**
      * @param string                                         $name        Required. Dataset resource name, format:

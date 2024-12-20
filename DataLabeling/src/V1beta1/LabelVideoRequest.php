@@ -21,19 +21,19 @@ class LabelVideoRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Basic human annotation config.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.HumanAnnotationConfig basic_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $basic_config = null;
+    protected $basic_config = null;
     /**
      * Required. The type of video labeling task.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.LabelVideoRequest.Feature feature = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $feature = 0;
+    protected $feature = 0;
     protected $request_config;
 
     /**

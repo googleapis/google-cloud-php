@@ -71,6 +71,4 @@ class Feature
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Feature::class, \Google\Cloud\DataLabeling\V1beta1\LabelVideoRequest_Feature::class);
 

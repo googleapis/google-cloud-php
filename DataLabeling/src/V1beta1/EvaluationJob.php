@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Defines an evaluation job that runs periodically to generate
  * [Evaluations][google.cloud.datalabeling.v1beta1.Evaluation]. [Creating an evaluation
- * job](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job) is the starting point
+ * job](/ml-engine/docs/continuous-evaluation/create-job) is the starting point
  * for using continuous evaluation.
  *
  * Generated from protobuf message <code>google.cloud.datalabeling.v1beta1.EvaluationJob</code>
@@ -25,37 +25,37 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Description of the job. The description can be up to 25,000
      * characters long.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. Describes the current state of the job.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationJob.State state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Required. Describes the interval at which the job runs. This interval must
      * be at least 1 day, and it is rounded to the nearest day. For example, if
      * you specify a 50-hour interval, the job runs every 2 days.
      * You can provide the schedule in
-     * [crontab format](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) or in an
+     * [crontab format](/scheduler/docs/configuring/cron-job-schedules) or in an
      * [English-like
-     * format](https://cloud.google.com/appengine/docs/standard/python/config/cronref#schedule_format).
+     * format](/appengine/docs/standard/python/config/cronref#schedule_format).
      * Regardless of what you specify, the job will run at 10:00 AM UTC. Only the
      * interval from this schedule is used, not the specific time of day.
      *
      * Generated from protobuf field <code>string schedule = 4;</code>
      */
-    private $schedule = '';
+    protected $schedule = '';
     /**
      * Required. The [AI Platform Prediction model
-     * version](https://cloud.google.com/ml-engine/docs/prediction-overview) to be evaluated. Prediction
+     * version](/ml-engine/docs/prediction-overview) to be evaluated. Prediction
      * input and output is sampled from this model version. When creating an
      * evaluation job, specify the model version in the following format:
      * "projects/<var>{project_id}</var>/models/<var>{model_name}</var>/versions/<var>{version_name}</var>"
@@ -63,13 +63,13 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model_version = 5;</code>
      */
-    private $model_version = '';
+    protected $model_version = '';
     /**
      * Required. Configuration details for the evaluation job.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationJobConfig evaluation_job_config = 6;</code>
      */
-    private $evaluation_job_config = null;
+    protected $evaluation_job_config = null;
     /**
      * Required. Name of the [AnnotationSpecSet][google.cloud.datalabeling.v1beta1.AnnotationSpecSet] describing all the
      * labels that your machine learning model outputs. You must create this
@@ -79,7 +79,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 7;</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Required. Whether you want Data Labeling Service to provide ground truth
      * labels for prediction input. If you want the service to assign human
@@ -89,7 +89,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool label_missing_ground_truth = 8;</code>
      */
-    private $label_missing_ground_truth = false;
+    protected $label_missing_ground_truth = false;
     /**
      * Output only. Every time the evaluation job runs and an error occurs, the
      * failed attempt is appended to this array.
@@ -102,7 +102,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.
@@ -124,14 +124,14 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *           be at least 1 day, and it is rounded to the nearest day. For example, if
      *           you specify a 50-hour interval, the job runs every 2 days.
      *           You can provide the schedule in
-     *           [crontab format](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) or in an
+     *           [crontab format](/scheduler/docs/configuring/cron-job-schedules) or in an
      *           [English-like
-     *           format](https://cloud.google.com/appengine/docs/standard/python/config/cronref#schedule_format).
+     *           format](/appengine/docs/standard/python/config/cronref#schedule_format).
      *           Regardless of what you specify, the job will run at 10:00 AM UTC. Only the
      *           interval from this schedule is used, not the specific time of day.
      *     @type string $model_version
      *           Required. The [AI Platform Prediction model
-     *           version](https://cloud.google.com/ml-engine/docs/prediction-overview) to be evaluated. Prediction
+     *           version](/ml-engine/docs/prediction-overview) to be evaluated. Prediction
      *           input and output is sampled from this model version. When creating an
      *           evaluation job, specify the model version in the following format:
      *           "projects/<var>{project_id}</var>/models/<var>{model_name}</var>/versions/<var>{version_name}</var>"
@@ -251,9 +251,9 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      * be at least 1 day, and it is rounded to the nearest day. For example, if
      * you specify a 50-hour interval, the job runs every 2 days.
      * You can provide the schedule in
-     * [crontab format](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) or in an
+     * [crontab format](/scheduler/docs/configuring/cron-job-schedules) or in an
      * [English-like
-     * format](https://cloud.google.com/appengine/docs/standard/python/config/cronref#schedule_format).
+     * format](/appengine/docs/standard/python/config/cronref#schedule_format).
      * Regardless of what you specify, the job will run at 10:00 AM UTC. Only the
      * interval from this schedule is used, not the specific time of day.
      *
@@ -270,9 +270,9 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      * be at least 1 day, and it is rounded to the nearest day. For example, if
      * you specify a 50-hour interval, the job runs every 2 days.
      * You can provide the schedule in
-     * [crontab format](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) or in an
+     * [crontab format](/scheduler/docs/configuring/cron-job-schedules) or in an
      * [English-like
-     * format](https://cloud.google.com/appengine/docs/standard/python/config/cronref#schedule_format).
+     * format](/appengine/docs/standard/python/config/cronref#schedule_format).
      * Regardless of what you specify, the job will run at 10:00 AM UTC. Only the
      * interval from this schedule is used, not the specific time of day.
      *
@@ -290,7 +290,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [AI Platform Prediction model
-     * version](https://cloud.google.com/ml-engine/docs/prediction-overview) to be evaluated. Prediction
+     * version](/ml-engine/docs/prediction-overview) to be evaluated. Prediction
      * input and output is sampled from this model version. When creating an
      * evaluation job, specify the model version in the following format:
      * "projects/<var>{project_id}</var>/models/<var>{model_name}</var>/versions/<var>{version_name}</var>"
@@ -306,7 +306,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The [AI Platform Prediction model
-     * version](https://cloud.google.com/ml-engine/docs/prediction-overview) to be evaluated. Prediction
+     * version](/ml-engine/docs/prediction-overview) to be evaluated. Prediction
      * input and output is sampled from this model version. When creating an
      * evaluation job, specify the model version in the following format:
      * "projects/<var>{project_id}</var>/models/<var>{model_name}</var>/versions/<var>{version_name}</var>"

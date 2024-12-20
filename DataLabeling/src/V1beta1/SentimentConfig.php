@@ -22,7 +22,7 @@ class SentimentConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_label_sentiment_selection = 1;</code>
      */
-    private $enable_label_sentiment_selection = false;
+    protected $enable_label_sentiment_selection = false;
 
     /**
      * Constructor.

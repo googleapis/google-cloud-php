@@ -29,7 +29,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.InputConfig input_config = 1;</code>
      */
-    private $input_config = null;
+    protected $input_config = null;
     /**
      * Required. Details for calculating evaluation metrics and creating
      * [Evaulations][google.cloud.datalabeling.v1beta1.Evaluation]. If your model version performs image object
@@ -39,7 +39,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationConfig evaluation_config = 2;</code>
      */
-    private $evaluation_config = null;
+    protected $evaluation_config = null;
     /**
      * Optional. Details for human annotation of your data. If you set
      * [labelMissingGroundTruth][google.cloud.datalabeling.v1beta1.EvaluationJob.label_missing_ground_truth] to
@@ -51,7 +51,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.HumanAnnotationConfig human_annotation_config = 3;</code>
      */
-    private $human_annotation_config = null;
+    protected $human_annotation_config = null;
     /**
      * Required. Prediction keys that tell Data Labeling Service where to find the
      * data for evaluation in your BigQuery table. When the service samples
@@ -68,7 +68,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      * * `bounding_box_json_key`: the bounding box key for prediction output.
      *   Required if your model version perform image object detection.
      * Learn [how to configure prediction
-     * keys](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
+     * keys](/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
      *
      * Generated from protobuf field <code>map<string, string> bigquery_import_keys = 9;</code>
      */
@@ -82,7 +82,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 example_count = 10;</code>
      */
-    private $example_count = 0;
+    protected $example_count = 0;
     /**
      * Required. Fraction of predictions to sample and save to BigQuery during
      * each [evaluation interval][google.cloud.datalabeling.v1beta1.EvaluationJob.schedule]. For example, 0.1 means
@@ -90,7 +90,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double example_sample_percentage = 11;</code>
      */
-    private $example_sample_percentage = 0.0;
+    protected $example_sample_percentage = 0.0;
     /**
      * Optional. Configuration details for evaluation job alerts. Specify this
      * field if you want to receive email alerts if the evaluation job finds that
@@ -98,7 +98,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationJobAlertConfig evaluation_job_alert_config = 13;</code>
      */
-    private $evaluation_job_alert_config = null;
+    protected $evaluation_job_alert_config = null;
     protected $human_annotation_request_config;
 
     /**
@@ -165,7 +165,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      *           * `bounding_box_json_key`: the bounding box key for prediction output.
      *             Required if your model version perform image object detection.
      *           Learn [how to configure prediction
-     *           keys](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
+     *           keys](/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
      *     @type int $example_count
      *           Required. The maximum number of predictions to sample and save to BigQuery
      *           during each [evaluation interval][google.cloud.datalabeling.v1beta1.EvaluationJob.schedule]. This limit
@@ -464,7 +464,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      * * `bounding_box_json_key`: the bounding box key for prediction output.
      *   Required if your model version perform image object detection.
      * Learn [how to configure prediction
-     * keys](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
+     * keys](/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
      *
      * Generated from protobuf field <code>map<string, string> bigquery_import_keys = 9;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -490,7 +490,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      * * `bounding_box_json_key`: the bounding box key for prediction output.
      *   Required if your model version perform image object detection.
      * Learn [how to configure prediction
-     * keys](https://cloud.google.com/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
+     * keys](/ml-engine/docs/continuous-evaluation/create-job#prediction-keys).
      *
      * Generated from protobuf field <code>map<string, string> bigquery_import_keys = 9;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

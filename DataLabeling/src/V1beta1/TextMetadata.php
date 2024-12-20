@@ -22,7 +22,7 @@ class TextMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

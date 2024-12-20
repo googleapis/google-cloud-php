@@ -20,13 +20,13 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * Video uri from the user bucket.
      *
      * Generated from protobuf field <code>string video_uri = 2;</code>
      */
-    private $video_uri = '';
+    protected $video_uri = '';
     /**
      * The list of video thumbnails.
      *
@@ -38,13 +38,13 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float frame_rate = 4;</code>
      */
-    private $frame_rate = 0.0;
+    protected $frame_rate = 0.0;
     /**
      * Signed uri of the video file in the service bucket.
      *
      * Generated from protobuf field <code>string signed_uri = 5;</code>
      */
-    private $signed_uri = '';
+    protected $signed_uri = '';
 
     /**
      * Constructor.

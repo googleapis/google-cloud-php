@@ -20,13 +20,13 @@ class TextEntityExtractionAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_spec = 1;</code>
      */
-    private $annotation_spec = null;
+    protected $annotation_spec = null;
     /**
      * Position of the entity.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.SequentialSegment sequential_segment = 2;</code>
      */
-    private $sequential_segment = null;
+    protected $sequential_segment = null;
 
     /**
      * Constructor.
