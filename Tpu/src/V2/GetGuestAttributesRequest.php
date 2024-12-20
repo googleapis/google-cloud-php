@@ -20,13 +20,13 @@ class GetGuestAttributesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The guest attributes path to be queried.
      *
      * Generated from protobuf field <code>string query_path = 2;</code>
      */
-    private $query_path = '';
+    protected $query_path = '';
     /**
      * The 0-based worker ID. If it is empty, all workers' GuestAttributes will be
      * returned.

@@ -20,13 +20,13 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.AcceleratorConfig.Type type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Required. Topology of TPU in chips.
      *
      * Generated from protobuf field <code>string topology = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $topology = '';
+    protected $topology = '';
 
     /**
      * Constructor.

@@ -22,13 +22,13 @@ class UpdateNodeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The node. Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.Node node = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node = null;
+    protected $node = null;
 
     /**
      * @param \Google\Cloud\Tpu\V2\Node  $node       Required. The node. Only fields specified in update_mask are updated.

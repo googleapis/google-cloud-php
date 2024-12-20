@@ -20,19 +20,19 @@ class CreateNodeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * The unqualified resource name.
      *
      * Generated from protobuf field <code>string node_id = 2;</code>
      */
-    private $node_id = '';
+    protected $node_id = '';
     /**
      * Required. The node.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.Node node = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $node = null;
+    protected $node = null;
 
     /**
      * @param string                    $parent Required. The parent resource name. Please see

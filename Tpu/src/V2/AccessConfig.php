@@ -20,7 +20,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string external_ip = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $external_ip = '';
+    protected $external_ip = '';
 
     /**
      * Constructor.

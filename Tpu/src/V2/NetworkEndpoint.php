@@ -20,19 +20,19 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * The port of this network endpoint.
      *
      * Generated from protobuf field <code>int32 port = 2;</code>
      */
-    private $port = 0;
+    protected $port = 0;
     /**
      * The access config for the TPU worker.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.AccessConfig access_config = 5;</code>
      */
-    private $access_config = null;
+    protected $access_config = null;
 
     /**
      * Constructor.

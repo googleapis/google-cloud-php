@@ -22,13 +22,13 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query_path = 1;</code>
      */
-    private $query_path = '';
+    protected $query_path = '';
     /**
      * The value of the requested queried path.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.GuestAttributesValue query_value = 2;</code>
      */
-    private $query_value = null;
+    protected $query_value = null;
 
     /**
      * Constructor.

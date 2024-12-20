@@ -20,7 +20,7 @@ class ServiceIdentity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 1;</code>
      */
-    private $email = '';
+    protected $email = '';
 
     /**
      * Constructor.
