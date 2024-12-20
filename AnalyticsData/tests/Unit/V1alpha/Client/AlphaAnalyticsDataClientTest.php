@@ -50,9 +50,9 @@ use Google\Analytics\Data\V1alpha\SheetExportAudienceListRequest;
 use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -75,7 +75,9 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AlphaAnalyticsDataClient */
@@ -114,7 +116,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $creationQuotaTokensCharged = 1232901266;
         $rowCount = 1340416618;
         $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764E8;
+        $percentageCompleted = -1.29204764e8;
         $recurringAudienceList = 'recurringAudienceList2056789015';
         $expectedResponse = new AudienceList();
         $expectedResponse->setName($name);
@@ -139,9 +141,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $audienceList->setAudience($audienceListAudience);
         $audienceListDimensions = [];
         $audienceList->setDimensions($audienceListDimensions);
-        $request = (new CreateAudienceListRequest())
-            ->setParent($formattedParent)
-            ->setAudienceList($audienceList);
+        $request = (new CreateAudienceListRequest())->setParent($formattedParent)->setAudienceList($audienceList);
         $response = $gapicClient->createAudienceList($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -199,12 +199,15 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
@@ -213,9 +216,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $audienceList->setAudience($audienceListAudience);
         $audienceListDimensions = [];
         $audienceList->setDimensions($audienceListDimensions);
-        $request = (new CreateAudienceListRequest())
-            ->setParent($formattedParent)
-            ->setAudienceList($audienceList);
+        $request = (new CreateAudienceListRequest())->setParent($formattedParent)->setAudienceList($audienceList);
         $response = $gapicClient->createAudienceList($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -273,7 +274,10 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateRecurringAudienceList', $actualFuncCall);
+        $this->assertSame(
+            '/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateRecurringAudienceList',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRecurringAudienceList();
@@ -292,12 +296,15 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
@@ -356,9 +363,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         $reportTask = new ReportTask();
-        $request = (new CreateReportTaskRequest())
-            ->setParent($formattedParent)
-            ->setReportTask($reportTask);
+        $request = (new CreateReportTaskRequest())->setParent($formattedParent)->setReportTask($reportTask);
         $response = $gapicClient->createReportTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -416,19 +421,20 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
         $reportTask = new ReportTask();
-        $request = (new CreateReportTaskRequest())
-            ->setParent($formattedParent)
-            ->setReportTask($reportTask);
+        $request = (new CreateReportTaskRequest())->setParent($formattedParent)->setReportTask($reportTask);
         $response = $gapicClient->createReportTask($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -466,7 +472,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $creationQuotaTokensCharged = 1232901266;
         $rowCount = 1340416618;
         $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764E8;
+        $percentageCompleted = -1.29204764e8;
         $recurringAudienceList = 'recurringAudienceList2056789015';
         $expectedResponse = new AudienceList();
         $expectedResponse->setName($name2);
@@ -480,8 +486,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $request = (new GetAudienceListRequest())
-            ->setName($formattedName);
+        $request = (new GetAudienceListRequest())->setName($formattedName);
         $response = $gapicClient->getAudienceList($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -505,17 +510,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $request = (new GetAudienceListRequest())
-            ->setName($formattedName);
+        $request = (new GetAudienceListRequest())->setName($formattedName);
         try {
             $gapicClient->getAudienceList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -544,15 +551,17 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->propertyQuotasSnapshotName('[PROPERTY]');
-        $request = (new GetPropertyQuotasSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new GetPropertyQuotasSnapshotRequest())->setName($formattedName);
         $response = $gapicClient->getPropertyQuotasSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/GetPropertyQuotasSnapshot', $actualFuncCall);
+        $this->assertSame(
+            '/google.analytics.data.v1alpha.AlphaAnalyticsData/GetPropertyQuotasSnapshot',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -569,17 +578,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->propertyQuotasSnapshotName('[PROPERTY]');
-        $request = (new GetPropertyQuotasSnapshotRequest())
-            ->setName($formattedName);
+        $request = (new GetPropertyQuotasSnapshotRequest())->setName($formattedName);
         try {
             $gapicClient->getPropertyQuotasSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -614,15 +625,17 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->recurringAudienceListName('[PROPERTY]', '[RECURRING_AUDIENCE_LIST]');
-        $request = (new GetRecurringAudienceListRequest())
-            ->setName($formattedName);
+        $request = (new GetRecurringAudienceListRequest())->setName($formattedName);
         $response = $gapicClient->getRecurringAudienceList($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/GetRecurringAudienceList', $actualFuncCall);
+        $this->assertSame(
+            '/google.analytics.data.v1alpha.AlphaAnalyticsData/GetRecurringAudienceList',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -639,17 +652,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->recurringAudienceListName('[PROPERTY]', '[RECURRING_AUDIENCE_LIST]');
-        $request = (new GetRecurringAudienceListRequest())
-            ->setName($formattedName);
+        $request = (new GetRecurringAudienceListRequest())->setName($formattedName);
         try {
             $gapicClient->getRecurringAudienceList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -678,8 +693,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reportTaskName('[PROPERTY]', '[REPORT_TASK]');
-        $request = (new GetReportTaskRequest())
-            ->setName($formattedName);
+        $request = (new GetReportTaskRequest())->setName($formattedName);
         $response = $gapicClient->getReportTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -703,17 +717,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reportTaskName('[PROPERTY]', '[REPORT_TASK]');
-        $request = (new GetReportTaskRequest())
-            ->setName($formattedName);
+        $request = (new GetReportTaskRequest())->setName($formattedName);
         try {
             $gapicClient->getReportTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -738,17 +754,14 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $audienceListsElement = new AudienceList();
-        $audienceLists = [
-            $audienceListsElement,
-        ];
+        $audienceLists = [$audienceListsElement];
         $expectedResponse = new ListAudienceListsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAudienceLists($audienceLists);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListAudienceListsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAudienceListsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAudienceLists($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -775,17 +788,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListAudienceListsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAudienceListsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAudienceLists($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -810,17 +825,14 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $recurringAudienceListsElement = new RecurringAudienceList();
-        $recurringAudienceLists = [
-            $recurringAudienceListsElement,
-        ];
+        $recurringAudienceLists = [$recurringAudienceListsElement];
         $expectedResponse = new ListRecurringAudienceListsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRecurringAudienceLists($recurringAudienceLists);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListRecurringAudienceListsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRecurringAudienceListsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRecurringAudienceLists($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -830,7 +842,10 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/ListRecurringAudienceLists', $actualFuncCall);
+        $this->assertSame(
+            '/google.analytics.data.v1alpha.AlphaAnalyticsData/ListRecurringAudienceLists',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -847,17 +862,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListRecurringAudienceListsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRecurringAudienceListsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRecurringAudienceLists($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -882,17 +899,14 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reportTasksElement = new ReportTask();
-        $reportTasks = [
-            $reportTasksElement,
-        ];
+        $reportTasks = [$reportTasksElement];
         $expectedResponse = new ListReportTasksResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReportTasks($reportTasks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListReportTasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportTasksRequest())->setParent($formattedParent);
         $response = $gapicClient->listReportTasks($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -919,17 +933,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $request = (new ListReportTasksRequest())
-            ->setParent($formattedParent);
+        $request = (new ListReportTasksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listReportTasks($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -958,8 +974,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new QueryAudienceListRequest())
-            ->setName($name);
+        $request = (new QueryAudienceListRequest())->setName($name);
         $response = $gapicClient->queryAudienceList($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -983,17 +998,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new QueryAudienceListRequest())
-            ->setName($name);
+        $request = (new QueryAudienceListRequest())->setName($name);
         try {
             $gapicClient->queryAudienceList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1022,8 +1039,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new QueryReportTaskRequest())
-            ->setName($name);
+        $request = (new QueryReportTaskRequest())->setName($name);
         $response = $gapicClient->queryReportTask($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1047,17 +1063,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new QueryReportTaskRequest())
-            ->setName($name);
+        $request = (new QueryReportTaskRequest())->setName($name);
         try {
             $gapicClient->queryReportTask($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1106,12 +1124,15 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new RunFunnelReportRequest();
         try {
@@ -1146,8 +1167,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $request = (new SheetExportAudienceListRequest())
-            ->setName($formattedName);
+        $request = (new SheetExportAudienceListRequest())->setName($formattedName);
         $response = $gapicClient->sheetExportAudienceList($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1171,17 +1191,19 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->audienceListName('[PROPERTY]', '[AUDIENCE_LIST]');
-        $request = (new SheetExportAudienceListRequest())
-            ->setName($formattedName);
+        $request = (new SheetExportAudienceListRequest())->setName($formattedName);
         try {
             $gapicClient->sheetExportAudienceList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1222,7 +1244,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $creationQuotaTokensCharged = 1232901266;
         $rowCount = 1340416618;
         $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764E8;
+        $percentageCompleted = -1.29204764e8;
         $recurringAudienceList = 'recurringAudienceList2056789015';
         $expectedResponse = new AudienceList();
         $expectedResponse->setName($name);
@@ -1247,9 +1269,7 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
         $audienceList->setAudience($audienceListAudience);
         $audienceListDimensions = [];
         $audienceList->setDimensions($audienceListDimensions);
-        $request = (new CreateAudienceListRequest())
-            ->setParent($formattedParent)
-            ->setAudienceList($audienceList);
+        $request = (new CreateAudienceListRequest())->setParent($formattedParent)->setAudienceList($audienceList);
         $response = $gapicClient->createAudienceListAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

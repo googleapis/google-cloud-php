@@ -43,7 +43,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FunnelResponseMetadata metadata = 4;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

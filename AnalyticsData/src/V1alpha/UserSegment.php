@@ -22,13 +22,13 @@ class UserSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.UserSegmentCriteria user_inclusion_criteria = 1;</code>
      */
-    private $user_inclusion_criteria = null;
+    protected $user_inclusion_criteria = null;
     /**
      * Defines which users are excluded in this segment. Optional.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.UserSegmentExclusion exclusion = 2;</code>
      */
-    private $exclusion = null;
+    protected $exclusion = null;
 
     /**
      * Constructor.

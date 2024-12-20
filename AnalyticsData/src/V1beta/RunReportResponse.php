@@ -64,19 +64,19 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 7;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * Metadata for the report.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 8;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * This Google Analytics property's quota state including this request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 9;</code>
      */
-    private $property_quota = null;
+    protected $property_quota = null;
     /**
      * Identifies what kind of resource this message is. This `kind` is always the
      * fixed string "analyticsData#runReport". Useful to distinguish between
@@ -84,7 +84,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 10;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.

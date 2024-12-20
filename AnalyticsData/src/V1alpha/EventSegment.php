@@ -22,13 +22,13 @@ class EventSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.EventSegmentCriteria event_inclusion_criteria = 1;</code>
      */
-    private $event_inclusion_criteria = null;
+    protected $event_inclusion_criteria = null;
     /**
      * Defines which events are excluded in this segment. Optional.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.EventSegmentExclusion exclusion = 2;</code>
      */
-    private $exclusion = null;
+    protected $exclusion = null;
 
     /**
      * Constructor.

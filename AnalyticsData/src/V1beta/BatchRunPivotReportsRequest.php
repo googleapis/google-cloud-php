@@ -27,7 +27,7 @@ class BatchRunPivotReportsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Individual requests. Each request has a separate pivot report response.
      * Each batch request is allowed up to 5 requests.

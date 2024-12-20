@@ -27,7 +27,7 @@ class UserSegmentSequenceGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.UserCriteriaScoping sequence_scoping = 1;</code>
      */
-    private $sequence_scoping = 0;
+    protected $sequence_scoping = 0;
     /**
      * Defines the time period in which the whole sequence must occur; for
      * example, 30 Minutes. `sequenceMaximumDuration` is inclusive
@@ -39,7 +39,7 @@ class UserSegmentSequenceGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration sequence_maximum_duration = 2;</code>
      */
-    private $sequence_maximum_duration = null;
+    protected $sequence_maximum_duration = null;
     /**
      * An ordered sequence of condition steps. A user's events must complete
      * each step in order for the user to match the

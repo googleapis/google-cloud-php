@@ -41,7 +41,7 @@ class SegmentParameterFilterScoping extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int64 in_any_n_day_period = 1;</code>
      */
-    private $in_any_n_day_period = null;
+    protected $in_any_n_day_period = null;
 
     /**
      * Constructor.

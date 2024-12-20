@@ -21,7 +21,7 @@ class QueryReportTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The row count of the start row in the report. The first row is
      * counted as row 0.
@@ -34,7 +34,7 @@ class QueryReportTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * Optional. The number of rows to return from the report. If unspecified,
      * 10,000 rows are returned. The API returns a maximum of 250,000 rows per
@@ -51,7 +51,7 @@ class QueryReportTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
 
     /**
      * @param string $name Required. The report source name.

@@ -23,14 +23,14 @@ class SessionSegmentExclusion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SessionExclusionDuration session_exclusion_duration = 1;</code>
      */
-    private $session_exclusion_duration = 0;
+    protected $session_exclusion_duration = 0;
     /**
      * If a session meets this condition, the session is excluded from
      * membership in the segment for the `sessionExclusionDuration`.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SessionSegmentCriteria session_exclusion_criteria = 2;</code>
      */
-    private $session_exclusion_criteria = null;
+    protected $session_exclusion_criteria = null;
 
     /**
      * Constructor.
