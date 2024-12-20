@@ -23,7 +23,7 @@ class Productreviews
         \GPBMetadata\Google\Shopping\Type\Types::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ð
+ò
 <google/shopping/merchant/reviews/v1beta/productreviews.proto\'google.shopping.merchant.reviews.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.protoCgoogle/shopping/merchant/reviews/v1beta/productreviews_common.proto google/shopping/type/types.proto"Y
 GetProductReviewRequest>
 name (	B0àAúA*
@@ -56,8 +56,8 @@ attributes (2@.google.shopping.merchant.reviews.v1beta.ProductReviewAttribut
 GetProductReview@.google.shopping.merchant.reviews.v1beta.GetProductReviewRequest6.google.shopping.merchant.reviews.v1beta.ProductReview"AÚAname‚Óä“42/reviews/v1beta/{name=accounts/*/productReviews/*}â
 ListProductReviewsB.google.shopping.merchant.reviews.v1beta.ListProductReviewsRequestC.google.shopping.merchant.reviews.v1beta.ListProductReviewsResponse"CÚAparent‚Óä“42/reviews/v1beta/{parent=accounts/*}/productReviewså
 InsertProductReviewC.google.shopping.merchant.reviews.v1beta.InsertProductReviewRequest6.google.shopping.merchant.reviews.v1beta.ProductReview"Q‚Óä“K"9/reviews/v1beta/{parent=accounts/*}/productReviews:insert:product_reviewµ
-DeleteProductReviewC.google.shopping.merchant.reviews.v1beta.DeleteProductReviewRequest.google.protobuf.Empty"AÚAname‚Óä“4*2/reviews/v1beta/{name=accounts/*/productReviews/*}GÊAmerchantapi.googleapis.comÒA\'https://www.googleapis.com/auth/contentB‘
-+com.google.shopping.merchant.reviews.v1betaBProductReviewsProtoPZKcloud.google.com/go/shopping/merchant/reviews/apiv1beta/reviewspb;reviewspbbproto3'
+DeleteProductReviewC.google.shopping.merchant.reviews.v1beta.DeleteProductReviewRequest.google.protobuf.Empty"AÚAname‚Óä“4*2/reviews/v1beta/{name=accounts/*/productReviews/*}GÊAmerchantapi.googleapis.comÒA\'https://www.googleapis.com/auth/contentB“
++com.google.shopping.merchant.reviews.v1betaBProductReviewsProtoPZKcloud.google.com/go/shopping/merchant/reviews/apiv1beta/reviewspb;reviewspbª\'Google.Shopping.Merchant.Reviews.V1BetaÊ\'Google\\Shopping\\Merchant\\Reviews\\V1betaê+Google::Shopping::Merchant::Reviews::V1betabproto3'
         , true);
 
         static::$is_initialized = true;
