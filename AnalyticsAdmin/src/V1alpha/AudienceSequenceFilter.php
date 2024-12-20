@@ -21,13 +21,13 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterScope scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * Optional. Defines the time period in which the whole sequence must occur.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration sequence_maximum_duration = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sequence_maximum_duration = null;
+    protected $sequence_maximum_duration = null;
     /**
      * Required. An ordered sequence of steps. A user must complete each step in
      * order to join the sequence filter.

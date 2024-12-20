@@ -23,21 +23,21 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The lookback window configuration for acquisition conversion
      * events. The default window size is 30 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AcquisitionConversionEventLookbackWindow acquisition_conversion_event_lookback_window = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $acquisition_conversion_event_lookback_window = 0;
+    protected $acquisition_conversion_event_lookback_window = 0;
     /**
      * Required. The lookback window for all other, non-acquisition conversion
      * events. The default window size is 90 days.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.OtherConversionEventLookbackWindow other_conversion_event_lookback_window = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $other_conversion_event_lookback_window = 0;
+    protected $other_conversion_event_lookback_window = 0;
     /**
      * Required. The reporting attribution model used to calculate conversion
      * credit in this property's reports.
@@ -47,14 +47,14 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.ReportingAttributionModel reporting_attribution_model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $reporting_attribution_model = 0;
+    protected $reporting_attribution_model = 0;
     /**
      * Required. The Conversion Export Scope for data exported to linked Ads
      * Accounts.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings.AdsWebConversionDataExportScope ads_web_conversion_data_export_scope = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ads_web_conversion_data_export_scope = 0;
+    protected $ads_web_conversion_data_export_scope = 0;
 
     /**
      * Constructor.

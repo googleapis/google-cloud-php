@@ -21,7 +21,7 @@ class ApproveDisplayVideo360AdvertiserLinkProposalResponse extends \Google\Proto
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink display_video_360_advertiser_link = 1;</code>
      */
-    private $display_video_360_advertiser_link = null;
+    protected $display_video_360_advertiser_link = null;
 
     /**
      * Constructor.

@@ -115,6 +115,4 @@ class MetricUnit
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricUnit::class, \Google\Analytics\Admin\V1alpha\CalculatedMetric_MetricUnit::class);
 

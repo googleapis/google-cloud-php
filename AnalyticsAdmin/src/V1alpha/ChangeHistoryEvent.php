@@ -23,19 +23,19 @@ class ChangeHistoryEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Time when change was made.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp change_time = 2;</code>
      */
-    private $change_time = null;
+    protected $change_time = null;
     /**
      * The type of actor that made this change.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ActorType actor_type = 3;</code>
      */
-    private $actor_type = 0;
+    protected $actor_type = 0;
     /**
      * Email address of the Google account that made the change. This will be a
      * valid email address if the actor field is set to USER, and empty otherwise.
@@ -43,14 +43,14 @@ class ChangeHistoryEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_actor_email = 4;</code>
      */
-    private $user_actor_email = '';
+    protected $user_actor_email = '';
     /**
      * If true, then the list of changes returned was filtered, and does not
      * represent all changes that occurred in this event.
      *
      * Generated from protobuf field <code>bool changes_filtered = 5;</code>
      */
-    private $changes_filtered = false;
+    protected $changes_filtered = false;
     /**
      * A list of changes made in this change history event that fit the filters
      * specified in SearchChangeHistoryEventsRequest.

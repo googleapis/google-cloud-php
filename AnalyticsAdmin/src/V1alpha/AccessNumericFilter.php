@@ -20,13 +20,13 @@ class AccessNumericFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AccessNumericFilter.Operation operation = 1;</code>
      */
-    private $operation = 0;
+    protected $operation = 0;
     /**
      * A numeric value or a date value.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.NumericValue value = 2;</code>
      */
-    private $value = null;
+    protected $value = null;
 
     /**
      * Constructor.

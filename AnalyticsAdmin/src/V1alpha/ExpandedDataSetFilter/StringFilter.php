@@ -20,13 +20,13 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSetFilter.StringFilter.MatchType match_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $match_type = 0;
+    protected $match_type = 0;
     /**
      * Required. The string value to be matched against.
      *
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * Optional. If true, the match is case-sensitive. If false, the match is
      * case-insensitive.
@@ -35,7 +35,7 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool case_sensitive = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $case_sensitive = false;
+    protected $case_sensitive = false;
 
     /**
      * Constructor.
@@ -145,6 +145,4 @@ class StringFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StringFilter::class, \Google\Analytics\Admin\V1alpha\ExpandedDataSetFilter_StringFilter::class);
 

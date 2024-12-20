@@ -20,7 +20,7 @@ class CreateRollupPropertyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property rollup_property = 1;</code>
      */
-    private $rollup_property = null;
+    protected $rollup_property = null;
     /**
      * The created roll-up property source links.
      *

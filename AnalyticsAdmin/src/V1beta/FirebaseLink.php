@@ -20,7 +20,7 @@ class FirebaseLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. Firebase project resource name. When creating a FirebaseLink,
      * you may provide this resource name using either a project number or project
@@ -31,13 +31,13 @@ class FirebaseLink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Output only. Time when this FirebaseLink was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

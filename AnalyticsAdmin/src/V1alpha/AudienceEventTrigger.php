@@ -20,13 +20,13 @@ class AudienceEventTrigger extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_name = '';
+    protected $event_name = '';
     /**
      * Required. When to log the event.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceEventTrigger.LogCondition log_condition = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $log_condition = 0;
+    protected $log_condition = 0;
 
     /**
      * Constructor.

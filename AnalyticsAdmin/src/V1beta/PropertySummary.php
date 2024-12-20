@@ -22,19 +22,19 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Display name for the property referred to in this property summary.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The property's property type.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.PropertyType property_type = 3;</code>
      */
-    private $property_type = 0;
+    protected $property_type = 0;
     /**
      * Resource name of this property's logical parent.
      * Note: The Property-Moving UI can be used to change the parent.
@@ -43,7 +43,7 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 4;</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * Constructor.

@@ -23,7 +23,7 @@ class AccessDateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_date = 1;</code>
      */
-    private $start_date = '';
+    protected $start_date = '';
     /**
      * The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot
      * be before `startDate`. The format `NdaysAgo`, `yesterday`, or `today` is
@@ -32,7 +32,7 @@ class AccessDateRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string end_date = 2;</code>
      */
-    private $end_date = '';
+    protected $end_date = '';
 
     /**
      * Constructor.

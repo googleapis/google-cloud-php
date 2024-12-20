@@ -24,7 +24,7 @@ class BatchGetAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The names of the access bindings to retrieve.
      * A maximum of 1000 access bindings can be retrieved in a batch.

@@ -21,7 +21,7 @@ class CreateCalculatedMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID to use for the calculated metric which will become the
      * final component of the calculated metric's resource name.
@@ -33,13 +33,13 @@ class CreateCalculatedMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string calculated_metric_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $calculated_metric_id = '';
+    protected $calculated_metric_id = '';
     /**
      * Required. The CalculatedMetric to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric calculated_metric = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $calculated_metric = null;
+    protected $calculated_metric = null;
 
     /**
      * @param string                                           $parent             Required. Format: properties/{property_id}

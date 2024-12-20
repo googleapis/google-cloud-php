@@ -21,7 +21,7 @@ class UpdateGoogleSignalsSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleSignalsSettings google_signals_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $google_signals_settings = null;
+    protected $google_signals_settings = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (e.g., "field_to_update"). Omitted fields will not be updated. To
@@ -30,7 +30,7 @@ class UpdateGoogleSignalsSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings $googleSignalsSettings Required. The settings to update.

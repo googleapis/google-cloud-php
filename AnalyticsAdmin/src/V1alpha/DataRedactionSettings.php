@@ -24,14 +24,14 @@ class DataRedactionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If enabled, any event parameter or user property values that look like an
      * email will be redacted.
      *
      * Generated from protobuf field <code>bool email_redaction_enabled = 2;</code>
      */
-    private $email_redaction_enabled = false;
+    protected $email_redaction_enabled = false;
     /**
      * Query Parameter redaction removes the key and value portions of a
      * query parameter if it is in the configured set of query parameters.
@@ -40,7 +40,7 @@ class DataRedactionSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool query_parameter_redaction_enabled = 3;</code>
      */
-    private $query_parameter_redaction_enabled = false;
+    protected $query_parameter_redaction_enabled = false;
     /**
      * The query parameter keys to apply redaction logic to if present in the URL.
      * Query parameter matching is case-insensitive.

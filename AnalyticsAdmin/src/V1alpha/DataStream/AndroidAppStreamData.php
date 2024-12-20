@@ -21,14 +21,14 @@ class AndroidAppStreamData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string firebase_app_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $firebase_app_id = '';
+    protected $firebase_app_id = '';
     /**
      * Immutable. The package name for the app being measured.
      * Example: "com.example.myandroidapp"
      *
      * Generated from protobuf field <code>string package_name = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $package_name = '';
+    protected $package_name = '';
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class AndroidAppStreamData extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AndroidAppStreamData::class, \Google\Analytics\Admin\V1alpha\DataStream_AndroidAppStreamData::class);
 

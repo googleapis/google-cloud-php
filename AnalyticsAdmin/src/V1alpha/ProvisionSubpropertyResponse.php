@@ -20,13 +20,13 @@ class ProvisionSubpropertyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property subproperty = 1;</code>
      */
-    private $subproperty = null;
+    protected $subproperty = null;
     /**
      * The created subproperty event filter.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertyEventFilter subproperty_event_filter = 2;</code>
      */
-    private $subproperty_event_filter = null;
+    protected $subproperty_event_filter = null;
 
     /**
      * Constructor.

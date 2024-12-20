@@ -64,6 +64,4 @@ class FilterClauseType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FilterClauseType::class, \Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause_FilterClauseType::class);
 
