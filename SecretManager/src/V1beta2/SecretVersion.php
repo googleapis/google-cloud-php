@@ -25,7 +25,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The time at which the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] was
@@ -33,7 +33,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time this
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] was
@@ -43,28 +43,28 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $destroy_time = null;
+    protected $destroy_time = null;
     /**
      * Output only. The current state of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1beta2.SecretVersion.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The replication status of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1beta2.ReplicationStatus replication_status = 5;</code>
      */
-    private $replication_status = null;
+    protected $replication_status = null;
     /**
      * Output only. Etag of the currently stored
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion].
      *
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Output only. True if payload checksum specified in
      * [SecretPayload][google.cloud.secretmanager.v1beta2.SecretPayload] object
@@ -75,7 +75,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool client_specified_payload_checksum = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $client_specified_payload_checksum = false;
+    protected $client_specified_payload_checksum = false;
     /**
      * Optional. Output only. Scheduled destroy time for secret version.
      * This is a part of the Delayed secret version destroy feature. For a
@@ -85,7 +85,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_destroy_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $scheduled_destroy_time = null;
+    protected $scheduled_destroy_time = null;
     /**
      * Output only. The customer-managed encryption status of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion]. Only
@@ -95,7 +95,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1beta2.CustomerManagedEncryptionStatus customer_managed_encryption = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $customer_managed_encryption = null;
+    protected $customer_managed_encryption = null;
 
     /**
      * Constructor.
