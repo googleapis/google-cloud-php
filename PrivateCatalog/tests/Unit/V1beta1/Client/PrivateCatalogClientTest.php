@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,9 @@ class PrivateCatalogClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PrivateCatalogClient */
@@ -78,17 +80,14 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $catalogsElement = new Catalog();
-        $catalogs = [
-            $catalogsElement,
-        ];
+        $catalogs = [$catalogsElement];
         $expectedResponse = new SearchCatalogsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCatalogs($catalogs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new SearchCatalogsRequest())
-            ->setResource($resource);
+        $request = (new SearchCatalogsRequest())->setResource($resource);
         $response = $gapicClient->searchCatalogs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -115,17 +114,19 @@ class PrivateCatalogClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new SearchCatalogsRequest())
-            ->setResource($resource);
+        $request = (new SearchCatalogsRequest())->setResource($resource);
         try {
             $gapicClient->searchCatalogs($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -150,17 +151,14 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $productsElement = new Product();
-        $products = [
-            $productsElement,
-        ];
+        $products = [$productsElement];
         $expectedResponse = new SearchProductsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProducts($products);
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new SearchProductsRequest())
-            ->setResource($resource);
+        $request = (new SearchProductsRequest())->setResource($resource);
         $response = $gapicClient->searchProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -187,17 +185,19 @@ class PrivateCatalogClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new SearchProductsRequest())
-            ->setResource($resource);
+        $request = (new SearchProductsRequest())->setResource($resource);
         try {
             $gapicClient->searchProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -222,9 +222,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $versionsElement = new Version();
-        $versions = [
-            $versionsElement,
-        ];
+        $versions = [$versionsElement];
         $expectedResponse = new SearchVersionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setVersions($versions);
@@ -232,9 +230,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $query = 'query107944136';
-        $request = (new SearchVersionsRequest())
-            ->setResource($resource)
-            ->setQuery($query);
+        $request = (new SearchVersionsRequest())->setResource($resource)->setQuery($query);
         $response = $gapicClient->searchVersions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -263,19 +259,20 @@ class PrivateCatalogClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $query = 'query107944136';
-        $request = (new SearchVersionsRequest())
-            ->setResource($resource)
-            ->setQuery($query);
+        $request = (new SearchVersionsRequest())->setResource($resource)->setQuery($query);
         try {
             $gapicClient->searchVersions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -300,17 +297,14 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $catalogsElement = new Catalog();
-        $catalogs = [
-            $catalogsElement,
-        ];
+        $catalogs = [$catalogsElement];
         $expectedResponse = new SearchCatalogsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCatalogs($catalogs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new SearchCatalogsRequest())
-            ->setResource($resource);
+        $request = (new SearchCatalogsRequest())->setResource($resource);
         $response = $gapicClient->searchCatalogsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

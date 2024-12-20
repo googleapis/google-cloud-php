@@ -23,7 +23,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The type of the product asset. It can be one of the following values:
      * * `google.deploymentmanager.Template`
@@ -32,7 +32,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string asset_type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $asset_type = '';
+    protected $asset_type = '';
     /**
      * Required. Output only. The display metadata to describe the product. The JSON schema of the
      * metadata differs by [Product.asset_type][google.cloud.privatecatalog.v1beta1.Product.asset_type].
@@ -187,13 +187,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct display_metadata = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $display_metadata = null;
+    protected $display_metadata = null;
     /**
      * Output only. The icon URI of the product.
      *
      * Generated from protobuf field <code>string icon_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $icon_uri = '';
+    protected $icon_uri = '';
     /**
      * Output only. A collection of assets referred by a product.
      * This field is set for Terraform Products only.
@@ -206,13 +206,13 @@ class Product extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The time when the product was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

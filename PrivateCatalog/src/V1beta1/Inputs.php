@@ -20,7 +20,7 @@ class Inputs extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * Constructor.
