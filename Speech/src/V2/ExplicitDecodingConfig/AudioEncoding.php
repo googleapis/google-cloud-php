@@ -37,12 +37,75 @@ class AudioEncoding
      * Generated from protobuf enum <code>ALAW = 3;</code>
      */
     const ALAW = 3;
+    /**
+     * AMR frames with an rfc4867.5 header.
+     *
+     * Generated from protobuf enum <code>AMR = 4;</code>
+     */
+    const AMR = 4;
+    /**
+     * AMR-WB frames with an rfc4867.5 header.
+     *
+     * Generated from protobuf enum <code>AMR_WB = 5;</code>
+     */
+    const AMR_WB = 5;
+    /**
+     * FLAC frames in the "native FLAC" container format.
+     *
+     * Generated from protobuf enum <code>FLAC = 6;</code>
+     */
+    const FLAC = 6;
+    /**
+     * MPEG audio frames with optional (ignored) ID3 metadata.
+     *
+     * Generated from protobuf enum <code>MP3 = 7;</code>
+     */
+    const MP3 = 7;
+    /**
+     * Opus audio frames in an Ogg container.
+     *
+     * Generated from protobuf enum <code>OGG_OPUS = 8;</code>
+     */
+    const OGG_OPUS = 8;
+    /**
+     * Opus audio frames in a WebM container.
+     *
+     * Generated from protobuf enum <code>WEBM_OPUS = 9;</code>
+     */
+    const WEBM_OPUS = 9;
+    /**
+     * AAC audio frames in an MP4 container.
+     *
+     * Generated from protobuf enum <code>MP4_AAC = 10;</code>
+     */
+    const MP4_AAC = 10;
+    /**
+     * AAC audio frames in an M4A container.
+     *
+     * Generated from protobuf enum <code>M4A_AAC = 11;</code>
+     */
+    const M4A_AAC = 11;
+    /**
+     * AAC audio frames in an MOV container.
+     *
+     * Generated from protobuf enum <code>MOV_AAC = 12;</code>
+     */
+    const MOV_AAC = 12;
 
     private static $valueToName = [
         self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
         self::LINEAR16 => 'LINEAR16',
         self::MULAW => 'MULAW',
         self::ALAW => 'ALAW',
+        self::AMR => 'AMR',
+        self::AMR_WB => 'AMR_WB',
+        self::FLAC => 'FLAC',
+        self::MP3 => 'MP3',
+        self::OGG_OPUS => 'OGG_OPUS',
+        self::WEBM_OPUS => 'WEBM_OPUS',
+        self::MP4_AAC => 'MP4_AAC',
+        self::M4A_AAC => 'M4A_AAC',
+        self::MOV_AAC => 'MOV_AAC',
     ];
 
     public static function name($value)
