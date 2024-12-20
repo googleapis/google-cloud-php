@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The processed CSS Product(a.k.a Aggregate Offer internally).
+ * The processed CSS Product.
  *
  * Generated from protobuf message <code>google.shopping.css.v1.CssProduct</code>
  */

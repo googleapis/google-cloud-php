@@ -22,21 +22,21 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      */
     protected $destination = '';
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * approved.
      *
      * Generated from protobuf field <code>repeated string approved_countries = 2;</code>
      */
     private $approved_countries;
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * pending approval.
      *
      * Generated from protobuf field <code>repeated string pending_countries = 3;</code>
      */
     private $pending_countries;
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * disapproved.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 4;</code>
@@ -52,13 +52,13 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      *     @type string $destination
      *           The name of the destination
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $approved_countries
-     *           List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     *           List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      *           approved.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pending_countries
-     *           List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     *           List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      *           pending approval.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disapproved_countries
-     *           List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     *           List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      *           disapproved.
      * }
      */
@@ -94,7 +94,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * approved.
      *
      * Generated from protobuf field <code>repeated string approved_countries = 2;</code>
@@ -106,7 +106,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * approved.
      *
      * Generated from protobuf field <code>repeated string approved_countries = 2;</code>
@@ -122,7 +122,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * pending approval.
      *
      * Generated from protobuf field <code>repeated string pending_countries = 3;</code>
@@ -134,7 +134,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * pending approval.
      *
      * Generated from protobuf field <code>repeated string pending_countries = 3;</code>
@@ -150,7 +150,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * disapproved.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 4;</code>
@@ -162,7 +162,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is
      * disapproved.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 4;</code>

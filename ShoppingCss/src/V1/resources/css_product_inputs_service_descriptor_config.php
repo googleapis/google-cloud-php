@@ -47,6 +47,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCssProductInput' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Shopping\Css\V1\CssProductInput',
+                'headerParams' => [
+                    [
+                        'keyName' => 'css_product_input.name',
+                        'fieldAccessors' => [
+                            'getCssProductInput',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'account' => 'accounts/{account}',
                 'cssProductInput' => 'accounts/{account}/cssProductInputs/{css_product_input}',

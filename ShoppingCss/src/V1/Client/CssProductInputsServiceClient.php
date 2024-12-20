@@ -35,6 +35,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Shopping\Css\V1\CssProductInput;
 use Google\Shopping\Css\V1\DeleteCssProductInputRequest;
 use Google\Shopping\Css\V1\InsertCssProductInputRequest;
+use Google\Shopping\Css\V1\UpdateCssProductInputRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -52,6 +53,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<void> deleteCssProductInputAsync(DeleteCssProductInputRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CssProductInput> insertCssProductInputAsync(InsertCssProductInputRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CssProductInput> updateCssProductInputAsync(UpdateCssProductInputRequest $request, array $optionalArgs = [])
  */
 final class CssProductInputsServiceClient
 {
@@ -291,5 +293,37 @@ final class CssProductInputsServiceClient
         array $callOptions = []
     ): CssProductInput {
         return $this->startApiCall('InsertCssProductInput', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the existing Css Product input in your CSS Center account.
+     *
+     * After inserting, updating, or deleting a CSS Product input, it may take
+     * several minutes before the processed Css Product can be retrieved.
+     *
+     * The async variant is
+     * {@see CssProductInputsServiceClient::updateCssProductInputAsync()} .
+     *
+     * @example samples/V1/CssProductInputsServiceClient/update_css_product_input.php
+     *
+     * @param UpdateCssProductInputRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CssProductInput
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCssProductInput(
+        UpdateCssProductInputRequest $request,
+        array $callOptions = []
+    ): CssProductInput {
+        return $this->startApiCall('UpdateCssProductInput', $request, $callOptions)->wait();
     }
 }
