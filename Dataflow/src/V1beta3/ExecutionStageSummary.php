@@ -22,19 +22,19 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Dataflow service generated id for this stage.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Type of transform this stage is executing.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.KindType kind = 3;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * Input sources for this stage.
      *

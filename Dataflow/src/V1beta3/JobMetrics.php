@@ -25,7 +25,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp metric_time = 1;</code>
      */
-    private $metric_time = null;
+    protected $metric_time = null;
     /**
      * All metrics for this job.
      *

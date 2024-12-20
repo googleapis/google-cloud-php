@@ -23,7 +23,7 @@ class MountedDataDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_disk = 1;</code>
      */
-    private $data_disk = '';
+    protected $data_disk = '';
 
     /**
      * Constructor.

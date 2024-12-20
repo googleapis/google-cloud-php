@@ -21,14 +21,14 @@ class DynamicTemplateLaunchParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_path = 1;</code>
      */
-    private $gcs_path = '';
+    protected $gcs_path = '';
     /**
      * Cloud Storage path for staging dependencies.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string staging_location = 2;</code>
      */
-    private $staging_location = '';
+    protected $staging_location = '';
 
     /**
      * Constructor.

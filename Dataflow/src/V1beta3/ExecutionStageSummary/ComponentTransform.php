@@ -20,20 +20,20 @@ class ComponentTransform extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_name = 1;</code>
      */
-    private $user_name = '';
+    protected $user_name = '';
     /**
      * Dataflow service generated name for this source.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User name for the original user transform with which this transform is
      * most closely associated.
      *
      * Generated from protobuf field <code>string original_transform = 3;</code>
      */
-    private $original_transform = '';
+    protected $original_transform = '';
 
     /**
      * Constructor.
@@ -137,6 +137,4 @@ class ComponentTransform extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ComponentTransform::class, \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary_ComponentTransform::class);
 

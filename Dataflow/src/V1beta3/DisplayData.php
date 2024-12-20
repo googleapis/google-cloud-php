@@ -22,7 +22,7 @@ class DisplayData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * The namespace for the key. This is usually a class name or programming
      * language namespace (i.e. python module) which defines the display data.
@@ -31,7 +31,7 @@ class DisplayData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 2;</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * A possible additional shorter value to display.
      * For example a java_class_name_value of com.mypackage.MyDoFn
@@ -42,19 +42,19 @@ class DisplayData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string short_str_value = 11;</code>
      */
-    private $short_str_value = '';
+    protected $short_str_value = '';
     /**
      * An optional full URL.
      *
      * Generated from protobuf field <code>string url = 12;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * An optional label to display in a dax UI for the element.
      *
      * Generated from protobuf field <code>string label = 13;</code>
      */
-    private $label = '';
+    protected $label = '';
     protected $Value;
 
     /**

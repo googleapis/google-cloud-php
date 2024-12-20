@@ -20,19 +20,19 @@ class StageSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stage_id = 1;</code>
      */
-    private $stage_id = '';
+    protected $stage_id = '';
     /**
      * State of this stage.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.ExecutionState state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Start time of this stage.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * End time of this stage.
      * If the work item is completed, this is the actual end time of the stage.
@@ -40,14 +40,14 @@ class StageSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * Progress for this stage.
      * Only applicable to Batch jobs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.ProgressTimeseries progress = 5;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * Metrics for this stage.
      *

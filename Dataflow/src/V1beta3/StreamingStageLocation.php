@@ -22,7 +22,7 @@ class StreamingStageLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string stream_id = 1;</code>
      */
-    private $stream_id = '';
+    protected $stream_id = '';
 
     /**
      * Constructor.

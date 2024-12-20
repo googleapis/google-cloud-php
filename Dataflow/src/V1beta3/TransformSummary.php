@@ -20,19 +20,19 @@ class TransformSummary extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.KindType kind = 1;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * SDK generated id of this transform instance.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * User provided name for this transform instance.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Transform-specific display data.
      *

@@ -20,7 +20,7 @@ class CustomSourceLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool stateful = 1;</code>
      */
-    private $stateful = false;
+    protected $stateful = false;
 
     /**
      * Constructor.

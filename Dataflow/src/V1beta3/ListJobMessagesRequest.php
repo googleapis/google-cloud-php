@@ -23,19 +23,19 @@ class ListJobMessagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job to get messages about.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Filter to only get messages with importance >= level
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobMessageImportance minimum_importance = 3;</code>
      */
-    private $minimum_importance = 0;
+    protected $minimum_importance = 0;
     /**
      * If specified, determines the maximum number of messages to
      * return.  If unspecified, the service may choose an appropriate
@@ -43,7 +43,7 @@ class ListJobMessagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If supplied, this should be the value of next_page_token returned
      * by an earlier call. This will cause the next page of results to
@@ -51,21 +51,21 @@ class ListJobMessagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * If specified, return only messages with timestamps >= start_time.
      * The default is the job creation time (i.e. beginning of messages).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Return only messages with timestamps < end_time. The default is now
      * (i.e. return up to the latest messages available).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -73,7 +73,7 @@ class ListJobMessagesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 8;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class CheckActiveJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool active_jobs_exist = 1;</code>
      */
-    private $active_jobs_exist = false;
+    protected $active_jobs_exist = false;
 
     /**
      * Constructor.

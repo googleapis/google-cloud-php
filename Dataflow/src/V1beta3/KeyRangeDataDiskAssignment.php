@@ -23,13 +23,13 @@ class KeyRangeDataDiskAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start = 1;</code>
      */
-    private $start = '';
+    protected $start = '';
     /**
      * The end (exclusive) of the key range.
      *
      * Generated from protobuf field <code>string end = 2;</code>
      */
-    private $end = '';
+    protected $end = '';
     /**
      * The name of the data disk where data for this range is stored.
      * This name is local to the Google Cloud Platform project and uniquely
@@ -38,7 +38,7 @@ class KeyRangeDataDiskAssignment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string data_disk = 3;</code>
      */
-    private $data_disk = '';
+    protected $data_disk = '';
 
     /**
      * Constructor.

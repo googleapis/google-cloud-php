@@ -21,26 +21,26 @@ class GetTemplateResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The template metadata describing the template name, available
      * parameters, etc.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.TemplateMetadata metadata = 2;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Template Type.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.GetTemplateResponse.TemplateType template_type = 3;</code>
      */
-    private $template_type = 0;
+    protected $template_type = 0;
     /**
      * Describes the runtime metadata with SDKInfo and available parameters.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.RuntimeMetadata runtime_metadata = 4;</code>
      */
-    private $runtime_metadata = null;
+    protected $runtime_metadata = null;
 
     /**
      * Constructor.

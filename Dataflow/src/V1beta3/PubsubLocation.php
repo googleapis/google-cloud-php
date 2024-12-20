@@ -22,47 +22,47 @@ class PubsubLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
-    private $topic = '';
+    protected $topic = '';
     /**
      * A pubsub subscription, in the form of
      * "pubsub.googleapis.com/subscriptions/<project-id>/<subscription-name>"
      *
      * Generated from protobuf field <code>string subscription = 2;</code>
      */
-    private $subscription = '';
+    protected $subscription = '';
     /**
      * If set, contains a pubsub label from which to extract record timestamps.
      * If left empty, record timestamps will be generated upon arrival.
      *
      * Generated from protobuf field <code>string timestamp_label = 3;</code>
      */
-    private $timestamp_label = '';
+    protected $timestamp_label = '';
     /**
      * If set, contains a pubsub label from which to extract record ids.
      * If left empty, record deduplication will be strictly best effort.
      *
      * Generated from protobuf field <code>string id_label = 4;</code>
      */
-    private $id_label = '';
+    protected $id_label = '';
     /**
      * Indicates whether the pipeline allows late-arriving data.
      *
      * Generated from protobuf field <code>bool drop_late_data = 5;</code>
      */
-    private $drop_late_data = false;
+    protected $drop_late_data = false;
     /**
      * If set, specifies the pubsub subscription that will be used for tracking
      * custom time timestamps for watermark estimation.
      *
      * Generated from protobuf field <code>string tracking_subscription = 6;</code>
      */
-    private $tracking_subscription = '';
+    protected $tracking_subscription = '';
     /**
      * If true, then the client has requested to get pubsub attributes.
      *
      * Generated from protobuf field <code>bool with_attributes = 7;</code>
      */
-    private $with_attributes = false;
+    protected $with_attributes = false;
 
     /**
      * Constructor.

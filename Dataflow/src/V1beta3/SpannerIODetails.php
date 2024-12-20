@@ -20,19 +20,19 @@ class SpannerIODetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * InstanceId accessed in the connection.
      *
      * Generated from protobuf field <code>string instance_id = 2;</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * DatabaseId accessed in the connection.
      *
      * Generated from protobuf field <code>string database_id = 3;</code>
      */
-    private $database_id = '';
+    protected $database_id = '';
 
     /**
      * Constructor.

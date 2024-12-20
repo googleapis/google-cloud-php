@@ -20,7 +20,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SDKInfo sdk_info = 1;</code>
      */
-    private $sdk_info = null;
+    protected $sdk_info = null;
     /**
      * The parameters for the template.
      *
