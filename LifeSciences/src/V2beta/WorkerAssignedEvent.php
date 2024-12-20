@@ -21,19 +21,19 @@ class WorkerAssignedEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 1;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The worker's instance name.
      *
      * Generated from protobuf field <code>string instance = 2;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The machine type that was assigned for the worker.
      *
      * Generated from protobuf field <code>string machine_type = 3;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
 
     /**
      * Constructor.
