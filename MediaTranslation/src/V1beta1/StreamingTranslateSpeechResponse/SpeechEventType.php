@@ -61,6 +61,4 @@ class SpeechEventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SpeechEventType::class, \Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechResponse_SpeechEventType::class);
 

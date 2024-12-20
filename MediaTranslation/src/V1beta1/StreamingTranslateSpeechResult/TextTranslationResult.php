@@ -20,7 +20,7 @@ class TextTranslationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string translation = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $translation = '';
+    protected $translation = '';
     /**
      * Output only. If `false`, this `StreamingTranslateSpeechResult` represents
      * an interim result that may change. If `true`, this is the final time the
@@ -31,7 +31,7 @@ class TextTranslationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_final = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_final = false;
+    protected $is_final = false;
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class TextTranslationResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TextTranslationResult::class, \Google\Cloud\MediaTranslation\V1beta1\StreamingTranslateSpeechResult_TextTranslationResult::class);
 
