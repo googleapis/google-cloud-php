@@ -20,7 +20,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the release config whose release_compilation_result
      * should be executed. Must be in the format
@@ -28,20 +28,20 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string release_config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $release_config = '';
+    protected $release_config = '';
     /**
      * Optional. If left unset, a default InvocationConfig will be used.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig invocation_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $invocation_config = null;
+    protected $invocation_config = null;
     /**
      * Optional. Optional schedule (in cron format) for automatic execution of
      * this workflow config.
      *
      * Generated from protobuf field <code>string cron_schedule = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $cron_schedule = '';
+    protected $cron_schedule = '';
     /**
      * Optional. Specifies the time zone to be used when interpreting
      * cron_schedule. Must be a time zone name from the time zone database
@@ -50,7 +50,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Output only. Records of the 10 most recent scheduled execution attempts,
      * ordered in in descending order of `execution_time`. Updated whenever

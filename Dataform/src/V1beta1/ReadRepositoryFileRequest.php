@@ -20,20 +20,20 @@ class ReadRepositoryFileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The commit SHA for the commit to read from. If unset, the file
      * will be read from HEAD.
      *
      * Generated from protobuf field <code>string commit_sha = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $commit_sha = '';
+    protected $commit_sha = '';
     /**
      * Required. Full file path to read including filename, from repository root.
      *
      * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

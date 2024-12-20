@@ -20,13 +20,13 @@ class FetchGitAheadBehindResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 commits_ahead = 1;</code>
      */
-    private $commits_ahead = 0;
+    protected $commits_ahead = 0;
     /**
      * The number of commits in the workspace that are not in the remote branch.
      *
      * Generated from protobuf field <code>int32 commits_behind = 2;</code>
      */
-    private $commits_behind = 0;
+    protected $commits_behind = 0;
 
     /**
      * Constructor.

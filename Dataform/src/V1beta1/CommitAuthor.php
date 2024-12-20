@@ -20,13 +20,13 @@ class CommitAuthor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The commit author's email address.
      *
      * Generated from protobuf field <code>string email_address = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $email_address = '';
+    protected $email_address = '';
 
     /**
      * Constructor.

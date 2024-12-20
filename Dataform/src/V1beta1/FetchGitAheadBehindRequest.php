@@ -20,7 +20,7 @@ class FetchGitAheadBehindRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The name of the branch in the Git remote against which this
      * workspace should be compared. If left unset, the repository's default
@@ -28,7 +28,7 @@ class FetchGitAheadBehindRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string remote_branch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $remote_branch = '';
+    protected $remote_branch = '';
 
     /**
      * Constructor.

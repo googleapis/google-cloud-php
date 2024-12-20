@@ -20,19 +20,19 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The commit's author.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $author = null;
+    protected $author = null;
     /**
      * Optional. The commit's message.
      *
      * Generated from protobuf field <code>string commit_message = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $commit_message = '';
+    protected $commit_message = '';
     /**
      * Optional. Full file paths to commit including filename, rooted at workspace
      * root. If left empty, all files will be committed.

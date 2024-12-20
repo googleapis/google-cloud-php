@@ -20,7 +20,7 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Full file paths to reset back to their committed state including
      * filename, rooted at workspace root. If left empty, all files will be reset.
@@ -33,7 +33,7 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool clean = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $clean = false;
+    protected $clean = false;
 
     /**
      * Constructor.

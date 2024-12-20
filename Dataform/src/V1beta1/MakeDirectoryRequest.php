@@ -20,14 +20,14 @@ class MakeDirectoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $workspace = '';
+    protected $workspace = '';
     /**
      * Required. The directory's full path including directory name, relative to
      * the workspace root.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path = '';
+    protected $path = '';
 
     /**
      * Constructor.

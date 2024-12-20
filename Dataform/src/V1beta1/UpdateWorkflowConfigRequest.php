@@ -21,13 +21,13 @@ class UpdateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The workflow config to update.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowConfig workflow_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $workflow_config = null;
+    protected $workflow_config = null;
 
     /**
      * @param \Google\Cloud\Dataform\V1beta1\WorkflowConfig $workflowConfig Required. The workflow config to update.
