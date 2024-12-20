@@ -21,39 +21,39 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string operation_name = 5;</code>
      */
-    private $operation_name = '';
+    protected $operation_name = '';
     /**
      * Id of the request / operation. This is parroting back the requestId that
      * was passed in the request.
      *
      * Generated from protobuf field <code>string request_id = 3;</code>
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Operation create time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Count of entries that were processed successfully.
      *
      * Generated from protobuf field <code>int64 success_count = 1;</code>
      */
-    private $success_count = 0;
+    protected $success_count = 0;
     /**
      * Count of entries that encountered errors while processing.
      *
      * Generated from protobuf field <code>int64 failure_count = 2;</code>
      */
-    private $failure_count = 0;
+    protected $failure_count = 0;
     /**
      * Operation last update time. If the operation is done, this is also the
      * finish time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

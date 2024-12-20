@@ -20,19 +20,19 @@ class Image extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional. Height of the image in number of pixels.
      *
      * Generated from protobuf field <code>int32 height = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $height = 0;
+    protected $height = 0;
     /**
      * Optional. Width of the image in number of pixels.
      *
      * Generated from protobuf field <code>int32 width = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $width = 0;
+    protected $width = 0;
 
     /**
      * Constructor.

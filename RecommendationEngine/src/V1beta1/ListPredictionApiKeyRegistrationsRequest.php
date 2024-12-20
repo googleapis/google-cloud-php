@@ -21,20 +21,20 @@ class ListPredictionApiKeyRegistrationsRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Maximum number of results to return per page. If unset, the
      * service will choose a reasonable default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. The previous `ListPredictionApiKeyRegistration.nextPageToken`.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The parent placement resource name such as

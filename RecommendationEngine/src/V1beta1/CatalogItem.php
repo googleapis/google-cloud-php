@@ -24,7 +24,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Required. Catalog item categories. This field is repeated for supporting
      * one catalog item belonging to several parallel category hierarchies.
@@ -46,14 +46,14 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. Catalog item description. UTF-8 encoded string with a length
      * limit of 5 KiB.
      *
      * Generated from protobuf field <code>string description = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Highly encouraged. Extra catalog item attributes to be
      * included in the recommendation model. For example, for retail products,
@@ -63,7 +63,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap item_attributes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $item_attributes = null;
+    protected $item_attributes = null;
     /**
      * Optional. Language of the title/description/item_attributes. Use language
      * tags defined by BCP 47. https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Our
@@ -73,7 +73,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. Filtering tags associated with the catalog item. Each tag should
      * be a UTF-8 encoded string with a length limit of 1 KiB.
@@ -87,11 +87,11 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Variant group identifier for prediction results. UTF-8 encoded
      * string with a length limit of 128 bytes.
      * This field must be enabled before it can be used. [Learn
-     * more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
+     * more](/recommendations-ai/docs/catalog#item-group-id).
      *
      * Generated from protobuf field <code>string item_group_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $item_group_id = '';
+    protected $item_group_id = '';
     protected $recommendation_type;
 
     /**
@@ -144,7 +144,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *           Optional. Variant group identifier for prediction results. UTF-8 encoded
      *           string with a length limit of 128 bytes.
      *           This field must be enabled before it can be used. [Learn
-     *           more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
+     *           more](/recommendations-ai/docs/catalog#item-group-id).
      *     @type \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem $product_metadata
      *           Optional. Metadata specific to retail products.
      * }
@@ -402,7 +402,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Variant group identifier for prediction results. UTF-8 encoded
      * string with a length limit of 128 bytes.
      * This field must be enabled before it can be used. [Learn
-     * more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
+     * more](/recommendations-ai/docs/catalog#item-group-id).
      *
      * Generated from protobuf field <code>string item_group_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -416,7 +416,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Variant group identifier for prediction results. UTF-8 encoded
      * string with a length limit of 128 bytes.
      * This field must be enabled before it can be used. [Learn
-     * more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
+     * more](/recommendations-ai/docs/catalog#item-group-id).
      *
      * Generated from protobuf field <code>string item_group_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

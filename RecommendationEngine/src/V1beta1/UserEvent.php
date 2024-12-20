@@ -37,20 +37,20 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $event_type = '';
+    protected $event_type = '';
     /**
      * Required. User information.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserInfo user_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $user_info = null;
+    protected $user_info = null;
     /**
      * Optional. User event detailed information common across different
      * recommendation types.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.EventDetail event_detail = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_detail = null;
+    protected $event_detail = null;
     /**
      * Optional. Retail product specific user event metadata.
      * This field is required for the following event types:
@@ -73,21 +73,21 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ProductEventDetail product_event_detail = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $product_event_detail = null;
+    protected $product_event_detail = null;
     /**
      * Optional. Only required for ImportUserEvents method. Timestamp of user
      * event created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_time = null;
+    protected $event_time = null;
     /**
      * Optional. This field should *not* be set when using JavaScript pixel
      * or the Recommendations AI Tag. Defaults to `EVENT_SOURCE_UNSPECIFIED`.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserEvent.EventSource event_source = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_source = 0;
+    protected $event_source = 0;
 
     /**
      * Constructor.

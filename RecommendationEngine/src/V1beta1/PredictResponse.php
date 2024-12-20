@@ -29,7 +29,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recommendation_token = 2;</code>
      */
-    private $recommendation_token = '';
+    protected $recommendation_token = '';
     /**
      * IDs of items in the request that were missing from the catalog.
      *
@@ -41,7 +41,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool dry_run = 4;</code>
      */
-    private $dry_run = false;
+    protected $dry_run = false;
     /**
      * Additional domain specific prediction response metadata.
      *
@@ -54,7 +54,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 6;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
 
     /**
      * Constructor.
