@@ -291,7 +291,8 @@ class RequestHandlerTest extends TestCase
             'field_violations' => [
                 new FieldViolation([
                     'field' => 'foo',
-                    'description' => 'bar'
+                    'description' => 'bar',
+                    'reason' => 'REASON',
                 ])
             ]
         ]);
