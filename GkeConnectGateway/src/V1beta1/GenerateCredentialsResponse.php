@@ -20,14 +20,14 @@ class GenerateCredentialsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes kubeconfig = 1;</code>
      */
-    private $kubeconfig = '';
+    protected $kubeconfig = '';
     /**
      * The generated URI of the cluster as accessed through the Connect Gateway
      * API.
      *
      * Generated from protobuf field <code>string endpoint = 2;</code>
      */
-    private $endpoint = '';
+    protected $endpoint = '';
 
     /**
      * Constructor.
