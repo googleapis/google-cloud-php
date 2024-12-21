@@ -50,7 +50,7 @@ class AppEngineRouting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service = 1;</code>
      */
-    private $service = '';
+    protected $service = '';
     /**
      * App version.
      * By default, the task is sent to the version which is the default
@@ -70,7 +70,7 @@ class AppEngineRouting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * App instance.
      * By default, the task is sent to an instance which is available when
@@ -86,7 +86,7 @@ class AppEngineRouting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 3;</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * Output only. The host that the task is sent to.
      * The host is constructed from the domain name of the app associated with
@@ -101,7 +101,7 @@ class AppEngineRouting extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 4;</code>
      */
-    private $host = '';
+    protected $host = '';
 
     /**
      * Constructor.
