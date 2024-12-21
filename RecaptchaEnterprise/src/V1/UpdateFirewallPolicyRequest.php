@@ -20,14 +20,14 @@ class UpdateFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallPolicy firewall_policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firewall_policy = null;
+    protected $firewall_policy = null;
     /**
      * Optional. The mask to control which fields of the policy get updated. If
      * the mask is not present, all fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy $firewallPolicy Required. The policy to update.

@@ -20,7 +20,7 @@ class ScoreMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ScoreDistribution overall_metrics = 1;</code>
      */
-    private $overall_metrics = null;
+    protected $overall_metrics = null;
     /**
      * Action-based metrics. The map key is the action name which specified by the
      * site owners at time of the "execute" client-side call.

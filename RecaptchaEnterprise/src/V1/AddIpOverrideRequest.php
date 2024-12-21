@@ -21,13 +21,13 @@ class AddIpOverrideRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. IP override added to the key.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.IpOverrideData ip_override_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ip_override_data = null;
+    protected $ip_override_data = null;
 
     /**
      * @param string                                              $name           Required. The name of the key to which the IP override is added, in the

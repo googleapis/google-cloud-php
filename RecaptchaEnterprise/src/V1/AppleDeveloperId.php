@@ -22,20 +22,20 @@ class AppleDeveloperId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string private_key = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $private_key = '';
+    protected $private_key = '';
     /**
      * Required. The Apple developer key ID (10-character string).
      *
      * Generated from protobuf field <code>string key_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_id = '';
+    protected $key_id = '';
     /**
      * Required. The Apple team ID (10-character string) owning the provisioning
      * profile used to build your application.
      *
      * Generated from protobuf field <code>string team_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $team_id = '';
+    protected $team_id = '';
 
     /**
      * Constructor.

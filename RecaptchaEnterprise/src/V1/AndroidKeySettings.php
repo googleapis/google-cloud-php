@@ -20,7 +20,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_all_package_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_all_package_names = false;
+    protected $allow_all_package_names = false;
     /**
      * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
@@ -35,7 +35,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $support_non_google_app_store_distribution = false;
+    protected $support_non_google_app_store_distribution = false;
 
     /**
      * Constructor.
