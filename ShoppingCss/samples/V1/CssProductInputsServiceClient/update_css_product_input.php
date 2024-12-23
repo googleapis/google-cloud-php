@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,23 +22,18 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START css_v1_generated_CssProductInputsService_InsertCssProductInput_sync]
+// [START css_v1_generated_CssProductInputsService_UpdateCssProductInput_sync]
 use Google\ApiCore\ApiException;
 use Google\Shopping\Css\V1\Client\CssProductInputsServiceClient;
 use Google\Shopping\Css\V1\CssProductInput;
-use Google\Shopping\Css\V1\InsertCssProductInputRequest;
+use Google\Shopping\Css\V1\UpdateCssProductInputRequest;
 
 /**
- * Uploads a CssProductInput to your CSS Center account. If an
- * input with the same contentLanguage, identity, feedLabel and feedId already
- * exists, this method replaces that entry.
+ * Updates the existing Css Product input in your CSS Center account.
  *
- * After inserting, updating, or deleting a CSS Product input, it may
- * take several minutes before the processed CSS Product can be retrieved.
+ * After inserting, updating, or deleting a CSS Product input, it may take
+ * several minutes before the processed Css Product can be retrieved.
  *
- * @param string $formattedParent                The account where this CSS Product will be inserted.
- *                                               Format: accounts/{account}
- *                                               Please see {@see CssProductInputsServiceClient::accountName()} for help formatting this field.
  * @param string $cssProductInputRawProvidedId   Your unique identifier for the CSS Product. This is the same for
  *                                               the CSS Product input and processed CSS Product. We only allow ids with
  *                                               alphanumerics, underscores and dashes. See the [products feed
@@ -53,8 +48,7 @@ use Google\Shopping\Css\V1\InsertCssProductInputRequest;
  *                                               Feed Label is synonymous to "target country" and hence should always be a
  *                                               valid region code. For example: 'DE' for Germany, 'FR' for France.
  */
-function insert_css_product_input_sample(
-    string $formattedParent,
+function update_css_product_input_sample(
     string $cssProductInputRawProvidedId,
     string $cssProductInputContentLanguage,
     string $cssProductInputFeedLabel
@@ -67,14 +61,13 @@ function insert_css_product_input_sample(
         ->setRawProvidedId($cssProductInputRawProvidedId)
         ->setContentLanguage($cssProductInputContentLanguage)
         ->setFeedLabel($cssProductInputFeedLabel);
-    $request = (new InsertCssProductInputRequest())
-        ->setParent($formattedParent)
+    $request = (new UpdateCssProductInputRequest())
         ->setCssProductInput($cssProductInput);
 
     // Call the API and handle any network failures.
     try {
         /** @var CssProductInput $response */
-        $response = $cssProductInputsServiceClient->insertCssProductInput($request);
+        $response = $cssProductInputsServiceClient->updateCssProductInput($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -92,16 +85,14 @@ function insert_css_product_input_sample(
  */
 function callSample(): void
 {
-    $formattedParent = CssProductInputsServiceClient::accountName('[ACCOUNT]');
     $cssProductInputRawProvidedId = '[RAW_PROVIDED_ID]';
     $cssProductInputContentLanguage = '[CONTENT_LANGUAGE]';
     $cssProductInputFeedLabel = '[FEED_LABEL]';
 
-    insert_css_product_input_sample(
-        $formattedParent,
+    update_css_product_input_sample(
         $cssProductInputRawProvidedId,
         $cssProductInputContentLanguage,
         $cssProductInputFeedLabel
     );
 }
-// [END css_v1_generated_CssProductInputsService_InsertCssProductInput_sync]
+// [END css_v1_generated_CssProductInputsService_UpdateCssProductInput_sync]
