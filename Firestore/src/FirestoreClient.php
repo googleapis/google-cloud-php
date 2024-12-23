@@ -178,7 +178,7 @@ class FirestoreClient
      */
     public function batch()
     {
-        if (!class_exists(WriteBatch::class)) {
+        if (!class_exists(WriteBatch::class, false)) {
             class_alias(BulkWriter::class, WriteBatch::class);
         }
         return new BulkWriter(
