@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Apps\Meet\V2\Client\ConferenceRecordsServiceClient;
+Google\Apps\Meet\V2\ConferenceRecord;
+Google\Apps\Meet\V2\GetConferenceRecordRequest;
+
+// Create a client.
+$conferenceRecordsServiceClient = new ConferenceRecordsServiceClient();
+
+// Prepare the request message.
+$request = (new GetConferenceRecordRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var ConferenceRecord $response */
+    $response = $conferenceRecordsServiceClient->getConferenceRecord($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-apps-meet/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\Ads\AdManager\V1\AdUnit;
+Google\Ads\AdManager\V1\Client\AdUnitServiceClient;
+Google\Ads\AdManager\V1\GetAdUnitRequest;
+Google\ApiCore\ApiException;
+
+// Create a client.
+$adUnitServiceClient = new AdUnitServiceClient();
+
+// Prepare the request message.
+$request = (new GetAdUnitRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AdUnit $response */
+    $response = $adUnitServiceClient->getAdUnit($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-ads-ad-manager/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

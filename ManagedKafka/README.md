@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\ManagedKafka\V1\Client\ManagedKafkaClient;
+Google\Cloud\ManagedKafka\V1\Cluster;
+Google\Cloud\ManagedKafka\V1\GetClusterRequest;
+
+// Create a client.
+$managedKafkaClient = new ManagedKafkaClient();
+
+// Prepare the request message.
+$request = (new GetClusterRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Cluster $response */
+    $response = $managedKafkaClient->getCluster($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-managedkafka/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

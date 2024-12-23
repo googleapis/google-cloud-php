@@ -18,7 +18,6 @@
 namespace Google\Cloud\Dev\Command;
 
 use Google\Cloud\Dev\Composer;
-use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\NewComponent;
 use Google\Cloud\Dev\RunProcess;
 use Symfony\Component\Console\Command\Command;
@@ -30,7 +29,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client;
 use Twig\Loader\FilesystemLoader;
@@ -62,8 +60,6 @@ class AddComponentCommand extends Command
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
     private const OWLBOT_PHP_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
 
-    private $input;
-    private $output;
     private $rootPath;
     private $httpClient;
     private RunProcess $runProcess;

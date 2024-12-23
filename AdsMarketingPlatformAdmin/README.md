@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\Ads\MarketingPlatform\Admin\V1alpha\Client\MarketingplatformAdminServiceClient;
+Google\Ads\MarketingPlatform\Admin\V1alpha\GetOrganizationRequest;
+Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
+Google\ApiCore\ApiException;
+
+// Create a client.
+$marketingplatformAdminServiceClient = new MarketingplatformAdminServiceClient();
+
+// Prepare the request message.
+$request = (new GetOrganizationRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Organization $response */
+    $response = $marketingplatformAdminServiceClient->getOrganization($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-ads-marketingplatform-admin/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
