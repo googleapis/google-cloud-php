@@ -277,12 +277,14 @@ class InstanceAdminClientTest extends GeneratedTest
         $baseConfig = 'baseConfig1990483056';
         $etag = 'etag3123477';
         $reconciling = false;
+        $storageLimitPerProcessingUnit = 1769187130;
         $expectedResponse = new InstanceConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setBaseConfig($baseConfig);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setStorageLimitPerProcessingUnit($storageLimitPerProcessingUnit);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -884,12 +886,14 @@ class InstanceAdminClientTest extends GeneratedTest
         $baseConfig = 'baseConfig1990483056';
         $etag = 'etag3123477';
         $reconciling = false;
+        $storageLimitPerProcessingUnit = 1769187130;
         $expectedResponse = new InstanceConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setBaseConfig($baseConfig);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setStorageLimitPerProcessingUnit($storageLimitPerProcessingUnit);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
@@ -1816,12 +1820,14 @@ class InstanceAdminClientTest extends GeneratedTest
         $baseConfig = 'baseConfig1990483056';
         $etag = 'etag3123477';
         $reconciling = false;
+        $storageLimitPerProcessingUnit = 1769187130;
         $expectedResponse = new InstanceConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setBaseConfig($baseConfig);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setStorageLimitPerProcessingUnit($storageLimitPerProcessingUnit);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
