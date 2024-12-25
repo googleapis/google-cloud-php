@@ -23,9 +23,9 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      */
     protected $data_scan = null;
     /**
-     * Required. Mask of fields to update.
+     * Optional. Mask of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
@@ -40,7 +40,7 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\Dataplex\V1\DataScan $dataScan   Required. DataScan resource to be updated.
      *
      *                                                       Only fields specified in `update_mask` are updated.
-     * @param \Google\Protobuf\FieldMask         $updateMask Required. Mask of fields to update.
+     * @param \Google\Protobuf\FieldMask         $updateMask Optional. Mask of fields to update.
      *
      * @return \Google\Cloud\Dataplex\V1\UpdateDataScanRequest
      *
@@ -63,7 +63,7 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
      *           Required. DataScan resource to be updated.
      *           Only fields specified in `update_mask` are updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Mask of fields to update.
+     *           Optional. Mask of fields to update.
      *     @type bool $validate_only
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is `false`.
@@ -113,9 +113,9 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mask of fields to update.
+     * Optional. Mask of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -134,9 +134,9 @@ class UpdateDataScanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mask of fields to update.
+     * Optional. Mask of fields to update.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
