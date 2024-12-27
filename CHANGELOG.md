@@ -1,5 +1,242 @@
 # Changelog
 
+## 0.271.0
+
+<details><summary>google/cloud-compute 1.22.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.3.0</summary>
+
+
+
+### Features
+
+* A new field `agent_type` is added to message `.google.cloud.contactcenterinsights.v1.Conversation` ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+* A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/analyses/{analysis}` added to the resource definition `contactcenterinsights.googleapis.com/Analysis` ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+* A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}/feedbackLabels/{feedback_label}` added to the resource definition `contactcenterinsights.googleapis.com/FeedbackLabel` ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+* A new resource pattern value `projects/{project}/locations/{location}/authorizedViewSets/{authorized_view_set}/authorizedViews/{authorized_view}/conversations/{conversation}` added to the resource definition `contactcenter... ([#7952](https://github.com/googleapis/google-cloud-php/issues/7952)) ([8996bbe](https://github.com/googleapis/google-cloud-php/commit/8996bbeebbb3dcc43d627630986892147c962cd9))
+
+</details>
+
+<details><summary>google/cloud-core 1.61.0</summary>
+
+
+
+### Features
+
+* [Logging] Add resource labels to logs from Cloud Run ([#7642](https://github.com/googleapis/google-cloud-php/issues/7642)) ([06bd1bb](https://github.com/googleapis/google-cloud-php/commit/06bd1bbc0b503bc9fe179bb4e2b67dd4a0f3bec5))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.2.2</summary>
+
+
+
+### Documentation
+
+* Fix markdown reference in `TagTemplate.is_publicly_readable` comment ([#7938](https://github.com/googleapis/google-cloud-php/issues/7938)) ([fd71e0f](https://github.com/googleapis/google-cloud-php/commit/fd71e0f81dd6acdc21588161d6bcdefe18aa113f))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.2.0</summary>
+
+
+
+### Features
+
+* A new field `force` is added to message `.google.cloud.dataplex.v1.DeleteDataScanRequest` ([#7965](https://github.com/googleapis/google-cloud-php/issues/7965)) ([1d7c39e](https://github.com/googleapis/google-cloud-php/commit/1d7c39e5ffa7687404477d00d2af256c5ab1b3ba))
+
+
+### Documentation
+
+* Miscellaneous doc updates ([1d7c39e](https://github.com/googleapis/google-cloud-php/commit/1d7c39e5ffa7687404477d00d2af256c5ab1b3ba))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.18.0</summary>
+
+
+
+### Features
+
+* Add new fields for delivering intermediate transcriptions through PubSub ([#7932](https://github.com/googleapis/google-cloud-php/issues/7932)) ([7574722](https://github.com/googleapis/google-cloud-php/commit/75747228bf19769a1a1b195f59e3ba0eda69f606))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.2.0</summary>
+
+
+
+### Features
+
+* Added support for optionally disabling built-in GKE metrics ([#7962](https://github.com/googleapis/google-cloud-php/issues/7962)) ([f21a8f4](https://github.com/googleapis/google-cloud-php/commit/f21a8f4f51106a2080dabb216c3794dd528ec8ad))
+* Added tag bindings support for Attached Clusters ([f21a8f4](https://github.com/googleapis/google-cloud-php/commit/f21a8f4f51106a2080dabb216c3794dd528ec8ad))
+
+
+### Documentation
+
+* Updated comments of existing fields ([f21a8f4](https://github.com/googleapis/google-cloud-php/commit/f21a8f4f51106a2080dabb216c3794dd528ec8ad))
+
+</details>
+
+<details><summary>google/cloud-kms 2.1.5</summary>
+
+
+
+### Documentation
+
+* Code documentation improvements ([#7936](https://github.com/googleapis/google-cloud-php/issues/7936)) ([f44b09e](https://github.com/googleapis/google-cloud-php/commit/f44b09e582f55432c5ea82bbb6109d9e8aefa8de))
+
+</details>
+
+<details><summary>google/cloud-logging 1.32.0</summary>
+
+
+
+### Features
+
+* [Logging] Add resource labels to logs from Cloud Run ([#7642](https://github.com/googleapis/google-cloud-php/issues/7642)) ([06bd1bb](https://github.com/googleapis/google-cloud-php/commit/06bd1bbc0b503bc9fe179bb4e2b67dd4a0f3bec5))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.13.0</summary>
+
+
+
+### Features
+
+* Added PrometheusQueryLanguageCondition.disable_metric_validation ([b9ffca4](https://github.com/googleapis/google-cloud-php/commit/b9ffca4ec1a08f88b72628b677e638003fa2d21d))
+* Added SqlCondition in AlertPolicy ([#7933](https://github.com/googleapis/google-cloud-php/issues/7933)) ([b9ffca4](https://github.com/googleapis/google-cloud-php/commit/b9ffca4ec1a08f88b72628b677e638003fa2d21d))
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.2.2</summary>
+
+
+
+### Documentation
+
+* Update documentation for various messages ([#7955](https://github.com/googleapis/google-cloud-php/issues/7955)) ([8e0059d](https://github.com/googleapis/google-cloud-php/commit/8e0059dd9097257eb29fc770302c01fb24eb18f0))
+
+</details>
+
+<details><summary>google/shopping-css 0.4.0</summary>
+
+
+
+### Features
+
+* UpdateCssProduct is added to CssProductInput proto ([#7961](https://github.com/googleapis/google-cloud-php/issues/7961)) ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+
+
+### Documentation
+
+* A comment for field `applicable_countries` in message `.google.shopping.css.v1.CssProductStatus` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `approved_countries` in message `.google.shopping.css.v1.CssProductStatus` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `disapproved_countries` in message `.google.shopping.css.v1.CssProductStatus` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `feed_id` in message`.google.shopping.css.v1.InsertCssProductInputRequest` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `headline_offer_price` in message `.google.shopping.css.v1.Attributes` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `headline_offer_shipping_price` in message `.google.shopping.css.v1.Attributes` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `high_price` in message `.google.shopping.css.v1.Attributes` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `low_price` in message `.google.shopping.css.v1.Attributes` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `number_of_offers` in message `.google.shopping.css.v1.Attributes` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `page_size` in message `.google.shopping.css.v1.ListChildAccountsRequest` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `pending_countries` in message `.google.shopping.css.v1.CssProductStatus` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for field `servability` in message `.google.shopping.css.v1.CssProductStatus` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* A comment for message `CssProduct` is changed ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+* Mark `freshness_time` as deprecated ([305c0e8](https://github.com/googleapis/google-cloud-php/commit/305c0e8a57bc16f7eb6fa88973b5e03bbcaa68a5))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.92.0</summary>
+
+
+
+### Features
+
+* Exposing FreeInstanceAvailability in InstanceConfig ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing FreeInstanceMetadata in Instance configuration (to define the metadata related to FREE instance type) ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing InstanceType in Instance configuration (to define PROVISIONED or FREE spanner instance) ([#7937](https://github.com/googleapis/google-cloud-php/issues/7937)) ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing QuorumType in InstanceConfig ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* Exposing storage_limit_per_processing_unit in InstanceConfig ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+
+
+### Documentation
+
+* A comment for enum `DefaultBackupScheduleType` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `AUTOMATIC` in enum `DefaultBackupScheduleType` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `GOOGLE_MANAGED` in enum `Type` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `NONE` in enum `DefaultBackupScheduleType` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for enum value `USER_MANAGED` in enum `Type` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `base_config` in message `.google.spanner.admin.instance.v1.InstanceConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `default_backup_schedule_type` in message `.google.spanner.admin.instance.v1.Instance` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `filter` in message `.google.spanner.admin.instance.v1.ListInstanceConfigOperationsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `filter` in message `.google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `instance_config` in message `.google.spanner.admin.instance.v1.CreateInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `instance_partition_deadline` in message `.google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `location` in message `.google.spanner.admin.instance.v1.ReplicaInfo` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `node_count` in message `.google.spanner.admin.instance.v1.Instance` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `node_count` in message `.google.spanner.admin.instance.v1.InstancePartition` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `operations` in message `.google.spanner.admin.instance.v1.ListInstanceConfigOperationsResponse` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `operations` in message `.google.spanner.admin.instance.v1.ListInstancePartitionOperationsResponse` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `optional_replicas` in message `.google.spanner.admin.instance.v1.InstanceConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `parent` in message `.google.spanner.admin.instance.v1.ListInstancePartitionsRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `processing_units` in message `.google.spanner.admin.instance.v1.Instance` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `processing_units` in message `.google.spanner.admin.instance.v1.InstancePartition` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `referencing_backups` in message `.google.spanner.admin.instance.v1.InstancePartition` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `replicas` in message `.google.spanner.admin.instance.v1.InstanceConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `storage_utilization_percent` in message `.google.spanner.admin.instance.v1.AutoscalingConfig` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for field `unreachable` in message `.google.spanner.admin.instance.v1.ListInstancePartitionsResponse` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for message `CreateInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for message `DeleteInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for message `UpdateInstanceConfigRequest` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `CreateInstance` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `CreateInstanceConfig` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `CreateInstancePartition` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `ListInstanceConfigOperations` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `ListInstanceConfigs` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `ListInstancePartitionOperations` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `MoveInstance` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `UpdateInstance` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `UpdateInstanceConfig` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+* A comment for method `UpdateInstancePartition` in service `InstanceAdmin` is changed ([c9f8ad0](https://github.com/googleapis/google-cloud-php/commit/c9f8ad03c51d4aac73a9f137db7681f97b61bc73))
+
+</details>
+
+<details><summary>google/cloud-speech 1.20.0</summary>
+
+
+
+### Features
+
+* Expand the set of supported explicit audio encodings ([#7960](https://github.com/googleapis/google-cloud-php/issues/7960)) ([8e0b9f3](https://github.com/googleapis/google-cloud-php/commit/8e0b9f35fbe058432e5522a2e8181b877b7e2e03))
+
+
+### Documentation
+
+* Updated ExplicitDecodingConfig documentation to reflect changes related to newly supported encodings ([8e0b9f3](https://github.com/googleapis/google-cloud-php/commit/8e0b9f35fbe058432e5522a2e8181b877b7e2e03))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.1.0</summary>
+
+
+
+### Features
+
+* Support cross-bucket replication ([#7953](https://github.com/googleapis/google-cloud-php/issues/7953)) ([0890336](https://github.com/googleapis/google-cloud-php/commit/08903367cbe23ce116c2bc93e70c1a1fe4782f45))
+
+</details>
+
 ## 0.270.0
 
 <details><summary>google/cloud-access-approval 2.0.3</summary>
