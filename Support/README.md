@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Support\V2\Client\CaseServiceClient;
+Google\Cloud\Support\V2\GetCaseRequest;
+Google\Cloud\Support\V2\PBCase;
+
+// Create a client.
+$caseServiceClient = new CaseServiceClient();
+
+// Prepare the request message.
+$request = (new GetCaseRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var PBCase $response */
+    $response = $caseServiceClient->getCase($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](samples/) for a canonical list of samples.
 
 ### Debugging

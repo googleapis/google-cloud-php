@@ -33,6 +33,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
+Google\Cloud\Storage\Control\V2\Folder;
+Google\Cloud\Storage\Control\V2\GetFolderRequest;
+
+// Create a client.
+$storageControlClient = new StorageControlClient();
+
+// Prepare the request message.
+$request = (new GetFolderRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Folder $response */
+    $response = $storageControlClient->getFolder($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-storage-control/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

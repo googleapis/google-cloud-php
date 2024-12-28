@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Merchant\Promotions\V1beta\Client\PromotionsServiceClient;
+Google\Shopping\Merchant\Promotions\V1beta\GetPromotionRequest;
+Google\Shopping\Merchant\Promotions\V1beta\Promotion;
+
+// Create a client.
+$promotionsServiceClient = new PromotionsServiceClient();
+
+// Prepare the request message.
+$request = (new GetPromotionRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Promotion $response */
+    $response = $promotionsServiceClient->getPromotion($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-promotions/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

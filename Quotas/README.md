@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\CloudQuotas\V1\Client\CloudQuotasClient;
+Google\Cloud\CloudQuotas\V1\GetQuotaInfoRequest;
+Google\Cloud\CloudQuotas\V1\QuotaInfo;
+
+// Create a client.
+$cloudQuotasClient = new CloudQuotasClient();
+
+// Prepare the request message.
+$request = (new GetQuotaInfoRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var QuotaInfo $response */
+    $response = $cloudQuotasClient->getQuotaInfo($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-quotas/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

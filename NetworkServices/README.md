@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
+Google\Cloud\NetworkServices\V1\GetLbRouteExtensionRequest;
+Google\Cloud\NetworkServices\V1\LbRouteExtension;
+
+// Create a client.
+$depServiceClient = new DepServiceClient();
+
+// Prepare the request message.
+$request = (new GetLbRouteExtensionRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var LbRouteExtension $response */
+    $response = $depServiceClient->getLbRouteExtension($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-networkservices/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

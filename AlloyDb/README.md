@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\AlloyDb\V1\Backup;
+Google\Cloud\AlloyDb\V1\Client\AlloyDBAdminClient;
+Google\Cloud\AlloyDb\V1\GetBackupRequest;
+
+// Create a client.
+$alloyDBAdminClient = new AlloyDBAdminClient();
+
+// Prepare the request message.
+$request = (new GetBackupRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Backup $response */
+    $response = $alloyDBAdminClient->getBackup($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-alloydb/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

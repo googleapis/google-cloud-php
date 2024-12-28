@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\NetApp\V1\ActiveDirectory;
+Google\Cloud\NetApp\V1\Client\NetAppClient;
+Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
+
+// Create a client.
+$netAppClient = new NetAppClient();
+
+// Prepare the request message.
+$request = (new GetActiveDirectoryRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var ActiveDirectory $response */
+    $response = $netAppClient->getActiveDirectory($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-netapp/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
