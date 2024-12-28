@@ -66,6 +66,4 @@ class AssetValidationState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AssetValidationState::class, \Google\Cloud\PrivateCatalog\V1beta1\AssetReference_AssetValidationState::class);
 
