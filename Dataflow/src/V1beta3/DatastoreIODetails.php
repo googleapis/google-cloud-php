@@ -20,13 +20,13 @@ class DatastoreIODetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string namespace = 1;</code>
      */
-    private $namespace = '';
+    protected $namespace = '';
     /**
      * ProjectId accessed in the connection.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.

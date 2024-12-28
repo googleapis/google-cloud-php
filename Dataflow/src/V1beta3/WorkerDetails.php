@@ -20,7 +20,7 @@ class WorkerDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_name = 1;</code>
      */
-    private $worker_name = '';
+    protected $worker_name = '';
     /**
      * Work items processed by this worker, sorted by time.
      *

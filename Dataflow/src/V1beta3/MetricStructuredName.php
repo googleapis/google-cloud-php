@@ -22,13 +22,13 @@ class MetricStructuredName extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string origin = 1;</code>
      */
-    private $origin = '';
+    protected $origin = '';
     /**
      * Worker-defined metric name.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Zero or more labeled fields which identify the part of the job this
      * metric is associated with, such as the name of a step or collection.

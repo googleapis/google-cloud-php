@@ -21,7 +21,7 @@ class LaunchFlexTemplateResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.Job job = 1;</code>
      */
-    private $job = null;
+    protected $job = null;
 
     /**
      * Constructor.

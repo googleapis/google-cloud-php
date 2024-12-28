@@ -39,13 +39,13 @@ class TopologyConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 forwarding_key_bits = 4;</code>
      */
-    private $forwarding_key_bits = 0;
+    protected $forwarding_key_bits = 0;
     /**
      * Version number for persistent state.
      *
      * Generated from protobuf field <code>int32 persistent_state_version = 5;</code>
      */
-    private $persistent_state_version = 0;
+    protected $persistent_state_version = 0;
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class GetStageExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job to get execution details for.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -35,13 +35,13 @@ class GetStageExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * The stage for which to fetch information.
      *
      * Generated from protobuf field <code>string stage_id = 4;</code>
      */
-    private $stage_id = '';
+    protected $stage_id = '';
     /**
      * If specified, determines the maximum number of work items to
      * return.  If unspecified, the service may choose an appropriate
@@ -49,7 +49,7 @@ class GetStageExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If supplied, this should be the value of next_page_token returned
      * by an earlier call. This will cause the next page of results to
@@ -57,19 +57,19 @@ class GetStageExecutionDetailsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Lower time bound of work items to include, by start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Upper time bound of work items to include, by start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
 
     /**
      * Constructor.

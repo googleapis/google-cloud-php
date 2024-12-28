@@ -20,37 +20,37 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The project this snapshot belongs to.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job this snapshot was created from.
      *
      * Generated from protobuf field <code>string source_job_id = 3;</code>
      */
-    private $source_job_id = '';
+    protected $source_job_id = '';
     /**
      * The time this snapshot was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 4;</code>
      */
-    private $creation_time = null;
+    protected $creation_time = null;
     /**
      * The time after which this snapshot will be automatically deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 5;</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
     /**
      * State of the snapshot.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SnapshotState state = 6;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Pub/Sub snapshot metadata.
      *
@@ -62,20 +62,20 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 8;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The disk byte size of the snapshot. Only available for snapshots in READY
      * state.
      *
      * Generated from protobuf field <code>int64 disk_size_bytes = 9;</code>
      */
-    private $disk_size_bytes = 0;
+    protected $disk_size_bytes = 0;
     /**
      * Cloud region where this snapshot lives in, e.g., "us-central1".
      *
      * Generated from protobuf field <code>string region = 10;</code>
      */
-    private $region = '';
+    protected $region = '';
 
     /**
      * Constructor.

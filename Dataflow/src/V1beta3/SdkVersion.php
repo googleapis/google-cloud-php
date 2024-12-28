@@ -20,19 +20,19 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    private $version = '';
+    protected $version = '';
     /**
      * A readable string describing the version of the SDK.
      *
      * Generated from protobuf field <code>string version_display_name = 2;</code>
      */
-    private $version_display_name = '';
+    protected $version_display_name = '';
     /**
      * The support status for this SDK version.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SdkVersion.SdkSupportStatus sdk_support_status = 3;</code>
      */
-    private $sdk_support_status = 0;
+    protected $sdk_support_status = 0;
 
     /**
      * Constructor.

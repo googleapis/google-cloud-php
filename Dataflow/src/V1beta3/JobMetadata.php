@@ -21,7 +21,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.SdkVersion sdk_version = 1;</code>
      */
-    private $sdk_version = null;
+    protected $sdk_version = null;
     /**
      * Identification of a Spanner source used in the Dataflow job.
      *

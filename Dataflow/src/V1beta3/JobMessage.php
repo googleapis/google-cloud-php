@@ -20,25 +20,25 @@ class JobMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * The timestamp of the message.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2;</code>
      */
-    private $time = null;
+    protected $time = null;
     /**
      * The text of the message.
      *
      * Generated from protobuf field <code>string message_text = 3;</code>
      */
-    private $message_text = '';
+    protected $message_text = '';
     /**
      * Importance level of the message.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.JobMessageImportance message_importance = 4;</code>
      */
-    private $message_importance = 0;
+    protected $message_importance = 0;
 
     /**
      * Constructor.

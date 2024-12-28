@@ -20,26 +20,26 @@ class StageSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_name = 1;</code>
      */
-    private $user_name = '';
+    protected $user_name = '';
     /**
      * Dataflow service generated name for this source.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * User name for the original user transform or collection with which this
      * source is most closely associated.
      *
      * Generated from protobuf field <code>string original_transform_or_collection = 3;</code>
      */
-    private $original_transform_or_collection = '';
+    protected $original_transform_or_collection = '';
     /**
      * Size of the source, if measurable.
      *
      * Generated from protobuf field <code>int64 size_bytes = 4;</code>
      */
-    private $size_bytes = 0;
+    protected $size_bytes = 0;
 
     /**
      * Constructor.
@@ -171,6 +171,4 @@ class StageSource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StageSource::class, \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary_StageSource::class);
 

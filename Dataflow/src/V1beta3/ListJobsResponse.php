@@ -30,7 +30,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Zero or more messages describing the [regional endpoints]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
