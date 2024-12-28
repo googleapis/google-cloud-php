@@ -22,7 +22,7 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Optional. The unique stable account identifier used to search connections.
      * The identifier should correspond to an `account_id` provided in a previous
@@ -31,7 +31,7 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string account_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $account_id = '';
+    protected $account_id = '';
     /**
      * Optional. Deprecated: use `account_id` instead.
      * The unique stable hashed account identifier used to search connections. The
@@ -50,7 +50,7 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * `SearchRelatedAccountGroupMemberships` call. Provide this to retrieve the
@@ -61,7 +61,7 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $project         Required. The name of the project to search related account group

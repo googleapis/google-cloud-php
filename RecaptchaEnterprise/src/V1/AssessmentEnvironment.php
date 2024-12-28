@@ -27,13 +27,13 @@ class AssessmentEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $client = '';
+    protected $client = '';
     /**
      * Optional. The version of the client module. For example, "1.0.0".
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

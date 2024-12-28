@@ -21,14 +21,14 @@ class EndpointVerificationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_token = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $request_token = '';
+    protected $request_token = '';
     /**
      * Output only. Timestamp of the last successful verification for the
      * endpoint, if any.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_verification_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $last_verification_time = null;
+    protected $last_verification_time = null;
     protected $endpoint;
 
     /**

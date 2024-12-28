@@ -22,13 +22,13 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human-readable display name of this key. Modifiable by user.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. See [Creating and managing labels]
      * (https://cloud.google.com/recaptcha/docs/labels).
@@ -41,19 +41,19 @@ class Key extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Optional. Options for user acceptance testing.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $testing_options = null;
+    protected $testing_options = null;
     /**
      * Optional. Settings for WAF
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $waf_settings = null;
+    protected $waf_settings = null;
     protected $platform_settings;
 
     /**

@@ -24,46 +24,46 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool valid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $valid = false;
+    protected $valid = false;
     /**
      * Output only. Reason associated with the response when valid = false.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TokenProperties.InvalidReason invalid_reason = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invalid_reason = 0;
+    protected $invalid_reason = 0;
     /**
      * Output only. The timestamp corresponding to the generation of the token.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The hostname of the page on which the token was generated (Web
      * keys only).
      *
      * Generated from protobuf field <code>string hostname = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $hostname = '';
+    protected $hostname = '';
     /**
      * Output only. The name of the Android package with which the token was
      * generated (Android keys only).
      *
      * Generated from protobuf field <code>string android_package_name = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $android_package_name = '';
+    protected $android_package_name = '';
     /**
      * Output only. The ID of the iOS bundle with which the token was generated
      * (iOS keys only).
      *
      * Generated from protobuf field <code>string ios_bundle_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $ios_bundle_id = '';
+    protected $ios_bundle_id = '';
     /**
      * Output only. Action name provided at token generation.
      *
      * Generated from protobuf field <code>string action = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $action = '';
+    protected $action = '';
 
     /**
      * Constructor.
