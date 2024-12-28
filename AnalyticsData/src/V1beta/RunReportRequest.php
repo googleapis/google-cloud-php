@@ -26,7 +26,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * The dimensions requested and displayed.
      *
@@ -57,14 +57,14 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      */
-    private $dimension_filter = null;
+    protected $dimension_filter = null;
     /**
      * The filter clause of metrics. Applied after aggregating the report's rows,
      * similar to SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      */
-    private $metric_filter = null;
+    protected $metric_filter = null;
     /**
      * The row count of the start row. The first row is counted as row 0.
      * When paging, the first request does not specify offset; or equivalently,
@@ -76,7 +76,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 7;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The
      * API returns a maximum of 250,000 rows per request, no matter how many you
@@ -91,7 +91,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 8;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * Aggregation of metrics. Aggregated metric values will be shown in rows
      * where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -115,14 +115,14 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 11;</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Cohort group associated with this request. If there is a cohort group
      * in the request the 'cohort' dimension must be present.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.CohortSpec cohort_spec = 12;</code>
      */
-    private $cohort_spec = null;
+    protected $cohort_spec = null;
     /**
      * If false or unspecified, each row with all metrics equal to 0 will not be
      * returned. If true, these rows will be returned if they are not separately
@@ -135,14 +135,14 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool keep_empty_rows = 13;</code>
      */
-    private $keep_empty_rows = false;
+    protected $keep_empty_rows = false;
     /**
      * Toggles whether to return the current state of this Google Analytics
      * property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *
      * Generated from protobuf field <code>bool return_property_quota = 14;</code>
      */
-    private $return_property_quota = false;
+    protected $return_property_quota = false;
     /**
      * Optional. The configuration of comparisons requested and displayed. The
      * request only requires a comparisons field in order to receive a comparison

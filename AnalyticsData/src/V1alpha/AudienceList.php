@@ -24,7 +24,7 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The audience resource name. This resource name identifies the
      * audience being listed and is shared between the Analytics Data & Admin
@@ -33,14 +33,14 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audience = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audience = '';
+    protected $audience = '';
     /**
      * Output only. The descriptive display name for this audience. For example,
      * "Purchasers".
      *
      * Generated from protobuf field <code>string audience_display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $audience_display_name = '';
+    protected $audience_display_name = '';
     /**
      * Required. The dimensions requested and displayed in the query response.
      *
@@ -52,14 +52,14 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.AudienceList.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Output only. The time when CreateAudienceList was called and the
      * AudienceList began the `CREATING` state.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp begin_creating_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $begin_creating_time = null;
+    protected $begin_creating_time = null;
     /**
      * Output only. The total quota tokens charged during creation of the
      * AudienceList. Because this token count is based on activity from the
@@ -68,27 +68,27 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 creation_quota_tokens_charged = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $creation_quota_tokens_charged = 0;
+    protected $creation_quota_tokens_charged = 0;
     /**
      * Output only. The total number of rows in the AudienceList result.
      *
      * Generated from protobuf field <code>optional int32 row_count = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $row_count = null;
+    protected $row_count = null;
     /**
      * Output only. Error message is populated when an audience list fails during
      * creation. A common reason for such a failure is quota exhaustion.
      *
      * Generated from protobuf field <code>optional string error_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $error_message = null;
+    protected $error_message = null;
     /**
      * Output only. The percentage completed for this audience export ranging
      * between 0 to 100.
      *
      * Generated from protobuf field <code>optional double percentage_completed = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $percentage_completed = null;
+    protected $percentage_completed = null;
     /**
      * Output only. The recurring audience list that created this audience list.
      * Recurring audience lists create audience lists daily.
@@ -97,7 +97,7 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string recurring_audience_list = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $recurring_audience_list = null;
+    protected $recurring_audience_list = null;
     /**
      * Optional. Configures webhook notifications to be sent from the Google
      * Analytics Data API to your webhook server. Use of webhooks is optional. If
@@ -115,7 +115,7 @@ class AudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $webhook_notification = null;
+    protected $webhook_notification = null;
 
     /**
      * Constructor.

@@ -27,7 +27,7 @@ class ListRecurringAudienceListsResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>optional string next_page_token = 2;</code>
      */
-    private $next_page_token = null;
+    protected $next_page_token = null;
 
     /**
      * Constructor.

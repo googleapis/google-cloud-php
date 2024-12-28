@@ -27,7 +27,7 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 start_minutes_ago = 1;</code>
      */
-    private $start_minutes_ago = null;
+    protected $start_minutes_ago = null;
     /**
      * The inclusive end minute for the query as a number of minutes before now.
      * Cannot be before `startMinutesAgo`. For example, `"endMinutesAgo": 15`
@@ -40,7 +40,7 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 end_minutes_ago = 2;</code>
      */
-    private $end_minutes_ago = null;
+    protected $end_minutes_ago = null;
     /**
      * Assigns a name to this minute range. The dimension `dateRange` is valued to
      * this name in a report response. If set, cannot begin with `date_range_` or
@@ -49,7 +49,7 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
