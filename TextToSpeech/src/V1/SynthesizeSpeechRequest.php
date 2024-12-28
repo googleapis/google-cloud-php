@@ -20,25 +20,25 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $input = null;
+    protected $input = null;
     /**
      * Required. The desired voice of the synthesized audio.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $voice = null;
+    protected $voice = null;
     /**
      * Required. The configuration of the synthesized audio.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio_config = null;
+    protected $audio_config = null;
     /**
      * Advanced voice options.
      *
      * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8;</code>
      */
-    private $advanced_voice_options = null;
+    protected $advanced_voice_options = null;
 
     /**
      * @param \Google\Cloud\TextToSpeech\V1\SynthesisInput       $input       Required. The Synthesizer requires either plain text or SSML as input.

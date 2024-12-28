@@ -24,7 +24,7 @@ class SynthesizeSpeechResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes audio_content = 1;</code>
      */
-    private $audio_content = '';
+    protected $audio_content = '';
 
     /**
      * Constructor.
