@@ -28,7 +28,6 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Tests\Unit\Fixtures;
-use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -66,17 +65,6 @@ class ServiceBuilderTest extends TestCase
         $localConfigClient = $serviceBuilder->$serviceName($config);
 
         $this->assertInstanceOf($expectedClient, $localConfigClient);
-    }
-
-    public function testTranslateClientWithApiKey()
-    {
-        $this->checkAndSkipTest([TranslateClient::class]);
-
-        $config = ['key' => 'test_key'];
-        $serviceBuilder = new ServiceBuilder($config);
-
-        $this->assertInstanceOf(TranslateClient::class, $serviceBuilder->translate());
-        $this->assertInstanceOf(TranslateClient::class, $serviceBuilder->translate($config));
     }
 
     /**
@@ -187,9 +175,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'storage',
                 StorageClient::class
-            ], [
-                'translate',
-                TranslateClient::class
             ], [
                 'vision',
                 VisionClient::class

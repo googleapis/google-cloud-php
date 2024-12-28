@@ -23,7 +23,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     protected $source;
 
     /**

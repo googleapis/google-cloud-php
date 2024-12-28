@@ -22,19 +22,19 @@ class CreateGlossaryMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The current state of the glossary creation operation.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.CreateGlossaryMetadata.State state = 2;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The time when the operation was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 3;</code>
      */
-    private $submit_time = null;
+    protected $submit_time = null;
 
     /**
      * Constructor.

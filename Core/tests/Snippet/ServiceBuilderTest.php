@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 
 /**
@@ -64,7 +63,6 @@ class ServiceBuilderTest extends SnippetTestCase
             ['storage', StorageClient::class, 'storage'],
             ['trace', TraceClient::class, 'trace'],
             ['vision', VisionClient::class, 'vision'],
-            ['translate', TranslateClient::class, 'translate']
         ];
     }
 
