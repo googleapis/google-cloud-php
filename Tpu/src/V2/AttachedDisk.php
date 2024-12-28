@@ -22,7 +22,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_disk = 3;</code>
      */
-    private $source_disk = '';
+    protected $source_disk = '';
     /**
      * The mode in which to attach this disk.
      * If not specified, the default is READ_WRITE mode.
@@ -30,7 +30,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.AttachedDisk.DiskMode mode = 4;</code>
      */
-    private $mode = 0;
+    protected $mode = 0;
 
     /**
      * Constructor.

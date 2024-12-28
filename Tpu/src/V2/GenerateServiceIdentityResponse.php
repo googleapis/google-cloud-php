@@ -21,7 +21,7 @@ class GenerateServiceIdentityResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.ServiceIdentity identity = 1;</code>
      */
-    private $identity = null;
+    protected $identity = null;
 
     /**
      * Constructor.

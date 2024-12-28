@@ -20,13 +20,13 @@ class SchedulingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool preemptible = 1;</code>
      */
-    private $preemptible = false;
+    protected $preemptible = false;
     /**
      * Whether the node is created under a reservation.
      *
      * Generated from protobuf field <code>bool reserved = 2;</code>
      */
-    private $reserved = false;
+    protected $reserved = false;
 
     /**
      * Constructor.
