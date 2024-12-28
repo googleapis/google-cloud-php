@@ -35,7 +35,7 @@ class VideoClassificationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool apply_shot_detection = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $apply_shot_detection = false;
+    protected $apply_shot_detection = false;
 
     /**
      * Constructor.

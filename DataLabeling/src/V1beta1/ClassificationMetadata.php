@@ -20,7 +20,7 @@ class ClassificationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_multi_label = 1;</code>
      */
-    private $is_multi_label = false;
+    protected $is_multi_label = false;
 
     /**
      * Constructor.

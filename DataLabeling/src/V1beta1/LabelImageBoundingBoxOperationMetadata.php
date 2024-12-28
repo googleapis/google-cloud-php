@@ -20,7 +20,7 @@ class LabelImageBoundingBoxOperationMetadata extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.HumanAnnotationConfig basic_config = 1;</code>
      */
-    private $basic_config = null;
+    protected $basic_config = null;
 
     /**
      * Constructor.

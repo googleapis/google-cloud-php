@@ -21,7 +21,7 @@ class CreateInstructionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instruction = 1;</code>
      */
-    private $instruction = '';
+    protected $instruction = '';
     /**
      * Partial failures encountered.
      * E.g. single files that couldn't be read.
@@ -35,7 +35,7 @@ class CreateInstructionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

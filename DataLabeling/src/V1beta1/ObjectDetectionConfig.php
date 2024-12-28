@@ -24,13 +24,13 @@ class ObjectDetectionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
     /**
      * Required. Number of frames per second to be extracted from the video.
      *
      * Generated from protobuf field <code>double extraction_frame_rate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $extraction_frame_rate = 0.0;
+    protected $extraction_frame_rate = 0.0;
 
     /**
      * Constructor.

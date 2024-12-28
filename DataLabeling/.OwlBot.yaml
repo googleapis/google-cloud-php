@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/cloud/datalabeling/v1beta1/.*-php/(.*)
-      dest: /owl-bot-staging/DataLabeling/v1beta1/$1
+    - source: /google/cloud/datalabeling/(v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/DataLabeling/$1/$2
 api-name: DataLabeling

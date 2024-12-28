@@ -23,21 +23,21 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name for AnnotationSpecSet that you define when you
      * create it. Maximum of 64 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-provided description of the annotation specification set.
      * The description can be up to 10,000 characters long.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. The array of AnnotationSpecs that you define when you create the
      * AnnotationSpecSet. These are the possible labels for the labeling task.

@@ -20,7 +20,7 @@ class GcsFolderDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_folder_uri = 1;</code>
      */
-    private $output_folder_uri = '';
+    protected $output_folder_uri = '';
 
     /**
      * Constructor.

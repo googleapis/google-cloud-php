@@ -23,33 +23,33 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. Options used in the evaluation job that created this
      * evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationConfig config = 2;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * Output only. Timestamp for when the evaluation job that created this
      * evaluation ran.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp evaluation_job_run_time = 3;</code>
      */
-    private $evaluation_job_run_time = null;
+    protected $evaluation_job_run_time = null;
     /**
      * Output only. Timestamp for when this evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. Metrics comparing predictions to ground truth labels.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationMetrics evaluation_metrics = 5;</code>
      */
-    private $evaluation_metrics = null;
+    protected $evaluation_metrics = null;
     /**
      * Output only. Type of task that the model version being evaluated performs,
      * as defined in the
@@ -58,7 +58,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationType annotation_type = 6;</code>
      */
-    private $annotation_type = 0;
+    protected $annotation_type = 0;
     /**
      * Output only. The number of items in the ground truth dataset that were used
      * for this evaluation. Only populated when the evaulation is for certain
@@ -66,7 +66,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 evaluated_item_count = 7;</code>
      */
-    private $evaluated_item_count = 0;
+    protected $evaluated_item_count = 0;
 
     /**
      * Constructor.
