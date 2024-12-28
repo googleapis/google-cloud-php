@@ -22,7 +22,7 @@ class PurgeUserEventsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 purged_events_count = 1;</code>
      */
-    private $purged_events_count = 0;
+    protected $purged_events_count = 0;
     /**
      * A sampling of events deleted (or will be deleted) depending on the `force`
      * property in the request. Max of 500 items will be returned.

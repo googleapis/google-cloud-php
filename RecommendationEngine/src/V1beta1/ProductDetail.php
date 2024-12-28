@@ -21,35 +21,35 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $id = '';
+    protected $id = '';
     /**
      * Optional. Currency code for price/costs. Use three-character ISO-4217
      * code. Required only if originalPrice or displayPrice is set.
      *
      * Generated from protobuf field <code>string currency_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
     /**
      * Optional. Original price of the product. If provided, this will override
      * the original price in Catalog for this product.
      *
      * Generated from protobuf field <code>float original_price = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $original_price = 0.0;
+    protected $original_price = 0.0;
     /**
      * Optional. Display price of the product (e.g. discounted price). If
      * provided, this will override the display price in Catalog for this product.
      *
      * Generated from protobuf field <code>float display_price = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $display_price = 0.0;
+    protected $display_price = 0.0;
     /**
      * Optional. Item stock state. If provided, this overrides the stock state
      * in Catalog for items in this event.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ProductCatalogItem.StockState stock_state = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $stock_state = 0;
+    protected $stock_state = 0;
     /**
      * Optional. Quantity of the product associated with the user event. For
      * example, this field will be 2 if two products are added to the shopping
@@ -59,7 +59,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 quantity = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $quantity = 0;
+    protected $quantity = 0;
     /**
      * Optional. Quantity of the products in stock when a user event happens.
      * Optional. If provided, this overrides the available quantity in Catalog for
@@ -70,13 +70,13 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 available_quantity = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $available_quantity = 0;
+    protected $available_quantity = 0;
     /**
      * Optional. Extra features associated with a product in the user event.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap item_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $item_attributes = null;
+    protected $item_attributes = null;
 
     /**
      * Constructor.

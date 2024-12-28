@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,6 @@ use Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistration
 use Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration;
 use GuzzleHttp\Promise\PromiseInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service for registering API keys for use with the `predict` method. If you
@@ -88,9 +87,7 @@ final class PredictionApiKeyRegistryClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -105,7 +102,8 @@ final class PredictionApiKeyRegistryClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/prediction_api_key_registry_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/prediction_api_key_registry_rest_client_config.php',
                 ],
             ],
         ];
@@ -124,8 +122,12 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public static function eventStoreName(string $project, string $location, string $catalog, string $eventStore): string
-    {
+    public static function eventStoreName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $eventStore
+    ): string {
         return self::getPathTemplate('eventStore')->render([
             'project' => $project,
             'location' => $location,
@@ -148,8 +150,13 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public static function predictionApiKeyRegistrationName(string $project, string $location, string $catalog, string $eventStore, string $predictionApiKeyRegistration): string
-    {
+    public static function predictionApiKeyRegistrationName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $eventStore,
+        string $predictionApiKeyRegistration
+    ): string {
         return self::getPathTemplate('predictionApiKeyRegistration')->render([
             'project' => $project,
             'location' => $location,
@@ -172,8 +179,8 @@ final class PredictionApiKeyRegistryClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string  $formattedName The formatted name string
-     * @param ?string $template      Optional name of template to match
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -181,7 +188,7 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, ?string $template = null): array
+    public static function parseName(string $formattedName, string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -236,9 +243,6 @@ final class PredictionApiKeyRegistryClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
-     *     @type false|LoggerInterface $logger
-     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
-     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -287,8 +291,10 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public function createPredictionApiKeyRegistration(CreatePredictionApiKeyRegistrationRequest $request, array $callOptions = []): PredictionApiKeyRegistration
-    {
+    public function createPredictionApiKeyRegistration(
+        CreatePredictionApiKeyRegistrationRequest $request,
+        array $callOptions = []
+    ): PredictionApiKeyRegistration {
         return $this->startApiCall('CreatePredictionApiKeyRegistration', $request, $callOptions)->wait();
     }
 
@@ -315,8 +321,10 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public function deletePredictionApiKeyRegistration(DeletePredictionApiKeyRegistrationRequest $request, array $callOptions = []): void
-    {
+    public function deletePredictionApiKeyRegistration(
+        DeletePredictionApiKeyRegistrationRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeletePredictionApiKeyRegistration', $request, $callOptions)->wait();
     }
 
@@ -345,8 +353,10 @@ final class PredictionApiKeyRegistryClient
      *
      * @experimental
      */
-    public function listPredictionApiKeyRegistrations(ListPredictionApiKeyRegistrationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPredictionApiKeyRegistrations(
+        ListPredictionApiKeyRegistrationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPredictionApiKeyRegistrations', $request, $callOptions);
     }
 }

@@ -25,14 +25,14 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string visitor_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $visitor_id = '';
+    protected $visitor_id = '';
     /**
      * Optional. Unique identifier for logged-in user with a length limit of 128
      * bytes. Required only for logged-in users.
      *
      * Generated from protobuf field <code>string user_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_id = '';
+    protected $user_id = '';
     /**
      * Optional. IP address of the user. This could be either IPv4 (e.g. 104.133.9.80) or
      * IPv6 (e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334). This should *not* be
@@ -41,7 +41,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ip_address = '';
+    protected $ip_address = '';
     /**
      * Optional. User agent as included in the HTTP header. UTF-8 encoded string
      * with a length limit of 1 KiB.
@@ -50,7 +50,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_agent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_agent = '';
+    protected $user_agent = '';
     /**
      * Optional. Indicates if the request is made directly from the end user
      * in which case the user_agent and ip_address fields can be populated
@@ -61,7 +61,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool direct_user_request = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $direct_user_request = false;
+    protected $direct_user_request = false;
 
     /**
      * Constructor.

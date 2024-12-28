@@ -22,14 +22,14 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * Optional. The referrer url of the current page. When using
      * the JavaScript pixel, this value is filled in automatically.
      *
      * Generated from protobuf field <code>string referrer_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $referrer_uri = '';
+    protected $referrer_uri = '';
     /**
      * Optional. A unique id of a web page view.
      * This should be kept the same for all user events triggered from the same
@@ -41,7 +41,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_view_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_view_id = '';
+    protected $page_view_id = '';
     /**
      * Optional. A list of identifiers for the independent experiment groups
      * this user event belongs to. This is used to distinguish between user events
@@ -67,7 +67,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string recommendation_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $recommendation_token = '';
+    protected $recommendation_token = '';
     /**
      * Optional. Extra user event features to include in the recommendation
      * model.
@@ -78,7 +78,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap event_attributes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $event_attributes = null;
+    protected $event_attributes = null;
 
     /**
      * Constructor.

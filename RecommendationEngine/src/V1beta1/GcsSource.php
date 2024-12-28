@@ -22,7 +22,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
      * files, such as `gs://bucket/directory/&#42;.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
-     * [Importing catalog information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     * [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -41,7 +41,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           `gs://bucket/directory/object.json`) or a pattern matching one or more
      *           files, such as `gs://bucket/directory/&#42;.json`. A request can
      *           contain at most 100 files, and each file can be up to 2 GB. See
-     *           [Importing catalog information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     *           [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      *           for the expected file format and setup instructions.
      * }
      */
@@ -56,7 +56,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
      * files, such as `gs://bucket/directory/&#42;.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
-     * [Importing catalog information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     * [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -73,7 +73,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
      * files, such as `gs://bucket/directory/&#42;.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
-     * [Importing catalog information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     * [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>

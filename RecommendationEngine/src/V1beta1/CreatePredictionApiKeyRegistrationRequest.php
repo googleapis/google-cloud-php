@@ -21,13 +21,13 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The prediction API key registration.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $prediction_api_key_registration = null;
+    protected $prediction_api_key_registration = null;
 
     /**
      * @param string                                                                  $parent                       Required. The parent resource path.
