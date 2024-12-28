@@ -31,7 +31,7 @@ class Rotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $next_rotation_time = null;
+    protected $next_rotation_time = null;
     /**
      * Input only. The Duration between rotation notifications. Must be in seconds
      * and at least 3600s (1h) and at most 3153600000s (100 years).
@@ -46,7 +46,7 @@ class Rotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $rotation_period = null;
+    protected $rotation_period = null;
 
     /**
      * Constructor.

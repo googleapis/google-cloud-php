@@ -30,7 +30,7 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
 
     /**
      * Constructor.
