@@ -595,6 +595,41 @@ class ErrorReason
      * Generated from protobuf enum <code>LOCATION_POLICY_VIOLATED = 31;</code>
      */
     const LOCATION_POLICY_VIOLATED = 31;
+    /**
+     * The request is denied because origin request header is missing.
+     * Example of an ErrorInfo when
+     * accessing "pubsub.googleapis.com" service with an empty "Origin" request
+     * header.
+     * {
+     *   reason: "MISSING_ORIGIN"
+     *   domain: "googleapis.com"
+     *   metadata {
+     *     "consumer":"projects/123456"
+     *     "service": "pubsub.googleapis.com"
+     *   }
+     * }
+     *
+     * Generated from protobuf enum <code>MISSING_ORIGIN = 33;</code>
+     */
+    const MISSING_ORIGIN = 33;
+    /**
+     * The request is denied because the request contains more than one credential
+     * type that are individually acceptable, but not together. The customer
+     * should retry their request with only one set of credentials.
+     * Example of an ErrorInfo when
+     * accessing "pubsub.googleapis.com" service with overloaded credentials.
+     * {
+     *   reason: "OVERLOADED_CREDENTIALS"
+     *   domain: "googleapis.com"
+     *   metadata {
+     *     "consumer":"projects/123456"
+     *     "service": "pubsub.googleapis.com"
+     *   }
+     * }
+     *
+     * Generated from protobuf enum <code>OVERLOADED_CREDENTIALS = 34;</code>
+     */
+    const OVERLOADED_CREDENTIALS = 34;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -628,6 +663,8 @@ class ErrorReason
         self::SERVICE_NOT_VISIBLE => 'SERVICE_NOT_VISIBLE',
         self::GCP_SUSPENDED => 'GCP_SUSPENDED',
         self::LOCATION_POLICY_VIOLATED => 'LOCATION_POLICY_VIOLATED',
+        self::MISSING_ORIGIN => 'MISSING_ORIGIN',
+        self::OVERLOADED_CREDENTIALS => 'OVERLOADED_CREDENTIALS',
     ];
 
     public static function name($value)
