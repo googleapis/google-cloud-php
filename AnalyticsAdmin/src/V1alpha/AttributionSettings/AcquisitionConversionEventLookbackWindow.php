@@ -61,6 +61,4 @@ class AcquisitionConversionEventLookbackWindow
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AcquisitionConversionEventLookbackWindow::class, \Google\Analytics\Admin\V1alpha\AttributionSettings_AcquisitionConversionEventLookbackWindow::class);
 

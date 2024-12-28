@@ -29,7 +29,7 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool case_sensitive = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $case_sensitive = false;
+    protected $case_sensitive = false;
 
     /**
      * Constructor.
@@ -111,6 +111,4 @@ class InListFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InListFilter::class, \Google\Analytics\Admin\V1alpha\ExpandedDataSetFilter_InListFilter::class);
 

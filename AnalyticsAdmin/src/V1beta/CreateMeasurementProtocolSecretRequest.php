@@ -21,13 +21,13 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The measurement protocol secret to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.MeasurementProtocolSecret measurement_protocol_secret = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $measurement_protocol_secret = null;
+    protected $measurement_protocol_secret = null;
 
     /**
      * @param string                                                   $parent                    Required. The parent resource where this secret will be created.

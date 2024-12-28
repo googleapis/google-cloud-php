@@ -26,7 +26,7 @@ class AccessInListFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool case_sensitive = 2;</code>
      */
-    private $case_sensitive = false;
+    protected $case_sensitive = false;
 
     /**
      * Constructor.

@@ -83,6 +83,4 @@ class RetentionDuration
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RetentionDuration::class, \Google\Analytics\Admin\V1beta\DataRetentionSettings_RetentionDuration::class);
 

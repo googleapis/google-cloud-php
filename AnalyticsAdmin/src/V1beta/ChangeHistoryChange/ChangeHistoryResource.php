@@ -305,6 +305,4 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChangeHistoryResource::class, \Google\Analytics\Admin\V1beta\ChangeHistoryChange_ChangeHistoryResource::class);
 

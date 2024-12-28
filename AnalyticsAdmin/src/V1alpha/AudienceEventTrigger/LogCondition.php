@@ -60,6 +60,4 @@ class LogCondition
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LogCondition::class, \Google\Analytics\Admin\V1alpha\AudienceEventTrigger_LogCondition::class);
 

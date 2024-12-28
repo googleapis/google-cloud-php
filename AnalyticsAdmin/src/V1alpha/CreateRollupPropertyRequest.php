@@ -20,7 +20,7 @@ class CreateRollupPropertyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property rollup_property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollup_property = null;
+    protected $rollup_property = null;
     /**
      * Optional. The resource names of properties that will be sources to the
      * created roll-up property.

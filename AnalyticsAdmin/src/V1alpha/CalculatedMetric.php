@@ -21,21 +21,21 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Description for this calculated metric.
      * Max length of 4096 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. Display name for this calculated metric as shown in the
      * Google Analytics UI. Max length 82 characters.
      *
      * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The ID to use for the calculated metric. In the UI, this is
      * referred to as the "API name."
@@ -44,13 +44,13 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string calculated_metric_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $calculated_metric_id = '';
+    protected $calculated_metric_id = '';
     /**
      * Required. The type for the calculated metric's value.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric.MetricUnit metric_unit = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric_unit = 0;
+    protected $metric_unit = 0;
     /**
      * Output only. Types of restricted data that this metric contains.
      *
@@ -68,7 +68,7 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string formula = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $formula = '';
+    protected $formula = '';
     /**
      * Output only. If true, this calculated metric has a invalid metric
      * reference. Anything using a calculated metric with invalid_metric_reference
@@ -76,7 +76,7 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool invalid_metric_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invalid_metric_reference = false;
+    protected $invalid_metric_reference = false;
 
     /**
      * Constructor.

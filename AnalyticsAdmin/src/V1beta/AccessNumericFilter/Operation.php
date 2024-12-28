@@ -80,6 +80,4 @@ class Operation
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Operation::class, \Google\Analytics\Admin\V1beta\AccessNumericFilter_Operation::class);
 

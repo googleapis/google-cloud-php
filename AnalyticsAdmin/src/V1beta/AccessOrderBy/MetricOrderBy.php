@@ -20,7 +20,7 @@ class MetricOrderBy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_name = 1;</code>
      */
-    private $metric_name = '';
+    protected $metric_name = '';
 
     /**
      * Constructor.
@@ -65,6 +65,4 @@ class MetricOrderBy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MetricOrderBy::class, \Google\Analytics\Admin\V1beta\AccessOrderBy_MetricOrderBy::class);
 

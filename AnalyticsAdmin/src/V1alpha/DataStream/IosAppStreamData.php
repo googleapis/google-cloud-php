@@ -21,14 +21,14 @@ class IosAppStreamData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string firebase_app_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $firebase_app_id = '';
+    protected $firebase_app_id = '';
     /**
      * Required. Immutable. The Apple App Store Bundle ID for the app
      * Example: "com.example.myiosapp"
      *
      * Generated from protobuf field <code>string bundle_id = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bundle_id = '';
+    protected $bundle_id = '';
 
     /**
      * Constructor.
@@ -107,6 +107,4 @@ class IosAppStreamData extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IosAppStreamData::class, \Google\Analytics\Admin\V1alpha\DataStream_IosAppStreamData::class);
 

@@ -23,14 +23,14 @@ class DeleteConnectedSiteTagRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 1;</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Tag ID to forward events to. Also known as the Measurement ID, or the
      * "G-ID"  (For example: G-12345).
      *
      * Generated from protobuf field <code>string tag_id = 2;</code>
      */
-    private $tag_id = '';
+    protected $tag_id = '';
 
     /**
      * Constructor.

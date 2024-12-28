@@ -21,7 +21,7 @@ class CreatePropertyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $property = null;
+    protected $property = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\Property $property Required. The property to create.

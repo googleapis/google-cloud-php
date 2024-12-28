@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -105,7 +105,6 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Promise\PromiseInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Service Interface for the Analytics Admin API (GA4).
@@ -420,8 +419,11 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function measurementProtocolSecretName(string $property, string $dataStream, string $measurementProtocolSecret): string
-    {
+    public static function measurementProtocolSecretName(
+        string $property,
+        string $dataStream,
+        string $measurementProtocolSecret
+    ): string {
         return self::getPathTemplate('measurementProtocolSecret')->render([
             'property' => $property,
             'data_stream' => $dataStream,
@@ -487,8 +489,8 @@ final class AnalyticsAdminServiceClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string  $formattedName The formatted name string
-     * @param ?string $template      Optional name of template to match
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
@@ -496,7 +498,7 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function parseName(string $formattedName, ?string $template = null): array
+    public static function parseName(string $formattedName, string $template = null): array
     {
         return self::parseFormattedName($formattedName, $template);
     }
@@ -551,9 +553,6 @@ final class AnalyticsAdminServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
-     *     @type false|LoggerInterface $logger
-     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
-     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -605,8 +604,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function acknowledgeUserDataCollection(AcknowledgeUserDataCollectionRequest $request, array $callOptions = []): AcknowledgeUserDataCollectionResponse
-    {
+    public function acknowledgeUserDataCollection(
+        AcknowledgeUserDataCollectionRequest $request,
+        array $callOptions = []
+    ): AcknowledgeUserDataCollectionResponse {
         return $this->startApiCall('AcknowledgeUserDataCollection', $request, $callOptions)->wait();
     }
 
@@ -691,8 +692,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function createConversionEvent(CreateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function createConversionEvent(
+        CreateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('CreateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -720,8 +723,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCustomDimension(CreateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function createCustomDimension(
+        CreateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('CreateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -895,8 +900,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createMeasurementProtocolSecret(CreateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function createMeasurementProtocolSecret(
+        CreateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('CreateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -1123,8 +1130,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteMeasurementProtocolSecret(DeleteMeasurementProtocolSecretRequest $request, array $callOptions = []): void
-    {
+    public function deleteMeasurementProtocolSecret(
+        DeleteMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -1308,8 +1317,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRetentionSettings(GetDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function getDataRetentionSettings(
+        GetDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('GetDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -1338,8 +1349,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataSharingSettings(GetDataSharingSettingsRequest $request, array $callOptions = []): DataSharingSettings
-    {
+    public function getDataSharingSettings(
+        GetDataSharingSettingsRequest $request,
+        array $callOptions = []
+    ): DataSharingSettings {
         return $this->startApiCall('GetDataSharingSettings', $request, $callOptions)->wait();
     }
 
@@ -1423,8 +1436,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getMeasurementProtocolSecret(GetMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function getMeasurementProtocolSecret(
+        GetMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('GetMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -1480,8 +1495,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listAccountSummaries(ListAccountSummariesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAccountSummaries(
+        ListAccountSummariesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAccountSummaries', $request, $callOptions);
     }
 
@@ -1546,8 +1563,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listConversionEvents(ListConversionEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversionEvents(
+        ListConversionEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversionEvents', $request, $callOptions);
     }
 
@@ -1575,8 +1594,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCustomDimensions(ListCustomDimensionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomDimensions(
+        ListCustomDimensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomDimensions', $request, $callOptions);
     }
 
@@ -1751,8 +1772,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listMeasurementProtocolSecrets(ListMeasurementProtocolSecretsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMeasurementProtocolSecrets(
+        ListMeasurementProtocolSecretsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMeasurementProtocolSecrets', $request, $callOptions);
     }
 
@@ -1813,8 +1836,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function provisionAccountTicket(ProvisionAccountTicketRequest $request, array $callOptions = []): ProvisionAccountTicketResponse
-    {
+    public function provisionAccountTicket(
+        ProvisionAccountTicketRequest $request,
+        array $callOptions = []
+    ): ProvisionAccountTicketResponse {
         return $this->startApiCall('ProvisionAccountTicket', $request, $callOptions)->wait();
     }
 
@@ -1886,8 +1911,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function searchChangeHistoryEvents(SearchChangeHistoryEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchChangeHistoryEvents(
+        SearchChangeHistoryEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchChangeHistoryEvents', $request, $callOptions);
     }
 
@@ -1946,8 +1973,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function updateConversionEvent(UpdateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function updateConversionEvent(
+        UpdateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('UpdateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -1975,8 +2004,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCustomDimension(UpdateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function updateCustomDimension(
+        UpdateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('UpdateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -2033,8 +2064,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRetentionSettings(UpdateDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function updateDataRetentionSettings(
+        UpdateDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('UpdateDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -2148,8 +2181,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret(UpdateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function updateMeasurementProtocolSecret(
+        UpdateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('UpdateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 

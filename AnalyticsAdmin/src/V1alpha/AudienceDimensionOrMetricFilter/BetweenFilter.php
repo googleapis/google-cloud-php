@@ -21,13 +21,13 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceDimensionOrMetricFilter.NumericValue from_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $from_value = null;
+    protected $from_value = null;
     /**
      * Required. Ends with this number, inclusive.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceDimensionOrMetricFilter.NumericValue to_value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $to_value = null;
+    protected $to_value = null;
 
     /**
      * Constructor.
@@ -120,6 +120,4 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BetweenFilter::class, \Google\Analytics\Admin\V1alpha\AudienceDimensionOrMetricFilter_BetweenFilter::class);
 

@@ -23,7 +23,7 @@ class AudienceFilterClause extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterClause.AudienceClauseType clause_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $clause_type = 0;
+    protected $clause_type = 0;
     protected $filter;
 
     /**
