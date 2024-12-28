@@ -21,13 +21,13 @@ class UpdateReleaseConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The release config to update.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.ReleaseConfig release_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $release_config = null;
+    protected $release_config = null;
 
     /**
      * @param \Google\Cloud\Dataform\V1beta1\ReleaseConfig $releaseConfig Required. The release config to update.

@@ -20,7 +20,7 @@ class FetchFileDiffResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string formatted_diff = 1;</code>
      */
-    private $formatted_diff = '';
+    protected $formatted_diff = '';
 
     /**
      * Constructor.

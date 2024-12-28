@@ -20,7 +20,7 @@ class ComputeRepositoryAccessTokenStatusResponse extends \Google\Protobuf\Intern
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.ComputeRepositoryAccessTokenStatusResponse.TokenStatus token_status = 1;</code>
      */
-    private $token_status = 0;
+    protected $token_status = 0;
 
     /**
      * Constructor.

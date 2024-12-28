@@ -28,20 +28,20 @@ class WorkspaceCompilationOverrides extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_database = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $default_database = '';
+    protected $default_database = '';
     /**
      * Optional. The suffix that should be appended to all schema (BigQuery
      * dataset ID) names.
      *
      * Generated from protobuf field <code>string schema_suffix = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $schema_suffix = '';
+    protected $schema_suffix = '';
     /**
      * Optional. The prefix that should be prepended to all table names.
      *
      * Generated from protobuf field <code>string table_prefix = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $table_prefix = '';
+    protected $table_prefix = '';
 
     /**
      * Constructor.

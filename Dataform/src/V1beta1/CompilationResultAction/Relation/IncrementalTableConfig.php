@@ -21,13 +21,13 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string incremental_select_query = 1;</code>
      */
-    private $incremental_select_query = '';
+    protected $incremental_select_query = '';
     /**
      * Whether this table should be protected from being refreshed.
      *
      * Generated from protobuf field <code>bool refresh_disabled = 2;</code>
      */
-    private $refresh_disabled = false;
+    protected $refresh_disabled = false;
     /**
      * A set of columns or SQL expressions used to define row uniqueness.
      * If any duplicates are discovered (as defined by `unique_key_parts`),
@@ -44,7 +44,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string update_partition_filter = 4;</code>
      */
-    private $update_partition_filter = '';
+    protected $update_partition_filter = '';
     /**
      * SQL statements to be executed before inserting new rows into the
      * relation.

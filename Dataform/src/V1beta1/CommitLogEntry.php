@@ -20,25 +20,25 @@ class CommitLogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 1;</code>
      */
-    private $commit_time = null;
+    protected $commit_time = null;
     /**
      * The commit SHA for this commit log entry.
      *
      * Generated from protobuf field <code>string commit_sha = 2;</code>
      */
-    private $commit_sha = '';
+    protected $commit_sha = '';
     /**
      * The commit author for this commit log entry.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 3;</code>
      */
-    private $author = null;
+    protected $author = null;
     /**
      * The commit message for this commit log entry.
      *
      * Generated from protobuf field <code>string commit_message = 4;</code>
      */
-    private $commit_message = '';
+    protected $commit_message = '';
 
     /**
      * Constructor.

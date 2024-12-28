@@ -20,13 +20,13 @@ class CommitMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitAuthor author = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $author = null;
+    protected $author = null;
     /**
      * Optional. The commit's message.
      *
      * Generated from protobuf field <code>string commit_message = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $commit_message = '';
+    protected $commit_message = '';
 
     /**
      * Constructor.
