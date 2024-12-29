@@ -32,7 +32,7 @@ class MinimalConversation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * Constructor.

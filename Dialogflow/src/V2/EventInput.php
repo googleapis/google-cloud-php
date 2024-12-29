@@ -24,7 +24,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The collection of parameters associated with the event.
      * Depending on your protocol or client library language, this is a
@@ -41,7 +41,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
     /**
      * Required. The language of this query. See [Language
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
@@ -54,7 +54,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerFeedback.CorrectnessLevel correctness_level = 1;</code>
      */
-    private $correctness_level = 0;
+    protected $correctness_level = 0;
     /**
      * Indicates whether the answer/item was clicked by the human agent
      * or not. Default to false.
@@ -30,26 +30,26 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool clicked = 3;</code>
      */
-    private $clicked = false;
+    protected $clicked = false;
     /**
      * Time when the answer/item was clicked.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp click_time = 5;</code>
      */
-    private $click_time = null;
+    protected $click_time = null;
     /**
      * Indicates whether the answer/item was displayed to the human
      * agent in the agent desktop UI. Default to false.
      *
      * Generated from protobuf field <code>bool displayed = 4;</code>
      */
-    private $displayed = false;
+    protected $displayed = false;
     /**
      * Time when the answer/item was displayed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp display_time = 6;</code>
      */
-    private $display_time = null;
+    protected $display_time = null;
     protected $detail_feedback;
 
     /**

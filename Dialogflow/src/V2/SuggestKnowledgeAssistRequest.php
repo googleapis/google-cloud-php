@@ -23,7 +23,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. The name of the latest conversation message to compile
      * suggestions for. If empty, it will be the latest message of the
@@ -32,7 +32,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Optional. Max number of messages prior to and including
      * [latest_message][google.cloud.dialogflow.v2.SuggestKnowledgeAssistRequest.latest_message]
@@ -41,7 +41,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 context_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
     /**
      * Optional. The previously suggested query for the given conversation. This
      * helps identify whether the next suggestion we generate is resonably
@@ -50,7 +50,7 @@ class SuggestKnowledgeAssistRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string previous_suggested_query = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $previous_suggested_query = '';
+    protected $previous_suggested_query = '';
 
     /**
      * Constructor.

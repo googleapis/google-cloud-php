@@ -22,7 +22,7 @@ class GetConversationModelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The conversation model to retrieve. Format:

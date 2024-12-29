@@ -34,13 +34,13 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $session = '';
+    protected $session = '';
     /**
      * The parameters of this query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryParameters query_params = 2;</code>
      */
-    private $query_params = null;
+    protected $query_params = null;
     /**
      * Required. The input specification. It can be set to:
      * 1. an audio config which instructs the speech recognizer how to process
@@ -50,7 +50,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryInput query_input = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query_input = null;
+    protected $query_input = null;
     /**
      * Instructs the speech synthesizer how to generate the output
      * audio. If this field is not set and agent-level speech synthesizer is not
@@ -58,7 +58,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
      */
-    private $output_audio_config = null;
+    protected $output_audio_config = null;
     /**
      * Mask for
      * [output_audio_config][google.cloud.dialogflow.v2.DetectIntentRequest.output_audio_config]
@@ -70,7 +70,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      */
-    private $output_audio_config_mask = null;
+    protected $output_audio_config_mask = null;
     /**
      * The natural language speech audio to be processed. This field
      * should be populated iff `query_input` is set to an input audio config.
@@ -78,7 +78,7 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes input_audio = 5;</code>
      */
-    private $input_audio = '';
+    protected $input_audio = '';
 
     /**
      * @param string                                 $session    Required. The name of the session this query is sent to. Format:

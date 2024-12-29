@@ -23,13 +23,13 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The natural language text query for knowledge search.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextInput query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = null;
+    protected $query = null;
     /**
      * Required. The conversation profile used to configure the search.
      * Format: `projects/<Project ID>/locations/<Location
@@ -37,7 +37,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation_profile = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $conversation_profile = '';
+    protected $conversation_profile = '';
     /**
      * Required. The ID of the search session.
      * The session_id can be combined with Dialogflow V3 Agent ID retrieved from
@@ -49,7 +49,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $session_id = '';
+    protected $session_id = '';
     /**
      * Optional. The conversation (between human agent and end user) where the
      * search request is triggered. Format: `projects/<Project
@@ -57,7 +57,7 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string conversation = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $conversation = '';
+    protected $conversation = '';
     /**
      * Optional. The name of the latest conversation message when the request is
      * triggered.
@@ -66,13 +66,13 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Optional. The source of the query in the request.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.QuerySource query_source = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $query_source = 0;
+    protected $query_source = 0;
     /**
      * Optional. Information about the end-user to improve the relevance and
      * accuracy of generative answers.
@@ -91,19 +91,19 @@ class SearchKnowledgeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct end_user_metadata = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $end_user_metadata = null;
+    protected $end_user_metadata = null;
     /**
      * Optional. Configuration specific to search queries with data stores.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig search_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $search_config = null;
+    protected $search_config = null;
     /**
      * Optional. Whether to search the query exactly without query rewrite.
      *
      * Generated from protobuf field <code>bool exact_search = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $exact_search = false;
+    protected $exact_search = false;
 
     /**
      * Constructor.

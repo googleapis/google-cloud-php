@@ -20,14 +20,14 @@ class Part extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
-    private $text = '';
+    protected $text = '';
     /**
      * Optional. The entity type name prefixed with `&#64;`.
      * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $entity_type = '';
+    protected $entity_type = '';
     /**
      * Optional. The parameter name for the value extracted from the
      * annotated part of the example.
@@ -35,7 +35,7 @@ class Part extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alias = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $alias = '';
+    protected $alias = '';
     /**
      * Optional. Indicates whether the text was manually annotated.
      * This field is set to true when the Dialogflow Console is used to
@@ -44,7 +44,7 @@ class Part extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool user_defined = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $user_defined = false;
+    protected $user_defined = false;
 
     /**
      * Constructor.

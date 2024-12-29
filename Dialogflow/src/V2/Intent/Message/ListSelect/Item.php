@@ -20,25 +20,25 @@ class Item extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $info = null;
+    protected $info = null;
     /**
      * Required. The title of the list item.
      *
      * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * Optional. The main text describing the item.
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. The image to display.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $image = null;
+    protected $image = null;
 
     /**
      * Constructor.

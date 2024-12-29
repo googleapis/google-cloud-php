@@ -20,7 +20,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Fulfillment.Feature.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionFeature suggestion_feature = 5;</code>
      */
-    private $suggestion_feature = null;
+    protected $suggestion_feature = null;
     /**
      * Automatically iterates all participants and tries to compile
      * suggestions.
@@ -29,7 +29,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_event_based_suggestion = 3;</code>
      */
-    private $enable_event_based_suggestion = false;
+    protected $enable_event_based_suggestion = false;
     /**
      * Optional. Disable the logging of search queries sent by human agents. It
      * can prevent those queries from being stored at answer records.
@@ -37,7 +37,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_agent_query_logging = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_agent_query_logging = false;
+    protected $disable_agent_query_logging = false;
     /**
      * Optional. Enable query suggestion even if we can't find its answer.
      * By default, queries are suggested only if we find its answer.
@@ -45,46 +45,46 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_query_suggestion_when_no_answer = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_query_suggestion_when_no_answer = false;
+    protected $enable_query_suggestion_when_no_answer = false;
     /**
      * Optional. Enable including conversation context during query answer
      * generation. Supported features: KNOWLEDGE_SEARCH.
      *
      * Generated from protobuf field <code>bool enable_conversation_augmented_query = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_conversation_augmented_query = false;
+    protected $enable_conversation_augmented_query = false;
     /**
      * Optional. Enable query suggestion only.
      * Supported features: KNOWLEDGE_ASSIST
      *
      * Generated from protobuf field <code>bool enable_query_suggestion_only = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $enable_query_suggestion_only = false;
+    protected $enable_query_suggestion_only = false;
     /**
      * Settings of suggestion trigger.
      * Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionTriggerSettings suggestion_trigger_settings = 10;</code>
      */
-    private $suggestion_trigger_settings = null;
+    protected $suggestion_trigger_settings = null;
     /**
      * Configs of query.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig query_config = 6;</code>
      */
-    private $query_config = null;
+    protected $query_config = null;
     /**
      * Configs of custom conversation model.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig conversation_model_config = 7;</code>
      */
-    private $conversation_model_config = null;
+    protected $conversation_model_config = null;
     /**
      * Configs for processing conversation.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationProcessConfig conversation_process_config = 8;</code>
      */
-    private $conversation_process_config = null;
+    protected $conversation_process_config = null;
 
     /**
      * Constructor.

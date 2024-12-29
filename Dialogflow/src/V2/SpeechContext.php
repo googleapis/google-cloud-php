@@ -42,7 +42,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float boost = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $boost = 0.0;
+    protected $boost = 0.0;
 
     /**
      * Constructor.

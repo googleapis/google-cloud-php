@@ -35,7 +35,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string fulfillment_text = 1;</code>
      */
-    private $fulfillment_text = '';
+    protected $fulfillment_text = '';
     /**
      * Optional. The rich response messages intended for the end-user.
      * When provided, Dialogflow uses this field to populate
@@ -54,7 +54,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source = 3;</code>
      */
-    private $source = '';
+    protected $source = '';
     /**
      * Optional. This field can be used to pass custom data from your webhook to
      * the integration or API caller. Arbitrary JSON objects are supported. When
@@ -69,7 +69,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 4;</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * Optional. The collection of output contexts that will overwrite currently
      * active contexts for the session and reset their lifespans.
@@ -87,7 +87,7 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EventInput followup_event_input = 6;</code>
      */
-    private $followup_event_input = null;
+    protected $followup_event_input = null;
     /**
      * Optional. Additional session entity types to replace or extend developer
      * entity types with. The entity synonyms apply to all languages and persist

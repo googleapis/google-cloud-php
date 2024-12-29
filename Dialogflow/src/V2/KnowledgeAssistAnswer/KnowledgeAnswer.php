@@ -21,7 +21,7 @@ class KnowledgeAnswer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string answer_text = 1;</code>
      */
-    private $answer_text = '';
+    protected $answer_text = '';
     protected $source;
 
     /**

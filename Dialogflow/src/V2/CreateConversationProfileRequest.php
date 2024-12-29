@@ -22,13 +22,13 @@ class CreateConversationProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The conversation profile to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile conversation_profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $conversation_profile = null;
+    protected $conversation_profile = null;
 
     /**
      * @param string                                          $parent              Required. The project to create a conversation profile for.

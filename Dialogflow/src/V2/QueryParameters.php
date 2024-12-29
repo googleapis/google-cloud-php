@@ -23,13 +23,13 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 1;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * The geo location of this conversational query.
      *
      * Generated from protobuf field <code>.google.type.LatLng geo_location = 2;</code>
      */
-    private $geo_location = null;
+    protected $geo_location = null;
     /**
      * The collection of contexts to be activated before this query is
      * executed.
@@ -43,7 +43,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reset_contexts = 4;</code>
      */
-    private $reset_contexts = false;
+    protected $reset_contexts = false;
     /**
      * Additional session entity types to replace or extend developer
      * entity types with. The entity synonyms apply to all languages and persist
@@ -61,14 +61,14 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      */
-    private $payload = null;
+    protected $payload = null;
     /**
      * Configures the type of sentiment analysis to perform. If not
      * provided, sentiment analysis is not performed.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
      */
-    private $sentiment_analysis_request_config = null;
+    protected $sentiment_analysis_request_config = null;
     /**
      * This field can be used to pass HTTP headers for a webhook
      * call. These headers will be sent to webhook along with the headers that
@@ -91,7 +91,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string platform = 18;</code>
      */
-    private $platform = '';
+    protected $platform = '';
 
     /**
      * Constructor.

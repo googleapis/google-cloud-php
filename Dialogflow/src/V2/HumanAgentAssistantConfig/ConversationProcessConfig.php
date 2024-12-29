@@ -21,7 +21,7 @@ class ConversationProcessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 recent_sentences_count = 2;</code>
      */
-    private $recent_sentences_count = 0;
+    protected $recent_sentences_count = 0;
 
     /**
      * Constructor.

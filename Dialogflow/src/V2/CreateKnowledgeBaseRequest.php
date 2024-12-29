@@ -22,13 +22,13 @@ class CreateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The knowledge base to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeBase knowledge_base = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $knowledge_base = null;
+    protected $knowledge_base = null;
 
     /**
      * @param string                                    $parent        Required. The project to create a knowledge base for.

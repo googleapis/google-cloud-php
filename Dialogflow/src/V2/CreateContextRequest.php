@@ -26,13 +26,13 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The context to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $context = null;
+    protected $context = null;
 
     /**
      * @param string                              $parent  Required. The session to create a context for.
