@@ -92,9 +92,9 @@ class StorageClientTest extends TestCase
 
     public function testGetsSoftDeletedBuckets()
     {
-        $this->connection->listBuckets(Argument::allOf(
+        $this->connection->listBuckets(
             Argument::withEntry('softDeleted', true)
-        ))->willReturn([
+        )->willReturn([
             'items' => [
                 ['name' => 'bucket1']
             ]

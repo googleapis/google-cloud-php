@@ -271,7 +271,7 @@ class StorageClient
      * }
      * @return Bucket
      */
-    public function restore($name, $generation, array $options = [])
+    public function restore(string $name, string $generation, array $options = [])
     {
         $res = $this->connection->restoreBucket([
             'bucket' => $name,
