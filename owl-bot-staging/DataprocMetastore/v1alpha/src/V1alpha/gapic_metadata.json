@@ -1,0 +1,197 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.metastore.v1alpha",
+    "libraryPackage": "Google\\Cloud\\Metastore\\V1alpha",
+    "services": {
+        "DataprocMetastore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataprocMetastoreGapicClient",
+                    "rpcs": {
+                        "AlterMetadataResourceLocation": {
+                            "methods": [
+                                "alterMetadataResourceLocation"
+                            ]
+                        },
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
+                        "CreateMetadataImport": {
+                            "methods": [
+                                "createMetadataImport"
+                            ]
+                        },
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "ExportMetadata": {
+                            "methods": [
+                                "exportMetadata"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetMetadataImport": {
+                            "methods": [
+                                "getMetadataImport"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListMetadataImports": {
+                            "methods": [
+                                "listMetadataImports"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "MoveTableToDatabase": {
+                            "methods": [
+                                "moveTableToDatabase"
+                            ]
+                        },
+                        "QueryMetadata": {
+                            "methods": [
+                                "queryMetadata"
+                            ]
+                        },
+                        "RemoveIamPolicy": {
+                            "methods": [
+                                "removeIamPolicy"
+                            ]
+                        },
+                        "RestoreService": {
+                            "methods": [
+                                "restoreService"
+                            ]
+                        },
+                        "UpdateMetadataImport": {
+                            "methods": [
+                                "updateMetadataImport"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataprocMetastoreFederation": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataprocMetastoreFederationGapicClient",
+                    "rpcs": {
+                        "CreateFederation": {
+                            "methods": [
+                                "createFederation"
+                            ]
+                        },
+                        "DeleteFederation": {
+                            "methods": [
+                                "deleteFederation"
+                            ]
+                        },
+                        "GetFederation": {
+                            "methods": [
+                                "getFederation"
+                            ]
+                        },
+                        "ListFederations": {
+                            "methods": [
+                                "listFederations"
+                            ]
+                        },
+                        "UpdateFederation": {
+                            "methods": [
+                                "updateFederation"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
