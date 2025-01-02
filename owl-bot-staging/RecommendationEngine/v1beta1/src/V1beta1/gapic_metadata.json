@@ -1,0 +1,120 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.recommendationengine.v1beta1",
+    "libraryPackage": "Google\\Cloud\\RecommendationEngine\\V1beta1",
+    "services": {
+        "CatalogService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CatalogServiceGapicClient",
+                    "rpcs": {
+                        "CreateCatalogItem": {
+                            "methods": [
+                                "createCatalogItem"
+                            ]
+                        },
+                        "DeleteCatalogItem": {
+                            "methods": [
+                                "deleteCatalogItem"
+                            ]
+                        },
+                        "GetCatalogItem": {
+                            "methods": [
+                                "getCatalogItem"
+                            ]
+                        },
+                        "ImportCatalogItems": {
+                            "methods": [
+                                "importCatalogItems"
+                            ]
+                        },
+                        "ListCatalogItems": {
+                            "methods": [
+                                "listCatalogItems"
+                            ]
+                        },
+                        "UpdateCatalogItem": {
+                            "methods": [
+                                "updateCatalogItem"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PredictionApiKeyRegistry": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionApiKeyRegistryGapicClient",
+                    "rpcs": {
+                        "CreatePredictionApiKeyRegistration": {
+                            "methods": [
+                                "createPredictionApiKeyRegistration"
+                            ]
+                        },
+                        "DeletePredictionApiKeyRegistration": {
+                            "methods": [
+                                "deletePredictionApiKeyRegistration"
+                            ]
+                        },
+                        "ListPredictionApiKeyRegistrations": {
+                            "methods": [
+                                "listPredictionApiKeyRegistrations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PredictionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionServiceGapicClient",
+                    "rpcs": {
+                        "Predict": {
+                            "methods": [
+                                "predict"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserEventService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserEventServiceGapicClient",
+                    "rpcs": {
+                        "CollectUserEvent": {
+                            "methods": [
+                                "collectUserEvent"
+                            ]
+                        },
+                        "ImportUserEvents": {
+                            "methods": [
+                                "importUserEvents"
+                            ]
+                        },
+                        "ListUserEvents": {
+                            "methods": [
+                                "listUserEvents"
+                            ]
+                        },
+                        "PurgeUserEvents": {
+                            "methods": [
+                                "purgeUserEvents"
+                            ]
+                        },
+                        "WriteUserEvent": {
+                            "methods": [
+                                "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
