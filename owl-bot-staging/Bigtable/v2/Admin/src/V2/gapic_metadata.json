@@ -1,0 +1,282 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.bigtable.admin.v2",
+    "libraryPackage": "Google\\Cloud\\Bigtable\\Admin\\V2",
+    "services": {
+        "BigtableInstanceAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BigtableInstanceAdminGapicClient",
+                    "rpcs": {
+                        "CreateAppProfile": {
+                            "methods": [
+                                "createAppProfile"
+                            ]
+                        },
+                        "CreateCluster": {
+                            "methods": [
+                                "createCluster"
+                            ]
+                        },
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteAppProfile": {
+                            "methods": [
+                                "deleteAppProfile"
+                            ]
+                        },
+                        "DeleteCluster": {
+                            "methods": [
+                                "deleteCluster"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetAppProfile": {
+                            "methods": [
+                                "getAppProfile"
+                            ]
+                        },
+                        "GetCluster": {
+                            "methods": [
+                                "getCluster"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListAppProfiles": {
+                            "methods": [
+                                "listAppProfiles"
+                            ]
+                        },
+                        "ListClusters": {
+                            "methods": [
+                                "listClusters"
+                            ]
+                        },
+                        "ListHotTablets": {
+                            "methods": [
+                                "listHotTablets"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "PartialUpdateCluster": {
+                            "methods": [
+                                "partialUpdateCluster"
+                            ]
+                        },
+                        "PartialUpdateInstance": {
+                            "methods": [
+                                "partialUpdateInstance"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateAppProfile": {
+                            "methods": [
+                                "updateAppProfile"
+                            ]
+                        },
+                        "UpdateCluster": {
+                            "methods": [
+                                "updateCluster"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "BigtableTableAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BigtableTableAdminGapicClient",
+                    "rpcs": {
+                        "CheckConsistency": {
+                            "methods": [
+                                "checkConsistency"
+                            ]
+                        },
+                        "CopyBackup": {
+                            "methods": [
+                                "copyBackup"
+                            ]
+                        },
+                        "CreateAuthorizedView": {
+                            "methods": [
+                                "createAuthorizedView"
+                            ]
+                        },
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
+                        "CreateTable": {
+                            "methods": [
+                                "createTable"
+                            ]
+                        },
+                        "CreateTableFromSnapshot": {
+                            "methods": [
+                                "createTableFromSnapshot"
+                            ]
+                        },
+                        "DeleteAuthorizedView": {
+                            "methods": [
+                                "deleteAuthorizedView"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteSnapshot": {
+                            "methods": [
+                                "deleteSnapshot"
+                            ]
+                        },
+                        "DeleteTable": {
+                            "methods": [
+                                "deleteTable"
+                            ]
+                        },
+                        "DropRowRange": {
+                            "methods": [
+                                "dropRowRange"
+                            ]
+                        },
+                        "GenerateConsistencyToken": {
+                            "methods": [
+                                "generateConsistencyToken"
+                            ]
+                        },
+                        "GetAuthorizedView": {
+                            "methods": [
+                                "getAuthorizedView"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetSnapshot": {
+                            "methods": [
+                                "getSnapshot"
+                            ]
+                        },
+                        "GetTable": {
+                            "methods": [
+                                "getTable"
+                            ]
+                        },
+                        "ListAuthorizedViews": {
+                            "methods": [
+                                "listAuthorizedViews"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListSnapshots": {
+                            "methods": [
+                                "listSnapshots"
+                            ]
+                        },
+                        "ListTables": {
+                            "methods": [
+                                "listTables"
+                            ]
+                        },
+                        "ModifyColumnFamilies": {
+                            "methods": [
+                                "modifyColumnFamilies"
+                            ]
+                        },
+                        "RestoreTable": {
+                            "methods": [
+                                "restoreTable"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "SnapshotTable": {
+                            "methods": [
+                                "snapshotTable"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UndeleteTable": {
+                            "methods": [
+                                "undeleteTable"
+                            ]
+                        },
+                        "UpdateAuthorizedView": {
+                            "methods": [
+                                "updateAuthorizedView"
+                            ]
+                        },
+                        "UpdateBackup": {
+                            "methods": [
+                                "updateBackup"
+                            ]
+                        },
+                        "UpdateTable": {
+                            "methods": [
+                                "updateTable"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
