@@ -1,0 +1,107 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.apps.meet.v2beta",
+    "libraryPackage": "Google\\Apps\\Meet\\V2beta",
+    "services": {
+        "SpacesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SpacesServiceGapicClient",
+                    "rpcs": {
+                        "CreateSpace": {
+                            "methods": [
+                                "createSpace"
+                            ]
+                        },
+                        "EndActiveConference": {
+                            "methods": [
+                                "endActiveConference"
+                            ]
+                        },
+                        "GetSpace": {
+                            "methods": [
+                                "getSpace"
+                            ]
+                        },
+                        "UpdateSpace": {
+                            "methods": [
+                                "updateSpace"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConferenceRecordsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConferenceRecordsServiceGapicClient",
+                    "rpcs": {
+                        "GetConferenceRecord": {
+                            "methods": [
+                                "getConferenceRecord"
+                            ]
+                        },
+                        "GetParticipant": {
+                            "methods": [
+                                "getParticipant"
+                            ]
+                        },
+                        "GetParticipantSession": {
+                            "methods": [
+                                "getParticipantSession"
+                            ]
+                        },
+                        "GetRecording": {
+                            "methods": [
+                                "getRecording"
+                            ]
+                        },
+                        "GetTranscript": {
+                            "methods": [
+                                "getTranscript"
+                            ]
+                        },
+                        "GetTranscriptEntry": {
+                            "methods": [
+                                "getTranscriptEntry"
+                            ]
+                        },
+                        "ListConferenceRecords": {
+                            "methods": [
+                                "listConferenceRecords"
+                            ]
+                        },
+                        "ListParticipantSessions": {
+                            "methods": [
+                                "listParticipantSessions"
+                            ]
+                        },
+                        "ListParticipants": {
+                            "methods": [
+                                "listParticipants"
+                            ]
+                        },
+                        "ListRecordings": {
+                            "methods": [
+                                "listRecordings"
+                            ]
+                        },
+                        "ListTranscriptEntries": {
+                            "methods": [
+                                "listTranscriptEntries"
+                            ]
+                        },
+                        "ListTranscripts": {
+                            "methods": [
+                                "listTranscripts"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
