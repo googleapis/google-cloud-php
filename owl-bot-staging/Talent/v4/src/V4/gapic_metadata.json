@@ -1,0 +1,164 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.talent.v4",
+    "libraryPackage": "Google\\Cloud\\Talent\\V4",
+    "services": {
+        "CompanyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompanyServiceGapicClient",
+                    "rpcs": {
+                        "CreateCompany": {
+                            "methods": [
+                                "createCompany"
+                            ]
+                        },
+                        "DeleteCompany": {
+                            "methods": [
+                                "deleteCompany"
+                            ]
+                        },
+                        "GetCompany": {
+                            "methods": [
+                                "getCompany"
+                            ]
+                        },
+                        "ListCompanies": {
+                            "methods": [
+                                "listCompanies"
+                            ]
+                        },
+                        "UpdateCompany": {
+                            "methods": [
+                                "updateCompany"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Completion": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompletionGapicClient",
+                    "rpcs": {
+                        "CompleteQuery": {
+                            "methods": [
+                                "completeQuery"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EventService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EventServiceGapicClient",
+                    "rpcs": {
+                        "CreateClientEvent": {
+                            "methods": [
+                                "createClientEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "JobService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "JobServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateJobs": {
+                            "methods": [
+                                "batchCreateJobs"
+                            ]
+                        },
+                        "BatchDeleteJobs": {
+                            "methods": [
+                                "batchDeleteJobs"
+                            ]
+                        },
+                        "BatchUpdateJobs": {
+                            "methods": [
+                                "batchUpdateJobs"
+                            ]
+                        },
+                        "CreateJob": {
+                            "methods": [
+                                "createJob"
+                            ]
+                        },
+                        "DeleteJob": {
+                            "methods": [
+                                "deleteJob"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        },
+                        "SearchJobs": {
+                            "methods": [
+                                "searchJobs"
+                            ]
+                        },
+                        "SearchJobsForAlert": {
+                            "methods": [
+                                "searchJobsForAlert"
+                            ]
+                        },
+                        "UpdateJob": {
+                            "methods": [
+                                "updateJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TenantService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TenantServiceGapicClient",
+                    "rpcs": {
+                        "CreateTenant": {
+                            "methods": [
+                                "createTenant"
+                            ]
+                        },
+                        "DeleteTenant": {
+                            "methods": [
+                                "deleteTenant"
+                            ]
+                        },
+                        "GetTenant": {
+                            "methods": [
+                                "getTenant"
+                            ]
+                        },
+                        "ListTenants": {
+                            "methods": [
+                                "listTenants"
+                            ]
+                        },
+                        "UpdateTenant": {
+                            "methods": [
+                                "updateTenant"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
