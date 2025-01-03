@@ -18,7 +18,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the target catalog, in the format of
-     * `catalogs/{catalog}'.
+     * `catalogs/{catalog}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -56,7 +56,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the target catalog, in the format of
-     *           `catalogs/{catalog}'.
+     *           `catalogs/{catalog}`.
      *     @type string $display_name
      *           Output only. The descriptive name of the catalog as it appears in UIs.
      *     @type string $description
@@ -74,7 +74,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the target catalog, in the format of
-     * `catalogs/{catalog}'.
+     * `catalogs/{catalog}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -86,7 +86,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the target catalog, in the format of
-     * `catalogs/{catalog}'.
+     * `catalogs/{catalog}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

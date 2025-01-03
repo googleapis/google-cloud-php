@@ -18,7 +18,7 @@ class Version extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      * A unique identifier for the version under a product.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -60,7 +60,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the version, in the format
-     *           `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     *           `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      *           A unique identifier for the version under a product.
      *     @type string $description
      *           Output only. The user-supplied description of the version. Maximum of 256
@@ -82,7 +82,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      * A unique identifier for the version under a product.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -95,7 +95,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the version, in the format
-     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]'.
+     * `catalogs/{catalog}/products/{product}/versions/[a-z][-a-z0-9]*[a-z0-9]`.
      * A unique identifier for the version under a product.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
