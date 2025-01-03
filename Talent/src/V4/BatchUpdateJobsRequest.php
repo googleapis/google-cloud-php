@@ -40,7 +40,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      * is provided, The [Job][google.cloud.talent.v4.Job] inside
-     * [JobResult][JobOperationResult.JobResult]
+     * [JobResult][google.cloud.talent.v4.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
      * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      * which can yield a very large response.
@@ -92,7 +92,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *           top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      *           If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      *           is provided, The [Job][google.cloud.talent.v4.Job] inside
-     *           [JobResult][JobOperationResult.JobResult]
+     *           [JobResult][google.cloud.talent.v4.JobResult]
      *           will only contains fields that is updated, plus the Id of the Job.
      *           Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      *           which can yield a very large response.
@@ -171,7 +171,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      * is provided, The [Job][google.cloud.talent.v4.Job] inside
-     * [JobResult][JobOperationResult.JobResult]
+     * [JobResult][google.cloud.talent.v4.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
      * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      * which can yield a very large response.
@@ -204,7 +204,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      * If [update_mask][google.cloud.talent.v4.BatchUpdateJobsRequest.update_mask]
      * is provided, The [Job][google.cloud.talent.v4.Job] inside
-     * [JobResult][JobOperationResult.JobResult]
+     * [JobResult][google.cloud.talent.v4.JobResult]
      * will only contains fields that is updated, plus the Id of the Job.
      * Otherwise,  [Job][google.cloud.talent.v4.Job] will include all fields,
      * which can yield a very large response.

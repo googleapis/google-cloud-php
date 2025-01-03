@@ -69,7 +69,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      * [PostingRegion.TELECOMMUTE][google.cloud.talent.v4.PostingRegion.TELECOMMUTE]
      * and have additional [Job.addresses][google.cloud.talent.v4.Job.addresses]
      * may still be matched based on other location filters using
-     * [address][google.cloud.talent.v4.LocationFilter.address] or [latlng][].
+     * [address][google.cloud.talent.v4.LocationFilter.address] or
+     * [lat_lng][google.cloud.talent.v4.LocationFilter.lat_lng].
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -126,7 +127,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *           [PostingRegion.TELECOMMUTE][google.cloud.talent.v4.PostingRegion.TELECOMMUTE]
      *           and have additional [Job.addresses][google.cloud.talent.v4.Job.addresses]
      *           may still be matched based on other location filters using
-     *           [address][google.cloud.talent.v4.LocationFilter.address] or [latlng][].
+     *           [address][google.cloud.talent.v4.LocationFilter.address] or
+     *           [lat_lng][google.cloud.talent.v4.LocationFilter.lat_lng].
      *           This filter can be used by itself to search exclusively for telecommuting
      *           jobs, or it can be combined with another location
      *           filter to search for a combination of job locations,
@@ -299,7 +301,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      * [PostingRegion.TELECOMMUTE][google.cloud.talent.v4.PostingRegion.TELECOMMUTE]
      * and have additional [Job.addresses][google.cloud.talent.v4.Job.addresses]
      * may still be matched based on other location filters using
-     * [address][google.cloud.talent.v4.LocationFilter.address] or [latlng][].
+     * [address][google.cloud.talent.v4.LocationFilter.address] or
+     * [lat_lng][google.cloud.talent.v4.LocationFilter.lat_lng].
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -332,7 +335,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      * [PostingRegion.TELECOMMUTE][google.cloud.talent.v4.PostingRegion.TELECOMMUTE]
      * and have additional [Job.addresses][google.cloud.talent.v4.Job.addresses]
      * may still be matched based on other location filters using
-     * [address][google.cloud.talent.v4.LocationFilter.address] or [latlng][].
+     * [address][google.cloud.talent.v4.LocationFilter.address] or
+     * [lat_lng][google.cloud.talent.v4.LocationFilter.lat_lng].
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,

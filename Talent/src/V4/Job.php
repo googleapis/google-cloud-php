@@ -93,13 +93,16 @@ class Job extends \Google\Protobuf\Internal\Message
      * to group the locations that close to each other in the same job for better
      * search experience.
      * Jobs with multiple addresses must have their addresses with the same
-     * [LocationType][] to allow location filtering to work properly. (For
-     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     * CA, USA" and "London, UK" may not have location filters applied correctly
-     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     * addresses, it is suggested to split it into multiple jobs with same
-     * LocationTypes.
+     * [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     * location filtering to work properly. (For example, a Job with addresses
+     * "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     * not have location filters applied correctly at search time since the first
+     * is a
+     * [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     * and the second is a
+     * [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     * If a job needs to have multiple addresses, it is suggested to split it into
+     * multiple jobs with same LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -300,10 +303,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      * must be set before
      * [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     * purpose of this feature is to allow other objects, such as [Application][],
-     * to refer a job that didn't exist in the system prior to becoming expired.
-     * If you want to modify a job that was expired on creation, delete it and
-     * create a new one.
+     * purpose of this feature is to allow other objects, such as
+     * [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     * job that didn't exist in the system prior to becoming expired. If you want
+     * to modify a job that was expired on creation, delete it and create a new
+     * one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
@@ -412,13 +416,16 @@ class Job extends \Google\Protobuf\Internal\Message
      *           to group the locations that close to each other in the same job for better
      *           search experience.
      *           Jobs with multiple addresses must have their addresses with the same
-     *           [LocationType][] to allow location filtering to work properly. (For
-     *           example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     *           CA, USA" and "London, UK" may not have location filters applied correctly
-     *           at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     *           second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     *           addresses, it is suggested to split it into multiple jobs with same
-     *           LocationTypes.
+     *           [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     *           location filtering to work properly. (For example, a Job with addresses
+     *           "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     *           not have location filters applied correctly at search time since the first
+     *           is a
+     *           [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     *           and the second is a
+     *           [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     *           If a job needs to have multiple addresses, it is suggested to split it into
+     *           multiple jobs with same LocationTypes.
      *           The maximum number of allowed characters is 500.
      *     @type \Google\Cloud\Talent\V4\Job\ApplicationInfo $application_info
      *           Job application information.
@@ -542,10 +549,11 @@ class Job extends \Google\Protobuf\Internal\Message
      *           [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      *           must be set before
      *           [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     *           purpose of this feature is to allow other objects, such as [Application][],
-     *           to refer a job that didn't exist in the system prior to becoming expired.
-     *           If you want to modify a job that was expired on creation, delete it and
-     *           create a new one.
+     *           purpose of this feature is to allow other objects, such as
+     *           [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     *           job that didn't exist in the system prior to becoming expired. If you want
+     *           to modify a job that was expired on creation, delete it and create a new
+     *           one.
      *           If this value isn't provided at the time of job creation or is invalid,
      *           the job posting expires after 30 days from the job's creation time. For
      *           example, if the job was created on 2017/01/01 13:00AM UTC with an
@@ -777,13 +785,16 @@ class Job extends \Google\Protobuf\Internal\Message
      * to group the locations that close to each other in the same job for better
      * search experience.
      * Jobs with multiple addresses must have their addresses with the same
-     * [LocationType][] to allow location filtering to work properly. (For
-     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     * CA, USA" and "London, UK" may not have location filters applied correctly
-     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     * addresses, it is suggested to split it into multiple jobs with same
-     * LocationTypes.
+     * [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     * location filtering to work properly. (For example, a Job with addresses
+     * "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     * not have location filters applied correctly at search time since the first
+     * is a
+     * [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     * and the second is a
+     * [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     * If a job needs to have multiple addresses, it is suggested to split it into
+     * multiple jobs with same LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -812,13 +823,16 @@ class Job extends \Google\Protobuf\Internal\Message
      * to group the locations that close to each other in the same job for better
      * search experience.
      * Jobs with multiple addresses must have their addresses with the same
-     * [LocationType][] to allow location filtering to work properly. (For
-     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
-     * CA, USA" and "London, UK" may not have location filters applied correctly
-     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
-     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
-     * addresses, it is suggested to split it into multiple jobs with same
-     * LocationTypes.
+     * [LocationType][google.cloud.talent.v4.Location.LocationType] to allow
+     * location filtering to work properly. (For example, a Job with addresses
+     * "1600 Amphitheatre Parkway, Mountain View, CA, USA" and "London, UK" may
+     * not have location filters applied correctly at search time since the first
+     * is a
+     * [LocationType.STREET_ADDRESS][google.cloud.talent.v4.Location.LocationType.STREET_ADDRESS]
+     * and the second is a
+     * [LocationType.LOCALITY][google.cloud.talent.v4.Location.LocationType.LOCALITY].)
+     * If a job needs to have multiple addresses, it is suggested to split it into
+     * multiple jobs with same LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -1499,10 +1513,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      * must be set before
      * [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     * purpose of this feature is to allow other objects, such as [Application][],
-     * to refer a job that didn't exist in the system prior to becoming expired.
-     * If you want to modify a job that was expired on creation, delete it and
-     * create a new one.
+     * purpose of this feature is to allow other objects, such as
+     * [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     * job that didn't exist in the system prior to becoming expired. If you want
+     * to modify a job that was expired on creation, delete it and create a new
+     * one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
@@ -1562,10 +1577,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * [posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      * must be set before
      * [posting_expire_time][google.cloud.talent.v4.Job.posting_expire_time]. The
-     * purpose of this feature is to allow other objects, such as [Application][],
-     * to refer a job that didn't exist in the system prior to becoming expired.
-     * If you want to modify a job that was expired on creation, delete it and
-     * create a new one.
+     * purpose of this feature is to allow other objects, such as
+     * [ApplicationInfo][google.cloud.talent.v4.Job.ApplicationInfo], to refer a
+     * job that didn't exist in the system prior to becoming expired. If you want
+     * to modify a job that was expired on creation, delete it and create a new
+     * one.
      * If this value isn't provided at the time of job creation or is invalid,
      * the job posting expires after 30 days from the job's creation time. For
      * example, if the job was created on 2017/01/01 13:00AM UTC with an
