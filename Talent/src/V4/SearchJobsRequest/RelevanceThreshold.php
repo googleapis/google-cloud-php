@@ -76,6 +76,4 @@ class RelevanceThreshold
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RelevanceThreshold::class, \Google\Cloud\Talent\V4\SearchJobsRequest_RelevanceThreshold::class);
 
