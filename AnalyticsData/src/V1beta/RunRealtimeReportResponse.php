@@ -62,14 +62,14 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 row_count = 7;</code>
      */
-    private $row_count = 0;
+    protected $row_count = 0;
     /**
      * This Google Analytics property's Realtime quota state including this
      * request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 8;</code>
      */
-    private $property_quota = null;
+    protected $property_quota = null;
     /**
      * Identifies what kind of resource this message is. This `kind` is always the
      * fixed string "analyticsData#runRealtimeReport". Useful to distinguish
@@ -77,7 +77,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 9;</code>
      */
-    private $kind = '';
+    protected $kind = '';
 
     /**
      * Constructor.
