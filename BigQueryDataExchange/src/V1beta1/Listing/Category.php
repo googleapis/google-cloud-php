@@ -138,6 +138,4 @@ class Category
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Category::class, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing_Category::class);
 
