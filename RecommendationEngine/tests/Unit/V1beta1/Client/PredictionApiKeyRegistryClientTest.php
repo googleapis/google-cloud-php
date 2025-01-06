@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,9 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PredictionApiKeyRegistryClient */
@@ -89,7 +91,10 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getPredictionApiKeyRegistration();
@@ -108,12 +113,15 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
@@ -146,15 +154,23 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-        $request = (new DeletePredictionApiKeyRegistrationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->predictionApiKeyRegistrationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CATALOG]',
+            '[EVENT_STORE]',
+            '[PREDICTION_API_KEY_REGISTRATION]'
+        );
+        $request = (new DeletePredictionApiKeyRegistrationRequest())->setName($formattedName);
         $gapicClient->deletePredictionApiKeyRegistration($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/DeletePredictionApiKeyRegistration',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -171,17 +187,25 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-        $request = (new DeletePredictionApiKeyRegistrationRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->predictionApiKeyRegistrationName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CATALOG]',
+            '[EVENT_STORE]',
+            '[PREDICTION_API_KEY_REGISTRATION]'
+        );
+        $request = (new DeletePredictionApiKeyRegistrationRequest())->setName($formattedName);
         try {
             $gapicClient->deletePredictionApiKeyRegistration($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -206,17 +230,14 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $predictionApiKeyRegistrationsElement = new PredictionApiKeyRegistration();
-        $predictionApiKeyRegistrations = [
-            $predictionApiKeyRegistrationsElement,
-        ];
+        $predictionApiKeyRegistrations = [$predictionApiKeyRegistrationsElement];
         $expectedResponse = new ListPredictionApiKeyRegistrationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPredictionApiKeyRegistrations($predictionApiKeyRegistrations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $request = (new ListPredictionApiKeyRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPredictionApiKeyRegistrationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listPredictionApiKeyRegistrations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -226,7 +247,10 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/ListPredictionApiKeyRegistrations',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -243,17 +267,19 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $request = (new ListPredictionApiKeyRegistrationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListPredictionApiKeyRegistrationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listPredictionApiKeyRegistrations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -292,7 +318,10 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistry/CreatePredictionApiKeyRegistration',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getPredictionApiKeyRegistration();

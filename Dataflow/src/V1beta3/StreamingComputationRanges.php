@@ -21,7 +21,7 @@ class StreamingComputationRanges extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string computation_id = 1;</code>
      */
-    private $computation_id = '';
+    protected $computation_id = '';
     /**
      * Data disk assignments for ranges from this computation.
      *

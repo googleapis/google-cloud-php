@@ -21,20 +21,20 @@ class CreateReleaseConfigRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The release config to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.ReleaseConfig release_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $release_config = null;
+    protected $release_config = null;
     /**
      * Required. The ID to use for the release config, which will become the final
      * component of the release config's resource name.
      *
      * Generated from protobuf field <code>string release_config_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $release_config_id = '';
+    protected $release_config_id = '';
 
     /**
      * @param string                                       $parent          Required. The repository in which to create the release config. Must be in

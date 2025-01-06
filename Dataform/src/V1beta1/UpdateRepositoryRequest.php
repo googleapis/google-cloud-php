@@ -21,13 +21,13 @@ class UpdateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * Required. The repository to update.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository repository = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $repository = null;
+    protected $repository = null;
 
     /**
      * @param \Google\Cloud\Dataform\V1beta1\Repository $repository Required. The repository to update.

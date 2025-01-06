@@ -20,7 +20,7 @@ class RelationDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * A list of descriptions of columns within the relation.
      *

@@ -20,19 +20,19 @@ class WriteFileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $workspace = '';
+    protected $workspace = '';
     /**
      * Required. The file.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $path = '';
+    protected $path = '';
     /**
      * Required. The file's contents.
      *
      * Generated from protobuf field <code>bytes contents = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $contents = '';
+    protected $contents = '';
 
     /**
      * Constructor.

@@ -21,21 +21,21 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The catalog item to update/create. The 'catalog_item_id' field
      * has to match that in the 'name'.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.CatalogItem catalog_item = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $catalog_item = null;
+    protected $catalog_item = null;
     /**
      * Optional. Indicates which fields in the provided 'item' to update. If not
      * set, will by default update all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                                 $name        Required. Full resource name of catalog item, such as
