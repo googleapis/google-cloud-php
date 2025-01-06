@@ -21,13 +21,13 @@ class PriceRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float min = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min = 0.0;
+    protected $min = 0.0;
     /**
      * Required. The maximum product price.
      *
      * Generated from protobuf field <code>float max = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max = 0.0;
+    protected $max = 0.0;
 
     /**
      * Constructor.
