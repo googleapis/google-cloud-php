@@ -20,7 +20,7 @@ class UpdateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationJob evaluation_job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $evaluation_job = null;
+    protected $evaluation_job = null;
     /**
      * Optional. Mask for which fields to update. You can only provide the
      * following fields:
@@ -32,7 +32,7 @@ class UpdateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\DataLabeling\V1beta1\EvaluationJob $evaluationJob Required. Evaluation job that is going to be updated.

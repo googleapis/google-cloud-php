@@ -21,7 +21,7 @@ class CsvInstruction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_file_uri = 1;</code>
      */
-    private $gcs_file_uri = '';
+    protected $gcs_file_uri = '';
 
     /**
      * Constructor.
