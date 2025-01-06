@@ -21,27 +21,27 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $target = null;
+    protected $target = null;
     /**
      * Output only. The action's identifier if the project had been compiled
      * without any overrides configured. Unique within the compilation result.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $canonical_target = null;
+    protected $canonical_target = null;
     /**
      * Output only. This action's current state.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. If and only if action's state is FAILED a failure reason is
      * set.
      *
      * Generated from protobuf field <code>string failure_reason = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $failure_reason = '';
+    protected $failure_reason = '';
     /**
      * Output only. This action's timing details.
      * `start_time` will be set if the action is in [RUNNING, SUCCEEDED,
@@ -51,13 +51,13 @@ class WorkflowInvocationAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.Interval invocation_timing = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invocation_timing = null;
+    protected $invocation_timing = null;
     /**
      * Output only. The workflow action's bigquery action details.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocationAction.BigQueryAction bigquery_action = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $bigquery_action = null;
+    protected $bigquery_action = null;
 
     /**
      * Constructor.

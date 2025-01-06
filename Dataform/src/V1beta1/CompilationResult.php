@@ -20,27 +20,27 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. If set, fields of `code_compilation_config` override the default
      * compilation settings that are specified in dataform.json.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $code_compilation_config = null;
+    protected $code_compilation_config = null;
     /**
      * Output only. The fully resolved Git commit SHA of the code that was
      * compiled. Not set for compilation results whose source is a workspace.
      *
      * Generated from protobuf field <code>string resolved_git_commit_sha = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $resolved_git_commit_sha = '';
+    protected $resolved_git_commit_sha = '';
     /**
      * Output only. The version of `&#64;dataform/core` that was used for compilation.
      *
      * Generated from protobuf field <code>string dataform_core_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dataform_core_version = '';
+    protected $dataform_core_version = '';
     /**
      * Output only. Errors encountered during project compilation.
      *

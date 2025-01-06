@@ -22,6 +22,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Required. The query against which entries in scope should be matched.
+     * The query syntax is defined in [Search syntax for Dataplex
+     * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,6 +45,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. Specifies the ordering of results.
+     * Supported values are:
+     * * `relevance` (default)
+     * * `last_modified_timestamp`
+     * * `last_modified_timestamp asc`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -62,6 +68,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *                      following form: `projects/{project}/locations/{location}`. Please see
      *                      {@see CatalogServiceClient::locationName()} for help formatting this field.
      * @param string $query Required. The query against which entries in scope should be matched.
+     *                      The query syntax is defined in [Search syntax for Dataplex
+     *                      Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * @return \Google\Cloud\Dataplex\V1\SearchEntriesRequest
      *
@@ -85,6 +93,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *           following form: `projects/{project}/locations/{location}`.
      *     @type string $query
      *           Required. The query against which entries in scope should be matched.
+     *           The query syntax is defined in [Search syntax for Dataplex
+     *           Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *     @type int $page_size
      *           Optional. Number of results in the search page. If <=0, then defaults
      *           to 10. Max limit for page_size is 1000. Throws an invalid argument for
@@ -94,6 +104,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
      *           this to retrieve the subsequent page.
      *     @type string $order_by
      *           Optional. Specifies the ordering of results.
+     *           Supported values are:
+     *           * `relevance` (default)
+     *           * `last_modified_timestamp`
+     *           * `last_modified_timestamp asc`
      *     @type string $scope
      *           Optional. The scope under which the search should be operating. It must
      *           either be `organizations/<org_id>` or `projects/<project_ref>`. If it is
@@ -136,6 +150,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query against which entries in scope should be matched.
+     * The query syntax is defined in [Search syntax for Dataplex
+     * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -147,6 +163,8 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The query against which entries in scope should be matched.
+     * The query syntax is defined in [Search syntax for Dataplex
+     * Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
      *
      * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -220,6 +238,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the ordering of results.
+     * Supported values are:
+     * * `relevance` (default)
+     * * `last_modified_timestamp`
+     * * `last_modified_timestamp asc`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -231,6 +253,10 @@ class SearchEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the ordering of results.
+     * Supported values are:
+     * * `relevance` (default)
+     * * `last_modified_timestamp`
+     * * `last_modified_timestamp asc`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

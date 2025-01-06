@@ -20,37 +20,37 @@ class SnapshotJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job to be snapshotted.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * TTL for the snapshot.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 3;</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
     /**
      * The location that contains this job.
      *
      * Generated from protobuf field <code>string location = 4;</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * If true, perform snapshots for sources which support this.
      *
      * Generated from protobuf field <code>bool snapshot_sources = 5;</code>
      */
-    private $snapshot_sources = false;
+    protected $snapshot_sources = false;
     /**
      * User specified description of the snapshot. Maybe empty.
      *
      * Generated from protobuf field <code>string description = 6;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

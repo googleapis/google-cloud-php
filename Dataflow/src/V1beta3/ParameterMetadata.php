@@ -20,25 +20,25 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The label to display for the parameter.
      *
      * Generated from protobuf field <code>string label = 2;</code>
      */
-    private $label = '';
+    protected $label = '';
     /**
      * Required. The help text to display for the parameter.
      *
      * Generated from protobuf field <code>string help_text = 3;</code>
      */
-    private $help_text = '';
+    protected $help_text = '';
     /**
      * Optional. Whether the parameter is optional. Defaults to false.
      *
      * Generated from protobuf field <code>bool is_optional = 4;</code>
      */
-    private $is_optional = false;
+    protected $is_optional = false;
     /**
      * Optional. Regexes that the parameter must match.
      *
@@ -51,7 +51,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.ParameterType param_type = 6;</code>
      */
-    private $param_type = 0;
+    protected $param_type = 0;
     /**
      * Optional. Additional metadata for describing this parameter.
      *

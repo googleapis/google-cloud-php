@@ -20,14 +20,14 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 num_workers = 11;</code>
      */
-    private $num_workers = 0;
+    protected $num_workers = 0;
     /**
      * The maximum number of Google Compute Engine instances to be made
      * available to your pipeline during execution, from 1 to 1000.
      *
      * Generated from protobuf field <code>int32 max_workers = 1;</code>
      */
-    private $max_workers = 0;
+    protected $max_workers = 0;
     /**
      * The Compute Engine [availability
      * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
@@ -36,34 +36,34 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 2;</code>
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The email address of the service account to run the job as.
      *
      * Generated from protobuf field <code>string service_account_email = 3;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * The Cloud Storage path to use for temporary files.
      * Must be a valid Cloud Storage URL, beginning with `gs://`.
      *
      * Generated from protobuf field <code>string temp_location = 4;</code>
      */
-    private $temp_location = '';
+    protected $temp_location = '';
     /**
      * Whether to bypass the safety checks for the job's temporary directory.
      * Use with caution.
      *
      * Generated from protobuf field <code>bool bypass_temp_dir_validation = 5;</code>
      */
-    private $bypass_temp_dir_validation = false;
+    protected $bypass_temp_dir_validation = false;
     /**
      * The machine type to use for the job. Defaults to the value from the
      * template if not specified.
      *
      * Generated from protobuf field <code>string machine_type = 6;</code>
      */
-    private $machine_type = '';
+    protected $machine_type = '';
     /**
      * Additional experiment flags for the job, specified with the
      * `--experiments` option.
@@ -77,7 +77,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 8;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Subnetwork to which VMs will be assigned, if desired. You can specify a
      * subnetwork using either a complete URL or an abbreviated path. Expected to
@@ -88,7 +88,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 9;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Additional user labels to be specified for the job.
      * Keys and values should follow the restrictions specified in the [labeling
@@ -107,13 +107,13 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 12;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Configuration for VM IPs.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.WorkerIPAddressConfiguration ip_configuration = 14;</code>
      */
-    private $ip_configuration = 0;
+    protected $ip_configuration = 0;
     /**
      * The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
@@ -123,7 +123,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_region = 15;</code>
      */
-    private $worker_region = '';
+    protected $worker_region = '';
     /**
      * The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
@@ -134,13 +134,13 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_zone = 16;</code>
      */
-    private $worker_zone = '';
+    protected $worker_zone = '';
     /**
      * Whether to enable Streaming Engine for the job.
      *
      * Generated from protobuf field <code>bool enable_streaming_engine = 17;</code>
      */
-    private $enable_streaming_engine = false;
+    protected $enable_streaming_engine = false;
 
     /**
      * Constructor.
