@@ -189,6 +189,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function restoreBucket(array $args = [])
+    {
+        return $this->send('buckets', 'restore', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getBucket(array $args = [])
     {
         return $this->send('buckets', 'get', $args);
