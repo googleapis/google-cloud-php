@@ -1038,6 +1038,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "parallelstore"
     },
+    "ParameterManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-parametermanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-parametermanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "parametermanager"
+    },
     "PolicySimulator": {
         "language": "php",
         "distribution_name": "google/cloud-policysimulator",
