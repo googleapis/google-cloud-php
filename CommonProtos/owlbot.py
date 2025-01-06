@@ -63,12 +63,12 @@ s.move("metadata/Google/Iam/V1", "metadata/Iam/V1")
 s.move("metadata/Google/Logging/Type", "metadata/Logging/Type")
 
 # remove owl-bot-staging dir
-#if os.path.exists(php.STAGING_DIR):
-#    shutil.rmtree(Path(php.STAGING_DIR))
+if os.path.exists(php.STAGING_DIR):
+    shutil.rmtree(Path(php.STAGING_DIR))
 
 # remove the metadata/Google files that we copied
-#if os.path.exists("metadata/Google"):
-#    shutil.rmtree(Path("metadata/Google"))
+if os.path.exists("metadata/Google"):
+    shutil.rmtree(Path("metadata/Google"))
 
 s.replace(
     "src/**/*.php",
