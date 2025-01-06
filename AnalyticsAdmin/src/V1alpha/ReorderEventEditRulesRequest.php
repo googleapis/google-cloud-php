@@ -20,7 +20,7 @@ class ReorderEventEditRulesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. EventEditRule resource names for the specified data stream, in
      * the needed processing order. All EventEditRules for the stream must be

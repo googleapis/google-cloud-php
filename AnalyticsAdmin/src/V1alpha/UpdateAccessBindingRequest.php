@@ -20,7 +20,7 @@ class UpdateAccessBindingRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AccessBinding access_binding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $access_binding = null;
+    protected $access_binding = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\AccessBinding $accessBinding Required. The access binding to update.

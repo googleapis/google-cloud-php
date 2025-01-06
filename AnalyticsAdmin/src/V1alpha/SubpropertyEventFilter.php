@@ -22,13 +22,13 @@ class SubpropertyEventFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. Resource name of the Subproperty that uses this filter.
      *
      * Generated from protobuf field <code>optional string apply_to_property = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $apply_to_property = null;
+    protected $apply_to_property = null;
     /**
      * Required. Unordered list. Filter clauses that define the
      * SubpropertyEventFilter. All clauses are AND'ed together to determine what

@@ -22,7 +22,7 @@ class ConversionValues extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The fine-grained conversion value.  This is applicable only to the first
      * postback window. Its valid values are [0,63], both inclusive. It must be
@@ -33,14 +33,14 @@ class ConversionValues extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 fine_value = 2;</code>
      */
-    private $fine_value = null;
+    protected $fine_value = null;
     /**
      * Required. A coarse grained conversion value.
      * This value is not guaranteed to be unique.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CoarseValue coarse_value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $coarse_value = 0;
+    protected $coarse_value = 0;
     /**
      * Event conditions that must be met for this Conversion Value to be achieved.
      * The conditions in this list are ANDed together. It must have minimum of 1
@@ -55,7 +55,7 @@ class ConversionValues extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool lock_enabled = 5;</code>
      */
-    private $lock_enabled = false;
+    protected $lock_enabled = false;
 
     /**
      * Constructor.

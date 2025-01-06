@@ -20,14 +20,14 @@ class UpdateSKAdNetworkConversionValueSchemaRequest extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema skadnetwork_conversion_value_schema = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $skadnetwork_conversion_value_schema = null;
+    protected $skadnetwork_conversion_value_schema = null;
     /**
      * Required. The list of fields to be updated. Omitted fields will not be
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to update.

@@ -21,14 +21,14 @@ class AudienceSimpleFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterScope scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $scope = 0;
+    protected $scope = 0;
     /**
      * Required. Immutable. A logical expression of Audience dimension, metric, or
      * event filters.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AudienceFilterExpression filter_expression = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $filter_expression = null;
+    protected $filter_expression = null;
 
     /**
      * Constructor.
