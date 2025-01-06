@@ -21,7 +21,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 size_gb = 1;</code>
      */
-    private $size_gb = 0;
+    protected $size_gb = 0;
     /**
      * Disk storage type, as defined by Google Compute Engine.  This
      * must be a disk type appropriate to the project and zone in which
@@ -41,13 +41,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 2;</code>
      */
-    private $disk_type = '';
+    protected $disk_type = '';
     /**
      * Directory in a VM where disk is mounted.
      *
      * Generated from protobuf field <code>string mount_point = 3;</code>
      */
-    private $mount_point = '';
+    protected $mount_point = '';
 
     /**
      * Constructor.

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,6 @@ use Google\Cloud\Dataflow\V1beta3\GetJobMetricsRequest;
 use Google\Cloud\Dataflow\V1beta3\GetStageExecutionDetailsRequest;
 use Google\Cloud\Dataflow\V1beta3\JobMetrics;
 use GuzzleHttp\Promise\PromiseInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Dataflow Metrics API lets you monitor the progress of Dataflow
@@ -154,9 +153,6 @@ final class MetricsV1Beta3Client
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
-     *     @type false|LoggerInterface $logger
-     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
-     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -206,8 +202,10 @@ final class MetricsV1Beta3Client
      *
      * @experimental
      */
-    public function getJobExecutionDetails(GetJobExecutionDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function getJobExecutionDetails(
+        GetJobExecutionDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('GetJobExecutionDetails', $request, $callOptions);
     }
 
@@ -272,8 +270,10 @@ final class MetricsV1Beta3Client
      *
      * @experimental
      */
-    public function getStageExecutionDetails(GetStageExecutionDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function getStageExecutionDetails(
+        GetStageExecutionDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('GetStageExecutionDetails', $request, $callOptions);
     }
 }

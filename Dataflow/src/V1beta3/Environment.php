@@ -30,7 +30,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string temp_storage_prefix = 1;</code>
      */
-    private $temp_storage_prefix = '';
+    protected $temp_storage_prefix = '';
     /**
      * The type of cluster manager API to use.  If unknown or
      * unspecified, the service will attempt to choose a reasonable
@@ -39,7 +39,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_manager_api_service = 2;</code>
      */
-    private $cluster_manager_api_service = '';
+    protected $cluster_manager_api_service = '';
     /**
      * The list of experiments to enable. This field should be used for SDK
      * related experiments and not for service related experiments. The proper
@@ -64,7 +64,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_kms_key_name = 12;</code>
      */
-    private $service_kms_key_name = '';
+    protected $service_kms_key_name = '';
     /**
      * The worker pools. At least one "harness" worker pool must be
      * specified in order for the job to have workers.
@@ -77,14 +77,14 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5;</code>
      */
-    private $user_agent = null;
+    protected $user_agent = null;
     /**
      * A structure describing which components and their versions of the service
      * are required in order to run the job.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct version = 6;</code>
      */
-    private $version = null;
+    protected $version = null;
     /**
      * The dataset for the current project where various workflow
      * related tables are stored.
@@ -94,7 +94,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 7;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * The Cloud Dataflow SDK pipeline options specified by the user. These
      * options are passed through the service and are used to recreate the
@@ -103,25 +103,25 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct sdk_pipeline_options = 8;</code>
      */
-    private $sdk_pipeline_options = null;
+    protected $sdk_pipeline_options = null;
     /**
      * Experimental settings.
      *
      * Generated from protobuf field <code>.google.protobuf.Any internal_experiments = 9;</code>
      */
-    private $internal_experiments = null;
+    protected $internal_experiments = null;
     /**
      * Identity to run virtual machines as. Defaults to the default account.
      *
      * Generated from protobuf field <code>string service_account_email = 10;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * Which Flexible Resource Scheduling mode to run in.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.FlexResourceSchedulingGoal flex_resource_scheduling_goal = 11;</code>
      */
-    private $flex_resource_scheduling_goal = 0;
+    protected $flex_resource_scheduling_goal = 0;
     /**
      * The Compute Engine region
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
@@ -131,7 +131,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_region = 13;</code>
      */
-    private $worker_region = '';
+    protected $worker_region = '';
     /**
      * The Compute Engine zone
      * (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in
@@ -141,19 +141,19 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string worker_zone = 14;</code>
      */
-    private $worker_zone = '';
+    protected $worker_zone = '';
     /**
      * Output only. The shuffle mode used for the job.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.ShuffleMode shuffle_mode = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $shuffle_mode = 0;
+    protected $shuffle_mode = 0;
     /**
      * Any debugging options to be supplied to the job.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.DebugOptions debug_options = 17;</code>
      */
-    private $debug_options = null;
+    protected $debug_options = null;
 
     /**
      * Constructor.
