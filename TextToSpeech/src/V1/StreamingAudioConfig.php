@@ -22,13 +22,13 @@ class StreamingAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioEncoding audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $audio_encoding = 0;
+    private $audio_encoding = 0;
     /**
      * Optional. The synthesis sample rate (in hertz) for this audio.
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $sample_rate_hertz = 0;
+    private $sample_rate_hertz = 0;
 
     /**
      * Constructor.

@@ -21,6 +21,12 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $voice = null;
+    /**
+     * Optional. The configuration of the synthesized audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.StreamingAudioConfig streaming_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $streaming_audio_config = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\TextToSpeech\V1\VoiceSelectionParams $voice
      *           Required. The desired voice of the synthesized audio.
+     *     @type \Google\Cloud\TextToSpeech\V1\StreamingAudioConfig $streaming_audio_config
+     *           Optional. The configuration of the synthesized audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\VoiceSelectionParams::class);
         $this->voice = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration of the synthesized audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.StreamingAudioConfig streaming_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\TextToSpeech\V1\StreamingAudioConfig|null
+     */
+    public function getStreamingAudioConfig()
+    {
+        return $this->streaming_audio_config;
+    }
+
+    public function hasStreamingAudioConfig()
+    {
+        return isset($this->streaming_audio_config);
+    }
+
+    public function clearStreamingAudioConfig()
+    {
+        unset($this->streaming_audio_config);
+    }
+
+    /**
+     * Optional. The configuration of the synthesized audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.StreamingAudioConfig streaming_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\TextToSpeech\V1\StreamingAudioConfig $var
+     * @return $this
+     */
+    public function setStreamingAudioConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\StreamingAudioConfig::class);
+        $this->streaming_audio_config = $var;
 
         return $this;
     }
