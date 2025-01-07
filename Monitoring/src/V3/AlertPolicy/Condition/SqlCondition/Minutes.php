@@ -22,7 +22,7 @@ class Minutes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 periodicity = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $periodicity = 0;
+    protected $periodicity = 0;
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class Minutes extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Minutes::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_SqlCondition_Minutes::class);
 

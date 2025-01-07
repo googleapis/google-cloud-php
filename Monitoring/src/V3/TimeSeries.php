@@ -85,7 +85,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unit = 8;</code>
      */
-    private $unit = '';
+    protected $unit = '';
     /**
      * Input only. A detailed description of the time series that will be
      * associated with the
@@ -94,7 +94,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 9;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

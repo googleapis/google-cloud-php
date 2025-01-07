@@ -112,7 +112,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alert_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $alert_rule = '';
+    protected $alert_rule = '';
     /**
      * Optional. Whether to disable metric existence validation for this
      * condition.
@@ -124,7 +124,7 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_metric_validation = false;
+    protected $disable_metric_validation = false;
 
     /**
      * Constructor.
