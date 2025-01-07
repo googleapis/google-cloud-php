@@ -123,9 +123,7 @@ final class SecretManagerServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -216,8 +214,12 @@ final class SecretManagerServiceClient
      *
      * @experimental
      */
-    public static function projectLocationSecretSecretVersionName(string $project, string $location, string $secret, string $secretVersion): string
-    {
+    public static function projectLocationSecretSecretVersionName(
+        string $project,
+        string $location,
+        string $secret,
+        string $secretVersion
+    ): string {
         return self::getPathTemplate('projectLocationSecretSecretVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -257,8 +259,11 @@ final class SecretManagerServiceClient
      *
      * @experimental
      */
-    public static function projectSecretSecretVersionName(string $project, string $secret, string $secretVersion): string
-    {
+    public static function projectSecretSecretVersionName(
+        string $project,
+        string $secret,
+        string $secretVersion
+    ): string {
         return self::getPathTemplate('projectSecretSecretVersion')->render([
             'project' => $project,
             'secret' => $secret,
@@ -464,8 +469,10 @@ final class SecretManagerServiceClient
      *
      * @experimental
      */
-    public function accessSecretVersion(AccessSecretVersionRequest $request, array $callOptions = []): AccessSecretVersionResponse
-    {
+    public function accessSecretVersion(
+        AccessSecretVersionRequest $request,
+        array $callOptions = []
+    ): AccessSecretVersionResponse {
         return $this->startApiCall('AccessSecretVersion', $request, $callOptions)->wait();
     }
 
@@ -873,8 +880,10 @@ final class SecretManagerServiceClient
      *
      * @experimental
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
