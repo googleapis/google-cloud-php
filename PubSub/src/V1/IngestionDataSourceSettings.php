@@ -34,6 +34,12 @@ class IngestionDataSourceSettings extends \Google\Protobuf\Internal\Message
      *           Optional. Amazon Kinesis Data Streams.
      *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\CloudStorage $cloud_storage
      *           Optional. Cloud Storage.
+     *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AzureEventHubs $azure_event_hubs
+     *           Optional. Azure Event Hubs.
+     *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AwsMsk $aws_msk
+     *           Optional. Amazon MSK.
+     *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\ConfluentCloud $confluent_cloud
+     *           Optional. Confluent Cloud.
      *     @type \Google\Cloud\PubSub\V1\PlatformLogsSettings $platform_logs_settings
      *           Optional. Platform Logs settings. If unset, no Platform Logs will be
      *           generated.
@@ -102,6 +108,99 @@ class IngestionDataSourceSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\CloudStorage::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Azure Event Hubs.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.AzureEventHubs azure_event_hubs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AzureEventHubs|null
+     */
+    public function getAzureEventHubs()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasAzureEventHubs()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Optional. Azure Event Hubs.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.AzureEventHubs azure_event_hubs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AzureEventHubs $var
+     * @return $this
+     */
+    public function setAzureEventHubs($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AzureEventHubs::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Amazon MSK.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.AwsMsk aws_msk = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AwsMsk|null
+     */
+    public function getAwsMsk()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasAwsMsk()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. Amazon MSK.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.AwsMsk aws_msk = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AwsMsk $var
+     * @return $this
+     */
+    public function setAwsMsk($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AwsMsk::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Confluent Cloud.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.ConfluentCloud confluent_cloud = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\ConfluentCloud|null
+     */
+    public function getConfluentCloud()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasConfluentCloud()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Confluent Cloud.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings.ConfluentCloud confluent_cloud = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\ConfluentCloud $var
+     * @return $this
+     */
+    public function setConfluentCloud($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\IngestionDataSourceSettings\ConfluentCloud::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }
