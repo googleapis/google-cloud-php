@@ -38,6 +38,7 @@ use Google\Apps\Chat\V1\DeleteMembershipRequest;
 use Google\Apps\Chat\V1\DeleteMessageRequest;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
 use Google\Apps\Chat\V1\DeleteSpaceRequest;
+use Google\Apps\Chat\V1\Emoji;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
@@ -336,6 +337,8 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
         $reaction = new Reaction();
+        $reactionEmoji = new Emoji();
+        $reaction->setEmoji($reactionEmoji);
         $request = (new CreateReactionRequest())->setParent($formattedParent)->setReaction($reaction);
         $response = $gapicClient->createReaction($request);
         $this->assertEquals($expectedResponse, $response);
@@ -375,6 +378,8 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
         $reaction = new Reaction();
+        $reactionEmoji = new Emoji();
+        $reaction->setEmoji($reactionEmoji);
         $request = (new CreateReactionRequest())->setParent($formattedParent)->setReaction($reaction);
         try {
             $gapicClient->createReaction($request);
@@ -1890,7 +1895,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $message = new Message();
-        $request = (new UpdateMessageRequest())->setMessage($message);
+        $updateMask = new FieldMask();
+        $request = (new UpdateMessageRequest())->setMessage($message)->setUpdateMask($updateMask);
         $response = $gapicClient->updateMessage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1900,6 +1906,8 @@ class ChatServiceClientTest extends GeneratedTest
         $this->assertSame('/google.chat.v1.ChatService/UpdateMessage', $actualFuncCall);
         $actualValue = $actualRequestObject->getMessage();
         $this->assertProtobufEquals($message, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1926,7 +1934,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $message = new Message();
-        $request = (new UpdateMessageRequest())->setMessage($message);
+        $updateMask = new FieldMask();
+        $request = (new UpdateMessageRequest())->setMessage($message)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateMessage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1969,7 +1978,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();
-        $request = (new UpdateSpaceRequest())->setSpace($space);
+        $updateMask = new FieldMask();
+        $request = (new UpdateSpaceRequest())->setSpace($space)->setUpdateMask($updateMask);
         $response = $gapicClient->updateSpace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1979,6 +1989,8 @@ class ChatServiceClientTest extends GeneratedTest
         $this->assertSame('/google.chat.v1.ChatService/UpdateSpace', $actualFuncCall);
         $actualValue = $actualRequestObject->getSpace();
         $this->assertProtobufEquals($space, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2005,7 +2017,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $space = new Space();
-        $request = (new UpdateSpaceRequest())->setSpace($space);
+        $updateMask = new FieldMask();
+        $request = (new UpdateSpaceRequest())->setSpace($space)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateSpace($request);
             // If the $gapicClient method call did not throw, fail the test

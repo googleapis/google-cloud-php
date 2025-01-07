@@ -36,6 +36,7 @@ use Google\Cloud\Compute\V1\GetInterconnectRemoteLocationRequest;
 use Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 use Google\Cloud\Compute\V1\ListInterconnectRemoteLocationsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The InterconnectRemoteLocations API.
@@ -156,6 +157,9 @@ final class InterconnectRemoteLocationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -182,6 +186,8 @@ final class InterconnectRemoteLocationsClient
      *
      * The async variant is {@see InterconnectRemoteLocationsClient::getAsync()} .
      *
+     * @example samples/V1/InterconnectRemoteLocationsClient/get.php
+     *
      * @param GetInterconnectRemoteLocationRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -205,6 +211,8 @@ final class InterconnectRemoteLocationsClient
      * Retrieves the list of interconnect remote locations available to the specified project.
      *
      * The async variant is {@see InterconnectRemoteLocationsClient::listAsync()} .
+     *
+     * @example samples/V1/InterconnectRemoteLocationsClient/list.php
      *
      * @param ListInterconnectRemoteLocationsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {

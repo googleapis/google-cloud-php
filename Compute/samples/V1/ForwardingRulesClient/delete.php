@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ForwardingRules_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
+use Google\Cloud\Compute\V1\DeleteForwardingRuleRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $forwardingRule, string $project, string $region):
     // Create a client.
     $forwardingRulesClient = new ForwardingRulesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteForwardingRuleRequest())
+        ->setForwardingRule($forwardingRule)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $forwardingRulesClient->delete($forwardingRule, $project, $region);
+        $response = $forwardingRulesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

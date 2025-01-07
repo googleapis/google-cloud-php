@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Addresses_Move_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\AddressesClient;
+use Google\Cloud\Compute\V1\Client\AddressesClient;
+use Google\Cloud\Compute\V1\MoveAddressRequest;
 use Google\Cloud\Compute\V1\RegionAddressesMoveRequest;
 use Google\Rpc\Status;
 
@@ -41,18 +42,18 @@ function move_sample(string $address, string $project, string $region): void
     // Create a client.
     $addressesClient = new AddressesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $regionAddressesMoveRequestResource = new RegionAddressesMoveRequest();
+    $request = (new MoveAddressRequest())
+        ->setAddress($address)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setRegionAddressesMoveRequestResource($regionAddressesMoveRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $addressesClient->move(
-            $address,
-            $project,
-            $region,
-            $regionAddressesMoveRequestResource
-        );
+        $response = $addressesClient->move($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\ListRegionCommitmentsRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\UpdateRegionCommitmentRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionCommitments API.
@@ -217,6 +218,9 @@ final class RegionCommitmentsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -244,6 +248,8 @@ final class RegionCommitmentsClient
      *
      * The async variant is {@see RegionCommitmentsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/RegionCommitmentsClient/aggregated_list.php
+     *
      * @param AggregatedListRegionCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
@@ -267,6 +273,8 @@ final class RegionCommitmentsClient
      * Returns the specified commitment resource.
      *
      * The async variant is {@see RegionCommitmentsClient::getAsync()} .
+     *
+     * @example samples/V1/RegionCommitmentsClient/get.php
      *
      * @param GetRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -292,6 +300,8 @@ final class RegionCommitmentsClient
      *
      * The async variant is {@see RegionCommitmentsClient::insertAsync()} .
      *
+     * @example samples/V1/RegionCommitmentsClient/insert.php
+     *
      * @param InsertRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -316,6 +326,8 @@ final class RegionCommitmentsClient
      *
      * The async variant is {@see RegionCommitmentsClient::listAsync()} .
      *
+     * @example samples/V1/RegionCommitmentsClient/list.php
+     *
      * @param ListRegionCommitmentsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -339,6 +351,8 @@ final class RegionCommitmentsClient
      * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: auto_renew.
      *
      * The async variant is {@see RegionCommitmentsClient::updateAsync()} .
+     *
+     * @example samples/V1/RegionCommitmentsClient/update.php
      *
      * @param UpdateRegionCommitmentRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {

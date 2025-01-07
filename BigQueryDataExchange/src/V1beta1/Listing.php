@@ -24,7 +24,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human-readable display name of the listing. The display name must contain
      * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
@@ -34,7 +34,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Short description of the listing. The description must not contain
      * Unicode non-characters and C0 and C1 control codes except tabs (HT),
@@ -44,26 +44,26 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Email or URL of the primary point of contact of the listing.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary_contact = '';
+    protected $primary_contact = '';
     /**
      * Optional. Documentation describing the listing.
      *
      * Generated from protobuf field <code>string documentation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $documentation = '';
+    protected $documentation = '';
     /**
      * Output only. Current state of the listing.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Optional. Base64 encoded image representing the listing. Max Size: 3.0MiB
      * Expected image dimensions are 512x512 pixels, however the API only
@@ -73,13 +73,13 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes icon = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $icon = '';
+    protected $icon = '';
     /**
      * Optional. Details of the data provider who owns the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.DataProvider data_provider = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $data_provider = null;
+    protected $data_provider = null;
     /**
      * Optional. Categories of the listing. Up to two categories are allowed.
      *
@@ -92,7 +92,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Publisher publisher = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $publisher = null;
+    protected $publisher = null;
     /**
      * Optional. Email or URL of the request access of the listing.
      * Subscribers can use this reference to request access.
@@ -100,7 +100,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $request_access = '';
+    protected $request_access = '';
     protected $source;
 
     /**

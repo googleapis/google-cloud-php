@@ -49,6 +49,15 @@ class Type
      */
     const NEW_MESSAGE = 5;
     /**
+     * An existing conversation has received a new speech recognition result.
+     * This is mainly for delivering intermediate transcripts. The notification
+     * is configured in
+     * [ConversationProfile.new_recognition_event_notification_config][].
+     *
+     * Generated from protobuf enum <code>NEW_RECOGNITION_RESULT = 7;</code>
+     */
+    const NEW_RECOGNITION_RESULT = 7;
+    /**
      * Unrecoverable error during a telephone call.
      * In general non-recoverable errors only occur if something was
      * misconfigured in the ConversationProfile corresponding to the call. After
@@ -67,6 +76,7 @@ class Type
         self::CONVERSATION_FINISHED => 'CONVERSATION_FINISHED',
         self::HUMAN_INTERVENTION_NEEDED => 'HUMAN_INTERVENTION_NEEDED',
         self::NEW_MESSAGE => 'NEW_MESSAGE',
+        self::NEW_RECOGNITION_RESULT => 'NEW_RECOGNITION_RESULT',
         self::UNRECOVERABLE_ERROR => 'UNRECOVERABLE_ERROR',
     ];
 

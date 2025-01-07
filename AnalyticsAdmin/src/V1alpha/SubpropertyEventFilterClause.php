@@ -23,14 +23,14 @@ class SubpropertyEventFilterClause extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertyEventFilterClause.FilterClauseType filter_clause_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter_clause_type = 0;
+    protected $filter_clause_type = 0;
     /**
      * Required. The logical expression for what events are sent to the
      * subproperty.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertyEventFilterExpression filter_expression = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter_expression = null;
+    protected $filter_expression = null;
 
     /**
      * Constructor.

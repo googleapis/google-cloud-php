@@ -20,13 +20,13 @@ class ProvisionSubpropertyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property subproperty = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $subproperty = null;
+    protected $subproperty = null;
     /**
      * Optional. The subproperty event filter to create on an ordinary property.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.SubpropertyEventFilter subproperty_event_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $subproperty_event_filter = null;
+    protected $subproperty_event_filter = null;
 
     /**
      * Constructor.

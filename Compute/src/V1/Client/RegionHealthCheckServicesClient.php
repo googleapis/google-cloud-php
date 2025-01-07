@@ -41,6 +41,7 @@ use Google\Cloud\Compute\V1\ListRegionHealthCheckServicesRequest;
 use Google\Cloud\Compute\V1\PatchRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionHealthCheckServices API.
@@ -217,6 +218,9 @@ final class RegionHealthCheckServicesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -244,6 +248,8 @@ final class RegionHealthCheckServicesClient
      *
      * The async variant is {@see RegionHealthCheckServicesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionHealthCheckServicesClient/delete.php
+     *
      * @param DeleteRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -267,6 +273,8 @@ final class RegionHealthCheckServicesClient
      * Returns the specified regional HealthCheckService resource.
      *
      * The async variant is {@see RegionHealthCheckServicesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionHealthCheckServicesClient/get.php
      *
      * @param GetRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -292,6 +300,8 @@ final class RegionHealthCheckServicesClient
      *
      * The async variant is {@see RegionHealthCheckServicesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionHealthCheckServicesClient/insert.php
+     *
      * @param InsertRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -316,6 +326,8 @@ final class RegionHealthCheckServicesClient
      *
      * The async variant is {@see RegionHealthCheckServicesClient::listAsync()} .
      *
+     * @example samples/V1/RegionHealthCheckServicesClient/list.php
+     *
      * @param ListRegionHealthCheckServicesRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
@@ -339,6 +351,8 @@ final class RegionHealthCheckServicesClient
      * Updates the specified regional HealthCheckService resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see RegionHealthCheckServicesClient::patchAsync()} .
+     *
+     * @example samples/V1/RegionHealthCheckServicesClient/patch.php
      *
      * @param PatchRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {

@@ -52,6 +52,11 @@ $scanRun = $client->startScanRun($scanConfig->getName());
 echo 'Scan execution state: ' . ExecutionState::name($scanRun->getExecutionState()) . PHP_EOL;
 ```
 
+### Debugging
+
+Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
+for more information about the debugging tools.
+
 ### Version
 
 This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in

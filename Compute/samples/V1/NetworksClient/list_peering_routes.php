@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Networks_ListPeeringRoutes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\NetworksClient;
+use Google\Cloud\Compute\V1\Client\NetworksClient;
+use Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest;
 
 /**
  * Lists the peering routes exchanged over peering connection.
@@ -38,10 +39,15 @@ function list_peering_routes_sample(string $network, string $project): void
     // Create a client.
     $networksClient = new NetworksClient();
 
+    // Prepare the request message.
+    $request = (new ListPeeringRoutesNetworksRequest())
+        ->setNetwork($network)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $networksClient->listPeeringRoutes($network, $project);
+        $response = $networksClient->listPeeringRoutes($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

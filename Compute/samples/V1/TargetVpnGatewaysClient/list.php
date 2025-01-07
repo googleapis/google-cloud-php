@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetVpnGateways_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\Client\TargetVpnGatewaysClient;
+use Google\Cloud\Compute\V1\ListTargetVpnGatewaysRequest;
 
 /**
  * Retrieves a list of target VPN gateways available to the specified project and region.
@@ -38,10 +39,15 @@ function list_sample(string $project, string $region): void
     // Create a client.
     $targetVpnGatewaysClient = new TargetVpnGatewaysClient();
 
+    // Prepare the request message.
+    $request = (new ListTargetVpnGatewaysRequest())
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $targetVpnGatewaysClient->list($project, $region);
+        $response = $targetVpnGatewaysClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

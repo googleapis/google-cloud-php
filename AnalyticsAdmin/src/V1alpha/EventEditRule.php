@@ -28,14 +28,14 @@ class EventEditRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The display name of this event edit rule. Maximum of 255
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Required. Conditions on the source event must match for this rule to be
      * applied. Must have at least one condition, and can have up to 10 max.
@@ -59,7 +59,7 @@ class EventEditRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 processing_order = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $processing_order = 0;
+    protected $processing_order = 0;
 
     /**
      * Constructor.

@@ -21,7 +21,7 @@ class Row extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_spec = 1;</code>
      */
-    private $annotation_spec = null;
+    protected $annotation_spec = null;
     /**
      * A list of the confusion matrix entries. One entry for each possible
      * predicted label.
@@ -114,6 +114,4 @@ class Row extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Row::class, \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix_Row::class);
 

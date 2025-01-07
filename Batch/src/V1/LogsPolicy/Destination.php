@@ -14,19 +14,20 @@ use UnexpectedValueException;
 class Destination
 {
     /**
-     * Logs are not preserved.
+     * (Default) Logs are not preserved.
      *
      * Generated from protobuf enum <code>DESTINATION_UNSPECIFIED = 0;</code>
      */
     const DESTINATION_UNSPECIFIED = 0;
     /**
-     * Logs are streamed to Cloud Logging.
+     * Logs are streamed to Cloud Logging. Optionally, you can configure
+     * additional settings in the `cloudLoggingOption` field.
      *
      * Generated from protobuf enum <code>CLOUD_LOGGING = 1;</code>
      */
     const CLOUD_LOGGING = 1;
     /**
-     * Logs are saved to a file path.
+     * Logs are saved to the file path specified in the `logsPath` field.
      *
      * Generated from protobuf enum <code>PATH = 2;</code>
      */

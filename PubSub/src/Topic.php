@@ -17,26 +17,26 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\PubSub\V1\Encoding;
-use InvalidArgumentException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
-use Google\Cloud\PubSub\V1\Client\PublisherClient;
-use Google\Cloud\PubSub\V1\SchemaSettings;
-use Google\Protobuf\FieldMask;
-use Google\Cloud\PubSub\V1\Topic as TopicProto;
-use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\DeleteTopicRequest;
+use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\GetTopicRequest;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublishRequest;
+use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\PubSub\V1\SchemaSettings;
+use Google\Cloud\PubSub\V1\Topic as TopicProto;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
+use Google\Protobuf\FieldMask;
+use InvalidArgumentException;
 
 /**
  * A named resource to which messages are sent by publishers.

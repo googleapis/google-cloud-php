@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetTcpProxies_SetBackendService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetTcpProxiesClient;
+use Google\Cloud\Compute\V1\SetBackendServiceTargetTcpProxyRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest;
 use Google\Rpc\Status;
 
@@ -40,17 +41,19 @@ function set_backend_service_sample(string $project, string $targetTcpProxy): vo
     // Create a client.
     $targetTcpProxiesClient = new TargetTcpProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetTcpProxiesSetBackendServiceRequestResource = new TargetTcpProxiesSetBackendServiceRequest();
+    $request = (new SetBackendServiceTargetTcpProxyRequest())
+        ->setProject($project)
+        ->setTargetTcpProxiesSetBackendServiceRequestResource(
+            $targetTcpProxiesSetBackendServiceRequestResource
+        )
+        ->setTargetTcpProxy($targetTcpProxy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetTcpProxiesClient->setBackendService(
-            $project,
-            $targetTcpProxiesSetBackendServiceRequestResource,
-            $targetTcpProxy
-        );
+        $response = $targetTcpProxiesClient->setBackendService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

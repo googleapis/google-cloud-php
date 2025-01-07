@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Instances_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
 use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyInstanceRequest;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 
 /**
@@ -40,18 +41,18 @@ function set_iam_policy_sample(string $project, string $resource, string $zone):
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
+    $request = (new SetIamPolicyInstanceRequest())
+        ->setProject($project)
+        ->setResource($resource)
+        ->setZone($zone)
+        ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $instancesClient->setIamPolicy(
-            $project,
-            $resource,
-            $zone,
-            $zoneSetPolicyRequestResource
-        );
+        $response = $instancesClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

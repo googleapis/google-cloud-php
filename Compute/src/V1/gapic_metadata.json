@@ -1089,6 +1089,11 @@
                                 "resize"
                             ]
                         },
+                        "ResumeInstances": {
+                            "methods": [
+                                "resumeInstances"
+                            ]
+                        },
                         "SetInstanceTemplate": {
                             "methods": [
                                 "setInstanceTemplate"
@@ -1097,6 +1102,21 @@
                         "SetTargetPools": {
                             "methods": [
                                 "setTargetPools"
+                            ]
+                        },
+                        "StartInstances": {
+                            "methods": [
+                                "startInstances"
+                            ]
+                        },
+                        "StopInstances": {
+                            "methods": [
+                                "stopInstances"
+                            ]
+                        },
+                        "SuspendInstances": {
+                            "methods": [
+                                "suspendInstances"
                             ]
                         },
                         "UpdatePerInstanceConfigs": {
@@ -2026,6 +2046,25 @@
                 }
             }
         },
+        "NetworkProfiles": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NetworkProfilesGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Networks": {
             "clients": {
                 "grpc": {
@@ -2876,6 +2915,11 @@
                                 "resize"
                             ]
                         },
+                        "ResumeInstances": {
+                            "methods": [
+                                "resumeInstances"
+                            ]
+                        },
                         "SetInstanceTemplate": {
                             "methods": [
                                 "setInstanceTemplate"
@@ -2884,6 +2928,21 @@
                         "SetTargetPools": {
                             "methods": [
                                 "setTargetPools"
+                            ]
+                        },
+                        "StartInstances": {
+                            "methods": [
+                                "startInstances"
+                            ]
+                        },
+                        "StopInstances": {
+                            "methods": [
+                                "stopInstances"
+                            ]
+                        },
+                        "SuspendInstances": {
+                            "methods": [
+                                "suspendInstances"
                             ]
                         },
                         "UpdatePerInstanceConfigs": {
@@ -3260,6 +3319,11 @@
                         "RemoveRule": {
                             "methods": [
                                 "removeRule"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
                             ]
                         }
                     }

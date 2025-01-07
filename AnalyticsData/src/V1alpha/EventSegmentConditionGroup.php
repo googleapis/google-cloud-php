@@ -23,7 +23,7 @@ class EventSegmentConditionGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.EventCriteriaScoping condition_scoping = 1;</code>
      */
-    private $condition_scoping = 0;
+    protected $condition_scoping = 0;
     /**
      * Data is included or excluded from the segment based on if it matches
      * this expression. Expressions express criteria on dimension, metrics,
@@ -31,7 +31,7 @@ class EventSegmentConditionGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SegmentFilterExpression segment_filter_expression = 2;</code>
      */
-    private $segment_filter_expression = null;
+    protected $segment_filter_expression = null;
 
     /**
      * Constructor.

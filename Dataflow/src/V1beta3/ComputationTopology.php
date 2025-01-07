@@ -20,13 +20,13 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string system_stage_name = 1;</code>
      */
-    private $system_stage_name = '';
+    protected $system_stage_name = '';
     /**
      * The ID of the computation.
      *
      * Generated from protobuf field <code>string computation_id = 5;</code>
      */
-    private $computation_id = '';
+    protected $computation_id = '';
     /**
      * The key ranges processed by the computation.
      *

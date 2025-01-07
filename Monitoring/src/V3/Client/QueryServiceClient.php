@@ -34,6 +34,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The QueryService API is used to manage time series data in Cloud
@@ -144,6 +145,9 @@ final class QueryServiceClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -166,7 +170,10 @@ final class QueryServiceClient
     }
 
     /**
-     * Queries time series using Monitoring Query Language.
+     * Queries time series by using Monitoring Query Language (MQL). We recommend
+     * using PromQL instead of MQL. For more information about the status of MQL,
+     * see the [MQL deprecation
+     * notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
      *
      * The async variant is {@see QueryServiceClient::queryTimeSeriesAsync()} .
      *
@@ -185,6 +192,8 @@ final class QueryServiceClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function queryTimeSeries(QueryTimeSeriesRequest $request, array $callOptions = []): PagedListResponse
     {

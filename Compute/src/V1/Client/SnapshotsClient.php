@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\TestIamPermissionsSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Snapshots API.
@@ -224,6 +225,9 @@ final class SnapshotsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -251,6 +255,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::deleteAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/delete.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -274,6 +280,8 @@ final class SnapshotsClient
      * Returns the specified Snapshot resource.
      *
      * The async variant is {@see SnapshotsClient::getAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/get.php
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -299,6 +307,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/get_iam_policy.php
+     *
      * @param GetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -322,6 +332,8 @@ final class SnapshotsClient
      * Creates a snapshot in the specified project using the data included in the request. For regular snapshot creation, consider using this method instead of disks.createSnapshot, as this method supports more features, such as creating snapshots in a project different from the source disk project.
      *
      * The async variant is {@see SnapshotsClient::insertAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/insert.php
      *
      * @param InsertSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -347,6 +359,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::listAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/list.php
+     *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -370,6 +384,8 @@ final class SnapshotsClient
      * Sets the access control policy on the specified resource. Replaces any existing policy.
      *
      * The async variant is {@see SnapshotsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/set_iam_policy.php
      *
      * @param SetIamPolicySnapshotRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -395,6 +411,8 @@ final class SnapshotsClient
      *
      * The async variant is {@see SnapshotsClient::setLabelsAsync()} .
      *
+     * @example samples/V1/SnapshotsClient/set_labels.php
+     *
      * @param SetLabelsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -418,6 +436,8 @@ final class SnapshotsClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see SnapshotsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SnapshotsClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

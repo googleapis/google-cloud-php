@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\VpnGateway;
 use Google\Cloud\Compute\V1\VpnGatewaysGetStatusResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The VpnGateways API.
@@ -225,6 +226,9 @@ final class VpnGatewaysClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -252,6 +256,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/aggregated_list.php
+     *
      * @param AggregatedListVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -275,6 +281,8 @@ final class VpnGatewaysClient
      * Deletes the specified VPN gateway.
      *
      * The async variant is {@see VpnGatewaysClient::deleteAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/delete.php
      *
      * @param DeleteVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -300,6 +308,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::getAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/get.php
+     *
      * @param GetVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -323,6 +333,8 @@ final class VpnGatewaysClient
      * Returns the status for the specified VPN gateway.
      *
      * The async variant is {@see VpnGatewaysClient::getStatusAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/get_status.php
      *
      * @param GetStatusVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -348,6 +360,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::insertAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/insert.php
+     *
      * @param InsertVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -371,6 +385,8 @@ final class VpnGatewaysClient
      * Retrieves a list of VPN gateways available to the specified project and region.
      *
      * The async variant is {@see VpnGatewaysClient::listAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/list.php
      *
      * @param ListVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -396,6 +412,8 @@ final class VpnGatewaysClient
      *
      * The async variant is {@see VpnGatewaysClient::setLabelsAsync()} .
      *
+     * @example samples/V1/VpnGatewaysClient/set_labels.php
+     *
      * @param SetLabelsVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -419,6 +437,8 @@ final class VpnGatewaysClient
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is {@see VpnGatewaysClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/VpnGatewaysClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {

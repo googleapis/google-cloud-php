@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionInstantSnapshots_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\RegionInstantSnapshotsClient;
+use Google\Cloud\Compute\V1\GetRegionInstantSnapshotRequest;
 use Google\Cloud\Compute\V1\InstantSnapshot;
-use Google\Cloud\Compute\V1\RegionInstantSnapshotsClient;
 
 /**
  * Returns the specified InstantSnapshot resource in the specified region.
@@ -39,10 +40,16 @@ function get_sample(string $instantSnapshot, string $project, string $region): v
     // Create a client.
     $regionInstantSnapshotsClient = new RegionInstantSnapshotsClient();
 
+    // Prepare the request message.
+    $request = (new GetRegionInstantSnapshotRequest())
+        ->setInstantSnapshot($instantSnapshot)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstantSnapshot $response */
-        $response = $regionInstantSnapshotsClient->get($instantSnapshot, $project, $region);
+        $response = $regionInstantSnapshotsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceTemplates_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\RegionInstanceTemplatesClient;
+use Google\Cloud\Compute\V1\InsertRegionInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\InstanceTemplate;
-use Google\Cloud\Compute\V1\RegionInstanceTemplatesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $region): void
     // Create a client.
     $regionInstanceTemplatesClient = new RegionInstanceTemplatesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceTemplateResource = new InstanceTemplate();
+    $request = (new InsertRegionInstanceTemplateRequest())
+        ->setInstanceTemplateResource($instanceTemplateResource)
+        ->setProject($project)
+        ->setRegion($region);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionInstanceTemplatesClient->insert($instanceTemplateResource, $project, $region);
+        $response = $regionInstanceTemplatesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

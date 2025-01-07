@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return MetricsV1Beta3Client */
@@ -77,9 +79,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $stagesElement = new StageSummary();
-        $stages = [
-            $stagesElement,
-        ];
+        $stages = [$stagesElement];
         $expectedResponse = new JobExecutionDetails();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStages($stages);
@@ -109,12 +109,15 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetJobExecutionDetailsRequest();
         try {
@@ -163,12 +166,15 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetJobMetricsRequest();
         try {
@@ -195,9 +201,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workersElement = new WorkerDetails();
-        $workers = [
-            $workersElement,
-        ];
+        $workers = [$workersElement];
         $expectedResponse = new StageExecutionDetails();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkers($workers);
@@ -227,12 +231,15 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetStageExecutionDetailsRequest();
         try {
@@ -259,9 +266,7 @@ class MetricsV1Beta3ClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $stagesElement = new StageSummary();
-        $stages = [
-            $stagesElement,
-        ];
+        $stages = [$stagesElement];
         $expectedResponse = new JobExecutionDetails();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setStages($stages);

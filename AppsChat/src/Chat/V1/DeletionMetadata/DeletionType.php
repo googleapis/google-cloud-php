@@ -7,7 +7,8 @@ namespace Google\Apps\Chat\V1\DeletionMetadata;
 use UnexpectedValueException;
 
 /**
- * Who deleted the message and how it was deleted.
+ * Who deleted the message and how it was deleted. More values may be added in
+ * the future.
  *
  * Protobuf type <code>google.chat.v1.DeletionMetadata.DeletionType</code>
  */

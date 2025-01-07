@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\InstanceTemplate;
 use Google\Cloud\Compute\V1\ListRegionInstanceTemplatesRequest;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The RegionInstanceTemplates API.
@@ -215,6 +216,9 @@ final class RegionInstanceTemplatesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -242,6 +246,8 @@ final class RegionInstanceTemplatesClient
      *
      * The async variant is {@see RegionInstanceTemplatesClient::deleteAsync()} .
      *
+     * @example samples/V1/RegionInstanceTemplatesClient/delete.php
+     *
      * @param DeleteRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -265,6 +271,8 @@ final class RegionInstanceTemplatesClient
      * Returns the specified instance template.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionInstanceTemplatesClient/get.php
      *
      * @param GetRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -290,6 +298,8 @@ final class RegionInstanceTemplatesClient
      *
      * The async variant is {@see RegionInstanceTemplatesClient::insertAsync()} .
      *
+     * @example samples/V1/RegionInstanceTemplatesClient/insert.php
+     *
      * @param InsertRegionInstanceTemplateRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -313,6 +323,8 @@ final class RegionInstanceTemplatesClient
      * Retrieves a list of instance templates that are contained within the specified project and region.
      *
      * The async variant is {@see RegionInstanceTemplatesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionInstanceTemplatesClient/list.php
      *
      * @param ListRegionInstanceTemplatesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {

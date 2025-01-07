@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_ListXpnHosts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ProjectsClient;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
+use Google\Cloud\Compute\V1\ListXpnHostsProjectsRequest;
 use Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest;
 
 /**
@@ -38,13 +39,16 @@ function list_xpn_hosts_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $projectsListXpnHostsRequestResource = new ProjectsListXpnHostsRequest();
+    $request = (new ListXpnHostsProjectsRequest())
+        ->setProject($project)
+        ->setProjectsListXpnHostsRequestResource($projectsListXpnHostsRequestResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $projectsClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
+        $response = $projectsClient->listXpnHosts($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

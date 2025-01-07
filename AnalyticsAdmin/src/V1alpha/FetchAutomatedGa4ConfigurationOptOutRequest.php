@@ -23,7 +23,7 @@ class FetchAutomatedGa4ConfigurationOptOutRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $property = '';
+    protected $property = '';
 
     /**
      * Constructor.

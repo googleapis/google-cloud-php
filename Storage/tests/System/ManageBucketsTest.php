@@ -491,4 +491,37 @@ class ManageBucketsTest extends StorageTestCase
             ], true],
         ];
     }
+
+    public function testSoftDeleteBucket()
+    {
+        $name = "soft-delete-bucket-" . uniqid();
+        $softDeleteBucket = self::createBucket(
+            self::$client,
+            $name,
+            [
+                'softDeletePolicy' => ['retentionDurationSeconds' => 8 * 24 * 60 * 60]
+            ]
+        );
+
+        // Assert that the bucket was created correctly.
+        $this->assertEquals($name, $softDeleteBucket->name());
+        $generation = $softDeleteBucket->info()['generation'];
+
+        // Delete the bucket.
+        $softDeleteBucket->delete();
+        $this->assertFalse(self::$client->bucket($name)->exists());
+
+        // Retrieve the soft-deleted bucket by generation.
+        $softDeleteBucket->reload(['softDeleted' => true, 'generation' => $generation]);
+
+        // Assert that the retrieved bucket is the soft-deleted version.
+        $this->assertEquals($name, $softDeleteBucket->name());
+        $this->assertEquals($generation, $softDeleteBucket->info()['generation']);
+        $this->assertArrayHasKey('softDeleteTime', $softDeleteBucket->info());
+        $this->assertArrayHasKey('hardDeleteTime', $softDeleteBucket->info());
+
+        // Restore the soft-deleted bucket.
+        self::$client->restore($name, $generation);
+        $this->assertTrue(self::$client->bucket($name)->exists());
+    }
 }

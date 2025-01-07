@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_GlobalAddresses_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\GlobalAddressesClient;
+use Google\Cloud\Compute\V1\Client\GlobalAddressesClient;
+use Google\Cloud\Compute\V1\ListGlobalAddressesRequest;
 
 /**
  * Retrieves a list of global addresses.
@@ -37,10 +38,14 @@ function list_sample(string $project): void
     // Create a client.
     $globalAddressesClient = new GlobalAddressesClient();
 
+    // Prepare the request message.
+    $request = (new ListGlobalAddressesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $globalAddressesClient->list($project);
+        $response = $globalAddressesClient->list($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

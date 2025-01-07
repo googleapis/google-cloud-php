@@ -23,13 +23,13 @@ class MetricHeader extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The metric's data type.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.MetricType type = 2;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

@@ -18,13 +18,13 @@ class BoundingBoxEvaluationOptions extends \Google\Protobuf\Internal\Message
     /**
      * Minimum
      * [intersection-over-union
-     * (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     * (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      * required for 2 bounding boxes to be considered a match. This must be a
      * number between 0 and 1.
      *
      * Generated from protobuf field <code>float iou_threshold = 1;</code>
      */
-    private $iou_threshold = 0.0;
+    protected $iou_threshold = 0.0;
 
     /**
      * Constructor.
@@ -35,7 +35,7 @@ class BoundingBoxEvaluationOptions extends \Google\Protobuf\Internal\Message
      *     @type float $iou_threshold
      *           Minimum
      *           [intersection-over-union
-     *           (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     *           (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      *           required for 2 bounding boxes to be considered a match. This must be a
      *           number between 0 and 1.
      * }
@@ -48,7 +48,7 @@ class BoundingBoxEvaluationOptions extends \Google\Protobuf\Internal\Message
     /**
      * Minimum
      * [intersection-over-union
-     * (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     * (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      * required for 2 bounding boxes to be considered a match. This must be a
      * number between 0 and 1.
      *
@@ -63,7 +63,7 @@ class BoundingBoxEvaluationOptions extends \Google\Protobuf\Internal\Message
     /**
      * Minimum
      * [intersection-over-union
-     * (IOU)](https://cloud.google.com/vision/automl/object-detection/docs/evaluate#intersection-over-union)
+     * (IOU)](/vision/automl/object-detection/docs/evaluate#intersection-over-union)
      * required for 2 bounding boxes to be considered a match. This must be a
      * number between 0 and 1.
      *

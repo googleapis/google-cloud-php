@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_SslCertificates_AggregatedList_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\SslCertificatesClient;
+use Google\Cloud\Compute\V1\AggregatedListSslCertificatesRequest;
+use Google\Cloud\Compute\V1\Client\SslCertificatesClient;
 
 /**
  * Retrieves the list of all SslCertificate resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
@@ -37,10 +38,14 @@ function aggregated_list_sample(string $project): void
     // Create a client.
     $sslCertificatesClient = new SslCertificatesClient();
 
+    // Prepare the request message.
+    $request = (new AggregatedListSslCertificatesRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $sslCertificatesClient->aggregatedList($project);
+        $response = $sslCertificatesClient->aggregatedList($request);
 
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());

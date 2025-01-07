@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetSslProxies_SetCertificateMap_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetSslProxiesClient;
+use Google\Cloud\Compute\V1\SetCertificateMapTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\TargetSslProxiesSetCertificateMapRequest;
 use Google\Rpc\Status;
 
@@ -40,17 +41,19 @@ function set_certificate_map_sample(string $project, string $targetSslProxy): vo
     // Create a client.
     $targetSslProxiesClient = new TargetSslProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetSslProxiesSetCertificateMapRequestResource = new TargetSslProxiesSetCertificateMapRequest();
+    $request = (new SetCertificateMapTargetSslProxyRequest())
+        ->setProject($project)
+        ->setTargetSslProxiesSetCertificateMapRequestResource(
+            $targetSslProxiesSetCertificateMapRequestResource
+        )
+        ->setTargetSslProxy($targetSslProxy);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetSslProxiesClient->setCertificateMap(
-            $project,
-            $targetSslProxiesSetCertificateMapRequestResource,
-            $targetSslProxy
-        );
+        $response = $targetSslProxiesClient->setCertificateMap($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

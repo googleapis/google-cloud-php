@@ -20,13 +20,13 @@ class CreateExpandedDataSetRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ExpandedDataSet to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $expanded_data_set = null;
+    protected $expanded_data_set = null;
 
     /**
      * @param string                                          $parent          Required. Example format: properties/1234

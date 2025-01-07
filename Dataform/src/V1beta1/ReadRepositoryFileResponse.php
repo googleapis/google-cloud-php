@@ -20,7 +20,7 @@ class ReadRepositoryFileResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes contents = 1;</code>
      */
-    private $contents = '';
+    protected $contents = '';
 
     /**
      * Constructor.
