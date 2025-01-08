@@ -20,25 +20,25 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. If left unset, a default InvocationConfig will be used.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.InvocationConfig invocation_config = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $invocation_config = null;
+    protected $invocation_config = null;
     /**
      * Output only. This workflow invocation's current state.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowInvocation.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. This workflow invocation's timing details.
      *
      * Generated from protobuf field <code>.google.type.Interval invocation_timing = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $invocation_timing = null;
+    protected $invocation_timing = null;
     protected $compilation_source;
 
     /**

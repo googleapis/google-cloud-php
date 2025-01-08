@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_TargetHttpsProxies_SetUrlMap_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\Client\TargetHttpsProxiesClient;
+use Google\Cloud\Compute\V1\SetUrlMapTargetHttpsProxyRequest;
 use Google\Cloud\Compute\V1\UrlMapReference;
 use Google\Rpc\Status;
 
@@ -40,17 +41,17 @@ function set_url_map_sample(string $project, string $targetHttpsProxy): void
     // Create a client.
     $targetHttpsProxiesClient = new TargetHttpsProxiesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $urlMapReferenceResource = new UrlMapReference();
+    $request = (new SetUrlMapTargetHttpsProxyRequest())
+        ->setProject($project)
+        ->setTargetHttpsProxy($targetHttpsProxy)
+        ->setUrlMapReferenceResource($urlMapReferenceResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $targetHttpsProxiesClient->setUrlMap(
-            $project,
-            $targetHttpsProxy,
-            $urlMapReferenceResource
-        );
+        $response = $targetHttpsProxiesClient->setUrlMap($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -20,13 +20,13 @@ class RuntimeVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The runtime version.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
-    private $version = '';
+    protected $version = '';
 
     /**
      * Constructor.

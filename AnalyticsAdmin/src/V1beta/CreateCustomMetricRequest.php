@@ -20,13 +20,13 @@ class CreateCustomMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The CustomMetric to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.CustomMetric custom_metric = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $custom_metric = null;
+    protected $custom_metric = null;
 
     /**
      * @param string                                      $parent       Required. Example format: properties/1234

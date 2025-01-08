@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_InstanceGroupManagerResizeRequests_Get_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\GetInstanceGroupManagerResizeRequestRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
-use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestsClient;
 
 /**
  * Returns all of the details about the specified resize request.
@@ -44,15 +45,17 @@ function get_sample(
     // Create a client.
     $instanceGroupManagerResizeRequestsClient = new InstanceGroupManagerResizeRequestsClient();
 
+    // Prepare the request message.
+    $request = (new GetInstanceGroupManagerResizeRequestRequest())
+        ->setInstanceGroupManager($instanceGroupManager)
+        ->setProject($project)
+        ->setResizeRequest($resizeRequest)
+        ->setZone($zone);
+
     // Call the API and handle any network failures.
     try {
         /** @var InstanceGroupManagerResizeRequest $response */
-        $response = $instanceGroupManagerResizeRequestsClient->get(
-            $instanceGroupManager,
-            $project,
-            $resizeRequest,
-            $zone
-        );
+        $response = $instanceGroupManagerResizeRequestsClient->get($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

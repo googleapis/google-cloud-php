@@ -749,7 +749,7 @@ class BucketTest extends TestCase
     }
 
     private function getBucketForSigning(
-        SignBlobInterface $credentials = null,
+        ?SignBlobInterface $credentials = null,
         $scopes = ''
     ) {
         if ($credentials === null) {

@@ -176,7 +176,7 @@ class GqlQuery implements QueryInterface
      */
     public function queryKey()
     {
-        return "gqlQuery";
+        return 'gqlQuery';
     }
 
     public function aggregation()
@@ -207,7 +207,8 @@ class GqlQuery implements QueryInterface
      */
     public function start($cursor)
     //@codingStandardsIgnoreStart
-    {}
+    {
+    }
     //@codingStandardsIgnoreEnd
 
     /**

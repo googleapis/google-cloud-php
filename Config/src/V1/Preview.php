@@ -59,11 +59,11 @@ class Preview extends \Google\Protobuf\Internal\Message
      */
     protected $preview_mode = 0;
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * previewing resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $service_account = '';
     /**
@@ -151,6 +151,15 @@ class Preview extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tf_version_constraint = null;
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identifiy preview during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
     protected $blueprint;
 
     /**
@@ -179,7 +188,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      *     @type int $preview_mode
      *           Optional. Current mode of preview.
      *     @type string $service_account
-     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           Required. User-specified Service Account (SA) credentials to be used when
      *           previewing resources.
      *           Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *     @type string $artifacts_gcs_bucket
@@ -223,6 +232,11 @@ class Preview extends \Google\Protobuf\Internal\Message
      *     @type string $tf_version_constraint
      *           Optional. The user-specified Terraform version constraint.
      *           Example: "=1.3.10".
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     *           identifiy preview during automation. See
+     *           https://google.aip.dev/148#annotations for details on format and size
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -438,11 +452,11 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * previewing resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getServiceAccount()
@@ -451,11 +465,11 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when
+     * Required. User-specified Service Account (SA) credentials to be used when
      * previewing resources.
      * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
-     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -837,6 +851,38 @@ class Preview extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tf_version_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identifiy preview during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identifiy preview during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }

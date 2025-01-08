@@ -9,8 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The `QueryTimeSeries` request.
+ * The `QueryTimeSeries` request. For information about the status of
+ * Monitoring Query Language (MQL), see the [MQL deprecation
+ * notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
  *
+ * @deprecated
  * Generated from protobuf message <code>google.monitoring.v3.QueryTimeSeriesRequest</code>
  */
 class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message

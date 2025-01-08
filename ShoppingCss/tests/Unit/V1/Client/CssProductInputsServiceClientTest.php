@@ -32,6 +32,7 @@ use Google\Shopping\Css\V1\Client\CssProductInputsServiceClient;
 use Google\Shopping\Css\V1\CssProductInput;
 use Google\Shopping\Css\V1\DeleteCssProductInputRequest;
 use Google\Shopping\Css\V1\InsertCssProductInputRequest;
+use Google\Shopping\Css\V1\UpdateCssProductInputRequest;
 use stdClass;
 
 /**
@@ -153,11 +154,9 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $cssProductInput->setContentLanguage($cssProductInputContentLanguage);
         $cssProductInputFeedLabel = 'cssProductInputFeedLabel664498136';
         $cssProductInput->setFeedLabel($cssProductInputFeedLabel);
-        $feedId = 976011428;
         $request = (new InsertCssProductInputRequest())
             ->setParent($formattedParent)
-            ->setCssProductInput($cssProductInput)
-            ->setFeedId($feedId);
+            ->setCssProductInput($cssProductInput);
         $response = $gapicClient->insertCssProductInput($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -169,8 +168,6 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getCssProductInput();
         $this->assertProtobufEquals($cssProductInput, $actualValue);
-        $actualValue = $actualRequestObject->getFeedId();
-        $this->assertProtobufEquals($feedId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -201,13 +198,95 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $cssProductInput->setContentLanguage($cssProductInputContentLanguage);
         $cssProductInputFeedLabel = 'cssProductInputFeedLabel664498136';
         $cssProductInput->setFeedLabel($cssProductInputFeedLabel);
-        $feedId = 976011428;
         $request = (new InsertCssProductInputRequest())
             ->setParent($formattedParent)
-            ->setCssProductInput($cssProductInput)
-            ->setFeedId($feedId);
+            ->setCssProductInput($cssProductInput);
         try {
             $gapicClient->insertCssProductInput($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCssProductInputTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $finalName = 'finalName-1861489740';
+        $rawProvidedId = 'rawProvidedId-845310112';
+        $contentLanguage = 'contentLanguage-1408137122';
+        $feedLabel = 'feedLabel574920979';
+        $expectedResponse = new CssProductInput();
+        $expectedResponse->setName($name);
+        $expectedResponse->setFinalName($finalName);
+        $expectedResponse->setRawProvidedId($rawProvidedId);
+        $expectedResponse->setContentLanguage($contentLanguage);
+        $expectedResponse->setFeedLabel($feedLabel);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $cssProductInput = new CssProductInput();
+        $cssProductInputRawProvidedId = 'cssProductInputRawProvidedId1424807816';
+        $cssProductInput->setRawProvidedId($cssProductInputRawProvidedId);
+        $cssProductInputContentLanguage = 'cssProductInputContentLanguage-1783585453';
+        $cssProductInput->setContentLanguage($cssProductInputContentLanguage);
+        $cssProductInputFeedLabel = 'cssProductInputFeedLabel664498136';
+        $cssProductInput->setFeedLabel($cssProductInputFeedLabel);
+        $request = (new UpdateCssProductInputRequest())
+            ->setCssProductInput($cssProductInput);
+        $response = $gapicClient->updateCssProductInput($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.shopping.css.v1.CssProductInputsService/UpdateCssProductInput', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCssProductInput();
+        $this->assertProtobufEquals($cssProductInput, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCssProductInputExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $cssProductInput = new CssProductInput();
+        $cssProductInputRawProvidedId = 'cssProductInputRawProvidedId1424807816';
+        $cssProductInput->setRawProvidedId($cssProductInputRawProvidedId);
+        $cssProductInputContentLanguage = 'cssProductInputContentLanguage-1783585453';
+        $cssProductInput->setContentLanguage($cssProductInputContentLanguage);
+        $cssProductInputFeedLabel = 'cssProductInputFeedLabel664498136';
+        $cssProductInput->setFeedLabel($cssProductInputFeedLabel);
+        $request = (new UpdateCssProductInputRequest())
+            ->setCssProductInput($cssProductInput);
+        try {
+            $gapicClient->updateCssProductInput($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

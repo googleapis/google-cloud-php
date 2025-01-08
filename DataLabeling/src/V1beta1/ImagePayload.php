@@ -20,25 +20,25 @@ class ImagePayload extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
      */
-    private $mime_type = '';
+    protected $mime_type = '';
     /**
      * A byte string of a thumbnail image.
      *
      * Generated from protobuf field <code>bytes image_thumbnail = 2;</code>
      */
-    private $image_thumbnail = '';
+    protected $image_thumbnail = '';
     /**
      * Image uri from the user bucket.
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      */
-    private $image_uri = '';
+    protected $image_uri = '';
     /**
      * Signed uri of the image file in the service bucket.
      *
      * Generated from protobuf field <code>string signed_uri = 4;</code>
      */
-    private $signed_uri = '';
+    protected $signed_uri = '';
 
     /**
      * Constructor.

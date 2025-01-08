@@ -23,33 +23,33 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The source of the annotation.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSource annotation_source = 2;</code>
      */
-    private $annotation_source = 0;
+    protected $annotation_source = 0;
     /**
      * Output only. This is the actual annotation value, e.g classification,
      * bounding box values are stored here.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationValue annotation_value = 3;</code>
      */
-    private $annotation_value = null;
+    protected $annotation_value = null;
     /**
      * Output only. Annotation metadata, including information like votes
      * for labels.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationMetadata annotation_metadata = 4;</code>
      */
-    private $annotation_metadata = null;
+    protected $annotation_metadata = null;
     /**
      * Output only. Sentiment for this annotation.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.AnnotationSentiment annotation_sentiment = 6;</code>
      */
-    private $annotation_sentiment = 0;
+    protected $annotation_sentiment = 0;
 
     /**
      * Constructor.

@@ -26,7 +26,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. Immutable. The replication policy of the secret data attached to
      * the [Secret][google.cloud.secretmanager.v1.Secret].
@@ -34,14 +34,14 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Replication replication = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replication = null;
+    protected $replication = null;
     /**
      * Output only. The time at which the
      * [Secret][google.cloud.secretmanager.v1.Secret] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The labels assigned to this Secret.
      * Label keys must be between 1 and 63 characters long, have a UTF-8 encoding
@@ -68,7 +68,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Optional. Rotation policy attached to the
      * [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is
@@ -76,7 +76,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $rotation = null;
+    protected $rotation = null;
     /**
      * Optional. Mapping from version alias to version name.
      * A version alias is a string with a maximum length of 63 characters and can
@@ -114,7 +114,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration version_destroy_ttl = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $version_destroy_ttl = null;
+    protected $version_destroy_ttl = null;
     /**
      * Optional. The customer-managed encryption configuration of the Regionalised
      * Secrets. If no configuration is provided, Google-managed default encryption
@@ -127,7 +127,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $customer_managed_encryption = null;
+    protected $customer_managed_encryption = null;
     protected $expiration;
 
     /**

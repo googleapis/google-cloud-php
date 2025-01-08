@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The request for
- * [UpdateInstanceConfigRequest][InstanceAdmin.UpdateInstanceConfigRequest].
+ * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.UpdateInstanceConfigRequest</code>
  */

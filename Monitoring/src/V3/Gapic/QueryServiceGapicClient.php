@@ -178,7 +178,10 @@ class QueryServiceGapicClient
     }
 
     /**
-     * Queries time series using Monitoring Query Language.
+     * Queries time series by using Monitoring Query Language (MQL). We recommend
+     * using PromQL instead of MQL. For more information about the status of MQL,
+     * see the [MQL deprecation
+     * notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
      *
      * Sample code:
      * ```
@@ -233,6 +236,8 @@ class QueryServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function queryTimeSeries($name, $query, array $optionalArgs = [])
     {

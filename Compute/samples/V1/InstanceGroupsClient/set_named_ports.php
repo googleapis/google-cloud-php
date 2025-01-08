@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceGroups_SetNamedPorts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InstanceGroupsClient;
+use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
 use Google\Cloud\Compute\V1\InstanceGroupsSetNamedPortsRequest;
+use Google\Cloud\Compute\V1\SetNamedPortsInstanceGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,18 +42,18 @@ function set_named_ports_sample(string $instanceGroup, string $project, string $
     // Create a client.
     $instanceGroupsClient = new InstanceGroupsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceGroupsSetNamedPortsRequestResource = new InstanceGroupsSetNamedPortsRequest();
+    $request = (new SetNamedPortsInstanceGroupRequest())
+        ->setInstanceGroup($instanceGroup)
+        ->setInstanceGroupsSetNamedPortsRequestResource($instanceGroupsSetNamedPortsRequestResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceGroupsClient->setNamedPorts(
-            $instanceGroup,
-            $instanceGroupsSetNamedPortsRequestResource,
-            $project,
-            $zone
-        );
+        $response = $instanceGroupsClient->setNamedPorts($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

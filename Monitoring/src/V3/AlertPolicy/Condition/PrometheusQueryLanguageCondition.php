@@ -113,6 +113,18 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string alert_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $alert_rule = '';
+    /**
+     * Optional. Whether to disable metric existence validation for this
+     * condition.
+     * This allows alerting policies to be defined on metrics that do not yet
+     * exist, improving advanced customer workflows such as configuring
+     * alerting policies using Terraform.
+     * Users with the `monitoring.alertPolicyViewer` role are able to see the
+     * name of the non-existent metric in the alerting policy condition.
+     *
+     * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disable_metric_validation = false;
 
     /**
      * Constructor.
@@ -169,6 +181,14 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
      *           [valid Prometheus label
      *           name](https://prometheus.io/docs/concepts/data_model/#metric-names-and-labels).
      *           This field may not exceed 2048 Unicode characters in length.
+     *     @type bool $disable_metric_validation
+     *           Optional. Whether to disable metric existence validation for this
+     *           condition.
+     *           This allows alerting policies to be defined on metrics that do not yet
+     *           exist, improving advanced customer workflows such as configuring
+     *           alerting policies using Terraform.
+     *           Users with the `monitoring.alertPolicyViewer` role are able to see the
+     *           name of the non-existent metric in the alerting policy condition.
      * }
      */
     public function __construct($data = NULL) {
@@ -422,6 +442,44 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->alert_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to disable metric existence validation for this
+     * condition.
+     * This allows alerting policies to be defined on metrics that do not yet
+     * exist, improving advanced customer workflows such as configuring
+     * alerting policies using Terraform.
+     * Users with the `monitoring.alertPolicyViewer` role are able to see the
+     * name of the non-existent metric in the alerting policy condition.
+     *
+     * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableMetricValidation()
+    {
+        return $this->disable_metric_validation;
+    }
+
+    /**
+     * Optional. Whether to disable metric existence validation for this
+     * condition.
+     * This allows alerting policies to be defined on metrics that do not yet
+     * exist, improving advanced customer workflows such as configuring
+     * alerting policies using Terraform.
+     * Users with the `monitoring.alertPolicyViewer` role are able to see the
+     * name of the non-existent metric in the alerting policy condition.
+     *
+     * Generated from protobuf field <code>bool disable_metric_validation = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableMetricValidation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_metric_validation = $var;
 
         return $this;
     }

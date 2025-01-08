@@ -46,6 +46,7 @@ use Google\Cloud\Compute\V1\UrlMap;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
 use Google\Cloud\Compute\V1\ValidateUrlMapRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The UrlMaps API.
@@ -225,6 +226,9 @@ final class UrlMapsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -252,6 +256,8 @@ final class UrlMapsClient
      *
      * The async variant is {@see UrlMapsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/UrlMapsClient/aggregated_list.php
+     *
      * @param AggregatedListUrlMapsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -275,6 +281,8 @@ final class UrlMapsClient
      * Deletes the specified UrlMap resource.
      *
      * The async variant is {@see UrlMapsClient::deleteAsync()} .
+     *
+     * @example samples/V1/UrlMapsClient/delete.php
      *
      * @param DeleteUrlMapRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -300,6 +308,8 @@ final class UrlMapsClient
      *
      * The async variant is {@see UrlMapsClient::getAsync()} .
      *
+     * @example samples/V1/UrlMapsClient/get.php
+     *
      * @param GetUrlMapRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -323,6 +333,8 @@ final class UrlMapsClient
      * Creates a UrlMap resource in the specified project using the data included in the request.
      *
      * The async variant is {@see UrlMapsClient::insertAsync()} .
+     *
+     * @example samples/V1/UrlMapsClient/insert.php
      *
      * @param InsertUrlMapRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -348,6 +360,8 @@ final class UrlMapsClient
      *
      * The async variant is {@see UrlMapsClient::invalidateCacheAsync()} .
      *
+     * @example samples/V1/UrlMapsClient/invalidate_cache.php
+     *
      * @param InvalidateCacheUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -371,6 +385,8 @@ final class UrlMapsClient
      * Retrieves the list of UrlMap resources available to the specified project.
      *
      * The async variant is {@see UrlMapsClient::listAsync()} .
+     *
+     * @example samples/V1/UrlMapsClient/list.php
      *
      * @param ListUrlMapsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -396,6 +412,8 @@ final class UrlMapsClient
      *
      * The async variant is {@see UrlMapsClient::patchAsync()} .
      *
+     * @example samples/V1/UrlMapsClient/patch.php
+     *
      * @param PatchUrlMapRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -420,6 +438,8 @@ final class UrlMapsClient
      *
      * The async variant is {@see UrlMapsClient::updateAsync()} .
      *
+     * @example samples/V1/UrlMapsClient/update.php
+     *
      * @param UpdateUrlMapRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -443,6 +463,8 @@ final class UrlMapsClient
      * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
      *
      * The async variant is {@see UrlMapsClient::validateAsync()} .
+     *
+     * @example samples/V1/UrlMapsClient/validate.php
      *
      * @param ValidateUrlMapRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

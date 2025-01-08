@@ -20,7 +20,7 @@ class ExpandedDataSetFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field_name = '';
+    protected $field_name = '';
     protected $one_filter;
 
     /**

@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\InsertRouteRequest;
 use Google\Cloud\Compute\V1\ListRoutesRequest;
 use Google\Cloud\Compute\V1\Route;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Routes API.
@@ -214,6 +215,9 @@ final class RoutesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -241,6 +245,8 @@ final class RoutesClient
      *
      * The async variant is {@see RoutesClient::deleteAsync()} .
      *
+     * @example samples/V1/RoutesClient/delete.php
+     *
      * @param DeleteRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -264,6 +270,8 @@ final class RoutesClient
      * Returns the specified Route resource.
      *
      * The async variant is {@see RoutesClient::getAsync()} .
+     *
+     * @example samples/V1/RoutesClient/get.php
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -289,6 +297,8 @@ final class RoutesClient
      *
      * The async variant is {@see RoutesClient::insertAsync()} .
      *
+     * @example samples/V1/RoutesClient/insert.php
+     *
      * @param InsertRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -312,6 +322,8 @@ final class RoutesClient
      * Retrieves the list of Route resources available to the specified project.
      *
      * The async variant is {@see RoutesClient::listAsync()} .
+     *
+     * @example samples/V1/RoutesClient/list.php
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

@@ -61,6 +61,4 @@ class CountingMethod
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CountingMethod::class, \Google\Analytics\Admin\V1alpha\KeyEvent_CountingMethod::class);
 

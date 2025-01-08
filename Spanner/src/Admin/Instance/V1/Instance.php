@@ -49,9 +49,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      * field and reflects the current number of nodes allocated to the instance.
      * This might be zero in API responses for instances that are not yet in the
      * `READY` state.
-     * If the instance has varying node count across replicas (achieved by
-     * setting asymmetric_autoscaling_options in autoscaling config), the
-     * node_count here is the maximum node count across all replicas.
      * For more information, see
      * [Compute capacity, nodes, and processing
      * units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -69,10 +66,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      * allocated to the instance.
      * This might be zero in API responses for instances that are not yet in the
      * `READY` state.
-     * If the instance has varying processing units per replica
-     * (achieved by setting asymmetric_autoscaling_options in autoscaling config),
-     * the processing_units here is the maximum processing units across all
-     * replicas.
      * For more information, see
      * [Compute capacity, nodes and processing
      * units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -131,6 +124,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * The `InstanceType` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
+     */
+    private $instance_type = 0;
+    /**
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
@@ -149,19 +148,26 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
+     * Free instance metadata. Only populated for free instances.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
+     */
+    private $free_instance_metadata = null;
+    /**
      * Optional. The `Edition` of the current instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $edition = 0;
     /**
-     * Optional. Controls the default backup behavior for new databases within the
-     * instance.
-     * Note that `AUTOMATIC` is not permitted for free instances, as backups and
-     * backup schedules are not allowed for free instances.
+     * Optional. Controls the default backup schedule behavior for new databases
+     * within the instance. By default, a backup schedule is created automatically
+     * when a new database is created in a new instance.
+     * Note that the `AUTOMATIC` value isn't permitted for free instances,
+     * as backups and backup schedules aren't supported for free instances.
      * In the `GetInstance` or `ListInstances` response, if the value of
-     * default_backup_schedule_type is unset or NONE, no default backup
-     * schedule will be created for new databases within the instance.
+     * `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     * create a default backup schedule for new databases in the instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -195,9 +201,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           field and reflects the current number of nodes allocated to the instance.
      *           This might be zero in API responses for instances that are not yet in the
      *           `READY` state.
-     *           If the instance has varying node count across replicas (achieved by
-     *           setting asymmetric_autoscaling_options in autoscaling config), the
-     *           node_count here is the maximum node count across all replicas.
      *           For more information, see
      *           [Compute capacity, nodes, and processing
      *           units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -211,10 +214,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           allocated to the instance.
      *           This might be zero in API responses for instances that are not yet in the
      *           `READY` state.
-     *           If the instance has varying processing units per replica
-     *           (achieved by setting asymmetric_autoscaling_options in autoscaling config),
-     *           the processing_units here is the maximum processing units across all
-     *           replicas.
      *           For more information, see
      *           [Compute capacity, nodes and processing
      *           units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -252,22 +251,27 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           specific characters being disallowed.  For example, representing labels
      *           as the string:  name + "_" + value  would prove problematic if we were to
      *           allow "_" in a future release.
+     *     @type int $instance_type
+     *           The `InstanceType` of the current instance.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
      *           Deprecated. This field is not populated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the instance was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time at which the instance was most recently updated.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata $free_instance_metadata
+     *           Free instance metadata. Only populated for free instances.
      *     @type int $edition
      *           Optional. The `Edition` of the current instance.
      *     @type int $default_backup_schedule_type
-     *           Optional. Controls the default backup behavior for new databases within the
-     *           instance.
-     *           Note that `AUTOMATIC` is not permitted for free instances, as backups and
-     *           backup schedules are not allowed for free instances.
+     *           Optional. Controls the default backup schedule behavior for new databases
+     *           within the instance. By default, a backup schedule is created automatically
+     *           when a new database is created in a new instance.
+     *           Note that the `AUTOMATIC` value isn't permitted for free instances,
+     *           as backups and backup schedules aren't supported for free instances.
      *           In the `GetInstance` or `ListInstances` response, if the value of
-     *           default_backup_schedule_type is unset or NONE, no default backup
-     *           schedule will be created for new databases within the instance.
+     *           `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     *           create a default backup schedule for new databases in the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -376,9 +380,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      * field and reflects the current number of nodes allocated to the instance.
      * This might be zero in API responses for instances that are not yet in the
      * `READY` state.
-     * If the instance has varying node count across replicas (achieved by
-     * setting asymmetric_autoscaling_options in autoscaling config), the
-     * node_count here is the maximum node count across all replicas.
      * For more information, see
      * [Compute capacity, nodes, and processing
      * units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -400,9 +401,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      * field and reflects the current number of nodes allocated to the instance.
      * This might be zero in API responses for instances that are not yet in the
      * `READY` state.
-     * If the instance has varying node count across replicas (achieved by
-     * setting asymmetric_autoscaling_options in autoscaling config), the
-     * node_count here is the maximum node count across all replicas.
      * For more information, see
      * [Compute capacity, nodes, and processing
      * units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -429,10 +427,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      * allocated to the instance.
      * This might be zero in API responses for instances that are not yet in the
      * `READY` state.
-     * If the instance has varying processing units per replica
-     * (achieved by setting asymmetric_autoscaling_options in autoscaling config),
-     * the processing_units here is the maximum processing units across all
-     * replicas.
      * For more information, see
      * [Compute capacity, nodes and processing
      * units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -455,10 +449,6 @@ class Instance extends \Google\Protobuf\Internal\Message
      * allocated to the instance.
      * This might be zero in API responses for instances that are not yet in the
      * `READY` state.
-     * If the instance has varying processing units per replica
-     * (achieved by setting asymmetric_autoscaling_options in autoscaling config),
-     * the processing_units here is the maximum processing units across all
-     * replicas.
      * For more information, see
      * [Compute capacity, nodes and processing
      * units](https://cloud.google.com/spanner/docs/compute-capacity).
@@ -642,6 +632,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The `InstanceType` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
+     * @return int
+     */
+    public function getInstanceType()
+    {
+        return $this->instance_type;
+    }
+
+    /**
+     * The `InstanceType` of the current instance.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.InstanceType instance_type = 10;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInstanceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\Instance\InstanceType::class);
+        $this->instance_type = $var;
+
+        return $this;
+    }
+
+    /**
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
@@ -740,6 +756,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Free instance metadata. Only populated for free instances.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata|null
+     */
+    public function getFreeInstanceMetadata()
+    {
+        return $this->free_instance_metadata;
+    }
+
+    public function hasFreeInstanceMetadata()
+    {
+        return isset($this->free_instance_metadata);
+    }
+
+    public function clearFreeInstanceMetadata()
+    {
+        unset($this->free_instance_metadata);
+    }
+
+    /**
+     * Free instance metadata. Only populated for free instances.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FreeInstanceMetadata free_instance_metadata = 13;</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata $var
+     * @return $this
+     */
+    public function setFreeInstanceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata::class);
+        $this->free_instance_metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The `Edition` of the current instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.Edition edition = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -766,13 +818,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls the default backup behavior for new databases within the
-     * instance.
-     * Note that `AUTOMATIC` is not permitted for free instances, as backups and
-     * backup schedules are not allowed for free instances.
+     * Optional. Controls the default backup schedule behavior for new databases
+     * within the instance. By default, a backup schedule is created automatically
+     * when a new database is created in a new instance.
+     * Note that the `AUTOMATIC` value isn't permitted for free instances,
+     * as backups and backup schedules aren't supported for free instances.
      * In the `GetInstance` or `ListInstances` response, if the value of
-     * default_backup_schedule_type is unset or NONE, no default backup
-     * schedule will be created for new databases within the instance.
+     * `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     * create a default backup schedule for new databases in the instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -783,13 +836,14 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls the default backup behavior for new databases within the
-     * instance.
-     * Note that `AUTOMATIC` is not permitted for free instances, as backups and
-     * backup schedules are not allowed for free instances.
+     * Optional. Controls the default backup schedule behavior for new databases
+     * within the instance. By default, a backup schedule is created automatically
+     * when a new database is created in a new instance.
+     * Note that the `AUTOMATIC` value isn't permitted for free instances,
+     * as backups and backup schedules aren't supported for free instances.
      * In the `GetInstance` or `ListInstances` response, if the value of
-     * default_backup_schedule_type is unset or NONE, no default backup
-     * schedule will be created for new databases within the instance.
+     * `default_backup_schedule_type` isn't set, or set to `NONE`, Spanner doesn't
+     * create a default backup schedule for new databases in the instance.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.DefaultBackupScheduleType default_backup_schedule_type = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

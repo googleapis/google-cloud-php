@@ -20,13 +20,13 @@ class QuotaStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 consumed = 1;</code>
      */
-    private $consumed = null;
+    protected $consumed = null;
     /**
      * Quota remaining after this request.
      *
      * Generated from protobuf field <code>optional int32 remaining = 2;</code>
      */
-    private $remaining = null;
+    protected $remaining = null;
 
     /**
      * Constructor.

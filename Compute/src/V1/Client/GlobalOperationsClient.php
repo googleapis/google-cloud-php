@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\ListGlobalOperationsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\WaitGlobalOperationRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The GlobalOperations API.
@@ -162,6 +163,9 @@ final class GlobalOperationsClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -188,6 +192,8 @@ final class GlobalOperationsClient
      *
      * The async variant is {@see GlobalOperationsClient::aggregatedListAsync()} .
      *
+     * @example samples/V1/GlobalOperationsClient/aggregated_list.php
+     *
      * @param AggregatedListGlobalOperationsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
      *     Optional.
@@ -211,6 +217,8 @@ final class GlobalOperationsClient
      * Deletes the specified Operations resource.
      *
      * The async variant is {@see GlobalOperationsClient::deleteAsync()} .
+     *
+     * @example samples/V1/GlobalOperationsClient/delete.php
      *
      * @param DeleteGlobalOperationRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -236,6 +244,8 @@ final class GlobalOperationsClient
      *
      * The async variant is {@see GlobalOperationsClient::getAsync()} .
      *
+     * @example samples/V1/GlobalOperationsClient/get.php
+     *
      * @param GetGlobalOperationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -260,6 +270,8 @@ final class GlobalOperationsClient
      *
      * The async variant is {@see GlobalOperationsClient::listAsync()} .
      *
+     * @example samples/V1/GlobalOperationsClient/list.php
+     *
      * @param ListGlobalOperationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -283,6 +295,8 @@ final class GlobalOperationsClient
      * Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the `GET` method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`.
      *
      * The async variant is {@see GlobalOperationsClient::waitAsync()} .
+     *
+     * @example samples/V1/GlobalOperationsClient/wait.php
      *
      * @param WaitGlobalOperationRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

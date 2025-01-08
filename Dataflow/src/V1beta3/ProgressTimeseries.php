@@ -20,7 +20,7 @@ class ProgressTimeseries extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double current_progress = 1;</code>
      */
-    private $current_progress = 0.0;
+    protected $current_progress = 0.0;
     /**
      * History of progress for the component.
      * Points are sorted by time.

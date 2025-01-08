@@ -20,7 +20,7 @@ class BigQueryAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_script = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sql_script = '';
+    protected $sql_script = '';
 
     /**
      * Constructor.

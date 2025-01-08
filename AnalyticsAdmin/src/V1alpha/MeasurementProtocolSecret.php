@@ -22,13 +22,13 @@ class MeasurementProtocolSecret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human-readable display name for this secret.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Output only. The measurement protocol secret value. Pass this value to the
      * api_secret field of the Measurement Protocol API when sending hits to this
@@ -36,7 +36,7 @@ class MeasurementProtocolSecret extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string secret_value = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $secret_value = '';
+    protected $secret_value = '';
 
     /**
      * Constructor.

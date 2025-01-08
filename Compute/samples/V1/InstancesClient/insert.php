@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Instances_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\InstancesClient;
+use Google\Cloud\Compute\V1\InsertInstanceRequest;
 use Google\Cloud\Compute\V1\Instance;
-use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $instancesClient = new InstancesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceResource = new Instance();
+    $request = (new InsertInstanceRequest())
+        ->setInstanceResource($instanceResource)
+        ->setProject($project)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instancesClient->insert($instanceResource, $project, $zone);
+        $response = $instancesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

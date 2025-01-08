@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_TargetPools_GetHealth_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
+use Google\Cloud\Compute\V1\GetHealthTargetPoolRequest;
 use Google\Cloud\Compute\V1\InstanceReference;
 use Google\Cloud\Compute\V1\TargetPoolInstanceHealth;
-use Google\Cloud\Compute\V1\TargetPoolsClient;
 
 /**
  * Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
@@ -40,18 +41,18 @@ function get_health_sample(string $project, string $region, string $targetPool):
     // Create a client.
     $targetPoolsClient = new TargetPoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceReferenceResource = new InstanceReference();
+    $request = (new GetHealthTargetPoolRequest())
+        ->setInstanceReferenceResource($instanceReferenceResource)
+        ->setProject($project)
+        ->setRegion($region)
+        ->setTargetPool($targetPool);
 
     // Call the API and handle any network failures.
     try {
         /** @var TargetPoolInstanceHealth $response */
-        $response = $targetPoolsClient->getHealth(
-            $instanceReferenceResource,
-            $project,
-            $region,
-            $targetPool
-        );
+        $response = $targetPoolsClient->getHealth($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -20,7 +20,7 @@ class TextEntityExtractionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotation_spec_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotation_spec_set = '';
+    protected $annotation_spec_set = '';
 
     /**
      * Constructor.

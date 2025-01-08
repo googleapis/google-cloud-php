@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\SetIamPolicyLicenseRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The Licenses API.
@@ -222,6 +223,9 @@ final class LicensesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -249,6 +253,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::deleteAsync()} .
      *
+     * @example samples/V1/LicensesClient/delete.php
+     *
      * @param DeleteLicenseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -272,6 +278,8 @@ final class LicensesClient
      * Returns the specified License resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicensesClient::getAsync()} .
+     *
+     * @example samples/V1/LicensesClient/get.php
      *
      * @param GetLicenseRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -297,6 +305,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/LicensesClient/get_iam_policy.php
+     *
      * @param GetIamPolicyLicenseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -320,6 +330,8 @@ final class LicensesClient
      * Create a License resource in the specified project. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicensesClient::insertAsync()} .
+     *
+     * @example samples/V1/LicensesClient/insert.php
      *
      * @param InsertLicenseRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -345,6 +357,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::listAsync()} .
      *
+     * @example samples/V1/LicensesClient/list.php
+     *
      * @param ListLicensesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -369,6 +383,8 @@ final class LicensesClient
      *
      * The async variant is {@see LicensesClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/LicensesClient/set_iam_policy.php
+     *
      * @param SetIamPolicyLicenseRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -392,6 +408,8 @@ final class LicensesClient
      * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
      *
      * The async variant is {@see LicensesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/LicensesClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsLicenseRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

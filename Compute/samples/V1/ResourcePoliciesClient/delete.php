@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ResourcePolicies_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\Client\ResourcePoliciesClient;
+use Google\Cloud\Compute\V1\DeleteResourcePolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $project, string $region, string $resourcePolicy):
     // Create a client.
     $resourcePoliciesClient = new ResourcePoliciesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteResourcePolicyRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setResourcePolicy($resourcePolicy);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $resourcePoliciesClient->delete($project, $region, $resourcePolicy);
+        $response = $resourcePoliciesClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

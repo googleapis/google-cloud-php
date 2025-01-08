@@ -52,7 +52,6 @@ use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -60,6 +59,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -172,10 +172,31 @@ final class AlphaAnalyticsDataClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -466,8 +487,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function createRecurringAudienceList(CreateRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
-    {
+    public function createRecurringAudienceList(
+        CreateRecurringAudienceListRequest $request,
+        array $callOptions = []
+    ): RecurringAudienceList {
         return $this->startApiCall('CreateRecurringAudienceList', $request, $callOptions)->wait();
     }
 
@@ -572,8 +595,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function getPropertyQuotasSnapshot(GetPropertyQuotasSnapshotRequest $request, array $callOptions = []): PropertyQuotasSnapshot
-    {
+    public function getPropertyQuotasSnapshot(
+        GetPropertyQuotasSnapshotRequest $request,
+        array $callOptions = []
+    ): PropertyQuotasSnapshot {
         return $this->startApiCall('GetPropertyQuotasSnapshot', $request, $callOptions)->wait();
     }
 
@@ -611,8 +636,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function getRecurringAudienceList(GetRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
-    {
+    public function getRecurringAudienceList(
+        GetRecurringAudienceListRequest $request,
+        array $callOptions = []
+    ): RecurringAudienceList {
         return $this->startApiCall('GetRecurringAudienceList', $request, $callOptions)->wait();
     }
 
@@ -722,8 +749,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function listRecurringAudienceLists(ListRecurringAudienceListsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRecurringAudienceLists(
+        ListRecurringAudienceListsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRecurringAudienceLists', $request, $callOptions);
     }
 
@@ -795,8 +824,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function queryAudienceList(QueryAudienceListRequest $request, array $callOptions = []): QueryAudienceListResponse
-    {
+    public function queryAudienceList(
+        QueryAudienceListRequest $request,
+        array $callOptions = []
+    ): QueryAudienceListResponse {
         return $this->startApiCall('QueryAudienceList', $request, $callOptions)->wait();
     }
 
@@ -917,8 +948,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function sheetExportAudienceList(SheetExportAudienceListRequest $request, array $callOptions = []): SheetExportAudienceListResponse
-    {
+    public function sheetExportAudienceList(
+        SheetExportAudienceListRequest $request,
+        array $callOptions = []
+    ): SheetExportAudienceListResponse {
         return $this->startApiCall('SheetExportAudienceList', $request, $callOptions)->wait();
     }
 }

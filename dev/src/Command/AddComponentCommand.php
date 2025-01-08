@@ -73,7 +73,7 @@ class AddComponentCommand extends Command
      * @param Client $httpClient specify the HTTP client, useful for tests.
      * @param RunProcess $runProcess Instance to execute Symfony Process commands, useful for tests.
      */
-    public function __construct($rootPath, Client $httpClient = null, RunProcess $runProcess = null)
+    public function __construct($rootPath, ?Client $httpClient = null, ?RunProcess $runProcess = null)
     {
         $this->rootPath = realpath($rootPath);
         $this->httpClient = $httpClient ?: new Client();

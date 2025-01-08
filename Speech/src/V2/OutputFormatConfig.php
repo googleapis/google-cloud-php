@@ -17,22 +17,22 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Configuration for the native output format. If this field is set or if no
-     * other output format field is set then transcripts will be written to the
+     * other output format field is set, then transcripts will be written to the
      * sink in the native format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.NativeOutputFileFormatConfig native = 1;</code>
      */
     private $native = null;
     /**
-     * Configuration for the vtt output format. If this field is set then
-     * transcripts will be written to the sink in the vtt format.
+     * Configuration for the VTT output format. If this field is set, then
+     * transcripts will be written to the sink in the VTT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.VttOutputFileFormatConfig vtt = 2;</code>
      */
     private $vtt = null;
     /**
-     * Configuration for the srt output format. If this field is set then
-     * transcripts will be written to the sink in the srt format.
+     * Configuration for the SRT output format. If this field is set, then
+     * transcripts will be written to the sink in the SRT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SrtOutputFileFormatConfig srt = 3;</code>
      */
@@ -46,14 +46,14 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Speech\V2\NativeOutputFileFormatConfig $native
      *           Configuration for the native output format. If this field is set or if no
-     *           other output format field is set then transcripts will be written to the
+     *           other output format field is set, then transcripts will be written to the
      *           sink in the native format.
      *     @type \Google\Cloud\Speech\V2\VttOutputFileFormatConfig $vtt
-     *           Configuration for the vtt output format. If this field is set then
-     *           transcripts will be written to the sink in the vtt format.
+     *           Configuration for the VTT output format. If this field is set, then
+     *           transcripts will be written to the sink in the VTT format.
      *     @type \Google\Cloud\Speech\V2\SrtOutputFileFormatConfig $srt
-     *           Configuration for the srt output format. If this field is set then
-     *           transcripts will be written to the sink in the srt format.
+     *           Configuration for the SRT output format. If this field is set, then
+     *           transcripts will be written to the sink in the SRT format.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +63,7 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for the native output format. If this field is set or if no
-     * other output format field is set then transcripts will be written to the
+     * other output format field is set, then transcripts will be written to the
      * sink in the native format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.NativeOutputFileFormatConfig native = 1;</code>
@@ -86,7 +86,7 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for the native output format. If this field is set or if no
-     * other output format field is set then transcripts will be written to the
+     * other output format field is set, then transcripts will be written to the
      * sink in the native format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.NativeOutputFileFormatConfig native = 1;</code>
@@ -102,8 +102,8 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the vtt output format. If this field is set then
-     * transcripts will be written to the sink in the vtt format.
+     * Configuration for the VTT output format. If this field is set, then
+     * transcripts will be written to the sink in the VTT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.VttOutputFileFormatConfig vtt = 2;</code>
      * @return \Google\Cloud\Speech\V2\VttOutputFileFormatConfig|null
@@ -124,8 +124,8 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the vtt output format. If this field is set then
-     * transcripts will be written to the sink in the vtt format.
+     * Configuration for the VTT output format. If this field is set, then
+     * transcripts will be written to the sink in the VTT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.VttOutputFileFormatConfig vtt = 2;</code>
      * @param \Google\Cloud\Speech\V2\VttOutputFileFormatConfig $var
@@ -140,8 +140,8 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the srt output format. If this field is set then
-     * transcripts will be written to the sink in the srt format.
+     * Configuration for the SRT output format. If this field is set, then
+     * transcripts will be written to the sink in the SRT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SrtOutputFileFormatConfig srt = 3;</code>
      * @return \Google\Cloud\Speech\V2\SrtOutputFileFormatConfig|null
@@ -162,8 +162,8 @@ class OutputFormatConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for the srt output format. If this field is set then
-     * transcripts will be written to the sink in the srt format.
+     * Configuration for the SRT output format. If this field is set, then
+     * transcripts will be written to the sink in the SRT format.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SrtOutputFileFormatConfig srt = 3;</code>
      * @param \Google\Cloud\Speech\V2\SrtOutputFileFormatConfig $var

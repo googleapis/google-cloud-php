@@ -20,7 +20,7 @@ class ProvisionAccountTicketResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account_ticket_id = 1;</code>
      */
-    private $account_ticket_id = '';
+    protected $account_ticket_id = '';
 
     /**
      * Constructor.

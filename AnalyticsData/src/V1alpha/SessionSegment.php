@@ -22,13 +22,13 @@ class SessionSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SessionSegmentCriteria session_inclusion_criteria = 1;</code>
      */
-    private $session_inclusion_criteria = null;
+    protected $session_inclusion_criteria = null;
     /**
      * Defines which sessions are excluded in this segment. Optional.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SessionSegmentExclusion exclusion = 2;</code>
      */
-    private $exclusion = null;
+    protected $exclusion = null;
 
     /**
      * Constructor.

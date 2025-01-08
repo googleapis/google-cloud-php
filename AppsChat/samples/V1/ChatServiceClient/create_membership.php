@@ -35,8 +35,19 @@ use Google\Apps\Chat\V1\Membership;
  * policy turned off, then they're invited, and must accept the space
  * invitation before joining. Otherwise, creating a membership adds the member
  * directly to the specified space.
- * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ *
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+ * in [Developer Preview](https://developers.google.com/workspace/preview)
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * You can authenticate and authorize this method with administrator
+ * privileges by setting the `use_admin_access` field in the request.
  *
  * For example usage, see:
  *

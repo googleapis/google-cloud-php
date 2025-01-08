@@ -20,14 +20,14 @@ class UpdateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MeasurementProtocolSecret measurement_protocol_secret = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $measurement_protocol_secret = null;
+    protected $measurement_protocol_secret = null;
     /**
      * Required. The list of fields to be updated. Omitted fields will not be
      * updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.

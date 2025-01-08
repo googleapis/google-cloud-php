@@ -52,18 +52,12 @@ use Google\Shopping\Css\V1\InsertCssProductInputRequest;
  *                                               for the CSS Product.
  *                                               Feed Label is synonymous to "target country" and hence should always be a
  *                                               valid region code. For example: 'DE' for Germany, 'FR' for France.
- * @param int    $feedId                         The primary or supplemental feed id. If CSS Product already
- *                                               exists and feed id provided is different, then the CSS Product will be
- *                                               moved to a new feed. Note: For now, CSSs do not need to provide feed ids as
- *                                               we create feeds on the fly. We do not have supplemental feed support for
- *                                               CSS Products yet.
  */
 function insert_css_product_input_sample(
     string $formattedParent,
     string $cssProductInputRawProvidedId,
     string $cssProductInputContentLanguage,
-    string $cssProductInputFeedLabel,
-    int $feedId
+    string $cssProductInputFeedLabel
 ): void {
     // Create a client.
     $cssProductInputsServiceClient = new CssProductInputsServiceClient();
@@ -75,8 +69,7 @@ function insert_css_product_input_sample(
         ->setFeedLabel($cssProductInputFeedLabel);
     $request = (new InsertCssProductInputRequest())
         ->setParent($formattedParent)
-        ->setCssProductInput($cssProductInput)
-        ->setFeedId($feedId);
+        ->setCssProductInput($cssProductInput);
 
     // Call the API and handle any network failures.
     try {
@@ -103,14 +96,12 @@ function callSample(): void
     $cssProductInputRawProvidedId = '[RAW_PROVIDED_ID]';
     $cssProductInputContentLanguage = '[CONTENT_LANGUAGE]';
     $cssProductInputFeedLabel = '[FEED_LABEL]';
-    $feedId = 0;
 
     insert_css_product_input_sample(
         $formattedParent,
         $cssProductInputRawProvidedId,
         $cssProductInputContentLanguage,
-        $cssProductInputFeedLabel,
-        $feedId
+        $cssProductInputFeedLabel
     );
 }
 // [END css_v1_generated_CssProductInputsService_InsertCssProductInput_sync]
