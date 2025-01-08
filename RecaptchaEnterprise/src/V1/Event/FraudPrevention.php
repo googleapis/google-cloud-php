@@ -14,10 +14,8 @@ use UnexpectedValueException;
 class FraudPrevention
 {
     /**
-     * Default, unspecified setting. If opted in for automatic detection,
-     * `fraud_prevention_assessment` is returned based on the request.
-     * Otherwise, `fraud_prevention_assessment` is returned if
-     * `transaction_data` is present in the `Event` and Fraud Prevention is
+     * Default, unspecified setting. `fraud_prevention_assessment` is returned
+     * if `transaction_data` is present in `Event` and Fraud Prevention is
      * enabled in the Google Cloud console.
      *
      * Generated from protobuf enum <code>FRAUD_PREVENTION_UNSPECIFIED = 0;</code>
@@ -31,8 +29,8 @@ class FraudPrevention
      */
     const ENABLED = 1;
     /**
-     * Disable Fraud Prevention for this assessment, regardless of opt-in
-     * status or Google Cloud console settings.
+     * Disable Fraud Prevention for this assessment, regardless of Google Cloud
+     * console settings.
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */
