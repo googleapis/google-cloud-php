@@ -95,20 +95,6 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     protected $new_recognition_result_notification_config = null;
     /**
-     * Optional. Configuration for publishing transcription intermediate results.
-     * Event will be sent in format of
-     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent]. If
-     * configured, the following information will be populated as
-     * [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] Pub/Sub
-     * message attributes:
-     * - "participant_id"
-     * - "participant_role"
-     * - "message_id"
-     *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.NotificationConfig new_recognition_result_notification_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $new_recognition_result_notification_config = null;
-    /**
      * Settings for speech transcription.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechToTextConfig stt_config = 9;</code>
