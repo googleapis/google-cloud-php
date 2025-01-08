@@ -298,13 +298,14 @@ class RestTest extends TestCase
     /**
      * @dataProvider downloadObjectWithResumeProvider
      */
-    public function testDownloadObjectWithResume(int $status1,
-                                                 string $body1,
-                                                 int $status2,
-                                                 string $body2,
-                                                 string $expectedResult,
-                                                 array $expectedSecondRequestHeaders)
-    {
+    public function testDownloadObjectWithResume(
+        int $status1,
+        string $body1,
+        int $status2,
+        string $body2,
+        string $expectedResult,
+        array $expectedSecondRequestHeaders
+    ) {
         /** @var Request[] $actualRequests */
         $actualRequests = [];
         $requestHeaders = [];
