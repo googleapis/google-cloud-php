@@ -43,6 +43,7 @@ use Google\Cloud\Compute\V1\SetLabelsExternalVpnGatewayRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsExternalVpnGatewayRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The ExternalVpnGateways API.
@@ -219,6 +220,9 @@ final class ExternalVpnGatewaysClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -246,6 +250,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::deleteAsync()} .
      *
+     * @example samples/V1/ExternalVpnGatewaysClient/delete.php
+     *
      * @param DeleteExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -269,6 +275,8 @@ final class ExternalVpnGatewaysClient
      * Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::getAsync()} .
+     *
+     * @example samples/V1/ExternalVpnGatewaysClient/get.php
      *
      * @param GetExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -294,6 +302,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::insertAsync()} .
      *
+     * @example samples/V1/ExternalVpnGatewaysClient/insert.php
+     *
      * @param InsertExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -317,6 +327,8 @@ final class ExternalVpnGatewaysClient
      * Retrieves the list of ExternalVpnGateway available to the specified project.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::listAsync()} .
+     *
+     * @example samples/V1/ExternalVpnGatewaysClient/list.php
      *
      * @param ListExternalVpnGatewaysRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -342,6 +354,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::setLabelsAsync()} .
      *
+     * @example samples/V1/ExternalVpnGatewaysClient/set_labels.php
+     *
      * @param SetLabelsExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -366,6 +380,8 @@ final class ExternalVpnGatewaysClient
      *
      * The async variant is {@see ExternalVpnGatewaysClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/ExternalVpnGatewaysClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsExternalVpnGatewayRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {

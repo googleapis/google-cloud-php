@@ -36,6 +36,8 @@ use Google\Cloud\Dataplex\V1\SearchEntriesResult;
  *                              following form: `projects/{project}/locations/{location}`. Please see
  *                              {@see CatalogServiceClient::locationName()} for help formatting this field.
  * @param string $query         The query against which entries in scope should be matched.
+ *                              The query syntax is defined in [Search syntax for Dataplex
+ *                              Catalog](https://cloud.google.com/dataplex/docs/search-syntax).
  */
 function search_entries_sample(string $formattedName, string $query): void
 {

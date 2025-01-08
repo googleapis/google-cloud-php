@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Firewalls_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\FirewallsClient;
+use Google\Cloud\Compute\V1\Client\FirewallsClient;
+use Google\Cloud\Compute\V1\DeleteFirewallRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,15 @@ function delete_sample(string $firewall, string $project): void
     // Create a client.
     $firewallsClient = new FirewallsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteFirewallRequest())
+        ->setFirewall($firewall)
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $firewallsClient->delete($firewall, $project);
+        $response = $firewallsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

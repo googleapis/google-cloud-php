@@ -52,6 +52,11 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether a message starts a thread or replies to one.
      * Only supported in named spaces.
+     * When [responding to user
+     * interactions](https://developers.google.com/workspace/chat/receive-respond-interactions),
+     * this field is ignored. For interactions within a thread, the reply is
+     * created in the same thread. Otherwise, the reply is created as a new
+     * thread.
      *
      * Generated from protobuf field <code>.google.chat.v1.CreateMessageRequest.MessageReplyOption message_reply_option = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -134,6 +139,11 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      *     @type int $message_reply_option
      *           Optional. Specifies whether a message starts a thread or replies to one.
      *           Only supported in named spaces.
+     *           When [responding to user
+     *           interactions](https://developers.google.com/workspace/chat/receive-respond-interactions),
+     *           this field is ignored. For interactions within a thread, the reply is
+     *           created in the same thread. Otherwise, the reply is created as a new
+     *           thread.
      *     @type string $message_id
      *           Optional. A custom ID for a message. Lets Chat apps get, update, or delete
      *           a message without needing to store the system-assigned ID in the message's
@@ -293,6 +303,11 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether a message starts a thread or replies to one.
      * Only supported in named spaces.
+     * When [responding to user
+     * interactions](https://developers.google.com/workspace/chat/receive-respond-interactions),
+     * this field is ignored. For interactions within a thread, the reply is
+     * created in the same thread. Otherwise, the reply is created as a new
+     * thread.
      *
      * Generated from protobuf field <code>.google.chat.v1.CreateMessageRequest.MessageReplyOption message_reply_option = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -305,6 +320,11 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Specifies whether a message starts a thread or replies to one.
      * Only supported in named spaces.
+     * When [responding to user
+     * interactions](https://developers.google.com/workspace/chat/receive-respond-interactions),
+     * this field is ignored. For interactions within a thread, the reply is
+     * created in the same thread. Otherwise, the reply is created as a new
+     * thread.
      *
      * Generated from protobuf field <code>.google.chat.v1.CreateMessageRequest.MessageReplyOption message_reply_option = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

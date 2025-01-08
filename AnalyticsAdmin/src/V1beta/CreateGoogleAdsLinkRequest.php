@@ -20,13 +20,13 @@ class CreateGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The GoogleAdsLink to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.GoogleAdsLink google_ads_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $google_ads_link = null;
+    protected $google_ads_link = null;
 
     /**
      * @param string                                       $parent        Required. Example format: properties/1234

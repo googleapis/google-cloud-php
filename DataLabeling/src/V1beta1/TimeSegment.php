@@ -21,14 +21,14 @@ class TimeSegment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time_offset = 1;</code>
      */
-    private $start_time_offset = null;
+    protected $start_time_offset = null;
     /**
      * End of the time segment (exclusive), represented as the duration since the
      * example start.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time_offset = 2;</code>
      */
-    private $end_time_offset = null;
+    protected $end_time_offset = null;
 
     /**
      * Constructor.

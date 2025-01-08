@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class AttachmentDataRef extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the attachment data. This field is used with the media
-     * API to download the attachment data.
+     * Optional. The resource name of the attachment data. This field is used with
+     * the media API to download the attachment data.
      *
-     * Generated from protobuf field <code>string resource_name = 1;</code>
+     * Generated from protobuf field <code>string resource_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $resource_name = '';
     /**
-     * Opaque token containing a reference to an uploaded attachment. Treated by
-     * clients as an opaque string and used to create or update Chat messages with
-     * attachments.
+     * Optional. Opaque token containing a reference to an uploaded attachment.
+     * Treated by clients as an opaque string and used to create or update Chat
+     * messages with attachments.
      *
-     * Generated from protobuf field <code>string attachment_upload_token = 2;</code>
+     * Generated from protobuf field <code>string attachment_upload_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $attachment_upload_token = '';
 
@@ -38,12 +38,12 @@ class AttachmentDataRef extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_name
-     *           The resource name of the attachment data. This field is used with the media
-     *           API to download the attachment data.
+     *           Optional. The resource name of the attachment data. This field is used with
+     *           the media API to download the attachment data.
      *     @type string $attachment_upload_token
-     *           Opaque token containing a reference to an uploaded attachment. Treated by
-     *           clients as an opaque string and used to create or update Chat messages with
-     *           attachments.
+     *           Optional. Opaque token containing a reference to an uploaded attachment.
+     *           Treated by clients as an opaque string and used to create or update Chat
+     *           messages with attachments.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,10 +52,10 @@ class AttachmentDataRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the attachment data. This field is used with the media
-     * API to download the attachment data.
+     * Optional. The resource name of the attachment data. This field is used with
+     * the media API to download the attachment data.
      *
-     * Generated from protobuf field <code>string resource_name = 1;</code>
+     * Generated from protobuf field <code>string resource_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getResourceName()
@@ -64,10 +64,10 @@ class AttachmentDataRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the attachment data. This field is used with the media
-     * API to download the attachment data.
+     * Optional. The resource name of the attachment data. This field is used with
+     * the media API to download the attachment data.
      *
-     * Generated from protobuf field <code>string resource_name = 1;</code>
+     * Generated from protobuf field <code>string resource_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -80,11 +80,11 @@ class AttachmentDataRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opaque token containing a reference to an uploaded attachment. Treated by
-     * clients as an opaque string and used to create or update Chat messages with
-     * attachments.
+     * Optional. Opaque token containing a reference to an uploaded attachment.
+     * Treated by clients as an opaque string and used to create or update Chat
+     * messages with attachments.
      *
-     * Generated from protobuf field <code>string attachment_upload_token = 2;</code>
+     * Generated from protobuf field <code>string attachment_upload_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAttachmentUploadToken()
@@ -93,11 +93,11 @@ class AttachmentDataRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opaque token containing a reference to an uploaded attachment. Treated by
-     * clients as an opaque string and used to create or update Chat messages with
-     * attachments.
+     * Optional. Opaque token containing a reference to an uploaded attachment.
+     * Treated by clients as an opaque string and used to create or update Chat
+     * messages with attachments.
      *
-     * Generated from protobuf field <code>string attachment_upload_token = 2;</code>
+     * Generated from protobuf field <code>string attachment_upload_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

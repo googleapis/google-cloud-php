@@ -17,15 +17,15 @@ class AuditContext
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-û
+ø
 &google/rpc/context/audit_context.protogoogle.rpc.context"Ç
 AuditContext
 	audit_log (1
 scrubbed_request (2.google.protobuf.Struct2
 scrubbed_response (2.google.protobuf.Struct$
 scrubbed_response_item_count (
-target_resource (	Bk
-com.google.rpc.contextBAuditContextProtoPZ9google.golang.org/genproto/googleapis/rpc/context;contextøbproto3'
+target_resource (	Bh
+com.google.rpc.contextBAuditContextProtoPZ9google.golang.org/genproto/googleapis/rpc/context;contextbproto3'
         , true);
 
         static::$is_initialized = true;

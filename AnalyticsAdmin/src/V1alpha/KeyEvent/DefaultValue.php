@@ -22,7 +22,7 @@ class DefaultValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double numeric_value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $numeric_value = 0.0;
+    protected $numeric_value = 0.0;
     /**
      * Required. When an occurrence of this Key Event (specified by event_name)
      * has no set currency this currency will be applied as the default. Must be
@@ -31,7 +31,7 @@ class DefaultValue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $currency_code = '';
+    protected $currency_code = '';
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class DefaultValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DefaultValue::class, \Google\Analytics\Admin\V1alpha\KeyEvent_DefaultValue::class);
 

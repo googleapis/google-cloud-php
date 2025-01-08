@@ -21,13 +21,13 @@ class CreateReportTaskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The report task configuration to create.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.ReportTask report_task = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $report_task = null;
+    protected $report_task = null;
 
     /**
      * @param string                                    $parent     Required. The parent resource where this report task will be created.

@@ -21,13 +21,13 @@ class ClassificationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.PrCurve pr_curve = 1;</code>
      */
-    private $pr_curve = null;
+    protected $pr_curve = null;
     /**
      * Confusion matrix of predicted labels vs. ground truth labels.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.ConfusionMatrix confusion_matrix = 2;</code>
      */
-    private $confusion_matrix = null;
+    protected $confusion_matrix = null;
 
     /**
      * Constructor.

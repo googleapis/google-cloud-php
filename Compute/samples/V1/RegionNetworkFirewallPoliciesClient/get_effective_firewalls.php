@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_RegionNetworkFirewallPolicies_GetEffectiveFirewalls_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse;
 
 /**
@@ -39,14 +40,16 @@ function get_effective_firewalls_sample(string $network, string $project, string
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new GetEffectiveFirewallsRegionNetworkFirewallPolicyRequest())
+        ->setNetwork($network)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse $response */
-        $response = $regionNetworkFirewallPoliciesClient->getEffectiveFirewalls(
-            $network,
-            $project,
-            $region
-        );
+        $response = $regionNetworkFirewallPoliciesClient->getEffectiveFirewalls($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

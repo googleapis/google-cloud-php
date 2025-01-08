@@ -203,7 +203,7 @@ class GrpcTraitTest extends TestCase
     public function testUniverseDomainFromGaxConfig(
         ?string $universeDomain,
         string $expectedUniverseDomain,
-        string $envUniverse = null
+        ?string $envUniverse = null
     ) {
         if ($envUniverse) {
             putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);

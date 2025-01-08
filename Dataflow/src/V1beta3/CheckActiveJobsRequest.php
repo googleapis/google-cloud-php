@@ -20,7 +20,7 @@ class CheckActiveJobsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
 
     /**
      * Constructor.

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InterconnectAttachments_Delete_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\InterconnectAttachmentsClient;
+use Google\Cloud\Compute\V1\Client\InterconnectAttachmentsClient;
+use Google\Cloud\Compute\V1\DeleteInterconnectAttachmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,16 @@ function delete_sample(string $interconnectAttachment, string $project, string $
     // Create a client.
     $interconnectAttachmentsClient = new InterconnectAttachmentsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteInterconnectAttachmentRequest())
+        ->setInterconnectAttachment($interconnectAttachment)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $interconnectAttachmentsClient->delete($interconnectAttachment, $project, $region);
+        $response = $interconnectAttachmentsClient->delete($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

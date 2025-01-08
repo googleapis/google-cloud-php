@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\LifeSciences\Tests\Unit\V2beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\LifeSciences\V2beta\Client\WorkflowsServiceV2BetaClient;
@@ -35,6 +34,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -57,7 +57,9 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return WorkflowsServiceV2BetaClient */
@@ -100,8 +102,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
+        $request = (new RunPipelineRequest())->setPipeline($pipeline);
         $response = $gapicClient->runPipeline($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -157,17 +158,19 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
+        $request = (new RunPipelineRequest())->setPipeline($pipeline);
         $response = $gapicClient->runPipeline($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -229,12 +232,15 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -261,9 +267,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -293,12 +297,15 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -345,8 +352,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $pipeline = new Pipeline();
-        $request = (new RunPipelineRequest())
-            ->setPipeline($pipeline);
+        $request = (new RunPipelineRequest())->setPipeline($pipeline);
         $response = $gapicClient->runPipelineAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

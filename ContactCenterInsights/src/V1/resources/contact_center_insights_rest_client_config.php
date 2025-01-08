@@ -85,6 +85,12 @@ return [
             'CalculateStats' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{location=projects/*/locations/*}/conversations:calculateStats',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{location=projects/*/locations/*/authorizedViewSet/*/authorizedView/*}:calculateStats',
+                    ],
+                ],
                 'placeholders' => [
                     'location' => [
                         'getters' => [
@@ -698,6 +704,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{location=projects/*/locations/*}:queryMetrics',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{location=projects/*/locations/*/authorizedViewSet/*/authorizedView/*}:queryMetrics',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'location' => [
                         'getters' => [

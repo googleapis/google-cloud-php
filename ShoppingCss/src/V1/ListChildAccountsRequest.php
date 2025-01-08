@@ -38,8 +38,8 @@ class ListChildAccountsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of accounts to return. The service may return
      * fewer than this value. If unspecified, at most 50 accounts will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * returned. The maximum value is 100; values above 100 will be coerced to
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -86,8 +86,8 @@ class ListChildAccountsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Optional. The maximum number of accounts to return. The service may return
      *           fewer than this value. If unspecified, at most 50 accounts will be
-     *           returned. The maximum value is 1000; values above 1000 will be coerced to
-     *           1000.
+     *           returned. The maximum value is 100; values above 100 will be coerced to
+     *           100.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListChildAccounts` call.
      *           Provide this to retrieve the subsequent page.
@@ -205,8 +205,8 @@ class ListChildAccountsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of accounts to return. The service may return
      * fewer than this value. If unspecified, at most 50 accounts will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * returned. The maximum value is 100; values above 100 will be coerced to
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -219,8 +219,8 @@ class ListChildAccountsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of accounts to return. The service may return
      * fewer than this value. If unspecified, at most 50 accounts will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * returned. The maximum value is 100; values above 100 will be coerced to
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

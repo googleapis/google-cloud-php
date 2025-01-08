@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Apps\Chat\V1\Client\ChatServiceClient;
 use Google\Apps\Chat\V1\Space;
 use Google\Apps\Chat\V1\UpdateSpaceRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a space. For an example, see
@@ -37,8 +38,18 @@ use Google\Apps\Chat\V1\UpdateSpaceRequest;
  * `ALREADY_EXISTS`, try a different display name.. An existing space within
  * the Google Workspace organization might already use this display name.
  *
- * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with [administrator approval](https://support.google.com/a?p=chat-app-auth)
+ * in [Developer Preview](https://developers.google.com/workspace/preview)
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * You can authenticate and authorize this method with administrator
+ * privileges by setting the `use_admin_access` field in the request.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -53,8 +64,10 @@ function update_space_sample(): void
 
     // Prepare the request message.
     $space = new Space();
+    $updateMask = new FieldMask();
     $request = (new UpdateSpaceRequest())
-        ->setSpace($space);
+        ->setSpace($space)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {

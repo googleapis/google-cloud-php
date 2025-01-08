@@ -22,13 +22,11 @@ use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Storage\Connection\RetryTrait;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MimeType;
@@ -186,6 +184,14 @@ class Rest implements ConnectionInterface
     public function deleteBucket(array $args = [])
     {
         return $this->send('buckets', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function restoreBucket(array $args = [])
+    {
+        return $this->send('buckets', 'restore', $args);
     }
 
     /**

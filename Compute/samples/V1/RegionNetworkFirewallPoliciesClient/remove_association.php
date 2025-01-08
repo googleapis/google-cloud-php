@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionNetworkFirewallPolicies_RemoveAssociation_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\Client\RegionNetworkFirewallPoliciesClient;
+use Google\Cloud\Compute\V1\RemoveAssociationRegionNetworkFirewallPolicyRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,14 +41,16 @@ function remove_association_sample(string $firewallPolicy, string $project, stri
     // Create a client.
     $regionNetworkFirewallPoliciesClient = new RegionNetworkFirewallPoliciesClient();
 
+    // Prepare the request message.
+    $request = (new RemoveAssociationRegionNetworkFirewallPolicyRequest())
+        ->setFirewallPolicy($firewallPolicy)
+        ->setProject($project)
+        ->setRegion($region);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $regionNetworkFirewallPoliciesClient->removeAssociation(
-            $firewallPolicy,
-            $project,
-            $region
-        );
+        $response = $regionNetworkFirewallPoliciesClient->removeAssociation($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

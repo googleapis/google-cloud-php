@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_Projects_GetXpnHost_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Compute\V1\Client\ProjectsClient;
+use Google\Cloud\Compute\V1\GetXpnHostProjectRequest;
 use Google\Cloud\Compute\V1\Project;
-use Google\Cloud\Compute\V1\ProjectsClient;
 
 /**
  * Gets the shared VPC host project that this project links to. May be empty if no link exists.
@@ -37,10 +38,14 @@ function get_xpn_host_sample(string $project): void
     // Create a client.
     $projectsClient = new ProjectsClient();
 
+    // Prepare the request message.
+    $request = (new GetXpnHostProjectRequest())
+        ->setProject($project);
+
     // Call the API and handle any network failures.
     try {
         /** @var Project $response */
-        $response = $projectsClient->getXpnHost($project);
+        $response = $projectsClient->getXpnHost($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

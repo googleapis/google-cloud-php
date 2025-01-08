@@ -20,19 +20,19 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The ID of the snapshot.
      *
      * Generated from protobuf field <code>string snapshot_id = 2;</code>
      */
-    private $snapshot_id = '';
+    protected $snapshot_id = '';
     /**
      * The location that contains this snapshot.
      *
      * Generated from protobuf field <code>string location = 3;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

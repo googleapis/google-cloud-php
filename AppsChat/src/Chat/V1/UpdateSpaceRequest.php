@@ -78,11 +78,11 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $update_mask = null;
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -92,7 +92,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Some `FieldMask` values are not supported using admin access. For details,
      * see the description of `update_mask`.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $use_admin_access = false;
 
@@ -238,7 +238,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           - `permission_settings.manageWebhooks`
      *           - `permission_settings.replyMessages`
      *     @type bool $use_admin_access
-     *           When `true`, the method runs using the user's Google Workspace
+     *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
      *           The calling user must be a Google Workspace administrator with the
      *           [manage chat and spaces conversations
@@ -349,7 +349,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -422,7 +422,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -435,7 +435,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -445,7 +445,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Some `FieldMask` values are not supported using admin access. For details,
      * see the description of `update_mask`.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseAdminAccess()
@@ -454,7 +454,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When `true`, the method runs using the user's Google Workspace
+     * Optional. When `true`, the method runs using the user's Google Workspace
      * administrator privileges.
      * The calling user must be a Google Workspace administrator with the
      * [manage chat and spaces conversations
@@ -464,7 +464,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Some `FieldMask` values are not supported using admin access. For details,
      * see the description of `update_mask`.
      *
-     * Generated from protobuf field <code>bool use_admin_access = 3;</code>
+     * Generated from protobuf field <code>bool use_admin_access = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

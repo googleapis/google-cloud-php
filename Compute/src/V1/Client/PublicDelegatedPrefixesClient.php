@@ -44,6 +44,7 @@ use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\WithdrawPublicDelegatedPrefixeRequest;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: The PublicDelegatedPrefixes API.
@@ -223,6 +224,9 @@ final class PublicDelegatedPrefixesClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      *
      * @throws ValidationException
@@ -251,6 +255,8 @@ final class PublicDelegatedPrefixesClient
      * The async variant is {@see PublicDelegatedPrefixesClient::aggregatedListAsync()}
      * .
      *
+     * @example samples/V1/PublicDelegatedPrefixesClient/aggregated_list.php
+     *
      * @param AggregatedListPublicDelegatedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -274,6 +280,8 @@ final class PublicDelegatedPrefixesClient
      * Announces the specified PublicDelegatedPrefix in the given region.
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::announceAsync()} .
+     *
+     * @example samples/V1/PublicDelegatedPrefixesClient/announce.php
      *
      * @param AnnouncePublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -299,6 +307,8 @@ final class PublicDelegatedPrefixesClient
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::deleteAsync()} .
      *
+     * @example samples/V1/PublicDelegatedPrefixesClient/delete.php
+     *
      * @param DeletePublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -322,6 +332,8 @@ final class PublicDelegatedPrefixesClient
      * Returns the specified PublicDelegatedPrefix resource in the given region.
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::getAsync()} .
+     *
+     * @example samples/V1/PublicDelegatedPrefixesClient/get.php
      *
      * @param GetPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
@@ -347,6 +359,8 @@ final class PublicDelegatedPrefixesClient
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::insertAsync()} .
      *
+     * @example samples/V1/PublicDelegatedPrefixesClient/insert.php
+     *
      * @param InsertPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -370,6 +384,8 @@ final class PublicDelegatedPrefixesClient
      * Lists the PublicDelegatedPrefixes for a project in the given region.
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::listAsync()} .
+     *
+     * @example samples/V1/PublicDelegatedPrefixesClient/list.php
      *
      * @param ListPublicDelegatedPrefixesRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -395,6 +411,8 @@ final class PublicDelegatedPrefixesClient
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::patchAsync()} .
      *
+     * @example samples/V1/PublicDelegatedPrefixesClient/patch.php
+     *
      * @param PatchPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -418,6 +436,8 @@ final class PublicDelegatedPrefixesClient
      * Withdraws the specified PublicDelegatedPrefix in the given region.
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::withdrawAsync()} .
+     *
+     * @example samples/V1/PublicDelegatedPrefixesClient/withdraw.php
      *
      * @param WithdrawPublicDelegatedPrefixeRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {

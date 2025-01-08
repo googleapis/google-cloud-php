@@ -26,7 +26,7 @@ class AutomaticStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus customer_managed_encryption = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $customer_managed_encryption = null;
+    protected $customer_managed_encryption = null;
 
     /**
      * Constructor.
@@ -87,6 +87,4 @@ class AutomaticStatus extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutomaticStatus::class, \Google\Cloud\SecretManager\V1\ReplicationStatus_AutomaticStatus::class);
 

@@ -35,12 +35,13 @@ class Component
     private string $repoName;
     private string $productDocumentation;
     private string $clientDocumentation;
+    private string $libraryType;
     private string $description;
     private array $namespaces;
     /** @var array<Component> */
     private array $componentDependencies;
 
-    public function __construct(private string $name, string $path = null)
+    public function __construct(private string $name, ?string $path = null)
     {
         $this->path = $path ?: $this->getComponentPath($name);
         $this->validateComponentFiles();
@@ -111,6 +112,11 @@ class Component
     public function getProductDocumentation(): string
     {
         return $this->productDocumentation;
+    }
+
+    public function getLibraryType(): string
+    {
+        return $this->libraryType;
     }
 
     public function getDescription(): string
@@ -219,6 +225,7 @@ class Component
         $this->releaseLevel = $repoMetadataJson['release_level'];
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
         $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
+        $this->libraryType = $repoMetadataJson['library_type'];
 
         $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {

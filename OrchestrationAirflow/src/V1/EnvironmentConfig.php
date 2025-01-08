@@ -41,21 +41,22 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     protected $node_count = 0;
     /**
-     * The configuration settings for software inside the environment.
+     * Optional. The configuration settings for software inside the environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $software_config = null;
     /**
-     * The configuration used for the Kubernetes Engine cluster.
+     * Optional. The configuration used for the Kubernetes Engine cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $node_config = null;
     /**
-     * The configuration used for the Private IP Cloud Composer environment.
+     * Optional. The configuration used for the Private IP Cloud Composer
+     * environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $private_environment_config = null;
     /**
@@ -194,11 +195,12 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           This field is supported for Cloud Composer environments in versions
      *           composer-1.*.*-airflow-*.*.*.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\SoftwareConfig $software_config
-     *           The configuration settings for software inside the environment.
+     *           Optional. The configuration settings for software inside the environment.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\NodeConfig $node_config
-     *           The configuration used for the Kubernetes Engine cluster.
+     *           Optional. The configuration used for the Kubernetes Engine cluster.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateEnvironmentConfig $private_environment_config
-     *           The configuration used for the Private IP Cloud Composer environment.
+     *           Optional. The configuration used for the Private IP Cloud Composer
+     *           environment.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl $web_server_network_access_control
      *           Optional. The network-level access control policy for the Airflow web
      *           server. If unspecified, no network-level access restrictions will be
@@ -362,9 +364,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration settings for software inside the environment.
+     * Optional. The configuration settings for software inside the environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\SoftwareConfig|null
      */
     public function getSoftwareConfig()
@@ -383,9 +385,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration settings for software inside the environment.
+     * Optional. The configuration settings for software inside the environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig software_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\SoftwareConfig $var
      * @return $this
      */
@@ -398,9 +400,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration used for the Kubernetes Engine cluster.
+     * Optional. The configuration used for the Kubernetes Engine cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\NodeConfig|null
      */
     public function getNodeConfig()
@@ -419,9 +421,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration used for the Kubernetes Engine cluster.
+     * Optional. The configuration used for the Kubernetes Engine cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.NodeConfig node_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\NodeConfig $var
      * @return $this
      */
@@ -434,9 +436,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration used for the Private IP Cloud Composer environment.
+     * Optional. The configuration used for the Private IP Cloud Composer
+     * environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateEnvironmentConfig|null
      */
     public function getPrivateEnvironmentConfig()
@@ -455,9 +458,10 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration used for the Private IP Cloud Composer environment.
+     * Optional. The configuration used for the Private IP Cloud Composer
+     * environment.
      *
-     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.PrivateEnvironmentConfig private_environment_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateEnvironmentConfig $var
      * @return $this
      */

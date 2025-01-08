@@ -63,6 +63,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      */
     protected $feed_label = '';
     /**
+     * DEPRECATED. Use expiration_date instead.
      * Represents the existing version (freshness) of the CSS Product, which
      * can be used to preserve the right order when multiple updates are done at
      * the same time.
@@ -77,7 +78,8 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      * If the operation is prevented, the aborted exception will be
      * thrown.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp freshness_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp freshness_time = 6 [deprecated = true];</code>
+     * @deprecated
      */
     protected $freshness_time = null;
     /**
@@ -130,6 +132,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      *           Feed Label is synonymous to "target country" and hence should always be a
      *           valid region code. For example: 'DE' for Germany, 'FR' for France.
      *     @type \Google\Protobuf\Timestamp $freshness_time
+     *           DEPRECATED. Use expiration_date instead.
      *           Represents the existing version (freshness) of the CSS Product, which
      *           can be used to preserve the right order when multiple updates are done at
      *           the same time.
@@ -320,6 +323,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * DEPRECATED. Use expiration_date instead.
      * Represents the existing version (freshness) of the CSS Product, which
      * can be used to preserve the right order when multiple updates are done at
      * the same time.
@@ -334,25 +338,30 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      * If the operation is prevented, the aborted exception will be
      * thrown.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp freshness_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp freshness_time = 6 [deprecated = true];</code>
      * @return \Google\Protobuf\Timestamp|null
+     * @deprecated
      */
     public function getFreshnessTime()
     {
+        @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
         return $this->freshness_time;
     }
 
     public function hasFreshnessTime()
     {
+        @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
         return isset($this->freshness_time);
     }
 
     public function clearFreshnessTime()
     {
+        @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
         unset($this->freshness_time);
     }
 
     /**
+     * DEPRECATED. Use expiration_date instead.
      * Represents the existing version (freshness) of the CSS Product, which
      * can be used to preserve the right order when multiple updates are done at
      * the same time.
@@ -367,12 +376,14 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      * If the operation is prevented, the aborted exception will be
      * thrown.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp freshness_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp freshness_time = 6 [deprecated = true];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
+     * @deprecated
      */
     public function setFreshnessTime($var)
     {
+        @trigger_error('freshness_time is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->freshness_time = $var;
 

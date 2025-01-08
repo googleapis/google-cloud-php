@@ -23,7 +23,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. Human-readable display name of the data exchange. The display name must
      * contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
@@ -33,7 +33,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. Description of the data exchange. The description must not contain Unicode
      * non-characters as well as C0 and C1 control codes except tabs (HT),
@@ -43,26 +43,26 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. Email or URL of the primary point of contact of the data exchange.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $primary_contact = '';
+    protected $primary_contact = '';
     /**
      * Optional. Documentation describing the data exchange.
      *
      * Generated from protobuf field <code>string documentation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $documentation = '';
+    protected $documentation = '';
     /**
      * Output only. Number of listings contained in the data exchange.
      *
      * Generated from protobuf field <code>int32 listing_count = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $listing_count = 0;
+    protected $listing_count = 0;
     /**
      * Optional. Base64 encoded image representing the data exchange. Max Size: 3.0MiB
      * Expected image dimensions are 512x512 pixels, however the API only
@@ -72,7 +72,7 @@ class DataExchange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes icon = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $icon = '';
+    protected $icon = '';
 
     /**
      * Constructor.

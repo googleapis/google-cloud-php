@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Space extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the space.
+     * Identifier. Resource name of the space.
      * Format: `spaces/{space}`
      * Where `{space}` represents the system-assigned ID for the space. You can
      * obtain the space ID by calling the
@@ -26,7 +26,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID
      * is `AAAAAAAAA`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -38,10 +38,10 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
-     * The type of space. Required when creating a space or updating the space
-     * type of a space. Output only for other usage.
+     * Optional. The type of space. Required when creating a space or updating the
+     * space type of a space. Output only for other usage.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceType space_type = 10;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceType space_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $space_type = 0;
     /**
@@ -60,7 +60,7 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     protected $threaded = false;
     /**
-     * The space's display name. Required when [creating a
+     * Optional. The space's display name. Required when [creating a
      * space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create)
      * with a `spaceType` of `SPACE`. If you receive the error message
      * `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a
@@ -69,19 +69,19 @@ class Space extends \Google\Protobuf\Internal\Message
      * For direct messages, this field might be empty.
      * Supports up to 128 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $display_name = '';
     /**
-     * Immutable. Whether this space permits any Google Chat user as a member.
-     * Input when creating a space in a Google Workspace organization. Omit this
-     * field when creating spaces in the following conditions:
+     * Optional. Immutable. Whether this space permits any Google Chat user as a
+     * member. Input when creating a space in a Google Workspace organization.
+     * Omit this field when creating spaces in the following conditions:
      *   * The authenticated user uses a consumer account (unmanaged user
      *     account). By default, a space created by a consumer account permits any
      *     Google Chat user.
      * For existing spaces, this field is output only.
      *
-     * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $external_user_allowed = false;
     /**
@@ -91,21 +91,23 @@ class Space extends \Google\Protobuf\Internal\Message
      */
     protected $space_threading_state = 0;
     /**
-     * Details about the space including description and rules.
+     * Optional. Details about the space including description and rules.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceDetails space_details = 11;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceDetails space_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $space_details = null;
     /**
-     * The message history state for messages and threads in this space.
+     * Optional. The message history state for messages and threads in this space.
      *
-     * Generated from protobuf field <code>.google.chat.v1.HistoryState space_history_state = 13;</code>
+     * Generated from protobuf field <code>.google.chat.v1.HistoryState space_history_state = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $space_history_state = 0;
     /**
      * Optional. Whether this space is created in `Import Mode` as part of a data
      * migration into Google Workspace. While spaces are being imported, they
      * aren't visible to users until the import is complete.
+     * Creating a space in `Import Mode`requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>bool import_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -178,7 +180,7 @@ class Space extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name of the space.
+     *           Identifier. Resource name of the space.
      *           Format: `spaces/{space}`
      *           Where `{space}` represents the system-assigned ID for the space. You can
      *           obtain the space ID by calling the
@@ -190,8 +192,8 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Output only. Deprecated: Use `space_type` instead.
      *           The type of a space.
      *     @type int $space_type
-     *           The type of space. Required when creating a space or updating the space
-     *           type of a space. Output only for other usage.
+     *           Optional. The type of space. Required when creating a space or updating the
+     *           space type of a space. Output only for other usage.
      *     @type bool $single_user_bot_dm
      *           Optional. Whether the space is a DM between a Chat app and a single
      *           human.
@@ -199,7 +201,7 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Output only. Deprecated: Use `spaceThreadingState` instead.
      *           Whether messages are threaded in this space.
      *     @type string $display_name
-     *           The space's display name. Required when [creating a
+     *           Optional. The space's display name. Required when [creating a
      *           space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create)
      *           with a `spaceType` of `SPACE`. If you receive the error message
      *           `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a
@@ -208,9 +210,9 @@ class Space extends \Google\Protobuf\Internal\Message
      *           For direct messages, this field might be empty.
      *           Supports up to 128 characters.
      *     @type bool $external_user_allowed
-     *           Immutable. Whether this space permits any Google Chat user as a member.
-     *           Input when creating a space in a Google Workspace organization. Omit this
-     *           field when creating spaces in the following conditions:
+     *           Optional. Immutable. Whether this space permits any Google Chat user as a
+     *           member. Input when creating a space in a Google Workspace organization.
+     *           Omit this field when creating spaces in the following conditions:
      *             * The authenticated user uses a consumer account (unmanaged user
      *               account). By default, a space created by a consumer account permits any
      *               Google Chat user.
@@ -218,13 +220,15 @@ class Space extends \Google\Protobuf\Internal\Message
      *     @type int $space_threading_state
      *           Output only. The threading state in the Chat space.
      *     @type \Google\Apps\Chat\V1\Space\SpaceDetails $space_details
-     *           Details about the space including description and rules.
+     *           Optional. Details about the space including description and rules.
      *     @type int $space_history_state
-     *           The message history state for messages and threads in this space.
+     *           Optional. The message history state for messages and threads in this space.
      *     @type bool $import_mode
      *           Optional. Whether this space is created in `Import Mode` as part of a data
      *           migration into Google Workspace. While spaces are being imported, they
      *           aren't visible to users until the import is complete.
+     *           Creating a space in `Import Mode`requires [user
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Optional. Immutable. For spaces created in Chat, the time the space was
      *           created. This field is output only, except when used in import mode spaces.
@@ -273,7 +277,7 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the space.
+     * Identifier. Resource name of the space.
      * Format: `spaces/{space}`
      * Where `{space}` represents the system-assigned ID for the space. You can
      * obtain the space ID by calling the
@@ -282,7 +286,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID
      * is `AAAAAAAAA`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -291,7 +295,7 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the space.
+     * Identifier. Resource name of the space.
      * Format: `spaces/{space}`
      * Where `{space}` represents the system-assigned ID for the space. You can
      * obtain the space ID by calling the
@@ -300,7 +304,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID
      * is `AAAAAAAAA`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -345,10 +349,10 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of space. Required when creating a space or updating the space
-     * type of a space. Output only for other usage.
+     * Optional. The type of space. Required when creating a space or updating the
+     * space type of a space. Output only for other usage.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceType space_type = 10;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceType space_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSpaceType()
@@ -357,10 +361,10 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of space. Required when creating a space or updating the space
-     * type of a space. Output only for other usage.
+     * Optional. The type of space. Required when creating a space or updating the
+     * space type of a space. Output only for other usage.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceType space_type = 10;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceType space_type = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -433,7 +437,7 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The space's display name. Required when [creating a
+     * Optional. The space's display name. Required when [creating a
      * space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create)
      * with a `spaceType` of `SPACE`. If you receive the error message
      * `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a
@@ -442,7 +446,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * For direct messages, this field might be empty.
      * Supports up to 128 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayName()
@@ -451,7 +455,7 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The space's display name. Required when [creating a
+     * Optional. The space's display name. Required when [creating a
      * space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create)
      * with a `spaceType` of `SPACE`. If you receive the error message
      * `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a
@@ -460,7 +464,7 @@ class Space extends \Google\Protobuf\Internal\Message
      * For direct messages, this field might be empty.
      * Supports up to 128 characters.
      *
-     * Generated from protobuf field <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -473,15 +477,15 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Whether this space permits any Google Chat user as a member.
-     * Input when creating a space in a Google Workspace organization. Omit this
-     * field when creating spaces in the following conditions:
+     * Optional. Immutable. Whether this space permits any Google Chat user as a
+     * member. Input when creating a space in a Google Workspace organization.
+     * Omit this field when creating spaces in the following conditions:
      *   * The authenticated user uses a consumer account (unmanaged user
      *     account). By default, a space created by a consumer account permits any
      *     Google Chat user.
      * For existing spaces, this field is output only.
      *
-     * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getExternalUserAllowed()
@@ -490,15 +494,15 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Whether this space permits any Google Chat user as a member.
-     * Input when creating a space in a Google Workspace organization. Omit this
-     * field when creating spaces in the following conditions:
+     * Optional. Immutable. Whether this space permits any Google Chat user as a
+     * member. Input when creating a space in a Google Workspace organization.
+     * Omit this field when creating spaces in the following conditions:
      *   * The authenticated user uses a consumer account (unmanaged user
      *     account). By default, a space created by a consumer account permits any
      *     Google Chat user.
      * For existing spaces, this field is output only.
      *
-     * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -537,9 +541,9 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Details about the space including description and rules.
+     * Optional. Details about the space including description and rules.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceDetails space_details = 11;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceDetails space_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\SpaceDetails|null
      */
     public function getSpaceDetails()
@@ -558,9 +562,9 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Details about the space including description and rules.
+     * Optional. Details about the space including description and rules.
      *
-     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceDetails space_details = 11;</code>
+     * Generated from protobuf field <code>.google.chat.v1.Space.SpaceDetails space_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\SpaceDetails $var
      * @return $this
      */
@@ -573,9 +577,9 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The message history state for messages and threads in this space.
+     * Optional. The message history state for messages and threads in this space.
      *
-     * Generated from protobuf field <code>.google.chat.v1.HistoryState space_history_state = 13;</code>
+     * Generated from protobuf field <code>.google.chat.v1.HistoryState space_history_state = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSpaceHistoryState()
@@ -584,9 +588,9 @@ class Space extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The message history state for messages and threads in this space.
+     * Optional. The message history state for messages and threads in this space.
      *
-     * Generated from protobuf field <code>.google.chat.v1.HistoryState space_history_state = 13;</code>
+     * Generated from protobuf field <code>.google.chat.v1.HistoryState space_history_state = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -602,6 +606,8 @@ class Space extends \Google\Protobuf\Internal\Message
      * Optional. Whether this space is created in `Import Mode` as part of a data
      * migration into Google Workspace. While spaces are being imported, they
      * aren't visible to users until the import is complete.
+     * Creating a space in `Import Mode`requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>bool import_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -615,6 +621,8 @@ class Space extends \Google\Protobuf\Internal\Message
      * Optional. Whether this space is created in `Import Mode` as part of a data
      * migration into Google Workspace. While spaces are being imported, they
      * aren't visible to users until the import is complete.
+     * Creating a space in `Import Mode`requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>bool import_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

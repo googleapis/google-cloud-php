@@ -21,7 +21,7 @@ class UpdateEnhancedMeasurementSettingsRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EnhancedMeasurementSettings enhanced_measurement_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $enhanced_measurement_settings = null;
+    protected $enhanced_measurement_settings = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (e.g., "field_to_update"). Omitted fields will not be updated. To
@@ -30,7 +30,7 @@ class UpdateEnhancedMeasurementSettingsRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings $enhancedMeasurementSettings Required. The settings to update.

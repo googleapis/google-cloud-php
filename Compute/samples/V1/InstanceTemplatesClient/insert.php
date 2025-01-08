@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_InstanceTemplates_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\InstanceTemplatesClient;
+use Google\Cloud\Compute\V1\InsertInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\InstanceTemplate;
-use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 use Google\Rpc\Status;
 
 /**
@@ -39,13 +40,16 @@ function insert_sample(string $project): void
     // Create a client.
     $instanceTemplatesClient = new InstanceTemplatesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $instanceTemplateResource = new InstanceTemplate();
+    $request = (new InsertInstanceTemplateRequest())
+        ->setInstanceTemplateResource($instanceTemplateResource)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $instanceTemplatesClient->insert($instanceTemplateResource, $project);
+        $response = $instanceTemplatesClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

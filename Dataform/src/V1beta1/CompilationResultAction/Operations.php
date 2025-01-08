@@ -26,7 +26,7 @@ class Operations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 2;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Arbitrary, user-defined tags on this action.
      *
@@ -39,7 +39,7 @@ class Operations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.RelationDescriptor relation_descriptor = 6;</code>
      */
-    private $relation_descriptor = null;
+    protected $relation_descriptor = null;
     /**
      * A list of arbitrary SQL statements that will be executed without
      * alteration.
@@ -52,7 +52,7 @@ class Operations extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool has_output = 5;</code>
      */
-    private $has_output = false;
+    protected $has_output = false;
 
     /**
      * Constructor.

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START compute_v1_generated_VpnGateways_GetStatus_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Compute\V1\VpnGatewaysClient;
+use Google\Cloud\Compute\V1\Client\VpnGatewaysClient;
+use Google\Cloud\Compute\V1\GetStatusVpnGatewayRequest;
 use Google\Cloud\Compute\V1\VpnGatewaysGetStatusResponse;
 
 /**
@@ -39,10 +40,16 @@ function get_status_sample(string $project, string $region, string $vpnGateway):
     // Create a client.
     $vpnGatewaysClient = new VpnGatewaysClient();
 
+    // Prepare the request message.
+    $request = (new GetStatusVpnGatewayRequest())
+        ->setProject($project)
+        ->setRegion($region)
+        ->setVpnGateway($vpnGateway);
+
     // Call the API and handle any network failures.
     try {
         /** @var VpnGatewaysGetStatusResponse $response */
-        $response = $vpnGatewaysClient->getStatus($project, $region, $vpnGateway);
+        $response = $vpnGatewaysClient->getStatus($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

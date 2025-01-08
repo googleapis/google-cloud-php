@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_UrlMaps_Update_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\UrlMapsClient;
+use Google\Cloud\Compute\V1\UpdateUrlMapRequest;
 use Google\Cloud\Compute\V1\UrlMap;
-use Google\Cloud\Compute\V1\UrlMapsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function update_sample(string $project, string $urlMap): void
     // Create a client.
     $urlMapsClient = new UrlMapsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $urlMapResource = new UrlMap();
+    $request = (new UpdateUrlMapRequest())
+        ->setProject($project)
+        ->setUrlMap($urlMap)
+        ->setUrlMapResource($urlMapResource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $urlMapsClient->update($project, $urlMap, $urlMapResource);
+        $response = $urlMapsClient->update($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

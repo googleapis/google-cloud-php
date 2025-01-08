@@ -27,7 +27,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The audience resource name. This resource name identifies the
      * audience being listed and is shared between the Analytics Data & Admin
@@ -36,14 +36,14 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audience = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audience = '';
+    protected $audience = '';
     /**
      * Output only. The descriptive display name for this audience. For example,
      * "Purchasers".
      *
      * Generated from protobuf field <code>string audience_display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $audience_display_name = '';
+    protected $audience_display_name = '';
     /**
      * Required. The dimensions requested and displayed in the audience list
      * response.
@@ -63,7 +63,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional int32 active_days_remaining = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $active_days_remaining = null;
+    protected $active_days_remaining = null;
     /**
      * Output only. Audience list resource names for audience list instances
      * created for this recurring audience list. One audience list is created for
@@ -88,7 +88,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1alpha.WebhookNotification webhook_notification = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $webhook_notification = null;
+    protected $webhook_notification = null;
 
     /**
      * Constructor.

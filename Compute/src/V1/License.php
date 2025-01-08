@@ -58,6 +58,8 @@ class License extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * [Input Only] Deprecated.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      */
     private $resource_requirements = null;
@@ -95,6 +97,7 @@ class License extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *     @type \Google\Cloud\Compute\V1\LicenseResourceRequirements $resource_requirements
+     *           [Input Only] Deprecated.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type bool $transferable
@@ -359,6 +362,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Input Only] Deprecated.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      * @return \Google\Cloud\Compute\V1\LicenseResourceRequirements|null
      */
@@ -378,6 +383,8 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Input Only] Deprecated.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      * @param \Google\Cloud\Compute\V1\LicenseResourceRequirements $var
      * @return $this

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_StoragePools_Insert_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Compute\V1\Client\StoragePoolsClient;
+use Google\Cloud\Compute\V1\InsertStoragePoolRequest;
 use Google\Cloud\Compute\V1\StoragePool;
-use Google\Cloud\Compute\V1\StoragePoolsClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,17 @@ function insert_sample(string $project, string $zone): void
     // Create a client.
     $storagePoolsClient = new StoragePoolsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $storagePoolResource = new StoragePool();
+    $request = (new InsertStoragePoolRequest())
+        ->setProject($project)
+        ->setStoragePoolResource($storagePoolResource)
+        ->setZone($zone);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $storagePoolsClient->insert($project, $storagePoolResource, $zone);
+        $response = $storagePoolsClient->insert($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
