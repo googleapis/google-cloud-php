@@ -1,0 +1,138 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.oracledatabase.v1",
+    "libraryPackage": "Google\\Cloud\\OracleDatabase\\V1",
+    "services": {
+        "OracleDatabase": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OracleDatabaseGapicClient",
+                    "rpcs": {
+                        "CreateAutonomousDatabase": {
+                            "methods": [
+                                "createAutonomousDatabase"
+                            ]
+                        },
+                        "CreateCloudExadataInfrastructure": {
+                            "methods": [
+                                "createCloudExadataInfrastructure"
+                            ]
+                        },
+                        "CreateCloudVmCluster": {
+                            "methods": [
+                                "createCloudVmCluster"
+                            ]
+                        },
+                        "DeleteAutonomousDatabase": {
+                            "methods": [
+                                "deleteAutonomousDatabase"
+                            ]
+                        },
+                        "DeleteCloudExadataInfrastructure": {
+                            "methods": [
+                                "deleteCloudExadataInfrastructure"
+                            ]
+                        },
+                        "DeleteCloudVmCluster": {
+                            "methods": [
+                                "deleteCloudVmCluster"
+                            ]
+                        },
+                        "GenerateAutonomousDatabaseWallet": {
+                            "methods": [
+                                "generateAutonomousDatabaseWallet"
+                            ]
+                        },
+                        "GetAutonomousDatabase": {
+                            "methods": [
+                                "getAutonomousDatabase"
+                            ]
+                        },
+                        "GetCloudExadataInfrastructure": {
+                            "methods": [
+                                "getCloudExadataInfrastructure"
+                            ]
+                        },
+                        "GetCloudVmCluster": {
+                            "methods": [
+                                "getCloudVmCluster"
+                            ]
+                        },
+                        "ListAutonomousDatabaseBackups": {
+                            "methods": [
+                                "listAutonomousDatabaseBackups"
+                            ]
+                        },
+                        "ListAutonomousDatabaseCharacterSets": {
+                            "methods": [
+                                "listAutonomousDatabaseCharacterSets"
+                            ]
+                        },
+                        "ListAutonomousDatabases": {
+                            "methods": [
+                                "listAutonomousDatabases"
+                            ]
+                        },
+                        "ListAutonomousDbVersions": {
+                            "methods": [
+                                "listAutonomousDbVersions"
+                            ]
+                        },
+                        "ListCloudExadataInfrastructures": {
+                            "methods": [
+                                "listCloudExadataInfrastructures"
+                            ]
+                        },
+                        "ListCloudVmClusters": {
+                            "methods": [
+                                "listCloudVmClusters"
+                            ]
+                        },
+                        "ListDbNodes": {
+                            "methods": [
+                                "listDbNodes"
+                            ]
+                        },
+                        "ListDbServers": {
+                            "methods": [
+                                "listDbServers"
+                            ]
+                        },
+                        "ListDbSystemShapes": {
+                            "methods": [
+                                "listDbSystemShapes"
+                            ]
+                        },
+                        "ListEntitlements": {
+                            "methods": [
+                                "listEntitlements"
+                            ]
+                        },
+                        "ListGiVersions": {
+                            "methods": [
+                                "listGiVersions"
+                            ]
+                        },
+                        "RestoreAutonomousDatabase": {
+                            "methods": [
+                                "restoreAutonomousDatabase"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
