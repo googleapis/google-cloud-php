@@ -53,6 +53,21 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. If true, only metrics and monitored resource types that have
+     * recent data (within roughly 25 hours) will be included in the response.
+     *  - If a metric descriptor enumerates monitored resource types, only the
+     *    monitored resource types for which the metric type has recent data will
+     *    be included in the returned metric descriptor, and if none of them have
+     *    recent data, the metric descriptor will not be returned.
+     *  - If a metric descriptor does not enumerate the compatible monitored
+     *    resource types, it will be returned only if the metric type has recent
+     *    data for some monitored resource type. The returned descriptor will not
+     *    enumerate any monitored resource types.
+     *
+     * Generated from protobuf field <code>bool active_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $active_only = false;
 
     /**
      * @param string $name Required. The
@@ -99,6 +114,17 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *           `nextPageToken` value returned by a previous call to this method.  Using
      *           this field causes the method to return additional results from the previous
      *           method call.
+     *     @type bool $active_only
+     *           Optional. If true, only metrics and monitored resource types that have
+     *           recent data (within roughly 25 hours) will be included in the response.
+     *            - If a metric descriptor enumerates monitored resource types, only the
+     *              monitored resource types for which the metric type has recent data will
+     *              be included in the returned metric descriptor, and if none of them have
+     *              recent data, the metric descriptor will not be returned.
+     *            - If a metric descriptor does not enumerate the compatible monitored
+     *              resource types, it will be returned only if the metric type has recent
+     *              data for some monitored resource type. The returned descriptor will not
+     *              enumerate any monitored resource types.
      * }
      */
     public function __construct($data = NULL) {
@@ -234,6 +260,50 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, only metrics and monitored resource types that have
+     * recent data (within roughly 25 hours) will be included in the response.
+     *  - If a metric descriptor enumerates monitored resource types, only the
+     *    monitored resource types for which the metric type has recent data will
+     *    be included in the returned metric descriptor, and if none of them have
+     *    recent data, the metric descriptor will not be returned.
+     *  - If a metric descriptor does not enumerate the compatible monitored
+     *    resource types, it will be returned only if the metric type has recent
+     *    data for some monitored resource type. The returned descriptor will not
+     *    enumerate any monitored resource types.
+     *
+     * Generated from protobuf field <code>bool active_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getActiveOnly()
+    {
+        return $this->active_only;
+    }
+
+    /**
+     * Optional. If true, only metrics and monitored resource types that have
+     * recent data (within roughly 25 hours) will be included in the response.
+     *  - If a metric descriptor enumerates monitored resource types, only the
+     *    monitored resource types for which the metric type has recent data will
+     *    be included in the returned metric descriptor, and if none of them have
+     *    recent data, the metric descriptor will not be returned.
+     *  - If a metric descriptor does not enumerate the compatible monitored
+     *    resource types, it will be returned only if the metric type has recent
+     *    data for some monitored resource type. The returned descriptor will not
+     *    enumerate any monitored resource types.
+     *
+     * Generated from protobuf field <code>bool active_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setActiveOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->active_only = $var;
 
         return $this;
     }
