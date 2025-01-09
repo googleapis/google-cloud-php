@@ -69,8 +69,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Required. The resource type to which the `BackupPlan` will be applied.
-     * Examples include, "compute.googleapis.com/Instance" and
-     * "storage.googleapis.com/Bucket".
+     * Examples include, "compute.googleapis.com/Instance",
+     * "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
      *
      * Generated from protobuf field <code>string resource_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -129,8 +129,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           Output only. The `State` for the `BackupPlan`.
      *     @type string $resource_type
      *           Required. The resource type to which the `BackupPlan` will be applied.
-     *           Examples include, "compute.googleapis.com/Instance" and
-     *           "storage.googleapis.com/Bucket".
+     *           Examples include, "compute.googleapis.com/Instance",
+     *           "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
      *     @type string $etag
      *           Optional. `etag` is returned from the service in the response. As a user of
      *           the service, you may provide an etag value in this field to prevent stale
@@ -368,8 +368,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource type to which the `BackupPlan` will be applied.
-     * Examples include, "compute.googleapis.com/Instance" and
-     * "storage.googleapis.com/Bucket".
+     * Examples include, "compute.googleapis.com/Instance",
+     * "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
      *
      * Generated from protobuf field <code>string resource_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -381,8 +381,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource type to which the `BackupPlan` will be applied.
-     * Examples include, "compute.googleapis.com/Instance" and
-     * "storage.googleapis.com/Bucket".
+     * Examples include, "compute.googleapis.com/Instance",
+     * "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
      *
      * Generated from protobuf field <code>string resource_type = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

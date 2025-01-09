@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,46 +22,42 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START backupdr_v1_generated_BackupDR_CreateManagementServer_sync]
+// [START backupdr_v1_generated_BackupDR_InitializeService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BackupDR\V1\Client\BackupDRClient;
-use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
-use Google\Cloud\BackupDR\V1\ManagementServer;
+use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
+use Google\Cloud\BackupDR\V1\InitializeServiceResponse;
 use Google\Rpc\Status;
 
 /**
- * Creates a new ManagementServer in a given project and location.
+ * Initializes the service related config for a project.
  *
- * @param string $formattedParent    The management server project and location in the format
- *                                   'projects/{project_id}/locations/{location}'. In Cloud Backup and DR
- *                                   locations map to Google Cloud regions, for example **us-central1**. Please see
- *                                   {@see BackupDRClient::locationName()} for help formatting this field.
- * @param string $managementServerId The name of the management server to create. The name must be
- *                                   unique for the specified project and location.
+ * @param string $name         The resource name of the serviceConfig used to initialize the
+ *                             service. Format:
+ *                             `projects/{project_id}/locations/{location}/serviceConfig`.
+ * @param string $resourceType The resource type to which the default service config will be
+ *                             applied. Examples include, "compute.googleapis.com/Instance" and
+ *                             "storage.googleapis.com/Bucket".
  */
-function create_management_server_sample(
-    string $formattedParent,
-    string $managementServerId
-): void {
+function initialize_service_sample(string $name, string $resourceType): void
+{
     // Create a client.
     $backupDRClient = new BackupDRClient();
 
     // Prepare the request message.
-    $managementServer = new ManagementServer();
-    $request = (new CreateManagementServerRequest())
-        ->setParent($formattedParent)
-        ->setManagementServerId($managementServerId)
-        ->setManagementServer($managementServer);
+    $request = (new InitializeServiceRequest())
+        ->setName($name)
+        ->setResourceType($resourceType);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $backupDRClient->createManagementServer($request);
+        $response = $backupDRClient->initializeService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ManagementServer $result */
+            /** @var InitializeServiceResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -85,9 +81,9 @@ function create_management_server_sample(
  */
 function callSample(): void
 {
-    $formattedParent = BackupDRClient::locationName('[PROJECT]', '[LOCATION]');
-    $managementServerId = '[MANAGEMENT_SERVER_ID]';
+    $name = '[NAME]';
+    $resourceType = '[RESOURCE_TYPE]';
 
-    create_management_server_sample($formattedParent, $managementServerId);
+    initialize_service_sample($name, $resourceType);
 }
-// [END backupdr_v1_generated_BackupDR_CreateManagementServer_sync]
+// [END backupdr_v1_generated_BackupDR_InitializeService_sync]
