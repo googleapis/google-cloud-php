@@ -719,6 +719,18 @@ return [
                     'update_mask',
                 ],
             ],
+            'ValidateDirectoryService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/storagePools/*}:validateDirectoryService',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'VerifyKmsConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/kmsConfigs/*}:verify',
