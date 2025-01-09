@@ -215,6 +215,18 @@ return [
                     ],
                 ],
             ],
+            'InitializeService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/serviceConfig}:initialize',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupPlanAssociations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupPlanAssociations',

@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class AccessRestriction
 {
     /**
-     * Access restriction not set.
+     * Access restriction not set. If user does not provide any value or pass
+     * this value, it will be changed to WITHIN_ORGANIZATION.
      *
      * Generated from protobuf enum <code>ACCESS_RESTRICTION_UNSPECIFIED = 0;</code>
      */
@@ -38,12 +39,20 @@ class AccessRestriction
      * Generated from protobuf enum <code>UNRESTRICTED = 3;</code>
      */
     const UNRESTRICTED = 3;
+    /**
+     * Access to or from resources outside your current organization will be
+     * denied except for backup appliance.
+     *
+     * Generated from protobuf enum <code>WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA = 4;</code>
+     */
+    const WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA = 4;
 
     private static $valueToName = [
         self::ACCESS_RESTRICTION_UNSPECIFIED => 'ACCESS_RESTRICTION_UNSPECIFIED',
         self::WITHIN_PROJECT => 'WITHIN_PROJECT',
         self::WITHIN_ORGANIZATION => 'WITHIN_ORGANIZATION',
         self::UNRESTRICTED => 'UNRESTRICTED',
+        self::WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA => 'WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA',
     ];
 
     public static function name($value)
