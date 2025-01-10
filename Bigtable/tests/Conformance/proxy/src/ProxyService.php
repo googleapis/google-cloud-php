@@ -100,7 +100,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             ),
         ]);
         $chunkFormatter = new ChunkFormatter($client, $request, [
-            'timeout' => $config->getPerOperationTimeout(),
+            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
         $out = new Testproxy\RowResult();
         foreach ($chunkFormatter->readAll() as $row) {
@@ -125,7 +125,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
 
         $request = $in->getRequest();
         $chunkFormatter = new ChunkFormatter($client, $request, [
-            'timeout' => $config->getPerOperationTimeout(),
+            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
         $rows = [];
         $i = 0;
@@ -174,7 +174,9 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     public function CheckAndMutateRow(GRPC\ContextInterface $ctx, Testproxy\CheckAndMutateRowRequest $in): Testproxy\CheckAndMutateRowResult
     {
         [$client, $config] = $this->getClientAndConfig($in->getClientId());
-        $response = $client->checkAndMutateRows($in->getRequest());
+        $response = $client->checkAndMutateRows($in->getRequest(), [
+            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
+        ]);
 
         return new Testproxy\CheckAndMutateRowResult(['result' => $response]);
     }
@@ -228,5 +230,10 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $config = $this->clientConfigs[$clientId];
 
         return [$client, $config];
+    }
+
+    public function getTimeoutMillis(\Google\Protobuf\Duration $timeout): int
+    {
+        return ($timeout->getSeconds() * 1000) + ($timeout->getNanos() / 1000000);
     }
 }
