@@ -6,7 +6,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Google\Bigtable\Testproxy\CreateClientRequest;
 
-$client = new \ProxyClient('127.0.0.1:9001', [
+$client = new \ProxyClient('127.0.0.1:9999', [
     'credentials' => \Grpc\ChannelCredentials::createInsecure(),
 ]);
 

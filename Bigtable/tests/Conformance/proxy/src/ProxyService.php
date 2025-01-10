@@ -17,18 +17,36 @@ use Google\Bigtable\Testproxy\ExecuteQueryResult;
 use Google\Bigtable\Testproxy\CreateClientRequest;
 use Google\Bigtable\Testproxy\CloseClientRequest;
 use Google\Bigtable\Testproxy\RemoveClientRequest;
-use Google\Bigtable\Testproxy\ReadRowRequest;
-use Google\Bigtable\Testproxy\ReadRowsRequest;
+use Google\Bigtable\Testproxy\ReadRowRequest as ProxyReadRowRequest;
+use Google\Bigtable\Testproxy\ReadRowsRequest as ProxyReadRowsRequest;
 use Google\Bigtable\Testproxy\MutateRowRequest;
 use Google\Bigtable\Testproxy\MutateRowsRequest;
 use Google\Bigtable\Testproxy\CheckAndMutateRowRequest;
 use Google\Bigtable\Testproxy\SampleRowKeysRequest;
 use Google\Bigtable\Testproxy\ReadModifyWriteRowRequest;
 use Google\Bigtable\Testproxy\ExecuteQueryRequest;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\Row;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\ChunkFormatter;
 use Spiral\RoadRunner\GRPC;
 
 class ProxyService implements CloudBigtableV2TestProxyInterface
 {
+    /** @var CreateClientRequest[] */
+    private array $clientConfigs = [];
+
+    /** @var BigtableClient[] */
+    private array $clients = [];
+
+    private Serializer $serializer;
+
+    public function __construct()
+    {
+        $this->serializer = new Serializer();
+    }
 
     /**
     * @param GRPC\ContextInterface $ctx
@@ -39,6 +57,13 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     */
     public function CreateClient(GRPC\ContextInterface $ctx, CreateClientRequest $in): CreateClientResponse
     {
+        $this->clientConfigs[$in->getClientId()] = $in;
+
+        $this->clients[$in->getClientId()] = new BigtableClient([
+            'projectId' => $in->getProjectId(),
+            'apiEndpoint' => $in->getDataTarget(),
+        ]);
+
         return new CreateClientResponse();
     }
 
@@ -51,6 +76,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     */
     public function CloseClient(GRPC\ContextInterface $ctx, CloseClientRequest $in): CloseClientResponse
     {
+        [$client, $_] = $this->getClientAndConfig($in->getClientId());
+        $client->close();
+
         return new CloseClientResponse();
     }
 
@@ -63,6 +91,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     */
     public function RemoveClient(GRPC\ContextInterface $ctx, RemoveClientRequest $in): RemoveClientResponse
     {
+        unset($this->clientConfigs[$in->getClientId()]);
+        unset($this->clients[$in->getClientId()]);
+
         return new RemoveClientResponse();
     }
 
@@ -73,9 +104,31 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function ReadRow(GRPC\ContextInterface $ctx, ReadRowRequest $in): RowResult
+    public function ReadRow(GRPC\ContextInterface $ctx, ProxyReadRowRequest $in): RowResult
     {
-        return new RowResult();
+        [$client, $config] = $this->getClientAndConfig($in->getClientId());
+
+        $tableName = BigtableClient::tableName($config->getProjectId(), $config->getInstanceId(), $in->getTableName());
+        $request = new ReadRowsRequest([
+            'table_name' => $tableName,
+            'filter' => $in->getFilter(),
+            'app_profile_id' => $config->getAppProfileId(),
+            'rows' => $this->serializer->decodeMessage(
+                new RowSet(),
+                ['rowKeys' => [$in->getRowKey()]],
+            ),
+        ]);
+        $chunkFormatter = new ChunkFormatter($client, $request, [
+            'timeout' => $config->getPerOperationTimeout(),
+        ]);
+        $out = new RowResult();
+        foreach ($chunkFormatter->readAll() as $row) {
+            $row = $this->serializer->decodeMessage(new Row(), $row);
+            $out->setRow($row);
+            break;
+        }
+
+        return $out;
     }
 
     /**
@@ -85,9 +138,25 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function ReadRows(GRPC\ContextInterface $ctx, ReadRowsRequest $in): RowsResult
+    public function ReadRows(GRPC\ContextInterface $ctx, ProxyReadRowsRequest $in): RowsResult
     {
-        return new RowsResult();
+        [$client, $config] = $this->getClientAndConfig($in->getClientId());
+
+        $request = $in->getRequest();
+        $chunkFormatter = new ChunkFormatter($client, $request, [
+            'timeout' => $config->getPerOperationTimeout(),
+        ]);
+        $rows = [];
+        $i = 0;
+        foreach ($chunkFormatter->readAll() as $row) {
+            if ($i++ >= $in->getCancelAfterRows()) {
+                break;
+            }
+            $rows[] = $this->serializer->decodeMessage(new Row(), $row);
+        }
+        $out = new RowsResult(['rows' => $rows]);
+
+        return $out;
     }
 
     /**
@@ -162,10 +231,18 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
         return new ExecuteQueryResult();
     }
 
-    // public function Ping(ContextInterface $ctx, Message $in): Message
-    // {
-    //     $out = new Message();
+    /**
+     * @return array{0:BigtableClient, 1:CreateClientRequest}
+     */
+    private function getClientAndConfig(string $clientId): array
+    {
+        if (!isset($this->clients[$clientId]) || !isset($this->clients[$clientId])) {
+            throw new \Exception(sprintf('Client ID "%s" not found', $clientId));
+        }
 
-    //     return $out->setMsg(date('Y-m-d H:i:s').': PONG');
-    // }
+        $client = $this->clients[$clientId];
+        $config = $this->clientConfigs[$clientId];
+
+        return [$client, $config];
+    }
 }

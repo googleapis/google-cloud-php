@@ -8,7 +8,7 @@ server:
   relay_timeout: "20s"
 
 grpc:
-  listen: "tcp://127.0.0.1:9001"
+  listen: "tcp://127.0.0.1:9999"
   proto: ["test_proxy.proto"]
   max_send_msg_size: 50
   max_recv_msg_size: 50
