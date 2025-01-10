@@ -3,37 +3,17 @@
  * Sample GRPC PHP server.
  */
 
-use Google\Bigtable\Testproxy\CloudBigtableV2TestProxyInterface;
-use Google\Bigtable\Testproxy\CreateClientResponse;
-use Google\Bigtable\Testproxy\CloseClientResponse;
-use Google\Bigtable\Testproxy\RemoveClientResponse;
-use Google\Bigtable\Testproxy\RowResult;
-use Google\Bigtable\Testproxy\RowsResult;
-use Google\Bigtable\Testproxy\MutateRowResult;
-use Google\Bigtable\Testproxy\MutateRowsResult;
-use Google\Bigtable\Testproxy\CheckAndMutateRowResult;
-use Google\Bigtable\Testproxy\SampleRowKeysResult;
-use Google\Bigtable\Testproxy\ExecuteQueryResult;
-use Google\Bigtable\Testproxy\CreateClientRequest;
-use Google\Bigtable\Testproxy\CloseClientRequest;
-use Google\Bigtable\Testproxy\RemoveClientRequest;
-use Google\Bigtable\Testproxy\ReadRowRequest as ProxyReadRowRequest;
-use Google\Bigtable\Testproxy\ReadRowsRequest as ProxyReadRowsRequest;
-use Google\Bigtable\Testproxy\MutateRowRequest;
-use Google\Bigtable\Testproxy\MutateRowsRequest;
-use Google\Bigtable\Testproxy\CheckAndMutateRowRequest;
-use Google\Bigtable\Testproxy\SampleRowKeysRequest;
-use Google\Bigtable\Testproxy\ReadModifyWriteRowRequest;
-use Google\Bigtable\Testproxy\ExecuteQueryRequest;
+use Google\Bigtable\Testproxy;
+use Google\ApiCore\Serializer;
+use Google\Auth\Credentials\InsecureCredentials;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\Row;
-use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Spiral\RoadRunner\GRPC;
 
-class ProxyService implements CloudBigtableV2TestProxyInterface
+class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
 {
     /** @var CreateClientRequest[] */
     private array $clientConfigs = [];
@@ -55,16 +35,17 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function CreateClient(GRPC\ContextInterface $ctx, CreateClientRequest $in): CreateClientResponse
+    public function CreateClient(GRPC\ContextInterface $ctx, Testproxy\CreateClientRequest $in): Testproxy\CreateClientResponse
     {
         $this->clientConfigs[$in->getClientId()] = $in;
 
         $this->clients[$in->getClientId()] = new BigtableClient([
             'projectId' => $in->getProjectId(),
             'apiEndpoint' => $in->getDataTarget(),
+            'credentials' => new InsecureCredentials()
         ]);
 
-        return new CreateClientResponse();
+        return new Testproxy\CreateClientResponse();
     }
 
     /**
@@ -74,12 +55,12 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function CloseClient(GRPC\ContextInterface $ctx, CloseClientRequest $in): CloseClientResponse
+    public function CloseClient(GRPC\ContextInterface $ctx, Testproxy\CloseClientRequest $in): Testproxy\CloseClientResponse
     {
         [$client, $_] = $this->getClientAndConfig($in->getClientId());
         $client->close();
 
-        return new CloseClientResponse();
+        return new Testproxy\CloseClientResponse();
     }
 
     /**
@@ -89,12 +70,12 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function RemoveClient(GRPC\ContextInterface $ctx, RemoveClientRequest $in): RemoveClientResponse
+    public function RemoveClient(GRPC\ContextInterface $ctx, Testproxy\RemoveClientRequest $in): Testproxy\RemoveClientResponse
     {
         unset($this->clientConfigs[$in->getClientId()]);
         unset($this->clients[$in->getClientId()]);
 
-        return new RemoveClientResponse();
+        return new Testproxy\RemoveClientResponse();
     }
 
     /**
@@ -104,7 +85,7 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function ReadRow(GRPC\ContextInterface $ctx, ProxyReadRowRequest $in): RowResult
+    public function ReadRow(GRPC\ContextInterface $ctx, Testproxy\ReadRowRequest $in): Testproxy\RowResult
     {
         [$client, $config] = $this->getClientAndConfig($in->getClientId());
 
@@ -121,7 +102,7 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
         $chunkFormatter = new ChunkFormatter($client, $request, [
             'timeout' => $config->getPerOperationTimeout(),
         ]);
-        $out = new RowResult();
+        $out = new Testproxy\RowResult();
         foreach ($chunkFormatter->readAll() as $row) {
             $row = $this->serializer->decodeMessage(new Row(), $row);
             $out->setRow($row);
@@ -138,7 +119,7 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function ReadRows(GRPC\ContextInterface $ctx, ProxyReadRowsRequest $in): RowsResult
+    public function ReadRows(GRPC\ContextInterface $ctx, Testproxy\ReadRowsRequest $in): Testproxy\RowsResult
     {
         [$client, $config] = $this->getClientAndConfig($in->getClientId());
 
@@ -154,7 +135,7 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
             }
             $rows[] = $this->serializer->decodeMessage(new Row(), $row);
         }
-        $out = new RowsResult(['rows' => $rows]);
+        $out = new Testproxy\RowsResult(['rows' => $rows]);
 
         return $out;
     }
@@ -166,9 +147,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function MutateRow(GRPC\ContextInterface $ctx, MutateRowRequest $in): MutateRowResult
+    public function MutateRow(GRPC\ContextInterface $ctx, Testproxy\MutateRowRequest $in): Testproxy\MutateRowResult
     {
-        return new MutateRowResult();
+        return new Testproxy\MutateRowResult();
     }
 
     /**
@@ -178,9 +159,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function BulkMutateRows(GRPC\ContextInterface $ctx, MutateRowsRequest $in): MutateRowsResult
+    public function BulkMutateRows(GRPC\ContextInterface $ctx, Testproxy\MutateRowsRequest $in): Testproxy\MutateRowsResult
     {
-        return new MutateRowsResult();
+        return new Testproxy\MutateRowsResult();
     }
 
     /**
@@ -190,9 +171,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function CheckAndMutateRow(GRPC\ContextInterface $ctx, CheckAndMutateRowRequest $in): CheckAndMutateRowResult
+    public function CheckAndMutateRow(GRPC\ContextInterface $ctx, Testproxy\CheckAndMutateRowRequest $in): Testproxy\CheckAndMutateRowResult
     {
-        return new CheckAndMutateRowResult();
+        return new Testproxy\CheckAndMutateRowResult();
     }
 
     /**
@@ -202,9 +183,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function SampleRowKeys(GRPC\ContextInterface $ctx, SampleRowKeysRequest $in): SampleRowKeysResult
+    public function SampleRowKeys(GRPC\ContextInterface $ctx, Testproxy\SampleRowKeysRequest $in): Testproxy\SampleRowKeysResult
     {
-        return new SampleRowKeysResult();
+        return new Testproxy\SampleRowKeysResult();
     }
 
     /**
@@ -214,9 +195,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function ReadModifyWriteRow(GRPC\ContextInterface $ctx, ReadModifyWriteRowRequest $in): RowResult
+    public function ReadModifyWriteRow(GRPC\ContextInterface $ctx, Testproxy\ReadModifyWriteRowRequest $in): Testproxy\RowResult
     {
-        return new RowResult();
+        return new Testproxy\RowResult();
     }
 
     /**
@@ -226,9 +207,9 @@ class ProxyService implements CloudBigtableV2TestProxyInterface
     *
     * @throws GRPC\Exception\InvokeException
     */
-    public function ExecuteQuery(GRPC\ContextInterface $ctx, ExecuteQueryRequest $in): ExecuteQueryResult
+    public function ExecuteQuery(GRPC\ContextInterface $ctx, Testproxy\ExecuteQueryRequest $in): Testproxy\ExecuteQueryResult
     {
-        return new ExecuteQueryResult();
+        return new Testproxy\ExecuteQueryResult();
     }
 
     /**
