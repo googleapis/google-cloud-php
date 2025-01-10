@@ -316,7 +316,8 @@ class RestTest extends TestCase
             Argument::type(RequestInterface::class),
             Argument::type('array')
         )->will(
-            function ($args) use (&$actualRequests,
+            function ($args) use (
+                &$actualRequests,
                 &$requestHeaders,
                 $status1,
                 $body1,
