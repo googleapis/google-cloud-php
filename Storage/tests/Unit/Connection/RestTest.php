@@ -284,14 +284,14 @@ class RestTest extends TestCase
         $full = $part1 . $part2;
         /** @see RetryTrait::$httpRetryCodes for list of status codes that are allowed to retry */
         return [
-            [0, '', 200, $full, $full, []],
+            [0, '', 200, $full, $full],
             [200, $part1, 200, $part2, $full, ['Range' => 'bytes=10-']],
-            [408, 'Server Message', 200, $full, $full, []],
-            [429, 'Server Message', 200, $full, $full, []],
-            [500, 'Server Error', 200, $full, $full, []],
-            [502, 'Server Error', 200, $full, $full, []],
-            [503, 'Server Error', 200, $full, $full, []],
-            [504, 'Server Error', 200, $full, $full, []],
+            [408, 'Server Message', 200, $full, $full],
+            [429, 'Server Message', 200, $full, $full],
+            [500, 'Server Error', 200, $full, $full],
+            [502, 'Server Error', 200, $full, $full],
+            [503, 'Server Error', 200, $full, $full],
+            [504, 'Server Error', 200, $full, $full],
         ];
     }
 
@@ -304,7 +304,7 @@ class RestTest extends TestCase
         int $status2,
         string $body2,
         string $expectedResult,
-        array $expectedSecondRequestHeaders
+        array $expectedSecondRequestHeaders = []
     ) {
         /** @var Request[] $actualRequests */
         $actualRequests = [];
@@ -344,6 +344,9 @@ class RestTest extends TestCase
 
         $options = self::$downloadOptions;
         $options['retries'] = 3;
+        // ensure the tests execute quickly (no reason to wait for the delay)
+        $options['restDelayFunction'] = function () {
+        };
         $actualBody = (string) $rest->downloadObject($options);
         $actualUri1 = (string) $actualRequests[0]->getUri();
         $actualUri2 = (string) $actualRequests[1]->getUri();
