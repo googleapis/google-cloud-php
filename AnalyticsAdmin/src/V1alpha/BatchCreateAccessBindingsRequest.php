@@ -24,7 +24,7 @@ class BatchCreateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The requests specifying the access bindings to create.
      * A maximum of 1000 access bindings can be created in a batch.

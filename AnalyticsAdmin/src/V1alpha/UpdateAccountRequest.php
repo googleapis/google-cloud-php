@@ -21,7 +21,7 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Account account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $account = null;
+    protected $account = null;
     /**
      * Required. The list of fields to be updated. Field names must be in snake
      * case (for example, "field_to_update"). Omitted fields will not be updated.
@@ -30,7 +30,7 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Analytics\Admin\V1alpha\Account $account    Required. The account to update.

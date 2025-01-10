@@ -28,14 +28,14 @@ class FileInputType
     const UPLOAD = 1;
     /**
      * The file is fetched from the configured
-     * [fetch_uri][google.shopping.content.bundles.DataSources.FileInput.FetchSettings.fetch_uri].
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      *
      * Generated from protobuf enum <code>FETCH = 2;</code>
      */
     const FETCH = 2;
     /**
      * The file is fetched from Google Sheets specified in the
-     * [fetch_uri][google.shopping.content.bundles.DataSources.FileInput.FetchSettings.fetch_uri].
+     * [fetch_uri][google.shopping.merchant.datasources.v1beta.FileInput.FetchSettings.fetch_uri].
      *
      * Generated from protobuf enum <code>GOOGLE_SHEETS = 3;</code>
      */

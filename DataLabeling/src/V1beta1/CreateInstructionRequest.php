@@ -21,13 +21,13 @@ class CreateInstructionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. Instruction of how to perform the labeling task.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.Instruction instruction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instruction = null;
+    protected $instruction = null;
 
     /**
      * @param string                                         $parent      Required. Instruction resource parent, format:

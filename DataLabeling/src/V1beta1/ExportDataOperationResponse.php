@@ -21,31 +21,31 @@ class ExportDataOperationResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset = 1;</code>
      */
-    private $dataset = '';
+    protected $dataset = '';
     /**
      * Output only. Total number of examples requested to export
      *
      * Generated from protobuf field <code>int32 total_count = 2;</code>
      */
-    private $total_count = 0;
+    protected $total_count = 0;
     /**
      * Output only. Number of examples exported successfully.
      *
      * Generated from protobuf field <code>int32 export_count = 3;</code>
      */
-    private $export_count = 0;
+    protected $export_count = 0;
     /**
      * Output only. Statistic infos of labels in the exported dataset.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.LabelStats label_stats = 4;</code>
      */
-    private $label_stats = null;
+    protected $label_stats = null;
     /**
      * Output only. output_config in the ExportData request.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.OutputConfig output_config = 5;</code>
      */
-    private $output_config = null;
+    protected $output_config = null;
 
     /**
      * Constructor.

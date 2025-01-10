@@ -61,6 +61,4 @@ class ConversionCountingMethod
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConversionCountingMethod::class, \Google\Analytics\Admin\V1alpha\ConversionEvent_ConversionCountingMethod::class);
 

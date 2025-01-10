@@ -90,6 +90,11 @@
                                 "getManagementServer"
                             ]
                         },
+                        "InitializeService": {
+                            "methods": [
+                                "initializeService"
+                            ]
+                        },
                         "ListBackupPlanAssociations": {
                             "methods": [
                                 "listBackupPlanAssociations"

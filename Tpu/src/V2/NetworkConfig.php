@@ -21,7 +21,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1;</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * The name of the subnetwork for the TPU node. It must be a preexisting
      * Google Compute Engine subnetwork. If none is provided, "default" will be
@@ -29,7 +29,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      */
-    private $subnetwork = '';
+    protected $subnetwork = '';
     /**
      * Indicates that external IP addresses would be associated with the TPU
      * workers. If set to false, the specified subnetwork or network should have
@@ -37,7 +37,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_external_ips = 3;</code>
      */
-    private $enable_external_ips = false;
+    protected $enable_external_ips = false;
     /**
      * Allows the TPU node to send and receive packets with non-matching
      * destination or source IPs. This is required if you plan to use the TPU
@@ -45,7 +45,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool can_ip_forward = 4;</code>
      */
-    private $can_ip_forward = false;
+    protected $can_ip_forward = false;
 
     /**
      * Constructor.

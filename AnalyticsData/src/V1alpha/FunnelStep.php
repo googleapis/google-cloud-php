@@ -26,7 +26,7 @@ class FunnelStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * If true, this step must directly follow the previous step. If false,
      * there can be events between the previous step and this step. If
@@ -34,7 +34,7 @@ class FunnelStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_directly_followed_by = 2;</code>
      */
-    private $is_directly_followed_by = false;
+    protected $is_directly_followed_by = false;
     /**
      * If specified, this step must complete within this duration of the
      * completion of the prior step. `withinDurationFromPriorStep` is inclusive
@@ -46,14 +46,14 @@ class FunnelStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.protobuf.Duration within_duration_from_prior_step = 3;</code>
      */
-    private $within_duration_from_prior_step = null;
+    protected $within_duration_from_prior_step = null;
     /**
      * The condition that your users must meet to be included in this step of
      * the funnel journey.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FunnelFilterExpression filter_expression = 4;</code>
      */
-    private $filter_expression = null;
+    protected $filter_expression = null;
 
     /**
      * Constructor.

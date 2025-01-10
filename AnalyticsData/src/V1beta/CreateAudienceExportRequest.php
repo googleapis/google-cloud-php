@@ -21,13 +21,13 @@ class CreateAudienceExportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The audience export to create.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.AudienceExport audience_export = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audience_export = null;
+    protected $audience_export = null;
 
     /**
      * @param string                                       $parent         Required. The parent resource where this audience export will be created.

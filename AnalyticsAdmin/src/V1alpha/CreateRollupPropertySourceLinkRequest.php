@@ -21,13 +21,13 @@ class CreateRollupPropertySourceLinkRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The roll-up property source link to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.RollupPropertySourceLink rollup_property_source_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $rollup_property_source_link = null;
+    protected $rollup_property_source_link = null;
 
     /**
      * @param string                                                   $parent                   Required. Format: properties/{property_id}

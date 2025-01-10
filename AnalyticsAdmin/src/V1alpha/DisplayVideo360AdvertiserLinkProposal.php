@@ -27,26 +27,26 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The Display & Video 360 Advertiser's advertiser ID.
      *
      * Generated from protobuf field <code>string advertiser_id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $advertiser_id = '';
+    protected $advertiser_id = '';
     /**
      * Output only. The status information for this link proposal.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.LinkProposalStatusDetails link_proposal_status_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $link_proposal_status_details = null;
+    protected $link_proposal_status_details = null;
     /**
      * Output only. The display name of the Display & Video Advertiser.
      * Only populated for proposals that originated from Display & Video 360.
      *
      * Generated from protobuf field <code>string advertiser_display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $advertiser_display_name = '';
+    protected $advertiser_display_name = '';
     /**
      * Input only. On a proposal being sent to Display & Video 360, this field
      * must be set to the email address of an admin on the target advertiser. This
@@ -57,21 +57,21 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string validation_email = 5 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    private $validation_email = '';
+    protected $validation_email = '';
     /**
      * Immutable. Enables personalized advertising features with this integration.
      * If this field is not set on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $ads_personalization_enabled = null;
+    protected $ads_personalization_enabled = null;
     /**
      * Immutable. Enables the import of campaign data from Display & Video 360.
      * If this field is not set on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $campaign_data_sharing_enabled = null;
+    protected $campaign_data_sharing_enabled = null;
     /**
      * Immutable. Enables the import of cost data from Display & Video 360.
      * This can only be enabled if campaign_data_sharing_enabled is enabled.
@@ -79,7 +79,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $cost_data_sharing_enabled = null;
+    protected $cost_data_sharing_enabled = null;
 
     /**
      * Constructor.
@@ -312,7 +312,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
      */
-    public function getAdsPersonalizationEnabledValue()
+    public function getAdsPersonalizationEnabledUnwrapped()
     {
         return $this->readWrapperValue("ads_personalization_enabled");
     }
@@ -343,7 +343,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      * @param bool|null $var
      * @return $this
      */
-    public function setAdsPersonalizationEnabledValue($var)
+    public function setAdsPersonalizationEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("ads_personalization_enabled", $var);
         return $this;}
@@ -379,7 +379,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
      */
-    public function getCampaignDataSharingEnabledValue()
+    public function getCampaignDataSharingEnabledUnwrapped()
     {
         return $this->readWrapperValue("campaign_data_sharing_enabled");
     }
@@ -410,7 +410,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      * @param bool|null $var
      * @return $this
      */
-    public function setCampaignDataSharingEnabledValue($var)
+    public function setCampaignDataSharingEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("campaign_data_sharing_enabled", $var);
         return $this;}
@@ -448,7 +448,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
      */
-    public function getCostDataSharingEnabledValue()
+    public function getCostDataSharingEnabledUnwrapped()
     {
         return $this->readWrapperValue("cost_data_sharing_enabled");
     }
@@ -481,7 +481,7 @@ class DisplayVideo360AdvertiserLinkProposal extends \Google\Protobuf\Internal\Me
      * @param bool|null $var
      * @return $this
      */
-    public function setCostDataSharingEnabledValue($var)
+    public function setCostDataSharingEnabledUnwrapped($var)
     {
         $this->writeWrapperValue("cost_data_sharing_enabled", $var);
         return $this;}

@@ -20,14 +20,14 @@ class CreateKeyEventRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.KeyEvent key_event = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key_event = null;
+    protected $key_event = null;
     /**
      * Required. The resource name of the parent property where this Key Event
      * will be created. Format: properties/123
      *
      * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
 
     /**
      * @param string                                   $parent   Required. The resource name of the parent property where this Key Event
