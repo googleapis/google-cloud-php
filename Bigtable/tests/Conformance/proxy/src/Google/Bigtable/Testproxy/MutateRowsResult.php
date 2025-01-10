@@ -89,7 +89,7 @@ class MutateRowsResult extends \Google\Protobuf\Internal\Message
     /**
      * The results corresponding to the failed rows.
      *
-     * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 2;</code>
+    * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntries()

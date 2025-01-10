@@ -173,7 +173,10 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     */
     public function CheckAndMutateRow(GRPC\ContextInterface $ctx, Testproxy\CheckAndMutateRowRequest $in): Testproxy\CheckAndMutateRowResult
     {
-        return new Testproxy\CheckAndMutateRowResult();
+        [$client, $config] = $this->getClientAndConfig($in->getClientId());
+        $response = $client->checkAndMutateRows($in->getRequest());
+
+        return new Testproxy\CheckAndMutateRowResult(['result' => $response]);
     }
 
     /**
