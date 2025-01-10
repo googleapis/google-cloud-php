@@ -323,7 +323,8 @@ class RestTest extends TestCase
                 $body1,
                 $status2,
                 $body2,
-                &$requestIndex) {
+                &$requestIndex
+            ) {
                 $actualRequests[$requestIndex] = $args[0];
                 $requestHeaders[$requestIndex] = $args[1]['headers'] ?? [];
                 if ($requestIndex++ === 0) {
