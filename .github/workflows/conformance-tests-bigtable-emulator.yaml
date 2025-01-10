@@ -49,4 +49,9 @@ jobs:
         with:
           go-version: '>=1.20.2'
 
+      - name: Install Road Runner PHP
+        run: |
+          wget https://github.com/roadrunner-server/roadrunner/releases/download/v2024.X.X/roadrunner-2024.X.X-linux-amd64.deb
+          sudo dpkg -i roadrunner-2024.X.X-linux-amd64.deb
+
       - run: bash .kokoro/conformance.sh
