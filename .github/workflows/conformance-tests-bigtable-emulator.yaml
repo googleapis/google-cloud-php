@@ -52,6 +52,6 @@ jobs:
       - name: Install Road Runner PHP
         run: |
           wget https://github.com/roadrunner-server/roadrunner/releases/download/v2024.3.1/roadrunner-2024.3.1-linux-amd64.deb
-          sudo dpkg -i roadrunner-2024.X.X-linux-amd64.deb
+          dpkg -i roadrunner-2024.3.1-linux-amd64.deb
 
       - run: bash .kokoro/conformance.sh
