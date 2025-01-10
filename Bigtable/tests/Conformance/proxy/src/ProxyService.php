@@ -232,8 +232,11 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         return [$client, $config];
     }
 
-    public function getTimeoutMillis(\Google\Protobuf\Duration $timeout): int
+    public function getTimeoutMillis(?\Google\Protobuf\Duration $timeout): ?int
     {
+        if ($timeout === null) {
+            return null;
+        }
         return ($timeout->getSeconds() * 1000) + ($timeout->getNanos() / 1000000);
     }
 }
