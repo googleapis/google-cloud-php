@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
+use Google\Auth\HttpHandler\Guzzle7HttpHandler;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Retry;
@@ -25,6 +26,9 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Connection\RetryTrait;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
@@ -271,6 +275,98 @@ class RestTest extends TestCase
             $expectedUri,
             $actualUri
         );
+    }
+
+    public function downloadObjectWithResumeProvider()
+    {
+        $part1 = 'first part';
+        $part2 = 'second part';
+        $full = $part1 . $part2;
+        /** @see RetryTrait::$httpRetryCodes for list of status codes that are allowed to retry */
+        return [
+            [0, '', 200, $full, $full],
+            [200, $part1, 200, $part2, $full, ['Range' => 'bytes=10-']],
+            [408, 'Server Message', 200, $full, $full],
+            [429, 'Server Message', 200, $full, $full],
+            [500, 'Server Error', 200, $full, $full],
+            [502, 'Server Error', 200, $full, $full],
+            [503, 'Server Error', 200, $full, $full],
+            [504, 'Server Error', 200, $full, $full],
+        ];
+    }
+
+    /**
+     * @dataProvider downloadObjectWithResumeProvider
+     */
+    public function testDownloadObjectWithResume(
+        int $status1,
+        string $body1,
+        int $status2,
+        string $body2,
+        string $expectedResult,
+        array $expectedSecondRequestHeaders = []
+    ) {
+        /** @var Request[] $actualRequests */
+        $actualRequests = [];
+        $requestHeaders = [];
+
+        $mockClient = $this->prophesize(Client::class);
+        $requestIndex = 0;
+        $mockClient->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(
+            function ($args) use (
+                &$actualRequests,
+                &$requestHeaders,
+                $status1,
+                $body1,
+                $status2,
+                $body2,
+                &$requestIndex
+            ) {
+                $actualRequests[$requestIndex] = $args[0];
+                $requestHeaders[$requestIndex] = $args[1]['headers'] ?? [];
+                if ($requestIndex++ === 0) {
+                    throw new RequestException("Server error", $args[0], new Response($status1, [], $body1));
+                }
+                return new Response($status2, [], $body2);
+            }
+        );
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => new Guzzle7HttpHandler($mockClient->reveal()),
+            'accessToken' => 'Fake token',
+            'retries' => 3,
+        ]);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($requestWrapper);
+
+        $options = self::$downloadOptions;
+        $options['retries'] = 3;
+        // ensure the tests execute quickly (no reason to wait for the delay)
+        $options['restDelayFunction'] = function () {
+        };
+        $actualBody = (string) $rest->downloadObject($options);
+        $actualUri1 = (string) $actualRequests[0]->getUri();
+        $actualUri2 = (string) $actualRequests[1]->getUri();
+
+        $expectedUri = sprintf(
+            '%s/storage/v1/b/bigbucket/o/myfile.txt?generation=100&alt=media&userProject=myProject',
+            Rest::DEFAULT_API_ENDPOINT
+        );
+
+        $this->assertEquals(
+            $expectedUri,
+            $actualUri1
+        );
+        $this->assertEquals([], $requestHeaders[0]);
+        $this->assertEquals(
+            $expectedUri,
+            $actualUri2
+        );
+        $this->assertEquals($expectedSecondRequestHeaders, $requestHeaders[1]);
+        $this->assertEquals($expectedResult, $actualBody);
     }
 
     /**

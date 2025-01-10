@@ -324,7 +324,11 @@ class Rest implements ConnectionInterface
             &$attempt,
         ) {
             // if the exception has a response for us to use
-            if ($e instanceof RequestException && $e->hasResponse()) {
+            if ($e instanceof RequestException
+                && $e->hasResponse()
+                && $e->getResponse()->getStatusCode() >= 200
+                && $e->getResponse()->getStatusCode() < 300
+            ) {
                 $msg = (string) $e->getResponse()->getBody();
 
                 $fetchedStream = Utils::streamFor($msg);
