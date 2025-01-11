@@ -26,7 +26,7 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The query in the [Monitoring Query
      * Language](https://cloud.google.com/monitoring/mql/reference) format.
@@ -34,13 +34,13 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     /**
      * A positive number that is the maximum number of time_series_data to return.
      *
      * Generated from protobuf field <code>int32 page_size = 9;</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
@@ -48,7 +48,7 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 10;</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

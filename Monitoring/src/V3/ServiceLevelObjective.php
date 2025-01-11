@@ -26,13 +26,13 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Name used for UI elements listing this SLO.
      *
      * Generated from protobuf field <code>string display_name = 11;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * The definition of good service, used to measure and calculate the quality
      * of the `Service`'s performance with respect to a single aspect of service
@@ -40,14 +40,14 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelIndicator service_level_indicator = 3;</code>
      */
-    private $service_level_indicator = null;
+    protected $service_level_indicator = null;
     /**
      * The fraction of service that must be good in order for this objective to be
      * met. `0 < goal <= 0.9999`.
      *
      * Generated from protobuf field <code>double goal = 4;</code>
      */
-    private $goal = 0.0;
+    protected $goal = 0.0;
     /**
      * Labels which have been used to annotate the service-level objective. Label
      * keys must start with a letter. Label keys and values may contain lowercase

@@ -71,6 +71,4 @@ class VerificationStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VerificationStatus::class, \Google\Cloud\Monitoring\V3\NotificationChannel_VerificationStatus::class);
 

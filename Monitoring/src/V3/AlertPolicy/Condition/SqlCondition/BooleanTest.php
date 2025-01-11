@@ -22,7 +22,7 @@ class BooleanTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string column = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $column = '';
+    protected $column = '';
 
     /**
      * Constructor.
@@ -70,6 +70,4 @@ class BooleanTest extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BooleanTest::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_SqlCondition_BooleanTest::class);
 

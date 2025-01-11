@@ -21,7 +21,7 @@ class Daily extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 periodicity = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $periodicity = 0;
+    protected $periodicity = 0;
     /**
      * Optional. The time of day (in UTC) at which the query should run. If
      * left unspecified, the server picks an arbitrary time of day and runs
@@ -29,7 +29,7 @@ class Daily extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay execution_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $execution_time = null;
+    protected $execution_time = null;
 
     /**
      * Constructor.
@@ -121,6 +121,4 @@ class Daily extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Daily::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_SqlCondition_Daily::class);
 
