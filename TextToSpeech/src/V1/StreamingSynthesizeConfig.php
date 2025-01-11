@@ -20,13 +20,14 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $voice = null;
-    /**
+    protected $voice = null;
+
+  /**
      * Optional. The configuration of the synthesized audio.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.StreamingAudioConfig streaming_audio_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $streaming_audio_config = null;
+    protected $streaming_audio_config = null;
 
     /**
      * Constructor.

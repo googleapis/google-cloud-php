@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RuleConfigInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Output Only.
-     * Backup Rule id fetched from backup plan.
+     * Output only. Backup Rule id fetched from backup plan.
      *
      * Generated from protobuf field <code>string rule_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -29,8 +28,7 @@ class RuleConfigInfo extends \Google\Protobuf\Internal\Message
      */
     protected $last_backup_state = 0;
     /**
-     * Output only. Output Only.
-     * google.rpc.Status object to store the last backup error.
+     * Output only. google.rpc.Status object to store the last backup error.
      *
      * Generated from protobuf field <code>.google.rpc.Status last_backup_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -50,13 +48,11 @@ class RuleConfigInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $rule_id
-     *           Output only. Output Only.
-     *           Backup Rule id fetched from backup plan.
+     *           Output only. Backup Rule id fetched from backup plan.
      *     @type int $last_backup_state
      *           Output only. The last backup state for rule.
      *     @type \Google\Rpc\Status $last_backup_error
-     *           Output only. Output Only.
-     *           google.rpc.Status object to store the last backup error.
+     *           Output only. google.rpc.Status object to store the last backup error.
      *     @type \Google\Protobuf\Timestamp $last_successful_backup_consistency_time
      *           Output only. The point in time when the last successful backup was captured
      *           from the source.
@@ -68,8 +64,7 @@ class RuleConfigInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output Only.
-     * Backup Rule id fetched from backup plan.
+     * Output only. Backup Rule id fetched from backup plan.
      *
      * Generated from protobuf field <code>string rule_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -80,8 +75,7 @@ class RuleConfigInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output Only.
-     * Backup Rule id fetched from backup plan.
+     * Output only. Backup Rule id fetched from backup plan.
      *
      * Generated from protobuf field <code>string rule_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -122,8 +116,7 @@ class RuleConfigInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output Only.
-     * google.rpc.Status object to store the last backup error.
+     * Output only. google.rpc.Status object to store the last backup error.
      *
      * Generated from protobuf field <code>.google.rpc.Status last_backup_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -144,8 +137,7 @@ class RuleConfigInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output Only.
-     * google.rpc.Status object to store the last backup error.
+     * Output only. google.rpc.Status object to store the last backup error.
      *
      * Generated from protobuf field <code>.google.rpc.Status last_backup_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var

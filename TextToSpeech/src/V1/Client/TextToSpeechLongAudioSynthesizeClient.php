@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,9 +77,7 @@ final class TextToSpeechLongAudioSynthesizeClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -89,14 +87,16 @@ final class TextToSpeechLongAudioSynthesizeClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/text_to_speech_long_audio_synthesize_rest_client_config.php',
                 ],
             ],
         ];
@@ -125,7 +125,9 @@ final class TextToSpeechLongAudioSynthesizeClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;

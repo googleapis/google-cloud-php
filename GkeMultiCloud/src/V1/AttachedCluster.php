@@ -183,7 +183,8 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * characters. The permitted character set for the short name includes UTF-8
      * encoded Unicode characters except single quotes ('), double quotes ("),
      * backslashes (\), and forward slashes (/).
-     * See [Tags](http://cloud/resource-manager/docs/tags/tags-overview)
+     * See
+     * [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      * for more details on Google Cloud Platform tags.
      *
      * Generated from protobuf field <code>map<string, string> tags = 27 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -272,7 +273,8 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *           characters. The permitted character set for the short name includes UTF-8
      *           encoded Unicode characters except single quotes ('), double quotes ("),
      *           backslashes (\), and forward slashes (/).
-     *           See [Tags](http://cloud/resource-manager/docs/tags/tags-overview)
+     *           See
+     *           [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      *           for more details on Google Cloud Platform tags.
      * }
      */
@@ -1040,7 +1042,8 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * characters. The permitted character set for the short name includes UTF-8
      * encoded Unicode characters except single quotes ('), double quotes ("),
      * backslashes (\), and forward slashes (/).
-     * See [Tags](http://cloud/resource-manager/docs/tags/tags-overview)
+     * See
+     * [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      * for more details on Google Cloud Platform tags.
      *
      * Generated from protobuf field <code>map<string, string> tags = 27 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -1060,7 +1063,8 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * characters. The permitted character set for the short name includes UTF-8
      * encoded Unicode characters except single quotes ('), double quotes ("),
      * backslashes (\), and forward slashes (/).
-     * See [Tags](http://cloud/resource-manager/docs/tags/tags-overview)
+     * See
+     * [Tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview)
      * for more details on Google Cloud Platform tags.
      *
      * Generated from protobuf field <code>map<string, string> tags = 27 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
