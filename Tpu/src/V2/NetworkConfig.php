@@ -46,6 +46,13 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool can_ip_forward = 4;</code>
      */
     protected $can_ip_forward = false;
+    /**
+     * Optional. Specifies networking queue count for TPU VM instance's network
+     * interface.
+     *
+     * Generated from protobuf field <code>int32 queue_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $queue_count = 0;
 
     /**
      * Constructor.
@@ -68,6 +75,9 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Allows the TPU node to send and receive packets with non-matching
      *           destination or source IPs. This is required if you plan to use the TPU
      *           workers to forward routes.
+     *     @type int $queue_count
+     *           Optional. Specifies networking queue count for TPU VM instance's network
+     *           interface.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +199,34 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->can_ip_forward = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies networking queue count for TPU VM instance's network
+     * interface.
+     *
+     * Generated from protobuf field <code>int32 queue_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQueueCount()
+    {
+        return $this->queue_count;
+    }
+
+    /**
+     * Optional. Specifies networking queue count for TPU VM instance's network
+     * interface.
+     *
+     * Generated from protobuf field <code>int32 queue_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQueueCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->queue_count = $var;
 
         return $this;
     }
