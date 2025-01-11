@@ -9,12 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The supplemental data source for local and online products. Supplemental API
- * data sources must not have `feedLabel` and `contentLanguage` fields set. You
- * can only use supplemental data sources to update existing products. For
- * information about creating a supplemental data source, see [Create a
- * supplemental data source and link it to the primary data
- * source](/merchant/api/guides/data-sources/overview#create-supplemental-data-source).
+ * The supplemental data source for local and online products. After creation,
+ * you should make sure to link the supplemental product data source into one or
+ * more primary product data sources.
  *
  * Generated from protobuf message <code>google.shopping.merchant.datasources.v1beta.SupplementalProductDataSource</code>
  */
@@ -29,7 +26,10 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      * labels](https://developers.google.com/shopping-content/guides/products/feed-labels).
      * `feedLabel` and `contentLanguage` must be either both set or unset for data
      * sources with product content type.
-     * They must be set for data sources with a file input.
+     * They must be set for data sources with a [file
+     * input][google.shopping.merchant.datasources.v1main.FileInput].
+     * The fields must be unset for data sources without [file
+     * input][google.shopping.merchant.datasources.v1main.FileInput].
      * If set, the data source will only accept products matching this
      * combination. If unset, the data source will accept produts without that
      * restriction.
@@ -73,7 +73,10 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      *           labels](https://developers.google.com/shopping-content/guides/products/feed-labels).
      *           `feedLabel` and `contentLanguage` must be either both set or unset for data
      *           sources with product content type.
-     *           They must be set for data sources with a file input.
+     *           They must be set for data sources with a [file
+     *           input][google.shopping.merchant.datasources.v1main.FileInput].
+     *           The fields must be unset for data sources without [file
+     *           input][google.shopping.merchant.datasources.v1main.FileInput].
      *           If set, the data source will only accept products matching this
      *           combination. If unset, the data source will accept produts without that
      *           restriction.
@@ -105,7 +108,10 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      * labels](https://developers.google.com/shopping-content/guides/products/feed-labels).
      * `feedLabel` and `contentLanguage` must be either both set or unset for data
      * sources with product content type.
-     * They must be set for data sources with a file input.
+     * They must be set for data sources with a [file
+     * input][google.shopping.merchant.datasources.v1main.FileInput].
+     * The fields must be unset for data sources without [file
+     * input][google.shopping.merchant.datasources.v1main.FileInput].
      * If set, the data source will only accept products matching this
      * combination. If unset, the data source will accept produts without that
      * restriction.
@@ -137,7 +143,10 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      * labels](https://developers.google.com/shopping-content/guides/products/feed-labels).
      * `feedLabel` and `contentLanguage` must be either both set or unset for data
      * sources with product content type.
-     * They must be set for data sources with a file input.
+     * They must be set for data sources with a [file
+     * input][google.shopping.merchant.datasources.v1main.FileInput].
+     * The fields must be unset for data sources without [file
+     * input][google.shopping.merchant.datasources.v1main.FileInput].
      * If set, the data source will only accept products matching this
      * combination. If unset, the data source will accept produts without that
      * restriction.
