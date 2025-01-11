@@ -23,7 +23,7 @@ class InitializeEncryptionSpecRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EncryptionSpec encryption_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $encryption_spec = null;
+    protected $encryption_spec = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\EncryptionSpec $encryptionSpec Required. The encryption spec used for CMEK encryption. It is required that

@@ -21,13 +21,13 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant participant = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $participant = null;
+    protected $participant = null;
     /**
      * Required. The mask to specify which fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Dialogflow\V2\Participant $participant Required. The participant to update.

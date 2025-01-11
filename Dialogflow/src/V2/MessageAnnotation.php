@@ -28,7 +28,7 @@ class MessageAnnotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool contain_entities = 2;</code>
      */
-    private $contain_entities = false;
+    protected $contain_entities = false;
 
     /**
      * Constructor.

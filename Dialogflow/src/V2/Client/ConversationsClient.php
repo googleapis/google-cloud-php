@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -224,8 +224,12 @@ final class ConversationsClient
      *
      * @return string The formatted data_store resource.
      */
-    public static function dataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function dataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('dataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -401,8 +405,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_conversation_message resource.
      */
-    public static function projectConversationMessageName(string $project, string $conversation, string $message): string
-    {
+    public static function projectConversationMessageName(
+        string $project,
+        string $conversation,
+        string $message
+    ): string {
         return self::getPathTemplate('projectConversationMessage')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -471,8 +478,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
-    {
+    public static function projectKnowledgeBaseDocumentName(
+        string $project,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -508,8 +518,12 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_collection_data_store resource.
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
@@ -528,8 +542,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation resource.
      */
-    public static function projectLocationConversationName(string $project, string $location, string $conversation): string
-    {
+    public static function projectLocationConversationName(
+        string $project,
+        string $location,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -548,8 +565,12 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation_message resource.
      */
-    public static function projectLocationConversationMessageName(string $project, string $location, string $conversation, string $message): string
-    {
+    public static function projectLocationConversationMessageName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $message
+    ): string {
         return self::getPathTemplate('projectLocationConversationMessage')->render([
             'project' => $project,
             'location' => $location,
@@ -568,8 +589,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation_model resource.
      */
-    public static function projectLocationConversationModelName(string $project, string $location, string $conversationModel): string
-    {
+    public static function projectLocationConversationModelName(
+        string $project,
+        string $location,
+        string $conversationModel
+    ): string {
         return self::getPathTemplate('projectLocationConversationModel')->render([
             'project' => $project,
             'location' => $location,
@@ -587,8 +611,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_conversation_profile resource.
      */
-    public static function projectLocationConversationProfileName(string $project, string $location, string $conversationProfile): string
-    {
+    public static function projectLocationConversationProfileName(
+        string $project,
+        string $location,
+        string $conversationProfile
+    ): string {
         return self::getPathTemplate('projectLocationConversationProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -625,8 +652,11 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_knowledge_base resource.
      */
-    public static function projectLocationKnowledgeBaseName(string $project, string $location, string $knowledgeBase): string
-    {
+    public static function projectLocationKnowledgeBaseName(
+        string $project,
+        string $location,
+        string $knowledgeBase
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBase')->render([
             'project' => $project,
             'location' => $location,
@@ -645,8 +675,12 @@ final class ConversationsClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
-    {
+    public static function projectLocationKnowledgeBaseDocumentName(
+        string $project,
+        string $location,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -877,8 +911,10 @@ final class ConversationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateStatelessSuggestion(GenerateStatelessSuggestionRequest $request, array $callOptions = []): GenerateStatelessSuggestionResponse
-    {
+    public function generateStatelessSuggestion(
+        GenerateStatelessSuggestionRequest $request,
+        array $callOptions = []
+    ): GenerateStatelessSuggestionResponse {
         return $this->startApiCall('GenerateStatelessSuggestion', $request, $callOptions)->wait();
     }
 
@@ -905,8 +941,10 @@ final class ConversationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateStatelessSummary(GenerateStatelessSummaryRequest $request, array $callOptions = []): GenerateStatelessSummaryResponse
-    {
+    public function generateStatelessSummary(
+        GenerateStatelessSummaryRequest $request,
+        array $callOptions = []
+    ): GenerateStatelessSummaryResponse {
         return $this->startApiCall('GenerateStatelessSummary', $request, $callOptions)->wait();
     }
 
@@ -1042,8 +1080,10 @@ final class ConversationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestConversationSummary(SuggestConversationSummaryRequest $request, array $callOptions = []): SuggestConversationSummaryResponse
-    {
+    public function suggestConversationSummary(
+        SuggestConversationSummaryRequest $request,
+        array $callOptions = []
+    ): SuggestConversationSummaryResponse {
         return $this->startApiCall('SuggestConversationSummary', $request, $callOptions)->wait();
     }
 

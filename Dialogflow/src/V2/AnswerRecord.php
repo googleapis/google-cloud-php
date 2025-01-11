@@ -43,7 +43,7 @@ class AnswerRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The AnswerFeedback for this record. You can set this with
      * [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord]
@@ -51,7 +51,7 @@ class AnswerRecord extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerFeedback answer_feedback = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $answer_feedback = null;
+    protected $answer_feedback = null;
     protected $record;
 
     /**

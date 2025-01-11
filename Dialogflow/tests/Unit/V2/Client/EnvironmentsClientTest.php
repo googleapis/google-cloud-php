@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,9 @@ class EnvironmentsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return EnvironmentsClient */
@@ -126,12 +128,15 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
@@ -167,8 +172,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $request = (new DeleteEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEnvironmentRequest())->setName($formattedName);
         $gapicClient->deleteEnvironment($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -191,17 +195,19 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $request = (new DeleteEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteEnvironmentRequest())->setName($formattedName);
         try {
             $gapicClient->deleteEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -234,8 +240,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new GetEnvironmentRequest())->setName($formattedName);
         $response = $gapicClient->getEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -259,17 +264,19 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentRequest())
-            ->setName($formattedName);
+        $request = (new GetEnvironmentRequest())->setName($formattedName);
         try {
             $gapicClient->getEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -295,9 +302,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $parent2 = 'parent21175163357';
         $nextPageToken = '';
         $entriesElement = new Entry();
-        $entries = [
-            $entriesElement,
-        ];
+        $entries = [$entriesElement];
         $expectedResponse = new EnvironmentHistory();
         $expectedResponse->setParent($parent2);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -305,8 +310,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentHistoryRequest())
-            ->setParent($formattedParent);
+        $request = (new GetEnvironmentHistoryRequest())->setParent($formattedParent);
         $response = $gapicClient->getEnvironmentHistory($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -333,17 +337,19 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $request = (new GetEnvironmentHistoryRequest())
-            ->setParent($formattedParent);
+        $request = (new GetEnvironmentHistoryRequest())->setParent($formattedParent);
         try {
             $gapicClient->getEnvironmentHistory($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -368,17 +374,14 @@ class EnvironmentsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $environmentsElement = new Environment();
-        $environments = [
-            $environmentsElement,
-        ];
+        $environments = [$environmentsElement];
         $expectedResponse = new ListEnvironmentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new ListEnvironmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEnvironmentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listEnvironments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -405,17 +408,19 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]');
-        $request = (new ListEnvironmentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListEnvironmentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listEnvironments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -449,9 +454,7 @@ class EnvironmentsClientTest extends GeneratedTest
         // Mock request
         $environment = new Environment();
         $updateMask = new FieldMask();
-        $request = (new UpdateEnvironmentRequest())
-            ->setEnvironment($environment)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateEnvironmentRequest())->setEnvironment($environment)->setUpdateMask($updateMask);
         $response = $gapicClient->updateEnvironment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -477,19 +480,20 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $environment = new Environment();
         $updateMask = new FieldMask();
-        $request = (new UpdateEnvironmentRequest())
-            ->setEnvironment($environment)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateEnvironmentRequest())->setEnvironment($environment)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateEnvironment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -542,12 +546,15 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -574,9 +581,7 @@ class EnvironmentsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -606,12 +611,15 @@ class EnvironmentsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
