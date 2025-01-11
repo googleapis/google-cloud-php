@@ -67,7 +67,7 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool active_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $active_only = false;
+    protected $active_only = false;
 
     /**
      * @param string $name Required. The
