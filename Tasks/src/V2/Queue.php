@@ -38,7 +38,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Overrides for
      * [task-level
@@ -53,7 +53,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.AppEngineRouting app_engine_routing_override = 2;</code>
      */
-    private $app_engine_routing_override = null;
+    protected $app_engine_routing_override = null;
     /**
      * Rate limits for task dispatches.
      * [rate_limits][google.cloud.tasks.v2.Queue.rate_limits] and
@@ -82,7 +82,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.RateLimits rate_limits = 3;</code>
      */
-    private $rate_limits = null;
+    protected $rate_limits = null;
     /**
      * Settings that determine the retry behavior.
      * * For tasks created using Cloud Tasks: the queue-level retry settings
@@ -96,7 +96,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.RetryConfig retry_config = 4;</code>
      */
-    private $retry_config = null;
+    protected $retry_config = null;
     /**
      * Output only. The state of the queue.
      * `state` can only be changed by calling
@@ -108,7 +108,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue.State state = 5;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Output only. The last time this queue was purged.
      * All tasks that were [created][google.cloud.tasks.v2.Task.create_time]
@@ -122,7 +122,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 6;</code>
      */
-    private $purge_time = null;
+    protected $purge_time = null;
     /**
      * Configuration options for writing logs to
      * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
@@ -130,7 +130,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.StackdriverLoggingConfig stackdriver_logging_config = 9;</code>
      */
-    private $stackdriver_logging_config = null;
+    protected $stackdriver_logging_config = null;
 
     /**
      * Constructor.
