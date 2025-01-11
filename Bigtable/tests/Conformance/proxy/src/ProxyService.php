@@ -5,7 +5,7 @@
 
 use Google\Bigtable\Testproxy;
 use Google\ApiCore\Serializer;
-use Google\Auth\Credentials\InsecureCredentials;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -42,7 +42,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $this->clients[$in->getClientId()] = new BigtableClient([
             'projectId' => $in->getProjectId(),
             'apiEndpoint' => $in->getDataTarget(),
-            'credentials' => new InsecureCredentials()
+            'credentials' => new InsecureCredentialsWrapper()
         ]);
 
         return new Testproxy\CreateClientResponse();
