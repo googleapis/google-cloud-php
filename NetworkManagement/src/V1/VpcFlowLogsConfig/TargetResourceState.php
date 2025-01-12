@@ -60,6 +60,4 @@ class TargetResourceState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetResourceState::class, \Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig_TargetResourceState::class);
 

@@ -102,9 +102,7 @@ final class VpcFlowLogsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -150,7 +148,9 @@ final class VpcFlowLogsServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -347,8 +347,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createVpcFlowLogsConfig(CreateVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createVpcFlowLogsConfig(
+        CreateVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -374,8 +376,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteVpcFlowLogsConfig(DeleteVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteVpcFlowLogsConfig(
+        DeleteVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -401,8 +405,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getVpcFlowLogsConfig(GetVpcFlowLogsConfigRequest $request, array $callOptions = []): VpcFlowLogsConfig
-    {
+    public function getVpcFlowLogsConfig(
+        GetVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): VpcFlowLogsConfig {
         return $this->startApiCall('GetVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -428,8 +434,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listVpcFlowLogsConfigs(ListVpcFlowLogsConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listVpcFlowLogsConfigs(
+        ListVpcFlowLogsConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListVpcFlowLogsConfigs', $request, $callOptions);
     }
 
@@ -469,8 +477,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateVpcFlowLogsConfig(UpdateVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateVpcFlowLogsConfig(
+        UpdateVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -611,8 +621,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
