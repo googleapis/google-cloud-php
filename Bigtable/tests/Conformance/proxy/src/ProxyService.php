@@ -42,6 +42,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $this->clients[$in->getClientId()] = new BigtableClient([
             'projectId' => $in->getProjectId(),
             'apiEndpoint' => $in->getDataTarget(),
+            'credentials' => new InsecureCredentialsWrapper(),
             'hasEmulator' => true,
         ]);
 
