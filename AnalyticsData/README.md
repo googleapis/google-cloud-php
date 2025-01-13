@@ -33,13 +33,15 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\Client\BetaAnalyticsDataClient;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 
 $client = new BetaAnalyticsDataClient();
 
-$response = $client->runReport([
+$request = new RunReportRequest([
     'property' => 'properties/[YOUR_PROPERTY_ID]'
 ]);
+$response = $client->runReport($request);
 
 foreach ($response->getRows() as $row) {
     foreach ($row->getDimensionValues() as $dimensionValue) {

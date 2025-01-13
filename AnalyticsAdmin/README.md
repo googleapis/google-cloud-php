@@ -33,11 +33,13 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Analytics\Admin\V1beta\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1beta\ListAccountsRequest;
 
 $client = new AnalyticsAdminServiceClient();
 
-$accounts = $client->listAccounts();
+$request = new ListAccountsRequest();
+$accounts = $client->listAccounts($request);
 
 foreach ($accounts as $account) {
     print 'Found account: ' . $account->getName() . PHP_EOL;
