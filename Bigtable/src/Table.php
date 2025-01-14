@@ -168,7 +168,7 @@ class Table
      */
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options + $this->options);
         $data['table_name'] = $this->tableName;
         $data['row_key'] = $rowKey;
         $data['mutations'] = $mutations->toProto();
@@ -176,7 +176,6 @@ class Table
             new MutateRowRequest(),
             $data
         );
-        $optionalArgs += $this->options;
 
         $this->gapicClient->mutateRow($request, $optionalArgs);
     }
@@ -287,7 +286,7 @@ class Table
         $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
         $filter = $this->pluck('filter', $options, false) ?: null;
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retrySettings']);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options + $this->options);
 
         array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
@@ -325,7 +324,7 @@ class Table
         return new ChunkFormatter(
             $this->gapicClient,
             $request,
-            $optionalArgs + $this->options
+            $optionalArgs
         );
     }
 
@@ -515,14 +514,14 @@ class Table
             throw new \InvalidArgumentException('checkAndMutateRow must have either trueMutations or falseMutations.');
         }
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options + $this->options);
         $data['table_name'] = $this->tableName;
         $data['row_key'] = $rowKey;
         $request = $this->serializer->decodeMessage(new CheckAndMutateRowRequest(), $data);
 
         return $this->gapicClient->checkAndMutateRow(
             $request,
-            $optionalArgs + $this->options
+            $optionalArgs
         )->getPredicateMatched();
     }
 
@@ -552,7 +551,7 @@ class Table
             return false;
         };
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retrySettings']);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
         $request = $this->serializer->decodeMessage(new MutateRowsRequest(), $data);
         $request->setTableName($this->tableName);
@@ -631,7 +630,8 @@ class Table
                 $rowMutationsFailedResponse[] = [
                     'rowKey' => $entries[$index]->getRowKey(),
                     'statusCode' => $statusCode,
-                    'message' => $message
+                    'message' => $message,
+                    'index' => $index
                 ];
             }
         }

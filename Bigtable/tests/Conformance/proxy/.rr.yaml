@@ -7,6 +7,11 @@ server:
   relay: "pipes"
   relay_timeout: "20s"
 
+kv:
+  memory-cache:
+    driver: memory
+    config: { }
+
 grpc:
   listen: "tcp://127.0.0.1:9999"
   proto: ["test_proxy.proto"]
@@ -19,7 +24,7 @@ grpc:
   ping_time: 1s
   timeout: 200s
   pool:
-    num_workers: 1
+    num_workers: 5
     max_jobs: 0
     allocate_timeout: 60s
     destroy_timeout: 60s
