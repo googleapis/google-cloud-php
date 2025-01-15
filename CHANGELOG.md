@@ -1,5 +1,56 @@
 # Changelog
 
+## 0.272.0
+
+<details><summary>google/cloud-ai-platform 1.14.0</summary>
+
+
+
+### Features
+
+* Add retrieval_config to ToolConfig v1 ([#8011](https://github.com/googleapis/google-cloud-php/issues/8011)) ([b1557ce](https://github.com/googleapis/google-cloud-php/commit/b1557ce217f2151ab52038aa9fef723eb6bf6566))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.3.0</summary>
+
+
+
+### Features
+
+* Expose the new v1 vpcflowlogs api proto ([#8009](https://github.com/googleapis/google-cloud-php/issues/8009)) ([2a26e00](https://github.com/googleapis/google-cloud-php/commit/2a26e00eba7b0af626ca508e37740280b279ccdf))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.3</summary>
+
+
+
+### Documentation
+
+* A comment for method `ListWorkloads` in service `Environments` is changed ([#8013](https://github.com/googleapis/google-cloud-php/issues/8013)) ([0a9bd5c](https://github.com/googleapis/google-cloud-php/commit/0a9bd5cac42bb3f6a5f2a5f224bcfcb54f18ea87))
+
+</details>
+
+<details><summary>google/cloud-tpu 2.1.0</summary>
+
+
+
+### Features
+
+* Add UNKNOWN to TPU node state, This state will be used to prevent a node from being marked as READY during diagnose after it has failed repair ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Make V5Litepod accelerator config available for v2 ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Make v5p available for GA ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Make v6e available for GA ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Promote network_configs field to v2 API ([#8007](https://github.com/googleapis/google-cloud-php/issues/8007)) ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+
+
+### Documentation
+
+* A comment for field `network_config` in message `.google.cloud.tpu.v2.Node` is changed ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+
+</details>
+
 ## 0.271.0
 
 <details><summary>google/analytics-admin 0.25.0</summary>
