@@ -27,6 +27,12 @@ class SchedulingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool reserved = 2;</code>
      */
     protected $reserved = false;
+    /**
+     * Optional. Defines whether the node is Spot VM.
+     *
+     * Generated from protobuf field <code>bool spot = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $spot = false;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class SchedulingConfig extends \Google\Protobuf\Internal\Message
      *           Defines whether the node is preemptible.
      *     @type bool $reserved
      *           Whether the node is created under a reservation.
+     *     @type bool $spot
+     *           Optional. Defines whether the node is Spot VM.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class SchedulingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->reserved = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines whether the node is Spot VM.
+     *
+     * Generated from protobuf field <code>bool spot = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Optional. Defines whether the node is Spot VM.
+     *
+     * Generated from protobuf field <code>bool spot = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
 
         return $this;
     }

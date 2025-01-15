@@ -105,8 +105,7 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      */
     protected $total_stored_bytes = 0;
     /**
-     * Output only. Output only
-     * Immutable after resource creation until resource deletion.
+     * Output only. Immutable after resource creation until resource deletion.
      *
      * Generated from protobuf field <code>string uid = 21 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
@@ -121,7 +120,6 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Note: This field is added for future use case and will not be
      * supported in the current release.
-     * Optional.
      * Access restriction for the backup vault.
      * Default value is WITHIN_ORGANIZATION if not provided during creation.
      *
@@ -173,15 +171,13 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *     @type int|string $total_stored_bytes
      *           Output only. Total size of the storage used by all backup resources.
      *     @type string $uid
-     *           Output only. Output only
-     *           Immutable after resource creation until resource deletion.
+     *           Output only. Immutable after resource creation until resource deletion.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. User annotations. See https://google.aip.dev/128#annotations
      *           Stores small amounts of arbitrary data.
      *     @type int $access_restriction
      *           Optional. Note: This field is added for future use case and will not be
      *           supported in the current release.
-     *           Optional.
      *           Access restriction for the backup vault.
      *           Default value is WITHIN_ORGANIZATION if not provided during creation.
      * }
@@ -622,8 +618,7 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output only
-     * Immutable after resource creation until resource deletion.
+     * Output only. Immutable after resource creation until resource deletion.
      *
      * Generated from protobuf field <code>string uid = 21 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
@@ -634,8 +629,7 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Output only
-     * Immutable after resource creation until resource deletion.
+     * Output only. Immutable after resource creation until resource deletion.
      *
      * Generated from protobuf field <code>string uid = 21 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
@@ -680,7 +674,6 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Note: This field is added for future use case and will not be
      * supported in the current release.
-     * Optional.
      * Access restriction for the backup vault.
      * Default value is WITHIN_ORGANIZATION if not provided during creation.
      *
@@ -695,7 +688,6 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Note: This field is added for future use case and will not be
      * supported in the current release.
-     * Optional.
      * Access restriction for the backup vault.
      * Default value is WITHIN_ORGANIZATION if not provided during creation.
      *

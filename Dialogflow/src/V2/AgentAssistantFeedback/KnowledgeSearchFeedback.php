@@ -23,7 +23,7 @@ class KnowledgeSearchFeedback extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool answer_copied = 1;</code>
      */
-    private $answer_copied = false;
+    protected $answer_copied = false;
     /**
      * The URIs clicked by the human agent. The value is appended for each
      * [UpdateAnswerRecordRequest][google.cloud.dialogflow.v2.UpdateAnswerRecordRequest].

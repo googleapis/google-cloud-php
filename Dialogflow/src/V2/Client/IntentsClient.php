@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Dialogflow\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -47,6 +46,7 @@ use Google\Cloud\Dialogflow\V2\UpdateIntentRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Struct;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -147,10 +147,31 @@ final class IntentsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -230,8 +251,12 @@ final class IntentsClient
      *
      * @return string The formatted project_environment_user_session resource.
      */
-    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
-    {
+    public static function projectEnvironmentUserSessionName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSession')->render([
             'project' => $project,
             'environment' => $environment,
@@ -252,8 +277,13 @@ final class IntentsClient
      *
      * @return string The formatted project_environment_user_session_context resource.
      */
-    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectEnvironmentUserSessionContextName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
             'project' => $project,
             'environment' => $environment,
@@ -309,8 +339,13 @@ final class IntentsClient
      *
      * @return string The formatted project_location_environment_user_session resource.
      */
-    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
-    {
+    public static function projectLocationEnvironmentUserSessionName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
             'project' => $project,
             'location' => $location,
@@ -333,8 +368,14 @@ final class IntentsClient
      *
      * @return string The formatted project_location_environment_user_session_context resource.
      */
-    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectLocationEnvironmentUserSessionContextName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -394,8 +435,12 @@ final class IntentsClient
      *
      * @return string The formatted project_location_session_context resource.
      */
-    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
-    {
+    public static function projectLocationSessionContextName(
+        string $project,
+        string $location,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationSessionContext')->render([
             'project' => $project,
             'location' => $location,

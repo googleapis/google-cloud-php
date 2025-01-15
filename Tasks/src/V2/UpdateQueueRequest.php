@@ -25,14 +25,14 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $queue = null;
+    protected $queue = null;
     /**
      * A mask used to specify which fields of the queue are being updated.
      * If empty, then all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Tasks\V2\Queue $queue      Required. The queue to create or update.

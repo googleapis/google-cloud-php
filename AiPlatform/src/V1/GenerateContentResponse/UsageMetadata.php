@@ -35,6 +35,13 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_token_count = 3;</code>
      */
     protected $total_token_count = 0;
+    /**
+     * Output only. Number of tokens in the cached part in the input (the cached
+     * content).
+     *
+     * Generated from protobuf field <code>int32 cached_content_token_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $cached_content_token_count = 0;
 
     /**
      * Constructor.
@@ -50,6 +57,9 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *           Number of tokens in the response(s).
      *     @type int $total_token_count
      *           Total token count for prompt and response candidates.
+     *     @type int $cached_content_token_count
+     *           Output only. Number of tokens in the cached part in the input (the cached
+     *           content).
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +145,34 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_token_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of tokens in the cached part in the input (the cached
+     * content).
+     *
+     * Generated from protobuf field <code>int32 cached_content_token_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getCachedContentTokenCount()
+    {
+        return $this->cached_content_token_count;
+    }
+
+    /**
+     * Output only. Number of tokens in the cached part in the input (the cached
+     * content).
+     *
+     * Generated from protobuf field <code>int32 cached_content_token_count = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCachedContentTokenCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->cached_content_token_count = $var;
 
         return $this;
     }

@@ -24,26 +24,26 @@ class ClearSuggestionFeatureConfigOperationMetadata extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string conversation_profile = 1;</code>
      */
-    private $conversation_profile = '';
+    protected $conversation_profile = '';
     /**
      * Required. The participant role to remove the suggestion feature
      * config. Only HUMAN_AGENT or END_USER can be used.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.Role participant_role = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $participant_role = 0;
+    protected $participant_role = 0;
     /**
      * Required. The type of the suggestion feature to remove.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionFeature.Type suggestion_feature_type = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $suggestion_feature_type = 0;
+    protected $suggestion_feature_type = 0;
     /**
      * Timestamp whe the request was created. The time is measured on server side.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

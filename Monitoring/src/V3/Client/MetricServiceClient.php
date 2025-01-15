@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -161,8 +161,10 @@ final class MetricServiceClient
      *
      * @return string The formatted folder_monitored_resource_descriptor resource.
      */
-    public static function folderMonitoredResourceDescriptorName(string $folder, string $monitoredResourceDescriptor): string
-    {
+    public static function folderMonitoredResourceDescriptorName(
+        string $folder,
+        string $monitoredResourceDescriptor
+    ): string {
         return self::getPathTemplate('folderMonitoredResourceDescriptor')->render([
             'folder' => $folder,
             'monitored_resource_descriptor' => $monitoredResourceDescriptor,
@@ -244,8 +246,10 @@ final class MetricServiceClient
      *
      * @return string The formatted organization_monitored_resource_descriptor resource.
      */
-    public static function organizationMonitoredResourceDescriptorName(string $organization, string $monitoredResourceDescriptor): string
-    {
+    public static function organizationMonitoredResourceDescriptorName(
+        string $organization,
+        string $monitoredResourceDescriptor
+    ): string {
         return self::getPathTemplate('organizationMonitoredResourceDescriptor')->render([
             'organization' => $organization,
             'monitored_resource_descriptor' => $monitoredResourceDescriptor,
@@ -293,8 +297,10 @@ final class MetricServiceClient
      *
      * @return string The formatted project_monitored_resource_descriptor resource.
      */
-    public static function projectMonitoredResourceDescriptorName(string $project, string $monitoredResourceDescriptor): string
-    {
+    public static function projectMonitoredResourceDescriptorName(
+        string $project,
+        string $monitoredResourceDescriptor
+    ): string {
         return self::getPathTemplate('projectMonitoredResourceDescriptor')->render([
             'project' => $project,
             'monitored_resource_descriptor' => $monitoredResourceDescriptor,
@@ -451,8 +457,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMetricDescriptor(CreateMetricDescriptorRequest $request, array $callOptions = []): MetricDescriptor
-    {
+    public function createMetricDescriptor(
+        CreateMetricDescriptorRequest $request,
+        array $callOptions = []
+    ): MetricDescriptor {
         return $this->startApiCall('CreateMetricDescriptor', $request, $callOptions)->wait();
     }
 
@@ -593,8 +601,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getMonitoredResourceDescriptor(GetMonitoredResourceDescriptorRequest $request, array $callOptions = []): MonitoredResourceDescriptor
-    {
+    public function getMonitoredResourceDescriptor(
+        GetMonitoredResourceDescriptorRequest $request,
+        array $callOptions = []
+    ): MonitoredResourceDescriptor {
         return $this->startApiCall('GetMonitoredResourceDescriptor', $request, $callOptions)->wait();
     }
 
@@ -619,8 +629,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMetricDescriptors(ListMetricDescriptorsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMetricDescriptors(
+        ListMetricDescriptorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMetricDescriptors', $request, $callOptions);
     }
 
@@ -646,8 +658,10 @@ final class MetricServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMonitoredResourceDescriptors(ListMonitoredResourceDescriptorsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMonitoredResourceDescriptors(
+        ListMonitoredResourceDescriptorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMonitoredResourceDescriptors', $request, $callOptions);
     }
 

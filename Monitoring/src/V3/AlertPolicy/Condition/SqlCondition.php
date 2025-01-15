@@ -34,7 +34,7 @@ class SqlCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $query = '';
+    protected $query = '';
     protected $schedule;
     protected $evaluate;
 
@@ -298,6 +298,4 @@ class SqlCondition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlCondition::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_SqlCondition::class);
 

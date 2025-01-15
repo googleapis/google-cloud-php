@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,9 @@ class ContextsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ContextsClient */
@@ -91,9 +93,7 @@ class ContextsClientTest extends GeneratedTest
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = (new CreateContextRequest())->setParent($formattedParent)->setContext($context);
         $response = $gapicClient->createContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -119,21 +119,22 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = (new CreateContextRequest())->setParent($formattedParent)->setContext($context);
         try {
             $gapicClient->createContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -160,8 +161,7 @@ class ContextsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new DeleteAllContextsRequest())
-            ->setParent($formattedParent);
+        $request = (new DeleteAllContextsRequest())->setParent($formattedParent);
         $gapicClient->deleteAllContexts($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -184,17 +184,19 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new DeleteAllContextsRequest())
-            ->setParent($formattedParent);
+        $request = (new DeleteAllContextsRequest())->setParent($formattedParent);
         try {
             $gapicClient->deleteAllContexts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -221,8 +223,7 @@ class ContextsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new DeleteContextRequest())
-            ->setName($formattedName);
+        $request = (new DeleteContextRequest())->setName($formattedName);
         $gapicClient->deleteContext($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,17 +246,19 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new DeleteContextRequest())
-            ->setName($formattedName);
+        $request = (new DeleteContextRequest())->setName($formattedName);
         try {
             $gapicClient->deleteContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -286,8 +289,7 @@ class ContextsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new GetContextRequest())
-            ->setName($formattedName);
+        $request = (new GetContextRequest())->setName($formattedName);
         $response = $gapicClient->getContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -311,17 +313,19 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $request = (new GetContextRequest())
-            ->setName($formattedName);
+        $request = (new GetContextRequest())->setName($formattedName);
         try {
             $gapicClient->getContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -346,17 +350,14 @@ class ContextsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $contextsElement = new Context();
-        $contexts = [
-            $contextsElement,
-        ];
+        $contexts = [$contextsElement];
         $expectedResponse = new ListContextsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setContexts($contexts);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new ListContextsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListContextsRequest())->setParent($formattedParent);
         $response = $gapicClient->listContexts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -383,17 +384,19 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
-        $request = (new ListContextsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListContextsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listContexts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -426,8 +429,7 @@ class ContextsClientTest extends GeneratedTest
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $request = (new UpdateContextRequest())
-            ->setContext($context);
+        $request = (new UpdateContextRequest())->setContext($context);
         $response = $gapicClient->updateContext($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -451,19 +453,21 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $request = (new UpdateContextRequest())
-            ->setContext($context);
+        $request = (new UpdateContextRequest())->setContext($context);
         try {
             $gapicClient->updateContext($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -516,12 +520,15 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -548,9 +555,7 @@ class ContextsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -580,12 +585,15 @@ class ContextsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -621,9 +629,7 @@ class ContextsClientTest extends GeneratedTest
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $request = (new CreateContextRequest())
-            ->setParent($formattedParent)
-            ->setContext($context);
+        $request = (new CreateContextRequest())->setParent($formattedParent)->setContext($context);
         $response = $gapicClient->createContextAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

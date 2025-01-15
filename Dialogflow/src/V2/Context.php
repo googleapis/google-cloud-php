@@ -44,7 +44,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The number of conversational query requests after which the
      * context expires. The default is `0`. If set to `0`, the context expires
@@ -53,7 +53,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 lifespan_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $lifespan_count = 0;
+    protected $lifespan_count = 0;
     /**
      * Optional. The collection of parameters associated with this context.
      * Depending on your protocol or client library language, this is a
@@ -70,7 +70,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $parameters = null;
+    protected $parameters = null;
 
     /**
      * Constructor.

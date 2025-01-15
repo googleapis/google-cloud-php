@@ -23,7 +23,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double speaking_rate = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $speaking_rate = 0.0;
+    protected $speaking_rate = 0.0;
     /**
      * Optional. Speaking pitch, in the range [-20.0, 20.0]. 20 means increase 20
      * semitones from the original pitch. -20 means decrease 20 semitones from the
@@ -31,7 +31,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double pitch = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $pitch = 0.0;
+    protected $pitch = 0.0;
     /**
      * Optional. Volume gain (in dB) of the normal native volume supported by the
      * specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of
@@ -44,7 +44,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double volume_gain_db = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $volume_gain_db = 0.0;
+    protected $volume_gain_db = 0.0;
     /**
      * Optional. An identifier which selects 'audio effects' profiles that are
      * applied on (post synthesized) text to speech. Effects are applied on top of
@@ -58,7 +58,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $voice = null;
+    protected $voice = null;
 
     /**
      * Constructor.

@@ -39,6 +39,8 @@ use Google\Rpc\Status;
  *                                                         {@see BackupDRClient::locationName()} for help formatting this field.
  * @param string $backupPlanAssociationId                  The name of the backup plan association to create. The name must
  *                                                         be unique for the specified project and location.
+ * @param string $backupPlanAssociationResourceType        Immutable. Resource type of workload on which backupplan is
+ *                                                         applied
  * @param string $backupPlanAssociationResource            Immutable. Resource name of workload on which backupplan is
  *                                                         applied
  * @param string $formattedBackupPlanAssociationBackupPlan Resource name of backup plan which needs to be applied on
@@ -49,6 +51,7 @@ use Google\Rpc\Status;
 function create_backup_plan_association_sample(
     string $formattedParent,
     string $backupPlanAssociationId,
+    string $backupPlanAssociationResourceType,
     string $backupPlanAssociationResource,
     string $formattedBackupPlanAssociationBackupPlan
 ): void {
@@ -57,6 +60,7 @@ function create_backup_plan_association_sample(
 
     // Prepare the request message.
     $backupPlanAssociation = (new BackupPlanAssociation())
+        ->setResourceType($backupPlanAssociationResourceType)
         ->setResource($backupPlanAssociationResource)
         ->setBackupPlan($formattedBackupPlanAssociationBackupPlan);
     $request = (new CreateBackupPlanAssociationRequest())
@@ -97,6 +101,7 @@ function callSample(): void
 {
     $formattedParent = BackupDRClient::locationName('[PROJECT]', '[LOCATION]');
     $backupPlanAssociationId = '[BACKUP_PLAN_ASSOCIATION_ID]';
+    $backupPlanAssociationResourceType = '[RESOURCE_TYPE]';
     $backupPlanAssociationResource = '[RESOURCE]';
     $formattedBackupPlanAssociationBackupPlan = BackupDRClient::backupPlanName(
         '[PROJECT]',
@@ -107,6 +112,7 @@ function callSample(): void
     create_backup_plan_association_sample(
         $formattedParent,
         $backupPlanAssociationId,
+        $backupPlanAssociationResourceType,
         $backupPlanAssociationResource,
         $formattedBackupPlanAssociationBackupPlan
     );

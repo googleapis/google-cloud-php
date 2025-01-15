@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -145,8 +145,12 @@ final class ContextsClient
      *
      * @return string The formatted project_environment_user_session resource.
      */
-    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
-    {
+    public static function projectEnvironmentUserSessionName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSession')->render([
             'project' => $project,
             'environment' => $environment,
@@ -167,8 +171,13 @@ final class ContextsClient
      *
      * @return string The formatted project_environment_user_session_context resource.
      */
-    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectEnvironmentUserSessionContextName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
             'project' => $project,
             'environment' => $environment,
@@ -190,8 +199,13 @@ final class ContextsClient
      *
      * @return string The formatted project_location_environment_user_session resource.
      */
-    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
-    {
+    public static function projectLocationEnvironmentUserSessionName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
             'project' => $project,
             'location' => $location,
@@ -214,8 +228,14 @@ final class ContextsClient
      *
      * @return string The formatted project_location_environment_user_session_context resource.
      */
-    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectLocationEnvironmentUserSessionContextName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -256,8 +276,12 @@ final class ContextsClient
      *
      * @return string The formatted project_location_session_context resource.
      */
-    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
-    {
+    public static function projectLocationSessionContextName(
+        string $project,
+        string $location,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationSessionContext')->render([
             'project' => $project,
             'location' => $location,

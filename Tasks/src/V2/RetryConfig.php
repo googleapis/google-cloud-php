@@ -30,7 +30,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_attempts = 1;</code>
      */
-    private $max_attempts = 0;
+    protected $max_attempts = 0;
     /**
      * If positive, `max_retry_duration` specifies the time limit for
      * retrying a failed task, measured from when the task was first
@@ -48,7 +48,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_retry_duration = 2;</code>
      */
-    private $max_retry_duration = null;
+    protected $max_retry_duration = null;
     /**
      * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
      * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
@@ -65,7 +65,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_backoff = 3;</code>
      */
-    private $min_backoff = null;
+    protected $min_backoff = null;
     /**
      * A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
      * retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
@@ -82,7 +82,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_backoff = 4;</code>
      */
-    private $max_backoff = null;
+    protected $max_backoff = null;
     /**
      * The time between retries will double `max_doublings` times.
      * A task's retry interval starts at
@@ -109,7 +109,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_doublings = 5;</code>
      */
-    private $max_doublings = 0;
+    protected $max_doublings = 0;
 
     /**
      * Constructor.

@@ -59,9 +59,32 @@ return [
                     ],
                 ],
             ],
+            'CreateQueuedResource' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/queuedResources',
+                'body' => 'queued_resource',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteNode' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/nodes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteQueuedResource' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/queuedResources/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -116,6 +139,17 @@ return [
                     ],
                 ],
             ],
+            'GetQueuedResource' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/queuedResources/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRuntimeVersion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/runtimeVersions/*}',
@@ -149,6 +183,17 @@ return [
                     ],
                 ],
             ],
+            'ListQueuedResources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/queuedResources',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListRuntimeVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/runtimeVersions',
@@ -156,6 +201,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ResetQueuedResource' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/queuedResources/*}:reset',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

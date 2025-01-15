@@ -20,14 +20,14 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Key key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = null;
+    protected $key = null;
     /**
      * Optional. The mask to control which fields of the key get updated. If the
      * mask is not present, all fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\RecaptchaEnterprise\V1\Key $key        Required. The key to update.

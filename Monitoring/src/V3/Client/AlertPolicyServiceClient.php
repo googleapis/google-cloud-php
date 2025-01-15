@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -180,8 +180,11 @@ final class AlertPolicyServiceClient
      *
      * @return string The formatted folder_alert_policy_condition resource.
      */
-    public static function folderAlertPolicyConditionName(string $folder, string $alertPolicy, string $condition): string
-    {
+    public static function folderAlertPolicyConditionName(
+        string $folder,
+        string $alertPolicy,
+        string $condition
+    ): string {
         return self::getPathTemplate('folderAlertPolicyCondition')->render([
             'folder' => $folder,
             'alert_policy' => $alertPolicy,
@@ -216,8 +219,11 @@ final class AlertPolicyServiceClient
      *
      * @return string The formatted organization_alert_policy_condition resource.
      */
-    public static function organizationAlertPolicyConditionName(string $organization, string $alertPolicy, string $condition): string
-    {
+    public static function organizationAlertPolicyConditionName(
+        string $organization,
+        string $alertPolicy,
+        string $condition
+    ): string {
         return self::getPathTemplate('organizationAlertPolicyCondition')->render([
             'organization' => $organization,
             'alert_policy' => $alertPolicy,
@@ -252,8 +258,11 @@ final class AlertPolicyServiceClient
      *
      * @return string The formatted project_alert_policy_condition resource.
      */
-    public static function projectAlertPolicyConditionName(string $project, string $alertPolicy, string $condition): string
-    {
+    public static function projectAlertPolicyConditionName(
+        string $project,
+        string $alertPolicy,
+        string $condition
+    ): string {
         return self::getPathTemplate('projectAlertPolicyCondition')->render([
             'project' => $project,
             'alert_policy' => $alertPolicy,

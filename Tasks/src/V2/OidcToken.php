@@ -29,14 +29,14 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_email = 1;</code>
      */
-    private $service_account_email = '';
+    protected $service_account_email = '';
     /**
      * Audience to be used when generating OIDC token. If not specified, the URI
      * specified in target will be used.
      *
      * Generated from protobuf field <code>string audience = 2;</code>
      */
-    private $audience = '';
+    protected $audience = '';
 
     /**
      * Constructor.

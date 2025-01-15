@@ -41,7 +41,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 12;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * A short name or phrase used to identify the condition in dashboards,
      * notifications, and incidents. To avoid confusion, don't use the same
@@ -49,7 +49,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 6;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     protected $condition;
 
     /**
@@ -401,6 +401,4 @@ class Condition extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Condition::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition::class);
 

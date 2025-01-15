@@ -22,7 +22,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The [Google Cloud
      * Storage](https://cloud.google.com/storage/docs/) URI to export the agent
@@ -36,7 +36,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $agent_uri = '';
+    protected $agent_uri = '';
 
     /**
      * @param string $parent Required. The project that the agent to export is associated with.

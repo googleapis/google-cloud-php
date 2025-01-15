@@ -22,7 +22,7 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string allowlist_document = 1 [(.google.api.resource_reference) = {</code>
      */
-    private $allowlist_document = '';
+    protected $allowlist_document = '';
     /**
      * Required. The model to be evaluated can return multiple results with
      * confidence score on each query. These results will be sorted by the
@@ -31,7 +31,7 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 max_result_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_result_count = 0;
+    protected $max_result_count = 0;
 
     /**
      * Constructor.
