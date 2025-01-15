@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,151 +22,75 @@
 
 return [
     'interfaces' => [
-        'google.cloud.aiplatform.v1.PredictionService' => [
-            'DirectPredict' => [
+        'google.cloud.aiplatform.v1.GenAiCacheService' => [
+            'CreateCachedContent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\DirectPredictResponse',
+                'responseType' => 'Google\Cloud\AIPlatform\V1\CachedContent',
                 'headerParams' => [
                     [
-                        'keyName' => 'endpoint',
+                        'keyName' => 'parent',
                         'fieldAccessors' => [
-                            'getEndpoint',
+                            'getParent',
                         ],
                     ],
                 ],
             ],
-            'DirectRawPredict' => [
+            'DeleteCachedContent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\DirectRawPredictResponse',
+                'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
                     [
-                        'keyName' => 'endpoint',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getEndpoint',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'Explain' => [
+            'GetCachedContent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\ExplainResponse',
+                'responseType' => 'Google\Cloud\AIPlatform\V1\CachedContent',
                 'headerParams' => [
                     [
-                        'keyName' => 'endpoint',
+                        'keyName' => 'name',
                         'fieldAccessors' => [
-                            'getEndpoint',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'GenerateContent' => [
+            'ListCachedContents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCachedContents',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\ListCachedContentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCachedContent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateContentResponse',
+                'responseType' => 'Google\Cloud\AIPlatform\V1\CachedContent',
                 'headerParams' => [
                     [
-                        'keyName' => 'model',
+                        'keyName' => 'cached_content.name',
                         'fieldAccessors' => [
-                            'getModel',
+                            'getCachedContent',
+                            'getName',
                         ],
                     ],
                 ],
-            ],
-            'Predict' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\PredictResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'endpoint',
-                        'fieldAccessors' => [
-                            'getEndpoint',
-                        ],
-                    ],
-                ],
-            ],
-            'RawPredict' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Api\HttpBody',
-                'headerParams' => [
-                    [
-                        'keyName' => 'endpoint',
-                        'fieldAccessors' => [
-                            'getEndpoint',
-                        ],
-                    ],
-                ],
-            ],
-            'ServerStreamingPredict' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'ServerStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamingPredictResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'endpoint',
-                        'fieldAccessors' => [
-                            'getEndpoint',
-                        ],
-                    ],
-                ],
-            ],
-            'StreamDirectPredict' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'BidiStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectPredictResponse',
-            ],
-            'StreamDirectRawPredict' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'BidiStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectRawPredictResponse',
-            ],
-            'StreamGenerateContent' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'ServerStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateContentResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'model',
-                        'fieldAccessors' => [
-                            'getModel',
-                        ],
-                    ],
-                ],
-            ],
-            'StreamRawPredict' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'ServerStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
-                'responseType' => 'Google\Api\HttpBody',
-                'headerParams' => [
-                    [
-                        'keyName' => 'endpoint',
-                        'fieldAccessors' => [
-                            'getEndpoint',
-                        ],
-                    ],
-                ],
-            ],
-            'StreamingPredict' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'BidiStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamingPredictResponse',
-            ],
-            'StreamingRawPredict' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'BidiStreaming',
-                ],
-                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
-                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamingRawPredictResponse',
             ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -243,9 +167,7 @@ return [
             ],
             'templateMap' => [
                 'cachedContent' => 'projects/{project}/locations/{location}/cachedContents/{cached_content}',
-                'endpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
-                'projectLocationEndpoint' => 'projects/{project}/locations/{location}/endpoints/{endpoint}',
-                'projectLocationPublisherModel' => 'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}',
+                'location' => 'projects/{project}/locations/{location}',
                 'ragCorpus' => 'projects/{project}/locations/{location}/ragCorpora/{rag_corpus}',
             ],
         ],
