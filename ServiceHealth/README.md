@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\ServiceHealth\V1\Client\ServiceHealthClient;
+Google\Cloud\ServiceHealth\V1\Event;
+Google\Cloud\ServiceHealth\V1\GetEventRequest;
+
+// Create a client.
+$serviceHealthClient = new ServiceHealthClient();
+
+// Prepare the request message.
+$request = (new GetEventRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Event $response */
+    $response = $serviceHealthClient->getEvent($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-servicehealth/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

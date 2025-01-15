@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Kms\Inventory\V1\Client\KeyTrackingServiceClient;
+Google\Cloud\Kms\Inventory\V1\GetProtectedResourcesSummaryRequest;
+Google\Cloud\Kms\Inventory\V1\ProtectedResourcesSummary;
+
+// Create a client.
+$keyTrackingServiceClient = new KeyTrackingServiceClient();
+
+// Prepare the request message.
+$request = (new GetProtectedResourcesSummaryRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var ProtectedResourcesSummary $response */
+    $response = $keyTrackingServiceClient->getProtectedResourcesSummary($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-kms-inventory/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

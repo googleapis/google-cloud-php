@@ -30,7 +30,30 @@ $ composer require google/cloud-translate
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
-### Sample Using the Handwritten Client (Interacts with the V2 API)
+### Sample
+
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Translate\V3\AdaptiveMtDataset;
+Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
+
+// Create a client.
+$translationServiceClient = new TranslationServiceClient();
+
+// Prepare the request message.
+$request = (new GetAdaptiveMtDatasetRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AdaptiveMtDataset $response */
+    $response = $translationServiceClient->getAdaptiveMtDataset($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+``` Using the Handwritten Client (Interacts with the V2 API)
 
 ```php
 require 'vendor/autoload.php';
@@ -71,7 +94,30 @@ foreach ($languages as $language) {
 }
 ```
 
-### Sample Using the Generated Client (Interacts with the V3 API)
+### Sample
+
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Translate\V3\AdaptiveMtDataset;
+Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+Google\Cloud\Translate\V3\GetAdaptiveMtDatasetRequest;
+
+// Create a client.
+$translationServiceClient = new TranslationServiceClient();
+
+// Prepare the request message.
+$request = (new GetAdaptiveMtDatasetRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var AdaptiveMtDataset $response */
+    $response = $translationServiceClient->getAdaptiveMtDataset($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+``` Using the Generated Client (Interacts with the V3 API)
 
 ```php
 require 'vendor/autoload.php';

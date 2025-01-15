@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\Config\V1\Client\ConfigClient;
+Google\Cloud\Config\V1\Deployment;
+Google\Cloud\Config\V1\GetDeploymentRequest;
+
+// Create a client.
+$configClient = new ConfigClient();
+
+// Prepare the request message.
+$request = (new GetDeploymentRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Deployment $response */
+    $response = $configClient->getDeployment($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-config/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

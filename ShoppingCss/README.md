@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Css\V1\Account;
+Google\Shopping\Css\V1\Client\AccountsServiceClient;
+Google\Shopping\Css\V1\GetAccountRequest;
+
+// Create a client.
+$accountsServiceClient = new AccountsServiceClient();
+
+// Prepare the request message.
+$request = (new GetAccountRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Account $response */
+    $response = $accountsServiceClient->getAccount($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-css/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

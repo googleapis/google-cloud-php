@@ -28,7 +28,30 @@ $ composer require google/cloud-datacatalog-lineage
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
-### Samples
+### Sample
+
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
+Google\Cloud\DataCatalog\Lineage\V1\GetLineageEventRequest;
+Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
+
+// Create a client.
+$lineageClient = new LineageClient();
+
+// Prepare the request message.
+$request = (new GetLineageEventRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var LineageEvent $response */
+    $response = $lineageClient->getLineageEvent($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```s
 
 See the [samples directory](samples/) for a canonical list of samples.
 

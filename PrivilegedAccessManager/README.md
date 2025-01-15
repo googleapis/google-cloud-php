@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\PrivilegedAccessManager\V1\Client\PrivilegedAccessManagerClient;
+Google\Cloud\PrivilegedAccessManager\V1\Entitlement;
+Google\Cloud\PrivilegedAccessManager\V1\GetEntitlementRequest;
+
+// Create a client.
+$privilegedAccessManagerClient = new PrivilegedAccessManagerClient();
+
+// Prepare the request message.
+$request = (new GetEntitlementRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Entitlement $response */
+    $response = $privilegedAccessManagerClient->getEntitlement($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-privilegedaccessmanager/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

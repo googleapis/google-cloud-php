@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Maps\RouteOptimization\V1\Client\RouteOptimizationClient;
+Google\Maps\RouteOptimization\V1\OptimizeToursRequest;
+Google\Maps\RouteOptimization\V1\OptimizeToursResponse;
+
+// Create a client.
+$routeOptimizationClient = new RouteOptimizationClient();
+
+// Prepare the request message.
+$request = (new OptimizeToursRequest())
+    ->setParent($parent);
+
+// Call the API and handle any network failures.
+try {
+    /** @var OptimizeToursResponse $response */
+    $response = $routeOptimizationClient->optimizeTours($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-maps-routeoptimization/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

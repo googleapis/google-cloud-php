@@ -34,6 +34,35 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\ApiCore\PagedListResponse;
+Google\Shopping\Merchant\Reports\V1beta\Client\ReportServiceClient;
+Google\Shopping\Merchant\Reports\V1beta\ReportRow;
+Google\Shopping\Merchant\Reports\V1beta\SearchRequest;
+
+// Create a client.
+$reportServiceClient = new ReportServiceClient();
+
+// Prepare the request message.
+$request = (new SearchRequest())
+    ->setParent($parent)
+    ->setQuery($query);
+
+// Call the API and handle any network failures.
+try {
+    /** @var PagedListResponse $response */
+    $response = $reportServiceClient->search($request);
+
+    /** @var ReportRow $element */
+    foreach ($response as $element) {
+        printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+    }
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-reports/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\CloudControlsPartner\V1beta\Client\CloudControlsPartnerCoreClient;
+Google\Cloud\CloudControlsPartner\V1beta\Customer;
+Google\Cloud\CloudControlsPartner\V1beta\GetCustomerRequest;
+
+// Create a client.
+$cloudControlsPartnerCoreClient = new CloudControlsPartnerCoreClient();
+
+// Prepare the request message.
+$request = (new GetCustomerRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Customer $response */
+    $response = $cloudControlsPartnerCoreClient->getCustomer($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-cloudcontrolspartner/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Shopping\Merchant\Products\V1beta\Client\ProductsServiceClient;
+Google\Shopping\Merchant\Products\V1beta\GetProductRequest;
+Google\Shopping\Merchant\Products\V1beta\Product;
+
+// Create a client.
+$productsServiceClient = new ProductsServiceClient();
+
+// Prepare the request message.
+$request = (new GetProductRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Product $response */
+    $response = $productsServiceClient->getProduct($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/php-shopping-merchant-products/tree/main/samples) for a canonical list of samples.
 
 ### Debugging

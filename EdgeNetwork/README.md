@@ -34,6 +34,29 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ### Sample
 
+```php
+Google\ApiCore\ApiException;
+Google\Cloud\EdgeNetwork\V1\Client\EdgeNetworkClient;
+Google\Cloud\EdgeNetwork\V1\GetInterconnectRequest;
+Google\Cloud\EdgeNetwork\V1\Interconnect;
+
+// Create a client.
+$edgeNetworkClient = new EdgeNetworkClient();
+
+// Prepare the request message.
+$request = (new GetInterconnectRequest())
+    ->setName($formattedName);
+
+// Call the API and handle any network failures.
+try {
+    /** @var Interconnect $response */
+    $response = $edgeNetworkClient->getInterconnect($request);
+    printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+} catch (ApiException $ex) {
+    printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+}
+```
+
 See the [samples directory](https://github.com/googleapis/google-cloud-php-edgenetwork/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
