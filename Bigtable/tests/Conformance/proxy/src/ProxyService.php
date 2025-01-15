@@ -8,13 +8,17 @@ use Google\ApiCore\Serializer;
 use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as BigtableGapicClient;
-use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\Row;
+use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Grpc\ChannelCredentials;
 use Monolog\Level;
@@ -28,6 +32,7 @@ use Google\Rpc\Status;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\Mutations;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 
 class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
@@ -249,7 +254,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
                 'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout())
             ]);
         } catch (BigtableDataOperationException $e) {
-            var_dump($e);
             $failedEntries = [];
             foreach ($e->getMetadata() as $metadata) {
                 $status = new Status([
@@ -263,13 +267,11 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             }
             return $out->setEntries($failedEntries);
         } catch (\Google\ApiCore\ApiException $e) {
-            var_dump($e);
             return $out->setStatus(new Status([
                 'code' => $e->getCode(),
                 'message' => $e->getMessage(),
             ]));
         }
-        echo "HERE";
 
         return $out;
     }
@@ -343,8 +345,45 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     */
     public function ReadModifyWriteRow(GRPC\ContextInterface $ctx, Testproxy\ReadModifyWriteRowRequest $in): Testproxy\RowResult
     {
-        // NEXT
-        return new Testproxy\RowResult();
+        $this->logger->debug($in->serializeToJsonString());
+
+        $out = new Testproxy\RowResult();
+
+        [$client, $config] = $this->getClientAndConfig($in->getClientId());
+
+        if (!$client) {
+            // This is a workaround to simulate when the client is closed.
+            return $out->setStatus(new Status([
+                'code' => 1,
+                'message' => 'Client is closed',
+            ]));
+        }
+
+        $request = $in->getRequest();
+        $parts = BigtableGapicClient::parseName($request->getTableName());
+        $table = $client->table($parts['instance'], $parts['table'], [
+            'appProfileId' => $config->getAppProfileId(),
+        ]);
+
+        try {
+            $rowData = $table->readModifyWriteRow(
+                $request->getRowKey(),
+                $this->protoToRowRules($request->getRules()),
+                [
+                    'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
+                ]
+            );
+        } catch (\Google\ApiCore\ApiException $e) {
+            return $out->setStatus(new Status([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]));
+        }
+
+        $row = $this->arrayToRowProto($rowData);
+        $row->setKey($request->getRowKey());
+
+        return $out->setRow($row);
     }
 
     /**
@@ -399,6 +438,10 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         return ($timeout->getSeconds() * 1000) + ($timeout->getNanos() / 1000000);
     }
 
+    /**
+     * @param RepeatedField<Mutation> $protoRowRules
+     * @return Mutations
+     */
     private function protoToMutations(RepeatedField|null $protoMutations): Mutations|null
     {
         if (!$protoMutations) {
@@ -411,5 +454,46 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $property->setValue($mutations, $protoMutations);
 
         return $mutations;
+    }
+
+    /**
+     * @param RepeatedField<ReadModifyWriteRule> $protoRowRules
+     * @return ReadModifyWriteRowRules
+     */
+    private function protoToRowRules(RepeatedField $protoRowRules): ReadModifyWriteRowRules
+    {
+        $rowRules = new ReadModifyWriteRowRules();
+        $reflection = new \ReflectionClass($rowRules);
+        $property = $reflection->getProperty('rules');
+        $property->setAccessible(true);
+        $property->setValue($rowRules, $protoRowRules);
+
+        return $rowRules;
+    }
+
+    private function arrayToRowProto(array $rowData): Row
+    {
+        $row = new Row();
+        $families = [];
+        foreach ($rowData as $familyName => $qualifiers) {
+            $f = new Family(['name' => $familyName]);
+            $columns = [];
+            foreach ($qualifiers as $qualifier => $values) {
+                $column = new Column(['qualifier' => $qualifier]);
+                $cells = [];
+                foreach ($values as $value) {
+                    $cell = new Cell();
+                    $cell->setValue($value['value']);
+                    $cell->setTimestampMicros($value['timeStamp']);
+                    $cell->setLabels($value['labels'] ?: []);
+                    $cells[] = $cell;
+                }
+                $column->setCells($cells);
+                $columns[] = $column;
+            }
+            $f->setColumns($columns);
+            $families[] = $f;
+        }
+        return $row->setFamilies($families);
     }
 }
