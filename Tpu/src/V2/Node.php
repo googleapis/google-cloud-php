@@ -53,11 +53,22 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     protected $runtime_version = '';
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs
+     * are mutually exclusive, you can only specify one of them. If both are
+     * specified, an error will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.NetworkConfig network_config = 36;</code>
      */
     protected $network_config = null;
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is
+     * used to specify multiple networks configs for the TPU node. network_config
+     * and network_configs are mutually exclusive, you can only specify one of
+     * them. If both are specified, an error will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $network_configs;
     /**
      * The CIDR block that the TPU node will use when selecting an IP address.
      * This CIDR block must be a /29 block; the Compute Engine networks API
@@ -194,7 +205,14 @@ class Node extends \Google\Protobuf\Internal\Message
      *     @type string $runtime_version
      *           Required. The runtime version running in the Node.
      *     @type \Google\Cloud\Tpu\V2\NetworkConfig $network_config
-     *           Network configurations for the TPU node.
+     *           Network configurations for the TPU node. network_config and network_configs
+     *           are mutually exclusive, you can only specify one of them. If both are
+     *           specified, an error will be returned.
+     *     @type array<\Google\Cloud\Tpu\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $network_configs
+     *           Optional. Repeated network configurations for the TPU node. This field is
+     *           used to specify multiple networks configs for the TPU node. network_config
+     *           and network_configs are mutually exclusive, you can only specify one of
+     *           them. If both are specified, an error will be returned.
      *     @type string $cidr_block
      *           The CIDR block that the TPU node will use when selecting an IP address.
      *           This CIDR block must be a /29 block; the Compute Engine networks API
@@ -408,7 +426,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs
+     * are mutually exclusive, you can only specify one of them. If both are
+     * specified, an error will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.NetworkConfig network_config = 36;</code>
      * @return \Google\Cloud\Tpu\V2\NetworkConfig|null
@@ -429,7 +449,9 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs
+     * are mutually exclusive, you can only specify one of them. If both are
+     * specified, an error will be returned.
      *
      * Generated from protobuf field <code>.google.cloud.tpu.v2.NetworkConfig network_config = 36;</code>
      * @param \Google\Cloud\Tpu\V2\NetworkConfig $var
@@ -439,6 +461,38 @@ class Node extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Tpu\V2\NetworkConfig::class);
         $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is
+     * used to specify multiple networks configs for the TPU node. network_config
+     * and network_configs are mutually exclusive, you can only specify one of
+     * them. If both are specified, an error will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNetworkConfigs()
+    {
+        return $this->network_configs;
+    }
+
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is
+     * used to specify multiple networks configs for the TPU node. network_config
+     * and network_configs are mutually exclusive, you can only specify one of
+     * them. If both are specified, an error will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Tpu\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNetworkConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Tpu\V2\NetworkConfig::class);
+        $this->network_configs = $arr;
 
         return $this;
     }
