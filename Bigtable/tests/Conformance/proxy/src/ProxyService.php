@@ -3,24 +3,26 @@
  * Sample GRPC PHP server.
  */
 
-use Google\Bigtable\Testproxy;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\Bigtable\Testproxy;
 use Google\Cloud\Bigtable\BigtableClient;
+use Google\Cloud\Bigtable\Mutations;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as BigtableGapicClient;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
-use Google\Cloud\Bigtable\V2\MutateRowResponse;
-use Google\Cloud\Bigtable\V2\MutateRowsResponse;
+use Google\Cloud\Bigtable\V2\ProtoRows;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
-use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
-use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\Row;
-use Google\Cloud\Bigtable\V2\Cell;
-use Google\Cloud\Bigtable\V2\Column;
-use Google\Cloud\Bigtable\ChunkFormatter;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
+use Google\Protobuf\Internal\RepeatedField;
+use Google\Rpc\Status;
 use Grpc\ChannelCredentials;
 use Monolog\Level;
 use Monolog\Logger;
@@ -29,13 +31,6 @@ use Spiral\RoadRunner\GRPC;
 use Spiral\RoadRunner\KeyValue\Cache;
 use Spiral\RoadRunner\KeyValue\Factory;
 use Spiral\Goridge\RPC\RPC;
-use Google\Rpc\Status;
-use Google\Cloud\Bigtable\V2\ProtoRows;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 
 class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
 {
@@ -209,13 +204,22 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         ]);
 
         $rows = [];
+        $rowCount = 0;
+        $cancelAfterRows = $in->getCancelAfterRows();
         foreach ($stream as $key => $rowData) {
             $row = $this->arrayToRowProto($rowData);
             $row->setKey($key);
             $rows[] = $row;
+            if ($cancelAfterRows && ++$rowCount >= $cancelAfterRows) {
+                break;
+            }
         }
 
-        return $out->setRows($rows);
+        $out->setRows($rows);
+
+        $this->logger->debug($out->serializeToJsonString());
+
+        return $out;
     }
 
     /**
@@ -309,17 +313,19 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
                     'message' => $metadata['message'],
                 ]);
                 $failedEntries[] = new Entry([
-                    'index' => $i,
+                    'index' => $metadata['index'],
                     'status' => $status,
                 ]);
             }
-            return $out->setEntries($failedEntries);
+            $out->setEntries($failedEntries);
         } catch (\Google\ApiCore\ApiException $e) {
-            return $out->setStatus(new Status([
+            $out = $out->setStatus(new Status([
                 'code' => $e->getCode(),
                 'message' => $e->getMessage(),
             ]));
         }
+
+        $this->logger->debug($out->serializeToJsonString());
 
         return $out;
     }

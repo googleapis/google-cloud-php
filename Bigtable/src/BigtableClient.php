@@ -45,6 +45,8 @@ class BigtableClient
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
 
+    private const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
+
     /**
      * @var GapicClient
      */
