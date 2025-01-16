@@ -628,7 +628,6 @@ class Table
                     'rowKey' => $entries[$index]->getRowKey(),
                     'statusCode' => $statusCode,
                     'message' => $message,
-                    'index' => $index
                 ];
             }
         }
