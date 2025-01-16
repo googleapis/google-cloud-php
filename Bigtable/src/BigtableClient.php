@@ -45,6 +45,9 @@ class BigtableClient
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
 
+    // The name of the service. Used in debug logging.
+    private const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
+
     /**
      * @var GapicClient
      */
