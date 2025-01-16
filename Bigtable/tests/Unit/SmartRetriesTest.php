@@ -777,17 +777,20 @@ class SmartRetriesTest extends TestCase
             $expectedFailedMutations[] = [
                 'rowKey' => 'rk1',
                 'statusCode' => Code::ABORTED,
-                'message' => 'partial failure'
+                'message' => 'partial failure',
+                'index' => 1,
             ];
             $expectedFailedMutations[] = [
                 'rowKey' => 'rk2',
                 'statusCode' => Code::UNAUTHENTICATED,
-                'message' => 'partial failure'
+                'message' => 'partial failure',
+                'index' => 2,
             ];
             $expectedFailedMutations[] = [
                 'rowKey' => 'rk3',
                 'statusCode' => Code::ABORTED,
-                'message' => 'partial failure'
+                'message' => 'partial failure',
+                'index' => 3,
             ];
             foreach (range(5, 7) as $rowKey) {
                 $expectedFailedMutations[] = [

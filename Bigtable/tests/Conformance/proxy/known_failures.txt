@@ -1,6 +1,5 @@
 _Retry_WithRoutingCookie
 _Retry_WithRetryInfo
-TestMutateRows_NoRetry_NonTransientErrors
 TestMutateRows_Generic_DeadlineExceeded
 TestReadRow_Generic_DeadlineExceeded
 TestReadRows_NoRetry_OutOfOrderError

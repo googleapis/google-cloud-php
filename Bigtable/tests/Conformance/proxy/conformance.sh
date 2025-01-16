@@ -16,11 +16,11 @@
 set -eo pipefail
 
 ## Get the directory of the build script
-scriptDir=$(realpath $(dirname "${BASH_SOURCE[0]}"))
-## cd to the parent directory, i.e. the root of the git repo
-cd ${scriptDir}/..
+proxyDir=$(realpath $(dirname "${BASH_SOURCE[0]}"))
+projectDir=$(realpath $proxyDir/../../../..)
 
-composer update -d Bigtable/tests/Conformance/proxy
+# Install composer dependencies in the "proxy" directory
+composer update -d $proxyDir
 
 set +e
 
@@ -29,14 +29,13 @@ declare -a configs=("default") # PHP only supports "default" feature flags for n
 for config in "${configs[@]}"
 do
   # Start the proxy in a separate process
-  rr serve -w Bigtable/tests/Conformance/proxy &
+  rr serve -w $proxyDir &
   proxyPID=$!
 
   pushd .
-  cd cloud-bigtable-clients-test/tests
-  # If there is known failures, please add
-  # "-skip `cat ../../test-proxy/known_failures.txt`" to the command below.
-  skipTests=$(sed -n 'H;${x;s/\n/\\|/g;s/^\\|//;p;};d' < $scriptDir/known_failures.txt)
+  cd $projectDir/cloud-bigtable-clients-test/tests
+
+  skipTests=$(sed -n 'H;${x;s/\n/\\|/g;s/^\\|//;p;};d' < $proxyDir/known_failures.txt)
   eval "go test -v -proxy_addr=:9999 -skip ${skipTests}"
   returnCode=$?
   popd

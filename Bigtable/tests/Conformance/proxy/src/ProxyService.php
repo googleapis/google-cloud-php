@@ -307,7 +307,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             ]);
         } catch (BigtableDataOperationException $e) {
             $failedEntries = [];
-            foreach ($e->getMetadata() as $i => $metadata) {
+            foreach ($e->getMetadata() as $metadata) {
                 $status = new Status([
                     'code' => $metadata['statusCode'],
                     'message' => $metadata['message'],
