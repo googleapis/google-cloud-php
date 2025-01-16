@@ -1,0 +1,24 @@
+{
+    "name": "google-testing/proxy-bigtable-server",
+    "description": "Proxy Bigtable Server",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../.."
+        }
+    ],
+    "require": {
+        "google/cloud-bigtable": "*",
+        "grpc/grpc": "^1.36",
+        "spiral/roadrunner-cli": "^2.6",
+        "spiral/roadrunner-grpc": "^3.4",
+        "spiral/roadrunner-kv": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
