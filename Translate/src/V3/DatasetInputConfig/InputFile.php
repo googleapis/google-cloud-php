@@ -21,7 +21,7 @@ class InputFile extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string usage = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $usage = '';
+    protected $usage = '';
     protected $source;
 
     /**
@@ -111,6 +111,4 @@ class InputFile extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InputFile::class, \Google\Cloud\Translate\V3\DatasetInputConfig_InputFile::class);
 
