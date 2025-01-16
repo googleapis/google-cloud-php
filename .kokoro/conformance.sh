@@ -32,23 +32,12 @@ do
   rr serve -w Bigtable/tests/Conformance/proxy &
   proxyPID=$!
 
-  # Run the conformance test
-  if [[ ${config} = "enable_all" ]]
-  then
-    echo "Testing the client with all optional features enabled..."
-    configFlag="--enable_features_all"
-  else
-    echo "Testing the client with default settings for optional features..."
-    # skipping routing cookie and retry info tests. When the feature is disabled, these
-    # tests are expected to fail
-    configFlag="-skip _Retry_WithRoutingCookie\|_Retry_WithRetryInfo"
-  fi
-
   pushd .
   cd cloud-bigtable-clients-test/tests
   # If there is known failures, please add
   # "-skip `cat ../../test-proxy/known_failures.txt`" to the command below.
-  eval "go test -v -proxy_addr=:9999 ${configFlag}"
+  skipTests=$(sed -n 'H;${x;s/\n/\\|/g;s/^\\|//;p;};d' < $scriptDir/known_failures.txt)
+  eval "go test -v -proxy_addr=:9999 -skip ${skipTests}"
   returnCode=$?
   popd
 

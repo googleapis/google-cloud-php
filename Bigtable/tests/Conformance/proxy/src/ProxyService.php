@@ -15,6 +15,7 @@ use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\Cell;
@@ -29,6 +30,7 @@ use Spiral\RoadRunner\KeyValue\Cache;
 use Spiral\RoadRunner\KeyValue\Factory;
 use Spiral\Goridge\RPC\RPC;
 use Google\Rpc\Status;
+use Google\Cloud\Bigtable\V2\ProtoRows;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\Mutations;
@@ -117,26 +119,36 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     */
     public function ReadRow(GRPC\ContextInterface $ctx, Testproxy\ReadRowRequest $in): Testproxy\RowResult
     {
+        $this->logger->debug($in->serializeToJsonString());
+
+        $out = new Testproxy\RowResult();
+
         [$client, $config] = $this->getClientAndConfig($in->getClientId());
 
-        $tableName = BigtableClient::tableName($config->getProjectId(), $config->getInstanceId(), $in->getTableName());
-        $request = new ReadRowsRequest([
-            'table_name' => $tableName,
-            'filter' => $in->getFilter(),
-            'app_profile_id' => $config->getProfileId(),
-            'rows' => $this->serializer->decodeMessage(
-                new RowSet(),
-                ['rowKeys' => [$in->getRowKey()]],
-            ),
+        if (!$client) {
+            // This is a workaround to simulate when the client is closed.
+            return $out->setStatus(new Status([
+                'code' => 1,
+                'message' => 'Client is closed',
+            ]));
+        }
+
+        $parts = BigtableGapicClient::parseName($in->getTableName());
+        $table = $client->table($parts['instance'], $parts['table'], [
+            'appProfileId' => $config->getAppProfileId(),
         ]);
-        $chunkFormatter = new ChunkFormatter($client, $request, [
+
+        $rowData = $table->readRow($in->getRowKey(), [
+            'filter' => $in->getFilter(),
             'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
-        $out = new Testproxy\RowResult();
-        foreach ($chunkFormatter->readAll() as $row) {
-            $row = $this->serializer->decodeMessage(new Row(), $row);
+
+        if ($rowData) {
+            $row = $this->arrayToRowProto($rowData);
+            $row->setKey($in->getRowKey());
             $out->setRow($row);
-            break;
+        } else {
+            $this->logger->debug(json_encode($rowData));
         }
 
         return $out;
@@ -151,23 +163,59 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     */
     public function ReadRows(GRPC\ContextInterface $ctx, Testproxy\ReadRowsRequest $in): Testproxy\RowsResult
     {
+        $this->logger->debug($in->serializeToJsonString());
+
+        $out = new Testproxy\RowsResult();
+
         [$client, $config] = $this->getClientAndConfig($in->getClientId());
 
+        if (!$client) {
+            // This is a workaround to simulate when the client is closed.
+            return $out->setStatus(new Status([
+                'code' => 1,
+                'message' => 'Client is closed',
+            ]));
+        }
+
         $request = $in->getRequest();
-        $chunkFormatter = new ChunkFormatter($client, $request, [
+        $parts = BigtableGapicClient::parseName($request->getTableName());
+        $table = $client->table($parts['instance'], $parts['table'], [
+            'appProfileId' => $config->getAppProfileId(),
+        ]);
+
+        $ranges = [];
+        $rowKeys = [];
+        if ($rowSet = $request->getRows()) {
+            $rowKeys = iterator_to_array($rowSet->getRowKeys());
+            foreach ($rowSet->getRowRanges() as $range) {
+                $this->logger->debug($range->serializeToJsonString());
+                $ranges[] = array_filter([
+                    'startKeyOpen' => $range->getStartKeyOpen(),
+                    'startKeyClosed' => $range->getStartKeyClosed(),
+                    'endKeyOpen' => $range->getEndKeyOpen(),
+                    'endKeyClosed' => $range->getEndKeyClosed(),
+                ]);
+            }
+        }
+
+        $this->logger->debug(json_encode($rowKeys));
+
+        $stream = $table->readRows([
+            'rowKeys' => $rowKeys,
+            'rowRanges' => $ranges,
+            'filter' => $request->getFilter(),
+            'rowsLimit' => $request->getRowsLimit(),
             'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
         ]);
-        $rows = [];
-        $i = 0;
-        foreach ($chunkFormatter->readAll() as $row) {
-            if ($i++ >= $in->getCancelAfterRows()) {
-                break;
-            }
-            $rows[] = $this->serializer->decodeMessage(new Row(), $row);
-        }
-        $out = new Testproxy\RowsResult(['rows' => $rows]);
 
-        return $out;
+        $rows = [];
+        foreach ($stream as $key => $rowData) {
+            $row = $this->arrayToRowProto($rowData);
+            $row->setKey($key);
+            $rows[] = $row;
+        }
+
+        return $out->setRows($rows);
     }
 
     /**
@@ -250,7 +298,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         }
 
         try {
-            $stream = $table->mutateRows($mutations, [
+            $table->mutateRows($mutations, [
                 'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout())
             ]);
         } catch (BigtableDataOperationException $e) {
@@ -333,7 +381,47 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     */
     public function SampleRowKeys(GRPC\ContextInterface $ctx, Testproxy\SampleRowKeysRequest $in): Testproxy\SampleRowKeysResult
     {
-        return new Testproxy\SampleRowKeysResult();
+        $this->logger->debug($in->serializeToJsonString());
+
+        $out = new Testproxy\SampleRowKeysResult();
+
+        [$client, $config] = $this->getClientAndConfig($in->getClientId());
+
+        if (!$client) {
+            // This is a workaround to simulate when the client is closed.
+            return $out->setStatus(new Status([
+                'code' => 1,
+                'message' => 'Client is closed',
+            ]));
+        }
+
+        $request = $in->getRequest();
+        $parts = BigtableGapicClient::parseName($request->getTableName());
+        $table = $client->table($parts['instance'], $parts['table'], [
+            'appProfileId' => $config->getAppProfileId(),
+        ]);
+
+        $sampleRows = $table->sampleRowKeys([
+            'authorizedViewName' => $request->getAuthorizedViewName(),
+            'timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout()),
+        ]);
+
+        try {
+            $responses = [];
+            foreach ($sampleRows as $sampleRow) {
+                $response = new SampleRowKeysResponse();
+                $response->setRowKey($sampleRow['rowKey']);
+                $response->setOffsetBytes($sampleRow['offset']);
+                $responses[] = $response;
+            }
+        } catch (\Google\ApiCore\ApiException $e) {
+            return $out->setStatus(new Status([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]));
+        }
+
+        return $out->setSamples($responses);
     }
 
     /**
@@ -395,7 +483,67 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
     */
     public function ExecuteQuery(GRPC\ContextInterface $ctx, Testproxy\ExecuteQueryRequest $in): Testproxy\ExecuteQueryResult
     {
-        return new Testproxy\ExecuteQueryResult();
+        $this->logger->debug($in->serializeToJsonString());
+
+        $out = new Testproxy\ExecuteQueryResult();
+
+        [$client, $config] = $this->getClientAndConfig($in->getClientId());
+
+        if (!$client) {
+            // This is a workaround to simulate when the client is closed.
+            return $out->setStatus(new Status([
+                'code' => 1,
+                'message' => 'Client is closed',
+            ]));
+        }
+
+        // There is no ExecuteQuery method in the Bigtable handwritten client, so we will test the
+        // GAPIC generated client directly.
+        $client = new BigtableGapicClient([
+            'projectId' => $config->getProjectId(),
+            'apiEndpoint' => $config->getDataTarget(),
+            'credentials' => new InsecureCredentialsWrapper(),
+            'transportConfig' => [
+                'grpc' => [
+                    'stubOpts' => [
+                        'credentials' => ChannelCredentials::createInsecure()
+                    ]
+                ]
+            ],
+        ]);
+
+        $request = $in->getRequest();
+
+        try {
+            $response = $client->executeQuery($request);
+        } catch (\Google\ApiCore\ApiException $e) {
+            return $out->setStatus(new Status([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ]));
+        }
+
+        $out->setResultSetMetadata($response->getMetadata());
+
+        $rows = [];
+        $columns = [];
+        foreach ($response->getResults() as $partialResultSet) {
+            foreach ($partialResultSet->getPartialRows() as $partialRows) {
+                $data = $partialRows->getBatchData();
+                $protoRows = new ProtoRows();
+                $protoRows->mergeFromString($data);
+                $row = new Testproxy\SqlRow();
+                $row->setValues($protoRows->getValues());
+                $rows[] = $row;
+            }
+        }
+
+        $out->setRows($rows);
+        $out->setMetadata(new Testproxy\ResultSetMetadata([
+            'columns' => $columns,
+        ]));
+
+        return $out;
     }
 
     /**
