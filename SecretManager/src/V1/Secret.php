@@ -116,8 +116,8 @@ class Secret extends \Google\Protobuf\Internal\Message
      */
     protected $version_destroy_ttl = null;
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised
-     * Secrets. If no configuration is provided, Google-managed default encryption
+     * Optional. The customer-managed encryption configuration of the regionalized
+     * secrets. If no configuration is provided, Google-managed default encryption
      * is used.
      * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      * configuration only apply to
@@ -200,8 +200,8 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           on calling destroy instead the version goes to a disabled state and
      *           destruction happens after the TTL expires.
      *     @type \Google\Cloud\SecretManager\V1\CustomerManagedEncryption $customer_managed_encryption
-     *           Optional. The customer-managed encryption configuration of the Regionalised
-     *           Secrets. If no configuration is provided, Google-managed default encryption
+     *           Optional. The customer-managed encryption configuration of the regionalized
+     *           secrets. If no configuration is provided, Google-managed default encryption
      *           is used.
      *           Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      *           configuration only apply to
@@ -656,8 +656,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised
-     * Secrets. If no configuration is provided, Google-managed default encryption
+     * Optional. The customer-managed encryption configuration of the regionalized
+     * secrets. If no configuration is provided, Google-managed default encryption
      * is used.
      * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      * configuration only apply to
@@ -684,8 +684,8 @@ class Secret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised
-     * Secrets. If no configuration is provided, Google-managed default encryption
+     * Optional. The customer-managed encryption configuration of the regionalized
+     * secrets. If no configuration is provided, Google-managed default encryption
      * is used.
      * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption
      * configuration only apply to

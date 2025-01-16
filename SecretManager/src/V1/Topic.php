@@ -17,13 +17,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Topic extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the Pub/Sub topic that will be published to,
-     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
-     * the Secret Manager service agent must have the `pubsub.topic.publish`
-     * permission on the topic. The Pub/Sub Publisher role
+     * Identifier. The resource name of the Pub/Sub topic that will be published
+     * to, in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to
+     * succeed, the Secret Manager service agent must have the
+     * `pubsub.topic.publish` permission on the topic. The Pub/Sub Publisher role
      * (`roles/pubsub.publisher`) includes this permission.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
 
@@ -34,10 +34,10 @@ class Topic extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the Pub/Sub topic that will be published to,
-     *           in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
-     *           the Secret Manager service agent must have the `pubsub.topic.publish`
-     *           permission on the topic. The Pub/Sub Publisher role
+     *           Identifier. The resource name of the Pub/Sub topic that will be published
+     *           to, in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to
+     *           succeed, the Secret Manager service agent must have the
+     *           `pubsub.topic.publish` permission on the topic. The Pub/Sub Publisher role
      *           (`roles/pubsub.publisher`) includes this permission.
      * }
      */
@@ -47,13 +47,13 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Pub/Sub topic that will be published to,
-     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
-     * the Secret Manager service agent must have the `pubsub.topic.publish`
-     * permission on the topic. The Pub/Sub Publisher role
+     * Identifier. The resource name of the Pub/Sub topic that will be published
+     * to, in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to
+     * succeed, the Secret Manager service agent must have the
+     * `pubsub.topic.publish` permission on the topic. The Pub/Sub Publisher role
      * (`roles/pubsub.publisher`) includes this permission.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -62,13 +62,13 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the Pub/Sub topic that will be published to,
-     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
-     * the Secret Manager service agent must have the `pubsub.topic.publish`
-     * permission on the topic. The Pub/Sub Publisher role
+     * Identifier. The resource name of the Pub/Sub topic that will be published
+     * to, in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to
+     * succeed, the Secret Manager service agent must have the
+     * `pubsub.topic.publish` permission on the topic. The Pub/Sub Publisher role
      * (`roles/pubsub.publisher`) includes this permission.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

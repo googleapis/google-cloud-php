@@ -25,7 +25,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶0
+£0
 +google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ó
 ListSecretsRequest;
 parent (	B+‡A˙A%#secretmanager.googleapis.com/Secret
@@ -105,8 +105,8 @@ total_size ("[
 DestroySecretVersion:.google.cloud.secretmanager.v1.DestroySecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"â⁄AnameÇ”‰ì|"2/v1/{name=projects/*/secrets/*/versions/*}:destroy:*ZC">/v1/{name=projects/*/locations/*/secrets/*/versions/*}:destroy:*…
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"~Ç”‰ìx"0/v1/{resource=projects/*/secrets/*}:setIamPolicy:*ZA"</v1/{resource=projects/*/locations/*/secrets/*}:setIamPolicy:*√
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"xÇ”‰ìr0/v1/{resource=projects/*/secrets/*}:getIamPolicyZ></v1/{resource=projects/*/locations/*/secrets/*}:getIamPolicy˜
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"ãÇ”‰ìÑ"6/v1/{resource=projects/*/secrets/*}:testIamPermissions:*ZG"B/v1/{resource=projects/*/locations/*/secrets/*}:testIamPermissions:*P Asecretmanager.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBË
-!com.google.cloud.secretmanager.v1BServiceProtoPZGcloud.google.com/go/secretmanager/apiv1/secretmanagerpb;secretmanagerpb¯¢GSM™Google.Cloud.SecretManager.V1 Google\\Cloud\\SecretManager\\V1Í Google::Cloud::SecretManager::V1bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"ãÇ”‰ìÑ"6/v1/{resource=projects/*/secrets/*}:testIamPermissions:*ZG"B/v1/{resource=projects/*/locations/*/secrets/*}:testIamPermissions:*P Asecretmanager.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÂ
+!com.google.cloud.secretmanager.v1BServiceProtoPZGcloud.google.com/go/secretmanager/apiv1/secretmanagerpb;secretmanagerpb¢GSM™Google.Cloud.SecretManager.V1 Google\\Cloud\\SecretManager\\V1Í Google::Cloud::SecretManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;
