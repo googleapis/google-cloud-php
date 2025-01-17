@@ -1,5 +1,141 @@
 # Changelog
 
+## 0.272.0
+
+<details><summary>google/cloud-ai-platform 1.14.0</summary>
+
+
+
+### Features
+
+* Add retrieval_config to ToolConfig v1 ([#8011](https://github.com/googleapis/google-cloud-php/issues/8011)) ([b1557ce](https://github.com/googleapis/google-cloud-php/commit/b1557ce217f2151ab52038aa9fef723eb6bf6566))
+
+</details>
+
+<details><summary>google/analytics-admin 0.25.1</summary>
+
+
+
+### Documentation
+
+* Update analytics samples in README ([#8012](https://github.com/googleapis/google-cloud-php/issues/8012)) ([0756721](https://github.com/googleapis/google-cloud-php/commit/07567214d0780eb667e7897f899e82e7f7caf6cd))
+
+</details>
+
+<details><summary>google/analytics-data 0.22.1</summary>
+
+
+
+### Documentation
+
+* Update analytics samples in README ([#8012](https://github.com/googleapis/google-cloud-php/issues/8012)) ([0756721](https://github.com/googleapis/google-cloud-php/commit/07567214d0780eb667e7897f899e82e7f7caf6cd))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.6.2</summary>
+
+
+
+### Bug Fixes
+
+* Add SERVICE_NAME constant to bigtable client ([#8019](https://github.com/googleapis/google-cloud-php/issues/8019)) ([dda4b4c](https://github.com/googleapis/google-cloud-php/commit/dda4b4cc1409e2fc75eb05faead3ba5b750c654d))
+* **Bigtable:** Ensure appProfileId is sent in requests when set in options ([#8020](https://github.com/googleapis/google-cloud-php/issues/8020)) ([70dc013](https://github.com/googleapis/google-cloud-php/commit/70dc013cf59ff2f3f2c106dd0bcd349bca8bd005))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 2.3.0</summary>
+
+
+
+### Features
+
+* Expose the new v1 vpcflowlogs api proto ([#8009](https://github.com/googleapis/google-cloud-php/issues/8009)) ([2a26e00](https://github.com/googleapis/google-cloud-php/commit/2a26e00eba7b0af626ca508e37740280b279ccdf))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.1.3</summary>
+
+
+
+### Documentation
+
+* A comment for method `ListWorkloads` in service `Environments` is changed ([#8013](https://github.com/googleapis/google-cloud-php/issues/8013)) ([0a9bd5c](https://github.com/googleapis/google-cloud-php/commit/0a9bd5cac42bb3f6a5f2a5f224bcfcb54f18ea87))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.4.0</summary>
+
+
+
+### Features
+
+* [Memorystore for Redis Cluster] Added support for Backups and Backup Collections ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* [Memorystore for Redis Cluster] Added support for CMEK ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* [Memorystore for Redis Cluster] Added support for Cross Cluster Replication ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* [Memorystore for Redis Cluster] Added support for Multiple VPCs ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* Added support for maintenance window and rescheduling maintenance ([#8022](https://github.com/googleapis/google-cloud-php/issues/8022)) ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* New REQUIRED field `service_attachment` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+
+
+### Bug Fixes
+
+* Changed field behavior for an existing field `address` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* Changed field behavior for an existing field `forwarding_rule` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* Changed field behavior for an existing field `network` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* Changed field behavior for an existing field `psc_connection_id` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+
+
+### Documentation
+
+* A comment for enum value `ALWAYS` in enum `AppendFsync` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for enum value `NODE_TYPE_UNSPECIFIED` in enum `NodeType` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `address` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `forwarding_rule` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `name` in message `.google.cloud.redis.cluster.v1beta1.Cluster` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `network` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `project_id` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `psc_configs` in message `.google.cloud.redis.cluster.v1beta1.Cluster` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `psc_connection_id` in message `.google.cloud.redis.cluster.v1beta1.PscConnection` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `psc_connections` in message `.google.cloud.redis.cluster.v1beta1.Cluster` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+* A comment for field `shard_count` in message `.google.cloud.redis.cluster.v1beta1.Cluster` is changed ([a617dfa](https://github.com/googleapis/google-cloud-php/commit/a617dfac3cfe5f0fd05f95802b867ff08e7e9c7a))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.0.1</summary>
+
+
+
+### Documentation
+
+* Fix link in Markdown comments ([#8017](https://github.com/googleapis/google-cloud-php/issues/8017)) ([8e98253](https://github.com/googleapis/google-cloud-php/commit/8e982537beaee57c08d3490bbea48d4c2921cd98))
+
+</details>
+
+<details><summary>google/cloud-tpu 2.1.0</summary>
+
+
+
+### Features
+
+* Add UNKNOWN to TPU node state, This state will be used to prevent a node from being marked as READY during diagnose after it has failed repair ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Make V5Litepod accelerator config available for v2 ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Make v5p available for GA ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Make v6e available for GA ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+* Promote network_configs field to v2 API ([#8007](https://github.com/googleapis/google-cloud-php/issues/8007)) ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+
+
+### Documentation
+
+* A comment for field `network_config` in message `.google.cloud.tpu.v2.Node` is changed ([7103c1c](https://github.com/googleapis/google-cloud-php/commit/7103c1c077c11b8b38751b527f2121b10625070c))
+
+</details>
+
 ## 0.271.0
 
 <details><summary>google/analytics-admin 0.25.0</summary>
