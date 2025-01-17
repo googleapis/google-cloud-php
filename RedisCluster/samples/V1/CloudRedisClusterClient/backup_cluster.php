@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,43 +22,46 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START redis_v1_generated_CloudRedisCluster_UpdateCluster_sync]
+// [START redis_v1_generated_CloudRedisCluster_BackupCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Redis\Cluster\V1\BackupClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\Client\CloudRedisClusterClient;
 use Google\Cloud\Redis\Cluster\V1\Cluster;
-use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Updates the metadata and configuration of a specific Redis cluster.
+ * Backup Redis Cluster.
+ * If this is the first time a backup is being created, a backup collection
+ * will be created at the backend, and this backup belongs to this collection.
+ * Both collection and backup will have a resource name. Backup will be
+ * executed for each shard. A replica (primary if nonHA) will be selected to
+ * perform the execution. Backup call will be rejected if there is an ongoing
+ * backup or update operation. Be aware that during preview, if the cluster's
+ * internal software version is too old, critical update will be performed
+ * before actual backup. Once the internal software version is updated to the
+ * minimum version required by the backup feature, subsequent backups will not
+ * require critical update. After preview, there will be no critical update
+ * needed for backup.
  *
- * Completed longrunning.Operation will contain the new cluster object
- * in the response field. The returned operation is automatically deleted
- * after a few hours, so there is no need to call DeleteOperation.
- *
- * @param string $clusterName Identifier. Unique name of the resource in this scope including
- *                            project and location using the form:
- *                            `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
+ * @param string $formattedName Redis cluster resource name using the form:
+ *                              `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
+ *                              where `location_id` refers to a GCP region. Please see
+ *                              {@see CloudRedisClusterClient::clusterName()} for help formatting this field.
  */
-function update_cluster_sample(string $clusterName): void
+function backup_cluster_sample(string $formattedName): void
 {
     // Create a client.
     $cloudRedisClusterClient = new CloudRedisClusterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $cluster = (new Cluster())
-        ->setName($clusterName);
-    $request = (new UpdateClusterRequest())
-        ->setUpdateMask($updateMask)
-        ->setCluster($cluster);
+    $request = (new BackupClusterRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudRedisClusterClient->updateCluster($request);
+        $response = $cloudRedisClusterClient->backupCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -86,8 +89,8 @@ function update_cluster_sample(string $clusterName): void
  */
 function callSample(): void
 {
-    $clusterName = '[NAME]';
+    $formattedName = CloudRedisClusterClient::clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
 
-    update_cluster_sample($clusterName);
+    backup_cluster_sample($formattedName);
 }
-// [END redis_v1_generated_CloudRedisCluster_UpdateCluster_sync]
+// [END redis_v1_generated_CloudRedisCluster_BackupCluster_sync]

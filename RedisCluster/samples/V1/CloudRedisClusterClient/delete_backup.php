@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,49 +22,37 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START redis_v1_generated_CloudRedisCluster_UpdateCluster_sync]
+// [START redis_v1_generated_CloudRedisCluster_DeleteBackup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Redis\Cluster\V1\Client\CloudRedisClusterClient;
-use Google\Cloud\Redis\Cluster\V1\Cluster;
-use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
-use Google\Protobuf\FieldMask;
+use Google\Cloud\Redis\Cluster\V1\DeleteBackupRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the metadata and configuration of a specific Redis cluster.
+ * Deletes a specific backup.
  *
- * Completed longrunning.Operation will contain the new cluster object
- * in the response field. The returned operation is automatically deleted
- * after a few hours, so there is no need to call DeleteOperation.
- *
- * @param string $clusterName Identifier. Unique name of the resource in this scope including
- *                            project and location using the form:
- *                            `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
+ * @param string $formattedName Redis backup resource name using the form:
+ *                              `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}/backups/{backup_id}`
+ *                              Please see {@see CloudRedisClusterClient::backupName()} for help formatting this field.
  */
-function update_cluster_sample(string $clusterName): void
+function delete_backup_sample(string $formattedName): void
 {
     // Create a client.
     $cloudRedisClusterClient = new CloudRedisClusterClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $cluster = (new Cluster())
-        ->setName($clusterName);
-    $request = (new UpdateClusterRequest())
-        ->setUpdateMask($updateMask)
-        ->setCluster($cluster);
+    $request = (new DeleteBackupRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudRedisClusterClient->updateCluster($request);
+        $response = $cloudRedisClusterClient->deleteBackup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Cluster $result */
-            $result = $response->getResult();
-            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+            printf('Operation completed successfully.' . PHP_EOL);
         } else {
             /** @var Status $error */
             $error = $response->getError();
@@ -86,8 +74,13 @@ function update_cluster_sample(string $clusterName): void
  */
 function callSample(): void
 {
-    $clusterName = '[NAME]';
+    $formattedName = CloudRedisClusterClient::backupName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[BACKUP_COLLECTION]',
+        '[BACKUP]'
+    );
 
-    update_cluster_sample($clusterName);
+    delete_backup_sample($formattedName);
 }
-// [END redis_v1_generated_CloudRedisCluster_UpdateCluster_sync]
+// [END redis_v1_generated_CloudRedisCluster_DeleteBackup_sync]
