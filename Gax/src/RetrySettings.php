@@ -77,7 +77,7 @@ use Closure;
  * RetrySettings objects can be used to control retries for many RPC methods in
  * [google-cloud-php](https://github.com/googleapis/google-cloud-php).
  * The examples below make use of the
- * [GroupServiceClient](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/monitoring/v3/groupserviceclient)
+ * [GroupServiceClient](https://cloud.google.com/php/docs/reference/cloud-monitoring/latest/V3.Client.GroupServiceClient)
  * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/master/src/Monitoring/V3),
  * but they can be applied to other APIs in the
  * [google-cloud-php](https://github.com/googleapis/google-cloud-php) repository.
@@ -88,7 +88,7 @@ use Closure;
  * the particular retry parameters to be updated.
  *
  * Example of disabling retries for a single call to the
- * [listGroups](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/monitoring/v3/groupserviceclient?method=listGroups)
+ * [listGroups](https://cloud.google.com/php/docs/reference/cloud-monitoring/latest/V3.Client.GroupServiceClient#_Google_Cloud_Monitoring_V3_Client_GroupServiceClient__listGroups__)
  * method, and setting a custom timeout:
  * ```
  * $result = $client->listGroups($name, [
@@ -101,7 +101,7 @@ use Closure;
  *
  * Example of creating a new RetrySettings object and using it to override
  * the retry settings for a call to the
- * [listGroups](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/monitoring/v3/groupserviceclient?method=listGroups)
+ * [listGroups](https://cloud.google.com/php/docs/reference/cloud-monitoring/latest/V3.Client.GroupServiceClient#_Google_Cloud_Monitoring_V3_Client_GroupServiceClient__listGroups__)
  * method:
  * ```
  * $customRetrySettings = new RetrySettings([
@@ -126,8 +126,8 @@ use Closure;
  * It is also possible to specify the retry behavior for RPC methods when
  * constructing a client object using the 'retrySettingsArray'. The examples
  * below again make use of the
- * [GroupServiceClient](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/monitoring/v3/groupserviceclient)
- * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/master/src/Monitoring/V3),
+ * [GroupServiceClient](https://cloud.google.com/php/docs/reference/cloud-monitoring/latest/V3.Client.GroupServiceClient)
+ * from the [Monitoring V3 API](https://github.com/googleapis/google-cloud-php/tree/main/Monitoring/src/V3),
  * but they can be applied to other APIs in the
  * [google-cloud-php](https://github.com/googleapis/google-cloud-php) repository.
  *
