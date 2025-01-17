@@ -37,13 +37,23 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Redis\Cluster\V1\Backup;
+use Google\Cloud\Redis\Cluster\V1\BackupClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\BackupCollection;
 use Google\Cloud\Redis\Cluster\V1\CertificateAuthority;
 use Google\Cloud\Redis\Cluster\V1\Cluster;
 use Google\Cloud\Redis\Cluster\V1\CreateClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\DeleteBackupRequest;
 use Google\Cloud\Redis\Cluster\V1\DeleteClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\ExportBackupRequest;
+use Google\Cloud\Redis\Cluster\V1\GetBackupCollectionRequest;
+use Google\Cloud\Redis\Cluster\V1\GetBackupRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\ListBackupCollectionsRequest;
+use Google\Cloud\Redis\Cluster\V1\ListBackupsRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
+use Google\Cloud\Redis\Cluster\V1\RescheduleClusterMaintenanceRequest;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -68,12 +78,6 @@ use Psr\Log\LoggerInterface;
  * Note that location_id must be a GCP `region`; for example:
  * * `projects/redpepper-1290/locations/us-central1/clusters/my-redis`
  *
- * We use API version selector for Flex APIs
- * * The versioning strategy is release-based versioning
- * * Our backend CLH only deals with the superset version (called v1main)
- * * Existing backend for Redis Gen1 and MRR is not touched.
- * * More details in go/redis-flex-api-versioning
- *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -82,11 +86,19 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> backupClusterAsync(BackupClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportBackupAsync(ExportBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getClusterCertificateAuthorityAsync(GetClusterCertificateAuthorityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rescheduleClusterMaintenanceAsync(RescheduleClusterMaintenanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -190,6 +202,50 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupCollection
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName(
+        string $project,
+        string $location,
+        string $backupCollection,
+        string $backup
+    ): string {
+        return self::getPathTemplate('backup')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_collection' => $backupCollection,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_collection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupCollection
+     *
+     * @return string The formatted backup_collection resource.
+     */
+    public static function backupCollectionName(string $project, string $location, string $backupCollection): string
+    {
+        return self::getPathTemplate('backupCollection')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_collection' => $backupCollection,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * certificate_authority resource.
      *
@@ -228,6 +284,74 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     */
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * forwarding_rule resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $forwardingRule
+     *
+     * @return string The formatted forwarding_rule resource.
+     */
+    public static function forwardingRuleName(string $project, string $region, string $forwardingRule): string
+    {
+        return self::getPathTemplate('forwardingRule')->render([
+            'project' => $project,
+            'region' => $region,
+            'forwarding_rule' => $forwardingRule,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -245,12 +369,55 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $project, string $network): string
+    {
+        return self::getPathTemplate('network')->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $serviceAttachment
+     *
+     * @return string The formatted service_attachment resource.
+     */
+    public static function serviceAttachmentName(string $project, string $region, string $serviceAttachment): string
+    {
+        return self::getPathTemplate('serviceAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'service_attachment' => $serviceAttachment,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
+     * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
      * - certificateAuthority: projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - forwardingRule: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}
      * - location: projects/{project}/locations/{location}
+     * - network: projects/{project}/global/networks/{network}
+     * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -346,6 +513,43 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Backup Redis Cluster.
+     * If this is the first time a backup is being created, a backup collection
+     * will be created at the backend, and this backup belongs to this collection.
+     * Both collection and backup will have a resource name. Backup will be
+     * executed for each shard. A replica (primary if nonHA) will be selected to
+     * perform the execution. Backup call will be rejected if there is an ongoing
+     * backup or update operation. Be aware that during preview, if the cluster's
+     * internal software version is too old, critical update will be performed
+     * before actual backup. Once the internal software version is updated to the
+     * minimum version required by the backup feature, subsequent backups will not
+     * require critical update. After preview, there will be no critical update
+     * needed for backup.
+     *
+     * The async variant is {@see CloudRedisClusterClient::backupClusterAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/backup_cluster.php
+     *
+     * @param BackupClusterRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function backupCluster(BackupClusterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BackupCluster', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a Redis cluster based on the specified properties.
      * The creation is executed asynchronously and callers may check the returned
      * operation to track its progress. Once the operation is completed the Redis
@@ -379,6 +583,32 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Deletes a specific backup.
+     *
+     * The async variant is {@see CloudRedisClusterClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/delete_backup.php
+     *
+     * @param DeleteBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a specific Redis cluster. Cluster stops serving and data is
      * deleted.
      *
@@ -403,6 +633,85 @@ final class CloudRedisClusterClient
     public function deleteCluster(DeleteClusterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteCluster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Exports a specific backup to a customer target Cloud Storage URI.
+     *
+     * The async variant is {@see CloudRedisClusterClient::exportBackupAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/export_backup.php
+     *
+     * @param ExportBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportBackup(ExportBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a specific backup.
+     *
+     * The async variant is {@see CloudRedisClusterClient::getBackupAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_backup.php
+     *
+     * @param GetBackupRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Backup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
+    {
+        return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a backup collection.
+     *
+     * The async variant is {@see CloudRedisClusterClient::getBackupCollectionAsync()}
+     * .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_backup_collection.php
+     *
+     * @param GetBackupCollectionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupCollection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupCollection(GetBackupCollectionRequest $request, array $callOptions = []): BackupCollection
+    {
+        return $this->startApiCall('GetBackupCollection', $request, $callOptions)->wait();
     }
 
     /**
@@ -461,6 +770,65 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Lists all backup collections owned by a consumer project in either the
+     * specified location (region) or all locations.
+     *
+     * If `location_id` is specified as `-` (wildcard), then all regions
+     * available to the project are queried, and the results are aggregated.
+     *
+     * The async variant is
+     * {@see CloudRedisClusterClient::listBackupCollectionsAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/list_backup_collections.php
+     *
+     * @param ListBackupCollectionsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupCollections(
+        ListBackupCollectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBackupCollections', $request, $callOptions);
+    }
+
+    /**
+     * Lists all backups owned by a backup collection.
+     *
+     * The async variant is {@see CloudRedisClusterClient::listBackupsAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/list_backups.php
+     *
+     * @param ListBackupsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackups(ListBackupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackups', $request, $callOptions);
+    }
+
+    /**
      * Lists all Redis clusters owned by a project in either the specified
      * location (region) or all locations.
      *
@@ -492,6 +860,35 @@ final class CloudRedisClusterClient
     public function listClusters(ListClustersRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListClusters', $request, $callOptions);
+    }
+
+    /**
+     * Reschedules upcoming maintenance event.
+     *
+     * The async variant is
+     * {@see CloudRedisClusterClient::rescheduleClusterMaintenanceAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/reschedule_cluster_maintenance.php
+     *
+     * @param RescheduleClusterMaintenanceRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rescheduleClusterMaintenance(
+        RescheduleClusterMaintenanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RescheduleClusterMaintenance', $request, $callOptions)->wait();
     }
 
     /**
