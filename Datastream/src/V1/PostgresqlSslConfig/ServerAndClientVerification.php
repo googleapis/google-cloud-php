@@ -168,6 +168,4 @@ class ServerAndClientVerification extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServerAndClientVerification::class, \Google\Cloud\Datastream\V1\PostgresqlSslConfig_ServerAndClientVerification::class);
 
