@@ -22,7 +22,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Optional. A list of synonyms that can also be used to trigger this
      * item in dialog.

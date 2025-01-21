@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A replication policy that replicates the
  * [Secret][google.cloud.secretmanager.v1beta2.Secret] payload into the
- * locations specified in [Secret.replication.user_managed.replicas][]
+ * locations specified in
+ * [Replication.UserManaged.replicas][google.cloud.secretmanager.v1beta2.Replication.UserManaged.replicas]
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1beta2.Replication.UserManaged</code>
  */
@@ -75,6 +76,4 @@ class UserManaged extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UserManaged::class, \Google\Cloud\SecretManager\V1beta2\Replication_UserManaged::class);
 

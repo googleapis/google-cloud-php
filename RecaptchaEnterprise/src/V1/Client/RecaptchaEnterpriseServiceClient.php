@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,9 +126,7 @@ final class RecaptchaEnterpriseServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -143,7 +141,8 @@ final class RecaptchaEnterpriseServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/recaptcha_enterprise_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/recaptcha_enterprise_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -405,8 +404,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function annotateAssessment(AnnotateAssessmentRequest $request, array $callOptions = []): AnnotateAssessmentResponse
-    {
+    public function annotateAssessment(
+        AnnotateAssessmentRequest $request,
+        array $callOptions = []
+    ): AnnotateAssessmentResponse {
         return $this->startApiCall('AnnotateAssessment', $request, $callOptions)->wait();
     }
 
@@ -644,8 +645,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listFirewallPolicies(ListFirewallPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listFirewallPolicies(
+        ListFirewallPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListFirewallPolicies', $request, $callOptions);
     }
 
@@ -725,8 +728,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRelatedAccountGroupMemberships(ListRelatedAccountGroupMembershipsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRelatedAccountGroupMemberships(
+        ListRelatedAccountGroupMembershipsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRelatedAccountGroupMemberships', $request, $callOptions);
     }
 
@@ -752,8 +757,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRelatedAccountGroups(ListRelatedAccountGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRelatedAccountGroups(
+        ListRelatedAccountGroupsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRelatedAccountGroups', $request, $callOptions);
     }
 
@@ -815,8 +822,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeIpOverride(RemoveIpOverrideRequest $request, array $callOptions = []): RemoveIpOverrideResponse
-    {
+    public function removeIpOverride(
+        RemoveIpOverrideRequest $request,
+        array $callOptions = []
+    ): RemoveIpOverrideResponse {
         return $this->startApiCall('RemoveIpOverride', $request, $callOptions)->wait();
     }
 
@@ -842,8 +851,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reorderFirewallPolicies(ReorderFirewallPoliciesRequest $request, array $callOptions = []): ReorderFirewallPoliciesResponse
-    {
+    public function reorderFirewallPolicies(
+        ReorderFirewallPoliciesRequest $request,
+        array $callOptions = []
+    ): ReorderFirewallPoliciesResponse {
         return $this->startApiCall('ReorderFirewallPolicies', $request, $callOptions)->wait();
     }
 
@@ -871,8 +882,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveLegacySecretKey(RetrieveLegacySecretKeyRequest $request, array $callOptions = []): RetrieveLegacySecretKeyResponse
-    {
+    public function retrieveLegacySecretKey(
+        RetrieveLegacySecretKeyRequest $request,
+        array $callOptions = []
+    ): RetrieveLegacySecretKeyResponse {
         return $this->startApiCall('RetrieveLegacySecretKey', $request, $callOptions)->wait();
     }
 
@@ -899,8 +912,10 @@ final class RecaptchaEnterpriseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchRelatedAccountGroupMemberships(SearchRelatedAccountGroupMembershipsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchRelatedAccountGroupMemberships(
+        SearchRelatedAccountGroupMembershipsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchRelatedAccountGroupMemberships', $request, $callOptions);
     }
 

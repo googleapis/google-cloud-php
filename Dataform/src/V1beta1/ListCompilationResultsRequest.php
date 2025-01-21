@@ -21,7 +21,7 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. Maximum number of compilation results to return. The server may
      * return fewer items than requested. If unspecified, the server will pick an
@@ -29,7 +29,7 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. Page token received from a previous `ListCompilationResults`
      * call. Provide this to retrieve the subsequent page.
@@ -38,7 +38,7 @@ class ListCompilationResultsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string $parent Required. The repository in which to list compilation results. Must be in

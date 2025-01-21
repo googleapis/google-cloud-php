@@ -46,6 +46,4 @@ class TemplateView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TemplateView::class, \Google\Cloud\Dataflow\V1beta3\GetTemplateRequest_TemplateView::class);
 

@@ -55,6 +55,7 @@ use Google\Cloud\BackupDR\V1\GetBackupRequest;
 use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
+use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
 use Google\Cloud\BackupDR\V1\ListBackupVaultsRequest;
@@ -107,6 +108,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BackupVault> getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataSource> getDataSourceAsync(GetDataSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagementServer> getManagementServerAsync(GetManagementServerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> initializeServiceAsync(InitializeServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlanAssociationsAsync(ListBackupPlanAssociationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupPlansAsync(ListBackupPlansRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
@@ -904,6 +906,32 @@ final class BackupDRClient
     public function getManagementServer(GetManagementServerRequest $request, array $callOptions = []): ManagementServer
     {
         return $this->startApiCall('GetManagementServer', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initializes the service related config for a project.
+     *
+     * The async variant is {@see BackupDRClient::initializeServiceAsync()} .
+     *
+     * @example samples/V1/BackupDRClient/initialize_service.php
+     *
+     * @param InitializeServiceRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function initializeService(InitializeServiceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('InitializeService', $request, $callOptions)->wait();
     }
 
     /**

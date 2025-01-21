@@ -20,20 +20,20 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string gcs_path = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $gcs_path = '';
+    protected $gcs_path = '';
     /**
      * Output only. Generation of the object, which is set when the content of an object starts
      * being written.
      *
      * Generated from protobuf field <code>int64 generation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $generation = 0;
+    protected $generation = 0;
     /**
      * Output only. The time when the object metadata was last changed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.

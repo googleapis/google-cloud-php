@@ -22,7 +22,7 @@ class SentimentAnalysisRequestConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1;</code>
      */
-    private $analyze_query_text_sentiment = false;
+    protected $analyze_query_text_sentiment = false;
 
     /**
      * Constructor.

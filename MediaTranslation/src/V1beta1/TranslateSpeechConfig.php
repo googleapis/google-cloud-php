@@ -42,19 +42,19 @@ class TranslateSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audio_encoding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $audio_encoding = '';
+    protected $audio_encoding = '';
     /**
      * Required. Source language code (BCP-47) of the input audio.
      *
      * Generated from protobuf field <code>string source_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $source_language_code = '';
+    protected $source_language_code = '';
     /**
      * Required. Target language code (BCP-47) of the output.
      *
      * Generated from protobuf field <code>string target_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $target_language_code = '';
+    protected $target_language_code = '';
     /**
      * Optional. Sample rate in Hertz of the audio data. Valid values are:
      * 8000-48000. 16000 is optimal. For best results, set the sampling rate of
@@ -63,7 +63,7 @@ class TranslateSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $sample_rate_hertz = 0;
+    protected $sample_rate_hertz = 0;
     /**
      * Optional. `google-provided-model/video` and
      * `google-provided-model/enhanced-phone-call` are premium models.
@@ -71,7 +71,7 @@ class TranslateSpeechConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $model = '';
+    protected $model = '';
 
     /**
      * Constructor.

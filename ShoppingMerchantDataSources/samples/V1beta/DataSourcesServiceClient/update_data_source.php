@@ -27,29 +27,21 @@ use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
 use Google\Shopping\Merchant\DataSources\V1beta\DataSource;
-use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource;
-use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Channel;
 use Google\Shopping\Merchant\DataSources\V1beta\UpdateDataSourceRequest;
 
 /**
  * Updates the existing data source configuration. The fields that are
  * set in the update mask but not provided in the resource will be deleted.
  *
- * @param int    $dataSourcePrimaryProductDataSourceChannel Immutable. Specifies the type of data source channel.
- * @param string $dataSourceDisplayName                     The displayed data source name in the Merchant Center UI.
+ * @param string $dataSourceDisplayName The displayed data source name in the Merchant Center UI.
  */
-function update_data_source_sample(
-    int $dataSourcePrimaryProductDataSourceChannel,
-    string $dataSourceDisplayName
-): void {
+function update_data_source_sample(string $dataSourceDisplayName): void
+{
     // Create a client.
     $dataSourcesServiceClient = new DataSourcesServiceClient();
 
     // Prepare the request message.
-    $dataSourcePrimaryProductDataSource = (new PrimaryProductDataSource())
-        ->setChannel($dataSourcePrimaryProductDataSourceChannel);
     $dataSource = (new DataSource())
-        ->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource)
         ->setDisplayName($dataSourceDisplayName);
     $updateMask = new FieldMask();
     $request = (new UpdateDataSourceRequest())
@@ -77,9 +69,8 @@ function update_data_source_sample(
  */
 function callSample(): void
 {
-    $dataSourcePrimaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
     $dataSourceDisplayName = '[DISPLAY_NAME]';
 
-    update_data_source_sample($dataSourcePrimaryProductDataSourceChannel, $dataSourceDisplayName);
+    update_data_source_sample($dataSourceDisplayName);
 }
 // [END merchantapi_v1beta_generated_DataSourcesService_UpdateDataSource_sync]

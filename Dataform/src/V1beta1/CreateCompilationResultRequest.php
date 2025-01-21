@@ -21,13 +21,13 @@ class CreateCompilationResultRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The compilation result to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResult compilation_result = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $compilation_result = null;
+    protected $compilation_result = null;
 
     /**
      * @param string                                           $parent            Required. The repository in which to create the compilation result. Must be

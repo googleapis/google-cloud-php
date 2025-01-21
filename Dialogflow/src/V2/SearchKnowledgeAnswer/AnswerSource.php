@@ -20,25 +20,25 @@ class AnswerSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 1;</code>
      */
-    private $title = '';
+    protected $title = '';
     /**
      * The URI of the article.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    private $uri = '';
+    protected $uri = '';
     /**
      * The relevant snippet of the article.
      *
      * Generated from protobuf field <code>string snippet = 3;</code>
      */
-    private $snippet = '';
+    protected $snippet = '';
     /**
      * Metadata associated with the article.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
 
     /**
      * Constructor.

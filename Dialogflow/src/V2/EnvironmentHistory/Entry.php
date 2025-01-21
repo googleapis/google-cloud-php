@@ -20,19 +20,19 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agent_version = 1;</code>
      */
-    private $agent_version = '';
+    protected $agent_version = '';
     /**
      * The developer-provided description for this environment history entry.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * The creation time of this environment history entry.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

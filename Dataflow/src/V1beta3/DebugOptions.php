@@ -21,7 +21,7 @@ class DebugOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_hot_key_logging = 1;</code>
      */
-    private $enable_hot_key_logging = false;
+    protected $enable_hot_key_logging = false;
 
     /**
      * Constructor.

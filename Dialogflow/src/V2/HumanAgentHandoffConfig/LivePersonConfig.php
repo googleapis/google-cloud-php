@@ -21,7 +21,7 @@ class LivePersonConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account_number = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $account_number = '';
+    protected $account_number = '';
 
     /**
      * Constructor.

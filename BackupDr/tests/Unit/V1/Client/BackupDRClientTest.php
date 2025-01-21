@@ -49,6 +49,8 @@ use Google\Cloud\BackupDR\V1\GetBackupRequest;
 use Google\Cloud\BackupDR\V1\GetBackupVaultRequest;
 use Google\Cloud\BackupDR\V1\GetDataSourceRequest;
 use Google\Cloud\BackupDR\V1\GetManagementServerRequest;
+use Google\Cloud\BackupDR\V1\InitializeServiceRequest;
+use Google\Cloud\BackupDR\V1\InitializeServiceResponse;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsRequest;
 use Google\Cloud\BackupDR\V1\ListBackupPlanAssociationsResponse;
 use Google\Cloud\BackupDR\V1\ListBackupPlansRequest;
@@ -320,6 +322,8 @@ class BackupDRClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $backupPlanAssociationId = 'backupPlanAssociationId133124978';
         $backupPlanAssociation = new BackupPlanAssociation();
+        $backupPlanAssociationResourceType = 'backupPlanAssociationResourceType-149471490';
+        $backupPlanAssociation->setResourceType($backupPlanAssociationResourceType);
         $backupPlanAssociationResource = 'backupPlanAssociationResource1527164324';
         $backupPlanAssociation->setResource($backupPlanAssociationResource);
         $backupPlanAssociationBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
@@ -401,6 +405,8 @@ class BackupDRClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $backupPlanAssociationId = 'backupPlanAssociationId133124978';
         $backupPlanAssociation = new BackupPlanAssociation();
+        $backupPlanAssociationResourceType = 'backupPlanAssociationResourceType-149471490';
+        $backupPlanAssociation->setResourceType($backupPlanAssociationResourceType);
         $backupPlanAssociationResource = 'backupPlanAssociationResource1527164324';
         $backupPlanAssociation->setResource($backupPlanAssociationResource);
         $backupPlanAssociationBackupPlan = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
@@ -630,8 +636,6 @@ class BackupDRClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $managementServerId = 'managementServerId1884787355';
         $managementServer = new ManagementServer();
-        $managementServerNetworks = [];
-        $managementServer->setNetworks($managementServerNetworks);
         $request = (new CreateManagementServerRequest())
             ->setParent($formattedParent)
             ->setManagementServerId($managementServerId)
@@ -709,8 +713,6 @@ class BackupDRClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $managementServerId = 'managementServerId1884787355';
         $managementServer = new ManagementServer();
-        $managementServerNetworks = [];
-        $managementServer->setNetworks($managementServerNetworks);
         $request = (new CreateManagementServerRequest())
             ->setParent($formattedParent)
             ->setManagementServerId($managementServerId)
@@ -1906,6 +1908,136 @@ class BackupDRClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function initializeServiceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/initializeServiceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $backupVaultName = 'backupVaultName2139431701';
+        $backupPlanName = 'backupPlanName1011998628';
+        $expectedResponse = new InitializeServiceResponse();
+        $expectedResponse->setBackupVaultName($backupVaultName);
+        $expectedResponse->setBackupPlanName($backupPlanName);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/initializeServiceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $name = 'name3373707';
+        $resourceType = 'resourceType979623115';
+        $request = (new InitializeServiceRequest())->setName($name)->setResourceType($resourceType);
+        $response = $gapicClient->initializeService($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.backupdr.v1.BackupDR/InitializeService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualApiRequestObject->getResourceType();
+        $this->assertProtobufEquals($resourceType, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/initializeServiceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function initializeServiceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/initializeServiceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $resourceType = 'resourceType979623115';
+        $request = (new InitializeServiceRequest())->setName($name)->setResourceType($resourceType);
+        $response = $gapicClient->initializeService($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/initializeServiceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

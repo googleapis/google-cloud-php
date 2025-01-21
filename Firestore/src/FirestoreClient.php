@@ -75,7 +75,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '1.47.2';
+    const VERSION = '1.47.3';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -178,7 +178,7 @@ class FirestoreClient
      */
     public function batch()
     {
-        if (!class_exists(WriteBatch::class)) {
+        if (!class_exists(WriteBatch::class, false)) {
             class_alias(BulkWriter::class, WriteBatch::class);
         }
         return new BulkWriter(

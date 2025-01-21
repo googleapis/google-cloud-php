@@ -19,10 +19,10 @@ class QueryService
         \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º
-(google/monitoring/v3/query_service.protogoogle.monitoring.v3google/api/client.proto)google/monitoring/v3/metric_service.proto2ﬁ
-QueryService°
-QueryTimeSeries,.google.monitoring.v3.QueryTimeSeriesRequest-.google.monitoring.v3.QueryTimeSeriesResponse"1Ç”‰ì+"&/v3/{name=projects/*}/timeSeries:query:*© Amonitoring.googleapis.com“Aâhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÃ
+ø
+(google/monitoring/v3/query_service.protogoogle.monitoring.v3google/api/client.proto)google/monitoring/v3/metric_service.proto2·
+QueryService§
+QueryTimeSeries,.google.monitoring.v3.QueryTimeSeriesRequest-.google.monitoring.v3.QueryTimeSeriesResponse"4àÇ”‰ì+"&/v3/{name=projects/*}/timeSeries:query:*© Amonitoring.googleapis.com“Aâhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÃ
 com.google.monitoring.v3BQueryServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpb™Google.Cloud.Monitoring.V3 Google\\Cloud\\Monitoring\\V3ÍGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 

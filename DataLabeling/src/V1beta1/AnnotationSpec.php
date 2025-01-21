@@ -23,14 +23,14 @@ class AnnotationSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Optional. User-provided description of the annotation specification.
      * The description can be up to 10,000 characters long.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

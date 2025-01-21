@@ -20,21 +20,21 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * If true, the request is validated but not actually executed.
      * Defaults to false.
      *
      * Generated from protobuf field <code>bool validate_only = 2;</code>
      */
-    private $validate_only = false;
+    protected $validate_only = false;
     /**
      * The parameters of the template to launch. This should be part of the
      * body of the POST request.
      *
      * Generated from protobuf field <code>.google.dataflow.v1beta3.LaunchTemplateParameters launch_parameters = 4;</code>
      */
-    private $launch_parameters = null;
+    protected $launch_parameters = null;
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to
@@ -42,7 +42,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 5;</code>
      */
-    private $location = '';
+    protected $location = '';
     protected $template;
 
     /**

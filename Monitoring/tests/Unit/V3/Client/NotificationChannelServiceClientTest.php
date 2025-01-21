@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,9 @@ class NotificationChannelServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return NotificationChannelServiceClient */
@@ -105,7 +107,10 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getNotificationChannel();
@@ -124,12 +129,15 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
@@ -163,14 +171,16 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new DeleteNotificationChannelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNotificationChannelRequest())->setName($formattedName);
         $gapicClient->deleteNotificationChannel($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/DeleteNotificationChannel', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/DeleteNotificationChannel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -187,17 +197,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new DeleteNotificationChannelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteNotificationChannelRequest())->setName($formattedName);
         try {
             $gapicClient->deleteNotificationChannel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -232,8 +244,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new GetNotificationChannelRequest())
-            ->setName($formattedName);
+        $request = (new GetNotificationChannelRequest())->setName($formattedName);
         $response = $gapicClient->getNotificationChannel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -257,17 +268,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new GetNotificationChannelRequest())
-            ->setName($formattedName);
+        $request = (new GetNotificationChannelRequest())->setName($formattedName);
         try {
             $gapicClient->getNotificationChannel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -302,15 +315,17 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
-        $request = (new GetNotificationChannelDescriptorRequest())
-            ->setName($formattedName);
+        $request = (new GetNotificationChannelDescriptorRequest())->setName($formattedName);
         $response = $gapicClient->getNotificationChannelDescriptor($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/GetNotificationChannelDescriptor', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/GetNotificationChannelDescriptor',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -327,17 +342,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
-        $request = (new GetNotificationChannelDescriptorRequest())
-            ->setName($formattedName);
+        $request = (new GetNotificationChannelDescriptorRequest())->setName($formattedName);
         try {
             $gapicClient->getNotificationChannelDescriptor($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -366,15 +383,17 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new GetNotificationChannelVerificationCodeRequest())
-            ->setName($formattedName);
+        $request = (new GetNotificationChannelVerificationCodeRequest())->setName($formattedName);
         $response = $gapicClient->getNotificationChannelVerificationCode($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/GetNotificationChannelVerificationCode', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/GetNotificationChannelVerificationCode',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -391,17 +410,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new GetNotificationChannelVerificationCodeRequest())
-            ->setName($formattedName);
+        $request = (new GetNotificationChannelVerificationCodeRequest())->setName($formattedName);
         try {
             $gapicClient->getNotificationChannelVerificationCode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -426,17 +447,14 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $channelDescriptorsElement = new NotificationChannelDescriptor();
-        $channelDescriptors = [
-            $channelDescriptorsElement,
-        ];
+        $channelDescriptors = [$channelDescriptorsElement];
         $expectedResponse = new ListNotificationChannelDescriptorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setChannelDescriptors($channelDescriptors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new ListNotificationChannelDescriptorsRequest())
-            ->setName($name);
+        $request = (new ListNotificationChannelDescriptorsRequest())->setName($name);
         $response = $gapicClient->listNotificationChannelDescriptors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -446,7 +464,10 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/ListNotificationChannelDescriptors', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/ListNotificationChannelDescriptors',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -463,17 +484,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new ListNotificationChannelDescriptorsRequest())
-            ->setName($name);
+        $request = (new ListNotificationChannelDescriptorsRequest())->setName($name);
         try {
             $gapicClient->listNotificationChannelDescriptors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -499,9 +522,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $nextPageToken = '';
         $totalSize = 705419236;
         $notificationChannelsElement = new NotificationChannel();
-        $notificationChannels = [
-            $notificationChannelsElement,
-        ];
+        $notificationChannels = [$notificationChannelsElement];
         $expectedResponse = new ListNotificationChannelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
@@ -509,8 +530,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new ListNotificationChannelsRequest())
-            ->setName($name);
+        $request = (new ListNotificationChannelsRequest())->setName($name);
         $response = $gapicClient->listNotificationChannels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -537,17 +557,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new ListNotificationChannelsRequest())
-            ->setName($name);
+        $request = (new ListNotificationChannelsRequest())->setName($name);
         try {
             $gapicClient->listNotificationChannels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -574,14 +596,16 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new SendNotificationChannelVerificationCodeRequest())
-            ->setName($formattedName);
+        $request = (new SendNotificationChannelVerificationCodeRequest())->setName($formattedName);
         $gapicClient->sendNotificationChannelVerificationCode($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/SendNotificationChannelVerificationCode', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/SendNotificationChannelVerificationCode',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -598,17 +622,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-        $request = (new SendNotificationChannelVerificationCodeRequest())
-            ->setName($formattedName);
+        $request = (new SendNotificationChannelVerificationCodeRequest())->setName($formattedName);
         try {
             $gapicClient->sendNotificationChannelVerificationCode($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -643,15 +669,17 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $notificationChannel = new NotificationChannel();
-        $request = (new UpdateNotificationChannelRequest())
-            ->setNotificationChannel($notificationChannel);
+        $request = (new UpdateNotificationChannelRequest())->setNotificationChannel($notificationChannel);
         $response = $gapicClient->updateNotificationChannel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/UpdateNotificationChannel', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/UpdateNotificationChannel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getNotificationChannel();
         $this->assertProtobufEquals($notificationChannel, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -668,17 +696,19 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $notificationChannel = new NotificationChannel();
-        $request = (new UpdateNotificationChannelRequest())
-            ->setNotificationChannel($notificationChannel);
+        $request = (new UpdateNotificationChannelRequest())->setNotificationChannel($notificationChannel);
         try {
             $gapicClient->updateNotificationChannel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -714,16 +744,17 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
         $code = 'code3059181';
-        $request = (new VerifyNotificationChannelRequest())
-            ->setName($formattedName)
-            ->setCode($code);
+        $request = (new VerifyNotificationChannelRequest())->setName($formattedName)->setCode($code);
         $response = $gapicClient->verifyNotificationChannel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/VerifyNotificationChannel', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/VerifyNotificationChannel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getCode();
@@ -742,19 +773,20 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
         $code = 'code3059181';
-        $request = (new VerifyNotificationChannelRequest())
-            ->setName($formattedName)
-            ->setCode($code);
+        $request = (new VerifyNotificationChannelRequest())->setName($formattedName)->setCode($code);
         try {
             $gapicClient->verifyNotificationChannel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -799,7 +831,10 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.NotificationChannelService/CreateNotificationChannel',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getNotificationChannel();

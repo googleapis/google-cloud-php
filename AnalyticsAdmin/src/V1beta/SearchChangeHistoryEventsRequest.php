@@ -22,7 +22,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string account = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $account = '';
+    protected $account = '';
     /**
      * Optional. Resource name for a child property. If set, only return changes
      * made to this property or its child resources.
@@ -31,7 +31,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string property = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $property = '';
+    protected $property = '';
     /**
      * Optional. If set, only return changes if they are for a resource that
      * matches at least one of these types.
@@ -58,13 +58,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_change_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $earliest_change_time = null;
+    protected $earliest_change_time = null;
     /**
      * Optional. If set, only return changes made before this time (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_change_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $latest_change_time = null;
+    protected $latest_change_time = null;
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
      * The service may return fewer than this value, even if there are additional
@@ -73,7 +73,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. A page token, received from a previous
      * `SearchChangeHistoryEvents` call. Provide this to retrieve the subsequent
@@ -83,7 +83,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

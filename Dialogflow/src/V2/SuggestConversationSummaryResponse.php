@@ -21,7 +21,7 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.Summary summary = 1;</code>
      */
-    private $summary = null;
+    protected $summary = null;
     /**
      * The name of the latest conversation message used as context for
      * compiling suggestion.
@@ -30,7 +30,7 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string latest_message = 2 [(.google.api.resource_reference) = {</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Number of messages prior to and including
      * [latest_message][google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.latest_message]
@@ -41,7 +41,7 @@ class SuggestConversationSummaryResponse extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class StreamingApplianceSnapshotConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot_id = 1;</code>
      */
-    private $snapshot_id = '';
+    protected $snapshot_id = '';
     /**
      * Indicates which endpoint is used to import appliance state.
      *
      * Generated from protobuf field <code>string import_state_endpoint = 2;</code>
      */
-    private $import_state_endpoint = '';
+    protected $import_state_endpoint = '';
 
     /**
      * Constructor.

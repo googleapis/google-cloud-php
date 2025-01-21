@@ -30,7 +30,7 @@ class SuggestArticlesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string latest_message = 2;</code>
      */
-    private $latest_message = '';
+    protected $latest_message = '';
     /**
      * Number of messages prior to and including
      * [latest_message][google.cloud.dialogflow.v2.SuggestArticlesResponse.latest_message]
@@ -41,7 +41,7 @@ class SuggestArticlesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
-    private $context_size = 0;
+    protected $context_size = 0;
 
     /**
      * Constructor.

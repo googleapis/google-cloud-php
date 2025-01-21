@@ -20,20 +20,20 @@ class GetJobMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * The job to get metrics for.
      *
      * Generated from protobuf field <code>string job_id = 2;</code>
      */
-    private $job_id = '';
+    protected $job_id = '';
     /**
      * Return only metric data that has changed since this time.
      * Default is to return all information about all metrics for the job.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The [regional endpoint]
      * (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
@@ -41,7 +41,7 @@ class GetJobMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 4;</code>
      */
-    private $location = '';
+    protected $location = '';
 
     /**
      * Constructor.

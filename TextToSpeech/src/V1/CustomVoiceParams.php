@@ -20,7 +20,7 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $model = '';
+    protected $model = '';
     /**
      * Optional. Deprecated. The usage of the synthesized audio to be reported.
      *

@@ -30,7 +30,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool data_loss_from_other_row = 3;</code>
      */
-    private $data_loss_from_other_row = false;
+    protected $data_loss_from_other_row = false;
     /**
      * Describes the schema restrictions actively enforced in creating this
      * report. To learn more, see [Access and data-restriction
@@ -38,7 +38,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.analytics.data.v1beta.ResponseMetaData.SchemaRestrictionResponse schema_restriction_response = 4;</code>
      */
-    private $schema_restriction_response = null;
+    protected $schema_restriction_response = null;
     /**
      * The currency code used in this report. Intended to be used in formatting
      * currency metrics like `purchaseRevenue` for visualization. If currency_code
@@ -52,7 +52,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string currency_code = 5;</code>
      */
-    private $currency_code = null;
+    protected $currency_code = null;
     /**
      * The property's current timezone. Intended to be used to interpret
      * time-based dimensions like `hour` and `minute`. Formatted as strings from
@@ -61,13 +61,13 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string time_zone = 6;</code>
      */
-    private $time_zone = null;
+    protected $time_zone = null;
     /**
      * If empty reason is specified, the report is empty for this reason.
      *
      * Generated from protobuf field <code>optional string empty_reason = 7;</code>
      */
-    private $empty_reason = null;
+    protected $empty_reason = null;
     /**
      * If `subjectToThresholding` is true, this report is subject to thresholding
      * and only returns data that meets the minimum aggregation thresholds. It is
@@ -78,7 +78,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
      */
-    private $subject_to_thresholding = null;
+    protected $subject_to_thresholding = null;
     /**
      * If this report results is
      * [sampled](https://support.google.com/analytics/answer/13331292), this

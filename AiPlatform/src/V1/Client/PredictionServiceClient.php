@@ -134,6 +134,25 @@ final class PredictionServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cached_content resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cachedContent
+     *
+     * @return string The formatted cached_content resource.
+     */
+    public static function cachedContentName(string $project, string $location, string $cachedContent): string
+    {
+        return self::getPathTemplate('cachedContent')->render([
+            'project' => $project,
+            'location' => $location,
+            'cached_content' => $cachedContent,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a endpoint
      * resource.
      *
@@ -219,6 +238,7 @@ final class PredictionServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cachedContent: projects/{project}/locations/{location}/cachedContents/{cached_content}
      * - endpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}

@@ -26,7 +26,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      */
-    private $entity = '';
+    protected $entity = '';
     /**
      * The dimensions requested and displayed in the response. Requests are
      * allowed up to 9 dimensions.
@@ -60,7 +60,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AccessFilterExpression dimension_filter = 5;</code>
      */
-    private $dimension_filter = null;
+    protected $dimension_filter = null;
     /**
      * Metric filters allow you to restrict report response to specific metric
      * values which match the filter. Metric filters are applied after aggregating
@@ -69,7 +69,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AccessFilterExpression metric_filter = 6;</code>
      */
-    private $metric_filter = null;
+    protected $metric_filter = null;
     /**
      * The row count of the start row. The first row is counted as row 0. If
      * offset is unspecified, it is treated as 0. If offset is zero, then this
@@ -79,7 +79,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 7;</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The
      * API returns a maximum of 100,000 rows per request, no matter how many you
@@ -94,7 +94,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 8;</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
     /**
      * This request's time zone if specified. If unspecified, the property's time
      * zone is used. The request's time zone is used to interpret the start & end
@@ -105,7 +105,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string time_zone = 9;</code>
      */
-    private $time_zone = '';
+    protected $time_zone = '';
     /**
      * Specifies how rows are ordered in the response.
      *
@@ -119,7 +119,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool return_entity_quota = 11;</code>
      */
-    private $return_entity_quota = false;
+    protected $return_entity_quota = false;
     /**
      * Optional. Determines whether to include users who have never made an API
      * call in the response. If true, all users with access to the specified
@@ -129,7 +129,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_all_users = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_all_users = false;
+    protected $include_all_users = false;
     /**
      * Optional. Decides whether to return the users within user groups. This
      * field works only when include_all_users is set to true. If true, it will
@@ -138,7 +138,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool expand_groups = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $expand_groups = false;
+    protected $expand_groups = false;
 
     /**
      * Constructor.

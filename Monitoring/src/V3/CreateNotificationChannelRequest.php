@@ -27,13 +27,13 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The definition of the `NotificationChannel` to create.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $notification_channel = null;
+    protected $notification_channel = null;
 
     /**
      * @param string                                          $name                Required. The

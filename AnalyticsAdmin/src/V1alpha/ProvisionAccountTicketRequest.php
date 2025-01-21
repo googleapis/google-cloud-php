@@ -20,14 +20,14 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Account account = 1;</code>
      */
-    private $account = null;
+    protected $account = null;
     /**
      * Redirect URI where the user will be sent after accepting Terms of Service.
      * Must be configured in Cloud Console as a Redirect URI.
      *
      * Generated from protobuf field <code>string redirect_uri = 2;</code>
      */
-    private $redirect_uri = '';
+    protected $redirect_uri = '';
 
     /**
      * Constructor.

@@ -21,13 +21,13 @@ class CreateFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The Firebase link to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1beta.FirebaseLink firebase_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $firebase_link = null;
+    protected $firebase_link = null;
 
     /**
      * @param string                                      $parent       Required. Format: properties/{property_id}

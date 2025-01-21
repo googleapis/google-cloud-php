@@ -32,7 +32,7 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $custom_pronunciations = null;
+    protected $custom_pronunciations = null;
     protected $input_source;
 
     /**

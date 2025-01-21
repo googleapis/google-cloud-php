@@ -21,6 +21,12 @@ class ToolConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FunctionCallingConfig function_calling_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $function_calling_config = null;
+    /**
+     * Optional. Retrieval config.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RetrievalConfig retrieval_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retrieval_config = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class ToolConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\FunctionCallingConfig $function_calling_config
      *           Optional. Function calling config.
+     *     @type \Google\Cloud\AIPlatform\V1\RetrievalConfig $retrieval_config
+     *           Optional. Retrieval config.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class ToolConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FunctionCallingConfig::class);
         $this->function_calling_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Retrieval config.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RetrievalConfig retrieval_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\RetrievalConfig|null
+     */
+    public function getRetrievalConfig()
+    {
+        return $this->retrieval_config;
+    }
+
+    public function hasRetrievalConfig()
+    {
+        return isset($this->retrieval_config);
+    }
+
+    public function clearRetrievalConfig()
+    {
+        unset($this->retrieval_config);
+    }
+
+    /**
+     * Optional. Retrieval config.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.RetrievalConfig retrieval_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\RetrievalConfig $var
+     * @return $this
+     */
+    public function setRetrievalConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\RetrievalConfig::class);
+        $this->retrieval_config = $var;
 
         return $this;
     }

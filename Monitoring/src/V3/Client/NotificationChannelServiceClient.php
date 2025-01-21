@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -116,7 +116,8 @@ final class NotificationChannelServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/notification_channel_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/notification_channel_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -216,8 +217,10 @@ final class NotificationChannelServiceClient
      *
      * @return string The formatted organization_notification_channel resource.
      */
-    public static function organizationNotificationChannelName(string $organization, string $notificationChannel): string
-    {
+    public static function organizationNotificationChannelName(
+        string $organization,
+        string $notificationChannel
+    ): string {
         return self::getPathTemplate('organizationNotificationChannel')->render([
             'organization' => $organization,
             'notification_channel' => $notificationChannel,
@@ -391,8 +394,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNotificationChannel(CreateNotificationChannelRequest $request, array $callOptions = []): NotificationChannel
-    {
+    public function createNotificationChannel(
+        CreateNotificationChannelRequest $request,
+        array $callOptions = []
+    ): NotificationChannel {
         return $this->startApiCall('CreateNotificationChannel', $request, $callOptions)->wait();
     }
 
@@ -452,8 +457,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationChannel(GetNotificationChannelRequest $request, array $callOptions = []): NotificationChannel
-    {
+    public function getNotificationChannel(
+        GetNotificationChannelRequest $request,
+        array $callOptions = []
+    ): NotificationChannel {
         return $this->startApiCall('GetNotificationChannel', $request, $callOptions)->wait();
     }
 
@@ -481,8 +488,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationChannelDescriptor(GetNotificationChannelDescriptorRequest $request, array $callOptions = []): NotificationChannelDescriptor
-    {
+    public function getNotificationChannelDescriptor(
+        GetNotificationChannelDescriptorRequest $request,
+        array $callOptions = []
+    ): NotificationChannelDescriptor {
         return $this->startApiCall('GetNotificationChannelDescriptor', $request, $callOptions)->wait();
     }
 
@@ -529,8 +538,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationChannelVerificationCode(GetNotificationChannelVerificationCodeRequest $request, array $callOptions = []): GetNotificationChannelVerificationCodeResponse
-    {
+    public function getNotificationChannelVerificationCode(
+        GetNotificationChannelVerificationCodeRequest $request,
+        array $callOptions = []
+    ): GetNotificationChannelVerificationCodeResponse {
         return $this->startApiCall('GetNotificationChannelVerificationCode', $request, $callOptions)->wait();
     }
 
@@ -558,8 +569,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotificationChannelDescriptors(ListNotificationChannelDescriptorsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationChannelDescriptors(
+        ListNotificationChannelDescriptorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationChannelDescriptors', $request, $callOptions);
     }
 
@@ -587,8 +600,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotificationChannels(ListNotificationChannelsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationChannels(
+        ListNotificationChannelsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationChannels', $request, $callOptions);
     }
 
@@ -614,8 +629,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function sendNotificationChannelVerificationCode(SendNotificationChannelVerificationCodeRequest $request, array $callOptions = []): void
-    {
+    public function sendNotificationChannelVerificationCode(
+        SendNotificationChannelVerificationCodeRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('SendNotificationChannelVerificationCode', $request, $callOptions)->wait();
     }
 
@@ -647,8 +664,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNotificationChannel(UpdateNotificationChannelRequest $request, array $callOptions = []): NotificationChannel
-    {
+    public function updateNotificationChannel(
+        UpdateNotificationChannelRequest $request,
+        array $callOptions = []
+    ): NotificationChannel {
         return $this->startApiCall('UpdateNotificationChannel', $request, $callOptions)->wait();
     }
 
@@ -676,8 +695,10 @@ final class NotificationChannelServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function verifyNotificationChannel(VerifyNotificationChannelRequest $request, array $callOptions = []): NotificationChannel
-    {
+    public function verifyNotificationChannel(
+        VerifyNotificationChannelRequest $request,
+        array $callOptions = []
+    ): NotificationChannel {
         return $this->startApiCall('VerifyNotificationChannel', $request, $callOptions)->wait();
     }
 }
