@@ -108,7 +108,7 @@ class PubSubClient
         SchemaServiceClient::class
     ];
 
-    // The name of the service. Used in debug logging.    
+    // The name of the service. Used in debug logging.
     private const SERVICE_NAME = 'google.pubsub.v2.Pubsub';
 
     /**
