@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamObject extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The object resource's name.
+     * Output only. Identifier. The object resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -65,7 +65,7 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The object resource's name.
+     *           Output only. Identifier. The object resource's name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation time of the object.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -86,9 +86,9 @@ class StreamObject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The object resource's name.
+     * Output only. Identifier. The object resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -97,9 +97,9 @@ class StreamObject extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The object resource's name.
+     * Output only. Identifier. The object resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
