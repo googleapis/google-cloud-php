@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,39 +22,15 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\InterconnectAttachment;
+namespace Google\Cloud\Compute\V1\Enums\NetworkRoutingConfig;
 
 /**
- * Bandwidth contains string constants that represent the names of each value in
- * the google.cloud.compute.v1.InterconnectAttachment.Bandwidth descriptor.
+ * EffectiveBgpInterRegionCost contains string constants that represent the names
+ * of each value in the
+ * google.cloud.compute.v1.NetworkRoutingConfig.EffectiveBgpInterRegionCost
+ * descriptor.
  */
-class Bandwidth
+class EffectiveBgpInterRegionCost
 {
-    const UNDEFINED_BANDWIDTH = 'UNDEFINED_BANDWIDTH';
-
-    const BPS_100G = 'BPS_100G';
-
-    const BPS_100M = 'BPS_100M';
-
-    const BPS_10G = 'BPS_10G';
-
-    const BPS_1G = 'BPS_1G';
-
-    const BPS_200M = 'BPS_200M';
-
-    const BPS_20G = 'BPS_20G';
-
-    const BPS_2G = 'BPS_2G';
-
-    const BPS_300M = 'BPS_300M';
-
-    const BPS_400M = 'BPS_400M';
-
-    const BPS_500M = 'BPS_500M';
-
-    const BPS_50G = 'BPS_50G';
-
-    const BPS_50M = 'BPS_50M';
-
-    const BPS_5G = 'BPS_5G';
+    const UNDEFINED_EFFECTIVE_BGP_INTER_REGION_COST = 'UNDEFINED_EFFECTIVE_BGP_INTER_REGION_COST';
 }
