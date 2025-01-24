@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.privilegedaccessmanager.v1",
+    "libraryPackage": "Google\\Cloud\\PrivilegedAccessManager\\V1",
+    "services": {
+        "PrivilegedAccessManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrivilegedAccessManagerGapicClient",
+                    "rpcs": {
+                        "ApproveGrant": {
+                            "methods": [
+                                "approveGrant"
+                            ]
+                        },
+                        "CheckOnboardingStatus": {
+                            "methods": [
+                                "checkOnboardingStatus"
+                            ]
+                        },
+                        "CreateEntitlement": {
+                            "methods": [
+                                "createEntitlement"
+                            ]
+                        },
+                        "CreateGrant": {
+                            "methods": [
+                                "createGrant"
+                            ]
+                        },
+                        "DeleteEntitlement": {
+                            "methods": [
+                                "deleteEntitlement"
+                            ]
+                        },
+                        "DenyGrant": {
+                            "methods": [
+                                "denyGrant"
+                            ]
+                        },
+                        "GetEntitlement": {
+                            "methods": [
+                                "getEntitlement"
+                            ]
+                        },
+                        "GetGrant": {
+                            "methods": [
+                                "getGrant"
+                            ]
+                        },
+                        "ListEntitlements": {
+                            "methods": [
+                                "listEntitlements"
+                            ]
+                        },
+                        "ListGrants": {
+                            "methods": [
+                                "listGrants"
+                            ]
+                        },
+                        "RevokeGrant": {
+                            "methods": [
+                                "revokeGrant"
+                            ]
+                        },
+                        "SearchEntitlements": {
+                            "methods": [
+                                "searchEntitlements"
+                            ]
+                        },
+                        "SearchGrants": {
+                            "methods": [
+                                "searchGrants"
+                            ]
+                        },
+                        "UpdateEntitlement": {
+                            "methods": [
+                                "updateEntitlement"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

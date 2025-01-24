@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.policysimulator.v1",
+    "libraryPackage": "Google\\Cloud\\PolicySimulator\\V1",
+    "services": {
+        "Simulator": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SimulatorGapicClient",
+                    "rpcs": {
+                        "CreateReplay": {
+                            "methods": [
+                                "createReplay"
+                            ]
+                        },
+                        "GetReplay": {
+                            "methods": [
+                                "getReplay"
+                            ]
+                        },
+                        "ListReplayResults": {
+                            "methods": [
+                                "listReplayResults"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
