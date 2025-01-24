@@ -1,0 +1,63 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.accessapproval.v1",
+    "libraryPackage": "Google\\Cloud\\AccessApproval\\V1",
+    "services": {
+        "AccessApproval": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccessApprovalGapicClient",
+                    "rpcs": {
+                        "ApproveApprovalRequest": {
+                            "methods": [
+                                "approveApprovalRequest"
+                            ]
+                        },
+                        "DeleteAccessApprovalSettings": {
+                            "methods": [
+                                "deleteAccessApprovalSettings"
+                            ]
+                        },
+                        "DismissApprovalRequest": {
+                            "methods": [
+                                "dismissApprovalRequest"
+                            ]
+                        },
+                        "GetAccessApprovalServiceAccount": {
+                            "methods": [
+                                "getAccessApprovalServiceAccount"
+                            ]
+                        },
+                        "GetAccessApprovalSettings": {
+                            "methods": [
+                                "getAccessApprovalSettings"
+                            ]
+                        },
+                        "GetApprovalRequest": {
+                            "methods": [
+                                "getApprovalRequest"
+                            ]
+                        },
+                        "InvalidateApprovalRequest": {
+                            "methods": [
+                                "invalidateApprovalRequest"
+                            ]
+                        },
+                        "ListApprovalRequests": {
+                            "methods": [
+                                "listApprovalRequests"
+                            ]
+                        },
+                        "UpdateAccessApprovalSettings": {
+                            "methods": [
+                                "updateAccessApprovalSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
