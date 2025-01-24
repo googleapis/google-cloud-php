@@ -12,6 +12,9 @@
       <directory suffix=".php">Core/src/Testing</directory>
       <directory suffix=".php">dev</directory>
     </exclude>
+    <report>
+      <html outputDirectory=".build"/>
+    </report>
   </coverage>
   <testsuites>
     <testsuite name="Unit Test Suite">
