@@ -1,0 +1,67 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.clouddebugger.v2",
+    "libraryPackage": "Google\\Cloud\\Debugger\\V2",
+    "services": {
+        "Controller2": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "Controller2GapicClient",
+                    "rpcs": {
+                        "ListActiveBreakpoints": {
+                            "methods": [
+                                "listActiveBreakpoints"
+                            ]
+                        },
+                        "RegisterDebuggee": {
+                            "methods": [
+                                "registerDebuggee"
+                            ]
+                        },
+                        "UpdateActiveBreakpoint": {
+                            "methods": [
+                                "updateActiveBreakpoint"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Debugger2": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "Debugger2GapicClient",
+                    "rpcs": {
+                        "DeleteBreakpoint": {
+                            "methods": [
+                                "deleteBreakpoint"
+                            ]
+                        },
+                        "GetBreakpoint": {
+                            "methods": [
+                                "getBreakpoint"
+                            ]
+                        },
+                        "ListBreakpoints": {
+                            "methods": [
+                                "listBreakpoints"
+                            ]
+                        },
+                        "ListDebuggees": {
+                            "methods": [
+                                "listDebuggees"
+                            ]
+                        },
+                        "SetBreakpoint": {
+                            "methods": [
+                                "setBreakpoint"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
