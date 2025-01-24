@@ -51,6 +51,15 @@ $PROJECT_DIR/dev/google-cloud docfx \
     $STAGING_FLAG \
     $VERBOSITY_FLAG
 
+# Add Auth repo
+AUTH_DIR=$PROJECT_DIR/dev/vendor/google/auth
+$PROJECT_DIR/dev/google-cloud docfx \
+    --path $AUTH_DIR \
+    --out auth-out \
+    --metadata-version $(cat $AUTH_DIR/VERSION) \
+    $STAGING_FLAG \
+    $VERBOSITY_FLAG
+
 # If this run after a release, store the released artifacts.
 if [ "$KOKORO_GITHUB_COMMIT" != "" ]; then
     # Move to the project directory
