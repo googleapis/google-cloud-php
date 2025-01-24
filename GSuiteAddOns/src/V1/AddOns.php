@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Workspace Add-on configuration.
+ * A Google Workspace add-on configuration.
  *
  * Generated from protobuf message <code>google.cloud.gsuiteaddons.v1.AddOns</code>
  */
 class AddOns extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Configuration that is common across all Google Workspace Add-ons.
+     * Configuration that is common across all Google Workspace add-ons.
      *
      * Generated from protobuf field <code>.google.apps.script.type.CommonAddOnManifest common = 1;</code>
      */
@@ -71,7 +71,7 @@ class AddOns extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Script\Type\CommonAddOnManifest $common
-     *           Configuration that is common across all Google Workspace Add-ons.
+     *           Configuration that is common across all Google Workspace add-ons.
      *     @type \Google\Apps\Script\Type\Gmail\GmailAddOnManifest $gmail
      *           Gmail add-on configuration.
      *     @type \Google\Apps\Script\Type\Drive\DriveAddOnManifest $drive
@@ -94,7 +94,7 @@ class AddOns extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration that is common across all Google Workspace Add-ons.
+     * Configuration that is common across all Google Workspace add-ons.
      *
      * Generated from protobuf field <code>.google.apps.script.type.CommonAddOnManifest common = 1;</code>
      * @return \Google\Apps\Script\Type\CommonAddOnManifest|null
@@ -115,7 +115,7 @@ class AddOns extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration that is common across all Google Workspace Add-ons.
+     * Configuration that is common across all Google Workspace add-ons.
      *
      * Generated from protobuf field <code>.google.apps.script.type.CommonAddOnManifest common = 1;</code>
      * @param \Google\Apps\Script\Type\CommonAddOnManifest $var
