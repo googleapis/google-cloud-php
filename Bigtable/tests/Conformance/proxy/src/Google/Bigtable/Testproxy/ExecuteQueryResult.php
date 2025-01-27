@@ -23,12 +23,6 @@ class ExecuteQueryResult extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * deprecated
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.ResultSetMetadata result_set_metadata = 2;</code>
-     */
-    protected $result_set_metadata = null;
-    /**
      * Name and type information for the query result.
      *
      * Generated from protobuf field <code>.google.bigtable.testproxy.ResultSetMetadata metadata = 4;</code>
@@ -49,8 +43,6 @@ class ExecuteQueryResult extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Rpc\Status $status
      *           The RPC status from the client binding.
-     *     @type \Google\Cloud\Bigtable\V2\ResultSetMetadata $result_set_metadata
-     *           deprecated
      *     @type \Google\Bigtable\Testproxy\ResultSetMetadata $metadata
      *           Name and type information for the query result.
      *     @type array<\Google\Bigtable\Testproxy\SqlRow>|\Google\Protobuf\Internal\RepeatedField $rows
@@ -94,42 +86,6 @@ class ExecuteQueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->status = $var;
-
-        return $this;
-    }
-
-    /**
-     * deprecated
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.ResultSetMetadata result_set_metadata = 2;</code>
-     * @return \Google\Cloud\Bigtable\V2\ResultSetMetadata|null
-     */
-    public function getResultSetMetadata()
-    {
-        return $this->result_set_metadata;
-    }
-
-    public function hasResultSetMetadata()
-    {
-        return isset($this->result_set_metadata);
-    }
-
-    public function clearResultSetMetadata()
-    {
-        unset($this->result_set_metadata);
-    }
-
-    /**
-     * deprecated
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.ResultSetMetadata result_set_metadata = 2;</code>
-     * @param \Google\Cloud\Bigtable\V2\ResultSetMetadata $var
-     * @return $this
-     */
-    public function setResultSetMetadata($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\ResultSetMetadata::class);
-        $this->result_set_metadata = $var;
 
         return $this;
     }

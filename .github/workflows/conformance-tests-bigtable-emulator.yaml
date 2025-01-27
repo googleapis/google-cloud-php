@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: googleapis/cloud-bigtable-clients-test
-          ref: v0.0.3
+          ref: main
           path: cloud-bigtable-clients-test
 
       - uses: actions/setup-go@v5

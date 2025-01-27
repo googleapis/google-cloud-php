@@ -521,7 +521,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $request = $in->getRequest();
 
         try {
-            $response = $client->executeQuery($request);
+            $stream = $client->executeQuery($request);
         } catch (\Google\ApiCore\ApiException $e) {
             return $out->setStatus(new Status([
                 'code' => $e->getCode(),
@@ -529,12 +529,16 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             ]));
         }
 
-        $out->setResultSetMetadata($response->getMetadata());
-
         $rows = [];
         $columns = [];
-        foreach ($response->getResults() as $partialResultSet) {
-            foreach ($partialResultSet->getPartialRows() as $partialRows) {
+        /** @var ExecuteQueryResponse $response */
+        foreach ($stream->readAll() as $response) {
+            if ($metadata = $response->getMetadata()) {
+                $columns = $metadata->getProtoSchema()->getColumns();
+            }
+
+            if ($partialResultSet = $response->getResults()) {
+                $partialRows = $partialResultSet->getProtoRowsBatch();
                 $data = $partialRows->getBatchData();
                 $protoRows = new ProtoRows();
                 $protoRows->mergeFromString($data);
