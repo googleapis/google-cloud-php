@@ -23,6 +23,32 @@
 return [
     'interfaces' => [
         'google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore' => [
+            'CreateCustomer' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=organizations/*/locations/*}/customers',
+                'body' => 'customer',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'customer_id',
+                ],
+            ],
+            'DeleteCustomer' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=organizations/*/locations/*/customers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomer' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=organizations/*/locations/*/customers/*}',
@@ -107,6 +133,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomer' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{customer.name=organizations/*/locations/*/customers/*}',
+                'body' => 'customer',
+                'placeholders' => [
+                    'customer.name' => [
+                        'getters' => [
+                            'getCustomer',
+                            'getName',
                         ],
                     ],
                 ],

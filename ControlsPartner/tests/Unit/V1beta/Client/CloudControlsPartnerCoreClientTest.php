@@ -28,7 +28,9 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\CloudControlsPartner\V1beta\AccessApprovalRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\Client\CloudControlsPartnerCoreClient;
+use Google\Cloud\CloudControlsPartner\V1beta\CreateCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\Customer;
+use Google\Cloud\CloudControlsPartner\V1beta\DeleteCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\EkmConnections;
 use Google\Cloud\CloudControlsPartner\V1beta\GetCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\GetEkmConnectionsRequest;
@@ -43,7 +45,9 @@ use Google\Cloud\CloudControlsPartner\V1beta\ListWorkloadsRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\ListWorkloadsResponse;
 use Google\Cloud\CloudControlsPartner\V1beta\Partner;
 use Google\Cloud\CloudControlsPartner\V1beta\PartnerPermissions;
+use Google\Cloud\CloudControlsPartner\V1beta\UpdateCustomerRequest;
 use Google\Cloud\CloudControlsPartner\V1beta\Workload;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -78,6 +82,163 @@ class CloudControlsPartnerCoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createCustomerTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $isOnboarded = false;
+        $organizationDomain = 'organizationDomain1611019600';
+        $expectedResponse = new Customer();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIsOnboarded($isOnboarded);
+        $expectedResponse->setOrganizationDomain($organizationDomain);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $customer = new Customer();
+        $customerDisplayName = 'customerDisplayName1139541935';
+        $customer->setDisplayName($customerDisplayName);
+        $customerId = 'customerId-1772061412';
+        $request = (new CreateCustomerRequest())
+            ->setParent($formattedParent)
+            ->setCustomer($customer)
+            ->setCustomerId($customerId);
+        $response = $gapicClient->createCustomer($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore/CreateCustomer',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCustomer();
+        $this->assertProtobufEquals($customer, $actualValue);
+        $actualValue = $actualRequestObject->getCustomerId();
+        $this->assertProtobufEquals($customerId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomerExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $customer = new Customer();
+        $customerDisplayName = 'customerDisplayName1139541935';
+        $customer->setDisplayName($customerDisplayName);
+        $customerId = 'customerId-1772061412';
+        $request = (new CreateCustomerRequest())
+            ->setParent($formattedParent)
+            ->setCustomer($customer)
+            ->setCustomerId($customerId);
+        try {
+            $gapicClient->createCustomer($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomerTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->customerName('[ORGANIZATION]', '[LOCATION]', '[CUSTOMER]');
+        $request = (new DeleteCustomerRequest())->setName($formattedName);
+        $gapicClient->deleteCustomer($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore/DeleteCustomer',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteCustomerExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->customerName('[ORGANIZATION]', '[LOCATION]', '[CUSTOMER]');
+        $request = (new DeleteCustomerRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteCustomer($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getCustomerTest()
     {
         $transport = $this->createTransport();
@@ -89,10 +250,12 @@ class CloudControlsPartnerCoreClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $isOnboarded = false;
+        $organizationDomain = 'organizationDomain1611019600';
         $expectedResponse = new Customer();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsOnboarded($isOnboarded);
+        $expectedResponse->setOrganizationDomain($organizationDomain);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->customerName('[ORGANIZATION]', '[LOCATION]', '[CUSTOMER]');
@@ -666,7 +829,7 @@ class CloudControlsPartnerCoreClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getCustomerAsyncTest()
+    public function updateCustomerTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -674,29 +837,120 @@ class CloudControlsPartnerCoreClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
+        $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $isOnboarded = false;
+        $organizationDomain = 'organizationDomain1611019600';
         $expectedResponse = new Customer();
-        $expectedResponse->setName($name2);
+        $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsOnboarded($isOnboarded);
+        $expectedResponse->setOrganizationDomain($organizationDomain);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->customerName('[ORGANIZATION]', '[LOCATION]', '[CUSTOMER]');
-        $request = (new GetCustomerRequest())->setName($formattedName);
-        $response = $gapicClient->getCustomerAsync($request)->wait();
+        $customer = new Customer();
+        $customerDisplayName = 'customerDisplayName1139541935';
+        $customer->setDisplayName($customerDisplayName);
+        $request = (new UpdateCustomerRequest())->setCustomer($customer);
+        $response = $gapicClient->updateCustomer($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore/GetCustomer',
+            '/google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore/UpdateCustomer',
             $actualFuncCall
         );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getCustomer();
+        $this->assertProtobufEquals($customer, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCustomerExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $customer = new Customer();
+        $customerDisplayName = 'customerDisplayName1139541935';
+        $customer->setDisplayName($customerDisplayName);
+        $request = (new UpdateCustomerRequest())->setCustomer($customer);
+        try {
+            $gapicClient->updateCustomer($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomerAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $isOnboarded = false;
+        $organizationDomain = 'organizationDomain1611019600';
+        $expectedResponse = new Customer();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIsOnboarded($isOnboarded);
+        $expectedResponse->setOrganizationDomain($organizationDomain);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $customer = new Customer();
+        $customerDisplayName = 'customerDisplayName1139541935';
+        $customer->setDisplayName($customerDisplayName);
+        $customerId = 'customerId-1772061412';
+        $request = (new CreateCustomerRequest())
+            ->setParent($formattedParent)
+            ->setCustomer($customer)
+            ->setCustomerId($customerId);
+        $response = $gapicClient->createCustomerAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.cloudcontrolspartner.v1beta.CloudControlsPartnerCore/CreateCustomer',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCustomer();
+        $this->assertProtobufEquals($customer, $actualValue);
+        $actualValue = $actualRequestObject->getCustomerId();
+        $this->assertProtobufEquals($customerId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }
