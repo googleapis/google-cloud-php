@@ -103,7 +103,7 @@ items:
         -
           id: '↳ credentials'
           var_type: string|array|FetchAuthTokenInterface|CredentialsWrapper
-          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <a href="https://googleapis.github.io/google-auth-library-php/main/Google/Auth/FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</a> object or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
+          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <xref uid="\Google\Auth\FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</xref> object or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
         -
           id: '↳ credentialsConfig'
           var_type: array
