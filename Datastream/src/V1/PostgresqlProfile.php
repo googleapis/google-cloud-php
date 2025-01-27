@@ -46,6 +46,15 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $database = '';
+    /**
+     * Optional. SSL configuration for the PostgreSQL connection.
+     * In case PostgresqlSslConfig is not set, the connection will use the default
+     * SSL mode, which is `prefer` (i.e. this mode will only use encryption if
+     * enabled from database side, otherwise will use unencrypted communication)
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlSslConfig ssl_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ssl_config = null;
 
     /**
      * Constructor.
@@ -64,6 +73,11 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
      *           the `secret_manager_stored_password` field.
      *     @type string $database
      *           Required. Database for the PostgreSQL connection.
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlSslConfig $ssl_config
+     *           Optional. SSL configuration for the PostgreSQL connection.
+     *           In case PostgresqlSslConfig is not set, the connection will use the default
+     *           SSL mode, which is `prefer` (i.e. this mode will only use encryption if
+     *           enabled from database side, otherwise will use unencrypted communication)
      * }
      */
     public function __construct($data = NULL) {
@@ -199,6 +213,48 @@ class PostgresqlProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SSL configuration for the PostgreSQL connection.
+     * In case PostgresqlSslConfig is not set, the connection will use the default
+     * SSL mode, which is `prefer` (i.e. this mode will only use encryption if
+     * enabled from database side, otherwise will use unencrypted communication)
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlSslConfig ssl_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastream\V1\PostgresqlSslConfig|null
+     */
+    public function getSslConfig()
+    {
+        return $this->ssl_config;
+    }
+
+    public function hasSslConfig()
+    {
+        return isset($this->ssl_config);
+    }
+
+    public function clearSslConfig()
+    {
+        unset($this->ssl_config);
+    }
+
+    /**
+     * Optional. SSL configuration for the PostgreSQL connection.
+     * In case PostgresqlSslConfig is not set, the connection will use the default
+     * SSL mode, which is `prefer` (i.e. this mode will only use encryption if
+     * enabled from database side, otherwise will use unencrypted communication)
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlSslConfig ssl_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastream\V1\PostgresqlSslConfig $var
+     * @return $this
+     */
+    public function setSslConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlSslConfig::class);
+        $this->ssl_config = $var;
 
         return $this;
     }

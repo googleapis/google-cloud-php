@@ -35,6 +35,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddAssociationNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\AddRuleNetworkFirewallPolicyRequest;
+use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\CloneRulesNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\DeleteNetworkFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\FirewallPolicy;
@@ -66,6 +67,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<OperationResponse> addAssociationAsync(AddAssociationNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> addRuleAsync(AddRuleNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListNetworkFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> cloneRulesAsync(CloneRulesNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FirewallPolicy> getAsync(GetNetworkFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -213,6 +215,12 @@ final class NetworkFirewallPoliciesClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -319,6 +327,33 @@ final class NetworkFirewallPoliciesClient
     public function addRule(AddRuleNetworkFirewallPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('AddRule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves an aggregated list of network firewall policies, listing network firewall policies from all applicable scopes (global and regional) and grouping the results per scope. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     *
+     * The async variant is {@see NetworkFirewallPoliciesClient::aggregatedListAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkFirewallPoliciesClient/aggregated_list.php
+     *
+     * @param AggregatedListNetworkFirewallPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function aggregatedList(AggregatedListNetworkFirewallPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
     /**
