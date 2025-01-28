@@ -20,9 +20,9 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * level. If requested at the account level, Data Access Reports include all
      * access for all properties under that account.
      * To request at the property level, entity should be for example
-     * 'properties/123' if "123" is your GA4 property ID. To request at the
-     * account level, entity should be for example 'accounts/1234' if "1234" is
-     * your GA4 Account ID.
+     * 'properties/123' if "123" is your Google Analytics property ID. To request
+     * at the account level, entity should be for example 'accounts/1234' if
+     * "1234" is your Google Analytics Account ID.
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      */
@@ -151,9 +151,9 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *           level. If requested at the account level, Data Access Reports include all
      *           access for all properties under that account.
      *           To request at the property level, entity should be for example
-     *           'properties/123' if "123" is your GA4 property ID. To request at the
-     *           account level, entity should be for example 'accounts/1234' if "1234" is
-     *           your GA4 Account ID.
+     *           'properties/123' if "123" is your Google Analytics property ID. To request
+     *           at the account level, entity should be for example 'accounts/1234' if
+     *           "1234" is your Google Analytics Account ID.
      *     @type array<\Google\Analytics\Admin\V1alpha\AccessDimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimensions requested and displayed in the response. Requests are
      *           allowed up to 9 dimensions.
@@ -230,9 +230,9 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * level. If requested at the account level, Data Access Reports include all
      * access for all properties under that account.
      * To request at the property level, entity should be for example
-     * 'properties/123' if "123" is your GA4 property ID. To request at the
-     * account level, entity should be for example 'accounts/1234' if "1234" is
-     * your GA4 Account ID.
+     * 'properties/123' if "123" is your Google Analytics property ID. To request
+     * at the account level, entity should be for example 'accounts/1234' if
+     * "1234" is your Google Analytics Account ID.
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      * @return string
@@ -247,9 +247,9 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * level. If requested at the account level, Data Access Reports include all
      * access for all properties under that account.
      * To request at the property level, entity should be for example
-     * 'properties/123' if "123" is your GA4 property ID. To request at the
-     * account level, entity should be for example 'accounts/1234' if "1234" is
-     * your GA4 Account ID.
+     * 'properties/123' if "123" is your Google Analytics property ID. To request
+     * at the account level, entity should be for example 'accounts/1234' if
+     * "1234" is your Google Analytics Account ID.
      *
      * Generated from protobuf field <code>string entity = 1;</code>
      * @param string $var

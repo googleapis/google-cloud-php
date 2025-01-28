@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class EventMapping extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the GA4 event. It must always be set.
+     * Required. Name of the Google Analytics event. It must always be set.
      * The max allowed display name length is 40 UTF-16 code units.
      *
      * Generated from protobuf field <code>string event_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -62,7 +62,7 @@ class EventMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $event_name
-     *           Required. Name of the GA4 event. It must always be set.
+     *           Required. Name of the Google Analytics event. It must always be set.
      *           The max allowed display name length is 40 UTF-16 code units.
      *     @type int|string $min_event_count
      *           At least one of the following four min/max values must be set. The
@@ -88,7 +88,7 @@ class EventMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the GA4 event. It must always be set.
+     * Required. Name of the Google Analytics event. It must always be set.
      * The max allowed display name length is 40 UTF-16 code units.
      *
      * Generated from protobuf field <code>string event_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -100,7 +100,7 @@ class EventMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the GA4 event. It must always be set.
+     * Required. Name of the Google Analytics event. It must always be set.
      * The max allowed display name length is 40 UTF-16 code units.
      *
      * Generated from protobuf field <code>string event_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

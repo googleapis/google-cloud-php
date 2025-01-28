@@ -90,6 +90,7 @@ use Google\Analytics\Admin\V1alpha\CustomMetric\MeasurementUnit;
 use Google\Analytics\Admin\V1alpha\CustomMetric\MetricScope;
 use Google\Analytics\Admin\V1alpha\DataRedactionSettings;
 use Google\Analytics\Admin\V1alpha\DataRetentionSettings;
+use Google\Analytics\Admin\V1alpha\DataRetentionSettings\RetentionDuration;
 use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DataStream;
 use Google\Analytics\Admin\V1alpha\DataStream\DataStreamType;
@@ -10220,6 +10221,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataRetentionSettings = new DataRetentionSettings();
+        $dataRetentionSettingsEventDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setEventDataRetention($dataRetentionSettingsEventDataRetention);
+        $dataRetentionSettingsUserDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setUserDataRetention($dataRetentionSettingsUserDataRetention);
         $updateMask = new FieldMask();
         $request = (new UpdateDataRetentionSettingsRequest())
             ->setDataRetentionSettings($dataRetentionSettings)
@@ -10264,6 +10269,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $dataRetentionSettings = new DataRetentionSettings();
+        $dataRetentionSettingsEventDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setEventDataRetention($dataRetentionSettingsEventDataRetention);
+        $dataRetentionSettingsUserDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setUserDataRetention($dataRetentionSettingsUserDataRetention);
         $updateMask = new FieldMask();
         $request = (new UpdateDataRetentionSettingsRequest())
             ->setDataRetentionSettings($dataRetentionSettings)

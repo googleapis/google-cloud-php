@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A proposal for a link between a GA4 property and a Display & Video 360
- * advertiser.
+ * A proposal for a link between a Google Analytics property and a Display &
+ * Video 360 advertiser.
  * A proposal is converted to a DisplayVideo360AdvertiserLink once approved.
  * Google Analytics admins approve inbound proposals while Display & Video 360
  * admins approve outbound proposals.
