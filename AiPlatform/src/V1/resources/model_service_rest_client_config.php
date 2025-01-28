@@ -160,6 +160,17 @@ return [
                     ],
                 ],
             ],
+            'ListModelVersionCheckpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:listCheckpoints',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListModelVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:listVersions',

@@ -46,6 +46,8 @@ use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsResponse;
+use Google\Cloud\AIPlatform\V1\ListModelVersionCheckpointsRequest;
+use Google\Cloud\AIPlatform\V1\ListModelVersionCheckpointsResponse;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsRequest;
 use Google\Cloud\AIPlatform\V1\ListModelVersionsResponse;
 use Google\Cloud\AIPlatform\V1\ListModelsRequest;
@@ -54,6 +56,7 @@ use Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest;
 use Google\Cloud\AIPlatform\V1\Model;
 use Google\Cloud\AIPlatform\V1\ModelEvaluation;
 use Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
+use Google\Cloud\AIPlatform\V1\ModelVersionCheckpoint;
 use Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetRequest;
 use Google\Cloud\AIPlatform\V1\UpdateExplanationDatasetResponse;
 use Google\Cloud\AIPlatform\V1\UpdateModelRequest;
@@ -777,6 +780,7 @@ class ModelServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $versionDescription = 'versionDescription1423604501';
+        $defaultCheckpointId = 'defaultCheckpointId-209456716';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
         $pipelineJob = 'pipelineJob361059488';
@@ -791,6 +795,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setVersionDescription($versionDescription);
+        $expectedResponse->setDefaultCheckpointId($defaultCheckpointId);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
         $expectedResponse->setPipelineJob($pipelineJob);
@@ -1228,6 +1233,77 @@ class ModelServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listModelVersionCheckpointsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $checkpointsElement = new ModelVersionCheckpoint();
+        $checkpoints = [$checkpointsElement];
+        $expectedResponse = new ListModelVersionCheckpointsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setCheckpoints($checkpoints);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $request = (new ListModelVersionCheckpointsRequest())->setName($formattedName);
+        $response = $gapicClient->listModelVersionCheckpoints($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getCheckpoints()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.ModelService/ListModelVersionCheckpoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listModelVersionCheckpointsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $request = (new ListModelVersionCheckpointsRequest())->setName($formattedName);
+        try {
+            $gapicClient->listModelVersionCheckpoints($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listModelVersionsTest()
     {
         $transport = $this->createTransport();
@@ -1383,6 +1459,7 @@ class ModelServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $versionDescription = 'versionDescription1423604501';
+        $defaultCheckpointId = 'defaultCheckpointId-209456716';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
         $pipelineJob = 'pipelineJob361059488';
@@ -1397,6 +1474,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setVersionDescription($versionDescription);
+        $expectedResponse->setDefaultCheckpointId($defaultCheckpointId);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
         $expectedResponse->setPipelineJob($pipelineJob);
@@ -1598,6 +1676,7 @@ class ModelServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
         $versionDescription = 'versionDescription1423604501';
+        $defaultCheckpointId = 'defaultCheckpointId-209456716';
         $metadataSchemaUri = 'metadataSchemaUri-152319778';
         $trainingPipeline = 'trainingPipeline-2026166169';
         $pipelineJob = 'pipelineJob361059488';
@@ -1612,6 +1691,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setVersionDescription($versionDescription);
+        $expectedResponse->setDefaultCheckpointId($defaultCheckpointId);
         $expectedResponse->setMetadataSchemaUri($metadataSchemaUri);
         $expectedResponse->setTrainingPipeline($trainingPipeline);
         $expectedResponse->setPipelineJob($pipelineJob);

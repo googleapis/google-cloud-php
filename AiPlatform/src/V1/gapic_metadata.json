@@ -1735,6 +1735,11 @@
                                 "listModelEvaluations"
                             ]
                         },
+                        "ListModelVersionCheckpoints": {
+                            "methods": [
+                                "listModelVersionCheckpoints"
+                            ]
+                        },
                         "ListModelVersions": {
                             "methods": [
                                 "listModelVersions"
