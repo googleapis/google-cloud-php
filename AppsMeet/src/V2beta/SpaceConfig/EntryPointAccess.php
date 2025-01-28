@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Entry points that can be used to join a meeting.  Example:
- * `meet.google.com`, the Embed SDK Web, or a mobile application.
+ * `meet.google.com`, the Meet Embed SDK Web, or a mobile application.
  *
  * Protobuf type <code>google.apps.meet.v2beta.SpaceConfig.EntryPointAccess</code>
  */
@@ -28,8 +28,8 @@ class EntryPointAccess
     const ALL = 1;
     /**
      * Only entry points owned by the Google Cloud project that created the
-     * space can be used to join meetings in this space.  Apps can use the Embed
-     * SDK Web or mobile Meet SDKs to create owned entry points.
+     * space can be used to join meetings in this space. Apps can use the Meet
+     * Embed SDK Web or mobile Meet SDKs to create owned entry points.
      *
      * Generated from protobuf enum <code>CREATOR_APP_ONLY = 2;</code>
      */

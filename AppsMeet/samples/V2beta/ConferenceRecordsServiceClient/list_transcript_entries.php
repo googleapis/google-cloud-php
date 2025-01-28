@@ -30,7 +30,6 @@ use Google\Apps\Meet\V2beta\ListTranscriptEntriesRequest;
 use Google\Apps\Meet\V2beta\TranscriptEntry;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Lists the structured transcript entries per transcript. By default, ordered
  * by start time and in ascending order.
  *

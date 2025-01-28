@@ -26,9 +26,9 @@ class SignedinUser extends \Google\Protobuf\Internal\Message
      */
     protected $user = '';
     /**
-     * Output only. For a personal device, it's the user's first and last name.
-     * For a robot account, it's the admin specified device name. For example,
-     * "Altostrat Room".
+     * Output only. For a personal device, it's the user's first name and last
+     * name. For a robot account, it's the administrator-specified device name.
+     * For example, "Altostrat Room".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -44,9 +44,9 @@ class SignedinUser extends \Google\Protobuf\Internal\Message
      *           Output only. Unique ID for the user. Interoperable with Admin SDK API and
      *           People API. Format: `users/{user}`
      *     @type string $display_name
-     *           Output only. For a personal device, it's the user's first and last name.
-     *           For a robot account, it's the admin specified device name. For example,
-     *           "Altostrat Room".
+     *           Output only. For a personal device, it's the user's first name and last
+     *           name. For a robot account, it's the administrator-specified device name.
+     *           For example, "Altostrat Room".
      * }
      */
     public function __construct($data = NULL) {
@@ -83,9 +83,9 @@ class SignedinUser extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. For a personal device, it's the user's first and last name.
-     * For a robot account, it's the admin specified device name. For example,
-     * "Altostrat Room".
+     * Output only. For a personal device, it's the user's first name and last
+     * name. For a robot account, it's the administrator-specified device name.
+     * For example, "Altostrat Room".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -96,9 +96,9 @@ class SignedinUser extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. For a personal device, it's the user's first and last name.
-     * For a robot account, it's the admin specified device name. For example,
-     * "Altostrat Room".
+     * Output only. For a personal device, it's the user's first name and last
+     * name. For a robot account, it's the administrator-specified device name.
+     * For example, "Altostrat Room".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

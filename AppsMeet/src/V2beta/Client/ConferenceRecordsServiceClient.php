@@ -107,7 +107,10 @@ final class ConferenceRecordsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/meetings.space.created',
+        'https://www.googleapis.com/auth/meetings.space.readonly',
+    ];
 
     private static function getClientDefaults()
     {
@@ -362,7 +365,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Gets a conference record by conference ID.
      *
      * The async variant is
@@ -392,7 +394,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Gets a participant by participant ID.
      *
      * The async variant is
@@ -422,7 +423,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Gets a participant session by participant session ID.
      *
      * The async variant is
@@ -454,7 +454,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Gets a recording by recording ID.
      *
      * The async variant is {@see ConferenceRecordsServiceClient::getRecordingAsync()}
@@ -484,7 +483,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Gets a transcript by transcript ID.
      *
      * The async variant is {@see ConferenceRecordsServiceClient::getTranscriptAsync()}
@@ -514,7 +512,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Gets a `TranscriptEntry` resource by entry ID.
      *
      * Note: The transcript entries returned by the Google Meet API might not
@@ -548,8 +545,8 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Lists the conference records by start time and in descending order.
+     * Lists the conference records. By default, ordered by start time and in
+     * descending order.
      *
      * The async variant is
      * {@see ConferenceRecordsServiceClient::listConferenceRecordsAsync()} .
@@ -580,9 +577,8 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Lists the participant sessions of a participant in a conference record, by
-     * default ordered by join time and in descending order. This API supports
+     * Lists the participant sessions of a participant in a conference record. By
+     * default, ordered by join time and in descending order. This API supports
      * `fields` as standard parameters like every other API. However, when the
      * `fields` request parameter is omitted this API defaults to
      * `'participantsessions/*, next_page_token'`.
@@ -616,8 +612,7 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Lists the participants in a conference record, by default ordered by join
+     * Lists the participants in a conference record. By default, ordered by join
      * time and in descending order. This API supports `fields` as standard
      * parameters like every other API. However, when the `fields` request
      * parameter is omitted, this API defaults to `'participants/*,
@@ -650,8 +645,8 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Lists the recording resources from the conference record.
+     * Lists the recording resources from the conference record. By default,
+     * ordered by start time and in ascending order.
      *
      * The async variant is
      * {@see ConferenceRecordsServiceClient::listRecordingsAsync()} .
@@ -680,7 +675,6 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
      * Lists the structured transcript entries per transcript. By default, ordered
      * by start time and in ascending order.
      *
@@ -717,8 +711,8 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Lists the set of transcripts from the conference record.
+     * Lists the set of transcripts from the conference record. By default,
+     * ordered by start time and in ascending order.
      *
      * The async variant is
      * {@see ConferenceRecordsServiceClient::listTranscriptsAsync()} .

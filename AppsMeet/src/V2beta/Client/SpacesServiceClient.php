@@ -29,13 +29,19 @@ namespace Google\Apps\Meet\V2beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Apps\Meet\V2beta\CreateMemberRequest;
 use Google\Apps\Meet\V2beta\CreateSpaceRequest;
+use Google\Apps\Meet\V2beta\DeleteMemberRequest;
 use Google\Apps\Meet\V2beta\EndActiveConferenceRequest;
+use Google\Apps\Meet\V2beta\GetMemberRequest;
 use Google\Apps\Meet\V2beta\GetSpaceRequest;
+use Google\Apps\Meet\V2beta\ListMembersRequest;
+use Google\Apps\Meet\V2beta\Member;
 use Google\Apps\Meet\V2beta\Space;
 use Google\Apps\Meet\V2beta\UpdateSpaceRequest;
 use Google\Auth\FetchAuthTokenInterface;
@@ -55,9 +61,13 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<Member> createMemberAsync(CreateMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteMemberAsync(DeleteMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> endActiveConferenceAsync(EndActiveConferenceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Member> getMemberAsync(GetMemberRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMembersAsync(ListMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
  */
 final class SpacesServiceClient
@@ -85,7 +95,11 @@ final class SpacesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/meetings.space.created',
+        'https://www.googleapis.com/auth/meetings.space.readonly',
+        'https://www.googleapis.com/auth/meetings.space.settings',
+    ];
 
     private static function getClientDefaults()
     {
@@ -124,6 +138,25 @@ final class SpacesServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a member
+     * resource.
+     *
+     * @param string $space
+     * @param string $member
+     *
+     * @return string The formatted member resource.
+     *
+     * @experimental
+     */
+    public static function memberName(string $space, string $member): string
+    {
+        return self::getPathTemplate('member')->render([
+            'space' => $space,
+            'member' => $member,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a space
      * resource.
      *
@@ -145,6 +178,7 @@ final class SpacesServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - conferenceRecord: conferenceRecords/{conference_record}
+     * - member: spaces/{space}/members/{member}
      * - space: spaces/{space}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -250,7 +284,40 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Create a member.
+     *
+     * This API supports the `fields` parameter in
+     * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).
+     * When the `fields` parameter is omitted, this API response will default to
+     * "name,email,role,user".
+     *
+     * The async variant is {@see SpacesServiceClient::createMemberAsync()} .
+     *
+     * @example samples/V2beta/SpacesServiceClient/create_member.php
+     *
+     * @param CreateMemberRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Member
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createMember(CreateMemberRequest $request, array $callOptions = []): Member
+    {
+        return $this->startApiCall('CreateMember', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a space.
      *
      * The async variant is {@see SpacesServiceClient::createSpaceAsync()} .
@@ -279,8 +346,37 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Ends an active conference (if there is one).
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Delete the member who was previously assigned roles in the space.
+     *
+     * The async variant is {@see SpacesServiceClient::deleteMemberAsync()} .
+     *
+     * @example samples/V2beta/SpacesServiceClient/delete_member.php
+     *
+     * @param DeleteMemberRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteMember(DeleteMemberRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteMember', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Ends an active conference (if there's one).
+     *
+     * For an example, see [End active
+     * conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).
      *
      * The async variant is {@see SpacesServiceClient::endActiveConferenceAsync()} .
      *
@@ -306,8 +402,44 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Gets a space by `space_id` or `meeting_code`.
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * Get a member.
+     *
+     * This API supports the `fields` parameter in
+     * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).
+     * When the `fields` parameter is omitted, this API response will default to
+     * "name,email,role,user".
+     *
+     * The async variant is {@see SpacesServiceClient::getMemberAsync()} .
+     *
+     * @example samples/V2beta/SpacesServiceClient/get_member.php
+     *
+     * @param GetMemberRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Member
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getMember(GetMemberRequest $request, array $callOptions = []): Member
+    {
+        return $this->startApiCall('GetMember', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details about a meeting space.
+     *
+     * For an example, see [Get a meeting
+     * space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).
      *
      * The async variant is {@see SpacesServiceClient::getSpaceAsync()} .
      *
@@ -335,8 +467,44 @@ final class SpacesServiceClient
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview).
-     * Updates a space.
+     * [Developer Preview](https://developers.google.com/workspace/preview):
+     * List members.
+     *
+     * This API supports the `fields` parameter in
+     * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).
+     * When the `fields` parameter is omitted this API response will default to
+     * "name,email,role,user".
+     *
+     * The async variant is {@see SpacesServiceClient::listMembersAsync()} .
+     *
+     * @example samples/V2beta/SpacesServiceClient/list_members.php
+     *
+     * @param ListMembersRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listMembers(ListMembersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMembers', $request, $callOptions);
+    }
+
+    /**
+     * Updates details about a meeting space.
+     *
+     * For an example, see [Update a meeting
+     * space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).
      *
      * The async variant is {@see SpacesServiceClient::updateSpaceAsync()} .
      *
