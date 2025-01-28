@@ -74,6 +74,13 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      */
     protected $index_config = null;
     /**
+     * Optional. Configuration for FeatureView created under Optimized
+     * FeatureOnlineStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.OptimizedConfig optimized_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $optimized_config = null;
+    /**
      * Optional. Service agent type used during data sync. By default, the Vertex
      * AI Service Agent is used. When using an IAM Policy to isolate this
      * FeatureView within a project, a separate service account should be
@@ -149,6 +156,9 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *           contains the required configurations to create an index from source data,
      *           so that approximate nearest neighbor (a.k.a ANN) algorithms search can be
      *           performed during online serving.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureView\OptimizedConfig $optimized_config
+     *           Optional. Configuration for FeatureView created under Optimized
+     *           FeatureOnlineStore.
      *     @type int $service_agent_type
      *           Optional. Service agent type used during data sync. By default, the Vertex
      *           AI Service Agent is used. When using an IAM Policy to isolate this
@@ -516,6 +526,44 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\IndexConfig::class);
         $this->index_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for FeatureView created under Optimized
+     * FeatureOnlineStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.OptimizedConfig optimized_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureView\OptimizedConfig|null
+     */
+    public function getOptimizedConfig()
+    {
+        return $this->optimized_config;
+    }
+
+    public function hasOptimizedConfig()
+    {
+        return isset($this->optimized_config);
+    }
+
+    public function clearOptimizedConfig()
+    {
+        unset($this->optimized_config);
+    }
+
+    /**
+     * Optional. Configuration for FeatureView created under Optimized
+     * FeatureOnlineStore.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.OptimizedConfig optimized_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureView\OptimizedConfig $var
+     * @return $this
+     */
+    public function setOptimizedConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\OptimizedConfig::class);
+        $this->optimized_config = $var;
 
         return $this;
     }
