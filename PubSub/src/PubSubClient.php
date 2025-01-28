@@ -98,7 +98,7 @@ class PubSubClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '2.9.0';
+    const VERSION = '2.9.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -107,6 +107,9 @@ class PubSubClient
         SubscriberClient::class,
         SchemaServiceClient::class
     ];
+
+    // The name of the service. Used in debug logging.
+    private const SERVICE_NAME = 'google.pubsub.v2.Pubsub';
 
     /**
      * @var RequestHandler

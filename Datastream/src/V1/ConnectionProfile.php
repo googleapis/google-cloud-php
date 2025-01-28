@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConnectionProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -56,7 +56,7 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource's name.
+     *           Output only. Identifier. The resource's name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The create time of the resource.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -91,9 +91,9 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -102,9 +102,9 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource's name.
+     * Output only. Identifier. The resource's name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

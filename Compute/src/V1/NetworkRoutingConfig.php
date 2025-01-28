@@ -36,6 +36,19 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
      */
     private $bgp_inter_region_cost = null;
     /**
+     * [Output Only] Effective value of the bgp_always_compare_med field.
+     *
+     * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
+     */
+    private $effective_bgp_always_compare_med = null;
+    /**
+     * [Output Only] Effective value of the bgp_inter_region_cost field.
+     * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string effective_bgp_inter_region_cost = 185098313;</code>
+     */
+    private $effective_bgp_inter_region_cost = null;
+    /**
      * The network-wide routing mode to use. If set to REGIONAL, this network's Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network's Cloud Routers will advertise routes with all subnets of this network, across regions.
      * Check the RoutingMode enum for the list of possible values.
      *
@@ -57,6 +70,11 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
      *     @type string $bgp_inter_region_cost
      *           Allows to define a preferred approach for handling inter-region cost in the selection process when using the STANDARD BGP best path selection algorithm. Can be DEFAULT or ADD_COST_TO_MED.
      *           Check the BgpInterRegionCost enum for the list of possible values.
+     *     @type bool $effective_bgp_always_compare_med
+     *           [Output Only] Effective value of the bgp_always_compare_med field.
+     *     @type string $effective_bgp_inter_region_cost
+     *           [Output Only] Effective value of the bgp_inter_region_cost field.
+     *           Check the EffectiveBgpInterRegionCost enum for the list of possible values.
      *     @type string $routing_mode
      *           The network-wide routing mode to use. If set to REGIONAL, this network's Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network's Cloud Routers will advertise routes with all subnets of this network, across regions.
      *           Check the RoutingMode enum for the list of possible values.
@@ -175,6 +193,80 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->bgp_inter_region_cost = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Effective value of the bgp_always_compare_med field.
+     *
+     * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
+     * @return bool
+     */
+    public function getEffectiveBgpAlwaysCompareMed()
+    {
+        return isset($this->effective_bgp_always_compare_med) ? $this->effective_bgp_always_compare_med : false;
+    }
+
+    public function hasEffectiveBgpAlwaysCompareMed()
+    {
+        return isset($this->effective_bgp_always_compare_med);
+    }
+
+    public function clearEffectiveBgpAlwaysCompareMed()
+    {
+        unset($this->effective_bgp_always_compare_med);
+    }
+
+    /**
+     * [Output Only] Effective value of the bgp_always_compare_med field.
+     *
+     * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEffectiveBgpAlwaysCompareMed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->effective_bgp_always_compare_med = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Effective value of the bgp_inter_region_cost field.
+     * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string effective_bgp_inter_region_cost = 185098313;</code>
+     * @return string
+     */
+    public function getEffectiveBgpInterRegionCost()
+    {
+        return isset($this->effective_bgp_inter_region_cost) ? $this->effective_bgp_inter_region_cost : '';
+    }
+
+    public function hasEffectiveBgpInterRegionCost()
+    {
+        return isset($this->effective_bgp_inter_region_cost);
+    }
+
+    public function clearEffectiveBgpInterRegionCost()
+    {
+        unset($this->effective_bgp_inter_region_cost);
+    }
+
+    /**
+     * [Output Only] Effective value of the bgp_inter_region_cost field.
+     * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string effective_bgp_inter_region_cost = 185098313;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEffectiveBgpInterRegionCost($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->effective_bgp_inter_region_cost = $var;
 
         return $this;
     }

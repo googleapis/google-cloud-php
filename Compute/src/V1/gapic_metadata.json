@@ -1972,6 +1972,11 @@
                                 "addRule"
                             ]
                         },
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "CloneRules": {
                             "methods": [
                                 "cloneRules"
