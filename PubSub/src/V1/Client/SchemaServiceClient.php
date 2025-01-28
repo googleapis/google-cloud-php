@@ -633,7 +633,9 @@ final class SchemaServiceClient
         }
 
         $options['apiEndpoint'] ??= $emulatorHost;
-        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        if (class_exists(ChannelCredentials::class)) {
+            $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        }
         $options['credentials'] ??= new InsecureCredentialsWrapper();
         return $options;
     }
