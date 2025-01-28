@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 property and a Firebase project.
+ * A link between a Google Analytics property and a Firebase project.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1beta.FirebaseLink</code>
  */

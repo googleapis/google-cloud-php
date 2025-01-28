@@ -46,6 +46,7 @@ use Google\Analytics\Admin\V1beta\CustomMetric;
 use Google\Analytics\Admin\V1beta\CustomMetric\MeasurementUnit;
 use Google\Analytics\Admin\V1beta\CustomMetric\MetricScope;
 use Google\Analytics\Admin\V1beta\DataRetentionSettings;
+use Google\Analytics\Admin\V1beta\DataRetentionSettings\RetentionDuration;
 use Google\Analytics\Admin\V1beta\DataSharingSettings;
 use Google\Analytics\Admin\V1beta\DataStream;
 use Google\Analytics\Admin\V1beta\DataStream\DataStreamType;
@@ -3633,6 +3634,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataRetentionSettings = new DataRetentionSettings();
+        $dataRetentionSettingsEventDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setEventDataRetention($dataRetentionSettingsEventDataRetention);
+        $dataRetentionSettingsUserDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setUserDataRetention($dataRetentionSettingsUserDataRetention);
         $updateMask = new FieldMask();
         $request = (new UpdateDataRetentionSettingsRequest())
             ->setDataRetentionSettings($dataRetentionSettings)
@@ -3677,6 +3682,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $dataRetentionSettings = new DataRetentionSettings();
+        $dataRetentionSettingsEventDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setEventDataRetention($dataRetentionSettingsEventDataRetention);
+        $dataRetentionSettingsUserDataRetention = RetentionDuration::RETENTION_DURATION_UNSPECIFIED;
+        $dataRetentionSettings->setUserDataRetention($dataRetentionSettingsUserDataRetention);
         $updateMask = new FieldMask();
         $request = (new UpdateDataRetentionSettingsRequest())
             ->setDataRetentionSettings($dataRetentionSettings)

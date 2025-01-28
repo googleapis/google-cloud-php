@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A virtual resource representing metadata for a GA4 property.
+ * A virtual resource representing metadata for a Google Analytics property.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1beta.PropertySummary</code>
  */
