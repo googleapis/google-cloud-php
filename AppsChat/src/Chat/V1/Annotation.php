@@ -81,6 +81,8 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *           The metadata for a slash command.
      *     @type \Google\Apps\Chat\V1\RichLinkMetadata $rich_link_metadata
      *           The metadata for a rich link.
+     *     @type \Google\Apps\Chat\V1\CustomEmojiMetadata $custom_emoji_metadata
+     *           The metadata for a custom emoji.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,6 +271,37 @@ class Annotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\RichLinkMetadata::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The metadata for a custom emoji.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CustomEmojiMetadata custom_emoji_metadata = 7;</code>
+     * @return \Google\Apps\Chat\V1\CustomEmojiMetadata|null
+     */
+    public function getCustomEmojiMetadata()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasCustomEmojiMetadata()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * The metadata for a custom emoji.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CustomEmojiMetadata custom_emoji_metadata = 7;</code>
+     * @param \Google\Apps\Chat\V1\CustomEmojiMetadata $var
+     * @return $this
+     */
+    public function setCustomEmojiMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\CustomEmojiMetadata::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
