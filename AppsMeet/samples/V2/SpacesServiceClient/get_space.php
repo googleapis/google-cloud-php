@@ -29,9 +29,30 @@ use Google\Apps\Meet\V2\GetSpaceRequest;
 use Google\Apps\Meet\V2\Space;
 
 /**
- * Gets a space by `space_id` or `meeting_code`.
+ * Gets details about a meeting space.
  *
- * @param string $formattedName Resource name of the space. Please see
+ * For an example, see [Get a meeting
+ * space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).
+ *
+ * @param string $formattedName Resource name of the space.
+ *
+ *                              Format: `spaces/{space}` or `spaces/{meetingCode}`.
+ *
+ *                              `{space}` is the resource identifier for the space. It's a unique,
+ *                              server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`.
+ *
+ *                              `{meetingCode}` is an alias for the space. It's a typeable, unique
+ *                              character string and is non-case sensitive. For example, `abc-mnop-xyz`.
+ *                              The maximum length is 128 characters.
+ *
+ *                              A `meetingCode` shouldn't be stored long term as it can become
+ *                              dissociated from a meeting space and can be reused for different meeting
+ *                              spaces in the future. Generally, a `meetingCode` expires 365 days after
+ *                              last use. For more information, see [Learn about meeting codes in Google
+ *                              Meet](https://support.google.com/meet/answer/10710509).
+ *
+ *                              For more information, see [How Meet identifies a meeting
+ *                              space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
  *                              {@see SpacesServiceClient::spaceName()} for help formatting this field.
  */
 function get_space_sample(string $formattedName): void

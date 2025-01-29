@@ -23,9 +23,11 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     protected $space = null;
     /**
      * Optional. Field mask used to specify the fields to be updated in the space.
-     * If update_mask isn't provided, it defaults to '*' and updates all
-     * fields provided in the request, including deleting fields not set in the
+     * If update_mask isn't provided(not set, set with empty paths, or only has ""
+     * as paths), it defaults to update all fields provided with values in the
      * request.
+     * Using "*" as update_mask will update all fields, including deleting fields
+     * not set in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -34,9 +36,11 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param \Google\Apps\Meet\V2\Space $space      Required. Space to be updated.
      * @param \Google\Protobuf\FieldMask $updateMask Optional. Field mask used to specify the fields to be updated in the space.
-     *                                               If update_mask isn't provided, it defaults to '*' and updates all
-     *                                               fields provided in the request, including deleting fields not set in the
+     *                                               If update_mask isn't provided(not set, set with empty paths, or only has ""
+     *                                               as paths), it defaults to update all fields provided with values in the
      *                                               request.
+     *                                               Using "*" as update_mask will update all fields, including deleting fields
+     *                                               not set in the request.
      *
      * @return \Google\Apps\Meet\V2\UpdateSpaceRequest
      *
@@ -59,9 +63,11 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           Required. Space to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Field mask used to specify the fields to be updated in the space.
-     *           If update_mask isn't provided, it defaults to '*' and updates all
-     *           fields provided in the request, including deleting fields not set in the
+     *           If update_mask isn't provided(not set, set with empty paths, or only has ""
+     *           as paths), it defaults to update all fields provided with values in the
      *           request.
+     *           Using "*" as update_mask will update all fields, including deleting fields
+     *           not set in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,9 +113,11 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Field mask used to specify the fields to be updated in the space.
-     * If update_mask isn't provided, it defaults to '*' and updates all
-     * fields provided in the request, including deleting fields not set in the
+     * If update_mask isn't provided(not set, set with empty paths, or only has ""
+     * as paths), it defaults to update all fields provided with values in the
      * request.
+     * Using "*" as update_mask will update all fields, including deleting fields
+     * not set in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -131,9 +139,11 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Field mask used to specify the fields to be updated in the space.
-     * If update_mask isn't provided, it defaults to '*' and updates all
-     * fields provided in the request, including deleting fields not set in the
+     * If update_mask isn't provided(not set, set with empty paths, or only has ""
+     * as paths), it defaults to update all fields provided with values in the
      * request.
+     * Using "*" as update_mask will update all fields, including deleting fields
+     * not set in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var

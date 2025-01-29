@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\ConferenceRecord;
 use Google\Apps\Meet\V2beta\GetConferenceRecordRequest;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a conference record by conference ID.
  *
  * @param string $formattedName Resource name of the conference. Please see
