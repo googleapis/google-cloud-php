@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use DateInterval;
+use DateTime;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
@@ -46,6 +48,7 @@ class ValueMapper
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PROTO = TypeCode::PROTO;
+    const TYPE_INTERVAL = TypeCode::INTERVAL;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_PG_OID = 'pgOid';
@@ -71,6 +74,7 @@ class ValueMapper
         self::TYPE_PG_OID,
         self::TYPE_FLOAT32,
         self::TYPE_PROTO,
+        self::TYPE_INTERVAL,
     ];
 
     /*
@@ -373,6 +377,18 @@ class ValueMapper
                 break;
             case self::TYPE_PROTO:
                 $value = new Proto($value, $type['protoTypeFqn']);
+                break;
+            case self::TYPE_INTERVAL:
+                $value = $this->parseInterval($value);
+
+                if (is_null($value)) {
+                    throw new \RuntimeException(sprintf(
+                        'Invalid format %s for %s',
+                        $value,
+                        TypeCode::name($type['code'])
+                    ));
+                }
+
                 break;
         }
 
@@ -906,5 +922,43 @@ class ValueMapper
         }
 
         return $mismatch;
+    }
+
+    /**
+     * Parses an interval type ISO8601 to PHP DateInterval
+     *
+     * @param string $interval
+     * @return null|DateInterval
+     */
+    private function parseInterval(string $interval): null|DateInterval
+    {
+        if (!str_contains($interval, '.')) {
+            return new DateInterval($interval);
+        }
+
+        // DateInterval does not support fractionals on its constructor
+        // so we handle the decimal separately
+        $matches = [];
+        $fractionalSecondsReg = '/^P([^.]*)\.(\d+)S$/';
+
+        if (!preg_match($fractionalSecondsReg, $interval, $matches)) {
+            return null;
+        }
+
+        // Format for fractionals:
+        // P[n]Y[n]M[n]DT[n]H[n]M[n[.fraction]]S
+        // where n is an int
+        $intervalInt = $matches[1] . 'S'; // Add the S for the ISO8601
+        $microseconds = $matches[2] * 100000; // Turn the fractional into microseconds
+
+        // Picked at random, we just need any date
+        $startString = '1989-12-27';
+        $start = new DateTime($startString);
+        $end = new DateTime($startString);
+        $end->setTime(0, 0, 0, $microseconds);
+        $end->add(new DateInterval($intervalInt));
+
+        // This does return a DateInterval with fractions
+        return $start->diff($end);
     }
 }
