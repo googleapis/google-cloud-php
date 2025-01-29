@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A resource message representing a GA4 ExpandedDataSet.
+ * A resource message representing an `ExpandedDataSet`.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.ExpandedDataSet</code>
  */

@@ -67,9 +67,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
     protected $latest_change_time = null;
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
-     * The service may return fewer than this value, even if there are additional
-     * pages. If unspecified, at most 50 items will be returned.
-     * The maximum value is 200 (higher values will be coerced to the maximum).
+     * If unspecified, at most 50 items will be returned. The maximum value is 200
+     * (higher values will be coerced to the maximum).
+     * Note that the service may return a page with fewer items than this value
+     * specifies (potentially even zero), and that there still may be additional
+     * pages. If you want a particular number of items, you'll need to continue
+     * requesting additional pages using `page_token` until you get the needed
+     * number.
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -115,9 +119,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set, only return changes made before this time (inclusive).
      *     @type int $page_size
      *           Optional. The maximum number of ChangeHistoryEvent items to return.
-     *           The service may return fewer than this value, even if there are additional
-     *           pages. If unspecified, at most 50 items will be returned.
-     *           The maximum value is 200 (higher values will be coerced to the maximum).
+     *           If unspecified, at most 50 items will be returned. The maximum value is 200
+     *           (higher values will be coerced to the maximum).
+     *           Note that the service may return a page with fewer items than this value
+     *           specifies (potentially even zero), and that there still may be additional
+     *           pages. If you want a particular number of items, you'll need to continue
+     *           requesting additional pages using `page_token` until you get the needed
+     *           number.
      *     @type string $page_token
      *           Optional. A page token, received from a previous
      *           `SearchChangeHistoryEvents` call. Provide this to retrieve the subsequent
@@ -351,9 +359,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
-     * The service may return fewer than this value, even if there are additional
-     * pages. If unspecified, at most 50 items will be returned.
-     * The maximum value is 200 (higher values will be coerced to the maximum).
+     * If unspecified, at most 50 items will be returned. The maximum value is 200
+     * (higher values will be coerced to the maximum).
+     * Note that the service may return a page with fewer items than this value
+     * specifies (potentially even zero), and that there still may be additional
+     * pages. If you want a particular number of items, you'll need to continue
+     * requesting additional pages using `page_token` until you get the needed
+     * number.
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -365,9 +377,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of ChangeHistoryEvent items to return.
-     * The service may return fewer than this value, even if there are additional
-     * pages. If unspecified, at most 50 items will be returned.
-     * The maximum value is 200 (higher values will be coerced to the maximum).
+     * If unspecified, at most 50 items will be returned. The maximum value is 200
+     * (higher values will be coerced to the maximum).
+     * Note that the service may return a page with fewer items than this value
+     * specifies (potentially even zero), and that there still may be additional
+     * pages. If you want a particular number of items, you'll need to continue
+     * requesting additional pages using `page_token` until you get the needed
+     * number.
      *
      * Generated from protobuf field <code>int32 page_size = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

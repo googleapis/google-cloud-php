@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A virtual resource representing an overview of an account and
- * all its child GA4 properties.
+ * all its child Google Analytics properties.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.AccountSummary</code>
  */

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 Property and BigQuery project.
+ * A link between a Google Analytics property and BigQuery project.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.BigQueryLink</code>
  */

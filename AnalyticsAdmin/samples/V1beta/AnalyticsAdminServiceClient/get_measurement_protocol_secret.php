@@ -29,7 +29,7 @@ use Google\Analytics\Admin\V1beta\MeasurementProtocolSecret;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single "GA4" MeasurementProtocolSecret.
+ * Lookup for a single MeasurementProtocolSecret.
  *
  * @param string $formattedName The name of the measurement protocol secret to lookup.
  *                              Format:

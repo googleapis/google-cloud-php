@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between a GA4 property and a Search Ads 360 entity.
+ * A link between a Google Analytics property and a Search Ads 360 entity.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.SearchAds360Link</code>
  */
@@ -32,19 +32,19 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
     protected $advertiser_id = '';
     /**
      * Immutable. Enables the import of campaign data from Search Ads 360 into the
-     * GA4 property. After link creation, this can only be updated from the Search
-     * Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Google Analytics property. After link creation, this can only be updated
+     * from the Search Ads 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $campaign_data_sharing_enabled = null;
     /**
-     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from
-     * the Search Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Search Ads 360 to the
+     * Google Analytics property. This can only be enabled if
+     * campaign_data_sharing_enabled is enabled. After link creation, this can
+     * only be updated from the Search Ads 360 product. If this field is not set
+     * on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -86,15 +86,15 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
      *           Advertiser. that has been linked.
      *     @type \Google\Protobuf\BoolValue $campaign_data_sharing_enabled
      *           Immutable. Enables the import of campaign data from Search Ads 360 into the
-     *           GA4 property. After link creation, this can only be updated from the Search
-     *           Ads 360 product.
-     *           If this field is not set on create, it will be defaulted to true.
+     *           Google Analytics property. After link creation, this can only be updated
+     *           from the Search Ads 360 product. If this field is not set on create, it
+     *           will be defaulted to true.
      *     @type \Google\Protobuf\BoolValue $cost_data_sharing_enabled
-     *           Immutable. Enables the import of cost data from Search Ads 360 to the GA4
-     *           property. This can only be enabled if campaign_data_sharing_enabled is
-     *           enabled. After link creation, this can only be updated from
-     *           the Search Ads 360 product.
-     *           If this field is not set on create, it will be defaulted to true.
+     *           Immutable. Enables the import of cost data from Search Ads 360 to the
+     *           Google Analytics property. This can only be enabled if
+     *           campaign_data_sharing_enabled is enabled. After link creation, this can
+     *           only be updated from the Search Ads 360 product. If this field is not set
+     *           on create, it will be defaulted to true.
      *     @type string $advertiser_display_name
      *           Output only. The display name of the Search Ads 360 Advertiser.
      *           Allows users to easily identify the linked resource.
@@ -171,9 +171,9 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Enables the import of campaign data from Search Ads 360 into the
-     * GA4 property. After link creation, this can only be updated from the Search
-     * Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Google Analytics property. After link creation, this can only be updated
+     * from the Search Ads 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -197,9 +197,9 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getCampaignDataSharingEnabled()</code>
 
      * Immutable. Enables the import of campaign data from Search Ads 360 into the
-     * GA4 property. After link creation, this can only be updated from the Search
-     * Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Google Analytics property. After link creation, this can only be updated
+     * from the Search Ads 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
@@ -211,9 +211,9 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Enables the import of campaign data from Search Ads 360 into the
-     * GA4 property. After link creation, this can only be updated from the Search
-     * Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Google Analytics property. After link creation, this can only be updated
+     * from the Search Ads 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -231,9 +231,9 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
      * Immutable. Enables the import of campaign data from Search Ads 360 into the
-     * GA4 property. After link creation, this can only be updated from the Search
-     * Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Google Analytics property. After link creation, this can only be updated
+     * from the Search Ads 360 product. If this field is not set on create, it
+     * will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue campaign_data_sharing_enabled = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool|null $var
@@ -245,11 +245,11 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from
-     * the Search Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Search Ads 360 to the
+     * Google Analytics property. This can only be enabled if
+     * campaign_data_sharing_enabled is enabled. After link creation, this can
+     * only be updated from the Search Ads 360 product. If this field is not set
+     * on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -272,11 +272,11 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getCostDataSharingEnabled()</code>
 
-     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from
-     * the Search Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Search Ads 360 to the
+     * Google Analytics property. This can only be enabled if
+     * campaign_data_sharing_enabled is enabled. After link creation, this can
+     * only be updated from the Search Ads 360 product. If this field is not set
+     * on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool|null
@@ -287,11 +287,11 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from
-     * the Search Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Search Ads 360 to the
+     * Google Analytics property. This can only be enabled if
+     * campaign_data_sharing_enabled is enabled. After link creation, this can
+     * only be updated from the Search Ads 360 product. If this field is not set
+     * on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -308,11 +308,11 @@ class SearchAds360Link extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4
-     * property. This can only be enabled if campaign_data_sharing_enabled is
-     * enabled. After link creation, this can only be updated from
-     * the Search Ads 360 product.
-     * If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Search Ads 360 to the
+     * Google Analytics property. This can only be enabled if
+     * campaign_data_sharing_enabled is enabled. After link creation, this can
+     * only be updated from the Search Ads 360 product. If this field is not set
+     * on create, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue cost_data_sharing_enabled = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool|null $var

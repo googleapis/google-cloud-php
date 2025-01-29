@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A resource message representing a GA4 Subproperty event filter.
+ * A resource message representing a Google Analytics subproperty event filter.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.SubpropertyEventFilter</code>
  */
