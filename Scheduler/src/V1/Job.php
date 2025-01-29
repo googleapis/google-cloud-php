@@ -66,7 +66,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * If [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] > 0 and
      * a job attempt fails, the job will be tried a total of
      * [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] times,
-     * with exponential backoff, until the next scheduled start time.
+     * with exponential backoff, until the next scheduled start time. If
+     * retry_count is 0, a job attempt will not be retried if it fails. Instead
+     * the Cloud Scheduler system will wait for the next scheduled execution time.
+     * Setting retry_count to 0 does not prevent failed jobs from running
+     * according to schedule after the failure.
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      */
@@ -88,19 +92,19 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The creation time of the job.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $user_update_time = null;
     /**
      * Output only. State of the job.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
      * Output only. The response from the target for the last attempted execution.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $status = null;
     /**
@@ -108,13 +112,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * retry of a previously failed attempt or the next execution time
      * according to the schedule.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $schedule_time = null;
     /**
      * Output only. The time the last job attempt started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_attempt_time = null;
     /**
@@ -202,7 +206,11 @@ class Job extends \Google\Protobuf\Internal\Message
      *           If [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] > 0 and
      *           a job attempt fails, the job will be tried a total of
      *           [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] times,
-     *           with exponential backoff, until the next scheduled start time.
+     *           with exponential backoff, until the next scheduled start time. If
+     *           retry_count is 0, a job attempt will not be retried if it fails. Instead
+     *           the Cloud Scheduler system will wait for the next scheduled execution time.
+     *           Setting retry_count to 0 does not prevent failed jobs from running
+     *           according to schedule after the failure.
      *     @type string $time_zone
      *           Specifies the time zone to be used in interpreting
      *           [schedule][google.cloud.scheduler.v1.Job.schedule]. The value of this field
@@ -455,7 +463,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * If [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] > 0 and
      * a job attempt fails, the job will be tried a total of
      * [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] times,
-     * with exponential backoff, until the next scheduled start time.
+     * with exponential backoff, until the next scheduled start time. If
+     * retry_count is 0, a job attempt will not be retried if it fails. Instead
+     * the Cloud Scheduler system will wait for the next scheduled execution time.
+     * Setting retry_count to 0 does not prevent failed jobs from running
+     * according to schedule after the failure.
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      * @return string
@@ -484,7 +496,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * If [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] > 0 and
      * a job attempt fails, the job will be tried a total of
      * [retry_count][google.cloud.scheduler.v1.RetryConfig.retry_count] times,
-     * with exponential backoff, until the next scheduled start time.
+     * with exponential backoff, until the next scheduled start time. If
+     * retry_count is 0, a job attempt will not be retried if it fails. Instead
+     * the Cloud Scheduler system will wait for the next scheduled execution time.
+     * Setting retry_count to 0 does not prevent failed jobs from running
+     * according to schedule after the failure.
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      * @param string $var
@@ -543,7 +559,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The creation time of the job.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUserUpdateTime()
@@ -564,7 +580,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The creation time of the job.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -579,7 +595,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. State of the job.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -590,7 +606,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. State of the job.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job.State state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -605,7 +621,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The response from the target for the last attempted execution.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
      */
     public function getStatus()
@@ -626,7 +642,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The response from the target for the last attempted execution.
      *
-     * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */
@@ -643,7 +659,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * retry of a previously failed attempt or the next execution time
      * according to the schedule.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
@@ -666,7 +682,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * retry of a previously failed attempt or the next execution time
      * according to the schedule.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -681,7 +697,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the last job attempt started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastAttemptTime()
@@ -702,7 +718,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the last job attempt started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
