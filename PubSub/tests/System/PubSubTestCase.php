@@ -107,4 +107,3 @@ class PubSubTestCase extends SystemTestCase
         return [$topic, $sub];
     }
 }
-
