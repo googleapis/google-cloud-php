@@ -22,13 +22,13 @@ class RowCountTest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ComparisonType comparison = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $comparison = 0;
+    protected $comparison = 0;
     /**
      * Required. The value against which to compare the row count.
      *
      * Generated from protobuf field <code>int64 threshold = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $threshold = 0;
+    protected $threshold = 0;
 
     /**
      * Constructor.
@@ -104,6 +104,4 @@ class RowCountTest extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RowCountTest::class, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_SqlCondition_RowCountTest::class);
 

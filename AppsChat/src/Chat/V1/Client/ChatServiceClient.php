@@ -415,6 +415,12 @@ final class ChatServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -622,8 +628,7 @@ final class ChatServiceClient
     }
 
     /**
-     * Creates a reaction and adds it to a message. Only unicode emojis are
-     * supported. For an example, see
+     * Creates a reaction and adds it to a message. For an example, see
      * [Add a reaction to a
      * message](https://developers.google.com/workspace/chat/create-reactions).
      *
@@ -779,8 +784,7 @@ final class ChatServiceClient
     }
 
     /**
-     * Deletes a reaction to a message. Only unicode emojis are supported.
-     * For an example, see
+     * Deletes a reaction to a message. For an example, see
      * [Delete a
      * reaction](https://developers.google.com/workspace/chat/delete-reactions).
      *

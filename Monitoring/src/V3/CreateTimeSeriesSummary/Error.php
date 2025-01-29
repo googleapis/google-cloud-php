@@ -20,13 +20,13 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The number of points that couldn't be written because of `status`.
      *
      * Generated from protobuf field <code>int32 point_count = 2;</code>
      */
-    private $point_count = 0;
+    protected $point_count = 0;
 
     /**
      * Constructor.
@@ -109,6 +109,4 @@ class Error extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Error::class, \Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary_Error::class);
 

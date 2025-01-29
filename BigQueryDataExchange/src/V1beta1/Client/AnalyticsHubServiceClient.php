@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -274,6 +274,12 @@ final class AnalyticsHubServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -609,8 +615,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrgDataExchanges(
+        ListOrgDataExchangesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -670,8 +678,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
-    {
+    public function subscribeListing(
+        SubscribeListingRequest $request,
+        array $callOptions = []
+    ): SubscribeListingResponse {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -699,8 +709,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

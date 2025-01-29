@@ -98,6 +98,7 @@ use Google\Cloud\NetApp\V1\UpdateReplicationRequest;
 use Google\Cloud\NetApp\V1\UpdateSnapshotRequest;
 use Google\Cloud\NetApp\V1\UpdateStoragePoolRequest;
 use Google\Cloud\NetApp\V1\UpdateVolumeRequest;
+use Google\Cloud\NetApp\V1\ValidateDirectoryServiceRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigRequest;
 use Google\Cloud\NetApp\V1\VerifyKmsConfigResponse;
 use Google\Cloud\NetApp\V1\Volume;
@@ -170,6 +171,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateSnapshotAsync(UpdateSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateStoragePoolAsync(UpdateStoragePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateVolumeAsync(UpdateVolumeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> validateDirectoryServiceAsync(ValidateDirectoryServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<VerifyKmsConfigResponse> verifyKmsConfigAsync(VerifyKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -538,6 +540,12 @@ final class NetAppClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -1994,6 +2002,35 @@ final class NetAppClient
     public function updateVolume(UpdateVolumeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateVolume', $request, $callOptions)->wait();
+    }
+
+    /**
+     * ValidateDirectoryService does a connectivity check for a directory service
+     * policy attached to the storage pool.
+     *
+     * The async variant is {@see NetAppClient::validateDirectoryServiceAsync()} .
+     *
+     * @example samples/V1/NetAppClient/validate_directory_service.php
+     *
+     * @param ValidateDirectoryServiceRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function validateDirectoryService(
+        ValidateDirectoryServiceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ValidateDirectoryService', $request, $callOptions)->wait();
     }
 
     /**

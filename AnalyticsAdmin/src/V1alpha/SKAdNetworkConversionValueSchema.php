@@ -23,7 +23,7 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The conversion value settings for the first postback window.
      * These differ from values for postback window two and three in that they
@@ -33,7 +33,7 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PostbackWindow postback_window_one = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $postback_window_one = null;
+    protected $postback_window_one = null;
     /**
      * The conversion value settings for the second postback window.
      * This field should only be configured if there is a need to define different
@@ -43,7 +43,7 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PostbackWindow postback_window_two = 3;</code>
      */
-    private $postback_window_two = null;
+    protected $postback_window_two = null;
     /**
      * The conversion value settings for the third postback window.
      * This field should only be set if the user chose to define different
@@ -54,7 +54,7 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PostbackWindow postback_window_three = 4;</code>
      */
-    private $postback_window_three = null;
+    protected $postback_window_three = null;
     /**
      * If enabled, the GA SDK will set conversion values using this schema
      * definition, and schema will be exported to any Google Ads accounts linked
@@ -63,7 +63,7 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool apply_conversion_values = 5;</code>
      */
-    private $apply_conversion_values = false;
+    protected $apply_conversion_values = false;
 
     /**
      * Constructor.

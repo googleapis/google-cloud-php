@@ -75,6 +75,4 @@ class ReportingAttributionModel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReportingAttributionModel::class, \Google\Analytics\Admin\V1alpha\AttributionSettings_ReportingAttributionModel::class);
 

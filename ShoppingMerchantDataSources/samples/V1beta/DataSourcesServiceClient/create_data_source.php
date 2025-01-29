@@ -27,31 +27,22 @@ use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\DataSources\V1beta\Client\DataSourcesServiceClient;
 use Google\Shopping\Merchant\DataSources\V1beta\CreateDataSourceRequest;
 use Google\Shopping\Merchant\DataSources\V1beta\DataSource;
-use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource;
-use Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Channel;
 
 /**
  * Creates the new data source configuration for the given account.
  *
- * @param string $formattedParent                           The account where this data source will be created.
- *                                                          Format: `accounts/{account}`
- *                                                          Please see {@see DataSourcesServiceClient::accountName()} for help formatting this field.
- * @param int    $dataSourcePrimaryProductDataSourceChannel Immutable. Specifies the type of data source channel.
- * @param string $dataSourceDisplayName                     The displayed data source name in the Merchant Center UI.
+ * @param string $formattedParent       The account where this data source will be created.
+ *                                      Format: `accounts/{account}`
+ *                                      Please see {@see DataSourcesServiceClient::accountName()} for help formatting this field.
+ * @param string $dataSourceDisplayName The displayed data source name in the Merchant Center UI.
  */
-function create_data_source_sample(
-    string $formattedParent,
-    int $dataSourcePrimaryProductDataSourceChannel,
-    string $dataSourceDisplayName
-): void {
+function create_data_source_sample(string $formattedParent, string $dataSourceDisplayName): void
+{
     // Create a client.
     $dataSourcesServiceClient = new DataSourcesServiceClient();
 
     // Prepare the request message.
-    $dataSourcePrimaryProductDataSource = (new PrimaryProductDataSource())
-        ->setChannel($dataSourcePrimaryProductDataSourceChannel);
     $dataSource = (new DataSource())
-        ->setPrimaryProductDataSource($dataSourcePrimaryProductDataSource)
         ->setDisplayName($dataSourceDisplayName);
     $request = (new CreateDataSourceRequest())
         ->setParent($formattedParent)
@@ -79,13 +70,8 @@ function create_data_source_sample(
 function callSample(): void
 {
     $formattedParent = DataSourcesServiceClient::accountName('[ACCOUNT]');
-    $dataSourcePrimaryProductDataSourceChannel = Channel::CHANNEL_UNSPECIFIED;
     $dataSourceDisplayName = '[DISPLAY_NAME]';
 
-    create_data_source_sample(
-        $formattedParent,
-        $dataSourcePrimaryProductDataSourceChannel,
-        $dataSourceDisplayName
-    );
+    create_data_source_sample($formattedParent, $dataSourceDisplayName);
 }
 // [END merchantapi_v1beta_generated_DataSourcesService_CreateDataSource_sync]

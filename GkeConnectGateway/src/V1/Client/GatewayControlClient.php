@@ -68,9 +68,7 @@ final class GatewayControlClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -100,9 +98,7 @@ final class GatewayControlClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -122,6 +118,12 @@ final class GatewayControlClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -198,8 +200,10 @@ final class GatewayControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateCredentials(GenerateCredentialsRequest $request, array $callOptions = []): GenerateCredentialsResponse
-    {
+    public function generateCredentials(
+        GenerateCredentialsRequest $request,
+        array $callOptions = []
+    ): GenerateCredentialsResponse {
         return $this->startApiCall('GenerateCredentials', $request, $callOptions)->wait();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -108,7 +108,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Service Interface for the Analytics Admin API (GA4).
+ * Service Description: Service Interface for the Google Analytics Admin API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -420,8 +420,11 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public static function measurementProtocolSecretName(string $property, string $dataStream, string $measurementProtocolSecret): string
-    {
+    public static function measurementProtocolSecretName(
+        string $property,
+        string $dataStream,
+        string $measurementProtocolSecret
+    ): string {
         return self::getPathTemplate('measurementProtocolSecret')->render([
             'property' => $property,
             'data_stream' => $dataStream,
@@ -518,6 +521,12 @@ final class AnalyticsAdminServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -605,8 +614,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function acknowledgeUserDataCollection(AcknowledgeUserDataCollectionRequest $request, array $callOptions = []): AcknowledgeUserDataCollectionResponse
-    {
+    public function acknowledgeUserDataCollection(
+        AcknowledgeUserDataCollectionRequest $request,
+        array $callOptions = []
+    ): AcknowledgeUserDataCollectionResponse {
         return $this->startApiCall('AcknowledgeUserDataCollection', $request, $callOptions)->wait();
     }
 
@@ -691,8 +702,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function createConversionEvent(CreateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function createConversionEvent(
+        CreateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('CreateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -720,8 +733,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createCustomDimension(CreateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function createCustomDimension(
+        CreateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('CreateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -895,13 +910,16 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function createMeasurementProtocolSecret(CreateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function createMeasurementProtocolSecret(
+        CreateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('CreateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
     /**
-     * Creates an "GA4" property with the specified location and attributes.
+     * Creates a Google Analytics property with the specified location and
+     * attributes.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::createPropertyAsync()} .
      *
@@ -1123,8 +1141,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function deleteMeasurementProtocolSecret(DeleteMeasurementProtocolSecretRequest $request, array $callOptions = []): void
-    {
+    public function deleteMeasurementProtocolSecret(
+        DeleteMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
@@ -1139,7 +1159,7 @@ final class AnalyticsAdminServiceClient
      * will be permanently purged.
      * https://support.google.com/analytics/answer/6154772
      *
-     * Returns an error if the target is not found, or is not a GA4 Property.
+     * Returns an error if the target is not found.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::deletePropertyAsync()} .
      *
@@ -1308,8 +1328,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataRetentionSettings(GetDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function getDataRetentionSettings(
+        GetDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('GetDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -1338,8 +1360,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getDataSharingSettings(GetDataSharingSettingsRequest $request, array $callOptions = []): DataSharingSettings
-    {
+    public function getDataSharingSettings(
+        GetDataSharingSettingsRequest $request,
+        array $callOptions = []
+    ): DataSharingSettings {
         return $this->startApiCall('GetDataSharingSettings', $request, $callOptions)->wait();
     }
 
@@ -1400,7 +1424,7 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * Lookup for a single MeasurementProtocolSecret.
      *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::getMeasurementProtocolSecretAsync()} .
@@ -1423,13 +1447,15 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function getMeasurementProtocolSecret(GetMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function getMeasurementProtocolSecret(
+        GetMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('GetMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 
     /**
-     * Lookup for a single "GA4" Property.
+     * Lookup for a single GA Property.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::getPropertyAsync()} .
      *
@@ -1480,15 +1506,17 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listAccountSummaries(ListAccountSummariesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAccountSummaries(
+        ListAccountSummariesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAccountSummaries', $request, $callOptions);
     }
 
     /**
      * Returns all accounts accessible by the caller.
      *
-     * Note that these accounts might not currently have GA4 properties.
+     * Note that these accounts might not currently have GA properties.
      * Soft-deleted (ie: "trashed") accounts are excluded by default.
      * Returns an empty list if no relevant accounts are found.
      *
@@ -1546,8 +1574,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function listConversionEvents(ListConversionEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversionEvents(
+        ListConversionEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversionEvents', $request, $callOptions);
     }
 
@@ -1575,8 +1605,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listCustomDimensions(ListCustomDimensionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomDimensions(
+        ListCustomDimensionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomDimensions', $request, $callOptions);
     }
 
@@ -1751,15 +1783,16 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function listMeasurementProtocolSecrets(ListMeasurementProtocolSecretsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMeasurementProtocolSecrets(
+        ListMeasurementProtocolSecretsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMeasurementProtocolSecrets', $request, $callOptions);
     }
 
     /**
      * Returns child Properties under the specified parent Account.
      *
-     * Only "GA4" properties will be returned.
      * Properties will be excluded if the caller does not have access.
      * Soft-deleted (ie: "trashed") properties are excluded by default.
      * Returns an empty list if no relevant properties are found.
@@ -1813,8 +1846,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function provisionAccountTicket(ProvisionAccountTicketRequest $request, array $callOptions = []): ProvisionAccountTicketResponse
-    {
+    public function provisionAccountTicket(
+        ProvisionAccountTicketRequest $request,
+        array $callOptions = []
+    ): ProvisionAccountTicketResponse {
         return $this->startApiCall('ProvisionAccountTicket', $request, $callOptions)->wait();
     }
 
@@ -1828,12 +1863,17 @@ final class AnalyticsAdminServiceClient
      * only be requested on Google Analytics 360 properties. This method is only
      * available to Administrators.
      *
-     * These data access records include GA4 UI Reporting, GA4 UI Explorations,
-     * GA4 Data API, and other products like Firebase & Admob that can retrieve
+     * These data access records include GA UI Reporting, GA UI Explorations,
+     * GA Data API, and other products like Firebase & Admob that can retrieve
      * data from Google Analytics through a linkage. These records don't include
      * property configuration changes like adding a stream or changing a
      * property's time zone. For configuration change history, see
      * [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     *
+     * To give your feedback on this API, complete the [Google Analytics Access
+     * Reports
+     * feedback](https://docs.google.com/forms/d/e/1FAIpQLSdmEBUrMzAEdiEKk5TV5dEHvDUZDRlgWYdQdAeSdtR4hVjEhw/viewform)
+     * form.
      *
      * The async variant is {@see AnalyticsAdminServiceClient::runAccessReportAsync()}
      * .
@@ -1865,6 +1905,9 @@ final class AnalyticsAdminServiceClient
      * Searches through all changes to an account or its children given the
      * specified set of filters.
      *
+     * Only returns the subset of changes supported by the API. The UI may return
+     * additional changes.
+     *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::searchChangeHistoryEventsAsync()} .
      *
@@ -1886,8 +1929,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function searchChangeHistoryEvents(SearchChangeHistoryEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchChangeHistoryEvents(
+        SearchChangeHistoryEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchChangeHistoryEvents', $request, $callOptions);
     }
 
@@ -1946,8 +1991,10 @@ final class AnalyticsAdminServiceClient
      *
      * @deprecated This method will be removed in the next major version update.
      */
-    public function updateConversionEvent(UpdateConversionEventRequest $request, array $callOptions = []): ConversionEvent
-    {
+    public function updateConversionEvent(
+        UpdateConversionEventRequest $request,
+        array $callOptions = []
+    ): ConversionEvent {
         return $this->startApiCall('UpdateConversionEvent', $request, $callOptions)->wait();
     }
 
@@ -1975,8 +2022,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateCustomDimension(UpdateCustomDimensionRequest $request, array $callOptions = []): CustomDimension
-    {
+    public function updateCustomDimension(
+        UpdateCustomDimensionRequest $request,
+        array $callOptions = []
+    ): CustomDimension {
         return $this->startApiCall('UpdateCustomDimension', $request, $callOptions)->wait();
     }
 
@@ -2033,8 +2082,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateDataRetentionSettings(UpdateDataRetentionSettingsRequest $request, array $callOptions = []): DataRetentionSettings
-    {
+    public function updateDataRetentionSettings(
+        UpdateDataRetentionSettingsRequest $request,
+        array $callOptions = []
+    ): DataRetentionSettings {
         return $this->startApiCall('UpdateDataRetentionSettings', $request, $callOptions)->wait();
     }
 
@@ -2148,8 +2199,10 @@ final class AnalyticsAdminServiceClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret(UpdateMeasurementProtocolSecretRequest $request, array $callOptions = []): MeasurementProtocolSecret
-    {
+    public function updateMeasurementProtocolSecret(
+        UpdateMeasurementProtocolSecretRequest $request,
+        array $callOptions = []
+    ): MeasurementProtocolSecret {
         return $this->startApiCall('UpdateMeasurementProtocolSecret', $request, $callOptions)->wait();
     }
 

@@ -20,7 +20,7 @@ class SegmentParameterFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SegmentParameterFilterScoping filter_scoping = 8;</code>
      */
-    private $filter_scoping = null;
+    protected $filter_scoping = null;
     protected $one_parameter;
     protected $one_filter;
 

@@ -20,7 +20,7 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instruction = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instruction = '';
+    protected $instruction = '';
     /**
      * Required. A human-readable name for AnnotatedDataset defined by
      * users. Maximum of 64 characters
@@ -28,21 +28,21 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string annotated_dataset_display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $annotated_dataset_display_name = '';
+    protected $annotated_dataset_display_name = '';
     /**
      * Optional. A human-readable description for AnnotatedDataset.
      * The description can be up to 10000 characters long.
      *
      * Generated from protobuf field <code>string annotated_dataset_description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $annotated_dataset_description = '';
+    protected $annotated_dataset_description = '';
     /**
      * Optional. A human-readable label used to logically group labeling tasks.
      * This string must match the regular expression `[a-zA-Z\\d_-]{0,128}`.
      *
      * Generated from protobuf field <code>string label_group = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $label_group = '';
+    protected $label_group = '';
     /**
      * Optional. The Language of this question, as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
@@ -52,7 +52,7 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $language_code = '';
+    protected $language_code = '';
     /**
      * Optional. Replication of questions. Each question will be sent to up to
      * this number of contributors to label. Aggregated answers will be returned.
@@ -61,14 +61,14 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 replica_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $replica_count = 0;
+    protected $replica_count = 0;
     /**
      * Optional. Maximum duration for contributors to answer a question. Maximum
      * is 3600 seconds. Default is 3600 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration question_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $question_duration = null;
+    protected $question_duration = null;
     /**
      * Optional. If you want your own labeling contributors to manage and work on
      * this labeling request, you can set these contributors here. We will give
@@ -85,7 +85,7 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_email_address = 10;</code>
      */
-    private $user_email_address = '';
+    protected $user_email_address = '';
 
     /**
      * Constructor.

@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Redis\Cluster\V1\Client\CloudRedisClusterClient;
 use Google\Cloud\Redis\Cluster\V1\Cluster;
-use Google\Cloud\Redis\Cluster\V1\PscConfig;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
@@ -39,31 +38,19 @@ use Google\Rpc\Status;
  * in the response field. The returned operation is automatically deleted
  * after a few hours, so there is no need to call DeleteOperation.
  *
- * @param string $clusterName              Unique name of the resource in this scope including project and
- *                                         location using the form:
- *                                         `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
- * @param int    $clusterShardCount        Number of shards for the Redis cluster.
- * @param string $clusterPscConfigsNetwork The network where the IP address of the discovery endpoint will
- *                                         be reserved, in the form of
- *                                         projects/{network_project}/global/networks/{network_id}.
+ * @param string $clusterName Identifier. Unique name of the resource in this scope including
+ *                            project and location using the form:
+ *                            `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`
  */
-function update_cluster_sample(
-    string $clusterName,
-    int $clusterShardCount,
-    string $clusterPscConfigsNetwork
-): void {
+function update_cluster_sample(string $clusterName): void
+{
     // Create a client.
     $cloudRedisClusterClient = new CloudRedisClusterClient();
 
     // Prepare the request message.
     $updateMask = new FieldMask();
-    $pscConfig = (new PscConfig())
-        ->setNetwork($clusterPscConfigsNetwork);
-    $clusterPscConfigs = [$pscConfig,];
     $cluster = (new Cluster())
-        ->setName($clusterName)
-        ->setShardCount($clusterShardCount)
-        ->setPscConfigs($clusterPscConfigs);
+        ->setName($clusterName);
     $request = (new UpdateClusterRequest())
         ->setUpdateMask($updateMask)
         ->setCluster($cluster);
@@ -100,9 +87,7 @@ function update_cluster_sample(
 function callSample(): void
 {
     $clusterName = '[NAME]';
-    $clusterShardCount = 0;
-    $clusterPscConfigsNetwork = '[NETWORK]';
 
-    update_cluster_sample($clusterName, $clusterShardCount, $clusterPscConfigsNetwork);
+    update_cluster_sample($clusterName);
 }
 // [END redis_v1_generated_CloudRedisCluster_UpdateCluster_sync]

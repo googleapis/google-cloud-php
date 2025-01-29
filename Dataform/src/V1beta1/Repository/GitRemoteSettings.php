@@ -20,13 +20,13 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * Required. The Git remote's default branch name.
      *
      * Generated from protobuf field <code>string default_branch = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $default_branch = '';
+    protected $default_branch = '';
     /**
      * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
@@ -34,13 +34,13 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $authentication_token_secret_version = '';
+    protected $authentication_token_secret_version = '';
     /**
      * Optional. Authentication fields for remote uris using SSH protocol.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Repository.GitRemoteSettings.SshAuthenticationConfig ssh_authentication_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $ssh_authentication_config = null;
+    protected $ssh_authentication_config = null;
     /**
      * Output only. Deprecated: The field does not contain any token status
      * information. Instead use

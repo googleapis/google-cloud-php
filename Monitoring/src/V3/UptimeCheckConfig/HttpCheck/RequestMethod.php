@@ -59,6 +59,4 @@ class RequestMethod
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RequestMethod::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_RequestMethod::class);
 

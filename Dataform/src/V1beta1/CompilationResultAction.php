@@ -20,21 +20,21 @@ class CompilationResultAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target target = 1;</code>
      */
-    private $target = null;
+    protected $target = null;
     /**
      * The action's identifier if the project had been compiled without any
      * overrides configured. Unique within the compilation result.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target canonical_target = 2;</code>
      */
-    private $canonical_target = null;
+    protected $canonical_target = null;
     /**
      * The full path including filename in which this action is located, relative
      * to the workspace root.
      *
      * Generated from protobuf field <code>string file_path = 3;</code>
      */
-    private $file_path = '';
+    protected $file_path = '';
     protected $compiled_object;
 
     /**

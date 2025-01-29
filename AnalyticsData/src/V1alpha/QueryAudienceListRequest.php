@@ -21,7 +21,7 @@ class QueryAudienceListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The row count of the start row. The first row is counted as row
      * 0.
@@ -34,7 +34,7 @@ class QueryAudienceListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 offset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $offset = 0;
+    protected $offset = 0;
     /**
      * Optional. The number of rows to return. If unspecified, 10,000 rows are
      * returned. The API returns a maximum of 250,000 rows per request, no matter
@@ -46,7 +46,7 @@ class QueryAudienceListRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 limit = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $limit = 0;
+    protected $limit = 0;
 
     /**
      * @param string $name Required. The name of the audience list to retrieve users from.

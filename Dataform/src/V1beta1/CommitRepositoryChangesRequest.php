@@ -20,13 +20,13 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The changes to commit to the repository.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CommitMetadata commit_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $commit_metadata = null;
+    protected $commit_metadata = null;
     /**
      * Optional. The commit SHA which must be the repository's current HEAD before
      * applying this commit; otherwise this request will fail. If unset, no
@@ -34,7 +34,7 @@ class CommitRepositoryChangesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string required_head_commit_sha = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $required_head_commit_sha = '';
+    protected $required_head_commit_sha = '';
     /**
      * A map to the path of the file to the operation. The path is the full file
      * path including filename, from repository root.

@@ -23,7 +23,7 @@ class QueryTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeSeriesDescriptor time_series_descriptor = 8;</code>
      */
-    private $time_series_descriptor = null;
+    protected $time_series_descriptor = null;
     /**
      * The time series data.
      *
@@ -37,7 +37,7 @@ class QueryTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 10;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Query execution errors that may have caused the time series data returned
      * to be incomplete. The available data will be available in the

@@ -25,7 +25,7 @@ class UserSequenceStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool is_directly_followed_by = 1;</code>
      */
-    private $is_directly_followed_by = false;
+    protected $is_directly_followed_by = false;
     /**
      * This sequence step must be satisfied in the scoping for the user to
      * match the sequence. For example if `sequenceScoping =
@@ -38,7 +38,7 @@ class UserSequenceStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.UserCriteriaScoping step_scoping = 2;</code>
      */
-    private $step_scoping = 0;
+    protected $step_scoping = 0;
     /**
      * A user matches this sequence step if their events match this
      * expression. Expressions express criteria on dimension, metrics,
@@ -46,7 +46,7 @@ class UserSequenceStep extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.SegmentFilterExpression segment_filter_expression = 3;</code>
      */
-    private $segment_filter_expression = null;
+    protected $segment_filter_expression = null;
 
     /**
      * Constructor.

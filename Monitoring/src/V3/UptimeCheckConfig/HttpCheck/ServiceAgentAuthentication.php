@@ -25,7 +25,7 @@ class ServiceAgentAuthentication extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication.ServiceAgentAuthenticationType type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -70,6 +70,4 @@ class ServiceAgentAuthentication extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServiceAgentAuthentication::class, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_ServiceAgentAuthentication::class);
 

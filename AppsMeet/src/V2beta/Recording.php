@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Metadata about a recording created during a conference.
  *
  * Generated from protobuf message <code>google.apps.meet.v2beta.Recording</code>
@@ -52,7 +51,7 @@ class Recording extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Meet\V2beta\DriveDestination $drive_destination
-     *           Output only. Recording is saved to Google Drive as an mp4 file. The
+     *           Output only. Recording is saved to Google Drive as an MP4 file. The
      *           `drive_destination` includes the Drive `fileId` that can be used to
      *           download the file using the `files.get` method of the Drive API.
      *     @type string $name
@@ -74,7 +73,7 @@ class Recording extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Recording is saved to Google Drive as an mp4 file. The
+     * Output only. Recording is saved to Google Drive as an MP4 file. The
      * `drive_destination` includes the Drive `fileId` that can be used to
      * download the file using the `files.get` method of the Drive API.
      *
@@ -92,7 +91,7 @@ class Recording extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Recording is saved to Google Drive as an mp4 file. The
+     * Output only. Recording is saved to Google Drive as an MP4 file. The
      * `drive_destination` includes the Drive `fileId` that can be used to
      * download the file using the `files.get` method of the Drive API.
      *

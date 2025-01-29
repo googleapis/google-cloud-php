@@ -20,20 +20,20 @@ class SummarizationSection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $key = '';
+    protected $key = '';
     /**
      * Optional. Definition of the section, for example, "what the customer needs
      * help with or has question about."
      *
      * Generated from protobuf field <code>string definition = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $definition = '';
+    protected $definition = '';
     /**
      * Optional. Type of the summarization section.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SummarizationSection.Type type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $type = 0;
+    protected $type = 0;
 
     /**
      * Constructor.

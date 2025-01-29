@@ -28,13 +28,13 @@ class Assertion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.Target parent_action = 5;</code>
      */
-    private $parent_action = null;
+    protected $parent_action = null;
     /**
      * Whether this action is disabled (i.e. should not be run).
      *
      * Generated from protobuf field <code>bool disabled = 2;</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Arbitrary, user-defined tags on this action.
      *
@@ -47,14 +47,14 @@ class Assertion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string select_query = 4;</code>
      */
-    private $select_query = '';
+    protected $select_query = '';
     /**
      * Descriptor for the assertion's automatically-generated view and its
      * columns.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.RelationDescriptor relation_descriptor = 6;</code>
      */
-    private $relation_descriptor = null;
+    protected $relation_descriptor = null;
 
     /**
      * Constructor.

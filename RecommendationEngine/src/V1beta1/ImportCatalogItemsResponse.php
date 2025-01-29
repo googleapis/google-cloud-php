@@ -28,7 +28,7 @@ class ImportCatalogItemsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ImportErrorsConfig errors_config = 2;</code>
      */
-    private $errors_config = null;
+    protected $errors_config = null;
 
     /**
      * Constructor.

@@ -189,6 +189,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function restoreBucket(array $args = [])
+    {
+        return $this->send('buckets', 'restore', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getBucket(array $args = [])
     {
         return $this->send('buckets', 'get', $args);
@@ -316,7 +324,11 @@ class Rest implements ConnectionInterface
             &$attempt,
         ) {
             // if the exception has a response for us to use
-            if ($e instanceof RequestException && $e->hasResponse()) {
+            if ($e instanceof RequestException
+                && $e->hasResponse()
+                && $e->getResponse()->getStatusCode() >= 200
+                && $e->getResponse()->getStatusCode() < 300
+            ) {
                 $msg = (string) $e->getResponse()->getBody();
 
                 $fetchedStream = Utils::streamFor($msg);

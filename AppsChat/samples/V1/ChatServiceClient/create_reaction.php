@@ -30,8 +30,7 @@ use Google\Apps\Chat\V1\Emoji;
 use Google\Apps\Chat\V1\Reaction;
 
 /**
- * Creates a reaction and adds it to a message. Only unicode emojis are
- * supported. For an example, see
+ * Creates a reaction and adds it to a message. For an example, see
  * [Add a reaction to a
  * message](https://developers.google.com/workspace/chat/create-reactions).
  *

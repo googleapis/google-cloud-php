@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,6 @@ use Google\Analytics\Data\V1beta\RunReportResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -59,6 +58,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -166,10 +166,31 @@ final class BetaAnalyticsDataClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -270,6 +291,12 @@ final class BetaAnalyticsDataClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -355,8 +382,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function batchRunPivotReports(BatchRunPivotReportsRequest $request, array $callOptions = []): BatchRunPivotReportsResponse
-    {
+    public function batchRunPivotReports(
+        BatchRunPivotReportsRequest $request,
+        array $callOptions = []
+    ): BatchRunPivotReportsResponse {
         return $this->startApiCall('BatchRunPivotReports', $request, $callOptions)->wait();
     }
 
@@ -421,8 +450,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function checkCompatibility(CheckCompatibilityRequest $request, array $callOptions = []): CheckCompatibilityResponse
-    {
+    public function checkCompatibility(
+        CheckCompatibilityRequest $request,
+        array $callOptions = []
+    ): CheckCompatibilityResponse {
         return $this->startApiCall('CheckCompatibility', $request, $callOptions)->wait();
     }
 
@@ -474,8 +505,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function createAudienceExport(CreateAudienceExportRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAudienceExport(
+        CreateAudienceExportRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAudienceExport', $request, $callOptions)->wait();
     }
 
@@ -640,8 +673,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function queryAudienceExport(QueryAudienceExportRequest $request, array $callOptions = []): QueryAudienceExportResponse
-    {
+    public function queryAudienceExport(
+        QueryAudienceExportRequest $request,
+        array $callOptions = []
+    ): QueryAudienceExportResponse {
         return $this->startApiCall('QueryAudienceExport', $request, $callOptions)->wait();
     }
 
@@ -708,8 +743,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function runRealtimeReport(RunRealtimeReportRequest $request, array $callOptions = []): RunRealtimeReportResponse
-    {
+    public function runRealtimeReport(
+        RunRealtimeReportRequest $request,
+        array $callOptions = []
+    ): RunRealtimeReportResponse {
         return $this->startApiCall('RunRealtimeReport', $request, $callOptions)->wait();
     }
 

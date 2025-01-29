@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,7 +56,9 @@ class AnswerRecordsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AnswerRecordsClient */
@@ -79,17 +81,14 @@ class AnswerRecordsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $answerRecordsElement = new AnswerRecord();
-        $answerRecords = [
-            $answerRecordsElement,
-        ];
+        $answerRecords = [$answerRecordsElement];
         $expectedResponse = new ListAnswerRecordsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnswerRecords($answerRecords);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAnswerRecordsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnswerRecordsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAnswerRecords($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -116,17 +115,19 @@ class AnswerRecordsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAnswerRecordsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnswerRecordsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnswerRecords($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -158,9 +159,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $answerRecordAnswerFeedback = new AnswerFeedback();
         $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
         $updateMask = new FieldMask();
-        $request = (new UpdateAnswerRecordRequest())
-            ->setAnswerRecord($answerRecord)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAnswerRecordRequest())->setAnswerRecord($answerRecord)->setUpdateMask($updateMask);
         $response = $gapicClient->updateAnswerRecord($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -186,21 +185,22 @@ class AnswerRecordsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $answerRecord = new AnswerRecord();
         $answerRecordAnswerFeedback = new AnswerFeedback();
         $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
         $updateMask = new FieldMask();
-        $request = (new UpdateAnswerRecordRequest())
-            ->setAnswerRecord($answerRecord)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateAnswerRecordRequest())->setAnswerRecord($answerRecord)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateAnswerRecord($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -253,12 +253,15 @@ class AnswerRecordsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -285,9 +288,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -317,12 +318,15 @@ class AnswerRecordsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -349,17 +353,14 @@ class AnswerRecordsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $answerRecordsElement = new AnswerRecord();
-        $answerRecords = [
-            $answerRecordsElement,
-        ];
+        $answerRecords = [$answerRecordsElement];
         $expectedResponse = new ListAnswerRecordsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnswerRecords($answerRecords);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListAnswerRecordsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAnswerRecordsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAnswerRecordsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

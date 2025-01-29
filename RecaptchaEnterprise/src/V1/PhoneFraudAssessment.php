@@ -20,7 +20,7 @@ class PhoneFraudAssessment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict sms_toll_fraud_verdict = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $sms_toll_fraud_verdict = null;
+    protected $sms_toll_fraud_verdict = null;
 
     /**
      * Constructor.

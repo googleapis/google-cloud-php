@@ -29,7 +29,6 @@ use Google\Apps\Meet\V2beta\GetParticipantSessionRequest;
 use Google\Apps\Meet\V2beta\ParticipantSession;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview).
  * Gets a participant session by participant session ID.
  *
  * @param string $formattedName Resource name of the participant. Please see

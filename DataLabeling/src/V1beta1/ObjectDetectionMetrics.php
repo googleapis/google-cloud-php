@@ -20,7 +20,7 @@ class ObjectDetectionMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.PrCurve pr_curve = 1;</code>
      */
-    private $pr_curve = null;
+    protected $pr_curve = null;
 
     /**
      * Constructor.

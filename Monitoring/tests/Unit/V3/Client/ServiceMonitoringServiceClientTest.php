@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ServiceMonitoringServiceClient */
@@ -91,9 +93,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $service = new Service();
-        $request = (new CreateServiceRequest())
-            ->setParent($parent)
-            ->setService($service);
+        $request = (new CreateServiceRequest())->setParent($parent)->setService($service);
         $response = $gapicClient->createService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -119,19 +119,20 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $service = new Service();
-        $request = (new CreateServiceRequest())
-            ->setParent($parent)
-            ->setService($service);
+        $request = (new CreateServiceRequest())->setParent($parent)->setService($service);
         try {
             $gapicClient->createService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -174,7 +175,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/CreateServiceLevelObjective', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.ServiceMonitoringService/CreateServiceLevelObjective',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getServiceLevelObjective();
@@ -193,12 +197,15 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
@@ -232,8 +239,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $request = (new DeleteServiceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServiceRequest())->setName($formattedName);
         $gapicClient->deleteService($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -256,17 +262,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $request = (new DeleteServiceRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServiceRequest())->setName($formattedName);
         try {
             $gapicClient->deleteService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -293,14 +301,16 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $request = (new DeleteServiceLevelObjectiveRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServiceLevelObjectiveRequest())->setName($formattedName);
         $gapicClient->deleteServiceLevelObjective($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/DeleteServiceLevelObjective', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.ServiceMonitoringService/DeleteServiceLevelObjective',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -317,17 +327,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $request = (new DeleteServiceLevelObjectiveRequest())
-            ->setName($formattedName);
+        $request = (new DeleteServiceLevelObjectiveRequest())->setName($formattedName);
         try {
             $gapicClient->deleteServiceLevelObjective($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -358,8 +370,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $request = (new GetServiceRequest())
-            ->setName($formattedName);
+        $request = (new GetServiceRequest())->setName($formattedName);
         $response = $gapicClient->getService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -383,17 +394,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $request = (new GetServiceRequest())
-            ->setName($formattedName);
+        $request = (new GetServiceRequest())->setName($formattedName);
         try {
             $gapicClient->getService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -426,8 +439,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $request = (new GetServiceLevelObjectiveRequest())
-            ->setName($formattedName);
+        $request = (new GetServiceLevelObjectiveRequest())->setName($formattedName);
         $response = $gapicClient->getServiceLevelObjective($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -451,17 +463,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $request = (new GetServiceLevelObjectiveRequest())
-            ->setName($formattedName);
+        $request = (new GetServiceLevelObjectiveRequest())->setName($formattedName);
         try {
             $gapicClient->getServiceLevelObjective($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -486,17 +500,14 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $serviceLevelObjectivesElement = new ServiceLevelObjective();
-        $serviceLevelObjectives = [
-            $serviceLevelObjectivesElement,
-        ];
+        $serviceLevelObjectives = [$serviceLevelObjectivesElement];
         $expectedResponse = new ListServiceLevelObjectivesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServiceLevelObjectives($serviceLevelObjectives);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $request = (new ListServiceLevelObjectivesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListServiceLevelObjectivesRequest())->setParent($formattedParent);
         $response = $gapicClient->listServiceLevelObjectives($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -523,17 +534,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $request = (new ListServiceLevelObjectivesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListServiceLevelObjectivesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listServiceLevelObjectives($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -558,17 +571,14 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $servicesElement = new Service();
-        $services = [
-            $servicesElement,
-        ];
+        $services = [$servicesElement];
         $expectedResponse = new ListServicesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListServicesRequest())
-            ->setParent($parent);
+        $request = (new ListServicesRequest())->setParent($parent);
         $response = $gapicClient->listServices($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -595,17 +605,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListServicesRequest())
-            ->setParent($parent);
+        $request = (new ListServicesRequest())->setParent($parent);
         try {
             $gapicClient->listServices($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -636,8 +648,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $service = new Service();
-        $request = (new UpdateServiceRequest())
-            ->setService($service);
+        $request = (new UpdateServiceRequest())->setService($service);
         $response = $gapicClient->updateService($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -661,17 +672,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $service = new Service();
-        $request = (new UpdateServiceRequest())
-            ->setService($service);
+        $request = (new UpdateServiceRequest())->setService($service);
         try {
             $gapicClient->updateService($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -704,15 +717,17 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $serviceLevelObjective = new ServiceLevelObjective();
-        $request = (new UpdateServiceLevelObjectiveRequest())
-            ->setServiceLevelObjective($serviceLevelObjective);
+        $request = (new UpdateServiceLevelObjectiveRequest())->setServiceLevelObjective($serviceLevelObjective);
         $response = $gapicClient->updateServiceLevelObjective($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.monitoring.v3.ServiceMonitoringService/UpdateServiceLevelObjective', $actualFuncCall);
+        $this->assertSame(
+            '/google.monitoring.v3.ServiceMonitoringService/UpdateServiceLevelObjective',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getServiceLevelObjective();
         $this->assertProtobufEquals($serviceLevelObjective, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -729,17 +744,19 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $serviceLevelObjective = new ServiceLevelObjective();
-        $request = (new UpdateServiceLevelObjectiveRequest())
-            ->setServiceLevelObjective($serviceLevelObjective);
+        $request = (new UpdateServiceLevelObjectiveRequest())->setServiceLevelObjective($serviceLevelObjective);
         try {
             $gapicClient->updateServiceLevelObjective($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -771,9 +788,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $service = new Service();
-        $request = (new CreateServiceRequest())
-            ->setParent($parent)
-            ->setService($service);
+        $request = (new CreateServiceRequest())->setParent($parent)->setService($service);
         $response = $gapicClient->createServiceAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

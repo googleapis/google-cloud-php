@@ -7,7 +7,7 @@ namespace Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter;
 use UnexpectedValueException;
 
 /**
- * Datapoints for which Operator is true relative to the query’s Value
+ * Datapoints for which Operator is true relative to the query's Value
  * field will be allowlisted.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter.Operator</code>

@@ -20,7 +20,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_all_bundle_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $allow_all_bundle_ids = false;
+    protected $allow_all_bundle_ids = false;
     /**
      * Optional. iOS bundle ids of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
@@ -37,7 +37,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AppleDeveloperId apple_developer_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $apple_developer_id = null;
+    protected $apple_developer_id = null;
 
     /**
      * Constructor.

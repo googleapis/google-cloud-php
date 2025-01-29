@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -117,7 +117,8 @@ final class ServiceMonitoringServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/service_monitoring_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/service_monitoring_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -150,8 +151,11 @@ final class ServiceMonitoringServiceClient
      *
      * @return string The formatted folder_service_service_level_objective resource.
      */
-    public static function folderServiceServiceLevelObjectiveName(string $folder, string $service, string $serviceLevelObjective): string
-    {
+    public static function folderServiceServiceLevelObjectiveName(
+        string $folder,
+        string $service,
+        string $serviceLevelObjective
+    ): string {
         return self::getPathTemplate('folderServiceServiceLevelObjective')->render([
             'folder' => $folder,
             'service' => $service,
@@ -186,8 +190,11 @@ final class ServiceMonitoringServiceClient
      *
      * @return string The formatted organization_service_service_level_objective resource.
      */
-    public static function organizationServiceServiceLevelObjectiveName(string $organization, string $service, string $serviceLevelObjective): string
-    {
+    public static function organizationServiceServiceLevelObjectiveName(
+        string $organization,
+        string $service,
+        string $serviceLevelObjective
+    ): string {
         return self::getPathTemplate('organizationServiceServiceLevelObjective')->render([
             'organization' => $organization,
             'service' => $service,
@@ -222,8 +229,11 @@ final class ServiceMonitoringServiceClient
      *
      * @return string The formatted project_service_service_level_objective resource.
      */
-    public static function projectServiceServiceLevelObjectiveName(string $project, string $service, string $serviceLevelObjective): string
-    {
+    public static function projectServiceServiceLevelObjectiveName(
+        string $project,
+        string $service,
+        string $serviceLevelObjective
+    ): string {
         return self::getPathTemplate('projectServiceServiceLevelObjective')->render([
             'project' => $project,
             'service' => $service,
@@ -258,8 +268,11 @@ final class ServiceMonitoringServiceClient
      *
      * @return string The formatted service_level_objective resource.
      */
-    public static function serviceLevelObjectiveName(string $project, string $service, string $serviceLevelObjective): string
-    {
+    public static function serviceLevelObjectiveName(
+        string $project,
+        string $service,
+        string $serviceLevelObjective
+    ): string {
         return self::getPathTemplate('serviceLevelObjective')->render([
             'project' => $project,
             'service' => $service,
@@ -315,6 +328,12 @@ final class ServiceMonitoringServiceClient
      *           {@see \Google\Auth\FetchAuthTokenInterface} object or
      *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
      *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *           *Important*: If you accept a credential configuration (credential
+     *           JSON/File/Stream) from an external source for authentication to Google Cloud
+     *           Platform, you must validate it before providing it to any Google API or library.
+     *           Providing an unvalidated credential configuration to Google APIs can compromise
+     *           the security of your systems and data. For more information {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -421,8 +440,10 @@ final class ServiceMonitoringServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServiceLevelObjective(CreateServiceLevelObjectiveRequest $request, array $callOptions = []): ServiceLevelObjective
-    {
+    public function createServiceLevelObjective(
+        CreateServiceLevelObjectiveRequest $request,
+        array $callOptions = []
+    ): ServiceLevelObjective {
         return $this->startApiCall('CreateServiceLevelObjective', $request, $callOptions)->wait();
     }
 
@@ -471,8 +492,10 @@ final class ServiceMonitoringServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServiceLevelObjective(DeleteServiceLevelObjectiveRequest $request, array $callOptions = []): void
-    {
+    public function deleteServiceLevelObjective(
+        DeleteServiceLevelObjectiveRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteServiceLevelObjective', $request, $callOptions)->wait();
     }
 
@@ -524,8 +547,10 @@ final class ServiceMonitoringServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getServiceLevelObjective(GetServiceLevelObjectiveRequest $request, array $callOptions = []): ServiceLevelObjective
-    {
+    public function getServiceLevelObjective(
+        GetServiceLevelObjectiveRequest $request,
+        array $callOptions = []
+    ): ServiceLevelObjective {
         return $this->startApiCall('GetServiceLevelObjective', $request, $callOptions)->wait();
     }
 
@@ -551,8 +576,10 @@ final class ServiceMonitoringServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServiceLevelObjectives(ListServiceLevelObjectivesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listServiceLevelObjectives(
+        ListServiceLevelObjectivesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListServiceLevelObjectives', $request, $callOptions);
     }
 
@@ -632,8 +659,10 @@ final class ServiceMonitoringServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateServiceLevelObjective(UpdateServiceLevelObjectiveRequest $request, array $callOptions = []): ServiceLevelObjective
-    {
+    public function updateServiceLevelObjective(
+        UpdateServiceLevelObjectiveRequest $request,
+        array $callOptions = []
+    ): ServiceLevelObjective {
         return $this->startApiCall('UpdateServiceLevelObjective', $request, $callOptions)->wait();
     }
 }

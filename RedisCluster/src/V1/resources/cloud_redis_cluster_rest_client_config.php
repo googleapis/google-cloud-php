@@ -47,6 +47,18 @@ return [
             ],
         ],
         'google.cloud.redis.cluster.v1.CloudRedisCluster' => [
+            'BackupCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:backup',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCluster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
@@ -62,9 +74,54 @@ return [
                     'cluster_id',
                 ],
             ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupCollection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -95,6 +152,28 @@ return [
                     ],
                 ],
             ],
+            'ListBackupCollections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupCollections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/backupCollections/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListClusters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
@@ -102,6 +181,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RescheduleClusterMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:rescheduleClusterMaintenance',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

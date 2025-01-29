@@ -25,13 +25,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Name used for UI elements listing this Service.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
-    private $display_name = '';
+    protected $display_name = '';
     /**
      * Message that contains the service type and service labels of this service
      * if it is a basic service.
@@ -40,13 +40,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service.BasicService basic_service = 19;</code>
      */
-    private $basic_service = null;
+    protected $basic_service = null;
     /**
      * Configuration for how to query telemetry on a Service.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service.Telemetry telemetry = 13;</code>
      */
-    private $telemetry = null;
+    protected $telemetry = null;
     /**
      * Labels which have been used to annotate the service. Label keys must start
      * with a letter. Label keys and values may contain lowercase letters,

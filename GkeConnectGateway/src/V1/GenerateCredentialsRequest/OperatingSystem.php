@@ -54,6 +54,4 @@ class OperatingSystem
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OperatingSystem::class, \Google\Cloud\GkeConnect\Gateway\V1\GenerateCredentialsRequest_OperatingSystem::class);
 

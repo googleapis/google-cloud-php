@@ -21,13 +21,13 @@ class CreateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The evaluation job to create.
      *
      * Generated from protobuf field <code>.google.cloud.datalabeling.v1beta1.EvaluationJob job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $job = null;
+    protected $job = null;
 
     /**
      * @param string                                           $parent Required. Evaluation job resource parent. Format:

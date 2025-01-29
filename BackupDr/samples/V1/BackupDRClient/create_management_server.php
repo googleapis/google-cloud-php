@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\BackupDR\V1\Client\BackupDRClient;
 use Google\Cloud\BackupDR\V1\CreateManagementServerRequest;
 use Google\Cloud\BackupDR\V1\ManagementServer;
-use Google\Cloud\BackupDR\V1\NetworkConfig;
 use Google\Rpc\Status;
 
 /**
@@ -49,9 +48,7 @@ function create_management_server_sample(
     $backupDRClient = new BackupDRClient();
 
     // Prepare the request message.
-    $managementServerNetworks = [new NetworkConfig()];
-    $managementServer = (new ManagementServer())
-        ->setNetworks($managementServerNetworks);
+    $managementServer = new ManagementServer();
     $request = (new CreateManagementServerRequest())
         ->setParent($formattedParent)
         ->setManagementServerId($managementServerId)

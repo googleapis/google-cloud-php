@@ -21,7 +21,7 @@ class FewShotExample extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationContext conversation_context = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $conversation_context = null;
+    protected $conversation_context = null;
     /**
      * Optional. Key is the placeholder field name in input, value is the value of
      * the placeholder. E.g. instruction contains "&#64;price", and ingested data has
@@ -35,7 +35,7 @@ class FewShotExample extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GeneratorSuggestion output = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $output = null;
+    protected $output = null;
     protected $instruction_list;
 
     /**

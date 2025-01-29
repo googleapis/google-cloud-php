@@ -27,7 +27,7 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * A list of BigQuery policy tags that will be applied to the column.
      *

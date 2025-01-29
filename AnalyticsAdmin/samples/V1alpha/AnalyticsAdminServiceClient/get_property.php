@@ -29,7 +29,7 @@ use Google\Analytics\Admin\V1alpha\Property;
 use Google\ApiCore\ApiException;
 
 /**
- * Lookup for a single "GA4" Property.
+ * Lookup for a single GA Property.
  *
  * @param string $formattedName The name of the property to lookup.
  *                              Format: properties/{property_id}
